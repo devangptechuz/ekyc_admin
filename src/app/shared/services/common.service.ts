@@ -24,6 +24,10 @@ export class CommonService {
     return this.http.post<any>(`${this.apiUrl}/login`, data);
   }
 
+  forgotPassword(data): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/forgot-password`, data);
+  }
+
   setErrors(form, errorData) {
     for (const [key, value] of Object.entries(errorData)) {
       if (form.controls[key]) {
