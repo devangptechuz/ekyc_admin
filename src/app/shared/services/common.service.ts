@@ -24,6 +24,10 @@ export class CommonService {
     return this.http.post<any>(`${this.apiUrl}/login`, data);
   }
 
+  register(data): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/register`, data);
+  }
+
   forgotPassword(data): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/forgot-password`, data);
   }
