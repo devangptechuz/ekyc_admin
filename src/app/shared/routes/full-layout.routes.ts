@@ -8,4 +8,9 @@ export const Full_ROUTES: Routes = [
         loadChildren: () => import('../../pages/dashboard/dashboard.module').then(m => m.DashboardModule),
         canActivateChild: [PageGuard]
     },
+    {
+        path: 'sub-admin',
+        loadChildren: () => import('../../pages/sub-admin/sub-admin.module').then(m => m.SubAdminModule),
+        canActivateChild: [PageGuard]
+    },
 ];

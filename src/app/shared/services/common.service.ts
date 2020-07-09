@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 
 import { environment } from '../../../environments/environment';
+import {GlobalService} from './global.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,16 @@ export class CommonService {
   constructor(
     public http: HttpClient,
     public router: Router,
+    public global: GlobalService
   ) { }
 
   logout() {
+    this.global.deleteMultiCookies(['admin_user_email', 'admin_user_token']);
     this.router.navigate(['/login']);
   }
 
   login(data): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, data);
+    return this.http.post<any>(`${this.apiUrl}/adminlogin`, data);
   }
 
   register(data): Observable<any> {

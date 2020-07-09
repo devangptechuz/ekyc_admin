@@ -8,10 +8,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-admin',
-  templateUrl: './register-admin.component.html',
-  styleUrls: ['./register-admin.component.scss']
+  templateUrl: './add-edit-sub-admin.component.html',
+  styleUrls: ['./add-edit-sub-admin.component.scss']
 })
-export class RegisterAdminComponent implements OnInit {
+export class AddEditSubAdminComponent implements OnInit {
   toggleEyePassword = "ft-eye-off";
   toggleEyeConfirmPassword = "ft-eye-off";
   loginObj: any = {};

@@ -10,7 +10,23 @@ import {Router} from '@angular/router';
 })
 export class RecentAlertsComponent implements OnInit {
 
-  rows = [];
+  rows = [{
+    'username':'pragnesh',
+    'img':'assets/img/portrait/avatars/avatar-01.png',
+    'AlertMessage':'Something',
+    'StepName':'prg',
+    'ApplicationID':'123',
+    'DateofAlert':'02/11/1994',
+    'status':'Active'
+  },{
+    'username':'devu',
+    'img':'assets/img/portrait/avatars/avatar-02.png',
+    'AlertMessage':'Something',
+    'StepName':'dev',
+    'ApplicationID':'123',
+    'DateofAlert':'02/11/1985',
+    'status':'Active'
+  }];
   temp = [];
   loadingIndicator = true;
   limitRow = '10';

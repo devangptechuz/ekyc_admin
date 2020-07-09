@@ -10,7 +10,21 @@ import {Router} from '@angular/router';
 })
 export class RecentApplicationComponent implements OnInit {
 
-  rows = [];
+  rows = [{
+    'img':'assets/img/portrait/avatars/avatar-03.png',
+    'username':'pragnesh',
+    'accountType':'Equity',
+    'status':'Submitted',
+    'applicationID':'GP00421',
+    'lastActivity':'Apr 22 2020-02:31PM'
+  },{
+    'img':'assets/img/portrait/avatars/avatar-04.png',
+    'username':'ritu',
+    'accountType':'IPO',
+    'status':'Submitted',
+    'applicationID':'GP00422',
+    'lastActivity':'Apr 24 2020-02:21PM',
+  }];
   temp = [];
   loadingIndicator = true;
   limitRow = '10';

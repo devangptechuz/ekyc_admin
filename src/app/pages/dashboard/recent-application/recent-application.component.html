@@ -12,14 +12,22 @@
                                        [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
                                        [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
                             <ngx-datatable-column name="User Name" [sortable]="true" prop="uname">
+                                <ng-template
+                                        ngx-datatable-cell-template
+                                        let-rowIndex="rowIndex"
+                                        let-row="row"
+                                >
+                                    <a><img src="{{row.img}}" width="50" height="50"></a>
+                                    <a>{{row.username}}</a>
+                                </ng-template>
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Application Id" [sortable]="true" prop="email">
+                            <ngx-datatable-column name="Application Id" [sortable]="true" prop="applicationID">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Last Activity" [sortable]="true" prop="nickname">
+                            <ngx-datatable-column name="Last Activity" [sortable]="true" prop="lastActivity">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Account Type" [sortable]="true" prop="email">
+                            <ngx-datatable-column name="Account Type" [sortable]="true" prop="accountType">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Application Status" [sortable]="true" prop="email">
+                            <ngx-datatable-column name="Application Status" [sortable]="true" prop="status">
                             </ngx-datatable-column>
                         </ngx-datatable>
                     </div>

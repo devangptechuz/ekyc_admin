@@ -1,35 +1,44 @@
 <section id="paging" class="pb-3 profile-sec">
     <div class="row">
         <div class="col-md-12">
+            <button class="btn-dark float-right" routerLink="/sub-admin/add-admin">Add Sub Admin
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="card table-card">
                 <div class="card-header">
-                    <h4 class="text-bold-500"> Recent Alerts</h4>
-<!--                    <h4 class="text-bold-500 datatable-row-center"> 2% Increase Since Last Weeks</h4>-->
+                    <h4 class="text-bold-500"> Sub Admins</h4>
                 </div>
                 <div class="card-body">
                     <div class="card-block">
                         <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
                                        [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
                                        [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
-                            <ngx-datatable-column name="User Name" [sortable]="true" prop="username">
+                            <ngx-datatable-column name="First Name" [sortable]="true" prop="firstname">
                                 <ng-template
                                         ngx-datatable-cell-template
                                         let-rowIndex="rowIndex"
                                         let-row="row"
                                 >
                                     <a><img src="{{row.img}}" width="50" height="50"></a>
-                                    <a>{{row.username}}</a>
+                                    <a>{{row.firstname}}</a>
                                 </ng-template>
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Alert Message" [sortable]="true" prop="AlertMessage">
+                            <ngx-datatable-column name="Last Name" [sortable]="true" prop="lastname">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Step Name" [sortable]="true" prop="StepName">
+                            <ngx-datatable-column name="Email" [sortable]="true" prop="email">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Application Id" [sortable]="true" prop="ApplicationID">
+                            <ngx-datatable-column name="Status" [sortable]="true" prop="status">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Date of Alert" [sortable]="true" prop="DateofAlert">
-                            </ngx-datatable-column>
-                            <ngx-datatable-column name="Application Status" [sortable]="true" prop="status">
+                            <ngx-datatable-column name="Actions" [sortable]="false" prop="id" >
+                                <ng-template let-row="data"  let-value="value" ngx-datatable-cell-template >
+                                  <span>
+                                    <button (click)="onEdit(value)"><i style="background-color:transparent;" ><i class="fa fa-pencil" style="color: blue"></i></i></button>
+                                    <button #btnElement (click)="onDelete(btnElement,value)"><i style="background-color:transparent;" ><i class="fa fa-trash" style="color: red"></i></i></button>
+                                  </span>
+                                </ng-template>
                             </ngx-datatable-column>
                         </ngx-datatable>
                     </div>
@@ -38,3 +47,4 @@
         </div>
     </div>
 </section>
+

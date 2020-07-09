@@ -23,6 +23,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 
 // Modules
 import { NotfoundComponent } from './notfound/notfound.component';
+import {CookieService} from 'ngx-cookie-service';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
     wheelPropagation: false
@@ -56,6 +57,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
             useClass: HttpConfigInterceptor,
             multi: true
         },
+        CookieService,
         AuthGuard,
         PageGuard
     ],

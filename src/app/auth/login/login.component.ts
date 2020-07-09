@@ -5,6 +5,8 @@ import { CommonService } from 'app/shared/services/common.service';
 import { ValidationService } from "app/shared/services/validator.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute, Router} from "@angular/router";
+import {CookieService} from 'ngx-cookie-service';
+import {GlobalService} from '../../shared/services/global.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,9 @@ export class LoginComponent {
     private commonService: CommonService,
     private formBuilder: FormBuilder,
     private validationService: ValidationService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private cookieService: CookieService,
+    public global: GlobalService
   ) { }
 
   ngOnInit() {
@@ -44,18 +48,16 @@ export class LoginComponent {
       this.validationService.validateAllFormFields(this.loginForm);
       return false;
     }
-    this.commonService.login(this.loginForm.value).subscribe(
-      (result: any) => {
-          if (result['status'] === true && result['data']) {
-              localStorage.setItem('token', result['data'].token);
-              localStorage.setItem('User', JSON.stringify(result['data'].Items[0]));
+    this.commonService.login(this.loginForm.value).subscribe((res: any) => {
+      if(res.success){
+          this.cookieService.set('admin_user_email',res.result.email , this.global.getCookieExpiredTime());
+          this.cookieService.set('admin_user_token', res.result.token, this.global.getCookieExpiredTime());
+          this.router.navigateByUrl(this.returnUrl);
+          this.spinner.hide();
+          this.loginForm.reset();
+        } else {
+            this.toastr.error(res.message);
           }
-        this.router.navigateByUrl(this.returnUrl);
-        this.spinner.hide();
-        this.loginForm.reset();
-      },
-      error => {
-        this.toastr.error(error.error);
       }
     );
   }
