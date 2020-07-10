@@ -24,13 +24,15 @@ import { NgxSpinnerModule } from "ngx-spinner";
 // Modules
 import { NotfoundComponent } from './notfound/notfound.component';
 import {CookieService} from 'ngx-cookie-service';
+import { AddComponent } from './sub-admin/add/add.component';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
     wheelPropagation: false
 };
 
 @NgModule({
-    declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent, NotfoundComponent],
+    declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent, NotfoundComponent, AddComponent],
     imports: [
         BrowserAnimationsModule,
         AppRoutingModule,

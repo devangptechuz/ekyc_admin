@@ -9,6 +9,7 @@ import { Full_ROUTES } from "./shared/routes/full-layout.routes";
 import { CONTENT_ROUTES } from "./shared/routes/content-layout.routes";
 
 import { AuthGuard } from './shared/guards/auth-guard.service';
+import { AddComponent } from './sub-admin/add/add.component';
 
 const appRoutes: Routes = [
   {
@@ -26,6 +27,12 @@ const appRoutes: Routes = [
     component: ContentLayoutComponent,
     children: CONTENT_ROUTES,
     canActivate: [AuthGuard]
+  },
+  {
+    path: '',
+    component: ContentLayoutComponent,
+    children: CONTENT_ROUTES,
+    canActivate: [AddComponent]
   },
   { path: '**', component: NotfoundComponent }
 ];

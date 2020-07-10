@@ -98,7 +98,6 @@ body p{ color: #797979; font-weight: 400; font-size: 14px; }
 body p.label-control{ margin: 0; }
 
 body form label{ letter-spacing: 0; font-size: 13px; display: inline-block; width: 100%; margin-bottom: 4px; }
-input[type="text"], input[type="email"], input[type="phone"], input[type="number"], input[type="password"]{ border: 1px solid #bebebe; color: #797979 !important; padding: 0 11px; height: 33px; }
 input[type="text"]:focus, input[type="email"]:focus, input[type="phone"]:focus, input[type="number"]:focus, input[type="password"]:focus{ box-shadow: none; border-color: #000 !important; }
 body form .form-control::-webkit-input-placeholder { color: #797979; opacity: 0.5; } 
 body form .form-control:-ms-input-placeholder { color: #797979; opacity: 0.5; } 
