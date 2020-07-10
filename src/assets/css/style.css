@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+body{font-family: 'Poppins', sans-serif;}
+.container {
+    max-width: 1200px;
+}
+header{box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);}
+/*dashboard*/
+.custom-datatable{margin-top: 32px;}
+.custom-datatable .card{background: #FCFCFC;border: 1px solid #DDDDDD;border-radius: 8px;padding: 40px;}
+.custom-datatable .card .card-header{padding: 0 0 15px;border-bottom: 1px solid #DDDDDD;}
+.custom-datatable .card-header h4{margin: 0;font-weight: 500;font-size: 20px;line-height: 30px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.8);}
+.custom-datatable .ngx-datatable .datatable-body .datatable-row-wrapper{margin-bottom: 8px;border: 1px solid #DDDDDD;border-radius: 8px;}
+.custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row,
+.custom-datatable .ngx-datatable.bootstrap .datatable-header .datatable-header-cell,
+.custom-datatable .table-card .ngx-datatable{border: none;}
+.custom-datatable .ngx-datatable.bootstrap .datatable-header .datatable-header-cell span{font-weight: normal;font-size: 12px;line-height: 18px;text-transform: capitalize;color: #0970DD;}
+.custom-datatable .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell{padding: 26px 18px 17px;}
+.custom-datatable .user-img{margin-right: 8px;width: 32px;height: 32px;display: inline-block;border-radius: 50%;background: rgba(9, 112, 221, 0.16);}
+.custom-datatable .user-img img{width: 100%;height: 100%;object-fit: cover;border-radius: 50%;}
+.custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row .datatable-body-cell{font-size: 14px;line-height: 21px;text-transform: capitalize;color: rgba(0, 0, 0, 0.8);}
+.custom-datatable .dummy-icon img{width: auto;height: auto;text-align: center;object-fit: contain;top: 17%;left: 50%;transform: translate(-50%);position: relative;}
+.custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row .datatable-body-cell .datatable-body-cell-label{display: flex;align-items: center;}
+
+.total-detail{margin-top: 32px;}

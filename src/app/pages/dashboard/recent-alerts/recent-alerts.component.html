@@ -1,4 +1,4 @@
-<section id="paging" class="pb-3 profile-sec">
+<section id="paging" class="profile-sec">
     <div class="row">
         <div class="col-md-12">
             <div class="card table-card">
@@ -17,7 +17,11 @@
                                         let-rowIndex="rowIndex"
                                         let-row="row"
                                 >
-                                    <a><img src="{{row.img}}" width="50" height="50"></a>
+                                     <a class="user-img dummy-icon">
+                                        <img src="assets/img/user-ic.svg">
+                                    </a>                                   
+                                  <!--   <a class="user-img">                                          
+                                        <img src="{{row.img}}"></a> -->
                                     <a>{{row.username}}</a>
                                 </ng-template>
                             </ngx-datatable-column>
