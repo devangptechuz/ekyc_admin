@@ -22,7 +22,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>User Type</label>
-                        <ngx-select [items]="userType" formControlName="type"
+                        <ngx-select [items]="userType" formControlName="type" class="form-control"
                                      optionValueField="type" optionTextField="label"></ngx-select>
                         <app-control-messages fieldName="User Type" [control]="adminForm.controls['type']">
                         </app-control-messages>
