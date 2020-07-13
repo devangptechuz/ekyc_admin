@@ -37,12 +37,14 @@ export class ForgotPasswordComponent implements OnInit {
     }
     this.commonService.forgotPassword(this.forgotPasswordForm.value).subscribe(
         (result: any) => {
+          if(result.success){
+            this.toastr.success('Send link to your Email.');
+          } else {
+            this.toastr.error(result.message);
+          }
           this.spinner.hide();
           this.forgotPasswordForm.reset();
         },
-        error => {
-          this.toastr.error(error.error);
-        }
     );
   }
 

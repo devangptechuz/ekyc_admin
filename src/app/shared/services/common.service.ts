@@ -32,7 +32,11 @@ export class CommonService {
   }
 
   forgotPassword(data): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/forgot-password`, data);
+    return this.http.post<any>(`${this.apiUrl}/forgotPassword`, data);
+  }
+
+  resetPassword(data): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/resetPassword`, data);
   }
 
   setErrors(form, errorData) {

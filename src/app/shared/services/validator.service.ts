@@ -37,6 +37,7 @@ export class ValidationService {
       pattern: `Please enter a valid data.`,
       invalidAbn: `Please enter a valid abn number.`,
       invalidMobile: `Please enter a valid phone number.`,
+      invalidPassword: 'Password must be at least 8 characters long, and contain a number.',
     };
     return config[validatorName];
   }
@@ -68,12 +69,12 @@ export class ValidationService {
   }
 
   passwordValidator(control) {
-    // {6,100}           - Assert password is between 6 and 100 characters
+    // {8,25}           - Assert password is between 8 and 25 characters
     // (?=.*[0-9])       - Assert a string has at least one number
     if (control.value) {
       if (
           control.value.match(
-              /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,25}$/
           )
       ) {
         return null;
