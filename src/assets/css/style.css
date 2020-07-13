@@ -139,6 +139,8 @@ form .form-group{position: relative;}
 .login-section .form-group{ margin-bottom: 16px !important;}
 .login-section  .login-btn{margin-top: 24px;}
 .icon-log-in{margin-right: 15px;}
+.login-btn {font-size: 14px;}
+
 
 
 @media(min-width:768px) {
