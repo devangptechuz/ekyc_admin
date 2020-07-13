@@ -24,10 +24,24 @@ export class RecentApplicationComponent implements OnInit {
     'status':'Submitted',
     'applicationID':'GP00422',
     'lastActivity':'Apr 24 2020-02:21PM',
+  },{
+    'img':'assets/img/portrait/avatars/avatar-04.png',
+    'username':'ritu',
+    'accountType':'IPO',
+    'status':'Submitted',
+    'applicationID':'GP00422',
+    'lastActivity':'Apr 24 2020-02:21PM',
+  },{
+    'img':'assets/img/portrait/avatars/avatar-04.png',
+    'username':'ritu',
+    'accountType':'IPO',
+    'status':'Submitted',
+    'applicationID':'GP00422',
+    'lastActivity':'Apr 24 2020-02:21PM',
   }];
   temp = [];
   loadingIndicator = true;
-  limitRow = '10';
+  limitRow = '3';
   selectedItem;
   perPage = [
     { label: '10', value: '10' },

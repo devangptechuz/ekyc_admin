@@ -22,10 +22,22 @@ export class ListAdminComponent implements OnInit {
     'img':'assets/img/portrait/avatars/avatar-04.png',
     'email':'pragnesh@techuz.com',
     'status':'Active'
+  }, {
+    'firstname':'prg',
+    'lastname':'panchal',
+    'img':'assets/img/portrait/avatars/avatar-04.png',
+    'email':'pragnesh@techuz.com',
+    'status':'InActive'
+  },{
+    'firstname':'abcd',
+    'lastname':'aaaa',
+    'img':'assets/img/portrait/avatars/avatar-04.png',
+    'email':'pragnesh@techuz.com',
+    'status':'Active'
   }];
   temp = [];
   loadingIndicator = true;
-  limitRow = '10';
+  limitRow = '3';
   selectedItem;
   perPage = [
     { label: '10', value: '10' },

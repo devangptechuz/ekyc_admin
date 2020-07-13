@@ -26,10 +26,26 @@ export class RecentAlertsComponent implements OnInit {
     'ApplicationID':'123',
     'DateofAlert':'02/11/1985',
     'status':'Active'
+  },{
+    'username':'devu',
+    'img':'assets/img/portrait/avatars/avatar-02.png',
+    'AlertMessage':'Something',
+    'StepName':'dev',
+    'ApplicationID':'123',
+    'DateofAlert':'02/11/1985',
+    'status':'Active'
+  },{
+    'username':'devu',
+    'img':'assets/img/portrait/avatars/avatar-02.png',
+    'AlertMessage':'Something',
+    'StepName':'dev',
+    'ApplicationID':'123',
+    'DateofAlert':'02/11/1985',
+    'status':'Active'
   }];
   temp = [];
   loadingIndicator = true;
-  limitRow = '10';
+  limitRow = '3';
   selectedItem;
   perPage = [
     { label: '10', value: '10' },
