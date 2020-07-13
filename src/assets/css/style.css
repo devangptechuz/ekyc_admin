@@ -13,7 +13,8 @@ a{transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-out;-moz-transit
 a:hover{text-decoration: none;}
 .modal-lg {max-width: 960px;}
 .modal-body{padding: 40px;background: #FFFFFF;box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.24);border-radius: 16px;}
-
+.btn-custom{background: #0970DD;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);border-radius: 8px;font-weight: 500;font-size: 16px;line-height: 24px;letter-spacing: 1px;text-transform: capitalize;color: #FFFFFF;}
+.btn-custom:hover{color: #fff;background: #0961bd;}
 @font-face {
   font-family: 'icomoon';
   src:  url('../fonts/icomoon.eot?dou5i7');
@@ -41,7 +42,10 @@ a:hover{text-decoration: none;}
   -moz-osx-font-smoothing: grayscale;
 }
 .icon-red-arrow:before {content: "\e900"}
-
+.icon-log-in:before {
+  content: "\e903";
+  color: #fff;
+}
 /*header*/
 header .navbar{display: flex;justify-content: space-between;padding: 12px 0;}
 .navbar .navbar-collapse{justify-content: center;}
@@ -107,3 +111,57 @@ section.add-user .form-control{width: 100%;}
 section.add-user .footer-btn {margin-top: 98px;border-top: 1px solid #DDDDDD;padding-top: 15px;display: flex;justify-content: space-between;}
 section.add-user .footer-btn .btn{ padding: 0;color: #0970DD;text-transform: capitalize;font-weight: 500;font-size: 16px;line-height: 24px;font-weight: 500;letter-spacing: 1px;}
 section.add-user .footer-btn .btn:disabled{color: #B0BAC5;opacity: 1;}
+
+/*application*/
+section.application {margin: 32px 0;}
+section.application .nav-tabs{margin-left: 40px;border: none;}
+section.application .nav-tabs .nav-link{padding: 15px 24px;font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
+section.application .tab-content{padding: 0;background: #FCFCFC;border: 1px solid #DDDDDD;box-sizing: border-box;border-radius: 8px;}
+section.application .nav-tabs .nav-link.active{background: #0970DD;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);border-radius: 8px 8px 0px 0px;color: #fff;border: none;}
+section.application .card-body{padding: 0;}
+section.application h2{font-weight: 200;line-height: 36px;letter-spacing: 1px;text-transform: capitalize;}
+section.application .header{padding: 40px;}
+section.application .search input{min-width: 438px;padding: 15px;background: #FEFEFF;border: 1px solid #DDDDDD;border-radius: 8px;}
+
+
+body #login{background: none;}
+body .login-section:after{content: "";background: url(assets/img/shape.svg);width: 100%;height: 270px;display: block;background-size: cover;background-position: bottom}
+body .login-section .bg-white {padding: 40px;background: #FFFFFF;border: 1px solid #DDDDDD;box-sizing: border-box;box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);border-radius: 8px;margin: 24px 0 0;}
+body .login-section h2.card-title{text-align: center;margin: 0 0 24px;font-weight: 200;font-size: 24px;line-height: 36px;text-transform: capitalize;color: #96AB13;}
+.login-section .login-img a{display: block;text-align: center;}
+.login-section .login-img a img{width: 253px;}
+.login-section .card-body {padding: 60px 0 0;}
+body .login-section .card{min-width: 560px;}
+.login-section .form-group label{text-transform: none;font-weight: 400;}
+form .form-group{position: relative;}
+.login-section #toggle-password{position: absolute;right: 15px;top: 50px;}
+.login-section .btn-custom{padding: 16px 40px;}
+.login-section .form-group{ margin-bottom: 16px !important;}
+.login-section  .login-btn{margin-top: 24px;}
+.icon-log-in{margin-right: 15px;}
+
+
+@media(min-width:768px) {
+    .nav-tabs {
+        display: flex;
+    }
+    
+    .card {
+        border: none;
+    }
+
+    .card .card-header {
+        display:none;
+    }  
+
+    .card .collapse{
+        display:block;
+    }
+}
+
+@media(max-width:767px){
+    .tab-content > .tab-pane {
+        display: block !important;
+        opacity: 1;
+    }
+}

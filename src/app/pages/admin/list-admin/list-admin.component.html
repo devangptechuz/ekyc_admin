@@ -1,49 +1,117 @@
-<section id="paging" class="pb-3 profile-sec">
-    <div class="row">
-        <div class="col-md-12">
-            <button class="btn-dark float-right" routerLink="/admin/add-admin">Add Admin
-            </button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card table-card">
-                <div class="card-header">
-                    <h4 class="text-bold-500"> Admins</h4>
-                </div>
+<section class="application">
+   <div class="container">
+      <!-- Nav tabs -->
+      <ul id="tabs" class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">all (2,242)</a>
+        </li>
+        <li class="nav-item">
+            <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">new applications (58)</a>
+        </li>
+        <li class="nav-item">
+            <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">under reveiw (12)</a>
+        </li>
+         <li class="nav-item">
+            <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">approved (2,064)</a>
+        </li>
+        <li class="nav-item">
+            <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">rejected (102)</a>
+        </li>
+        <li class="nav-item">
+            <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">reported (6)</a>
+        </li>        
+    </ul>
+      <!-- Tab panes -->
+       <div id="content" class="tab-content" role="tablist">
+        <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+            <div class="card-header" role="tab" id="heading-A">
+                <h5 class="mb-0">
+                    <!-- Note: `data-parent` removed from here -->
+                    <a data-toggle="collapse" href="#collapse-A" aria-expanded="true" aria-controls="collapse-A">
+                        Collapsible Group Item A
+                    </a>
+                </h5>
+            </div>
+
+            <!-- Note: New place of `data-parent` -->
+            <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel" aria-labelledby="heading-A">
                 <div class="card-body">
-                    <div class="card-block">
-                        <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-                                       [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
-                                       [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
-                            <ngx-datatable-column name="First Name" [sortable]="true" prop="firstname">
-                                <ng-template
-                                        ngx-datatable-cell-template
-                                        let-rowIndex="rowIndex"
-                                        let-row="row"
-                                >
-                                    <a>{{row.firstname}}</a>
-                                </ng-template>
-                            </ngx-datatable-column>
-                            <ngx-datatable-column name="Last Name" [sortable]="true" prop="lastname">
-                            </ngx-datatable-column>
-                            <ngx-datatable-column name="Email" [sortable]="true" prop="email">
-                            </ngx-datatable-column>
-                            <ngx-datatable-column name="Status" [sortable]="true" prop="status">
-                            </ngx-datatable-column>
-                            <ngx-datatable-column name="Actions" [sortable]="false" prop="id" >
-                                <ng-template let-row="data"  let-value="value" ngx-datatable-cell-template >
-                                  <span>
-                                    <button (click)="onEdit(value)"><i style="background-color:transparent;" ><i class="fa fa-pencil" style="color: blue"></i></i></button>
-                                    <button #btnElement (click)="onDelete(btnElement,value)"><i style="background-color:transparent;" ><i class="fa fa-trash" style="color: red"></i></i></button>
-                                  </span>
-                                </ng-template>
-                            </ngx-datatable-column>
-                        </ngx-datatable>
-                    </div>
+                     <div class="custom-datatable mt-0">
+                           <div class="header row">
+                              <div class="col-md-4">
+                                   <h2>all applications (2,242)</h2>
+                                   <span class="green-text">2% increase since last week<span class="icon-red-arrow"></span>
+                                </span>
+                              </div>
+                              <div class="col-md-8 d-flex justify-content-between">
+                                 <div class="search"><input type="search" name="" placeholder="search by application id or user name"></div>
+                                  <div class="filter"><input type="text" name="" placeholder="Filter search"></div>
+                              </div>
+                           </div>
+                           <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
+                           [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
+                           [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
+                           <ngx-datatable-column name="First Name" [sortable]="true" prop="firstname">
+                              <ng-template
+                                 ngx-datatable-cell-template
+                                 let-rowIndex="rowIndex"
+                                 let-row="row"
+                                 >
+                                 <a>{{row.firstname}}</a>
+                              </ng-template>
+                           </ngx-datatable-column>
+                           <ngx-datatable-column name="Last Name" [sortable]="true" prop="lastname">
+                           </ngx-datatable-column>
+                           <ngx-datatable-column name="Email" [sortable]="true" prop="email">
+                           </ngx-datatable-column>
+                           <ngx-datatable-column name="Status" [sortable]="true" prop="status">
+                           </ngx-datatable-column>
+                           <ngx-datatable-column name="Actions" [sortable]="false" prop="id" >
+                              <ng-template let-row="data"  let-value="value" ngx-datatable-cell-template >
+                                 <span>
+                                 <button (click)="onEdit(value)"><i style="background-color:transparent;" ><i class="fa fa-pencil" style="color: blue"></i></i></button>
+                                 <button #btnElement (click)="onDelete(btnElement,value)"><i style="background-color:transparent;" ><i class="fa fa-trash" style="color: red"></i></i></button>
+                                 </span>
+                              </ng-template>
+                           </ngx-datatable-column>
+                           </ngx-datatable>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+            <div class="card-header" role="tab" id="heading-B">
+                <h5 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false" aria-controls="collapse-B">
+                        Collapsible Group Item B
+                    </a>
+                </h5>
+            </div>
+            <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel" aria-labelledby="heading-B">
+                <div class="card-body">
+                    [Tab content B]
+                </div>
+            </div>
+        </div>
+
+        <div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
+            <div class="card-header" role="tab" id="heading-C">
+                <h5 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" href="#collapse-C" aria-expanded="false" aria-controls="collapse-C">
+                        Collapsible Group Item C
+                    </a>
+                </h5>
+            </div>
+            <div id="collapse-C" class="collapse" role="tabpanel" data-parent="#content" aria-labelledby="heading-C">
+                <div class="card-body">
+                    [Tab content C]
                 </div>
             </div>
         </div>
     </div>
+   </div>
 </section>
+
+
 
