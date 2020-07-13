@@ -125,23 +125,26 @@ section.application .search input{min-width: 438px;padding: 15px;background: #FE
 
 
 body #login{background: none;}
-body .login-section:after{content: "";background: url(assets/img/shape.svg);width: 100%;height: 270px;display: block;background-size: cover;background-position: bottom}
+body .login-section:after{content: "";background: url(assets/img/shape.svg);width: 100%;height: 220px;display: block;background-size: cover;background-position: top;position: absolute;bottom: 0;}
 body .login-section .bg-white {padding: 40px;background: #FFFFFF;border: 1px solid #DDDDDD;box-sizing: border-box;box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);border-radius: 8px;margin: 24px 0 0;}
 body .login-section h2.card-title{text-align: center;margin: 0 0 24px;font-weight: 200;font-size: 24px;line-height: 36px;text-transform: capitalize;color: #96AB13;}
-.login-section .login-img a{display: block;text-align: center;}
-.login-section .login-img a img{width: 253px;}
+.login-section .login-img {display: block;text-align: center;}
+.login-section .login-img img{width: 253px;}
 .login-section .card-body {padding: 60px 0 0;}
-body .login-section .card{min-width: 560px;}
+body .login-section .card{background: transparent;min-width: 560px;height: 100%;}
 .login-section .form-group label{text-transform: none;font-weight: 400;}
 form .form-group{position: relative;}
 .login-section #toggle-password{position: absolute;right: 15px;top: 50px;}
-.login-section .btn-custom{padding: 16px 40px;}
+.login-section .btn-custom{padding: 14px 40px;}
 .login-section .form-group{ margin-bottom: 16px !important;}
 .login-section  .login-btn{margin-top: 24px;}
 .icon-log-in{margin-right: 15px;}
 .login-btn {font-size: 14px;}
-
-
+.ng-touched.ng-invalid {border-color: red;}
+.login-section .form-group .danger{color: red !important;}
+body form .form-control::-webkit-input-placeholder {color: rgba(0, 0, 0, 0.32);} 
+body form .form-control:-ms-input-placeholder {color: rgba(0, 0, 0, 0.32);} 
+body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 
 @media(min-width:768px) {
     .nav-tabs {
