@@ -8,15 +8,27 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-admin',
-  templateUrl: './add-edit-sub-admin.component.html',
-  styleUrls: ['./add-edit-sub-admin.component.scss']
+  templateUrl: './add-edit-admin.component.html',
+  styleUrls: ['./add-edit-admin.component.scss']
 })
-export class AddEditSubAdminComponent implements OnInit {
+export class AddEditAdminComponent implements OnInit {
   toggleEyePassword = "ft-eye-off";
   toggleEyeConfirmPassword = "ft-eye-off";
   loginObj: any = {};
-  loginForm: FormGroup;
+  adminForm: FormGroup;
+  submitted = false;
+  editMode = true;
+  label = 'Add Category';
+  button = 'Submit';
+  editAdmin;
   returnUrl: string;
+  userType=[{
+    type:'1',
+    label:'Admin'
+  },{
+    type:'2',
+    label:'Super Admin'
+  }]
 
   constructor(
       private router: Router,
@@ -29,27 +41,42 @@ export class AddEditSubAdminComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      first_name: ['', [Validators.required]],
-      last_name: ['', [Validators.required]],
+    this.adminForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      mobile_number: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       confirm_password: '',
     }, {
       validator: this.validationService.MatchPassword('password', 'confirm_password')
     });
+
+    if (this.editAdmin) {
+      this.setEditAdminData()
+    } else {
+      this.adminForm.controls['confirm_password'].setValidators([Validators.required]);
+    }
+
+  }
+
+
+  setEditAdminData() {
+    this.editMode = false;
+    this.button = 'Update';
+    this.adminForm.patchValue(this.editAdmin.data);
   }
 
   onSubmit() {
-    if (!this.loginForm.valid) {
-      this.validationService.validateAllFormFields(this.loginForm);
+    if (!this.adminForm.valid) {
+      this.validationService.validateAllFormFields(this.adminForm);
       return false;
     }
-    this.commonService.register(this.loginForm.value).subscribe(
+    this.commonService.register(this.adminForm.value).subscribe(
         (result: any) => {
           this.router.navigateByUrl(this.returnUrl);
           this.spinner.hide();
-          this.loginForm.reset();
+          this.adminForm.reset();
         },
         error => {
           this.toastr.error(error.error);
@@ -61,6 +88,7 @@ export class AddEditSubAdminComponent implements OnInit {
     this.toggleEyePassword = this.toggleEyePassword == "ft-eye" ? "ft-eye-off" : "ft-eye";
     oldPassword.type = oldPassword.type === 'password' ? 'text' : 'password';
   }
+
   toggleConfirmPassword(event, oldPassword: any) {
     this.toggleEyeConfirmPassword = this.toggleEyeConfirmPassword == "ft-eye" ? "ft-eye-off" : "ft-eye";
     oldPassword.type = oldPassword.type === 'password' ? 'text' : 'password';

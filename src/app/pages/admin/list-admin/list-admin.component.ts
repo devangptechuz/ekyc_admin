@@ -5,10 +5,10 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-sub-admin',
-  templateUrl: './list-sub-admin.component.html',
-  styleUrls: ['./list-sub-admin.component.scss']
+  templateUrl: './list-admin.component.html',
+  styleUrls: ['./list-admin.component.scss']
 })
-export class ListSubAdminComponent implements OnInit {
+export class ListAdminComponent implements OnInit {
 
   rows = [{
     'firstname':'pragnesh',
