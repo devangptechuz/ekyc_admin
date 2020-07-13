@@ -37,44 +37,50 @@
             <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel" aria-labelledby="heading-A">
                 <div class="card-body">
                      <div class="custom-datatable mt-0">
-                           <div class="header row">
+                           <div class="header row d-flex justify-content-between">
                               <div class="col-md-4">
                                    <h2>all applications (2,242)</h2>
                                    <span class="green-text">2% increase since last week<span class="icon-red-arrow"></span>
                                 </span>
                               </div>
-                              <div class="col-md-8 d-flex justify-content-between">
-                                 <div class="search"><input type="search" name="" placeholder="search by application id or user name"></div>
-                                  <div class="filter"><input type="text" name="" placeholder="Filter search"></div>
+                              <div class="col-md-8 d-flex align-items-center justify-content-end">
+                                 <div class="search"><input type="search" name="" placeholder="search by application id or user name" class="form-control"><button class="btn-search"><span class="icon-search"></span></button></div>
+                                  <div class="filter">Filter search<span class="icon-filter"></span></div>
                               </div>
                            </div>
+                           <div class="tble">
                            <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
                            [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
                            [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
-                           <ngx-datatable-column name="First Name" [sortable]="true" prop="firstname">
+                           <ngx-datatable-column
+                            [width]="100"
+                            name="user name" [sortable]="true" prop="firstname">
                               <ng-template
                                  ngx-datatable-cell-template
                                  let-rowIndex="rowIndex"
                                  let-row="row"
                                  >
-                                 <a>{{row.firstname}}</a>
+                                 <a class="user-img dummy-icon"><img src="assets/img/user-ic.svg"></a>
+                                 <a data-tooltip title="{{row.firstname}}">{{row.firstname}}</a>
                               </ng-template>
                            </ngx-datatable-column>
-                           <ngx-datatable-column name="Last Name" [sortable]="true" prop="lastname">
+                           <ngx-datatable-column  [width]="80" name="application Id" [sortable]="true" prop="lastname">
                            </ngx-datatable-column>
-                           <ngx-datatable-column name="Email" [sortable]="true" prop="email">
+                           <ngx-datatable-column  [width]="80" name="last activity" [sortable]="true" prop="email">
                            </ngx-datatable-column>
-                           <ngx-datatable-column name="Status" [sortable]="true" prop="status">
+                           <ngx-datatable-column  [width]="80" name="Account type" [sortable]="true" prop="status">
                            </ngx-datatable-column>
-                           <ngx-datatable-column name="Actions" [sortable]="false" prop="id" >
+                           <ngx-datatable-column  [width]="50" name="application status" [sortable]="false" prop="id" >
                               <ng-template let-row="data"  let-value="value" ngx-datatable-cell-template >
                                  <span>
-                                 <button (click)="onEdit(value)"><i style="background-color:transparent;" ><i class="fa fa-pencil" style="color: blue"></i></i></button>
-                                 <button #btnElement (click)="onDelete(btnElement,value)"><i style="background-color:transparent;" ><i class="fa fa-trash" style="color: red"></i></i></button>
+                                <!--  <button (click)="onEdit(value)" class="btn"><img src="../assets/img/trash.svg" class="btn"></button> -->
+                                 <button #btnElement (click)="onDelete(btnElement,value)"  class="btn"><img src="../assets/img/trash.svg"></button>
                                  </span>
+                              <i class="fa fa-angle-right arrow"></i>
                               </ng-template>
                            </ngx-datatable-column>
                            </ngx-datatable>
+                        </div>
                         </div>
                 </div>
             </div>

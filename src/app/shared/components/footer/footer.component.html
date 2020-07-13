@@ -1,11 +1,44 @@
 <!--Footer Starts-->
 <footer>
-    <div class="container-fluid">
-        <p class="copyright text-center">
-            Copyright &copy; {{ currentDate | date: "yyyy" }}
-            <a [routerLink]="['/']" title="EKYC">EKYC</a>,
-            All rights reserved.
-        </p>
+    <div class="container">
+      <div class="row">
+        <div class="ff-top d-flex justify-content-between align-content-center w-100">
+          <div class="ff-logo">
+            <a href="index.html"><img src="assets/img/logo.svg" alt="logo"></a>
+          </div>
+          <ul class="user-detail d-flex">
+            <li class="d-flex align-content-center">
+              <div class="ico"><span class="icon-mail"></span></div>
+              <a href="mailto:abc@gmail.com">abc@gmail.com</a>
+            </li>
+            <li class="d-flex align-content-center">
+              <div class="ico"><span class="icon-tel"></span></div>
+              <a href="javascript:void(0)">0731 - 2012345 / 46 / 47 / 48</a>
+            </li>
+          </ul>
+        </div>
+        <div class="ff-btm row justify-content-between w-100">
+          <div class="col-md-6">           
+            <div class="dt">             
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse gravida egestas magna facilisis aliquam. placerat. Pulvinar vel penatibus eu, leo sed. Purus quis fermentum.</p>
+            </div>  
+          </div>
+          <div class="col-md-3">           
+            <div class="dt">
+              <h5>54,124</h5>
+              <p>total applications reviewed</p>
+            </div>  
+          </div>
+          <div class="col-md-3">           
+            <div class="dt">
+              <h5>1,62,045</h5>
+              <p>Documents verified</p>
+            </div>  
+          </div>         
+        </div>
+      </div>
+      <div class="copyright">(C) Copyright @ getPropser 2019</div>
     </div>
-</footer>
+
+  </footer>
 <!--Footer Ends-->
