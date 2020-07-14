@@ -33,6 +33,7 @@
               "src/styles.css",
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/style.css",
+              "src/assets/css/dark-theme.css",
               "src/assets/css/responsive.css"
             ],
             "scripts": [

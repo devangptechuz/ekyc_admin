@@ -1,0 +1,11 @@
+body.layout-dark {background-color: #123050;}
+.layout-dark .total-detail .media-body span{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .total-detail .card{border: 1px solid #082544;background: #093260;}
+.layout-dark .total-detail .title{color: rgba(255, 255, 255, 0.8);}
+.layout-dark header{background: #043873;}
+.layout-dark .navbar{background: #043873;box-shadow: none;}
+body.layout-dark .card{background: #093260;border: 1px solid #082544;}
+.layout-dark .custom-datatable .card-header h4{opacity: 0.8;}
+.layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-body-row>div{background: #073566;}
+.layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-row-wrapper{border-color:#082544;}
+.layout-dark .custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row .datatable-body-cell{color: rgba(255, 255, 255, 0.8);}
