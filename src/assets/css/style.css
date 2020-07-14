@@ -49,6 +49,8 @@ a:hover{text-decoration: none;}
 .icon-filter:before {content: "\e901";}
 .icon-mail:before {content: "\e904";}
 .icon-tel:before {content: "\e905";}
+.icon-clock:before {content: "\e90b";}
+.icon-more-vertical:before {content: "\e90c";}
 /*=========Header===========*/
 header .navbar{display: flex;justify-content: space-between;padding: 12px 0;}
 .navbar .navbar-collapse{justify-content: center;}
@@ -191,6 +193,7 @@ section.application .btn-search:focus{outline: none;}
 section.application span.icon-filter{font-size: initial;color: rgba(0, 0, 0, 0.56);}
 section.application .card{background: transparent;}
 section.application .tble {padding: 0 40px;}
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover,.nav-tabs .nav-link{border:none;}
 
 
 @media(min-width:768px) {
