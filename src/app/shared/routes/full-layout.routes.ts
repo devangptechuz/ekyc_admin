@@ -18,8 +18,9 @@ export const Full_ROUTES: Routes = [
         loadChildren: () => import('../../pages/users/users.module').then(m => m.UsersModule),
         canActivateChild: [PageGuard]
     },
+    {
         path: 'applications',
         loadChildren: () => import('../../pages/applications/applications.module').then(m => m.ApplicationsModule),
         canActivateChild: [PageGuard]
-    },
+    }
 ];
