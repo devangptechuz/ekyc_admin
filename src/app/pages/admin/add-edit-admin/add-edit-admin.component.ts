@@ -65,8 +65,11 @@ export class AddEditAdminComponent implements OnInit {
   setEditAdminData() {
     this.editMode = false;
     this.button = 'Update';
+    this.adminForm.controls["password"].clearValidators();
+    this.adminForm.controls["confirm_password"].clearValidators();
+    this.adminForm.updateValueAndValidity();
     this.adminForm.patchValue(this.editAdmin.result.userData);
-   this.adminForm.controls.userType.setValue(this.editAdmin.result.userData.userType.toString())
+    this.adminForm.controls.userType.setValue(this.editAdmin.result.userData.userType.toString())
   }
 
   onSubmit() {
@@ -93,6 +96,7 @@ export class AddEditAdminComponent implements OnInit {
   }
 
   editAdminCall(){
+    delete this.adminForm.value.email;
     this.adminService.updateAdmin(this.adminForm.value).subscribe(
         (result: any) => {
           if(result.success){

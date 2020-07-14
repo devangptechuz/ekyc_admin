@@ -39,7 +39,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Email Id</label>
-                        <input type="email" placeholder="Enter email id" formControlName="email" class="form-control">
+                        <input type="email" [attr.disabled]="editMode" placeholder="Enter email id" formControlName="email" class="form-control">
                         <app-control-messages fieldName="Email" [control]="adminForm.controls['email']">
                         </app-control-messages>
                     </div>

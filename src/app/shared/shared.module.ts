@@ -19,6 +19,7 @@ import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
 import {RoleCheckPipe, UserTypePipe} from './pipe/status.pipe';
+import {DeleteModelComponent} from './delete-model/delete-model.component';
 
 @NgModule({
     exports: [
@@ -31,7 +32,8 @@ import {RoleCheckPipe, UserTypePipe} from './pipe/status.pipe';
         SidebarDirective,
         NgbModule,
         RoleCheckPipe,
-        UserTypePipe
+        UserTypePipe,
+        DeleteModelComponent
     ],
     imports: [
         RouterModule,
@@ -41,6 +43,7 @@ import {RoleCheckPipe, UserTypePipe} from './pipe/status.pipe';
     ],
     declarations: [
         FooterComponent,
+        DeleteModelComponent,
         NavbarComponent,
         SidebarComponent,
         ControlMessagesComponent,
