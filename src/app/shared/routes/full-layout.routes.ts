@@ -22,5 +22,5 @@ export const Full_ROUTES: Routes = [
         path: 'applications',
         loadChildren: () => import('../../pages/applications/applications.module').then(m => m.ApplicationsModule),
         canActivateChild: [PageGuard]
-    },
+    }
 ];
