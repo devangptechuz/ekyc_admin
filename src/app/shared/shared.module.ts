@@ -18,7 +18,7 @@ import { SidebarLinkDirective } from './directives/sidebarlink.directive';
 import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
-import {RoleCheckPipe} from "./pipe/status.pipe";
+import {RoleCheckPipe, UserTypePipe} from './pipe/status.pipe';
 
 @NgModule({
     exports: [
@@ -30,7 +30,8 @@ import {RoleCheckPipe} from "./pipe/status.pipe";
         ToggleFullscreenDirective,
         SidebarDirective,
         NgbModule,
-        RoleCheckPipe
+        RoleCheckPipe,
+        UserTypePipe
     ],
     imports: [
         RouterModule,
@@ -49,7 +50,8 @@ import {RoleCheckPipe} from "./pipe/status.pipe";
         SidebarListDirective,
         SidebarAnchorToggleDirective,
         SidebarToggleDirective,
-        RoleCheckPipe
+        RoleCheckPipe,
+        UserTypePipe
     ]
 })
 export class SharedModule { }

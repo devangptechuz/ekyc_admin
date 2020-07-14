@@ -9,8 +9,13 @@ export const Full_ROUTES: Routes = [
         canActivateChild: [PageGuard]
     },
     {
-        path: 'admin',
+        path: 'admins',
         loadChildren: () => import('../../pages/admin/admin.module').then(m => m.AdminModule),
+        canActivateChild: [PageGuard]
+    },
+    {
+        path: 'applications',
+        loadChildren: () => import('../../pages/applications/applications.module').then(m => m.ApplicationsModule),
         canActivateChild: [PageGuard]
     },
 ];

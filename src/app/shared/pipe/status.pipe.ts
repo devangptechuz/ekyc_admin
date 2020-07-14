@@ -28,3 +28,16 @@ export class RoleCheckPipe implements PipeTransform {
 }
 
 
+@Pipe({name: 'userType'})
+export class UserTypePipe implements PipeTransform {
+    transform(value) {
+      if(value == '1'){
+            return 'Admin'
+      }
+      if(value == '2'){
+            return 'Super Admin'
+      }
+    }
+}
+
+

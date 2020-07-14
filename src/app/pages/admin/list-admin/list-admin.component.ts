@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {DatatableComponent} from '@swimlane/ngx-datatable';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
+import {AdminService} from '../../../shared/services/admin.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-list-sub-admin',
@@ -10,58 +12,69 @@ import {Router} from '@angular/router';
 })
 export class ListAdminComponent implements OnInit {
 
-  rows = [{
-    'firstname':'pragnesh',
-    'lastname':'panchal',
-    'img':'assets/img/portrait/avatars/avatar-05.png',
-    'email':'pragnesh@techuz.com',
-    'status':'Active'
-  },{
-    'firstname':'pragnesh',
-    'lastname':'patel',
-    'img':'assets/img/portrait/avatars/avatar-04.png',
-    'email':'pragnesh@techuz.com',
-    'status':'Active'
-  }, {
-    'firstname':'prg',
-    'lastname':'panchal',
-    'img':'assets/img/portrait/avatars/avatar-04.png',
-    'email':'pragnesh@techuz.com',
-    'status':'InActive'
-  },{
-    'firstname':'abcd',
-    'lastname':'aaaa',
-    'img':'assets/img/portrait/avatars/avatar-04.png',
-    'email':'pragnesh@techuz.com',
-    'status':'Active'
-  }];
+  rows = [];
   temp = [];
+  selected = [];
   loadingIndicator = true;
-  limitRow = '3';
+  limitRow = '5';
+  count:any;
   selectedItem;
   perPage = [
     { label: '10', value: '10' },
     { label: '15', value: '15' },
   ];
   footerMessage = {
-    'totalMessage': 'Total'
   };
+
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
-      private toastr: ToastrService,
-      private router: Router
+      private router: Router,
+      private adminService:AdminService,
+      private spinner: NgxSpinnerService,
+      private toasterService: ToastrService,
   ) { }
 
 
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.adminService.getAdmins()
+        .subscribe(
+            Data => {
+              if(Data.success){
+                this.temp = [...Data['result']['userList']];
+                this.rows = Data['result']['userList'];
+                this.count = Data['result']['count'];
+                this.spinner.hide();
+              }else {
+                this.spinner.hide();
+                this.toasterService.error(Data.message);
+              }
+            });
   }
-  onEdit(e){
-    console.log("edit page");
+
+  onEdit(v){
+    this.router.navigateByUrl('/admins/edit-admin/' + v);
   }
+
   onDelete(e,v){
     console.log("Delete data");
   }
+
+  onSelect(row) {
+    console.log(row)
+    console.log(this.selected)
+  }
+
+
+    updateFilter(event) {
+        const val = event.target.value.toLowerCase();
+        this.rows = this.temp.filter((d) => {
+            return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
+                d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
+                d.username.toLowerCase().indexOf(val) !== -1 || !val;
+        });
+        this.table.offset = 0;
+    }
 
 }

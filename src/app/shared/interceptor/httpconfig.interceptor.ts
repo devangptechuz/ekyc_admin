@@ -41,7 +41,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     if (token) {
       if (request.url.search('/login') === -1) {
         request = request.clone({
-          headers: request.headers.set('Authorization', `Bearer ${token}`)
+          headers: request.headers.set('Authorization', `${token}`)
         });
       }
     }

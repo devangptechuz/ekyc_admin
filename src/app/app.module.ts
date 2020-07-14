@@ -24,6 +24,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 // Modules
 import { NotfoundComponent } from './notfound/notfound.component';
 import {CookieService} from 'ngx-cookie-service';
+import {AddEditAdmin} from './pages/admin/shared/add-edit.resolver';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -59,6 +60,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
             multi: true
         },
         CookieService,
+        AddEditAdmin,
         AuthGuard,
         PageGuard
     ],
