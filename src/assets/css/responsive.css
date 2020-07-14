@@ -2,5 +2,8 @@
 	.container {max-width: 1200px;}
 }
 @media (max-width: 1441px){
-	body .login-section:after{position: relative;}
+	.login-section .card-body {padding: 20px 0 0;}
+	body .login-section .card{min-width: 520px;}
+	.login-section .login-img img {width: 170px;}
+	body .login-section .bg-white{margin: 15px 0 0;}
 }
