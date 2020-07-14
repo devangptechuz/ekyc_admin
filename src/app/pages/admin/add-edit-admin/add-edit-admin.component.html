@@ -14,25 +14,25 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Full Name</label>
-                        <input type="text" placeholder="Enter full name of the user" formControlName="name" class="form-control">
-                        <app-control-messages fieldName="Full Name" [control]="adminForm.controls['name']">
+                        <input type="text" placeholder="Enter full name of the user" formControlName="username" class="form-control">
+                        <app-control-messages fieldName="Full Name" [control]="adminForm.controls['username']">
                         </app-control-messages>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>User Type</label>
-                        <ngx-select [items]="userType" formControlName="type" class="form-control"
+                        <ngx-select [items]="userType" formControlName="userType" class="form-control"
                                      optionValueField="type" optionTextField="label"></ngx-select>
-                        <app-control-messages fieldName="User Type" [control]="adminForm.controls['type']">
+                        <app-control-messages fieldName="User Type" [control]="adminForm.controls['userType']">
                         </app-control-messages>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Mobile Number</label>
-                        <input type="text" placeholder="Enter mobile number" formControlName="mobile_number" class="form-control">
-                        <app-control-messages fieldName="Mobile Number" [control]="adminForm.controls['mobile_number']">
+                        <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber" class="form-control">
+                        <app-control-messages fieldName="Mobile Number" [control]="adminForm.controls['mobileNumber']">
                         </app-control-messages>
                     </div>
                 </div>
@@ -55,14 +55,14 @@
                 <div class="col-md-6">
                     <div class="form-group" *ngIf="!editAdmin">
                         <label>Confirm Password</label>
-                        <input type="password" placeholder="Enter Confirm Password" class="form-control">
+                        <input type="password" placeholder="Enter Confirm Password" formControlName="confirm_password" class="form-control">
                         <app-control-messages fieldName="Confirm Password" [control]="adminForm.controls['confirm_password']">
                         </app-control-messages>
                     </div>
                 </div>
             </div>
             <div class="footer-btn">
-                <button class="btn">cancel</button>
+                <button class="btn" routerLink="/admins">cancel</button>
                 <button class="btn" type="submit" >Submit</button>
             </div>
         </form>
