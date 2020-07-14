@@ -9,6 +9,7 @@ import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { FooterComponent } from "../shared/components/footer/footer.component";
 import { NavbarComponent } from "../shared/components/navbar/navbar.component";
 import { SidebarComponent } from "../shared/components/sidebar/sidebar.component";
+import { CustomizerComponent } from './customizer/customizer.component';
 import { ControlMessagesComponent } from './components/control-messages/control-messages.component';
 
 //DIRECTIVES
@@ -18,7 +19,7 @@ import { SidebarLinkDirective } from './directives/sidebarlink.directive';
 import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
-import {RoleCheckPipe, UserTypePipe} from './pipe/status.pipe';
+import { RoleCheckPipe, UserTypePipe } from './pipe/status.pipe';
 
 @NgModule({
     exports: [
@@ -27,6 +28,7 @@ import {RoleCheckPipe, UserTypePipe} from './pipe/status.pipe';
         NavbarComponent,
         SidebarComponent,
         ControlMessagesComponent,
+        CustomizerComponent,
         ToggleFullscreenDirective,
         SidebarDirective,
         NgbModule,
@@ -44,6 +46,7 @@ import {RoleCheckPipe, UserTypePipe} from './pipe/status.pipe';
         NavbarComponent,
         SidebarComponent,
         ControlMessagesComponent,
+        CustomizerComponent,
         ToggleFullscreenDirective,
         SidebarDirective,
         SidebarLinkDirective,
