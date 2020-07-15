@@ -50,8 +50,8 @@ export class LoginComponent {
     }
     this.commonService.login(this.loginForm.value).subscribe((res: any) => {
       if(res.success){
-          this.cookieService.set('admin_user_email',res.result.email , this.global.getCookieExpiredTime());
-          this.cookieService.set('admin_user_token', res.result.token, this.global.getCookieExpiredTime());
+          this.cookieService.set('admin_user_email',res.result.email);
+          this.cookieService.set('admin_user_token', res.result.token);
           this.router.navigateByUrl(this.returnUrl);
           this.spinner.hide();
           this.loginForm.reset();

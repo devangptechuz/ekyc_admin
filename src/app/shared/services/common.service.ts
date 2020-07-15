@@ -6,6 +6,7 @@ import * as jwt_decode from 'jwt-decode';
 
 import { environment } from '../../../environments/environment';
 import {GlobalService} from './global.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class CommonService {
   constructor(
     public http: HttpClient,
     public router: Router,
-    public global: GlobalService
+    public global: GlobalService,
+    private cookieService:CookieService
   ) { }
 
   logout() {
@@ -51,9 +53,9 @@ export class CommonService {
   }
 
   goToHome() {
-    const token = localStorage.getItem('token');
+    const token = this.cookieService.get('admin_user_token');
     if (token) {
-      return this.router.navigate(['/user']);
+      return this.router.navigate(['/dashboard']);
     }
     return this.logout();
   }
