@@ -20,7 +20,7 @@
                            <div class="search"><input type="search" name="" (keyup)='updateFilter($event)'
                                  placeholder="search by Admin user name or email or phone number" class="form-control"><button
                                  class="btn-search"><span class="icon-search"></span></button></div>
-                           <div><button style="margin-left: 24px" class="btn btn-primary btn-lg mt-2"
+                           <div><button class="btn btn-custom mb-0"
                                  routerLink="/admins/add-admin">Add New Admin</button></div>
                         </div>
                      </div>
@@ -53,12 +53,13 @@
                               <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
                                  <span>
                                     <!--  <button (click)="onEdit(value)" class="btn"><img src="../assets/img/trash.svg" class="btn"></button> -->
+                                    <a (click)="onEdit(value)" class="success mr-2">
+                                       <i class="ft-edit-2 font-medium-3"></i>
+                                    </a>
                                     <a #btnElement (click)="onDelete(btnElement,value)" class="danger">
                                        <i class="ft-trash font-medium-3"></i>
                                     </a>
-                                    <a (click)="onEdit(value)" class="success ml-2">
-                                       <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                                    </a>
+                                    
                                  </span>
                               </ng-template>
                            </ngx-datatable-column>
@@ -73,9 +74,9 @@
 </section>
 
 <div *ngIf="deleteFlag" class="fixed-status">
-   <label>Applications selected : <strong>{{adminsSelectCount}}</strong></label>
+   <label class="mb-0">Applications selected : <strong>{{adminsSelectCount}}</strong></label>
    <ul>
-      <li (click)="deleteAdmins()"><img src="assets/img/trash.svg">Delete selected</li>
-      <li (click)="cancelAll()"><img src="assets/img/not-allow.svg" >Cancel all</li>
+      <li (click)="deleteAdmins()"><img src="assets/img/trash.svg"><span>Delete selected</span></li>
+      <li (click)="cancelAll()"><img src="assets/img/not-allow.svg"><span>Cancel all</span></li>
    </ul>
 </div>
