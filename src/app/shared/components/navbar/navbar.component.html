@@ -27,9 +27,13 @@
           <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
             <span>{{userName}}</span>
           </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" ><span class="icon-mode"></span>dark mode</a>
-            <a class="dropdown-item" #btnElement (click)="onLogout(btnElement)" ><span class="icon-mode"></span>logout</a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" ><span class="icon-mode"></span>dark mode 
+             <label class="switch">
+              <input type="checkbox">
+              <span class="slid er round"></span>
+            </label></a>
+            <a class="dropdown-item" #btnElement (click)="onLogout(btnElement)" ><span class="icon-logout"></span>logout</a>
           </div>
         </div>
     </nav>
