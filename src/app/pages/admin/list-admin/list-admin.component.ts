@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {AdminService} from '../../../shared/services/admin.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ConfirmationDialogService} from '../../../shared/services/confirmation-dialoge.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-list-sub-admin',
@@ -18,6 +19,7 @@ export class ListAdminComponent implements OnInit {
   selected = [];
   loadingIndicator = true;
   limitRow = '5';
+  adminsSelectCount;
   count:any;
   deleteFlag = false;
   selectedItem;
@@ -35,7 +37,8 @@ export class ListAdminComponent implements OnInit {
       private adminService:AdminService,
       private spinner: NgxSpinnerService,
       private toasterService: ToastrService,
-      private confirmationDialogService:ConfirmationDialogService
+      private confirmationDialogService:ConfirmationDialogService,
+      private modalService: NgbModal,
   ) { }
 
 
@@ -70,7 +73,6 @@ export class ListAdminComponent implements OnInit {
       this.confirmationDialogService.confirm('Admins').then((data) => {
         if (data) {
           this.spinner.show();
-          debugger;
           this.adminService.deleteAdmin({id: id})
               .subscribe((res) => {
                 if (res.success) {
@@ -108,8 +110,15 @@ export class ListAdminComponent implements OnInit {
     }).catch( error =>  console.log(error));
   }
 
+  cancelAll(){
+    this.onSelect({selected: []});
+    this.selected.length = 0;
+    this.deleteFlag = false;
+  }
+
   onSelect(row) {
     this.deleteFlag = this.selected.length > 0;
+    this.adminsSelectCount = this.selected.length
   }
 
   updateFilter(event) {

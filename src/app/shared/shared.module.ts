@@ -23,6 +23,7 @@ import { RoleCheckPipe, UserTypePipe } from './pipe/status.pipe';
 import { DeleteModelComponent } from './model-popup/delete-model/delete-model.component';
 import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.component';
 
+
 @NgModule({
     exports: [
         CommonModule,
