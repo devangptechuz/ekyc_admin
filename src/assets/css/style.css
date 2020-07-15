@@ -292,7 +292,7 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 .more-dropdown .dropdown-item .icon-simple-check{font-size: 10px;}
 .user-header{margin-bottom: 16px;}
 .user-btmbx .dropdown-item{font-size: 12px;line-height: 18px;}
-
+.doc-upbox .more-dropdown .dropdown-toggle span {margin-left: -2px;}
 
 @media(min-width:768px) {
     .nav-tabs {
