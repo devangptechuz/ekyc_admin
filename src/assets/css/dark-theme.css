@@ -1,7 +1,6 @@
 body.layout-dark {background-color: #123050;}
 .layout-dark .total-detail .media-body span{color: rgba(255, 255, 255, 0.56);}
 .layout-dark .total-detail .card{border: 1px solid #082544;background: #093260;}
-.layout-dark .total-detail .title{color: rgba(255, 255, 255, 0.8);}
 .layout-dark header{background: #043873;}
 .layout-dark .navbar{background: #043873;box-shadow: none;}
 body.layout-dark .card{background: #093260;border: 1px solid #082544;}
@@ -9,3 +8,13 @@ body.layout-dark .card{background: #093260;border: 1px solid #082544;}
 .layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-body-row>div{background: #073566;}
 .layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-row-wrapper{border-color:#082544;}
 .layout-dark .custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row .datatable-body-cell{color: rgba(255, 255, 255, 0.8);}
+.layout-dark .user-box{background: #093260;border: 1px solid #082544;}
+body.layout-dark p, body.layout-dark .content-sub-header, body.layout-dark .table td, body.layout-dark .list-group-item-action, body.layout-dark .nav-tabs .nav-link.active, body.layout-dark .content-sub-header,
+.layout-dark .user-btmbx a,
+.layout-dark .total-detail .title,
+.layout-dark header .dropdown-toggle {color: rgba(255, 255, 255, 0.8);}
+.layout-dark .more-dropdown .dropdown-toggle{background: #043873;}
+.layout-dark .icon-more-vertical{color: #fff;}
+.layout-dark .cmn-txt{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .doc-upbox{background: #082544;}
+.layout-dark .user-btmbx > .col-md-6:first-child{border-color:#082544;}
