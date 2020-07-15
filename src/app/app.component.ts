@@ -48,6 +48,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     setTitle(newTitle: string) {
-        this.titleService.setTitle(newTitle + ' | EKYC');
+        this.titleService.setTitle(`EKYC | ${newTitle}`);
     }
 }
