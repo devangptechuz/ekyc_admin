@@ -68,6 +68,50 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 .modal-footer a{padding: 0;color: #0970DD;font-weight: 500;font-size: 16px;line-height: 24px;}
 .modal-footer a:hover{opacity: 0.8}
 
+/* dashboard doc uload popup*/
+.uploaddoc-popup .star{background: rgba(250, 180, 1, 0.16);}
+.uploaddoc-popup .popup-header span{color:#FAB401}
+.uploaddoc-popup .upload-box{background: #F7F7F7;margin-bottom: 16px;border: 1px solid #DDDDDD;min-height: 316px;padding: 0 100px;border-radius: 8px;display: flex;align-items: center;justify-content: space-between;}
+.uploaddoc-popup .upload-box a{color: #0970DD;font-weight: 500;font-size: 16px;line-height: 24px;}
+.uploaddoc-popup .upload-box a > img{margin-bottom: 35px;}
+.uploaddoc-popup .upload-box a div img{margin-right: 15px;}
+.or-text {height: 120px;position: relative;}
+.or-text:before{content:"";background-color: #DDDDDD;width: 1px;height: 100%;display: block;position: relative;}
+.or-text span{position: absolute;padding: 7px 0;top: 50%;transform: translateY(-50%);background: #F7F7F7;left: -10px;color: rgba(0, 0, 0, 0.24);}
+button.add-img {background: #0970DD;cursor: pointer;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.24);border-radius: 8px;color: #fff;display: flex;align-items: center;justify-content: center;flex-flow: column;font-weight: 500;font-size: 10px;line-height: 15px;min-height: 80px;min-width: 100%;}
+button.add-img span{font-size: 21px;margin-bottom: 5px;}
+button.view-img{background: #000000;border: 4px solid #0970DD;box-shadow: 0px 4px 8px rgba(9, 112, 221, 0.32);border-radius: 8px;width: 100%;min-height: 80px;max-height: 80px;margin: 16px 0 0;}
+button.view-img img{width: 110px;height: 60px;object-fit: cover;}
+.uploaddoc-popup .footer-btn{border-top: 1px solid #DDDDDD;margin: 16px 0 0;padding: 16px 0 0;}
+.uploaddoc-popup .footer-btn button{padding: 0;}
+.uploaddoc-popup .footer-btn .btn-cancel{color: #0970DD;}
+.uploaddoc-popup .footer-btn .btn-con{color: #B0BAC5;}
+.uploaddoc-popup .upload-box a{position: relative;}
+.uploaddoc-popup .upload-file{cursor: pointer;}
+.uploaddoc-popup .upload-file input{position: absolute;width: 100%;height: 100%;opacity: 0;cursor: pointer;}
+.upload-doc-box {width: 100%;height: 316px;margin: 0 0 16px;background: #000;border-radius: 8px;padding: 10px;position: relative;}
+.upload-doc-box span{font-weight: 500;display: flex;align-items: center;justify-content: center;background: #0970DD;box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.32);border-radius: 8px;color: #fff;padding: 8px 17px;font-size: 12px;position: absolute;right: 16px;bottom: 16px;cursor: pointer;}
+.upload-doc-box span img{width: 16px;margin-right: 8px;}
+.scroll-upload{max-height: 316px;overflow-y: auto;margin-right: -10px;padding-right: 10px;overflow-x: hidden;}
+.scroll-upload::-webkit-scrollbar {width: 2px;}
+.scroll-upload::-webkit-scrollbar-track {border-radius: 10px;}
+.scroll-upload::-webkit-scrollbar-thumb {background: #C4C4C4;border-radius: 10px;}
+.scroll-upload::-webkit-scrollbar-thumb:hover {background: transparent;}
+.upload-doc-box img{width: 100%;height: 100%;object-fit: cover;}
+.uploaddoc-popup .upload-progress{flex-direction: column;justify-content: center;}
+.uploaddoc-popup .upload-progress .progress{overflow: visible;border-radius: 8px;width: 100%;margin: 0 0 24px;height: 6px;background: #DDDDDD;}
+.uploaddoc-popup .upload-progress h5{font-weight: 500;font-size: 24px;line-height: 36px;text-align: center;color: rgba(0, 0, 0, 0.8);}
+.uploaddoc-popup .upload-progress p{font-size: 14px;line-height: 21px;color: rgba(0, 0, 0, 0.56);padding: 0;border: none;}
+.uploaddoc-popup .upload-progress .progress-bar{margin-top: -1px;border-radius: 8px;height: 8px;background-color: #19D097}
+.uploaddoc-popup .progress-ratio{width: 100%;font-size: 10px;line-height: 15px;color: rgba(0, 0, 0, 0.32);margin: 24px 0 6px;}
+.webcam{width: 100%;height: 100%;position: absolute;background: #000000;box-sizing: border-box;box-shadow: 0px 4px 8px rgba(9, 112, 221, 0.32);border-radius: 8px;}
+.webcam video{width: 100%;height: 100%;}
+
+.uploaddoc-popup  button.actionBtn {min-height: 80px;min-width: 100%;border-radius: 8px;margin: 0 0 10px;padding: 5px;font-size: 12px;}
+.upload-doc-box h1{color: #FAB401;font-size: 27px;}
+ .modal-footer a.disabled{opacity: 1;color: #B0BAC5;}
+/*=========Custom Scroll===========*/
+
 /* width */
 @font-face {
   font-family: 'icomoon';

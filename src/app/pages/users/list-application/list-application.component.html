@@ -34,48 +34,55 @@
                 </div>
 
                 <!-- Note: New place of `data-parent` -->
-                <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel" aria-labelledby="heading-A">
+                <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel"
+                    aria-labelledby="heading-A">
                     <div class="card-body">
                         <div class="custom-datatable mt-0">
                             <div class="header row d-flex justify-content-between">
                                 <div class="col-md-4">
                                     <h2>all applications (2,242)</h2>
-                                    <span class="green-text">2% increase since last week<span class="icon-red-arrow"></span>
-                                </span>
+                                    <span class="green-text">2% increase since last week<span
+                                            class="icon-red-arrow"></span>
+                                    </span>
                                 </div>
                                 <div class="col-md-8 d-flex align-items-center justify-content-end">
-                                    <div class="search"><input type="search" name="" placeholder="search by application id or user name" class="form-control"><button class="btn-search"><span class="icon-search"></span></button></div>
+                                    <div class="search"><input type="search" name=""
+                                            placeholder="search by application id or user name"
+                                            class="form-control"><button class="btn-search"><span
+                                                class="icon-search"></span></button></div>
                                     <div class="filter">Filter search<span class="icon-filter"></span></div>
                                 </div>
                             </div>
                             <div class="tble">
-                                <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-                                               [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
-                                               [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
-                                    <ngx-datatable-column
-                                            [width]="100"
-                                            name="user name" [sortable]="true" prop="firstname">
-                                        <ng-template
-                                                ngx-datatable-cell-template
-                                                let-rowIndex="rowIndex"
-                                                let-row="row"
-                                        >
-                                            <a class="user-img dummy-icon"><img src="assets/img/user-ic.svg"></a>
-                                            <a data-tooltip title="{{row.firstname}}">{{row.firstname}}</a>
+                                <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator"
+                                    [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
+                                    [rowHeight]="70" [limit]="limitRow" [rows]="rows"
+                                    [sorts]="[{prop: 'uname', dir: 'asc'}]">
+                                    <ngx-datatable-column [width]="100" name="user name" [sortable]="true"
+                                        prop="firstname">
+                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+
+                                            <a data-tooltip title="{{row.firstname}}" [routerLink]="['/users','id']"
+                                                routerLinkActive="router-link-active">{{row.firstname}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column  [width]="80" name="application Id" [sortable]="true" prop="lastname">
+                                    <ngx-datatable-column [width]="80" name="application Id" [sortable]="true"
+                                        prop="lastname">
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column  [width]="80" name="last activity" [sortable]="true" prop="email">
+                                    <ngx-datatable-column [width]="80" name="last activity" [sortable]="true"
+                                        prop="email">
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column  [width]="80" name="Account type" [sortable]="true" prop="status">
+                                    <ngx-datatable-column [width]="80" name="Account type" [sortable]="true"
+                                        prop="status">
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column  [width]="20" name="application status" [sortable]="false" prop="id" >
-                                        <ng-template let-row="data"  let-value="value" ngx-datatable-cell-template >
-                                 <span>
-                                <!--  <button (click)="onEdit(value)" class="btn"><img src="../assets/img/trash.svg" class="btn"></button> -->
-                                 <button #btnElement (click)="onDelete(btnElement,value)"  class="btn"><img src="../assets/img/trash.svg"></button>
-                                 </span>
+                                    <ngx-datatable-column [width]="20" name="application status" [sortable]="false"
+                                        prop="id">
+                                        <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+                                            <span>
+                                                <!--  <button (click)="onEdit(value)" class="btn"><img src="../assets/img/trash.svg" class="btn"></button> -->
+                                                <button #btnElement (click)="onDelete(btnElement,value)"
+                                                    class="btn"><img src="../assets/img/trash.svg"></button>
+                                            </span>
                                             <div class="hover-error"><img src="assets/img/error.svg"></div>
                                             <i class="fa fa-angle-right arrow"></i>
 
@@ -91,12 +98,14 @@
             <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
                 <div class="card-header" role="tab" id="heading-B">
                     <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false" aria-controls="collapse-B">
+                        <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false"
+                            aria-controls="collapse-B">
                             Collapsible Group Item B
                         </a>
                     </h5>
                 </div>
-                <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel" aria-labelledby="heading-B">
+                <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel"
+                    aria-labelledby="heading-B">
                     <div class="card-body">
                         [Tab content B]
                     </div>
@@ -106,12 +115,14 @@
             <div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
                 <div class="card-header" role="tab" id="heading-C">
                     <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" href="#collapse-C" aria-expanded="false" aria-controls="collapse-C">
+                        <a class="collapsed" data-toggle="collapse" href="#collapse-C" aria-expanded="false"
+                            aria-controls="collapse-C">
                             Collapsible Group Item C
                         </a>
                     </h5>
                 </div>
-                <div id="collapse-C" class="collapse" role="tabpanel" data-parent="#content" aria-labelledby="heading-C">
+                <div id="collapse-C" class="collapse" role="tabpanel" data-parent="#content"
+                    aria-labelledby="heading-C">
                     <div class="card-body">
                         [Tab content C]
                     </div>
@@ -129,5 +140,3 @@
         <li><img src="assets/img/check-circle.svg">Approve all</li>
     </ul>
 </div>
-
-
