@@ -39,6 +39,20 @@ export class GlobalService {
   errorToastr(message: any) {
     this.toastr.error(message, 'Error');
   }
+  /**
+   * Success Toastr
+   */
+  successToastr(message: any) {
+    this.toastr.success(message, 'Success');
+  }
+
+  /**
+   * Warning Toastr
+   */
+  warningToastr(message: any) {
+    this.toastr.warning(message, 'Warning');
+  }
+
 
   getCookieExpiredAuthTokenTime() {
     const date = new Date();

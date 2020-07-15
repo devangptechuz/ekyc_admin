@@ -3,15 +3,19 @@
       <div class="user-header d-flex justify-content-between">
          <a href="javascript:void(0)"><i class="fa fa-angle-left mr-2"></i>Back</a>
          <div class="d-flex align-items-center">
-            <a href="javascript:void(0)" class="mr-3 d-flex align-items-center"><span class="icon-clock mr-2"></span>Application History</a>
+            <a href="javascript:void(0)" class="mr-3 d-flex align-items-center"><span
+                  class="icon-clock mr-2"></span>Application History</a>
             <div class="dropdown more-dropdown">
                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-               <span class="icon-more-vertical"></span>
+                  <span class="icon-more-vertical"></span>
                </button>
                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item disable" href="javascript:void(0)"><span class="icon-simple-check"></span> approve</a>
-                  <a class="dropdown-item" href="javascript:void(0)"><span class="icon-minus-file"></span> request documents</a>
-                  <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report application</a>
+                  <a class="dropdown-item disable" href="javascript:void(0)"><span class="icon-simple-check"></span>
+                     approve</a>
+                  <a class="dropdown-item" href="javascript:void(0)"><span class="icon-minus-file"></span> request
+                     documents</a>
+                  <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report
+                     application</a>
                   <a class="dropdown-item" href="javascript:void(0)"><span class="icon-notallow"></span>reject</a>
                </div>
             </div>
@@ -32,13 +36,14 @@
          <div class="row user-btmbx">
             <div class="col-md-6">
                <div class="d-flex justify-content-between">
-                  <a href="mailto:aditya.desai@gmail.com">aditya.desai@gmail.com<span class="yellow-status status-box ml-2">not verified</span></a>
+                  <a href="mailto:aditya.desai@gmail.com">aditya.desai@gmail.com<span
+                        class="yellow-status status-box ml-2">not verified</span></a>
                   <span class="remind-usr"><span class="icon-send"></span>remind user</span>
                </div>
                <a href="tel:+91 9876543210">+91 9876543210</a><span class="green-status status-box ml-2">VERIFIED</span>
                <ul class="icon">
                   <li><a href="javascript:void(0)"><span class="icon-chat"></span></a></li>
-                  <li><a href="javascript:void(0)" class="disable" ><span class="icon-mail"></span></a></li>
+                  <li><a href="javascript:void(0)" class="disable"><span class="icon-mail"></span></a></li>
                   <li><a href="javascript:void(0)" class="active"><span class="icon-phone"></span></a></li>
                </ul>
                <span class="will-trad">Willing to trade in </span>
@@ -47,11 +52,15 @@
             <div class="col-md-6">
                <div class="d-flex justify-content-between rgt-hdr">
                   <h4 class="mb-0">Documents Uploaded</h4>
-                  <a href="javascript:void(0)"><span class="icon-upload"></span>upload document</a>
+                  <a href="javascript:void(0)"
+                     (click)="openDocumentPopupModal('aadhar_document', 'Aadhaar', 'not-uploaded')"><span
+                        class="icon-upload"></span> Upload document</a>
                </div>
                <ul class="docupld-link">
-                  <li class="active"><a href="javascript:void(0)"><span class="icon-check-circle"></span>aadhaar card</a></li>
-                  <li class="active"><a href="javascript:void(0)"><span class="icon-check-circle"></span>PAN card</a></li>
+                  <li class="active"><a href="javascript:void(0)"><span class="icon-check-circle"></span>aadhaar
+                        card</a></li>
+                  <li class="active"><a href="javascript:void(0)"><span class="icon-check-circle"></span>PAN card</a>
+                  </li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>address proof</a></li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>signature</a></li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>bank statement</a></li>
@@ -69,22 +78,26 @@
             <div class="lft">
                <h2>Account Opening Charges</h2>
             </div>
-            <div class="rght d-flex align-items-center"><span class="green-status">Payment received <span class="icon-check-circle"></span></span></div>
+            <div class="rght d-flex align-items-center"><span class="green-status">Payment received <span
+                     class="icon-check-circle"></span></span></div>
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
-               <span class="cmn-txt mb-3 d-block">Paid on  Jan 20 2020 - 02:56 PM</span>
+               <span class="cmn-txt mb-3 d-block">Paid on Jan 20 2020 - 02:56 PM</span>
                <div class="row cmn-layout">
                   <div class="col-md-6 d-flex flex-column mb-3"><label>Transaction Amount</label>₹ 300 /-</div>
                   <div class="col-md-6 d-flex flex-column mb-3"><label>Transaction ID</label>AD1278647999S33</div>
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>Payment Mode</label>ICICI Debit Card - Rajat Boss - 15xx xxxx xxxx xx24</div>
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>Current Status</label>Received by GetProsper</div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Payment Mode</label>ICICI Debit Card - Rajat
+                     Boss - 15xx xxxx xxxx xx24</div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Current Status</label>Received by GetProsper
+                  </div>
                   <div class="col-md-12 d-flex flex-column"><label>Discount Code used</label>- - None - -</div>
                </div>
             </div>
             <div class="col-md-6">
-               <span class="cmn-txt mb-3 d-block">Received on  Jan 20 2020 - 05:36 PM</span>
-               <p class="mb-1">The transaction receipt was generated on 20 Jan 2020 - 06:36 & was successfully sent to the user via email on 20 Jan 2020 - 07:36</p>
+               <span class="cmn-txt mb-3 d-block">Received on Jan 20 2020 - 05:36 PM</span>
+               <p class="mb-1">The transaction receipt was generated on 20 Jan 2020 - 06:36 & was successfully sent to
+                  the user via email on 20 Jan 2020 - 07:36</p>
                <button class="btn btn-custom font-sml">View receipt</button>
             </div>
          </div>
@@ -100,29 +113,32 @@
          <div class="row user-btmbx">
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-3">
-                  <span class="cmn-txt">Paid on  Jan 20 2020 - 02:56 PM</span>
-                  <span class="digi-text">Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2"></span>
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+                  <span class="digi-text">Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon"
+                        class="ml-2"></span>
                </div>
                <div class="row cmn-layout">
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Full Name</label>Aditya desai</div>
                   <div class="col-md-6 d-flex flex-column mb-3"><label>DOB</label>dec 15 2020</div>
                   <div class="col-md-6 d-flex flex-column mb-3"><label>Gender</label>Male</div>
-                  <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>address line 1,address line 2,address line 3,city, state - 000 000</div>
+                  <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>address line 1,address line
+                     2,address line 3,city, state - 000 000</div>
                </div>
                <button class="btn btn-custom font-sml">request reveiw</button>
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
-                  <span class="cmn-txt">uploaded on  Jan 20 2020 - 05:36 PM</span>
-                  <span class="digi-text">Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2"></span>
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+                  <span class="digi-text">Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon"
+                        class="ml-2"></span>
                </div>
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                     <span class="icon-more-vertical"></span>
+                        <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item"  #btnElement (click)="addOnsModel(btnElement)">Upload document</a>
+                        <a class="dropdown-item" #btnElement (click)="addOnsModel(btnElement)">Upload document</a>
                      </div>
                   </div>
                </div>
@@ -141,7 +157,7 @@
          <div class="row user-btmbx">
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-3">
-                  <span class="cmn-txt">Paid on  Jan 20 2020 - 02:56 PM</span>
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
                </div>
                <div class="row cmn-layout">
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Full Name</label>Aditya desai</div>
@@ -152,12 +168,12 @@
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
-                  <span class="cmn-txt">uploaded on  Jan 20 2020 - 05:36 PM</span>
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
                </div>
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                     <span class="icon-more-vertical"></span>
+                        <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
@@ -174,31 +190,34 @@
             <div class="lft">
                <h2>personal & address details</h2>
             </div>
-            <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar <span class="icon-alert ml-3"></span></span></div>
+            <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar <span
+                     class="icon-alert ml-3"></span></span></div>
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-3">
-                  <span class="cmn-txt">Paid on  Jan 20 2020 - 02:56 PM</span>
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
                </div>
                <div class="row cmn-layout">
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Full Name</label>Aditya desai</div>
                   <div class="col-md-6 d-flex flex-column mb-3"><label>DOB</label>dec 15 2020</div>
                   <div class="col-md-6 d-flex flex-column mb-3"><label>Gender</label>Male</div>
-                  <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>address line 1,<br>address line 2,<br>address line 3,<br>city, state - 000 000</div>
-                  <div class="col-md-6 d-flex flex-column"><label>Corrospondance Address</label>address line 1,<br>address line 2,<br>address line 3,<br>city, state - 000 000</div>
+                  <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>address line 1,<br>address
+                     line 2,<br>address line 3,<br>city, state - 000 000</div>
+                  <div class="col-md-6 d-flex flex-column"><label>Corrospondance Address</label>address line
+                     1,<br>address line 2,<br>address line 3,<br>city, state - 000 000</div>
                </div>
                <button class="btn btn-custom btn-border font-sml">edit details</button>
                <button class="btn btn-custom font-sml">request reveiw</button>
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
-                  <span class="cmn-txt">uploaded on  Jan 20 2020 - 05:36 PM</span>
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
                </div>
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                     <span class="icon-more-vertical"></span>
+                        <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
@@ -214,35 +233,38 @@
             <div class="lft">
                <h2>Bank details</h2>
             </div>
-            <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar <span class="icon-alert ml-3"></span></span></div>
+            <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar <span
+                     class="icon-alert ml-3"></span></span></div>
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-3">
-                  <span class="cmn-txt">Paid on  Jan 20 2020 - 02:56 PM</span>
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
                </div>
                <div class="row cmn-layout">
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>name registered at bank</label>Aditya desai</div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>name registered at bank</label>Aditya desai
+                  </div>
                   <div class="col-md-12 d-flex flex-column mb-3"><label>IFSC Code</label>SBIN000001</div>
                   <div class="col-md-12 d-flex flex-column mb-3"><label>bank name</label>State bank of India</div>
-                  <div class="col-md-12 d-flex flex-column"><label>branch address</label>palasia, a b road, indore - 452 001</div>
+                  <div class="col-md-12 d-flex flex-column"><label>branch address</label>palasia, a b road, indore - 452
+                     001</div>
                </div>
                <button class="btn btn-custom btn-border font-sml">edit details</button>
                <button class="btn btn-custom font-sml">request reveiw</button>
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
-                  <span class="cmn-txt">uploaded on  Jan 20 2020 - 05:36 PM</span>
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
                </div>
                <div class="doc-upbox"></div>
                <label class="doc-type">PAN Card</label>
                <div class="d-flex justify-content-between mb-2 mt-3">
-                  <span class="cmn-txt">uploaded on  Jan 20 2020 - 05:36 PM</span>
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
                </div>
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                     <span class="icon-more-vertical"></span>
+                        <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
@@ -263,53 +285,209 @@
          <div class="row user-btmbx">
             <div class="col-md-3">
                <div class="d-flex justify-content-between mb-3">
-                  <span class="cmn-txt">Paid on  Jan 20 2020 - 02:56 PM</span>
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
                </div>
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                     <span class="icon-more-vertical"></span>
+                        <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
                   </div>
                </div>
-                <label class="doc-type">signature</label>
+               <label class="doc-type">signature</label>
             </div>
             <div class="col-md-3 pr-0 pl-4">
                <div class="d-flex justify-content-between mb-3">
-                  <span class="cmn-txt">Paid on  Jan 20 2020 - 02:56 PM</span>
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
                </div>
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                     <span class="icon-more-vertical"></span>
+                        <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
                   </div>
                </div>
-                <label class="doc-type">Photograph</label>
+               <label class="doc-type">Photograph</label>
             </div>
-           <div class="col-md-6">
+            <div class="col-md-6">
                <div class="d-flex justify-content-between mb-3">
-                  <span class="cmn-txt">Paid on  Jan 20 2020 - 02:56 PM</span>
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
                </div>
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                     <span class="icon-more-vertical"></span>
+                        <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
                   </div>
                </div>
-                <label class="doc-type">In Person Video</label>
+               <label class="doc-type">In Person Video</label>
             </div>
          </div>
       </div>
    </div>
 </section>
+
+<ng-template #fileuploadAadharpopup let-c="close" let-d="dismiss">
+
+   <div class="modal-body p-0 payment-popup uploaddoc-popup">
+      <div class="d-flex justify-content-between align-items-end main-header">
+         <div class="popup-header">
+            <span>Upload Document</span>
+            <h4 class="modal-title">{{nameOfTitleDocument}}</h4>
+         </div>
+         <div class="star">
+            <img src="assets/img/doc.svg">
+         </div>
+      </div>
+      <!--------------------- Webcome code: START --------------------->
+      <div *ngIf="clickedWebcamPicture && !fileUploading && !viewSectionOfImage">
+         <div class="snapshot row mr-md-0">
+            <div class="col-md-10" *ngIf="!liveWebcam">
+               <div class="upload-doc-box">
+                  <img [src]="webCamMediaPriview" />
+                  <span (click)="removeWebCamMedia(webCamMediaPriview)"><img src="assets/img/modal-upload/edit.svg">Edit
+                     Image/File</span>
+               </div>
+            </div>
+            <div class="col-md-10" *ngIf="liveWebcam">
+               <div class="upload-doc-box d-flex justify-content-center align-items-center">
+                  <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+                     [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+                     [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+                     (initError)="handleInitError($event)" class="webcam">
+                  </webcam>
+               </div>
+            </div>
+
+            <div class="col-md-2 p-md-0">
+               <div class="scroll-upload">
+                  <button *ngIf="liveWebcam" class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+                  <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
+                     Image/File</button>
+                  <button class="view-img" *ngFor="let mediaPreview of webCamMediaList; let i = index">
+                     <div class="img-td-div" (click)="webCamShowMediaBig(i)">
+                        <img src="{{ mediaPreview }}" alt="img">
+                     </div>
+                  </button>
+               </div>
+            </div>
+         </div>
+
+         <h4 *ngIf="errors.length > 0">Messages:</h4>
+         <ul *ngFor="let error of errors">
+            <li>{{error | json}}</li>
+         </ul>
+      </div>
+      <!--------------------- Webcome code: End --------------------->
+
+      <!----------------- UPLOAD image/file aadhar: START -------------->
+      <div class="row mr-md-0" *ngIf="!viewSectionOfImage">
+         <div class="col-md-10" *ngIf="!fileUploading">
+            <div class="upload-box" *ngIf="addNewAadhaarImageUpload">
+               <a (click)="enableWebcamPicture()" href="javascript:void(0)" class="d-flex flex-column"><img
+                     src="assets/img/modal-upload/camera.svg">
+                  <div class="d-flex align-items-center"><img src="assets/img/modal-upload/camera-sml.svg">Use Camera
+                  </div>
+               </a>
+               <div class="or-text"><span>OR</span></div>
+               <a href="javascript:void(0)" class="d-flex flex-column align-items-center upload-file"><img
+                     src="assets/img/modal-upload/file-minus.svg">
+                  <input type="file" ng2FileSelect [uploader]="uploader" multiple>
+                  <div class="d-flex"><img src="assets/img/modal-upload/upload.svg">Upload File</div>
+               </a>
+            </div>
+
+            <div class="upload-doc-box" *ngIf="!addNewAadhaarImageUpload && !clickedWebcamPicture">
+               <img *ngIf="aadharDisplayImage?.contentType !== 'application/pdf'" src="{{aadharDisplayImage?.file}}">
+               <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'" src="assets/img/doc.svg"
+                  style="width: 100px;">
+               <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img
+                     src="assets/img/modal-upload/edit.svg">Edit
+                  Image/File</span>
+            </div>
+         </div>
+
+         <div class="col-md-10" *ngIf="fileUploading">
+            <div class="upload-box upload-progress">
+               <h5>Uploading File...</h5>
+               <div class="progress-ratio d-flex justify-content-between"><span>
+                     Uploading...</span><span>{{uploadProgress}} %</span></div>
+               <div class="progress">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploadProgress + '%' }"></div>
+               </div>
+               <p>Please wait, This may take some time</p>
+            </div>
+         </div>
+
+         <div class="col-md-2 p-md-0" *ngIf="!clickedWebcamPicture">
+            <div class="scroll-upload">
+               <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New Image/File</button>
+               <button class="view-img" *ngFor="let mediaPreview of mediaPreviews; let i = index">
+                  <div class="img-td-div" (click)="documentShowBigMedia(i,true)">
+                     <img *ngIf="mediaPreview?.contentType !== 'application/pdf'" src="{{ mediaPreview?.file }}"
+                        alt="img">
+                     <img *ngIf="mediaPreview?.contentType === 'application/pdf'" src="assets/images/doc.svg" alt="img">
+                  </div>
+               </button>
+            </div>
+         </div>
+      </div>
+      <!----------------- UPLOAD image/file aadhar: END -------------->
+
+      <!----------------- VIEW image/file : START -------------->
+      <div class="row mr-md-0" *ngIf="viewSectionOfImage">
+         <div class="col-md-10" *ngIf="!fileUploading">
+            <div class="upload-doc-box"
+               *ngIf="viewPreviewDisplayImage?.content_type === 'image/jpeg' || viewPreviewDisplayImage?.content_type === 'image/jpg' || viewPreviewDisplayImage?.content_type === 'image/png'">
+               <img src="{{viewPreviewDisplayImage?.url}}">
+               <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+                  <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
+            </div>
+
+            <div class="upload-doc-box" *ngIf="viewPreviewDisplayImage?.content_type === 'application/pdf'">
+               <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe>
+               <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+                  <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
+
+            </div>
+         </div>
+
+         <div class="col-md-2 p-md-0">
+            <div class="scroll-upload">
+               <button *ngIf="!isDocumentVerified" class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
+                  Image/File</button>
+               <button class="view-img" *ngFor="let mediaPreview of viewMediaPreviewsList; let i = index">
+                  <div class="img-td-div" (click)="previewImageBig(i)">
+                     <img *ngIf="mediaPreview?.content_type !== 'application/pdf'" src="{{ mediaPreview?.url }}"
+                        alt="img">
+                     <img *ngIf="mediaPreview?.content_type === 'application/pdf'" src="assets/images/doc.svg"
+                        alt="img">
+                  </div>
+               </button>
+            </div>
+         </div>
+      </div>
+      <!----------------- VIEW image/file : END -------------->
+
+      <div class="modal-footer d-flex justify-content-between">
+         <a class="btn modal-btn-cancel" (click)="c('cancel')" href="javascript:void(0)">{{'Cancel'}}</a>
+         <a *ngIf="!clickedWebcamPicture" [ngClass]="{'disabled': !uploader?.getNotUploadedItems().length}"
+            class="btn modal-btn-continue" (click)="submitDocumentUploadModal()" href="javascript:void(0)">
+            {{'Save & Continue'}}
+         </a>
+         <a *ngIf="clickedWebcamPicture" [ngClass]="{'disabled': !webCamMediaList?.length}"
+            class="btn modal-btn-continue" (click)="submitWebCamUploadModal()" href="javascript:void(0)">
+            {{'Save & Continue'}}
+         </a>
+      </div>
+   </div>
+</ng-template>
