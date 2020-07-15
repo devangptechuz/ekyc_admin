@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ValidationService } from "app/shared/services/validator.service";
 import { NgxSpinnerService } from "ngx-spinner";
-import { ActivatedRoute, Router } from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 import { AdminService } from '../../../shared/services/admin.service';
 
 @Component({
@@ -12,16 +12,11 @@ import { AdminService } from '../../../shared/services/admin.service';
   styleUrls: ['./add-edit-admin.component.scss']
 })
 export class AddEditAdminComponent implements OnInit {
-  toggleEyePassword = "ft-eye-off";
-  toggleEyeConfirmPassword = "ft-eye-off";
-  loginObj: any = {};
   adminForm: FormGroup;
-  submitted = false;
   editMode = true;
   label = 'Add Category';
   button = 'Submit';
   editAdmin;
-  returnUrl: string;
   userType = [{
     type: '1',
     label: 'Admin'
@@ -97,6 +92,8 @@ export class AddEditAdminComponent implements OnInit {
 
   editAdminCall() {
     delete this.adminForm.value.email;
+    delete this.adminForm.value.password;
+    this.adminForm.value.id = this.editAdmin.result.userData.id;
     this.adminService.updateAdmin(this.adminForm.value).subscribe(
       (result: any) => {
         if (result.success) {
@@ -108,15 +105,4 @@ export class AddEditAdminComponent implements OnInit {
         }
       });
   }
-
-  togglePassword(event, oldPassword: any) {
-    this.toggleEyePassword = this.toggleEyePassword == "ft-eye" ? "ft-eye-off" : "ft-eye";
-    oldPassword.type = oldPassword.type === 'password' ? 'text' : 'password';
-  }
-
-  toggleConfirmPassword(event, oldPassword: any) {
-    this.toggleEyeConfirmPassword = this.toggleEyeConfirmPassword == "ft-eye" ? "ft-eye-off" : "ft-eye";
-    oldPassword.type = oldPassword.type === 'password' ? 'text' : 'password';
-  }
-
 }

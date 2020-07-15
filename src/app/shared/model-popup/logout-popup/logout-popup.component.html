@@ -1,0 +1,19 @@
+<div class="modal-header red common-header">
+    <div class="popup-header">
+        <span>{{'Confirmation'}}</span>
+    </div>
+    <div class="popup-icon">
+        <img src="../../../../assets/img/true.svg">
+    </div>
+</div>
+<div class="modal-boy">
+    <p class="wr-msg mb-2">Are you sure you want to logout?</p>
+    <br>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+    <a class="btn modal-btn-continue" (click)="decline()" href="javascript:void(0)">
+        Cancel
+    </a>
+    <a class="btn modal-btn-cancel" (click)="accept()" href="javascript:void(0)">Logout</a>
+</div>

@@ -20,7 +20,9 @@ import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
 import { RoleCheckPipe, UserTypePipe } from './pipe/status.pipe';
-import { DeleteModelComponent } from './delete-model/delete-model.component';
+import { DeleteModelComponent } from './model-popup/delete-model/delete-model.component';
+import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.component';
+
 
 @NgModule({
     exports: [
@@ -57,7 +59,8 @@ import { DeleteModelComponent } from './delete-model/delete-model.component';
         SidebarAnchorToggleDirective,
         SidebarToggleDirective,
         RoleCheckPipe,
-        UserTypePipe
+        UserTypePipe,
+        LogoutPopupComponent
     ]
 })
 export class SharedModule { }

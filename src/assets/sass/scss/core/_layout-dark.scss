@@ -725,10 +725,11 @@ body {
         }
       }
     }
-  }
-  section.application{
-    .btn-search{
-      border-color:$dl-border-color;
+      section.application{
+      .btn-search{
+        border-color:$dl-border-color;
+      }
     }
   }
+  
 }
