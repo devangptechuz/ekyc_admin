@@ -42,6 +42,28 @@ a:hover{text-decoration: none;}
   text-align: center !important;
   transform: translateX(-50%) !important;
 }*/
+
+p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
+
+/* common popup*/
+.common-header{margin-bottom: 40px;}
+.modal-content{border-radius: 16px;padding: 40px;}
+.modal-header{padding: 0;border: none;}
+.common-header .popup-header span{font-size: 16px;line-height: 24px;font-weight: 500;margin-bottom: 6px;display: block;}
+.common-header.yellow .popup-header span{color: #FAB401;}
+.common-header.yellow .popup-icon{background:rgba(250, 180, 1, 0.16);}
+.common-header.red .popup-header span{color: #DF0E40;}
+.common-header.red .popup-icon{background:rgba(223, 14, 64, 0.16);}
+.common-header.green .popup-header span{color: #19D097;}
+.common-header.green .popup-icon{background:rgba(25, 208, 151, 0.16);}
+.common-header .modal-title{font-weight: 500;font-size: 24px;line-height: 36px;}
+.common-header .popup-icon{width: 56px;height: 56px;display: flex;align-items: center;border-radius: 50%;text-align: center;}
+.common-header .popup-icon img {margin: 0 auto;}
+.modal-content .user-box span{font-size: 14px;line-height: 21px;color: rgba(0, 0, 0, 0.56);}
+.modal-footer{border-color: #ddd;padding: 16px 0 0;}
+.modal-footer a{padding: 0;color: #0970DD;font-weight: 500;font-size: 16px;line-height: 24px;}
+.modal-footer a:hover{opacity: 0.8}
+
 /* width */
 @font-face {
   font-family: 'icomoon';
