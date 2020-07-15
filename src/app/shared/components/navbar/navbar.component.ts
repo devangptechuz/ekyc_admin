@@ -3,6 +3,7 @@ import { Component, Output, EventEmitter, OnInit, AfterViewInit } from '@angular
 import { LayoutService } from '../../services/layout.service';
 import { ConfigService } from '../../services/config.service';
 import { CommonService } from "../../services/common.service";
+import {ConfirmationDialogService} from '../../services/confirmation-dialoge.service';
 
 @Component({
   selector: "app-navbar",
@@ -23,7 +24,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   constructor (
     private layoutService: LayoutService,
     private configService: ConfigService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private confirmationDialogService:ConfirmationDialogService
   ) { }
 
   ngOnInit() {
@@ -62,6 +64,17 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.toggleHideSidebar.emit(true);
     }
   }
+
+  onLogout(btnElement) {
+    btnElement && btnElement.parentElement && btnElement.parentElement.parentElement &&
+    btnElement.parentElement.parentElement.blur();
+    this.confirmationDialogService.deleteConfirm().then((data)=>{
+      if(data){
+        this.logout();
+      }
+    }).catch( error =>  console.log(error));
+  }
+
 
   logout() {
     this.commonService.logout();

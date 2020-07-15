@@ -24,14 +24,13 @@
         </ul>
       </div>
       <div class="dropdown">
-        
           <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
             <img src="assets/img/1.jpg" alt="user pic" class="profile-img">
             <span>aditya desai</span>
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#">dark mode</a>
-            <a class="dropdown-item" href="#">Logout</a>           
+            <a class="dropdown-item" #btnElement (click)="onLogout(btnElement)">Logout</a>
           </div>
         </div>
     </nav>
