@@ -52,6 +52,7 @@ export class LoginComponent {
       if(res.success){
           this.cookieService.set('admin_user_email',res.result.email);
           this.cookieService.set('admin_user_token', res.result.token);
+          this.cookieService.set('admin_user_userName', res.result.username);
           this.router.navigateByUrl(this.returnUrl);
           this.spinner.hide();
           this.loginForm.reset();

@@ -4,6 +4,7 @@ import { LayoutService } from '../../services/layout.service';
 import { ConfigService } from '../../services/config.service';
 import { CommonService } from "../../services/common.service";
 import {ConfirmationDialogService} from '../../services/confirmation-dialoge.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: "app-navbar",
@@ -20,17 +21,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   public config: any = {};
   user: any;
+  userName: any;
 
   constructor (
     private layoutService: LayoutService,
     private configService: ConfigService,
     private commonService: CommonService,
-    private confirmationDialogService:ConfirmationDialogService
+    private confirmationDialogService:ConfirmationDialogService,
+    private cookieService:CookieService
   ) { }
 
   ngOnInit() {
     this.config = this.configService.templateConf;
     this.user = this.commonService.getLoggedInUser();
+    this.userName = this.cookieService.get('admin_user_userName');
+
   }
 
   ngAfterViewInit() {
