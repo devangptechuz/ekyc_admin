@@ -12,7 +12,7 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 .form-control:-ms-input-placeholder {color: rgba(0, 0, 0, 0.32);}
 .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 .btn.focus, .btn:focus,.form-control:focus{outline: none !important;box-shadow: none;}
-.form-control:focus{border-color: #000 !important;}
+.form-control:focus{border-color: #999 !important;}
 a{transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-out;-moz-transition: 0.3s ease-in-out;}
 a:hover{text-decoration: none;}
 .modal-lg {max-width: 960px;}
@@ -24,6 +24,7 @@ a:hover{text-decoration: none;}
 .btn-custom::after{-webkit-transition-delay: 0.2s;transition-delay: 0.2s;}
 .btn-custom:hover::before,.btn-custom:hover::after{-webkit-transform: translate(0,0);transform: translate(0,0);}
 .btn-border{background: #fff;border: 1px solid #0970DD;color: #0970DD;}
+.btn-custom:disabled{opacity: 1;background: #B0BAC5;color: #fff;animation: none !important;}
 
 .dropdown-menu{-webkit-animation-name: slideIn;animation-name: slideIn;top: 100% !important;animation-duration: 0.3s;-webkit-animation-duration: 0.3s;animation-fill-mode: both;-webkit-animation-fill-mode: both;padding: 6px 0;margin: 10px 0 0;background: #FFFFFF;box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);border-radius: 8px;border: none;}
 .dropdown-item{align-items: center;display: flex;text-transform: capitalize;margin: 0 !important;padding: 12px 16px;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.8);cursor: pointer;}
@@ -45,7 +46,9 @@ a:hover{text-decoration: none;}
 }*/
 
 p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
-
+.danger {
+    color: red !important;
+}
 /* common popup*/
 .common-header{margin-bottom: 40px;}
 .modal-content{border-radius: 16px;padding: 40px;}
@@ -112,6 +115,8 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 .icon-notallow:before {content: "\e915";}
 .icon-logout:before {content: "\e916";}
 .icon-mode:before {content: "\e917";}
+.icon-arrow:before {content: "\e918";}
+.icon-left-ar:before {content: "\e919";}
 /*=========Header===========*/
 header .navbar{display: flex;justify-content: space-between;padding: 12px 0;}
 .navbar .navbar-collapse{justify-content: center;}
@@ -200,6 +205,11 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 .custom-datatable .arrow{color: rgba(0, 0, 0, 0.32);font-size: 18px;font-weight: 600;}
 .custom-datatable .hover-error {opacity: 0;visibility: hidden;transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-out;-moz-transition: 0.3s ease-in-out;}
 .custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row:hover .hover-error{opacity: 1;visibility: visible;}
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row.active {background-color: transparent;}
+.datatable-checkbox input[type='checkbox']:before,.datatable-checkbox input[type='checkbox']:after{width: 16px;height: 16px;}
+.custom-datatable .datatable-checkbox input[type='checkbox']:not(:checked):before{border: 1px solid #DDDDDD;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);border-radius: 4px;}
+.custom-datatable .datatable-checkbox input[type='checkbox']:checked:after{box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);border-radius: 4px;background: #0970DD;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);cursor: pointer;}
+.custom-datatable .datatable-checkbox input[type='checkbox']:checked:before {border-color: #fff;width: 9px;height: 5px;left: 4px;top: 4px;}
 .fixed-status {background: #FFFFFF;border: 1px solid #0970DD;box-shadow: 0px -1px 8px rgba(0, 0, 0, 0.16);border-radius: 8px;position: fixed;bottom: 0;left: 0;right: 0;top: auto;width: 800px;margin: 0 auto;padding: 32px;display: flex;justify-content: space-between;}
 .fixed-status ul{display: flex;margin: 0;padding: 0;}
 .fixed-status ul li{margin-left: 30px;list-style: none;font-size: 14px;line-height: 21px;}
@@ -222,10 +232,10 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 
 /*=========add user form===========*/
 section.add-user {margin: 32px 0;}
-section.add-user .container{max-width: 960px;background: #FCFCFC;border: 1px solid #DDDDDD;border-radius: 8px;padding: 40px;}
+section.add-user .add-box{/*max-width: 960px;*/background: #FCFCFC;border: 1px solid #DDDDDD;border-radius: 8px;padding: 40px;}
 section.add-user .steps{font-weight: 500;font-size: 16px;line-height: 24px;color: #0970DD;display: inline-block;margin-bottom: 8px;}
-.hdr{display: flex;align-items: center;justify-content: space-between;margin-bottom: 40px;}
-.hdr-right{background: rgba(9, 112, 221, 0.16);width: 56px;height: 56px;border-radius: 50%;display: flex;align-items: center;justify-content: center;}
+.hdr{display: flex;align-items: center;justify-content: space-between;padding-bottom: 40px;margin-bottom: 40px;border-bottom: 1px solid #DDDDDD;}
+/*.hdr-right{background: rgba(9, 112, 221, 0.16);width: 56px;height: 56px;border-radius: 50%;display: flex;align-items: center;justify-content: center;}*/
 .hdr-right img{width: 20px;}
 .line-title{font-size: 16px;line-height: 24px;position: relative;margin-bottom: 24px;}
 .line-title span{font-weight: 400;padding-right: 15px;background: #fff;z-index: 9;position: relative;}
@@ -234,6 +244,17 @@ section.add-user .form-control{width: 100%;}
 section.add-user .footer-btn {margin-top: 98px;border-top: 1px solid #DDDDDD;padding-top: 15px;display: flex;justify-content: space-between;}
 section.add-user .footer-btn .btn{ padding: 0;color: #0970DD;text-transform: capitalize;font-weight: 500;font-size: 16px;line-height: 24px;font-weight: 500;letter-spacing: 1px;}
 section.add-user .footer-btn .btn:disabled{color: #B0BAC5;opacity: 1;}
+
+section.add-admin-user h2{text-transform: capitalize;font-weight: 200;}
+section.add-admin-user .hdr-right button{padding: 16px;font-size: 12px;line-height: 18px;}
+.hdr-right .icon-simple-check{font-weight: 600;margin-left: 5px;}
+.ngx-select__toggle::after{content: "\e918";color:#666666;font-size: 5px;font-family: 'icomoon' !important;border: none;display: block;width: auto;height: auto;display: block;width: auto;height: auto;}
+.ngx-select__toggle .dropdown-toggle::after{display: none;}
+.ngx-select__item{padding: 12px 16px !important;font-size: 12px;}
+.ngx-select__choices .dropdown-item span {font-size: 14px;margin-right: 0;max-width: 100%;}
+.ngx-select__choices .ngx-select__item_active {background: rgba(9, 112, 221, 0.04) !important;color: #0970DD !important;outline: 0;}
+.brdcum{margin: 48px 0 0;}
+.brdcum span.icon-left-ar{font-size: 12px;font-size: 12px;}
 
 /*=========Application===========*/
 section.application {margin: 32px 0;}
@@ -247,7 +268,7 @@ section.application .header{padding: 40px;margin: 0;border-bottom: 1px solid #DD
 section.application .header input{font-size: 12px;line-height: 18px;min-width: 146px;}
 section.application .search input{min-width: 438px;}
 section.application .filter,section.application .search {position: relative;}
-section.application .btn-search{border-left: 1px solid #DDDDDD;background: transparent;border: none;cursor: pointer;display: inline-block;}
+section.application .btn-search{color: rgba(0, 0, 0, 0.56);border-left: 1px solid #DDDDDD;background: transparent;border: none;cursor: pointer;display: inline-block;}
 section.application .filter {background: #fff;padding: 15px;margin-left: 24px;border: 1px solid #DDDDDD;border-radius: 8px;width: 146px;height: 50px;font-size: 12px;line-height: 18px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
 section.application span.icon-filter,section.application .btn-search{position: absolute;right: 15px;top: 16px;cursor: pointer;}
 section.application .btn-search{top: 16px;padding: 0;border-left: 1px solid #DDDDDD;right: 0;width: 50px;}
@@ -317,6 +338,12 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 .user-header{margin-bottom: 16px;}
 .user-btmbx .dropdown-item{font-size: 12px;line-height: 18px;}
 .doc-upbox .more-dropdown .dropdown-toggle span {margin-left: -2px;}
+
+/* admin-list*/
+.admin-list .btn-custom{padding: 10px 12px;font-size: 14px;margin-left: 24px;}
+
+
+.brdcum a{font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
 
 @media(min-width:768px) {
     .nav-tabs {

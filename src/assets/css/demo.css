@@ -97,9 +97,7 @@ my-app .main-panel .main-content .card{
 body p.label-control{ margin: 0; }
 
 body form label{ letter-spacing: 0; font-size: 13px; display: inline-block; width: 100%; margin-bottom: 4px; }
-input[type="text"]:focus, input[type="email"]:focus, input[type="phone"]:focus, input[type="number"]:focus, input[type="password"]:focus{ box-shadow: none; border-color: #000 !important; }
 form .form-group{ align-items: center; margin-bottom: 18px !important; }
-form .form-group:last-child{ margin-bottom: 0 !important; }
 
 select{ background-image: url(../img/down-arrow.png); background-repeat: no-repeat; background-position: right 10px center; background-size: 9px; border: 1px solid #bebebe; color: #797979; padding: 0 11px; height: 33px; width: 100%; background-color: transparent; -webkit-appearance:none; appearance:none; }
 

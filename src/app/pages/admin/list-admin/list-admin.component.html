@@ -1,4 +1,4 @@
-<section class="application">
+<section class="application admin-list">
    <div class="container">
       <!-- Nav tabs -->
       <!-- Tab panes -->
@@ -13,17 +13,15 @@
                <div class="card-body">
                   <div class="custom-datatable mt-0">
                      <div class="header row d-flex justify-content-between">
-                        <div class="col-md-4">
-                           <h2>Users</h2>
+                        <div class="col-md-2 d-flex align-items-center ">
+                           <h2 class="mb-0">Users</h2>
                         </div>
-                        <div class="col-md-6 d-flex align-items-center justify-content-end">
+                        <div class="col-md-10 d-flex align-items-center justify-content-end">
                            <div class="search"><input type="search" name="" (keyup)='updateFilter($event)'
                                  placeholder="search by application id or user name" class="form-control"><button
                                  class="btn-search"><span class="icon-search"></span></button></div>
-                           <div><button style="margin-left: 24px" class="btn btn-primary btn-lg mt-2"
-                                 routerLink="/admins/add-admin">Add New Admin</button></div>
-                           <div><button style="margin-left: 24px" class="btn btn-primary btn-lg mt-2"
-                                 [disabled]="!deleteFlag" (click)="deleteAdmins()">Delete Admins</button></div>
+                          <button class="btn btn-custom mb-0" routerLink="/admins/add-admin">Add New Admin</button>
+                          <button class="btn btn-custom mb-0" [disabled]="!deleteFlag" (click)="deleteAdmins()">Delete Admins</button>
                         </div>
                      </div>
                      <div class="tble">
@@ -58,7 +56,7 @@
                                     <a #btnElement (click)="onDelete(btnElement,value)" class="danger">
                                        <i class="ft-trash font-medium-3"></i>
                                     </a>
-                                    <a (click)="onEdit(value)" class="success">
+                                    <a (click)="onEdit(value)" class="success ml-2">
                                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
                                     </a>
                                  </span>

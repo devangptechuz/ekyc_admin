@@ -1,76 +1,84 @@
-<section class="add-user">
+<div class="brdcum">
     <div class="container">
-        <div class="hdr">
-            <div class="hdr-left">
-                <h2>Add new admin user</h2>
+        <a href="javascript:void(0)"><span class="icon-left-ar mr-2"></span>Back to Settings</a>
+    </div>
+</div>
+<section class="add-user add-admin-user">
+    <div class="container">
+        <div class="add-box">
+            <div class="hdr">
+                <div class="hdr-left">
+                    <h2>Add new admin user</h2>
+                </div>
+                <div class="hdr-right">
+                    <!-- <img src="assets/img/user-ic.svg"> -->
+                   <!--  <button class="btn btn-custom">Save details<span class="icon-simple-check"></span></button> -->
+                </div>
             </div>
-            <div class="hdr-right">
-                <img src="assets/img/user-ic.svg">
-            </div>
+           <!--  <h2 class="line-title"><span>Primary Details</span></h2> -->
+            <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Enter full name of the user" formControlName="username"
+                                class="form-control">
+                            <app-control-messages fieldName="Full Name" [control]="adminForm.controls['username']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>User Type</label>
+                            <ngx-select [items]="userType" formControlName="userType" optionValueField="type"
+                                optionTextField="label"></ngx-select>
+                            <app-control-messages fieldName="User Type" [control]="adminForm.controls['userType']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber"
+                                class="form-control">
+                            <app-control-messages fieldName="Mobile Number" [control]="adminForm.controls['mobileNumber']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Email Id</label>
+                            <input type="email" [attr.disabled]="editMode" placeholder="Enter email id"
+                                formControlName="email" class="form-control">
+                            <app-control-messages fieldName="Email" [control]="adminForm.controls['email']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="!editAdmin">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter Password" formControlName="password"
+                                class="form-control">
+                            <app-control-messages fieldName="Password" [control]="adminForm.controls['password']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" *ngIf="!editAdmin">
+                            <label>Confirm Password</label>
+                            <input type="password" placeholder="Enter Confirm Password" formControlName="confirm_password"
+                                class="form-control">
+                            <app-control-messages fieldName="Confirm Password"
+                                [control]="adminForm.controls['confirm_password']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-btn">
+                    <button class="btn" routerLink="/admins">cancel</button>
+                    <button class="btn" type="submit">Submit</button>
+                </div>
+            </form>
         </div>
-        <h2 class="line-title"><span>Primary Details</span></h2>
-        <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" novalidate>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="Enter full name of the user" formControlName="username"
-                            class="form-control">
-                        <app-control-messages fieldName="Full Name" [control]="adminForm.controls['username']">
-                        </app-control-messages>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>User Type</label>
-                        <ngx-select [items]="userType" formControlName="userType" optionValueField="type"
-                            optionTextField="label"></ngx-select>
-                        <app-control-messages fieldName="User Type" [control]="adminForm.controls['userType']">
-                        </app-control-messages>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Mobile Number</label>
-                        <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber"
-                            class="form-control">
-                        <app-control-messages fieldName="Mobile Number" [control]="adminForm.controls['mobileNumber']">
-                        </app-control-messages>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Email Id</label>
-                        <input type="email" [attr.disabled]="editMode" placeholder="Enter email id"
-                            formControlName="email" class="form-control">
-                        <app-control-messages fieldName="Email" [control]="adminForm.controls['email']">
-                        </app-control-messages>
-                    </div>
-                </div>
-                <div class="col-md-6" *ngIf="!editAdmin">
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" placeholder="Enter Password" formControlName="password"
-                            class="form-control">
-                        <app-control-messages fieldName="Password" [control]="adminForm.controls['password']">
-                        </app-control-messages>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group" *ngIf="!editAdmin">
-                        <label>Confirm Password</label>
-                        <input type="password" placeholder="Enter Confirm Password" formControlName="confirm_password"
-                            class="form-control">
-                        <app-control-messages fieldName="Confirm Password"
-                            [control]="adminForm.controls['confirm_password']">
-                        </app-control-messages>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-btn">
-                <button class="btn" routerLink="/admins">cancel</button>
-                <button class="btn" type="submit">Submit</button>
-            </div>
-        </form>
     </div>
 </section>
