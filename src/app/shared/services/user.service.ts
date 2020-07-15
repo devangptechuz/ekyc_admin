@@ -3,17 +3,30 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Document } from '../../shared/models/document';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  baseUrlOfUser = environment.api_url + 'api/';
+  baseUrlOfUser = environment.api_url
 
   constructor(
-    private http: HttpClient
+    public http: HttpClient,
+    public router: Router
   ) { }
 
+  getUserList() {
+    return this.http.get<any>(`${this.baseUrlOfUser}/userList`);
+  }
+
+  getUser(id): Observable<any> {
+    return this.http.get<any>(`${this.baseUrlOfUser}/userDetail/${id}`);
+  }
+
+  deleteUser(data): Observable<any> {
+    return this.http.post<any>(`${this.baseUrlOfUser}/deleteUser`, data); //todo id=['']
+  }
   /**
    * get ekyc document list 
    */
@@ -25,7 +38,7 @@ export class UserService {
       options['reportProgress'] = true;
       options['observe'] = 'events';
     }
-    return this.http.get<any>(this.baseUrlOfUser + `getKycDocuments`, options);
+    return this.http.get<any>(`${this.baseUrlOfUser}/getKycDocuments`, options);
   }
 
   /**
@@ -43,14 +56,14 @@ export class UserService {
    * get document data from document_name 
    */
   getDocumentDetails(objParam: any): Observable<Document> {
-    return this.http.post<any>(this.baseUrlOfUser + `getUserDocuments`, objParam);
+    return this.http.post<any>(`${this.baseUrlOfUser}/getUserDocuments`, objParam);
   }
 
   /**
    * Remove Image/Files from DB
    */
   removeImageFileDocument(obj: any) {
-    return this.http.post<any>(this.baseUrlOfUser + `deleteUserDocument`, obj);
+    return this.http.post<any>(`${this.baseUrlOfUser}/deleteUserDocument`, obj);
   }
 
 }

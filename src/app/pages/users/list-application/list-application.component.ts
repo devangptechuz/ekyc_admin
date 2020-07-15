@@ -2,6 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { UserService } from 'app/shared/services/user.service';
+import { GlobalService } from 'app/shared/services/global.service';
+import { AdminService } from 'app/shared/services/admin.service';
+import { ConfirmationDialogService } from '../../../shared/services/confirmation-dialoge.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-list-application',
@@ -10,35 +15,15 @@ import { Router } from '@angular/router';
 })
 export class ListApplicationComponent implements OnInit {
 
-  rows = [{
-    'firstname': 'pragnesh',
-    'lastname': 'panchal',
-    'img': 'assets/img/portrait/avatars/avatar-05.png',
-    'email': 'pragnesh@techuz.com',
-    'status': 'Active'
-  }, {
-    'firstname': 'pragnesh',
-    'lastname': 'patel',
-    'img': 'assets/img/portrait/avatars/avatar-04.png',
-    'email': 'pragnesh@techuz.com',
-    'status': 'Active'
-  }, {
-    'firstname': 'prg',
-    'lastname': 'panchal',
-    'img': 'assets/img/portrait/avatars/avatar-04.png',
-    'email': 'pragnesh@techuz.com',
-    'status': 'InActive'
-  }, {
-    'firstname': 'abcd',
-    'lastname': 'aaaa',
-    'img': 'assets/img/portrait/avatars/avatar-04.png',
-    'email': 'pragnesh@techuz.com',
-    'status': 'Active'
-  }];
+  rows = [];
   temp = [];
+  selected = [];
   loadingIndicator = true;
   limitRow = '3';
   selectedItem;
+  count: any;
+  deleteFlag = false;
+  usersSelectCount;
   perPage = [
     { label: '10', value: '10' },
     { label: '15', value: '15' },
@@ -50,14 +35,66 @@ export class ListApplicationComponent implements OnInit {
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    private confirmationDialogService: ConfirmationDialogService,
+    private global: GlobalService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
+    this.userService.getUserList().subscribe((Data: any) => {
+      if (Data.success) {
+        this.temp = [...Data['result']['userList']];
+        this.rows = Data['result']['userList'];
+        this.count = Data['result']['Count'];
+        // this.spinner.hide();
+      } else {
+        // this.spinner.hide();
+        this.global.errorToastr(Data.message);
+      }
+    });
   }
   onEdit(e) {
     console.log("edit page");
   }
+
+  cancelAll() {
+    this.onSelect({ selected: [] });
+    this.selected.length = 0;
+    this.deleteFlag = false;
+  }
+
+  onSelect(row) {
+    this.deleteFlag = this.selected.length > 0;
+    this.usersSelectCount = this.selected.length
+  }
+
+  deleteUsers() {
+    if (this.selected.length > 0) {
+      const id = [];
+      this.selected.filter((data) => {
+        id.push(data.id);
+      })
+      this.confirmationDialogService.confirm('Admins').then((data) => {
+        if (data) {
+          this.spinner.show();
+          this.userService.deleteUser({ id: id })
+            .subscribe((res) => {
+              if (res.success) {
+                this.spinner.hide();
+                this.global.successToastr('Deleted Successfully')
+                this.ngOnInit();
+              } else {
+                this.spinner.hide();
+                this.global.errorToastr(res.message);
+              }
+            });
+        }
+      }).catch(error => console.log(error));
+    }
+  }
+
   onDelete(e, v) {
     console.log("Delete data");
   }

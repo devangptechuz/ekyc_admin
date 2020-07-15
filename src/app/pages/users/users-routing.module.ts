@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UsersDetailComponent } from './users-detail/users-detail.component';
 import { ListApplicationComponent } from './list-application/list-application.component';
+import { AddEditUser } from './shared/add-edit.resolver';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
     data: {
       title: 'user-detail',
     },
+    resolve: { user: AddEditUser }
   }
 ];
 

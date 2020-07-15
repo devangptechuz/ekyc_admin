@@ -3,7 +3,7 @@
         <!-- Nav tabs -->
         <ul id="tabs" class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">all (2,242)</a>
+                <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">all ({{count}})</a>
             </li>
             <li class="nav-item">
                 <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">new applications (58)</a>
@@ -40,7 +40,7 @@
                         <div class="custom-datatable mt-0">
                             <div class="header row d-flex justify-content-between">
                                 <div class="col-md-4">
-                                    <h2>all applications (2,242)</h2>
+                                    <h2>all applications ({{count}})</h2>
                                     <span class="green-text">2% increase since last week<span
                                             class="icon-red-arrow"></span>
                                     </span>
@@ -56,34 +56,39 @@
                             <div class="tble">
                                 <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator"
                                     [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
-                                    [rowHeight]="70" [limit]="limitRow" [rows]="rows"
-                                    [sorts]="[{prop: 'uname', dir: 'asc'}]">
+                                    [rowHeight]="70" [limit]="limitRow" [rows]="rows" [selected]="selected"
+                                    [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
+                                    (select)='onSelect($event)' [sorts]="[{prop: 'uname', dir: 'asc'}]">
+                                    <ngx-datatable-column name="" [width]="10" [checkboxable]="true" [sortable]="true"
+                                        prop="selected">
+                                    </ngx-datatable-column>
                                     <ngx-datatable-column [width]="100" name="user name" [sortable]="true"
-                                        prop="firstname">
+                                        prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-
-                                            <a data-tooltip title="{{row.firstname}}" [routerLink]="['/users','id']"
-                                                routerLinkActive="router-link-active">{{row.firstname}}</a>
+                                            <a data-tooltip title="{{row.userName}}" [routerLink]="['/users',row.id]"
+                                                routerLinkActive="router-link-active">{{row.userName}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="80" name="application Id" [sortable]="true"
-                                        prop="lastname">
+                                        prop="id">
+                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                            {{row.id | uppercase}}
+                                        </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="80" name="last activity" [sortable]="true"
                                         prop="email">
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="80" name="Account type" [sortable]="true"
-                                        prop="status">
+                                    <ngx-datatable-column [width]="80" name="Mobile Numer" [sortable]="true"
+                                        prop="mobileNumber">
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="20" name="application status" [sortable]="false"
-                                        prop="id">
-                                        <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-                                            <span>
-                                                <!--  <button (click)="onEdit(value)" class="btn"><img src="../assets/img/trash.svg" class="btn"></button> -->
-                                                <button #btnElement (click)="onDelete(btnElement,value)"
-                                                    class="btn"><img src="../assets/img/trash.svg"></button>
+                                        prop="isDocumentUploaded">
+                                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                            <!-- <span>
+                                                <button #btnElement (click)="onDelete(btnElement,value)" class="btn"><img src="../assets/img/trash.svg"></button>
                                             </span>
-                                            <div class="hover-error"><img src="assets/img/error.svg"></div>
+                                            <div class="hover-error"><img src="assets/img/error.svg"></div> -->
+                                            {{row.isDocumentUploaded}}
                                             <i class="fa fa-angle-right arrow"></i>
 
                                         </ng-template>
@@ -131,12 +136,19 @@
         </div>
     </div>
 </section>
-<div class="fixed-status">
-    <label>Applications selected : <strong>2</strong></label>
+<div *ngIf="deleteFlag" class="fixed-status">
+    <label class="mb-0">Applications selected : <strong>{{usersSelectCount}}</strong></label>
     <ul>
-        <li><img src="assets/img/trash.svg">Applications selected : 2</li>
-        <li><img src="assets/img/alert-circle.svg">report all</li>
-        <li><img src="assets/img/not-allow.svg">reject all</li>
-        <li><img src="assets/img/check-circle.svg">Approve all</li>
+        <li (click)="deleteUsers()"><img src="assets/img/trash.svg">Delete All</li>
+        <li (click)="cancelAll()"><img src="assets/img/not-allow.svg">Reject all</li>
+        <li (click)="approveAll()"><img src="assets/img/check-circle.svg">Approve all</li>
     </ul>
 </div>
+<!-- 
+<div *ngIf="deleteFlag" class="fixed-status">
+    <label class="mb-0">Applications selected : <strong>{{usersSelectCount}}</strong></label>
+    <ul>
+       <li (click)="deleteAdmins()"><img src="assets/img/trash.svg"><span>Delete selected</span></li>
+       <li (click)="cancelAll()"><img src="assets/img/not-allow.svg"><span>Cancel all</span></li>
+    </ul>
+ </div> -->

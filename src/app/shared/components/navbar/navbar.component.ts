@@ -3,8 +3,8 @@ import { Component, Output, EventEmitter, OnInit, AfterViewInit } from '@angular
 import { LayoutService } from '../../services/layout.service';
 import { ConfigService } from '../../services/config.service';
 import { CommonService } from "../../services/common.service";
-import {ConfirmationDialogService} from '../../services/confirmation-dialoge.service';
-import {CookieService} from 'ngx-cookie-service';
+import { ConfirmationDialogService } from '../../services/confirmation-dialoge.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: "app-navbar",
@@ -23,19 +23,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   user: any;
   userName: any;
 
-  constructor (
+  constructor(
     private layoutService: LayoutService,
     private configService: ConfigService,
     private commonService: CommonService,
-    private confirmationDialogService:ConfirmationDialogService,
-    private cookieService:CookieService
+    private confirmationDialogService: ConfirmationDialogService,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
     this.config = this.configService.templateConf;
     this.user = this.commonService.getLoggedInUser();
     this.userName = this.cookieService.get('admin_user_userName');
-
   }
 
   ngAfterViewInit() {
@@ -72,12 +71,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   onLogout(btnElement) {
     btnElement && btnElement.parentElement && btnElement.parentElement.parentElement &&
-    btnElement.parentElement.parentElement.blur();
-    this.confirmationDialogService.deleteConfirm().then((data)=>{
-      if(data){
+      btnElement.parentElement.parentElement.blur();
+    this.confirmationDialogService.deleteConfirm().then((data) => {
+      if (data) {
         this.logout();
       }
-    }).catch( error =>  console.log(error));
+    }).catch(error => console.log(error));
   }
 
 
