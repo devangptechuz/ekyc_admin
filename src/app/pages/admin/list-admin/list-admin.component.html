@@ -26,7 +26,7 @@
                      </div>
                      <div class="tble">
                         <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-                           [headerHeight]="30" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
+                           [headerHeight]="30" [scrollbarH]="false" [footerHeight]="50" [rowHeight]="70"
                            [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]"
                            [selected]="selected" [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
                            (select)='onSelect($event)'>
@@ -40,7 +40,7 @@
                                    [checkboxable]="true"
                                    prop="selected">
                            </ngx-datatable-column>
-                           <ngx-datatable-column [width]="50" name="user name" [sortable]="true" prop="firstname">
+                           <ngx-datatable-column [width]="50"  name="user name" [sortable]="true" prop="username">
                               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                  <a class="user-img dummy-icon"><img src="assets/img/user-ic.svg"></a>
                                  <a data-tooltip title="{{row.username}}">{{row.username}}</a>
@@ -66,7 +66,7 @@
                                     <a #btnElement (click)="onDelete(btnElement,value)" class="danger">
                                        <i class="ft-trash font-medium-3"></i>
                                     </a>
-                                    
+
                                  </span>
                               </ng-template>
                            </ngx-datatable-column>

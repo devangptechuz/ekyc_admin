@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="card-block">
                         <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-                                       [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
+                                       [headerHeight]="50" [scrollbarH]="false" [footerHeight]="50" [rowHeight]="70"
                                        [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
                             <ngx-datatable-column name="User Name" [sortable]="true" prop="uname">
                                 <ng-template
