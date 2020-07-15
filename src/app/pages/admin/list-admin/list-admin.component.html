@@ -26,12 +26,19 @@
                      </div>
                      <div class="tble">
                         <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-                           [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
+                           [headerHeight]="30" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
                            [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]"
                            [selected]="selected" [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
                            (select)='onSelect($event)'>
-                           <ngx-datatable-column name="" [width]="10" [checkboxable]="true" [sortable]="true"
-                              prop="selected">
+                           <ngx-datatable-column
+                                   [width]="30"
+                                   [sortable]="false"
+                                   [canAutoResize]="false"
+                                   [draggable]="false"
+                                   [resizeable]="false"
+                                   [headerCheckboxable]="true"
+                                   [checkboxable]="true"
+                                   prop="selected">
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="50" name="user name" [sortable]="true" prop="firstname">
                               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">

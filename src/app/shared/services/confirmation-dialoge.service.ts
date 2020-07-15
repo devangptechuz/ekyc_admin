@@ -15,8 +15,9 @@ export class ConfirmationDialogService {
     return modalRef.result;
   }
 
-  public deleteConfirm(): Promise<boolean> {
+  public deleteConfirm(name): Promise<boolean> {
     const modalRef = this.modalService.open(LogoutPopupComponent, { centered: true });
+    modalRef.componentInstance.label = name;
     return modalRef.result;
   }
 
