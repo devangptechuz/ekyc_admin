@@ -18,8 +18,10 @@
                         </div>
                         <div class="col-md-10 d-flex align-items-center justify-content-end">
                            <div class="search"><input type="search" name="" (keyup)='updateFilter($event)'
-                                 placeholder="search by application id or user name" class="form-control"><button
+                                 placeholder="search by Admin user name or email or phone number" class="form-control"><button
                                  class="btn-search"><span class="icon-search"></span></button></div>
+                           <div><button style="margin-left: 24px" class="btn btn-primary btn-lg mt-2"
+                                 routerLink="/admins/add-admin">Add New Admin</button></div>
                           <button class="btn btn-custom mb-0" routerLink="/admins/add-admin">Add New Admin</button>
                           <button class="btn btn-custom mb-0" [disabled]="!deleteFlag" (click)="deleteAdmins()">Delete Admins</button>
                         </div>
@@ -71,3 +73,11 @@
       </div>
    </div>
 </section>
+
+<div *ngIf="deleteFlag" class="fixed-status">
+   <label>Applications selected : <strong>{{adminsSelectCount}}</strong></label>
+   <ul>
+      <li (click)="deleteAdmins()"><img src="assets/img/trash.svg">Delete selected</li>
+      <li (click)="cancelAll()"><img src="assets/img/not-allow.svg" >Cancel all</li>
+   </ul>
+</div>
