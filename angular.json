@@ -28,10 +28,10 @@
               "node_modules/@swimlane/ngx-datatable/themes/dark.scss",
               "node_modules/@swimlane/ngx-datatable/themes/bootstrap.scss",
               "node_modules/@swimlane/ngx-datatable/assets/icons.css",
-              "src/assets/css/demo.css",
+              "src/assets/css/demo.css",               
               "src/assets/sass/app.scss",
-              "src/styles.css",
               "src/assets/css/bootstrap.min.css",
+              "src/styles.css",             
               "src/assets/css/style.css",
               "src/assets/css/dark-theme.css",
               "src/assets/css/responsive.css"

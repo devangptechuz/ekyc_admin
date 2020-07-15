@@ -87,6 +87,8 @@ a:hover{text-decoration: none;}
 .icon-minus-file:before {content: "\e913";}
 .icon-alert-octagon:before {content: "\e914";}
 .icon-notallow:before {content: "\e915";}
+.icon-logout:before {content: "\e916";}
+.icon-mode:before {content: "\e917";}
 /*=========Header===========*/
 header .navbar{display: flex;justify-content: space-between;padding: 12px 0;}
 .navbar .navbar-collapse{justify-content: center;}
