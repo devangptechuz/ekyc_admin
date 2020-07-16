@@ -5,6 +5,7 @@ import { CommonService } from 'app/shared/services/common.service';
 import { ValidationService } from "app/shared/services/validator.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute, Router} from "@angular/router";
+import {GlobalService} from '../../shared/services/global.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class ForgotPasswordComponent implements OnInit {
       private commonService: CommonService,
       private formBuilder: FormBuilder,
       private validationService: ValidationService,
-      private spinner: NgxSpinnerService
+      private spinner: NgxSpinnerService,
+      public global: GlobalService
   ) { }
 
   ngOnInit() {
@@ -38,9 +40,9 @@ export class ForgotPasswordComponent implements OnInit {
     this.commonService.forgotPassword(this.forgotPasswordForm.value).subscribe(
         (result: any) => {
           if(result.success){
-            this.toastr.success('Send link to your Email.');
+            this.global.successToastr(result.message);
           } else {
-            this.toastr.error(result.message);
+            this.global.errorToastr(result.message);
           }
           this.spinner.hide();
           this.forgotPasswordForm.reset();

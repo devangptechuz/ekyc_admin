@@ -5,6 +5,7 @@ import { ValidationService } from "app/shared/services/validator.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import {ActivatedRoute, Router} from '@angular/router';
 import { AdminService } from '../../../shared/services/admin.service';
+import {GlobalService} from '../../../shared/services/global.service';
 
 @Component({
   selector: 'app-register-admin',
@@ -32,7 +33,8 @@ export class AddEditAdminComponent implements OnInit {
     private adminService: AdminService,
     private formBuilder: FormBuilder,
     private validationService: ValidationService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    public global: GlobalService
   ) { }
 
   ngOnInit(): void {
@@ -81,7 +83,7 @@ export class AddEditAdminComponent implements OnInit {
             this.spinner.hide();
             this.adminForm.reset();
           } else {
-            this.toastr.error(result.message);
+            this.global.errorToastr(result.message);
           }
         });
     } else {
@@ -101,7 +103,7 @@ export class AddEditAdminComponent implements OnInit {
           this.spinner.hide();
           this.adminForm.reset();
         } else {
-          this.toastr.error(result.message);
+          this.global.errorToastr(result.message);
         }
       });
   }

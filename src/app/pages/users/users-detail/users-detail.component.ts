@@ -6,6 +6,7 @@ import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Subject, Observable } from 'rxjs';
 import { GlobalService } from 'app/shared/services/global.service';
 import { UserService } from 'app/shared/services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users-detail',
@@ -13,6 +14,7 @@ import { UserService } from 'app/shared/services/user.service';
   styleUrls: ['./users-detail.component.scss']
 })
 export class UsersDetailComponent implements OnInit {
+  userData: any;
   @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
 
   /******** webcame: START *******/
@@ -68,6 +70,7 @@ export class UsersDetailComponent implements OnInit {
   /********************** IMAGE/FILE UPLOAD: END **********************/
 
   constructor(
+    private route: ActivatedRoute,
     private modalService: NgbModal,
     public global: GlobalService,
     private userService: UserService,
@@ -75,6 +78,8 @@ export class UsersDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userData = this.route.snapshot.data['user'];
+    console.log('this.userData', this.userData);
   }
 
   addOnsModel(btnElement) {

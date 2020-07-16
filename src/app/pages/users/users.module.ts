@@ -27,9 +27,6 @@ import { SharedModule } from 'app/shared/shared.module';
       withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule,
     UsersRoutingModule
-  ],
-  providers: [
-    UserService, NgbActiveModal
   ]
 })
 export class UsersModule { }
