@@ -80,6 +80,7 @@ export class AddEditAdminComponent implements OnInit {
         (result: any) => {
           if (result.success) {
             this.router.navigateByUrl('/admins');
+            this.global.successToastr(result.message);
             this.spinner.hide();
             this.adminForm.reset();
           } else {
@@ -100,6 +101,7 @@ export class AddEditAdminComponent implements OnInit {
       (result: any) => {
         if (result.success) {
           this.router.navigateByUrl('/admins');
+          this.global.successToastr(result.message);
           this.spinner.hide();
           this.adminForm.reset();
         } else {
