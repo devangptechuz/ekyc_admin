@@ -4,7 +4,6 @@ body.layout-dark {background-color: #123050;}
 .layout-dark header{background: #043873;}
 .layout-dark .navbar{background: #043873;box-shadow: none;}
 body.layout-dark .card{background: #093260;border: 1px solid #082544;}
-.layout-dark .custom-datatable .card-header h4{opacity: 0.8;}
 .layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-body-row>div{background: #073566;}
 .layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-row-wrapper{border-color:#082544;}
 .layout-dark .custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row .datatable-body-cell{color: rgba(255, 255, 255, 0.8);}
@@ -23,6 +22,19 @@ body.layout-dark p, body.layout-dark .content-sub-header, body.layout-dark .tabl
 .layout-dark .form-control::placeholder{color: rgba(255, 255, 255, 0.32);}
 .layout-dark .form-control::-webkit-input-placeholder {color: rgba(255, 255, 255, 0.32);}
 .layout-dark .form-control:-ms-input-placeholder {color:rgba(255, 255, 255, 0.32);}
+.layout-dark .form-control:focus::placeholder{color: rgba(255, 255, 255, 0.8);}
+.layout-dark .form-control:focus::-webkit-input-placeholder {color: rgba(255, 255, 255, 0.8);}
+.layout-dark .form-control:focus:-ms-input-placeholder {color:rgba(255, 255, 255, 0.8);}
 .layout-dark section.application .btn-search{color:rgba(255, 255, 255, 0.56);}
-
 .layout-dark .datatable-checkbox input[type='checkbox']:after{background: transparent;}
+.layout-dark input:checked + .slider {background-color: rgba(0, 0, 0, 0.32);}
+.layout-dark .slider:before{background-color: #0970DD;}
+body.layout-dark .dropdown-menu .dropdown-item:hover {background-color: rgba(9, 112, 221, 0.16);}
+.layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-body-row .datatable-row-center{border-color: #082544;}
+.layout-dark .total-detail .media-right{background: rgba(9, 112, 221, 0.16);}
+.layout-dark .total-detail .green .media-right{background: rgba(25, 208, 151, 0.16);}
+.layout-dark .total-detail .yellow .media-right{background: rgba(250, 180, 1, 0.16);}
+.layout-dark .total-detail .red .media-right{background: rgba(223, 14, 64, 0.16);}
+.layout-dark .ngx-datatable .datatable-footer .page-count{color: rgba(255, 255, 255, 0.32)}
+.layout-dark .ngx-datatable.bootstrap .datatable-footer .datatable-pager a{color: rgba(255, 255, 255, 0.8)}
+.layout-dark .ngx-select__toggle::after{color: rgba(255, 255, 255, 0.56);}

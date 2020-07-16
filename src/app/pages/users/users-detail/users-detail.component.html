@@ -30,7 +30,21 @@
             </div>
             <div class="rght d-flex align-items-center">
                <p class="mb-0">application not submitted</p>
-               <button class="btn btn-custom m-0">Respond <i class="fa fa-angle-down"></i></button>
+               <!-- <button class="btn btn-custom m-0">Respond <i class="fa fa-angle-down"></i></button> -->
+                <div class="dropdown">
+                  <button type="button" class="btn dropdown-toggle btn-custom m-0 btn-aprvd" data-toggle="dropdown">
+                     Respond <i class="fa fa-angle-down"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                     <a class="dropdown-item disable" href="javascript:void(0)"><span class="icon-simple-check"></span>
+                        approve</a>
+                     <a class="dropdown-item" href="javascript:void(0)"><span class="icon-minus-file"></span> request
+                        documents</a>
+                     <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report
+                        application</a>
+                     <a class="dropdown-item" href="javascript:void(0)"><span class="icon-notallow"></span>reject</a>
+                  </div>
+               </div>
             </div>
          </div>
          <div class="row user-btmbx">

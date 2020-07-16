@@ -10,7 +10,7 @@ body {
     }
 
     .bg-white {
-      background-color: $dl-bg-color !important;
+      background-color: $bg-color-dark !important;
       color: $component-active-bg !important;
     }
 
@@ -42,7 +42,7 @@ body {
     .h6,
     .content-header,
     .table th {
-      color: $dl-headings-color;
+      color: $white-normal-color;
     }
 
     vg-player {
@@ -56,6 +56,9 @@ body {
       .nav-link,
       i {
         color: rgba(255, 255, 255, 0.56);
+      }
+      .nav-link:hover{
+        color:$white-normal-color;
       }
     }
 
@@ -73,13 +76,13 @@ body {
     }
 
     .badge-light {
-      color: $dl-bg-color !important;
+      color: $bg-color-dark !important;
     }
 
     // Cards
     .card,
     .card-footer {
-      background: $dl-bg-color;
+      background: $bg-color-dark;
     }
 
     // Charts & SVG
@@ -138,13 +141,11 @@ body {
       border-color: $dl-border-color;
     }
 
-    // Forms
-    label {
-      color: $dl-text-color;
-    } 
-    .form-control, input[type="text"], input[type="email"], input[type="phone"], input[type="number"], input[type="password"]{
-      border-color:$dl-border-color;
+    // Forms    
+    .form-control, input[type="text"], input[type="email"], input[type="phone"], input[type="number"], input[type="password"],.form-control:focus{
+      border-color:$dl-border-color !important;
       background-color:$white-bg-color;
+      color:$white-normal-color;
     }
     
     .custom-select {
@@ -319,6 +320,8 @@ body {
 
     .dropdown-menu {
       background-color: $bg-color-dark;
+      border: 1px solid $dl-border-color;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
 
       .dropdown-item {
         color: $dl-text-color;
@@ -725,6 +728,47 @@ body {
       section.application{
       .btn-search{
         border-color:$dl-border-color;
+      }
+    }
+    section.application {
+      .header{
+        border-color:$dl-border-color;
+      }
+    }
+    .custom-datatable{
+      .card {
+         .card-header{
+          border-color:$dl-border-color;
+        }
+      }
+    }
+    .fixed-status{
+      border-color:#0970DD;
+      background:#043873;
+        label{
+          color:$white-normal-color;
+        }
+        ul{
+          li{
+            color: #DF0E40;
+          }
+          li.approved{
+            color: #0970DD;
+          }
+        }
+    }
+    .brdcum{
+      a{color: rgba(255, 255, 255, 0.56);}
+    }
+    section.add-user{
+      .add-box{
+        background:$bg-color-dark;
+        border-color:$dl-border-color;
+      }
+    }
+    .custom-datatable {
+      .uname{
+          color: $white-normal-color;
       }
     }
   }
