@@ -98,5 +98,4 @@ export class ListApplicationComponent implements OnInit {
   onDelete(e, v) {
     console.log("Delete data");
   }
-
 }
