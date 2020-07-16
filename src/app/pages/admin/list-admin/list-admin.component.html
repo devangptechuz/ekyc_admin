@@ -25,8 +25,9 @@
                         </div>
                      </div>
                      <div class="tble">
-                        <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-                           [headerHeight]="30" [scrollbarH]="false" [footerHeight]="50" [rowHeight]="70"
+                        <ngx-datatable class="bootstrap checkbox-table" 
+                        [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
+                           [headerHeight]="30" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
                            [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]"
                            [selected]="selected" [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
                            (select)='onSelect($event)'>

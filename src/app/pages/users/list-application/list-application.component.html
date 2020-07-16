@@ -55,18 +55,19 @@
                             </div>
                             <div class="tble">
                                 <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator"
-                                    [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="false" [footerHeight]="50"
-                                    [rowHeight]="70" [limit]="limitRow" [rows]="rows"
+                                    [columnMode]="'force'" [headerHeight]="50" [scrollbarV]="true"
+                                    [footerHeight]="50"
+                                    [rowHeight]="80" [limit]="limitRow" [rows]="rows"
                                     [sorts]="[{prop: 'uname', dir: 'asc'}]">
-                                    <ngx-datatable-column [width]="100" name="user name" [sortable]="true"
+                                    <ngx-datatable-column [width]="80" name="user name" [sortable]="true"
                                         prop="firstname">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
 
                                             <a data-tooltip title="{{row.firstname}}" [routerLink]="['/users','id']"
-                                                routerLinkActive="router-link-active">{{row.firstname}}</a>
+                                                routerLinkActive="router-link-active" class="uname">{{row.firstname}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="80" name="application Id" [sortable]="true"
+                                    <ngx-datatable-column [width]="40" name="application Id" [sortable]="true"
                                         prop="lastname">
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="80" name="last activity" [sortable]="true"

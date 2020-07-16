@@ -1,19 +1,20 @@
-<div class="modal-header red common-header">
+<div class="modal-header blueclr common-header logout-popup">
     <div class="popup-header">
         <span>{{'Confirmation'}}</span>
-        <h3>Logout of admin account</h3>
+        <h3 class="mb-0">Logout of admin account</h3>
     </div>
     <div class="popup-icon">
-        <img src="../../../../assets/img/true.svg">
+       <span class="icon-logout"></span>
     </div>
 </div>
-<div class="modal-boy">
+<div class="modal-body">
     <p class="wr-msg mb-2">Are you sure you want to logout
         of the following admin account?</p>
-    <br>
-    <a class="user-img dummy-icon"><img width="20px" src="assets/img/user-ic.svg"></a>
-    <a class="wr-msg mb-2" style="padding-left: 10px" >{{label}}</a>
-    <br>
+   <div class="modal-usrbox d-flex">
+    <a class="user-img dummy-icon"><img src="assets/img/user-ic.svg"></a>
+    <div class="d-flex flex-column usr-rht"><a class="wr-msg mb-0" class="name">{{label}}</a>
+    <span>GPAID005048</span></div>
+   </div>
 </div>
 
 <div class="modal-footer d-flex justify-content-between">
