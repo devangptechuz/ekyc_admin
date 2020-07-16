@@ -15,25 +15,25 @@ export class ListApplicationComponent implements OnInit {
     'lastname': 'panchal',
     'img': 'assets/img/portrait/avatars/avatar-05.png',
     'email': 'pragnesh@techuz.com',
-    'status': 'Active'
+    'status': 'Incomplete'
   }, {
     'firstname': 'pragnesh',
     'lastname': 'patel',
     'img': 'assets/img/portrait/avatars/avatar-04.png',
     'email': 'pragnesh@techuz.com',
-    'status': 'Active'
+    'status': 'Submitted'
   }, {
     'firstname': 'prg',
     'lastname': 'panchal',
     'img': 'assets/img/portrait/avatars/avatar-04.png',
     'email': 'pragnesh@techuz.com',
-    'status': 'InActive'
+    'status': 'Approved'
   }, {
     'firstname': 'abcd',
     'lastname': 'aaaa',
     'img': 'assets/img/portrait/avatars/avatar-04.png',
     'email': 'pragnesh@techuz.com',
-    'status': 'Active'
+    'status': 'Rejected'
   }];
   temp = [];
   loadingIndicator = true;

@@ -5,6 +5,7 @@ import { CommonService } from 'app/shared/services/common.service';
 import { ValidationService } from "app/shared/services/validator.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
+import {GlobalService} from '../../shared/services/global.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -20,7 +21,8 @@ export class ResetPasswordComponent implements OnInit {
       private commonService: CommonService,
       private formBuilder: FormBuilder,
       private validationService: ValidationService,
-      private spinner: NgxSpinnerService
+      private spinner: NgxSpinnerService,
+      public global: GlobalService
   ) { }
 
   ngOnInit(): void {
@@ -44,9 +46,10 @@ export class ResetPasswordComponent implements OnInit {
     this.commonService.resetPassword(this.resetPasswordForm.value).subscribe(
         (result: any) => {
           if(result.success){
-            this.toastr.success('Password changed Successfully.');
+            this.global.errorToastr(result.message);
+            this.router.navigateByUrl('login');
           } else {
-            this.toastr.error(result.message);
+            this.global.errorToastr(result.message);
           }
           this.spinner.hide();
           this.resetPasswordForm.reset();

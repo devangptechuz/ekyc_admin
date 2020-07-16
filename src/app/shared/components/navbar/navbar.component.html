@@ -18,7 +18,7 @@
           <li class="nav-item" [routerLinkActive]="['active']">
             <a class="nav-link" [routerLink]="['/users']">settings</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['active']">
+          <li class="nav-item" [routerLinkActive]="['active']" *ngIf=" userType == 2">
             <a class="nav-link" [routerLink]="['/admins']">Admins</a>
           </li>
         </ul>
@@ -28,12 +28,12 @@
             <span>{{userName}}</span>
           </button>
           <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item"><span class="icon-mode"></span>dark mode 
+            <a class="dropdown-item"><span class="icon-mode"></span>dark mode
               <label class="switch">
               <input type="checkbox" checked>
               <span class="slider round"></span>
             </label>
-            </a>         
+            </a>
             <a class="dropdown-item" #btnElement (click)="onLogout(btnElement)" ><span class="icon-logout"></span>logout</a>
           </div>
         </div>

@@ -53,11 +53,13 @@ export class LoginComponent {
           this.cookieService.set('admin_user_email',res.result.email);
           this.cookieService.set('admin_user_token', res.result.token);
           this.cookieService.set('admin_user_userName', res.result.username);
+          this.cookieService.set('admin_user_userType', res.result.userType);
           this.router.navigateByUrl(this.returnUrl);
           this.spinner.hide();
           this.loginForm.reset();
+          this.global.successToastr(res.message);
         } else {
-            this.toastr.error(res.message);
+           this.global.errorToastr(res.message);
           }
       }
     );

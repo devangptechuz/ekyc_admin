@@ -20,8 +20,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   toggleHideSidebar = new EventEmitter<Object>();
 
   public config: any = {};
-  user: any;
-  userName: any;
+  user:any;
+  userName:any;
+  userType:any;
 
   constructor (
     private layoutService: LayoutService,
@@ -35,7 +36,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.config = this.configService.templateConf;
     this.user = this.commonService.getLoggedInUser();
     this.userName = this.cookieService.get('admin_user_userName');
-
+    this.userType = this.cookieService.get('admin_user_userType');
   }
 
   ngAfterViewInit() {
