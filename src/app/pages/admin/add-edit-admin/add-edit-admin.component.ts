@@ -20,10 +20,10 @@ export class AddEditAdminComponent implements OnInit {
   editAdmin;
   userType = [{
     type: '1',
-    label: 'Admin'
+    label: 'Super Admin'
   }, {
     type: '2',
-    label: 'Super Admin'
+    label: 'Admin'
   }]
 
   constructor(
