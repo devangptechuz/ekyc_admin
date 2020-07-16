@@ -6,6 +6,7 @@ import {AdminService} from '../../../shared/services/admin.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ConfirmationDialogService} from '../../../shared/services/confirmation-dialoge.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {GlobalService} from '../../../shared/services/global.service';
 
 @Component({
   selector: 'app-list-sub-admin',
@@ -38,7 +39,7 @@ export class ListAdminComponent implements OnInit {
       private spinner: NgxSpinnerService,
       private toasterService: ToastrService,
       private confirmationDialogService:ConfirmationDialogService,
-      private modalService: NgbModal,
+      public global: GlobalService
   ) { }
 
 
@@ -55,7 +56,7 @@ export class ListAdminComponent implements OnInit {
                 this.spinner.hide();
               }else {
                 this.spinner.hide();
-                this.toasterService.error(Data.message);
+                this.global.errorToastr(Data.message);
               }
             });
   }
@@ -77,11 +78,11 @@ export class ListAdminComponent implements OnInit {
               .subscribe((res) => {
                 if (res.success) {
                   this.spinner.hide();
-                  this.toasterService.success('Deleted Successfully')
+                  this.global.successToastr(res.message);
                   this.ngOnInit();
                 } else {
                   this.spinner.hide();
-                  this.toasterService.error(res.message);
+                  this.global.errorToastr(res.message);
                 }
               });
         }
@@ -100,10 +101,10 @@ export class ListAdminComponent implements OnInit {
               if(res.success){
                 this.rows = this.rows.filter(item => item.id != id);
                 this.spinner.hide();
-                this.toasterService.success('Deleted Successfully')
+                this.global.successToastr(res.message);
               }else{
                 this.spinner.hide();
-                this.toasterService.error(res.message);
+                this.global.errorToastr(res.message);
               }
             });
       }

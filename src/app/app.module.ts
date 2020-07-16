@@ -41,13 +41,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         NgbModule,
         PerfectScrollbarModule,
         // Libraries
-        ToastrModule.forRoot({
-            maxOpened: 1,
-            autoDismiss: true,
-            preventDuplicates: true,
-            progressBar: true,
-            timeOut: 2000,
-        }),
+        ToastrModule.forRoot({ timeOut: 4000, positionClass: 'toast-top-right', preventDuplicates: true }),
         NgxSpinnerModule,
 
     ],

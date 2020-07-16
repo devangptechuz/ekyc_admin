@@ -55,7 +55,7 @@ body {
       .navbar-nav .nav-item,
       .nav-link,
       i {
-        color: $dl-headings-color !important;
+        color: rgba(255, 255, 255, 0.56);
       }
     }
 
@@ -125,10 +125,7 @@ body {
       }
     }
 
-    .ngx-datatable .datatable-header .datatable-header-cell .sort-btn {
-      color: $dl-text-color !important;
-    }
-
+   
     // Smart Table 
 
     .ng2-smart-filter {
@@ -388,7 +385,7 @@ body {
     .nav-tabs,
     .nav-link {
       border-bottom-color: $dl-border-color;
-      color: $dl-text-color;
+      color: $white-bg-color;
 
       .active {
         color: $dl-headings-color !important;

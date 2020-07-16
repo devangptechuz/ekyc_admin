@@ -24,3 +24,5 @@ body.layout-dark p, body.layout-dark .content-sub-header, body.layout-dark .tabl
 .layout-dark .form-control::-webkit-input-placeholder {color: rgba(255, 255, 255, 0.32);}
 .layout-dark .form-control:-ms-input-placeholder {color:rgba(255, 255, 255, 0.32);}
 .layout-dark section.application .btn-search{color:rgba(255, 255, 255, 0.56);}
+
+.layout-dark .datatable-checkbox input[type='checkbox']:after{background: transparent;}
