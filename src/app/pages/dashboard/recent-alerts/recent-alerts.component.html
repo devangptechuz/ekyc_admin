@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="card-block">
                         <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-                                       [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
+                                       [headerHeight]="50" [scrollbarH]="false" [footerHeight]="50" [rowHeight]="70"
                                        [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
                             <ngx-datatable-column name="User Name" [sortable]="true" prop="username">
                                 <ng-template
@@ -22,8 +22,8 @@
                                 >
                                      <a class="user-img dummy-icon">
                                         <img src="assets/img/user-ic.svg">
-                                    </a>                                   
-                                  <!--   <a class="user-img">                                          
+                                    </a>
+                                  <!--   <a class="user-img">
                                         <img src="{{row.img}}"></a> -->
                                     <a>{{row.username}}</a>
                                 </ng-template>
