@@ -338,16 +338,17 @@
 
 <ng-template #fileuploadAadharpopup let-c="close" let-d="dismiss">
 
-   <div class="modal-body p-0 payment-popup uploaddoc-popup">
-      <div class="d-flex justify-content-between align-items-end main-header">
-         <div class="popup-header">
-            <span>Upload Document</span>
-            <h4 class="modal-title">{{nameOfTitleDocument}}</h4>
+   <div class="modal-body p-0 payment-popup uploaddoc-popup">    
+      <div class="modal-header yellowclr common-header">
+            <div  class="popup-header">
+               <span>Upload Document</span>
+               <h4 class="modal-title">{{nameOfTitleDocument}}</h4>
+            </div>
+            <div  class="popup-icon">
+                <img src="assets/img/doc.svg">
+             </div>
          </div>
-         <div class="star">
-            <img src="assets/img/doc.svg">
-         </div>
-      </div>
+
       <!--------------------- Webcome code: START --------------------->
       <div *ngIf="clickedWebcamPicture && !fileUploading && !viewSectionOfImage">
          <div class="snapshot row mr-md-0">
