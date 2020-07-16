@@ -13,9 +13,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { SharedModule } from 'app/shared/shared.module';
+import { EditApplicationComponent } from './edit-application/edit-application.component';
 
 @NgModule({
-  declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent],
+  declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent],
   imports: [
     CommonModule,
     WebcamModule,

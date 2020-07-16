@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsersDetailComponent } from './users-detail/users-detail.component';
 import { ListApplicationComponent } from './list-application/list-application.component';
 import { AddEditUser } from './shared/add-edit.resolver';
+import {EditApplicationComponent} from './edit-application/edit-application.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
     data: {
       title: 'list-application',
     },
+  },
+  {
+    path: 'edit/edit-application',
+    component: EditApplicationComponent
   },
   {
     path: ':id',
