@@ -14,9 +14,11 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { SharedModule } from 'app/shared/shared.module';
 import { EditApplicationComponent } from './edit-application/edit-application.component';
+import { UserHistoryComponent } from './user-history/user-history.component';
+import { BankDetailComponent } from './bank-detail/bank-detail.component';
 
 @NgModule({
-  declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent],
+  declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent, UserHistoryComponent, BankDetailComponent],
   imports: [
     CommonModule,
     WebcamModule,
