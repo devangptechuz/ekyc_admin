@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsersDetailComponent } from './users-detail/users-detail.component';
 import { ListApplicationComponent } from './list-application/list-application.component';
 import { AddEditUser } from './shared/add-edit.resolver';
-import {EditApplicationComponent} from './edit-application/edit-application.component';
-import {UserHistoryComponent} from './user-history/user-history.component';
-import {BankDetailComponent} from './bank-detail/bank-detail.component';
+import { EditApplicationComponent } from './edit-application/edit-application.component';
+import { UserHistoryComponent } from './user-history/user-history.component';
+import { BankDetailComponent } from './bank-detail/bank-detail.component';
 
 const routes: Routes = [
   {
@@ -16,19 +16,19 @@ const routes: Routes = [
     },
   },
   {
-    path: 'edit-application',
-    component: EditApplicationComponent,
-    data: {
-      title: 'edit-application',
-    },
-  },
-  {
-    path: 'edit/:id',
+    path: 'details/:id',
     component: UsersDetailComponent,
     data: {
       title: 'user-detail',
     },
     resolve: { user: AddEditUser }
+  },
+  {
+    path: 'edit-application',
+    component: EditApplicationComponent,
+    data: {
+      title: 'edit-application',
+    },
   },
   {
     path: 'user-history',

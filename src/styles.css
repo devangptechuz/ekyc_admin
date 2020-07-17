@@ -13,3 +13,17 @@
 @import url("../src/assets/css/data-table/index.css");
 @import url("../src/assets/css/data-table/icons.css");
 @import url("../src/assets/css/demo.css"); */
+
+/* @import "../node_modules/ngx-toastr/toastr.css";
+@import "../node_modules/@swimlane/ngx-datatable/index.css";
+@import "../node_modules/@swimlane/ngx-datatable/themes/material";
+@import "../node_modules/@swimlane/ngx-datatable/themes/dark";
+@import "../node_modules/@swimlane/ngx-datatable/themes/bootstrap";
+@import "../node_modules/@swimlane/ngx-datatable/assets/icons.css";
+@import "../src/assets/css/demo.css";
+@import "../src/assets/sass/app";
+@import "../src/assets/css/bootstrap.min.css";
+@import url("../src/assets/css/style.css"); 
+@import '../src/assets/css/style.css';
+@import '../src/assets/css/dark-theme.css';
+@import '../src/assets/css/responsive.css'; */

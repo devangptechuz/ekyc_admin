@@ -17,7 +17,7 @@
             <a class="nav-link" [routerLink]="['/applications']">applications</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['active']">
-            <a class="nav-link" [routerLink]="['/users']">settings</a>
+            <a class="nav-link" [routerLink]="['/applications']">settings</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['active']" *ngIf=" userType == 1">
             <a class="nav-link" [routerLink]="['/admins']">Admins</a>
@@ -31,7 +31,7 @@
         <div class="dropdown-menu dropdown-menu-right">
           <a class="dropdown-item"><span class="icon-mode"></span>dark mode
             <label class="switch">
-              <input type="checkbox" checked>
+              <input type="checkbox">
               <span class="slider round"></span>
             </label>
           </a>
@@ -39,6 +39,6 @@
               class="icon-logout"></span>logout</a>
         </div>
       </div>
-  </nav>
+    </nav>
   </div>
 </header>

@@ -55,18 +55,18 @@
                             </div>
                             <div class="tble">
                                 <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator"
-                                    [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true"
-                                    [footerHeight]="50"
+                                    [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
                                     [rowHeight]="80" [limit]="limitRow" [rows]="rows"
                                     [sorts]="[{prop: 'uname', dir: 'asc'}]">
-                                <ngx-datatable-column name="" [width]="10" [checkboxable]="true" [sortable]="true"
-                                prop="selected">
-                                </ngx-datatable-column>                                    
-                                  
+                                    <ngx-datatable-column name="" [width]="10" [checkboxable]="true" [sortable]="true"
+                                        prop="selected">
+                                    </ngx-datatable-column>
+
                                     <ngx-datatable-column [width]="100" name="user name" [sortable]="true"
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a data-tooltip title="{{row.userName}}" [routerLink]="['/users',row.id]"
+                                            <a data-tooltip title="{{row.userName}}"
+                                                [routerLink]="['/applications/details',row.id]"
                                                 routerLinkActive="router-link-active" class="uname">{{row.userName}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
@@ -74,10 +74,9 @@
                                         prop="id">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             {{row.id | uppercase}}
-                                    </ng-template>
+                                        </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="80" name="last activity" [sortable]="true"
-                                        prop="email">
+                                    <ngx-datatable-column [width]="80" name="Email" [sortable]="true" prop="email">
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="80" name="Mobile Numer" [sortable]="true"
                                         prop="mobileNumber">
@@ -85,11 +84,16 @@
                                     <ngx-datatable-column [width]="20" name="application status" [sortable]="false"
                                         prop="isDocumentUploaded">
                                         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                            <span *ngIf="row.isDocumentUploaded">
+                                                Completed
+                                            </span>
+                                            <span *ngIf="!row.isDocumentUploaded">
+                                                InCompleted
+                                            </span>
                                             <!-- <span>
                                                 <button #btnElement (click)="onDelete(btnElement,value)" class="btn"><img src="../assets/img/trash.svg"></button>
                                             </span>
                                             <div class="hover-error"><img src="assets/img/error.svg"></div> -->
-                                            {{row.isDocumentUploaded}}
                                             <i class="fa fa-angle-right arrow"></i>
 
                                         </ng-template>
@@ -142,7 +146,7 @@
     <ul>
         <li (click)="deleteUsers()"><img src="assets/img/trash.svg">Delete All</li>
         <li (click)="cancelAll()"><img src="assets/img/not-allow.svg">Reject all</li>
-        <li (click)="approveAll()"  class="approved"><img src="assets/img/check-circle.svg">Approve all</li>
+        <li (click)="approveAll()" class="approved"><img src="assets/img/check-circle.svg">Approve all</li>
     </ul>
 </div>
 <!-- 

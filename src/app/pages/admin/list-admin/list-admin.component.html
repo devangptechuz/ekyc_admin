@@ -14,34 +14,28 @@
                   <div class="custom-datatable mt-0">
                      <div class="header row d-flex justify-content-between">
                         <div class="col-md-2 d-flex align-items-center ">
-                           <h2 class="mb-0">Users</h2>
+                           <h2 class="mb-0">Admins</h2>
                         </div>
                         <div class="col-md-10 d-flex align-items-center justify-content-end">
                            <div class="search"><input type="search" name="" (keyup)='updateFilter($event)'
-                                 placeholder="search by Admin user name or email or phone number" class="form-control"><button
-                                 class="btn-search"><span class="icon-search"></span></button></div>
-                           <div><button class="btn btn-custom mb-0"
-                                 routerLink="/admins/add-admin">Add New Admin</button></div>
+                                 placeholder="search by Admin user name or email or phone number"
+                                 class="form-control"><button class="btn-search"><span
+                                    class="icon-search"></span></button></div>
+                           <div><button class="btn btn-custom mb-0" routerLink="/admins/add-admin">Add New
+                                 Admin</button></div>
                         </div>
                      </div>
                      <div class="tble">
-                        <ngx-datatable class="bootstrap checkbox-table"
-                        [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-                           [headerHeight]="30" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="70"
-                           [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]"
+                        <ngx-datatable class="bootstrap checkbox-table" [loadingIndicator]="loadingIndicator"
+                           [columnMode]="'force'" [headerHeight]="30" [scrollbarH]="true" [footerHeight]="50"
+                           [rowHeight]="70" [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]"
                            [selected]="selected" [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
                            (select)='onSelect($event)'>
-                           <ngx-datatable-column
-                                   [width]="30"
-                                   [sortable]="false"
-                                   [canAutoResize]="false"
-                                   [draggable]="false"
-                                   [resizeable]="false"
-                                   [headerCheckboxable]="true"
-                                   [checkboxable]="true"
-                                   prop="selected">
+                           <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false"
+                              [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true"
+                              prop="selected">
                            </ngx-datatable-column>
-                           <ngx-datatable-column [width]="50"  name="user name" [sortable]="true" prop="username">
+                           <ngx-datatable-column [width]="50" name="user name" [sortable]="true" prop="username">
                               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                  <a data-tooltip title="{{row.username}}">{{row.username}}</a>
                               </ng-template>
