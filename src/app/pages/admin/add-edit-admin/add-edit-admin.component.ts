@@ -20,10 +20,10 @@ export class AddEditAdminComponent implements OnInit {
   editAdmin;
   userType = [{
     type: '1',
-    label: 'Admin'
+    label: 'Super Admin'
   }, {
     type: '2',
-    label: 'Super Admin'
+    label: 'Admin'
   }]
 
   constructor(
@@ -80,6 +80,7 @@ export class AddEditAdminComponent implements OnInit {
         (result: any) => {
           if (result.success) {
             this.router.navigateByUrl('/admins');
+            this.global.successToastr(result.message);
             this.spinner.hide();
             this.adminForm.reset();
           } else {
@@ -100,6 +101,7 @@ export class AddEditAdminComponent implements OnInit {
       (result: any) => {
         if (result.success) {
           this.router.navigateByUrl('/admins');
+          this.global.successToastr(result.message);
           this.spinner.hide();
           this.adminForm.reset();
         } else {
