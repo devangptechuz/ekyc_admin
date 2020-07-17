@@ -131,6 +131,7 @@ header .dropdown-item .switch{margin-left: 25px;}
 .navbar .navbar-nav .nav-link:hover:after {width: 100%;right: auto;left: 0;}
 header .navbar .dropdown{margin-right: 10px;}
 header .navbar .dropdown-menu-right{right: -30px !important;}
+.navbar-toggler{background: #000;}
 
 /*=========Footer===========*/
 footer{background: #26394E;padding:80px 0;width: 100%;float: left;}
@@ -259,6 +260,7 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 
 /*=========add user form===========*/
 section.add-user {margin: 32px 0;}
+section.add-user h2{text-transform: capitalize;font-weight: 200;}
 section.add-user .add-box{/*max-width: 960px;*/background: #FCFCFC;border: 1px solid #DDDDDD;border-radius: 8px;padding: 40px;}
 section.add-user .steps{font-weight: 500;font-size: 16px;line-height: 24px;color: #0970DD;display: inline-block;margin-bottom: 8px;}
 .hdr{display: flex;align-items: center;justify-content: space-between;padding-bottom: 40px;margin-bottom: 40px;border-bottom: 1px solid #DDDDDD;}
@@ -274,7 +276,6 @@ section.add-user .footer-btn .btn:disabled{color: #B0BAC5;opacity: 1;}
 section.add-user .checkbox label{font-weight: normal;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.56);}
 section.add-user .checkbox{margin: 0 0 24px;background: rgba(9, 112, 221, 0.16);border-radius: 8px;padding: 16px;}
 
-section.add-admin-user h2{text-transform: capitalize;font-weight: 200;}
 section.add-admin-user .hdr-right button{padding: 16px;font-size: 12px;line-height: 18px;}
 .hdr-right .icon-simple-check{font-weight: 600;margin-left: 5px;}
 .ngx-select__toggle::after{content: "\e918";color:#666666;font-size: 5px;font-family: 'icomoon' !important;border: none;display: block;width: auto;height: auto;display: block;width: auto;height: auto;}
@@ -284,7 +285,10 @@ section.add-admin-user .hdr-right button{padding: 16px;font-size: 12px;line-heig
 .ngx-select__choices .ngx-select__item_active {background: rgba(9, 112, 221, 0.04) !important;color: #0970DD !important;outline: 0;}
 
 .brdcum{margin: 48px 0 0;}
-.brdcum span.icon-left-ar{font-size: 12px;font-size: 12px;}
+.brdcum a{font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
+.brdcum a:hover{color: #0970DD;}
+.brdcum span.icon-left-ar{position: relative;left:0;font-size: 12px;transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-out;-moz-transition: 0.3s ease-in-out}
+.brdcum a:hover span.icon-left-ar{left: -2px;}
 .collapse-address.checkbox label:after, .checkbox label:before{top: 18px;left: 16px;}
 .collapse-address.checkbox input[type=checkbox]:checked~label:after{top: 23px;left: 20px;}
 
@@ -398,7 +402,7 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 
 /*=========Admin List===========*/
 .admin-list .btn-custom{padding: 10px 12px;font-size: 14px;margin-left: 24px;}
-.brdcum a{font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
+
 
 /*=========Toster===========*/
 .toast-container .ngx-toastr{display: flex;color: #FFFFFF;width: auto !important;max-width: 360px;font-family: 'Poppins', sans-serif;font-style: normal;font-weight: 600;font-size: 16px;line-height: 24px;transition: 0.2s ease-in-out;-webkit-transition: 0.2s ease-in-out;-moz-transition: 0.2s ease-in-out;background-image: none;padding: 16px 100px 16px 24px!important;border-radius: 8px !important;flex-flow: column;align-items: flex-start;}

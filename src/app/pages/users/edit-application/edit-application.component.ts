@@ -5,11 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './edit-application.component.html',
   styleUrls: ['./edit-application.component.scss']
 })
-export class EditApplicationComponent implements OnInit {
+export class EditApplicationComponent implements OnInit {	
+	  constructor() { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+	  ngOnInit(): void {
+	  }
 
 }
