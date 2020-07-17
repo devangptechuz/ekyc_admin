@@ -9,10 +9,11 @@ import {SharedModule} from '../../shared/shared.module';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {NgxSelectModule} from 'ngx-select-ex';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 
 
 @NgModule({
-  declarations: [ListAdminComponent,AddEditAdminComponent],
+  declarations: [ListAdminComponent,AddEditAdminComponent, AdminProfileComponent],
   imports: [
     CommonModule,
     FormsModule,
