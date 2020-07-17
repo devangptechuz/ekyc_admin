@@ -1,1 +1,57 @@
-<p>bank-detail works!</p>
+<div class="brdcum">
+   <div class="container">
+      <a href="javascript:void(0)"><span class="icon-left-ar mr-2"></span>Back to Application Details</a>
+   </div>
+</div>
+<section class="add-user add-admin-user">
+   <div class="container">
+      <div class="add-box">
+         <div class="hdr">
+            <div class="hdr-left">
+               <h2>Bank Details</h2>
+            </div>
+            <div class="hdr-right">
+            </div>
+         </div>
+         <form novalidate>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label>IFSC Code</label>
+                     <input type="text" placeholder="Enter IFSC code" class="form-control">
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label>Bank Name</label>
+                     <ngx-select></ngx-select>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label>Branch</label>
+                     <ngx-select></ngx-select>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label>Account Number</label>
+                     <input type="text" placeholder="Enter account number" class="form-control">
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label>Confirm Account Number</label>
+                     <input type="text" placeholder="Enter account number" class="form-control">
+                  </div>
+               </div>
+            </div>
+            <h3 class="line-title"><span>Current Address</span></h3>           
+            <div class="footer-btn">
+               <button class="btn" routerLink="/admins">cancel</button>
+               <button class="btn" type="submit">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</section>

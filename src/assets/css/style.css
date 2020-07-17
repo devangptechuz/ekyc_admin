@@ -6,7 +6,7 @@ h2{font-size: 24px}
 h3{font-size: 20px}
 h4{font-size: 16px}
 p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
-.form-group label{font-size: 14px;line-height: 21px;color: #0970DD;display: block;margin: 0 0 8px;}
+.form-group label{text-transform: capitalize;font-size: 14px;line-height: 21px;color: #0970DD;display: block;margin: 0 0 8px;}
 .form-control,input[type="text"], input[type="email"], input[type="phone"], input[type="number"], input[type="password"]{height: auto;border: 1px solid #DDDDDD;border-radius: 8px;padding: 15px;font-size: 16px;line-height: 22px;color: rgba(0, 0, 0, 0.8);}
 .form-control::-webkit-input-placeholder {color: rgba(0, 0, 0, 0.32);}
 .form-control:-ms-input-placeholder {color: rgba(0, 0, 0, 0.32);}
@@ -112,6 +112,9 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 .icon-up-down:before {content: "\e91a";}
 .icon-minus-circle:before {content: "\e91b";}
 .icon-user-check:before {content: "\e91c";}
+.icon-camera:before {content: "\e91d";}
+.icon-close:before {content: "\e91e";}
+.icon-edit:before {content: "\e91f";}
 /*=========Header===========*/
 header .navbar{display: flex;justify-content: space-between;padding: 18px 0;}
 .navbar .navbar-collapse{justify-content: center;}
@@ -128,6 +131,7 @@ header .dropdown-item .switch{margin-left: 25px;}
 .navbar .navbar-nav .nav-link:hover:after {width: 100%;right: auto;left: 0;}
 header .navbar .dropdown{margin-right: 10px;}
 header .navbar .dropdown-menu-right{right: -30px !important;}
+.navbar-toggler{background: #000;}
 
 /*=========Footer===========*/
 footer{background: #26394E;padding:80px 0;width: 100%;float: left;}
@@ -209,17 +213,26 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 .custom-datatable .hover-error {opacity: 0;visibility: hidden;transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-out;-moz-transition: 0.3s ease-in-out;}
 .custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row:hover .hover-error{opacity: 1;visibility: visible;}
 .ngx-datatable.bootstrap .datatable-body .datatable-body-row.active {background-color: transparent;}
-.datatable-checkbox input[type='checkbox']:before,.datatable-checkbox input[type='checkbox']:after{border-radius: 4px;width: 16px;height: 16px;}
+/*.datatable-checkbox input[type='checkbox']:before,.datatable-checkbox input[type='checkbox']:after{border-radius: 4px;width: 16px;height: 16px;}
 .datatable-checkbox{height: 16px;}
 .datatable-checkbox input[type='checkbox']:before{transition: all 0.2s ease-in;}
 .custom-datatable .datatable-checkbox input[type='checkbox']{width: 16px;height: 16px;-moz-appearance: none;-webkit-appearance: none;}
 .custom-datatable .datatable-checkbox input[type='checkbox']:not(:checked):before{border: 1px solid #DDDDDD;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);border-radius: 4px;}
 .custom-datatable .datatable-checkbox input[type='checkbox']:checked:after{box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);border-radius: 4px;background: #0970DD;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);cursor: pointer;}
 .custom-datatable .datatable-checkbox input[type='checkbox']:checked:before {border-color: #fff;width: 9px;height: 5px;left: 4px;top: 4px;}
+*/
 .ngx-datatable .datatable-footer .page-count{color: rgba(0, 0, 0, 0.32);font-size: 16px;}
+.custom-datatable .datatable-checkbox input[type='checkbox']{width: 16px;height: 16px;-moz-appearance: none;-webkit-appearance: none;}
 .custom-datatable .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-template-wrap{display: flex;flex-direction: row-reverse;justify-content: flex-end;}
 .custom-datatable .ngx-datatable.checkbox-table .datatable-header .datatable-header-cell:first-child .datatable-header-cell-template-wrap{display: inherit;}
 .custom-datatable .uname{color: rgba(0, 0, 0, 0.8);text-transform: capitalize;}
+
+.datatable-checkbox input[type='checkbox']:before,.datatable-checkbox input[type='checkbox']:after {content: "";height: 18px;width: 18px;position: absolute;border-radius: 4px;border: 1px solid #ddd;}
+.datatable-checkbox input[type='checkbox']:before{transition: none;}
+.datatable-checkbox input[type='checkbox']:after {transition: .1s ease-in-out;}
+.custom-datatable .datatable-checkbox input[type='checkbox']:checked:before{transition: none;transform: none;height: 18px;background: #0970DD;border-color: #0970DD;}
+.custom-datatable .datatable-checkbox input[type='checkbox']:checked:after {transform: rotate(-45deg);height: .3rem;width: .6rem;border-left-color: #fff;border-bottom-color: #fff;border-radius: 0;border-left-width: 1px;border-bottom-width: 1px;border-right: 1px #fff;border-top: 1px #fff;top: 5px;left: 5px;z-index: 9;background: transparent;}
+
 .fixed-status {background: #FFFFFF;border: 1px solid #0970DD;box-shadow: 0px -1px 8px rgba(0, 0, 0, 0.16);border-radius: 8px;position: sticky;bottom: 0;left: 0;right: 0;top: auto;width: 800px;margin: 0 auto;padding: 32px;display: flex;justify-content: space-between;}
 .fixed-status ul{display: flex;margin: 0;padding: 0;}
 .fixed-status ul li{cursor: pointer;margin-left: 30px;list-style: none;font-size: 14px;line-height: 21px;display: flex;align-items: center;}
@@ -247,6 +260,7 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 
 /*=========add user form===========*/
 section.add-user {margin: 32px 0;}
+section.add-user h2{text-transform: capitalize;font-weight: 200;}
 section.add-user .add-box{/*max-width: 960px;*/background: #FCFCFC;border: 1px solid #DDDDDD;border-radius: 8px;padding: 40px;}
 section.add-user .steps{font-weight: 500;font-size: 16px;line-height: 24px;color: #0970DD;display: inline-block;margin-bottom: 8px;}
 .hdr{display: flex;align-items: center;justify-content: space-between;padding-bottom: 40px;margin-bottom: 40px;border-bottom: 1px solid #DDDDDD;}
@@ -262,7 +276,6 @@ section.add-user .footer-btn .btn:disabled{color: #B0BAC5;opacity: 1;}
 section.add-user .checkbox label{font-weight: normal;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.56);}
 section.add-user .checkbox{margin: 0 0 24px;background: rgba(9, 112, 221, 0.16);border-radius: 8px;padding: 16px;}
 
-section.add-admin-user h2{text-transform: capitalize;font-weight: 200;}
 section.add-admin-user .hdr-right button{padding: 16px;font-size: 12px;line-height: 18px;}
 .hdr-right .icon-simple-check{font-weight: 600;margin-left: 5px;}
 .ngx-select__toggle::after{content: "\e918";color:#666666;font-size: 5px;font-family: 'icomoon' !important;border: none;display: block;width: auto;height: auto;display: block;width: auto;height: auto;}
@@ -272,9 +285,26 @@ section.add-admin-user .hdr-right button{padding: 16px;font-size: 12px;line-heig
 .ngx-select__choices .ngx-select__item_active {background: rgba(9, 112, 221, 0.04) !important;color: #0970DD !important;outline: 0;}
 
 .brdcum{margin: 48px 0 0;}
-.brdcum span.icon-left-ar{font-size: 12px;font-size: 12px;}
+.brdcum a{font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
+.brdcum a:hover{color: #0970DD;}
+.brdcum span.icon-left-ar{position: relative;left:0;font-size: 12px;transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-out;-moz-transition: 0.3s ease-in-out}
+.brdcum a:hover span.icon-left-ar{left: -2px;}
 .collapse-address.checkbox label:after, .checkbox label:before{top: 18px;left: 16px;}
 .collapse-address.checkbox input[type=checkbox]:checked~label:after{top: 23px;left: 20px;}
+
+
+/* admin profile*/
+.admin-profile .admin-detail label{font-size: 12px;line-height: 18px;letter-spacing: 1px;color: #96AB13;margin: 0 0 8px;}
+.admin-profile .admin-detail h4{margin-bottom: 16px;font-weight: normal;line-height: 24px;text-transform: capitalize;}
+.admin-detail ul{list-style: none;}
+.admin-detail ul a{position: relative;font-weight: 500;font-size: 10px;line-height: 15px;letter-spacing: 1px;text-transform: uppercase;color: #0970DD;}
+.admin-detail ul a span{font-size: 13px;width: 25px;display: inline-block;text-align: left;}
+.admin-detail ul li:first-child a span{font-size: 9px;}
+.admin-detail .view-pic{width: 116px;height: 116px;border-radius: 50%;background: #eee;display: flex;align-items: center;justify-content: center;}
+.admin-detail .view-pic img{width: 100%;height: 100%;object-fit: cover; border-radius: 50%;}
+.admin-profile .hdr-left span{font-size: 14px;line-height: 21px;text-transform: capitalize;color: rgba(0, 0, 0, 0.32);}
+.admin-profile .hdr{padding-bottom: 16px;margin-bottom: 24px;}
+.btn-pw{width: 209px;height: 56px;}
 
 /*=========Application===========*/
 section.application {margin: 32px 0;}
@@ -372,7 +402,7 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 
 /*=========Admin List===========*/
 .admin-list .btn-custom{padding: 10px 12px;font-size: 14px;margin-left: 24px;}
-.brdcum a{font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
+
 
 /*=========Toster===========*/
 .toast-container .ngx-toastr{display: flex;color: #FFFFFF;width: auto !important;max-width: 360px;font-family: 'Poppins', sans-serif;font-style: normal;font-weight: 600;font-size: 16px;line-height: 24px;transition: 0.2s ease-in-out;-webkit-transition: 0.2s ease-in-out;-moz-transition: 0.2s ease-in-out;background-image: none;padding: 16px 100px 16px 24px!important;border-radius: 8px !important;flex-flow: column;align-items: flex-start;}
