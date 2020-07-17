@@ -203,6 +203,7 @@ body .card-body{ padding: 24px 17px 30px; }
 /* Login Page */
 body .login-section .card{ height: auto; }
 
+
 /******************************** CUSTOME: CSS: START:17 july 2020 **********************************/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 body{font-family: 'Poppins', sans-serif;color: rgba(0, 0, 0, 0.8);-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
