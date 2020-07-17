@@ -209,17 +209,26 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 .custom-datatable .hover-error {opacity: 0;visibility: hidden;transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-out;-moz-transition: 0.3s ease-in-out;}
 .custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row:hover .hover-error{opacity: 1;visibility: visible;}
 .ngx-datatable.bootstrap .datatable-body .datatable-body-row.active {background-color: transparent;}
-.datatable-checkbox input[type='checkbox']:before,.datatable-checkbox input[type='checkbox']:after{border-radius: 4px;width: 16px;height: 16px;}
+/*.datatable-checkbox input[type='checkbox']:before,.datatable-checkbox input[type='checkbox']:after{border-radius: 4px;width: 16px;height: 16px;}
 .datatable-checkbox{height: 16px;}
 .datatable-checkbox input[type='checkbox']:before{transition: all 0.2s ease-in;}
 .custom-datatable .datatable-checkbox input[type='checkbox']{width: 16px;height: 16px;-moz-appearance: none;-webkit-appearance: none;}
 .custom-datatable .datatable-checkbox input[type='checkbox']:not(:checked):before{border: 1px solid #DDDDDD;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);border-radius: 4px;}
 .custom-datatable .datatable-checkbox input[type='checkbox']:checked:after{box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);border-radius: 4px;background: #0970DD;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);cursor: pointer;}
 .custom-datatable .datatable-checkbox input[type='checkbox']:checked:before {border-color: #fff;width: 9px;height: 5px;left: 4px;top: 4px;}
+*/
 .ngx-datatable .datatable-footer .page-count{color: rgba(0, 0, 0, 0.32);font-size: 16px;}
+.custom-datatable .datatable-checkbox input[type='checkbox']{width: 16px;height: 16px;-moz-appearance: none;-webkit-appearance: none;}
 .custom-datatable .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-template-wrap{display: flex;flex-direction: row-reverse;justify-content: flex-end;}
 .custom-datatable .ngx-datatable.checkbox-table .datatable-header .datatable-header-cell:first-child .datatable-header-cell-template-wrap{display: inherit;}
 .custom-datatable .uname{color: rgba(0, 0, 0, 0.8);text-transform: capitalize;}
+
+.datatable-checkbox input[type='checkbox']:before,.datatable-checkbox input[type='checkbox']:after {content: "";height: 18px;width: 18px;position: absolute;border-radius: 4px;border: 1px solid #ddd;}
+.datatable-checkbox input[type='checkbox']:before{transition: none;}
+.datatable-checkbox input[type='checkbox']:after {transition: .1s ease-in-out;}
+.custom-datatable .datatable-checkbox input[type='checkbox']:checked:before{transition: none;transform: none;height: 18px;background: #0970DD;border-color: #0970DD;}
+.custom-datatable .datatable-checkbox input[type='checkbox']:checked:after {transform: rotate(-45deg);height: .3rem;width: .6rem;border-left-color: #fff;border-bottom-color: #fff;border-radius: 0;border-left-width: 1px;border-bottom-width: 1px;border-right: 1px #fff;border-top: 1px #fff;top: 5px;left: 5px;z-index: 9;background: transparent;}
+
 .fixed-status {background: #FFFFFF;border: 1px solid #0970DD;box-shadow: 0px -1px 8px rgba(0, 0, 0, 0.16);border-radius: 8px;position: sticky;bottom: 0;left: 0;right: 0;top: auto;width: 800px;margin: 0 auto;padding: 32px;display: flex;justify-content: space-between;}
 .fixed-status ul{display: flex;margin: 0;padding: 0;}
 .fixed-status ul li{cursor: pointer;margin-left: 30px;list-style: none;font-size: 14px;line-height: 21px;display: flex;align-items: center;}
