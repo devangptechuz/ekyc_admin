@@ -7,6 +7,7 @@ import { GlobalService } from 'app/shared/services/global.service';
 import { AdminService } from 'app/shared/services/admin.service';
 import { ConfirmationDialogService } from '../../../shared/services/confirmation-dialoge.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-list-application',
@@ -19,7 +20,7 @@ export class ListApplicationComponent implements OnInit {
   temp = [];
   selected = [];
   loadingIndicator = true;
-  limitRow = '3';
+  limitRow: Number = environment.userlimitRow;
   selectedItem;
   count: any;
   deleteFlag = false;
@@ -55,6 +56,17 @@ export class ListApplicationComponent implements OnInit {
       }
     });
   }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+    this.rows = this.temp.filter((d) => {
+      return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
+        d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
+        d.userName.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+    this.table.offset = 0;
+  }
+
   onEdit(e) {
     console.log("edit page");
   }
