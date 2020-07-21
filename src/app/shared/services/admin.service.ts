@@ -29,7 +29,7 @@ export class AdminService {
     }
 
     updateAdminProfileImage(data): Observable<any>{
-        return this.http.get<any>(`${this.apiUrl}/updateProfile`, data);
+        return this.http.post<any>(`${this.apiUrl}/updateProfile`, data);
     }
 
     getUserList() {
@@ -58,6 +58,10 @@ export class AdminService {
 
     deleteAdmin(data): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}/deleteUser`, data); //todo id=['']
+    }
+
+    deleteAdminProfile(data): Observable<any> {
+        return this.http.delete<any>(`${this.apiUrl}/deleteUser`, data); //todo id=['']
     }
 
 }

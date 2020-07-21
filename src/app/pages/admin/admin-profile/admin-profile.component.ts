@@ -44,6 +44,7 @@ export class AdminProfileComponent implements OnInit {
   public mediaImages = [];
   aadharDisplayImage: any;
   maxUploadLimit = 2;
+  id:any;
 
   viewSectionOfImage: boolean;
   viewPreviewDisplayImage: any;
@@ -52,7 +53,7 @@ export class AdminProfileComponent implements OnInit {
 
   private modalRef: NgbModalRef;
   nameOfTitleDocument:"Profile Update";
-  nameOfDocument: any;
+  nameOfDocument: 'userProfile';
   isDocumentVerified: any;
   isContentTypePdf: boolean;
   /********************** IMAGE/FILE UPLOAD: END **********************/
@@ -67,6 +68,7 @@ export class AdminProfileComponent implements OnInit {
     height: { ideal: 316 }
   };
   public deviceId: string;
+  imageUrl:any;
 
   constructor(
       private router: Router,
@@ -123,6 +125,8 @@ export class AdminProfileComponent implements OnInit {
               if(Data.success){
                 this.adminProfile = Data['result']['userData'];
                 this.adminProfileForm.patchValue(Data['result']['userData']);
+                this.imageUrl = Data['result']['userData']['userProfile_url'];
+                this.id = Data['result']['userData']['id'];
                 this.spinner.hide();
               }else {
                 this.spinner.hide();
@@ -298,14 +302,43 @@ export class AdminProfileComponent implements OnInit {
 
   submitDocumentUploadModal() {
     let uploadParam: any = new FormData();
-    uploadParam.append('document_name', this.nameOfDocument);
     this.uploader.queue.map((item: any, index) => {
       uploadParam.append('file[]', item._file);
+    });
+    this.adminService.updateAdminProfileImage(uploadParam).subscribe((result: any) => {
+      this.imageUrl = result.result[0].url;
+      if (result.type === 1 && result.loaded && result.total) {
+        const percentDone = Math.round(100 * result.loaded / result.total);
+        this.uploadProgress = percentDone;
+      } else if (result.body) {
+        this.fileUploading = false;
+        if (result.body.success) {
+          // this.manageResultAfterUploadingFiles(result.body.result, true);
+          this.modalRef.close();
+        }
+      }
+    }, error => {
+      this.fileUploading = false;
     });
     // uploadParam.append('files', queue);
     this.fileUploadingProcessStarting();
   }
 
+  deleteImage(){
+        this.spinner.show();
+        debugger;
+        this.adminService.deleteAdminProfile({id: [this.id]})
+            .subscribe((res) => {
+              if (res.success) {
+                this.spinner.hide();
+                this.global.successToastr(res.message);
+                this.ngOnInit();
+              } else {
+                this.spinner.hide();
+                this.global.errorToastr(res.message);
+              }
+            });
+  }
 
   fileUploadingProcessStarting() {
     this.uploadProgress = 0;

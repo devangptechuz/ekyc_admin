@@ -21,10 +21,10 @@ export class CommonService {
   ) { }
 
   logout() {
-    this.cookieService.delete('admin_user_email');
-    this.cookieService.delete('admin_user_token');
-    this.cookieService.delete('admin_user_userName');
-    this.cookieService.delete('admin_user_userType');
+    this.cookieService.delete('admin_user_email','/');
+    this.cookieService.delete('admin_user_token','/');
+    this.cookieService.delete('admin_user_userName','/');
+    this.cookieService.delete('admin_user_userType','/');
     this.router.navigate(['/login']);
   }
 
