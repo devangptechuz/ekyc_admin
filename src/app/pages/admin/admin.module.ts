@@ -10,6 +10,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {NgxSelectModule} from 'ngx-select-ex';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import {WebcamModule} from 'ngx-webcam';
+import {FileUploadModule} from 'ng2-file-upload';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { AdminProfileComponent } from './admin-profile/admin-profile.component';
     FormsModule,
     HttpClientModule,
     NgxDatatableModule,
+    FileUploadModule,
+    WebcamModule,
     NgxSelectModule,
     ReactiveFormsModule.
     withConfig({ warnOnNgModelWithFormControl: 'never' }),
