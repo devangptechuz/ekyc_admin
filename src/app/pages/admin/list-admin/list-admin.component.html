@@ -53,12 +53,12 @@
                            <ngx-datatable-column [width]="20" name="Actions" [sortable]="false" prop="id">
                               <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
                                  <span>
-                                    <a (click)="onEdit(value)" class="success mr-2">
+                                    <button (click)="onEdit(value)" class="success mr-2 btn-action">
                                        <i class="ft-edit-2 font-medium-3"></i>
-                                    </a>
-                                    <a  (click)="onDelete(value)" class="danger">
+                                    </button>
+                                    <button  (click)="onDelete(value)" class="danger btn-action">
                                        <i class="ft-trash font-medium-3"></i>
-                                    </a>
+                                    </button>
                                  </span>
                               </ng-template>
                            </ngx-datatable-column>
