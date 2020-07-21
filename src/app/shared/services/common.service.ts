@@ -21,8 +21,10 @@ export class CommonService {
   ) { }
 
   logout() {
-    this.global.deleteMultiCookies(['admin_user_email', 'admin_user_token',
-      'admin_user_userName', 'admin_user_userType']);
+    this.cookieService.delete('admin_user_email');
+    this.cookieService.delete('admin_user_token');
+    this.cookieService.delete('admin_user_userName');
+    this.cookieService.delete('admin_user_userType');
     this.router.navigate(['/login']);
   }
 

@@ -42,9 +42,9 @@ export class AddEditAdminComponent implements OnInit {
     this.adminForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       userType: ['1', [Validators.required]],
-      mobileNumber: ['', [Validators.required]],
+      mobileNumber: ['', [Validators.required,this.validationService.mobileFormat]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required,this.validationService.passwordValidator]],
       confirm_password: '',
     }, {
       validator: this.validationService.MatchPassword('password', 'confirm_password')
