@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-bank-detail',
-  templateUrl: './bank-detail.component.html',
-  styleUrls: ['./bank-detail.component.scss']
+  selector: 'app-edit-persoanl-address-details',
+  templateUrl: './edit-persoanl-address-details.component.html',
+  styleUrls: ['./edit-persoanl-address-details.component.scss']
 })
-export class BankDetailComponent implements OnInit {
+export class EditPersoanlAddressDetailsComponent implements OnInit {
   userId: any;
   constructor(
     private route: ActivatedRoute,

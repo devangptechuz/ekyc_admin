@@ -1,6 +1,9 @@
 <div class="brdcum">
    <div class="container">
-      <a href="javascript:void(0)"><span class="icon-left-ar mr-2"></span>Back to Application Details</a>
+      <a href="javascript:void(0)" [routerLink]="['/applications/details',userId]"
+         routerLinkActive="router-link-active">
+         <span class="icon-left-ar mr-2"></span>Back to Application Details
+      </a>
    </div>
 </div>
 <section class="add-user add-admin-user">
@@ -46,7 +49,7 @@
                   </div>
                </div>
             </div>
-            <h3 class="line-title"><span>Current Address</span></h3>           
+            <h3 class="line-title"><span>Current Address</span></h3>
             <div class="footer-btn">
                <button class="btn" routerLink="/admins">cancel</button>
                <button class="btn" type="submit">Submit</button>

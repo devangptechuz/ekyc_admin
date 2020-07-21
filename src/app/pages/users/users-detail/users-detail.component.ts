@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./users-detail.component.scss']
 })
 export class UsersDetailComponent implements OnInit {
+  userId: any;
   userData: any;
   @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
 
@@ -78,7 +79,9 @@ export class UsersDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userData = this.route.snapshot.data['user'];
+    this.userId = this.route.snapshot.params.id;
+    const userData = this.route.snapshot.data['user'];
+    this.userData = userData?.result;
     console.log('this.userData', this.userData);
   }
 

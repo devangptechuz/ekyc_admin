@@ -1,9 +1,10 @@
 <section class="user-view">
    <div class="container">
       <div class="user-header d-flex justify-content-between">
-         <a href="javascript:void(0)"><i class="fa fa-angle-left mr-2"></i>Back</a>
+         <a href="javascript:void(0)" [routerLink]="['/applications']" routerLinkActive="router-link-active"><i
+               class="fa fa-angle-left mr-2"></i>Back</a>
          <div class="d-flex align-items-center">
-            <a href="javascript:void(0)" [routerLink]="['/applications/application-history','id']"
+            <a href="javascript:void(0)" [routerLink]="['/applications/application-history',userId]"
                routerLinkActive="router-link-active" class="mr-3 d-flex align-items-center"><span
                   class="icon-clock mr-2"></span>Application History</a>
             <div class="dropdown more-dropdown">
@@ -26,14 +27,15 @@
       <div class="user-box">
          <div class="user-bxhdr d-flex justify-content-between">
             <div class="lft">
-               <h2>aditya_Desai24</h2>
-               <p class="mb-0 mt-2">application number : gP048 51001</p>
+               <h2>{{userData?.basic_info?.user_name}}</h2>
+               <p class="mb-0 mt-2">application number : {{userData?.basic_info?.application_number | uppercase}}</p>
             </div>
             <div class="rght d-flex align-items-center">
                <p class="mb-0">application not submitted</p>
                <!-- <button class="btn btn-custom m-0">Respond <i class="fa fa-angle-down"></i></button> -->
                <div class="dropdown">
-                  <button type="button" class="btn dropdown-toggle btn-custom m-0 btn-aprvd" data-toggle="dropdown">
+                  <button type="button" class="btn dropdown-toggle btn-custom m-0 btn-aprvd disabled"
+                     data-toggle="dropdown">
                      Respond <i class="fa fa-angle-down"></i>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
@@ -51,11 +53,18 @@
          <div class="row user-btmbx">
             <div class="col-md-6">
                <div class="d-flex justify-content-between">
-                  <a href="mailto:aditya.desai@gmail.com">aditya.desai@gmail.com<span
-                        class="yellow-status status-box ml-2">not verified</span></a>
+                  <a href="mailto:userData?.basic_info?.email">{{userData?.basic_info?.email}}
+                     <span *ngIf="!userData?.basic_info?.isEmailVerified" class="yellow-status status-box ml-2">not
+                        verified</span>
+                     <span *ngIf="userData?.basic_info?.isEmailVerified" class="green-status status-box ml-2">not
+                        verified</span>
+                  </a>
                   <span class="remind-usr"><span class="icon-send"></span>remind user</span>
                </div>
-               <a href="tel:+91 9876543210">+91 9876543210</a><span class="green-status status-box ml-2">VERIFIED</span>
+               <a href="tel:+91 userData?.basic_info?.mobileNumber">+91 {{userData?.basic_info?.mobileNumber}}</a>
+               <span *ngIf="!userData?.basic_info?.isMobileVerified" class="yellow-status status-box ml-2">NOT
+                  VERIFIED</span>
+               <span *ngIf="userData?.basic_info?.isMobileVerified" class="green-status status-box ml-2">VERIFIED</span>
                <ul class="icon">
                   <li><a href="javascript:void(0)"><span class="icon-chat"></span></a></li>
                   <li><a href="javascript:void(0)" class="disable"><span class="icon-mail"></span></a></li>
@@ -72,16 +81,21 @@
                         class="icon-upload"></span> Upload document</a>
                </div>
                <ul class="docupld-link">
-                  <li class="active"><a href="javascript:void(0)"><span class="icon-check-circle"></span>aadhaar
-                        card</a></li>
-                  <li class="active"><a href="javascript:void(0)"><span class="icon-check-circle"></span>PAN card</a>
+                  <li class="" [ngClass]="{'active': item?.document_status!=='not_uploaded'}"
+                     *ngFor="let item of userData?.basic_info?.document_uploaded">
+                     <a href="javascript:void(0)">
+                        <span class="icon-check-circle"></span>{{item?.document_button_lable}}
+                     </a>
+                  </li>
+                  <!-- <li class="active"><a href="javascript:void(0)">
+                     <span class="icon-check-circle"></span>PAN card</a>
                   </li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>address proof</a></li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>signature</a></li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>bank statement</a></li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>cancelled cheque</a></li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>photograph</a></li>
-                  <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>in person video</a></li>
+                  <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>in person video</a></li> -->
                </ul>
                <button class="btn btn-custom disabled">reveiw all</button>
             </div>
@@ -122,22 +136,35 @@
          <div class="user-bxhdr d-flex justify-content-between">
             <div class="lft">
                <h2>Aadhaar Details</h2>
-               <p><strong>1324 5678 9012</strong><span class="green-status status-box ml-2">VERIFIED</span></p>
+               <p><strong>{{userData?.aadhar_details?.aadhar_number | mask:'0000 0000 0000'}}</strong>
+                  <span *ngIf="userData?.aadhar_details?.isKRAVerified"
+                     lass="green-status status-box ml-2">VERIFIED</span>
+                  <span *ngIf="!userData?.aadhar_details?.isKRAVerified" lass="yellow-status status-box ml-2">NOT
+                     VERIFIED</span>
+               </p>
             </div>
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-3">
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
-                  <span class="digi-text">Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon"
-                        class="ml-2"></span>
+                  <span class="digi-text" *ngIf="userData?.aadhar_details?.isAadharVerifiedByDigiLocker">
+                     Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2">
+                  </span>
+                  <!-- <span class="digi-text" *ngIf="userData?.aadhar_details?.isAadharFileVerifiedByDigiLocker">
+                     Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2">
+                  </span> -->
                </div>
                <div class="row cmn-layout">
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>Full Name</label>Aditya desai</div>
-                  <div class="col-md-6 d-flex flex-column mb-3"><label>DOB</label>dec 15 2020</div>
-                  <div class="col-md-6 d-flex flex-column mb-3"><label>Gender</label>Male</div>
-                  <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>address line 1,address line
-                     2,address line 3,city, state - 000 000</div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Full
+                        Name</label>{{userData?.aadhar_details?.full_name}}</div>
+                  <div class="col-md-6 d-flex flex-column mb-3">
+                     <label>DOB</label>{{userData?.aadhar_details?.dateofbirth}}
+                  </div>
+                  <div class="col-md-6 d-flex flex-column mb-3">
+                     <label>Gender</label>{{userData?.aadhar_details?.gender}}</div>
+                  <div class="col-md-6 d-flex flex-column"><label>Permanent
+                        Address</label>{{userData?.aadhar_details?.permanent_address}}</div>
                </div>
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
@@ -153,7 +180,9 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" #btnElement (click)="addOnsModel(btnElement)">Upload document</a>
+                        <a class="dropdown-item"
+                           (click)="openDocumentPopupModal('aadhar_document', 'Aadhaar', 'not-uploaded')">Upload
+                           document</a>
                      </div>
                   </div>
                </div>
@@ -222,7 +251,10 @@
                   <div class="col-md-6 d-flex flex-column"><label>Corrospondance Address</label>address line
                      1,<br>address line 2,<br>address line 3,<br>city, state - 000 000</div>
                </div>
-               <button class="btn btn-custom btn-border font-sml">edit details</button>
+               <button class="btn btn-custom btn-border font-sml"
+                  [routerLink]="['/applications/edit-personal-address',userId]"
+                  routerLinkActive="router-link-active">edit
+                  details</button>
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
             <div class="col-md-6">
@@ -264,7 +296,8 @@
                   <div class="col-md-12 d-flex flex-column"><label>branch address</label>palasia, a b road, indore - 452
                      001</div>
                </div>
-               <button class="btn btn-custom btn-border font-sml">edit details</button>
+               <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/bank-details',userId]"
+                  routerLinkActive="router-link-active">edit details</button>
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
             <div class="col-md-6">
