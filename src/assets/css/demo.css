@@ -420,6 +420,7 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 .custom-datatable .hover-error {opacity: 0;visibility: hidden;transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-out;-moz-transition: 0.3s ease-in-out;}
 .custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row:hover .hover-error{opacity: 1;visibility: visible;}
 .ngx-datatable.bootstrap .datatable-body .datatable-body-row.active {background-color: transparent;}
+.custom-datatable .btn-action{background: transparent;border: none;padding: 0;}
 /*.datatable-checkbox input[type='checkbox']:before,.datatable-checkbox input[type='checkbox']:after{border-radius: 4px;width: 16px;height: 16px;}
 .datatable-checkbox{height: 16px;}
 .datatable-checkbox input[type='checkbox']:before{transition: all 0.2s ease-in;}
@@ -512,6 +513,7 @@ section.add-admin-user .hdr-right button{padding: 16px;font-size: 12px;line-heig
 .admin-profile .hdr-left span{font-size: 14px;line-height: 21px;text-transform: capitalize;color: rgba(0, 0, 0, 0.32);}
 .admin-profile .hdr{padding-bottom: 16px;margin-bottom: 24px;}
 .btn-pw{width: 209px;height: 56px;}
+
 
 /*=========Application===========*/
 section.application {margin: 32px 0;}
