@@ -89,12 +89,31 @@ export class AdminProfileComponent implements OnInit {
     }, {
       validator: this.validationService.MatchPassword('password', 'confirm_password')
     });
-
     this.adminProfileForm = this.formBuilder.group({
-      password: ['', [Validators.required]],
-      confirm_password: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      mobileNumber: ['', [Validators.required]],
+      email: ['', []],
+      id: ['', []],
     });
     this.getProfileAdmin();
+  }
+
+  submitProfile(){
+    if (!this.adminProfileForm.valid) {
+      this.validationService.validateAllFormFields(this.adminProfileForm);
+      return false;
+    }
+    delete this.adminProfileForm.value.id;
+    this.adminService.updateAdminProfile(this.adminPasswordForm.value).subscribe(
+        (result: any) => {
+          if (result.success) {
+            this.global.successToastr(result.message);
+            this.spinner.hide();
+            this.adminPasswordForm.reset();
+          } else {
+            this.global.errorToastr(result.message);
+          }
+        });
   }
 
   getProfileAdmin(){
@@ -103,6 +122,7 @@ export class AdminProfileComponent implements OnInit {
             Data => {
               if(Data.success){
                 this.adminProfile = Data['result']['userData'];
+                this.adminProfileForm.patchValue(Data['result']['userData']);
                 this.spinner.hide();
               }else {
                 this.spinner.hide();
@@ -339,26 +359,26 @@ export class AdminProfileComponent implements OnInit {
       realImageBlob.push(blobImage);
     });
     let uploadParam: any = new FormData();
-    uploadParam.append('document_name', this.nameOfDocument);
+    uploadParam.append('userProfile', this.nameOfDocument);
     realImageBlob.map((item: any, index) => {
       console.log('item', item);
       uploadParam.append('file[]', item, `webcamimage${index}.jpeg`);
     });
     this.fileUploadingProcessStarting();
-    // this.dashboardService.uploadDocument(uploadParam).subscribe((result: any) => {
-    //   if (result.type === 1 && result.loaded && result.total) {
-    //     const percentDone = Math.round(100 * result.loaded / result.total);
-    //     this.uploadProgress = percentDone;
-    //   } else if (result.body) {
-    //     this.fileUploading = false;
-    //     if (result.body.success) {
-    //       this.manageResultAfterUploadingFiles(result.body.result, true);
-    //       this.modalRef.close();
-    //     }
-    //   }
-    // }, error => {
-    //   this.fileUploading = false;
-    // });
+    this.adminService.updateAdminProfileImage(uploadParam).subscribe((result: any) => {
+      if (result.type === 1 && result.loaded && result.total) {
+        const percentDone = Math.round(100 * result.loaded / result.total);
+        this.uploadProgress = percentDone;
+      } else if (result.body) {
+        this.fileUploading = false;
+        if (result.body.success) {
+          // this.manageResultAfterUploadingFiles(result.body.result, true);
+          this.modalRef.close();
+        }
+      }
+    }, error => {
+      this.fileUploading = false;
+    });
   }
 
   appendFileAndSubmit(imageAsDataUrl: any) {

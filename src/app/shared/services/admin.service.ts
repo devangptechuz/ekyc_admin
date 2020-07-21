@@ -24,6 +24,14 @@ export class AdminService {
         return this.http.get<any>(`${this.apiUrl}/adminProfile`);
     }
 
+    updateAdminProfile(data): Observable<any>{
+        return this.http.get<any>(`${this.apiUrl}/updateAdminProfile`, data);
+    }
+
+    updateAdminProfileImage(data): Observable<any>{
+        return this.http.get<any>(`${this.apiUrl}/updateProfile`, data);
+    }
+
     getUserList() {
         return this.http.get<any>(`${this.apiUrl}/userList`);
     }
