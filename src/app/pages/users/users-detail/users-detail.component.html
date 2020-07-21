@@ -3,7 +3,8 @@
       <div class="user-header d-flex justify-content-between">
          <a href="javascript:void(0)"><i class="fa fa-angle-left mr-2"></i>Back</a>
          <div class="d-flex align-items-center">
-            <a href="javascript:void(0)" class="mr-3 d-flex align-items-center"><span
+            <a href="javascript:void(0)" [routerLink]="['/applications/application-history','id']"
+               routerLinkActive="router-link-active" class="mr-3 d-flex align-items-center"><span
                   class="icon-clock mr-2"></span>Application History</a>
             <div class="dropdown more-dropdown">
                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -31,7 +32,7 @@
             <div class="rght d-flex align-items-center">
                <p class="mb-0">application not submitted</p>
                <!-- <button class="btn btn-custom m-0">Respond <i class="fa fa-angle-down"></i></button> -->
-                <div class="dropdown">
+               <div class="dropdown">
                   <button type="button" class="btn dropdown-toggle btn-custom m-0 btn-aprvd" data-toggle="dropdown">
                      Respond <i class="fa fa-angle-down"></i>
                   </button>
@@ -82,7 +83,7 @@
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>photograph</a></li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>in person video</a></li>
                </ul>
-               <button class="btn btn-custom">reveiw all</button>
+               <button class="btn btn-custom disabled">reveiw all</button>
             </div>
          </div>
       </div>
@@ -112,7 +113,7 @@
                <span class="cmn-txt mb-3 d-block">Received on Jan 20 2020 - 05:36 PM</span>
                <p class="mb-1">The transaction receipt was generated on 20 Jan 2020 - 06:36 & was successfully sent to
                   the user via email on 20 Jan 2020 - 07:36</p>
-               <button class="btn btn-custom font-sml">View receipt</button>
+               <button class="btn btn-custom font-sml disabled">View receipt</button>
             </div>
          </div>
       </div>
@@ -138,7 +139,7 @@
                   <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>address line 1,address line
                      2,address line 3,city, state - 000 000</div>
                </div>
-               <button class="btn btn-custom font-sml">request reveiw</button>
+               <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
@@ -178,7 +179,7 @@
                   <div class="col-md-12 d-flex flex-column mb-3"><label>DOB</label>dec 15 2020</div>
                   <div class="col-md-12 d-flex flex-column mb-3"><label>father’s name</label>shridhar desai</div>
                </div>
-               <button class="btn btn-custom font-sml">request reveiw</button>
+               <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
@@ -222,7 +223,7 @@
                      1,<br>address line 2,<br>address line 3,<br>city, state - 000 000</div>
                </div>
                <button class="btn btn-custom btn-border font-sml">edit details</button>
-               <button class="btn btn-custom font-sml">request reveiw</button>
+               <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
@@ -264,7 +265,7 @@
                      001</div>
                </div>
                <button class="btn btn-custom btn-border font-sml">edit details</button>
-               <button class="btn btn-custom font-sml">request reveiw</button>
+               <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
@@ -352,16 +353,16 @@
 
 <ng-template #fileuploadAadharpopup let-c="close" let-d="dismiss">
 
-   <div class="modal-body p-0 payment-popup uploaddoc-popup">    
+   <div class="modal-body p-0 payment-popup uploaddoc-popup">
       <div class="modal-header yellowclr common-header">
-            <div  class="popup-header">
-               <span>Upload Document</span>
-               <h4 class="modal-title">{{nameOfTitleDocument}}</h4>
-            </div>
-            <div  class="popup-icon">
-                <img src="assets/img/doc.svg">
-             </div>
+         <div class="popup-header">
+            <span>Upload Document</span>
+            <h4 class="modal-title">{{nameOfTitleDocument}}</h4>
          </div>
+         <div class="popup-icon">
+            <img src="assets/img/doc.svg">
+         </div>
+      </div>
 
       <!--------------------- Webcome code: START --------------------->
       <div *ngIf="clickedWebcamPicture && !fileUploading && !viewSectionOfImage">

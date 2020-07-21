@@ -31,7 +31,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'user-history',
+    path: 'application-history/:id',
     component: UserHistoryComponent,
     data: {
       title: 'user-history',
