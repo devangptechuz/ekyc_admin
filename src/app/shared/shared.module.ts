@@ -19,7 +19,7 @@ import { SidebarLinkDirective } from './directives/sidebarlink.directive';
 import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
-import { RoleCheckPipe, UserTypePipe } from './pipe/status.pipe';
+import {RoleCheckPipe, SafeUrlPipe, UserTypePipe} from './pipe/status.pipe';
 import { DeleteModelComponent } from './model-popup/delete-model/delete-model.component';
 import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.component';
 
@@ -37,6 +37,7 @@ import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.co
         NgbModule,
         RoleCheckPipe,
         UserTypePipe,
+        SafeUrlPipe,
         DeleteModelComponent
     ],
     imports: [
@@ -60,6 +61,7 @@ import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.co
         SidebarToggleDirective,
         RoleCheckPipe,
         UserTypePipe,
+        SafeUrlPipe,
         LogoutPopupComponent
     ]
 })

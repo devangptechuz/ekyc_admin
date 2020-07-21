@@ -19,7 +19,7 @@ export class ListAdminComponent implements OnInit {
   temp = [];
   selected = [];
   loadingIndicator = true;
-  limitRow = '5';
+  limitRow = 5;
   adminsSelectCount;
   count:any;
   deleteFlag = false;
@@ -71,44 +71,31 @@ export class ListAdminComponent implements OnInit {
       this.selected.filter((data) => {
         id.push(data.id);
       })
-      this.confirmationDialogService.confirm('Admins').then((data) => {
-        if (data) {
-          this.spinner.show();
-          this.adminService.deleteAdmin({id: id})
-              .subscribe((res) => {
-                if (res.success) {
-                  this.spinner.hide();
-                  this.global.successToastr(res.message);
-                  this.ngOnInit();
-                } else {
-                  this.spinner.hide();
-                  this.global.errorToastr(res.message);
-                }
-              });
-        }
-      }).catch(error => console.log(error));
+      this.deleteConfirmServiceCall('Admins',id);
     }
   }
 
-  onDelete(btnElement,id) {
-    btnElement && btnElement.parentElement && btnElement.parentElement.parentElement &&
-    btnElement.parentElement.parentElement.blur();
-    this.confirmationDialogService.confirm('Admin').then((data)=>{
-      if(data){
-        this.spinner.show();
-        this.adminService.deleteAdmin({id:[id]})
-            .subscribe((res) => {
-              if(res.success){
-                this.rows = this.rows.filter(item => item.id != id);
-                this.spinner.hide();
-                this.global.successToastr(res.message);
-              }else{
-                this.spinner.hide();
-                this.global.errorToastr(res.message);
-              }
-            });
-      }
-    }).catch( error =>  console.log(error));
+  onDelete(id) {
+      this.deleteConfirmServiceCall('Admin',id);
+  }
+
+  deleteConfirmServiceCall(label,id){
+      this.confirmationDialogService.confirm(label).then((data) => {
+          if (data) {
+              this.spinner.show();
+              this.adminService.deleteAdmin({id: id})
+                  .subscribe((res) => {
+                      if (res.success) {
+                          this.spinner.hide();
+                          this.global.successToastr(res.message);
+                          this.ngOnInit();
+                      } else {
+                          this.spinner.hide();
+                          this.global.errorToastr(res.message);
+                      }
+                  });
+          }
+      }).catch(error => console.log(error));
   }
 
   cancelAll(){

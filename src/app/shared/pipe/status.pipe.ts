@@ -1,4 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Pipe({name: 'roleCheck'})
 export class RoleCheckPipe implements PipeTransform {
@@ -37,6 +38,14 @@ export class UserTypePipe implements PipeTransform {
       if(value == '2'){
             return 'Admin'
       }
+    }
+}
+
+@Pipe({ name: 'safeUrl' })
+export class SafeUrlPipe implements PipeTransform {
+    constructor(private sanitized: DomSanitizer) { }
+    transform(value) {
+        return this.sanitized.bypassSecurityTrustResourceUrl(value);
     }
 }
 
