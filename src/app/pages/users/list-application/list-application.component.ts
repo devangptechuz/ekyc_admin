@@ -19,7 +19,7 @@ export class ListApplicationComponent implements OnInit {
   temp = [];
   selected = [];
   loadingIndicator = true;
-  limitRow = '3';
+  limitRow = 5;
   selectedItem;
   count: any;
   deleteFlag = false;

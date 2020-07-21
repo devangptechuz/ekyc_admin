@@ -20,12 +20,20 @@ export class AdminService {
         return this.http.get<any>(`${this.apiUrl}/adminUserList`);
     }
 
+    getAdminProfile() {
+        return this.http.get<any>(`${this.apiUrl}/adminProfile`);
+    }
+
     getUserList() {
         return this.http.get<any>(`${this.apiUrl}/userList`);
     }
 
     addAdmin(data): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}/insertSubAdmin`, data);
+    }
+
+    updatePassword(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/updatePassword`, data);
     }
 
     getUser(params?) {
