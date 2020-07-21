@@ -57,12 +57,14 @@
                                 <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator"
                                     [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
                                     [rowHeight]="80" [limit]="limitRow" [rows]="rows"
-                                    [sorts]="[{prop: 'uname', dir: 'asc'}]">
-                                    <ngx-datatable-column name="" [width]="10" [checkboxable]="true" [sortable]="true"
-                                        prop="selected">
+                                    [sorts]="[{prop: 'uname', dir: 'asc'}]" [selected]="selected" [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
+                                               (select)='onSelect($event)'>
+                                    <ngx-datatable-column [width]="20" [sortable]="false" [canAutoResize]="false"
+                                                          [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true"
+                                                          prop="selected">
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column [width]="100" name="user name" [sortable]="true"
+                                    <ngx-datatable-column [width]="30" name="user name" [sortable]="true"
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a data-tooltip title="{{row.userName}}"
@@ -146,10 +148,10 @@
     <ul>
         <li (click)="deleteUsers()"><img src="assets/img/trash.svg">Delete All</li>
         <li (click)="cancelAll()"><img src="assets/img/not-allow.svg">Reject all</li>
-        <li (click)="approveAll()" class="approved"><img src="assets/img/check-circle.svg">Approve all</li>
+        <li  class="approved"><img src="assets/img/check-circle.svg">Approve all</li>
     </ul>
 </div>
-<!-- 
+<!--
 <div *ngIf="deleteFlag" class="fixed-status">
     <label class="mb-0">Applications selected : <strong>{{usersSelectCount}}</strong></label>
     <ul>
