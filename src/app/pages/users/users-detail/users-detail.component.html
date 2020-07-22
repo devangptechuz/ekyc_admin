@@ -188,8 +188,9 @@
                         <a class="dropdown-item"
                            (click)="openDocumentPopupModal('aadhar_document', 'Aadhaar', 'not-uploaded')">Upload
                            document</a>
-                     </div>
-                     <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents">
+                     </div>                    
+                  </div>
+                   <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents">
                         <ng-template ngbSlide *ngFor="let imageAadhaar of userData?.aadhar_details?.aadhar_documents">
                            <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type === 'application/pdf'">
                               <iframe [src]="imageAadhaar?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -202,7 +203,6 @@
                            </div> -->
                         </ng-template>
                      </ngb-carousel>
-                  </div>
                </div>
                <label class="doc-type">aadhaar card</label>
             </div>
@@ -254,8 +254,9 @@
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)"
                            (click)="openDocumentPopupModal('pan_document', 'PAN', 'not-uploaded')">Upload document</a>
-                     </div>
-                     <ngb-carousel *ngIf="userData?.pan_details?.pan_documents">
+                     </div>                     
+                  </div>
+                  <ngb-carousel *ngIf="userData?.pan_details?.pan_documents">
                         <ng-template ngbSlide *ngFor="let imageItem of userData?.pan_details?.pan_documents">
                            <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                               <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -265,7 +266,6 @@
                            </div>
                         </ng-template>
                      </ngb-carousel>
-                  </div>
                </div>
                <label class="doc-type">PAN Card</label>
             </div>
@@ -358,9 +358,11 @@
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
-                     </div>
-                     <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url">
-                        <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
+                     </div>                   
+
+                  </div>
+                   <ngb-carousel *ngIf="userData?.personal_details?.address_url">
+                        <ng-template ngbSlide *ngFor="let imageItem of userData?.personal_details?.address_url">
                            <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                               <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                            </div>
@@ -369,8 +371,6 @@
                            </div>
                         </ng-template>
                      </ngb-carousel>
-
-                  </div>
                </div>
                <label class="doc-type">Address Proof</label>
             </div>
@@ -423,8 +423,11 @@
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
-                     </div>
-                     <!-- /************* Bank statement : CAROUSEL **************/ -->
+                     </div>                    
+
+                  </div>
+
+                  <!-- /************* Bank statement : CAROUSEL **************/ -->
                      <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url">
                         <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
                            <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
@@ -435,8 +438,6 @@
                            </div>
                         </ng-template>
                      </ngb-carousel>
-
-                  </div>
                </div>
                <label class="doc-type">bank statement</label>
             </div>
