@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-history',
@@ -6,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-history.component.scss']
 })
 export class UserHistoryComponent implements OnInit {
-
-  constructor() { }
+  userId: any;
+  constructor(
+    private route: ActivatedRoute,
+  ) {
+    this.userId = this.route.snapshot.params.id;
+  }
 
   ngOnInit(): void {
   }

@@ -46,25 +46,27 @@
                                     </span>
                                 </div>
                                 <div class="col-md-8 d-flex align-items-center justify-content-end">
-                                    <div class="search"><input type="search" name=""
-                                            placeholder="search by application id or user name"
+                                    <div class="search"><input type="search" name="" (keyup)='updateFilter($event)'
+                                            placeholder="search by user name or email or mobilenumber"
                                             class="form-control"><button class="btn-search"><span
                                                 class="icon-search"></span></button></div>
                                     <div class="filter">Filter search<span class="icon-filter"></span></div>
                                 </div>
                             </div>
                             <div class="tble">
-                                <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator"
+                                <ngx-datatable class="bootstrap checkbox-table" [loadingIndicator]="loadingIndicator"
                                     [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
                                     [rowHeight]="80" [limit]="limitRow" [rows]="rows"
-                                    [sorts]="[{prop: 'uname', dir: 'asc'}]" [selected]="selected" [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
-                                               (select)='onSelect($event)'>
-                                    <ngx-datatable-column [width]="20" [sortable]="false" [canAutoResize]="false"
-                                                          [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true"
-                                                          prop="selected">
+                                    [sorts]="[{prop: 'uname', dir: 'asc'}]" [selected]="selected"
+                                    [selectionType]="'checkbox'" [selectAllRowsOnPage]="true"
+                                    (select)='onSelect($event)'>
+
+                                    <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false"
+                                        [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
+                                        [checkboxable]="true" [sortable]="true" prop="selected">
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column [width]="30" name="user name" [sortable]="true"
+                                    <ngx-datatable-column [width]="80" name="user name" [sortable]="true"
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a data-tooltip title="{{row.userName}}"
@@ -96,7 +98,7 @@
                                                 <button #btnElement (click)="onDelete(btnElement,value)" class="btn"><img src="../assets/img/trash.svg"></button>
                                             </span>
                                             <div class="hover-error"><img src="assets/img/error.svg"></div> -->
-                                            <i class="fa fa-angle-right arrow"></i>
+                                            <!-- <i class="fa fa-angle-right arrow"></i> -->
 
                                         </ng-template>
                                     </ngx-datatable-column>
@@ -148,7 +150,7 @@
     <ul>
         <li (click)="deleteUsers()"><img src="assets/img/trash.svg">Delete All</li>
         <li (click)="cancelAll()"><img src="assets/img/not-allow.svg">Reject all</li>
-        <li  class="approved"><img src="assets/img/check-circle.svg">Approve all</li>
+        <li class="approved"><img src="assets/img/check-circle.svg">Approve all</li>
     </ul>
 </div>
 <!--

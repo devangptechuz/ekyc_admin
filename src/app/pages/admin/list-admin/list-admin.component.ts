@@ -1,12 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {DatatableComponent} from '@swimlane/ngx-datatable';
-import {ToastrService} from 'ngx-toastr';
-import {Router} from '@angular/router';
-import {AdminService} from '../../../shared/services/admin.service';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {ConfirmationDialogService} from '../../../shared/services/confirmation-dialoge.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {GlobalService} from '../../../shared/services/global.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { AdminService } from '../../../shared/services/admin.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmationDialogService } from '../../../shared/services/confirmation-dialoge.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { GlobalService } from '../../../shared/services/global.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-list-sub-admin',
@@ -19,9 +20,9 @@ export class ListAdminComponent implements OnInit {
   temp = [];
   selected = [];
   loadingIndicator = true;
-  limitRow = 5;
+  limitRow: Number = environment.adminlimitRow;
   adminsSelectCount;
-  count:any;
+  count: any;
   deleteFlag = false;
   selectedItem;
   perPage = [
@@ -34,34 +35,34 @@ export class ListAdminComponent implements OnInit {
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
-      private router: Router,
-      private adminService:AdminService,
-      private spinner: NgxSpinnerService,
-      private toasterService: ToastrService,
-      private confirmationDialogService:ConfirmationDialogService,
-      public global: GlobalService
+    private router: Router,
+    private adminService: AdminService,
+    private spinner: NgxSpinnerService,
+    private toasterService: ToastrService,
+    private confirmationDialogService: ConfirmationDialogService,
+    public global: GlobalService
   ) { }
 
 
 
-  ngOnInit(){
+  ngOnInit() {
     this.deleteFlag = false;
     this.adminService.getAdmins()
-        .subscribe(
-            Data => {
-              if(Data.success){
-                this.temp = [...Data['result']['userList']];
-                this.rows = Data['result']['userList'];
-                this.count = Data['result']['count'];
-                this.spinner.hide();
-              }else {
-                this.spinner.hide();
-                this.global.errorToastr(Data.message);
-              }
-            });
+      .subscribe(
+        Data => {
+          if (Data.success) {
+            this.temp = [...Data['result']['userList']];
+            this.rows = Data['result']['userList'];
+            this.count = Data['result']['count'];
+            this.spinner.hide();
+          } else {
+            this.spinner.hide();
+            this.global.errorToastr(Data.message);
+          }
+        });
   }
 
-  onEdit(v){
+  onEdit(v) {
     this.router.navigateByUrl('/admins/edit-admin/' + v);
   }
 
@@ -71,35 +72,35 @@ export class ListAdminComponent implements OnInit {
       this.selected.filter((data) => {
         id.push(data.id);
       })
-      this.deleteConfirmServiceCall('Admins',id);
+      this.deleteConfirmServiceCall('Admins', id);
     }
   }
 
   onDelete(id) {
-      this.deleteConfirmServiceCall('Admin',id);
+    this.deleteConfirmServiceCall('Admin', id);
   }
 
-  deleteConfirmServiceCall(label,id){
-      this.confirmationDialogService.confirm(label).then((data) => {
-          if (data) {
-              this.spinner.show();
-              this.adminService.deleteAdmin({id: id})
-                  .subscribe((res) => {
-                      if (res.success) {
-                          this.spinner.hide();
-                          this.global.successToastr(res.message);
-                          this.ngOnInit();
-                      } else {
-                          this.spinner.hide();
-                          this.global.errorToastr(res.message);
-                      }
-                  });
-          }
-      }).catch(error => console.log(error));
+  deleteConfirmServiceCall(label, id) {
+    this.confirmationDialogService.confirm(label).then((data) => {
+      if (data) {
+        this.spinner.show();
+        this.adminService.deleteAdmin({ id: id })
+          .subscribe((res) => {
+            if (res.success) {
+              this.spinner.hide();
+              this.global.successToastr(res.message);
+              this.ngOnInit();
+            } else {
+              this.spinner.hide();
+              this.global.errorToastr(res.message);
+            }
+          });
+      }
+    }).catch(error => console.log(error));
   }
 
-  cancelAll(){
-    this.onSelect({selected: []});
+  cancelAll() {
+    this.onSelect({ selected: [] });
     this.selected.length = 0;
     this.deleteFlag = false;
   }
@@ -112,9 +113,9 @@ export class ListAdminComponent implements OnInit {
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     this.rows = this.temp.filter((d) => {
-        return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
-            d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
-            d.username.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
+        d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
+        d.username.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.table.offset = 0;
   }

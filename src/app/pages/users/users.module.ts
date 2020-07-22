@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WebcamModule } from 'ngx-webcam';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersDetailComponent } from './users-detail/users-detail.component';
@@ -16,9 +16,10 @@ import { SharedModule } from 'app/shared/shared.module';
 import { EditApplicationComponent } from './edit-application/edit-application.component';
 import { UserHistoryComponent } from './user-history/user-history.component';
 import { BankDetailComponent } from './bank-detail/bank-detail.component';
+import { EditPersoanlAddressDetailsComponent } from './edit-persoanl-address-details/edit-persoanl-address-details.component';
 
 @NgModule({
-  declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent, UserHistoryComponent, BankDetailComponent],
+  declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent, UserHistoryComponent, BankDetailComponent, EditPersoanlAddressDetailsComponent],
   imports: [
     CommonModule,
     WebcamModule,
@@ -26,6 +27,7 @@ import { BankDetailComponent } from './bank-detail/bank-detail.component';
     HttpClientModule,
     NgxDatatableModule,
     NgxSelectModule,
+    NgxMaskModule.forRoot(),
     ReactiveFormsModule.
       withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule,

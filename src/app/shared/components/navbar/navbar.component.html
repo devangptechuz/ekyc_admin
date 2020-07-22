@@ -16,9 +16,9 @@
           <li class="nav-item" [routerLinkActive]="['active']">
             <a class="nav-link" [routerLink]="['/applications']">applications</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['active']">
-            <a class="nav-link" [routerLink]="['/users']">settings</a>
-          </li>
+          <!-- <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/admins/admin-profile']">settings</a>
+          </li> -->
           <li class="nav-item" [routerLinkActive]="['active']" *ngIf=" userType == 1">
             <a class="nav-link" [routerLink]="['/admins']">Admins</a>
           </li>
@@ -36,7 +36,7 @@
             </label>
           </a>
           <a class="dropdown-item" routerLink="/admins/admin-profile"><span
-                  class="icon-edit"></span>Profile</a>
+                  class="icon-edit"></span>Profile</a>          
           <a class="dropdown-item" #btnElement (click)="onLogout(btnElement)"><span
               class="icon-logout"></span>logout</a>
         </div>

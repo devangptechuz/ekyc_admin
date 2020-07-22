@@ -12,26 +12,23 @@
                 <div class="card-body">
                     <div class="card-block">
                         <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-                                       [headerHeight]="50" [scrollbarH]="false" [footerHeight]="50" [rowHeight]="70"
-                                       [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
+                            [headerHeight]="50" [scrollbarH]="false" [footerHeight]="50" [rowHeight]="70"
+                            [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
                             <ngx-datatable-column name="User Name" [sortable]="true" prop="username">
-                                <ng-template
-                                        ngx-datatable-cell-template
-                                        let-rowIndex="rowIndex"
-                                        let-row="row"
-                                >
-                                   <a class="user-img dummy-icon" *ngIf="!row.img">
-                                         <img src="assets/img/user-ic.svg">
-                                     </a>
+                                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                    <a class="user-img dummy-icon" *ngIf="!row.img">
+                                        <img src="assets/img/user-ic.svg">
+                                    </a>
                                     <a class="user-img" *ngIf="row.img">
                                         <img src="{{row.img}}">
                                     </a>
                                     <a data-tooltip title="{{row.username}}">{{row.username}}</a>
                                 </ng-template>
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Alert Message" [sortable]="true" prop="AlertMessage" class="alert">
+                            <ngx-datatable-column name="Alert Message" [sortable]="true" prop="AlertMessage"
+                                class="alert">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Step Name" [sortable]="true" prop="StepName">
+                            <ngx-datatable-column name="Mobile Number" [sortable]="true" prop="mobileNumber">
                             </ngx-datatable-column>
                             <ngx-datatable-column name="Application Id" [sortable]="true" prop="ApplicationID">
                             </ngx-datatable-column>

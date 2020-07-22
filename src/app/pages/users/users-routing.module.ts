@@ -6,6 +6,7 @@ import { AddEditUser } from './shared/add-edit.resolver';
 import { EditApplicationComponent } from './edit-application/edit-application.component';
 import { UserHistoryComponent } from './user-history/user-history.component';
 import { BankDetailComponent } from './bank-detail/bank-detail.component';
+import { EditPersoanlAddressDetailsComponent } from './edit-persoanl-address-details/edit-persoanl-address-details.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,13 @@ const routes: Routes = [
     resolve: { user: AddEditUser }
   },
   {
+    path: 'application-history/:id',
+    component: UserHistoryComponent,
+    data: {
+      title: 'user-history',
+    },
+  },
+  {
     path: 'edit-application',
     component: EditApplicationComponent,
     data: {
@@ -31,14 +39,14 @@ const routes: Routes = [
     },
   },
   {
-    path: 'user-history',
-    component: UserHistoryComponent,
+    path: 'edit-personal-address/:id',
+    component: EditPersoanlAddressDetailsComponent,
     data: {
-      title: 'user-history',
+      title: 'Edit Personal Addresss Details',
     },
   },
   {
-    path: 'bank-detail',
+    path: 'bank-details/:id',
     component: BankDetailComponent,
     data: {
       title: 'bank-detail',

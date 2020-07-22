@@ -1,16 +1,16 @@
-import {Component, OnInit, Output, ViewChild, EventEmitter, ChangeDetectorRef} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ToastrService} from 'ngx-toastr';
-import {AdminService} from '../../../shared/services/admin.service';
-import {ValidationService} from '../../../shared/services/validator.service';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {GlobalService} from '../../../shared/services/global.service';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
-import {CookieService} from 'ngx-cookie-service';
-import {Observable, Subject} from 'rxjs';
-import {WebcamImage, WebcamInitError} from 'ngx-webcam';
+import { Component, OnInit, Output, ViewChild, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AdminService } from '../../../shared/services/admin.service';
+import { ValidationService } from '../../../shared/services/validator.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { GlobalService } from '../../../shared/services/global.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
+import { CookieService } from 'ngx-cookie-service';
+import { Observable, Subject } from 'rxjs';
+import { WebcamImage, WebcamInitError } from 'ngx-webcam';
 
 @Component({
   selector: 'app-admin-profile',
@@ -21,7 +21,7 @@ export class AdminProfileComponent implements OnInit {
   adminPasswordForm: FormGroup;
   adminProfileForm: FormGroup;
   adminProfile = {};
-  public allowedMimeType = ['image/png'];
+  public allowedMimeType = ['image/png', 'image/jpeg', 'image/jpg'];
   fileUploading: boolean;
   @Output() done = new EventEmitter<any>();
   ipvDocumentStatus: string;
@@ -52,8 +52,8 @@ export class AdminProfileComponent implements OnInit {
   getPreviewDisplayImage: any;
 
   private modalRef: NgbModalRef;
-  nameOfTitleDocument:"Profile Update";
-  nameOfDocument: 'userProfile';
+  nameOfTitleDocument: "Profile Update";
+  nameOfDocument: any;
   isDocumentVerified: any;
   isContentTypePdf: boolean;
   /********************** IMAGE/FILE UPLOAD: END **********************/
@@ -74,17 +74,17 @@ export class AdminProfileComponent implements OnInit {
   userType:any;
 
   constructor(
-      private router: Router,
-      private route: ActivatedRoute,
-      private toastr: ToastrService,
-      private adminService: AdminService,
-      private formBuilder: FormBuilder,
-      private validationService: ValidationService,
-      private spinner: NgxSpinnerService,
-      public global: GlobalService,
-      private cookieService:CookieService,
-      private ref: ChangeDetectorRef,
-      private modalService: NgbModal,
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private adminService: AdminService,
+    private formBuilder: FormBuilder,
+    private validationService: ValidationService,
+    private spinner: NgxSpinnerService,
+    public global: GlobalService,
+    private cookieService: CookieService,
+    private ref: ChangeDetectorRef,
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit() {
@@ -103,23 +103,22 @@ export class AdminProfileComponent implements OnInit {
     this.getProfileAdmin();
   }
 
-  submitProfile(){
+  submitProfile() {
     if (!this.adminProfileForm.valid) {
       this.validationService.validateAllFormFields(this.adminProfileForm);
       return false;
     }
-    this.adminProfileForm.value.userType = this.userType;
-    delete this.adminProfileForm.value.email;
-    this.adminService.updateAdmin(this.adminProfileForm.value).subscribe(
-        (result: any) => {
-          if (result.success) {
-            this.global.successToastr(result.message);
-            this.spinner.hide();
-            this.adminPasswordForm.reset();
-          } else {
-            this.global.errorToastr(result.message);
-          }
-        });
+    delete this.adminProfileForm.value.id;
+    this.adminService.updateAdminProfile(this.adminPasswordForm.value).subscribe(
+      (result: any) => {
+        if (result.success) {
+          this.global.successToastr(result.message);
+          this.spinner.hide();
+          this.adminPasswordForm.reset();
+        } else {
+          this.global.errorToastr(result.message);
+        }
+      });
   }
 
   getProfileAdmin(){
@@ -141,23 +140,22 @@ export class AdminProfileComponent implements OnInit {
               }
             });
   }
-
   onSubmit() {
     if (!this.adminPasswordForm.valid) {
       this.validationService.validateAllFormFields(this.adminPasswordForm);
       return false;
     }
     delete this.adminPasswordForm.value.confirm_password;
-      this.adminService.updatePassword(this.adminPasswordForm.value).subscribe(
-          (result: any) => {
-            if (result.success) {
-              this.global.successToastr(result.message);
-              this.spinner.hide();
-              this.adminPasswordForm.reset();
-            } else {
-              this.global.errorToastr(result.message);
-            }
-          });
+    this.adminService.updatePassword(this.adminPasswordForm.value).subscribe(
+      (result: any) => {
+        if (result.success) {
+          this.global.successToastr(result.message);
+          this.spinner.hide();
+          this.adminPasswordForm.reset();
+        } else {
+          this.global.errorToastr(result.message);
+        }
+      });
   }
 
   openDocumentPopupModal() {
