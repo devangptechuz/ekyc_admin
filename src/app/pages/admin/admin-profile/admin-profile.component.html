@@ -40,10 +40,10 @@
        		</div>
        		<div class="col-md-6 d-flex justify-content-end">
        			<div class="view-pic">
-       				<img *ngIf="!imageUrl" src="assets/img/portrait/avatars/avatar-01.png">
-       				<img *ngIf="imageUrl" [src]=imageUrl>
+       				<img *ngIf="!imageUrl" src="assets/img/user-ic.svg">
+       				<img *ngIf="imageUrl" [src]=imageUrl class="userpic">                
        			</div>
-       			<ul>
+       			<ul class="pic-action">
        				<li><a href="javascript:void(0)" (click)="deleteImage()"><span class="icon-close"></span>remove image</a></li>
        				<li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span class="icon-camera"></span>take a picture</a></li>
        				<li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span class="icon-upload" ></span>upload from computer</a></li>
