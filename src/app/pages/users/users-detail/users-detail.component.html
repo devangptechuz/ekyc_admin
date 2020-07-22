@@ -203,20 +203,20 @@
                            (click)="openDocumentPopupModal('aadhar_document', 'Aadhaar', 'not-uploaded')">Upload
                            document</a>
                      </div>
-                     <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents">
-                        <ng-template ngbSlide *ngFor="let imageAadhaar of userData?.aadhar_details?.aadhar_documents">
-                           <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type === 'application/pdf'">
-                              <iframe [src]="imageAadhaar?.url | safeUrl" height="100%" width="100%"></iframe>
-                           </div>
-                           <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type !== 'application/pdf'">
-                              <img width="100%" [src]="imageAadhaar?.url" alt="Random first slide">
-                           </div>
-                           <!-- <div class="carousel-caption">
+                  </div>
+                  <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents">
+                     <ng-template ngbSlide *ngFor="let imageAadhaar of userData?.aadhar_details?.aadhar_documents">
+                        <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type === 'application/pdf'">
+                           <iframe [src]="imageAadhaar?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type !== 'application/pdf'">
+                           <img width="100%" [src]="imageAadhaar?.url" alt="Random first slide">
+                        </div>
+                        <!-- <div class="carousel-caption">
                               <h3>{{imageItem?.id}}</h3>
                            </div> -->
-                        </ng-template>
-                     </ngb-carousel>
-                  </div>
+                     </ng-template>
+                  </ngb-carousel>
                </div>
                <label class="doc-type">aadhaar card</label>
             </div>
@@ -269,17 +269,17 @@
                         <a class="dropdown-item" href="javascript:void(0)"
                            (click)="openDocumentPopupModal('pan_document', 'PAN', 'not-uploaded')">Upload document</a>
                      </div>
-                     <ngb-carousel *ngIf="userData?.pan_details?.pan_documents">
-                        <ng-template ngbSlide *ngFor="let imageItem of userData?.pan_details?.pan_documents">
-                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
-                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
-                           </div>
-                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
-                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
-                           </div>
-                        </ng-template>
-                     </ngb-carousel>
                   </div>
+                  <ngb-carousel *ngIf="userData?.pan_details?.pan_documents">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.pan_details?.pan_documents">
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
                </div>
                <label class="doc-type">PAN Card</label>
             </div>
@@ -356,18 +356,18 @@
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
-                     <ngb-carousel *ngIf="userData?.personal_details?.address_url">
-                        <ng-template ngbSlide *ngFor="let imageItem of userData?.personal_details?.address_url">
-                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
-                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
-                           </div>
-                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
-                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
-                           </div>
-                        </ng-template>
-                     </ngb-carousel>
 
                   </div>
+                  <ngb-carousel *ngIf="userData?.personal_details?.address_url">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.personal_details?.address_url">
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
                </div>
                <label class="doc-type">Address Proof</label>
             </div>
@@ -421,19 +421,20 @@
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
-                     <!-- /************* Bank statement : CAROUSEL **************/ -->
-                     <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url">
-                        <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
-                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
-                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
-                           </div>
-                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
-                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
-                           </div>
-                        </ng-template>
-                     </ngb-carousel>
 
                   </div>
+
+                  <!-- /************* Bank statement : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
                </div>
                <label class="doc-type">bank statement</label>
             </div>

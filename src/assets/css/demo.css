@@ -601,7 +601,7 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 .user-btmbx .btn-custom.font-sml{font-size: 12px;}
 .digi-text{font-size: 12px;line-height: 18px;text-transform: capitalize;color: #6941FD;}
 .doc-upbox {position: relative;background: #C4C4C4;border-radius: 8px;min-height: 280px;}
-.doc-upbox .more-dropdown{position: absolute;right: 16px;top: 16px;}
+.doc-upbox .more-dropdown{z-index: 9;position: absolute;right: 16px;top: 16px;}
 .doc-type {font-size: 16px;line-height: 24px;text-align: center;letter-spacing: 1px;text-transform: capitalize;color: #96AB13;margin: 16px auto 0;display: block;}
 .user-btmbx .btn-border{margin-right: 24px;}
 .more-dropdown .dropdown-toggle{color: rgba(0, 0, 0, 0.56);background: #FCFCFC;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);width: 24px;height: 24px;border-radius: 50%;display: flex;align-items: center;text-align: center;}
@@ -611,6 +611,8 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 .user-header{margin-bottom: 16px;}
 .user-btmbx .dropdown-item{font-size: 12px;line-height: 18px;}
 .doc-upbox .more-dropdown .dropdown-toggle span {margin-left: -2px;}
+.doc-upbox .carousel .picsum-img-wrapper img{object-fit: cover;min-height: 280px;max-height: 280px;border-radius: 8px;height: 100%;width: 100%;}
+.doc-upbox iframe{min-height: 280px;}
 
 /*=========Admin List===========*/
 .admin-list .btn-custom{padding: 10px 12px;font-size: 14px;margin-left: 24px;}
