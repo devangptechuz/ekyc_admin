@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WebcamModule } from 'ngx-webcam';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersDetailComponent } from './users-detail/users-detail.component';

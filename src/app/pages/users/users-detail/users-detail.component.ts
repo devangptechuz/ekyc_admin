@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ModelPopupComponent } from "../model-popup/model-popup.component";
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
@@ -11,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-users-detail',
   templateUrl: './users-detail.component.html',
-  styleUrls: ['./users-detail.component.scss']
+  styleUrls: ['./users-detail.component.scss'],
+  providers: [NgbCarouselConfig]
 })
 export class UsersDetailComponent implements OnInit {
   userId: any;
@@ -71,12 +72,18 @@ export class UsersDetailComponent implements OnInit {
   /********************** IMAGE/FILE UPLOAD: END **********************/
 
   constructor(
+    config: NgbCarouselConfig,
     private route: ActivatedRoute,
     private modalService: NgbModal,
     public global: GlobalService,
     private userService: UserService,
     private ref: ChangeDetectorRef
-  ) { }
+  ) {
+    config.interval = 10000;
+    config.wrap = false;
+    config.keyboard = false;
+    config.pauseOnHover = false;
+  }
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params.id;

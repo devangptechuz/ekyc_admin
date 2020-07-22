@@ -14,56 +14,56 @@ export class RecentAlertsComponent implements OnInit {
     'username': 'pragnesh',
     'img': 'assets/img/portrait/avatars/avatar-01.png',
     'AlertMessage': 'Something',
-    'StepName': 'prg',
-    'ApplicationID': '123',
+    'mobileNumber': '9039484848',
+    'ApplicationID': '12390890',
     'DateofAlert': '02/11/1994',
     'status': 'Active'
   }, {
     'username': 'devu',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
     'AlertMessage': 'Something',
-    'StepName': 'dev',
-    'ApplicationID': '123',
+    'mobileNumber': '7939484848',
+    'ApplicationID': '12390891',
     'DateofAlert': '02/11/1985',
     'status': 'Active'
   }, {
-    'username': 'devu',
+    'username': 'devud',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
     'AlertMessage': 'Something',
-    'StepName': 'dev',
-    'ApplicationID': '123',
+    'mobileNumber': '9039498437',
+    'ApplicationID': '12390892',
     'DateofAlert': '02/11/1985',
     'status': 'Active'
   }, {
-    'username': 'devu',
+    'username': 'devang',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
     'AlertMessage': 'Something',
-    'StepName': 'dev',
-    'ApplicationID': '123',
+    'mobileNumber': '9839499037',
+    'ApplicationID': '12390893',
     'DateofAlert': '02/11/1985',
     'status': 'Active'
   }, {
-    'username': 'devu d',
+    'username': 'dev_test',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
     'AlertMessage': 'Something',
-    'StepName': 'dev',
-    'ApplicationID': '123',
+    'mobileNumber': '9039498436',
+    'ApplicationID': '12390894',
     'DateofAlert': '02/11/1985',
     'status': 'Active'
   }, {
-    'username': 'dev',
+    'username': 'devli',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
     'AlertMessage': 'Something',
-    'StepName': 'dev',
-    'ApplicationID': '123',
+    'mobileNumber': '9039477437',
+    'ApplicationID': '12312390895',
     'DateofAlert': '02/11/1985',
     'status': 'Active'
   }, {
-    'username': 'ritesh admin',
+    'username': 'ritesh',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
     'AlertMessage': 'Something',
-    'StepName': 'dev',
-    'ApplicationID': '123',
+    'mobileNumber': '9039489102',
+    'ApplicationID': '12312390897',
     'DateofAlert': '02/11/1985',
     'status': 'Active'
   }];

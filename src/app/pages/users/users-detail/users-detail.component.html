@@ -56,8 +56,8 @@
                   <a href="mailto:userData?.basic_info?.email">{{userData?.basic_info?.email}}
                      <span *ngIf="!userData?.basic_info?.isEmailVerified" class="yellow-status status-box ml-2">not
                         verified</span>
-                     <span *ngIf="userData?.basic_info?.isEmailVerified" class="green-status status-box ml-2">not
-                        verified</span>
+                     <span *ngIf="userData?.basic_info?.isEmailVerified"
+                        class="green-status status-box ml-2">verified</span>
                   </a>
                   <span class="remind-usr"><span class="icon-send"></span>remind user</span>
                </div>
@@ -136,10 +136,14 @@
          <div class="user-bxhdr d-flex justify-content-between">
             <div class="lft">
                <h2>Aadhaar Details</h2>
-               <p><strong>{{userData?.aadhar_details?.aadhar_number | mask:'0000 0000 0000'}}</strong>
+               <p><strong>{{userData?.aadhar_details?.aadhar_number | mask:'AAAA AAAA AAAA'}}</strong>
                   <span *ngIf="userData?.aadhar_details?.isKRAVerified"
-                     lass="green-status status-box ml-2">VERIFIED</span>
-                  <span *ngIf="!userData?.aadhar_details?.isKRAVerified" lass="yellow-status status-box ml-2">NOT
+                     class="green-status status-box ml-2">VERIFIED</span>
+                  <span *ngIf="userData?.aadhar_details?.isAadharVerifiedByDigiLocker"
+                     class="green-status status-box ml-2">VERIFIED</span>
+                  <span
+                     *ngIf="!userData?.aadhar_details?.isAadharVerifiedByDigiLocker && !userData?.aadhar_details?.isKRAVerified"
+                     class="yellow-status status-box ml-2">NOT
                      VERIFIED</span>
                </p>
             </div>
@@ -147,7 +151,7 @@
          <div class="row user-btmbx">
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-3">
-                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+                  <!-- <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span> -->
                   <span class="digi-text" *ngIf="userData?.aadhar_details?.isAadharVerifiedByDigiLocker">
                      Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2">
                   </span>
@@ -170,9 +174,10 @@
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
-                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
-                  <span class="digi-text">Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon"
-                        class="ml-2"></span>
+                  <span class="cmn-txt"
+                     *ngIf="userData?.aadhar_details?.uploaded_date">{{userData?.aadhar_details?.uploaded_date}}</span>
+                  <span class="digi-text" *ngIf="userData?.aadhar_details?.isPanFileVerifiedByDigiLocker">Submitted
+                     using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2"></span>
                </div>
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
@@ -184,6 +189,19 @@
                            (click)="openDocumentPopupModal('aadhar_document', 'Aadhaar', 'not-uploaded')">Upload
                            document</a>
                      </div>
+                     <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents">
+                        <ng-template ngbSlide *ngFor="let imageAadhaar of userData?.aadhar_details?.aadhar_documents">
+                           <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type === 'application/pdf'">
+                              <iframe [src]="imageAadhaar?.url | safeUrl" height="100%" width="100%"></iframe>
+                           </div>
+                           <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type !== 'application/pdf'">
+                              <img width="100%" [src]="imageAadhaar?.url" alt="Random first slide">
+                           </div>
+                           <!-- <div class="carousel-caption">
+                              <h3>{{imageItem?.id}}</h3>
+                           </div> -->
+                        </ng-template>
+                     </ngb-carousel>
                   </div>
                </div>
                <label class="doc-type">aadhaar card</label>
@@ -195,33 +213,58 @@
          <div class="user-bxhdr d-flex justify-content-between">
             <div class="lft">
                <h2>permanent account number (PAN)</h2>
-               <p><strong>ABCDE1234F</strong><span class="green-status status-box ml-2">VERIFIED</span></p>
+               <p *ngIf="userData?.pan_details?.pan_number"><strong>{{userData?.pan_details?.pan_number}}</strong>
+                  <span *ngIf="userData?.pan_details?.pan_number" class="green-status status-box ml-2">VERIFIED</span>
+               </p>
             </div>
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
-               <div class="d-flex justify-content-between mb-3">
+               <!-- <div class="d-flex justify-content-between mb-3">
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+               </div> -->
+               <div *ngIf="userData?.pan_details?.pan_number" class="d-flex justify-content-between mb-3">
+                  <!-- <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span> -->
+                  <span class="digi-text" *ngIf="userData?.pan_details?.isPanFileVerifiedByDigiLocker">
+                     Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2">
+                  </span>
+                  <span class="digi-text" *ngIf="userData?.aadhar_details?.isPanVerifiedByKRA">
+                     Submitted using KRA <img src="assets/img/digilocker.svg" alt="icon" class="ml-2">
+                  </span>
                </div>
                <div class="row cmn-layout">
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>Full Name</label>Aditya desai</div>
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>DOB</label>dec 15 2020</div>
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>father’s name</label>shridhar desai</div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Full
+                        Name</label>{{userData?.pan_details?.full_name}}</div>
+                  <div class="col-md-12 d-flex flex-column mb-3">
+                     <label>DOB</label>{{userData?.pan_details?.date_of_birth}}</div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>father’s
+                        name</label>{{userData?.pan_details?.father_name}}</div>
                </div>
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
             <div class="col-md-6">
-               <div class="d-flex justify-content-between mb-2">
+               <!-- <div class="d-flex justify-content-between mb-2">
                   <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
-               </div>
+               </div> -->
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
+                        <a class="dropdown-item" href="javascript:void(0)"
+                           (click)="openDocumentPopupModal('pan_document', 'PAN', 'not-uploaded')">Upload document</a>
                      </div>
+                     <ngb-carousel *ngIf="userData?.pan_details?.pan_documents">
+                        <ng-template ngbSlide *ngFor="let imageItem of userData?.pan_details?.pan_documents">
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                           </div>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </div>
+                        </ng-template>
+                     </ngb-carousel>
                   </div>
                </div>
                <label class="doc-type">PAN Card</label>
@@ -239,17 +282,64 @@
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
-               <div class="d-flex justify-content-between mb-3">
+               <!-- <div class="d-flex justify-content-between mb-3">
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
-               </div>
+               </div> -->
                <div class="row cmn-layout">
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>Full Name</label>Aditya desai</div>
-                  <div class="col-md-6 d-flex flex-column mb-3"><label>DOB</label>dec 15 2020</div>
-                  <div class="col-md-6 d-flex flex-column mb-3"><label>Gender</label>Male</div>
-                  <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>address line 1,<br>address
-                     line 2,<br>address line 3,<br>city, state - 000 000</div>
-                  <div class="col-md-6 d-flex flex-column"><label>Corrospondance Address</label>address line
-                     1,<br>address line 2,<br>address line 3,<br>city, state - 000 000</div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Full
+                        Name</label>{{userData?.personal_details?.full_name}}</div>
+                  <div class="col-md-6 d-flex flex-column mb-3">
+                     <label>DOB</label>{{userData?.personal_details?.date_of_birth}}</div>
+                  <div class="col-md-6 d-flex flex-column mb-3">
+                     <label>Gender</label>{{userData?.personal_details?.gender}}</div>
+                  <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>
+                     <p>
+                        <ng-container *ngIf="userData?.personal_details?.houseNumber">
+                           {{userData?.personal_details?.houseNumber}},</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.street">
+                           {{userData?.personal_details?.street}},<br></ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.locality">
+                           {{userData?.personal_details?.locality}},</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.landMark">
+                           {{userData?.personal_details?.landMark}},<br></ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.vtc">{{userData?.personal_details?.vtc}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.stateName">
+                           {{userData?.personal_details?.stateName}}</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.pinCode"> -
+                           {{userData?.personal_details?.pinCode | mask:'000 000'}}
+                           <br></ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.country">
+                           {{userData?.personal_details?.country}}
+                        </ng-container>
+                        <!-------------- KRA VERIFY DATA: START -------------->
+                        <ng-container *ngIf="userData?.personal_details?.address_line1">
+                           {{userData?.personal_details?.address_line1}},</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.address_line2">
+                           {{userData?.personal_details?.address_line2}},</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.address_line3">
+                           {{userData?.personal_details?.address_line3}},</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.pin_code">
+                           {{userData?.personal_details?.pin_code | mask:'000 000'}}
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.country">
+                           {{userData?.personal_details?.country}}</ng-container>
+                        <!-------------- KRA VERIFY DATA: END -------------->
+                     </p>
+                  </div>
+                  <div class="col-md-6 d-flex flex-column"><label>Corrospondance Address</label>
+                     <ng-container *ngIf="userData?.personal_details?.address_line1">
+                        {{userData?.personal_details?.address_line1}},</ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.address_line2">
+                        {{userData?.personal_details?.address_line2}},</ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.address_line3">
+                        {{userData?.personal_details?.address_line3}},</ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.pin_code">
+                        {{userData?.personal_details?.pin_code | mask:'000 000'}}
+                     </ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.country">
+                        {{userData?.personal_details?.country}}</ng-container>
+                  </div>
                </div>
                <button class="btn btn-custom btn-border font-sml"
                   [routerLink]="['/applications/edit-personal-address',userId]"
@@ -258,9 +348,9 @@
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
             <div class="col-md-6">
-               <div class="d-flex justify-content-between mb-2">
+               <!-- <div class="d-flex justify-content-between mb-2">
                   <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
-               </div>
+               </div> -->
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -269,8 +359,20 @@
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
+                     <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url">
+                        <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                           </div>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </div>
+                        </ng-template>
+                     </ngb-carousel>
+
                   </div>
                </div>
+               <label class="doc-type">Address Proof</label>
             </div>
          </div>
       </div>
@@ -285,30 +387,35 @@
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
-               <div class="d-flex justify-content-between mb-3">
+               <!-- <div class="d-flex justify-content-between mb-3">
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
-               </div>
+               </div> -->
                <div class="row cmn-layout">
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>name registered at bank</label>Aditya desai
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>name registered at bank</label>
+                     {{userData?.bank_details?.full_name}}
                   </div>
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>IFSC Code</label>SBIN000001</div>
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>bank name</label>State bank of India</div>
-                  <div class="col-md-12 d-flex flex-column"><label>branch address</label>palasia, a b road, indore - 452
-                     001</div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>IFSC Code</label>
+                     {{userData?.bank_details?.ifsc_code}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>bank name</label>
+                     {{userData?.bank_details?.bank_name}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column"><label>branch address</label>
+                     {{userData?.bank_details?.branch_address?.address}}
+                  </div>
                </div>
                <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/bank-details',userId]"
                   routerLinkActive="router-link-active">edit details</button>
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
             <div class="col-md-6">
-               <div class="d-flex justify-content-between mb-2">
+               <!-- <div class="d-flex justify-content-between mb-2">
                   <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
-               </div>
-               <div class="doc-upbox"></div>
-               <label class="doc-type">PAN Card</label>
-               <div class="d-flex justify-content-between mb-2 mt-3">
+               </div> -->
+
+               <!-- <div class="d-flex justify-content-between mb-2 mt-3">
                   <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
-               </div>
+               </div> -->
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -317,6 +424,18 @@
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
+                     <!-- /************* Bank statement : CAROUSEL **************/ -->
+                     <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url">
+                        <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                           </div>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </div>
+                        </ng-template>
+                     </ngb-carousel>
+
                   </div>
                </div>
                <label class="doc-type">bank statement</label>
@@ -332,9 +451,9 @@
          </div>
          <div class="row user-btmbx">
             <div class="col-md-3">
-               <div class="d-flex justify-content-between mb-3">
+               <!-- <div class="d-flex justify-content-between mb-3">
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
-               </div>
+               </div> -->
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -344,13 +463,24 @@
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
                   </div>
+                  <!-- /************* Signature : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.sign_and_identity?.signature_documents">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.signature_documents">
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
                </div>
                <label class="doc-type">signature</label>
             </div>
             <div class="col-md-3 pr-0 pl-4">
-               <div class="d-flex justify-content-between mb-3">
+               <!-- <div class="d-flex justify-content-between mb-3">
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
-               </div>
+               </div> -->
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -360,13 +490,24 @@
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
                   </div>
+                  <!-- /************* Photograph : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.sign_and_identity?.photograph_documents">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.photograph_documents">
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
                </div>
                <label class="doc-type">Photograph</label>
             </div>
             <div class="col-md-6">
-               <div class="d-flex justify-content-between mb-3">
+               <!-- <div class="d-flex justify-content-between mb-3">
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
-               </div>
+               </div> -->
                <div class="doc-upbox">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -376,6 +517,17 @@
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
                   </div>
+                  <!-- /************* IN PERSON VIDEO : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.sign_and_identity?.ipv_documents">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.ipv_documents">
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
                </div>
                <label class="doc-type">In Person Video</label>
             </div>
