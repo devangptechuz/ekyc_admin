@@ -33,6 +33,7 @@ export class ValidationService {
       invalidUrl: `Invalid url`,
       invalidPattern: `${fieldName} is Invalid`,
       invalidNumber: `Only Numbers are allowed`,
+      PINcode: 'Invalid PIN code',
       email: `Please enter a valid email.`,
       pattern: `Please enter a valid data.`,
       invalidAbn: `Please enter a valid abn number.`,
@@ -40,6 +41,12 @@ export class ValidationService {
       invalidPassword: 'Password must be at least 8 characters long, and contain a number.',
     };
     return config[validatorName];
+  }
+
+  static required(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'required': true };
   }
 
   static creditCardValidator(control) {
@@ -211,5 +218,18 @@ export class ValidationService {
         this.validateAllFormFields(control);
       }
     });
+  }
+
+  pincodeValidator(control) {
+    // RFC 2822 compliant regex
+    if (control.value) {
+      if (control.value.match(/^(?=.*[0-9])[0-9]{6,6}$/)) {
+        return null;
+      } else {
+        return { 'PINcode': true };
+      }
+    } else {
+      return { 'PINcode': true };
+    }
   }
 }

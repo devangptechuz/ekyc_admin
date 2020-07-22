@@ -15,6 +15,7 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
   addressDetailsform: FormGroup;
   addAddress: boolean;
   gender = [{ label: 'Male' }, { label: 'Female' }];
+  countryList = [{ label: 'INDIA' }, { label: 'USA' }];
   maritalStatus = [
     { id: 'Unmarried', label: 'Unmarried' },
     { id: 'Married', label: 'Married' }]
@@ -32,33 +33,40 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.route.snapshot.params.id;
 
-    const requiredName = new FormControl('');
     const requiredFahterValidate = new FormControl('', [Validators.required]);
     const requiredMotherValidate = new FormControl('', [Validators.required]);
     const requiredSelection = ['', Validators.required];
     const requiredNullSelection = [null, Validators.required];
     this.addressDetailsform = this.fb.group({
-      name: requiredSelection,
+      name: new FormControl(''),
       gender: requiredNullSelection,
-      dob: requiredSelection,
+      dob: new FormControl(''),
       marital_status: requiredNullSelection,
-      occupation_type: requiredSelection,
-      income_range: requiredSelection,
-      father_spouse_name: requiredFahterValidate,
-      mother_name: requiredMotherValidate,
-      address_line1: requiredSelection,
-      address_line2: requiredSelection,
-      address_line3: requiredSelection,
+      occupation_type: requiredNullSelection,
+      income_range: requiredNullSelection,
+      father_spouse_name: new FormControl(''),
+      mother_name: new FormControl(''),
+      address_line1: new FormControl(''),
+      address_line2: new FormControl(''),
+      address_line3: new FormControl(''),
       pin_code: requiredSelection,
-      country: new FormControl('India'),
-      same_as: new FormControl(false)
+      country: new FormControl(null),
+      same_as: new FormControl(false),
+      corres_address_line1: new FormControl(''),
+      corres_address_line2: new FormControl(''),
+      corres_address_line3: new FormControl(''),
+      corres_pin_code: new FormControl(''),
+      corres_country: new FormControl(null),
     });
 
-    // this.getAddressDetails(this.userId);
+    this.getAddressDetails(this.userId);
   }
 
   onSubmit() {
-
+    if (!this.addressDetailsform.valid) {
+      this.validate.validateAllFormFields(this.addressDetailsform);
+      return false;
+    }
   }
   /**
    * Get address details
@@ -68,14 +76,14 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
       // console.log('res', res);
       if (res.success) {
         // this.verifiedSteps.isAadharVerified = true;
-        if (res.result.fullName) {
-          this.addressDetailsform.patchValue({ name: res.result.fullName });
+        if (res.result.full_name) {
+          this.addressDetailsform.patchValue({ name: res.result.full_name });
         }
         if (res.result.gender) {
           this.addressDetailsform.patchValue({ gender: res.result.gender.toUpperCase() });
         }
-        if (res.result.dateOfBirth) {
-          const dob = res.result.dateOfBirth.replace(/-/g, "/");
+        if (res.result.date_of_birth) {
+          const dob = res.result.date_of_birth.replace(/-/g, "/");
           this.addressDetailsform.patchValue({ dob: dob });
         }
         if (res.result.marrital_status) {
@@ -100,35 +108,35 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
           this.OccupationTypeArray = res.result.occupations;
         }
 
-        if (res.result.address_line1) {
-          this.addressDetailsform.patchValue({ address_line1: res.result.address_line1 });
+        if (res.result.permanent_address?.address_line1) {
+          this.addressDetailsform.patchValue({ address_line1: res.result.permanent_address?.address_line1 });
         }
-        if (res.result.address_line2) {
-          this.addressDetailsform.patchValue({ address_line2: res.result.address_line2 });
+        if (res.result.permanent_address?.address_line2) {
+          this.addressDetailsform.patchValue({ address_line2: res.result.permanent_address?.address_line2 });
         }
-        if (res.result.address_line3) {
-          this.addressDetailsform.patchValue({ address_line3: res.result.address_line3 });
+        if (res.result.permanent_address?.address_line3) {
+          this.addressDetailsform.patchValue({ address_line3: res.result.permanent_address?.address_line3 });
         }
-        if (res.result.pin_code) {
-          this.addressDetailsform.patchValue({ pin_code: res.result.pin_code });
+        if (res.result.permanent_address?.pin_code) {
+          this.addressDetailsform.patchValue({ pin_code: res.result.permanent_address?.pin_code });
         }
-        if (res.result.country) {
-          this.addressDetailsform.patchValue({ country: res.result.country.toUpperCase() });
+        if (res.result.permanent_address?.country) {
+          this.addressDetailsform.patchValue({ country: res.result.permanent_address?.country.toUpperCase() });
         }
         if (!res.result.is_corres_same_permanent) {
           this.addAddress = true;
           let country = '';
-          if (res.result.userAddressData?.country) {
-            country = res.result.userAddressData?.country?.toUpperCase()
+          if (res.result.corrospondence_address?.country) {
+            country = res.result.corrospondence_address?.country?.toUpperCase()
           }
           this.addressDetailsform.patchValue({ same_as: false });
           this.addressDetailsform.patchValue({
             // same_as: false,
-            address_line1: res.result.userAddressData?.address_line1,
-            address_line2: res.result.userAddressData?.address_line2,
-            address_line3: res.result.userAddressData?.address_line3,
-            pin_code: res.result.userAddressData?.pin_code,
-            country: country,
+            corres_address_line1: res.result.corrospondence_address?.address_line1,
+            corres_address_line2: res.result.corrospondence_address?.address_line2,
+            corres_address_line3: res.result.corrospondence_address?.address_line3,
+            corres_pin_code: res.result.corrospondence_address?.pin_code,
+            corres_country: country,
           });
         } else {
           this.addressDetailsform.patchValue({ same_as: true });
@@ -137,6 +145,56 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
       } else {
         this.global.errorToastr(res.message);
       }
+    });
+  }
+
+  /**
+  * Check for same as permenent
+  */
+  checkForSameAsPermenent(event) {
+    if (event.target.checked) {
+      this.addressDetailsform.get('same_as').setValue(true);
+      this.addAddress = false;
+      const arrayFields = ['corres_address_line1', 'corres_address_line2', 'corres_address_line3', 'corres_pin_code', 'corres_country'];
+      arrayFields.map((item) => {
+        this.addressDetailsform.get(item).setValue('');
+        this.addressDetailsform.get(item).clearValidators();
+        this.addressDetailsform.get(item).updateValueAndValidity();
+      });
+    } else {
+      this.addAddress = true;
+      const requiredAddressLine1 = new FormControl('', [Validators.required]);
+      const requiredAddressLine2 = new FormControl('', [Validators.required]);
+      const requiredAddressLine3 = new FormControl('', [Validators.required]);
+      const requiredPINCode = ['', Validators.compose([Validators.required, this.validate.pincodeValidator])];
+      this.addressDetailsform = this.fb.group({
+        corres_address_line1: requiredAddressLine1,
+        corres_address_line2: requiredAddressLine2,
+        corres_address_line3: requiredAddressLine3,
+        corres_pin_code: requiredPINCode,
+        corres_country: new FormControl(null),
+        same_as: new FormControl(false)
+      });
+    }
+    this.addressDetailsform.updateValueAndValidity();
+  }
+
+  /**
+  * Add correspondence address (required)
+  */
+  addCorrespondenceAddress() {
+    this.addAddress = true;
+    const requiredAddressLine1 = new FormControl('', [ValidationService.required]);
+    const requiredAddressLine2 = new FormControl('', [ValidationService.required]);
+    const requiredAddressLine3 = new FormControl('', [ValidationService.required]);
+    const requiredPINCode = ['', Validators.compose([Validators.required, this.validate.pincodeValidator])];
+    this.addressDetailsform = this.fb.group({
+      corres_address_line1: requiredAddressLine1,
+      corres_address_line2: requiredAddressLine2,
+      corres_address_line3: requiredAddressLine3,
+      corres_pin_code: requiredPINCode,
+      corres_country: new FormControl(null),
+      same_as: new FormControl(false)
     });
   }
 

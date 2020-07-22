@@ -46,7 +46,8 @@
           <div class="col-md-4">
             <div class="form-group">
               <label>Marital Status</label>
-              <ng-select appearance="outline" placeholder="select" [searchable]="false" formControlName="gender">
+              <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                formControlName="marital_status">
                 <ng-option [value]="item.id" *ngFor="let item of maritalStatus">{{item.label}}</ng-option>
               </ng-select>
               <app-control-messages fieldName="Marital Status"
@@ -57,13 +58,23 @@
           <div class="col-md-4">
             <div class="form-group">
               <label>Income Range</label>
-              <ngx-select></ngx-select>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false" formControlName="income_range">
+                <ng-option [value]="item.id" *ngFor="let item of IncomeRangeArray">{{item.label}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Income Range" [control]="addressDetailsform.controls['income_range']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label>Occupation Type</label>
-              <ngx-select></ngx-select>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                formControlName="occupation_type">
+                <ng-option [value]="item.id" *ngFor="let item of OccupationTypeArray">{{item.label}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Occupation Type"
+                [control]="addressDetailsform.controls['occupation_type']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-4">
@@ -71,85 +82,124 @@
           <div class="col-md-4">
             <div class="form-group">
               <label>Father’s / Spouse’s Name</label>
-              <input type="text" placeholder="Enter father’s / spouse’s name" class="form-control">
+              <input type="text" placeholder="Enter father’s / spouse’s name" class="form-control"
+                formControlName="father_spouse_name">
+              <app-control-messages fieldName="Father’s / spouse’s name"
+                [control]="addressDetailsform.controls['father_spouse_name']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label>Mother’s Name</label>
-              <input type="text" placeholder="Enter mother’s name" class="form-control">
+              <input type="text" placeholder="Enter mother’s name" class="form-control" formControlName="mother_name">
+              <app-control-messages fieldName="Mother’s name" [control]="addressDetailsform.controls['mother_name']">
+              </app-control-messages>
             </div>
           </div>
         </div>
-        <h3 class="line-title"><span>Current Address</span></h3>
+        <h3 class="line-title"><span>Permanent Address</span></h3>
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label>Address Line 1</label>
-              <input type="text" placeholder="Enter address line 1" class="form-control">
+              <input type="text" placeholder="Enter address line 1" class="form-control"
+                formControlName="address_line1">
+              <app-control-messages fieldName="Address line 1" [control]="addressDetailsform.controls['address_line1']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label>Address Line 2</label>
-              <input type="text" placeholder="Enter address line 2" class="form-control">
+              <input type="text" placeholder="Enter address line 2" class="form-control"
+                formControlName="address_line2">
+              <app-control-messages fieldName="Address line 2" [control]="addressDetailsform.controls['address_line2']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label>Address Line 3</label>
-              <input type="text" placeholder="Enter address line 3" class="form-control">
+              <input type="text" placeholder="Enter address line 3" class="form-control"
+                formControlName="address_line3">
+              <app-control-messages fieldName="Address line 3" [control]="addressDetailsform.controls['address_line3']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label>PIN Code</label>
-              <input type="text" placeholder="Enter PIN code" class="form-control">
+              <input type="text" placeholder="Enter PIN code" class="form-control" formControlName="pin_code">
+              <app-control-messages fieldName="PIN code" [control]="addressDetailsform.controls['pin_code']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label>Country</label>
-              <input type="text" placeholder="Enter country" class="form-control">
+              <ng-select placeholder="select" [searchable]="false" formControlName="country">
+                <ng-option [value]="item.label" *ngFor="let item of countryList">{{item.label}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Country" [control]="addressDetailsform.controls['country']">
+              </app-control-messages>
             </div>
           </div>
         </div>
-        <h3 class="line-title mt-4"><span>Permanent Address</span></h3>
+        <h3 class="line-title mt-4"><span>Correspondence Address</span></h3>
         <div class="checkbox collapse-address" data-toggle="collapse" data-target="#demo">
-          <input type="checkbox" id="checkbox1" checked="">
-          <label for="checkbox1"><span>Permanent address is same as currennt address</span>
+          <input type="checkbox" id="checkbox1" formControlName="same_as" (change)="checkForSameAsPermenent($event)">
+          <label for="checkbox1"><span>Same as the permanent address</span>
           </label>
         </div>
-        <div id="demo" class="collapse">
+        <div id="demo" class="collapse" [ngClass]="{'show': addAddress}" [hidden]='!addAddress'>
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
                 <label>Address Line 1</label>
-                <input type="text" placeholder="Enter address line 1" class="form-control">
+                <input type="text" placeholder="Enter address line 1" class="form-control"
+                  formControlName="corres_address_line1">
+                <app-control-messages fieldName="Address line 1"
+                  [control]="addressDetailsform.controls['corres_address_line1']">
+                </app-control-messages>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>Address Line 2</label>
-                <input type="text" placeholder="Enter address line 2" class="form-control">
+                <input type="text" placeholder="Enter address line 2" class="form-control"
+                  formControlName="corres_address_line2">
+                <app-control-messages fieldName="Address line 2"
+                  [control]="addressDetailsform.controls['corres_address_line2']">
+                </app-control-messages>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>Address Line 3</label>
-                <input type="text" placeholder="Enter address line 3" class="form-control">
+                <input type="text" placeholder="Enter address line 3" class="form-control"
+                  formControlName="corres_address_line3">
+                <app-control-messages fieldName="Address line 3"
+                  [control]="addressDetailsform.controls['corres_address_line3']">
+                </app-control-messages>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>PIN Code</label>
-                <input type="text" placeholder="Enter PIN code" class="form-control">
+                <input type="text" placeholder="Enter PIN code" class="form-control" formControlName="corres_pin_code">
+                <app-control-messages fieldName="PIN code" [control]="addressDetailsform.controls['corres_pin_code']">
+                </app-control-messages>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>Country</label>
-                <input type="text" placeholder="Enter country" class="form-control">
+                <ng-select placeholder="select" [searchable]="false" formControlName="corres_country">
+                  <ng-option [value]="item.label" *ngFor="let item of countryList">{{item.label}}</ng-option>
+                </ng-select>
+                <app-control-messages fieldName="Country" [control]="addressDetailsform.controls['corres_country']">
+                </app-control-messages>
               </div>
             </div>
           </div>

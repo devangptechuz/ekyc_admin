@@ -359,8 +359,8 @@
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
                      </div>
-                     <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url">
-                        <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
+                     <ngb-carousel *ngIf="userData?.personal_details?.address_url">
+                        <ng-template ngbSlide *ngFor="let imageItem of userData?.personal_details?.address_url">
                            <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                               <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                            </div>
