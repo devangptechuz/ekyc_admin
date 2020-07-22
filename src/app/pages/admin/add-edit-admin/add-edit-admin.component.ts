@@ -21,7 +21,7 @@ export class AddEditAdminComponent implements OnInit {
   editAdmin;
   uploader: FileUploader;
   adminTitle = 'Add new admin user';
-  imageURL:any;
+  userProfileURL:any;
   formData;
   userType = [{
     type: '1',
@@ -51,7 +51,7 @@ export class AddEditAdminComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required,this.validationService.passwordValidator]],
       confirm_password: '',
-      image:''
+      userProfile:''
     }, {
       validator: this.validationService.MatchPassword('password', 'confirm_password')
     });
@@ -68,19 +68,19 @@ export class AddEditAdminComponent implements OnInit {
     if (event.target.files.length > 0) {
       this.spinner.show();
       const file = event.target.files[0];
-      this.adminForm.get('image').setValue(file);
+      this.adminForm.get('userProfile').setValue(file);
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageURL = reader.result as string;
+        this.userProfileURL = reader.result as string;
         this.spinner.hide();
       };
       reader.readAsDataURL(file)
     }
   }
 
-  removeImages(){
-    this.imageURL = null;
-    this.adminForm.controls.image.setValue('');
+  removeuserProfiles(){
+    this.userProfileURL = null;
+    this.adminForm.controls.userProfile.setValue('');
   }
 
 
@@ -93,8 +93,12 @@ export class AddEditAdminComponent implements OnInit {
     this.adminForm.updateValueAndValidity();
     this.adminForm.patchValue(this.editAdmin.result.userData);
     this.adminForm.controls.userType.setValue(this.editAdmin.result.userData.userType.toString())
+    debugger
     if(this.editAdmin.result.userProfile_url){
-      this.imageURL = this.editAdmin.result.userProfile_url;
+      this.userProfileURL = this.editAdmin.result.userProfile_url;
+    }
+    if(!this.editAdmin.result.userProfile_url){
+      this.userProfileURL = '';
     }
   }
 
@@ -104,12 +108,12 @@ export class AddEditAdminComponent implements OnInit {
       return false;
     }
     this.formData = new FormData();
-    this.formData.append('image', this.adminForm.get('image').value);
+    this.formData.append('userProfile', this.adminForm.get('userProfile').value);
     Object.entries(this.adminForm.value).forEach(
         ([key, value]: any[]) => {
           this.formData.set(key, value);
         });
-    delete this.adminForm.value.confirm_password;
+    this.formData.delete('confirm_password');
     if (this.editMode) {
       this.adminService.addAdmin(this.formData).subscribe(
         (result: any) => {
@@ -129,9 +133,9 @@ export class AddEditAdminComponent implements OnInit {
   }
 
   editAdminCall() {
-    delete this.adminForm.value.email;
-    delete this.adminForm.value.password;
-    this.adminForm.value.id = this.editAdmin.result.userData.id;
+    this.formData.delete('email');
+    this.formData.delete('password');
+    this.formData.append('id', this.editAdmin.result.userData.id);
     this.adminService.updateAdmin(this.formData).subscribe(
       (result: any) => {
         if (result.success) {
