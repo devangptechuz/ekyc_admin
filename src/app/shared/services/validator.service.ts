@@ -39,6 +39,7 @@ export class ValidationService {
       invalidAbn: `Please enter a valid abn number.`,
       invalidMobile: `Please enter a valid phone number.`,
       invalidPassword: 'Password must be at least 8 characters long, and contain a number.',
+      invalidAccountNumber: 'Invalid account number',
     };
     return config[validatorName];
   }
@@ -230,6 +231,30 @@ export class ValidationService {
       }
     } else {
       return { 'PINcode': true };
+    }
+  }
+
+  accountNumberValidator(control) {
+    // RFC 2822 compliant regex
+    if (control.value) {
+      if (control.value.match(/^[0-9]{9,18}$/)) {
+        return null;
+      } else {
+        return { 'invalidAccountNumber': true };
+      }
+    } else {
+      return { 'invalidAccountNumber': true };
+    }
+  }
+
+  MatchAccountNumber(AC: AbstractControl) {
+    const accountNumber = AC.get('accountNumber').value; // to get value in input tag
+    const confirmAccountNumber = AC.get('confirmAccountNumber').value; // to get value in input tag        
+    if (accountNumber !== confirmAccountNumber) {
+      AC.get('confirmAccountNumber').setErrors({ equalTo: true });
+    } else {
+      AC.get('confirmAccountNumber').setErrors(null);
+      return null;
     }
   }
 }

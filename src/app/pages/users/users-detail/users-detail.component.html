@@ -163,12 +163,26 @@
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Full
                         Name</label>{{userData?.aadhar_details?.full_name}}</div>
                   <div class="col-md-6 d-flex flex-column mb-3">
-                     <label>DOB</label>{{userData?.aadhar_details?.dateofbirth}}
+                     <label>DOB</label>{{userData?.pan_details?.date_of_birth}}
                   </div>
                   <div class="col-md-6 d-flex flex-column mb-3">
                      <label>Gender</label>{{userData?.aadhar_details?.gender}}</div>
                   <div class="col-md-6 d-flex flex-column"><label>Permanent
-                        Address</label>{{userData?.aadhar_details?.permanent_address}}</div>
+                        Address</label>
+                     <!-------------- KRA VERIFY DATA: START -------------->
+                     <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line1">
+                        {{userData?.personal_details?.permanent_address?.address_line1}},</ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line2">
+                        {{userData?.personal_details?.permanent_address?.address_line2}},</ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line3">
+                        {{userData?.personal_details?.permanent_address?.address_line3}},</ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.permanent_address?.pin_code">
+                        {{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}}
+                     </ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.permanent_address?.country">
+                        {{userData?.personal_details?.permanent_address?.country}}</ng-container>
+                     <!-------------- KRA VERIFY DATA: END -------------->
+                  </div>
                </div>
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
@@ -238,7 +252,7 @@
                   <div class="col-md-12 d-flex flex-column mb-3">
                      <label>DOB</label>{{userData?.pan_details?.date_of_birth}}</div>
                   <div class="col-md-12 d-flex flex-column mb-3"><label>father’s
-                        name</label>{{userData?.pan_details?.father_name}}</div>
+                        name</label>{{userData?.personal_details?.father_name}}</div>
                </div>
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
@@ -294,51 +308,34 @@
                      <label>Gender</label>{{userData?.personal_details?.gender}}</div>
                   <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>
                      <p>
-                        <ng-container *ngIf="userData?.personal_details?.houseNumber">
-                           {{userData?.personal_details?.houseNumber}},</ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.street">
-                           {{userData?.personal_details?.street}},<br></ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.locality">
-                           {{userData?.personal_details?.locality}},</ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.landMark">
-                           {{userData?.personal_details?.landMark}},<br></ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.vtc">{{userData?.personal_details?.vtc}},
-                        </ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.stateName">
-                           {{userData?.personal_details?.stateName}}</ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.pinCode"> -
-                           {{userData?.personal_details?.pinCode | mask:'000 000'}}
-                           <br></ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.country">
-                           {{userData?.personal_details?.country}}
-                        </ng-container>
                         <!-------------- KRA VERIFY DATA: START -------------->
-                        <ng-container *ngIf="userData?.personal_details?.address_line1">
-                           {{userData?.personal_details?.address_line1}},</ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.address_line2">
-                           {{userData?.personal_details?.address_line2}},</ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.address_line3">
-                           {{userData?.personal_details?.address_line3}},</ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.pin_code">
-                           {{userData?.personal_details?.pin_code | mask:'000 000'}}
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line1">
+                           {{userData?.personal_details?.permanent_address?.address_line1}},</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line2">
+                           {{userData?.personal_details?.permanent_address?.address_line2}},</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line3">
+                           {{userData?.personal_details?.permanent_address?.address_line3}},</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.pin_code">
+                           {{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}}
                         </ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.country">
-                           {{userData?.personal_details?.country}}</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.country">
+                           {{userData?.personal_details?.permanent_address?.country}}</ng-container>
                         <!-------------- KRA VERIFY DATA: END -------------->
                      </p>
                   </div>
                   <div class="col-md-6 d-flex flex-column"><label>Corrospondance Address</label>
-                     <ng-container *ngIf="userData?.personal_details?.address_line1">
-                        {{userData?.personal_details?.address_line1}},</ng-container>
-                     <ng-container *ngIf="userData?.personal_details?.address_line2">
-                        {{userData?.personal_details?.address_line2}},</ng-container>
-                     <ng-container *ngIf="userData?.personal_details?.address_line3">
-                        {{userData?.personal_details?.address_line3}},</ng-container>
-                     <ng-container *ngIf="userData?.personal_details?.pin_code">
-                        {{userData?.personal_details?.pin_code | mask:'000 000'}}
+                     <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line1">
+                        {{userData?.personal_details?.corrospondence_address?.address_line1}},</ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line2">
+                        {{userData?.personal_details?.corrospondence_address?.address_line2}},</ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line3">
+                        {{userData?.personal_details?.corrospondence_address?.address_line3}},</ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.pin_code">
+                        {{userData?.personal_details?.corrospondence_address?.pin_code | mask:'000 000'}}
                      </ng-container>
-                     <ng-container *ngIf="userData?.personal_details?.country">
-                        {{userData?.personal_details?.country}}</ng-container>
+                     <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.country">
+                        {{userData?.personal_details?.corrospondence_address?.country}}
+                     </ng-container>
                   </div>
                </div>
                <button class="btn btn-custom btn-border font-sml"

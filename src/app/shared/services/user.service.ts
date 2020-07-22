@@ -70,4 +70,28 @@ export class UserService {
     return this.http.get<any>(`${this.baseUrlOfUser}/getPersonalDetailsAndAddress/${userId}`);
   }
 
+  /**
+   * search bank details from ifsc_code
+   * @param objParam 
+   */
+  searchBankeDetails(objParam: any) {
+    return this.http.post<any>(`${this.baseUrlOfUser}/searchIfscCode`, objParam);
+  }
+
+  /**
+   * submit bank details
+   * @param objParam 
+   */
+  getBankDetails(userId: string) {
+    return this.http.get<any>(`${this.baseUrlOfUser}/getBankDetails/${userId}`);
+  }
+
+  /**
+   * submit bank details
+   * @param objParam 
+   */
+  submitBankDetails(objParam: any) {
+    return this.http.post<any>(this.baseUrlOfUser + `verifyBankDetails`, objParam);
+  }
+
 }

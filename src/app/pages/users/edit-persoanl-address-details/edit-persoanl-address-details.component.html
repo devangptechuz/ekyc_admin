@@ -205,7 +205,7 @@
           </div>
         </div>
         <div class="footer-btn">
-          <button class="btn" routerLink="/applications">cancel</button>
+          <button class="btn" type="button" [routerLink]="['/applications/details',userId]">cancel</button>
           <button class="btn" type="submit">Submit</button>
         </div>
       </form>

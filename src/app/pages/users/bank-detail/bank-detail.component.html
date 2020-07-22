@@ -16,42 +16,58 @@
             <div class="hdr-right">
             </div>
          </div>
-         <form novalidate>
+         <form [formGroup]="bankDetailsform" (ngSubmit)="onSubmit()">
             <div class="row">
                <div class="col-md-4">
                   <div class="form-group">
                      <label>IFSC Code</label>
-                     <input type="text" placeholder="Enter IFSC code" class="form-control">
+                     <input class="form-control"
+                        (blur)="($event.target.value = $event.target.value.toUpperCase()) && searchBankDetails($event.target.value)"
+                        placeholder="Enter IFSC Code" type="text" formControlName="IFSCCode">
+                     <app-control-messages fieldName="IFSC Code" [control]="bankDetailsform.controls['IFSCCode']">
+                     </app-control-messages>
                   </div>
                </div>
-               <div class="col-md-4">
+               <div class="col-md-8">
                   <div class="form-group">
-                     <label>Bank Name</label>
-                     <ngx-select></ngx-select>
+                     <label>Bank Details</label>
+                     <div class="branch-detail d-flex" *ngIf="bankAddress">
+                        <div>
+                           <h4 *ngIf="bankAddress?.bankName">{{bankAddress?.bankName}}</h4>
+                           <p *ngIf="bankAddress?.address">{{bankAddress?.address}}</p>
+                        </div>
+                     </div>
                   </div>
                </div>
-               <div class="col-md-4">
+               <!-- <div class="col-md-4">
                   <div class="form-group">
                      <label>Branch</label>
                      <ngx-select></ngx-select>
                   </div>
-               </div>
+               </div> -->
                <div class="col-md-4">
                   <div class="form-group">
                      <label>Account Number</label>
-                     <input type="text" placeholder="Enter account number" class="form-control">
+                     <input class="form-control" placeholder="Enter account number" type="text"
+                        formControlName="accountNumber">
+                     <app-control-messages fieldName="Account number"
+                        [control]="bankDetailsform.controls['accountNumber']">
+                     </app-control-messages>
                   </div>
                </div>
                <div class="col-md-4">
                   <div class="form-group">
                      <label>Confirm Account Number</label>
-                     <input type="text" placeholder="Enter account number" class="form-control">
+                     <input class="form-control" placeholder="Enter account number" type="text"
+                        formControlName="confirmAccountNumber">
+                     <app-control-messages fieldName="Confirm Account number"
+                        [control]="bankDetailsform.controls['confirmAccountNumber']">
+                     </app-control-messages>
                   </div>
                </div>
             </div>
-            <h3 class="line-title"><span>Current Address</span></h3>
             <div class="footer-btn">
-               <button class="btn" routerLink="/admins">cancel</button>
+               <button class="btn" type="button" [routerLink]="['/applications/details',userId]">cancel</button>
                <button class="btn" type="submit">Submit</button>
             </div>
          </form>
