@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import {ActivatedRoute, Router} from '@angular/router';
 import { AdminService } from '../../../shared/services/admin.service';
 import {GlobalService} from '../../../shared/services/global.service';
+import {FileUploader} from 'ng2-file-upload';
 
 @Component({
   selector: 'app-register-admin',
@@ -18,6 +19,10 @@ export class AddEditAdminComponent implements OnInit {
   label = 'Add Category';
   button = 'Submit';
   editAdmin;
+  uploader: FileUploader;
+  adminTitle = 'Add new admin user';
+  imageURL:any;
+  formData;
   userType = [{
     type: '1',
     label: 'Super Admin'
@@ -46,6 +51,7 @@ export class AddEditAdminComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required,this.validationService.passwordValidator]],
       confirm_password: '',
+      image:''
     }, {
       validator: this.validationService.MatchPassword('password', 'confirm_password')
     });
@@ -58,15 +64,38 @@ export class AddEditAdminComponent implements OnInit {
 
   }
 
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      this.spinner.show();
+      const file = event.target.files[0];
+      this.adminForm.get('image').setValue(file);
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageURL = reader.result as string;
+        this.spinner.hide();
+      };
+      reader.readAsDataURL(file)
+    }
+  }
+
+  removeImages(){
+    this.imageURL = null;
+    this.adminForm.controls.image.setValue('');
+  }
+
 
   setEditAdminData() {
     this.editMode = false;
+    this.adminTitle = 'Update admin user'
     this.button = 'Update';
     this.adminForm.controls["password"].clearValidators();
     this.adminForm.controls["confirm_password"].clearValidators();
     this.adminForm.updateValueAndValidity();
     this.adminForm.patchValue(this.editAdmin.result.userData);
     this.adminForm.controls.userType.setValue(this.editAdmin.result.userData.userType.toString())
+    if(this.editAdmin.result.userProfile_url){
+      this.imageURL = this.editAdmin.result.userProfile_url;
+    }
   }
 
   onSubmit() {
@@ -74,9 +103,15 @@ export class AddEditAdminComponent implements OnInit {
       this.validationService.validateAllFormFields(this.adminForm);
       return false;
     }
+    this.formData = new FormData();
+    this.formData.append('image', this.adminForm.get('image').value);
+    Object.entries(this.adminForm.value).forEach(
+        ([key, value]: any[]) => {
+          this.formData.set(key, value);
+        });
     delete this.adminForm.value.confirm_password;
     if (this.editMode) {
-      this.adminService.addAdmin(this.adminForm.value).subscribe(
+      this.adminService.addAdmin(this.formData).subscribe(
         (result: any) => {
           if (result.success) {
             this.router.navigateByUrl('/admins');
@@ -97,7 +132,7 @@ export class AddEditAdminComponent implements OnInit {
     delete this.adminForm.value.email;
     delete this.adminForm.value.password;
     this.adminForm.value.id = this.editAdmin.result.userData.id;
-    this.adminService.updateAdmin(this.adminForm.value).subscribe(
+    this.adminService.updateAdmin(this.formData).subscribe(
       (result: any) => {
         if (result.success) {
           this.router.navigateByUrl('/admins');

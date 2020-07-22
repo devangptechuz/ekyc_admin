@@ -1,6 +1,6 @@
 <div class="brdcum">
     <div class="container">
-        <a href="javascript:void(0)"><span class="icon-left-ar mr-2"></span>Back to Settings</a>
+        <a href="javascript:void(0)" routerLink="/admins"><span class="icon-left-ar mr-2"></span>Back to Admins</a>
     </div>
 </div>
 <section class="add-user add-admin-user">
@@ -8,14 +8,14 @@
         <div class="add-box">
             <div class="hdr">
                 <div class="hdr-left">
-                    <h2>Add new admin user</h2>
+                    <h2>{{adminTitle}}</h2>
                 </div>
                 <div class="hdr-right">
                 </div>
             </div>
             <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" novalidate>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Full Name</label>
                             <input type="text" placeholder="Enter full name of the user" formControlName="username"
@@ -23,18 +23,7 @@
                             <app-control-messages fieldName="Full Name" [control]="adminForm.controls['username']">
                             </app-control-messages>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>User Type</label>
-                            <ngx-select [items]="userType" formControlName="userType" optionValueField="type"
-                                optionTextField="label"></ngx-select>
-                            <app-control-messages fieldName="User Type" [control]="adminForm.controls['userType']">
-                            </app-control-messages>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
+                         <div class="form-group">
                             <label>Mobile Number</label>
                             <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber"
                                 class="form-control">
@@ -42,8 +31,16 @@
                             </app-control-messages>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
+                            <label>User Type</label>
+                            <ngx-select [items]="userType" formControlName="userType" optionValueField="type"
+                                optionTextField="label"></ngx-select>
+                            <app-control-messages fieldName="User Type" [control]="adminForm.controls['userType']">
+                            </app-control-messages>
+                        </div>
+
+                          <div class="form-group">
                             <label>Email Id</label>
                             <input type="email" [attr.disabled]="editAdmin" placeholder="Enter email id"
                                 formControlName="email" class="form-control">
@@ -51,7 +48,28 @@
                             </app-control-messages>
                         </div>
                     </div>
-                    <div class="col-md-6" *ngIf="!editAdmin">
+                    <div class="col-md-4 d-flex justify-content-end">
+                        <div class="view-pic">
+                            <img src="assets/img/user-ic.svg">
+                            <!-- <img src="assets/img/user-ic.svg" class="userpic"> -->
+                        </div>
+                        <ul class="pic-action">
+                            <li><a href="javascript:void(0)" ><span class="icon-close"></span>remove image</a></li>
+                            <li><a href="javascript:void(0)" ><span class="icon-camera"></span>take a picture</a></li>
+                            <li><a href="javascript:void(0)" ><span class="icon-upload" ></span>upload from computer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                       
+                    </div>
+                    <div class="col-md-3">
+                      
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3" *ngIf="!editAdmin">
                         <div class="form-group">
                             <label>Password</label>
                             <input type="password" placeholder="Enter Password" formControlName="password"
@@ -60,7 +78,7 @@
                             </app-control-messages>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group" *ngIf="!editAdmin">
                             <label>Confirm Password</label>
                             <input type="password" placeholder="Enter Confirm Password" formControlName="confirm_password"
@@ -71,6 +89,16 @@
                         </div>
                     </div>
                 </div>
+<!--                <div class="col-md-6 ">-->
+<!--                    <div class="form-group">-->
+<!--                        <input type="file"  id="inputGroupFile01"-->
+<!--                               (change)="onFileSelect($event)" accept="image/x-png,image/jpeg">-->
+<!--                        <label class="custom-file-label" for="inputGroupFile01"><a ><span class="icon-upload"  ></span>upload from computer</a></label>-->
+<!--                    </div>-->
+<!--                    <div class="imagePreview image-prev-block"  *ngIf="imageURL && imageURL !== ''">-->
+<!--                        <img [src]="imageURL" width="100" height="100" >-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="footer-btn">
                     <button class="btn" routerLink="/admins">cancel</button>
                     <button class="btn" type="submit">Submit</button>

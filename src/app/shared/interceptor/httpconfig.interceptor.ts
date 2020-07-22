@@ -36,7 +36,10 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    this.spinner.show();
+    if (!request.params.has('hideLoader')) {
+      this.spinner.show();
+    }
+    request.params.set('hideLoader', '');
     const token: string = this.cookieService.get('admin_user_token');
     if (token) {
       if (request.url.search('/login') === -1) {

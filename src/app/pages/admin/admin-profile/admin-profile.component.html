@@ -10,7 +10,7 @@
          <div class="hdr">
             <div class="hdr-left">
                <h2>Personal Information</h2>
-               <span>last updated on : {{adminProfile['createdDate']}}</span>
+               <span>last updated on : {{updatePasswordDate}}</span>
             </div>
             <div class="hdr-right">
             	<button class="btn btn-custom" (click)="submitProfile()"><span class="icon-edit mr-2"></span>Update details</button>
@@ -40,10 +40,11 @@
        		</div>
        		<div class="col-md-6 d-flex justify-content-end">
        			<div class="view-pic">
-       				<img *ngIf="!adminProfile['img']" src="assets/img/1.jpg">
+       				<img *ngIf="!imageUrl" src="assets/img/user-ic.svg">
+       				<img *ngIf="imageUrl" [src]=imageUrl class="userpic">                
        			</div>
-       			<ul>
-       				<li><a href="javascript:void(0)"><span class="icon-close"></span>remove image</a></li>
+       			<ul class="pic-action">
+       				<li><a href="javascript:void(0)" (click)="deleteImage()"><span class="icon-close"></span>remove image</a></li>
        				<li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span class="icon-camera"></span>take a picture</a></li>
        				<li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span class="icon-upload" ></span>upload from computer</a></li>
        			</ul>
@@ -53,7 +54,7 @@
        	 <div class="hdr mt-4">
             <div class="hdr-left">
                <h2>Password Setting</h2>
-               <span>last updated on : Jan 20 2020 - 02:60 PM</span>
+               <span>last updated on : {{updatePasswordDate}}</span>
             </div>
             <div class="hdr-right">
             </div>

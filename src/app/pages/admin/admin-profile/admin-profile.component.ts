@@ -44,6 +44,7 @@ export class AdminProfileComponent implements OnInit {
   public mediaImages = [];
   aadharDisplayImage: any;
   maxUploadLimit = 2;
+  id:any;
 
   viewSectionOfImage: boolean;
   viewPreviewDisplayImage: any;
@@ -67,6 +68,10 @@ export class AdminProfileComponent implements OnInit {
     height: { ideal: 316 }
   };
   public deviceId: string;
+  imageUrl:any;
+  updatePasswordDate:any;
+  updateProfileDate:any;
+  userType:any;
 
   constructor(
     private router: Router,
@@ -116,21 +121,25 @@ export class AdminProfileComponent implements OnInit {
       });
   }
 
-  getProfileAdmin() {
+  getProfileAdmin(){
     this.adminService.getAdminProfile()
-      .subscribe(
-        Data => {
-          if (Data.success) {
-            this.adminProfile = Data['result']['userData'];
-            this.adminProfileForm.patchValue(Data['result']['userData']);
-            this.spinner.hide();
-          } else {
-            this.spinner.hide();
-            this.global.errorToastr(Data.message);
-          }
-        });
+        .subscribe(
+            Data => {
+              if(Data.success){
+                this.adminProfile = Data['result']['userData'];
+                this.adminProfileForm.patchValue(Data['result']['userData']);
+                this.imageUrl = Data['result']['userData']['userProfile_url'];
+                this.id = Data['result']['userData']['id'];
+                this.userType = Data['result']['userData']['userType'];
+                this.updateProfileDate = Data['result']['userData']['updateProfileDate'];
+                this.updatePasswordDate = Data['result']['userData']['updatePasswordDate'];
+                this.spinner.hide();
+              }else {
+                this.spinner.hide();
+                this.global.errorToastr(Data.message);
+              }
+            });
   }
-
   onSubmit() {
     if (!this.adminPasswordForm.valid) {
       this.validationService.validateAllFormFields(this.adminPasswordForm);
@@ -298,14 +307,42 @@ export class AdminProfileComponent implements OnInit {
 
   submitDocumentUploadModal() {
     let uploadParam: any = new FormData();
-    uploadParam.append('document_name', this.nameOfDocument);
     this.uploader.queue.map((item: any, index) => {
       uploadParam.append('file[]', item._file);
     });
     // uploadParam.append('files', queue);
     this.fileUploadingProcessStarting();
+    this.adminService.updateAdminProfileImage(uploadParam).subscribe((result: any) => {
+      if (result.type === 1 && result.loaded && result.total) {
+        const percentDone = Math.round(100 * result.loaded / result.total);
+        this.uploadProgress = percentDone;
+      } else if (result.body) {
+        this.fileUploading = false;
+        if (result.body.success) {
+          // this.manageResultAfterUploadingFiles(result.body.result, true);
+          this.modalRef.close();
+
+        }
+      }
+    }, error => {
+      this.fileUploading = false;
+    });
   }
 
+  deleteImage(){
+        this.spinner.show();
+        this.adminService.deleteAdminProfile()
+            .subscribe((res) => {
+              if (res.success) {
+                this.spinner.hide();
+                this.global.successToastr(res.message);
+                this.ngOnInit();
+              } else {
+                this.spinner.hide();
+                this.global.errorToastr(res.message);
+              }
+            });
+  }
 
   fileUploadingProcessStarting() {
     this.uploadProgress = 0;
