@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxSelectModule } from 'ngx-select-ex';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { SharedModule } from 'app/shared/shared.module';
 import { EditApplicationComponent } from './edit-application/edit-application.component';
 import { UserHistoryComponent } from './user-history/user-history.component';
@@ -27,6 +28,7 @@ import { EditPersoanlAddressDetailsComponent } from './edit-persoanl-address-det
     HttpClientModule,
     NgxDatatableModule,
     NgxSelectModule,
+    NgSelectModule,
     NgxMaskModule.forRoot(),
     ReactiveFormsModule.
       withConfig({ warnOnNgModelWithFormControl: 'never' }),

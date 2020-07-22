@@ -15,30 +15,43 @@
         <div class="hdr-right">
         </div>
       </div>
-      <form novalidate>
+      <form [formGroup]="addressDetailsform" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label>Name</label>
-              <input type="text" placeholder="Enter full name of the user" class="form-control">
+              <input type="text" placeholder="Enter full name of the user" class="form-control" formControlName="name">
+              <app-control-messages fieldName="Full Name" [control]="addressDetailsform.controls['name']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-2">
             <div class="form-group">
               <label>Gender</label>
-              <ngx-select></ngx-select>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false" formControlName="gender">
+                <ng-option [value]="item.label" *ngFor="let item of gender">{{item.label}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Gender" [control]="addressDetailsform.controls['gender']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-2">
             <div class="form-group">
               <label>Date of Birth</label>
-              <ngx-select></ngx-select>
+              <input type="text" placeholder="Enter date of birth" class="form-control" formControlName="dob">
+              <app-control-messages fieldName="Date of birth" [control]="addressDetailsform.controls['dob']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label>Marital Status</label>
-              <ngx-select></ngx-select>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false" formControlName="gender">
+                <ng-option [value]="item.id" *ngFor="let item of maritalStatus">{{item.label}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Marital Status"
+                [control]="addressDetailsform.controls['marital_status']">
+              </app-control-messages>
             </div>
           </div>
           <div class="col-md-4">
@@ -142,7 +155,7 @@
           </div>
         </div>
         <div class="footer-btn">
-          <button class="btn" routerLink="/admins">cancel</button>
+          <button class="btn" routerLink="/applications">cancel</button>
           <button class="btn" type="submit">Submit</button>
         </div>
       </form>

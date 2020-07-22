@@ -464,8 +464,8 @@
                      </div>
                   </div>
                   <!-- /************* Signature : CAROUSEL **************/ -->
-                  <ngb-carousel *ngIf="userData?.sign_and_identity?.signature_documents">
-                     <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.signature_documents">
+                  <ngb-carousel *ngIf="userData?.sign_and_identity?.sign_url">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.sign_url">
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
@@ -491,8 +491,8 @@
                      </div>
                   </div>
                   <!-- /************* Photograph : CAROUSEL **************/ -->
-                  <ngb-carousel *ngIf="userData?.sign_and_identity?.photograph_documents">
-                     <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.photograph_documents">
+                  <ngb-carousel *ngIf="userData?.sign_and_identity?.photograph_url">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.photograph_url">
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
