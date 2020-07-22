@@ -14,9 +14,9 @@ import { Injectable } from '@angular/core';
 })
 export class ValidationService {
   static getValidatorErrorMessage(
-      validatorName: string,
-      validatorValue?: any,
-      fieldName?: any
+    validatorName: string,
+    validatorValue?: any,
+    fieldName?: any
   ) {
     if (!fieldName) {
       fieldName = 'This';
@@ -45,9 +45,9 @@ export class ValidationService {
   static creditCardValidator(control) {
     // Visa, MasterCard, American Express, Diners Club, Discover, JCB
     if (
-        control.value.match(
-            /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
-        )
+      control.value.match(
+        /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+      )
     ) {
       return null;
     } else {
@@ -58,9 +58,9 @@ export class ValidationService {
   emailValidator(control) {
     // RFC 2822 compliant regex
     if (
-        control.value.match(
-            /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
-        )
+      control.value.match(
+        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+      )
     ) {
       return null;
     } else {
@@ -73,9 +73,9 @@ export class ValidationService {
     // (?=.*[0-9])       - Assert a string has at least one number
     if (control.value) {
       if (
-          control.value.match(
-              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,25}$/
-          )
+        control.value.match(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,25}$/
+        )
       ) {
         return null;
       } else {
@@ -87,9 +87,9 @@ export class ValidationService {
   urlValidator(control) {
     if (control.value) {
       if (
-          control.value.match(
-              /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/
-          )
+        control.value.match(
+          /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/
+        )
       ) {
         return null;
       } else {
@@ -130,7 +130,7 @@ export class ValidationService {
 
   equalTo(equalControlName): ValidatorFn {
     return (
-        control: AbstractControl
+      control: AbstractControl
     ): {
       [key: string]: any;
     } => {
@@ -138,16 +138,16 @@ export class ValidationService {
 
       if (!control['_parent'].controls[equalControlName])
         throw new TypeError(
-            'Form Control ' + equalControlName + ' does not exists.'
+          'Form Control ' + equalControlName + ' does not exists.'
         );
 
       var controlMatch = control['_parent'].controls[equalControlName];
 
       return controlMatch.value == control.value
-          ? null
-          : {
-            equalTo: true
-          };
+        ? null
+        : {
+          equalTo: true
+        };
     };
   }
 

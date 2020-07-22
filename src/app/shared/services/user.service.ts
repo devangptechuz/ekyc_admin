@@ -66,4 +66,8 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrlOfUser}/deleteUserDocument`, obj);
   }
 
+  getPersoanlAddressDetails(userId: string) {
+    return this.http.get<any>(`${this.baseUrlOfUser}/getPersonalDetailsAndAddress/${userId}`);
+  }
+
 }

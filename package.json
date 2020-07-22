@@ -25,7 +25,7 @@
     "@angular/platform-server": "9.0.1",
     "@angular/router": "9.0.1",
     "@ng-bootstrap/ng-bootstrap": "5.3.0",
-    "@ng-select/ng-select": "3.7.2",
+    "@ng-select/ng-select": "^3.7.2",
     "@ngrx/store": "8.6.0",
     "@ngx-translate/core": "12.1.1",
     "@ngx-translate/http-loader": "4.0.0",
