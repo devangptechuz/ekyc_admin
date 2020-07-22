@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
@@ -25,11 +25,15 @@ export class AdminService {
     }
 
     updateAdminProfile(data): Observable<any>{
-        return this.http.get<any>(`${this.apiUrl}/updateAdminProfile`, data);
+        return this.http.put<any>(`${this.apiUrl}/updateAdminProfile`, data);
     }
 
     updateAdminProfileImage(data): Observable<any>{
-        return this.http.post<any>(`${this.apiUrl}/updateProfile`, data);
+        const params = new HttpParams().set('hideLoader', 'true');
+        let options = { params: params };
+        options['reportProgress'] = true;
+        options['observe'] = 'events';
+        return this.http.post<any>(`${this.apiUrl}/updateProfile`, data,options);
     }
 
     getUserList() {
@@ -60,8 +64,8 @@ export class AdminService {
         return this.http.post<any>(`${this.apiUrl}/deleteUser`, data); //todo id=['']
     }
 
-    deleteAdminProfile(data): Observable<any> {
-        return this.http.delete<any>(`${this.apiUrl}/deleteUser`, data); //todo id=['']
+    deleteAdminProfile(): Observable<any> {
+        return this.http.delete<any>(`${this.apiUrl}/deleteUserProfile`); //todo id=['']
     }
 
 }

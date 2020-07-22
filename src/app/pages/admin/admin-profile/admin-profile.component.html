@@ -10,7 +10,7 @@
          <div class="hdr">
             <div class="hdr-left">
                <h2>Personal Information</h2>
-               <span>last updated on : {{adminProfile['createdDate']}}</span>
+               <span>last updated on : {{updatePasswordDate}}</span>
             </div>
             <div class="hdr-right">
             	<button class="btn btn-custom" (click)="submitProfile()"><span class="icon-edit mr-2"></span>Update details</button>
@@ -40,7 +40,7 @@
        		</div>
        		<div class="col-md-6 d-flex justify-content-end">
        			<div class="view-pic">
-       				<img *ngIf="!imageUrl" src="assets/img/1.jpg">
+       				<img *ngIf="!imageUrl" src="assets/img/portrait/avatars/avatar-01.png">
        				<img *ngIf="imageUrl" [src]=imageUrl>
        			</div>
        			<ul>
@@ -54,7 +54,7 @@
        	 <div class="hdr mt-4">
             <div class="hdr-left">
                <h2>Password Setting</h2>
-               <span>last updated on : Jan 20 2020 - 02:60 PM</span>
+               <span>last updated on : {{updatePasswordDate}}</span>
             </div>
             <div class="hdr-right">
             </div>

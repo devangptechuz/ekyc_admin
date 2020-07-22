@@ -69,6 +69,9 @@ export class AdminProfileComponent implements OnInit {
   };
   public deviceId: string;
   imageUrl:any;
+  updatePasswordDate:any;
+  updateProfileDate:any;
+  userType:any;
 
   constructor(
       private router: Router,
@@ -105,8 +108,9 @@ export class AdminProfileComponent implements OnInit {
       this.validationService.validateAllFormFields(this.adminProfileForm);
       return false;
     }
-    delete this.adminProfileForm.value.id;
-    this.adminService.updateAdminProfile(this.adminPasswordForm.value).subscribe(
+    this.adminProfileForm.value.userType = this.userType;
+    delete this.adminProfileForm.value.email;
+    this.adminService.updateAdmin(this.adminProfileForm.value).subscribe(
         (result: any) => {
           if (result.success) {
             this.global.successToastr(result.message);
@@ -127,6 +131,9 @@ export class AdminProfileComponent implements OnInit {
                 this.adminProfileForm.patchValue(Data['result']['userData']);
                 this.imageUrl = Data['result']['userData']['userProfile_url'];
                 this.id = Data['result']['userData']['id'];
+                this.userType = Data['result']['userData']['userType'];
+                this.updateProfileDate = Data['result']['userData']['updateProfileDate'];
+                this.updatePasswordDate = Data['result']['userData']['updatePasswordDate'];
                 this.spinner.hide();
               }else {
                 this.spinner.hide();
@@ -305,8 +312,9 @@ export class AdminProfileComponent implements OnInit {
     this.uploader.queue.map((item: any, index) => {
       uploadParam.append('file[]', item._file);
     });
+    // uploadParam.append('files', queue);
+    this.fileUploadingProcessStarting();
     this.adminService.updateAdminProfileImage(uploadParam).subscribe((result: any) => {
-      this.imageUrl = result.result[0].url;
       if (result.type === 1 && result.loaded && result.total) {
         const percentDone = Math.round(100 * result.loaded / result.total);
         this.uploadProgress = percentDone;
@@ -315,19 +323,17 @@ export class AdminProfileComponent implements OnInit {
         if (result.body.success) {
           // this.manageResultAfterUploadingFiles(result.body.result, true);
           this.modalRef.close();
+
         }
       }
     }, error => {
       this.fileUploading = false;
     });
-    // uploadParam.append('files', queue);
-    this.fileUploadingProcessStarting();
   }
 
   deleteImage(){
         this.spinner.show();
-        debugger;
-        this.adminService.deleteAdminProfile({id: [this.id]})
+        this.adminService.deleteAdminProfile()
             .subscribe((res) => {
               if (res.success) {
                 this.spinner.hide();
