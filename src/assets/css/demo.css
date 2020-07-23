@@ -618,6 +618,16 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 .doc-upbox .more-dropdown .dropdown-toggle span {margin-left: -2px;}
 .doc-upbox .carousel .picsum-img-wrapper img{object-fit: cover;min-height: 280px;max-height: 280px;border-radius: 8px;height: 100%;width: 100%;}
 .doc-upbox iframe{min-height: 280px;}
+.signature-box .carousel .picsum-img-wrapper img{object-fit: contain; }
+.signature-box{background: #f7f7f7}
+.user-btmbx .carousel-control-next-icon,.user-btmbx .carousel-control-prev-icon{width: 40px;height: 40px;background: #FFFFFF;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);display: flex;align-items: center;justify-content: center;background: #fff;opacity: 1;border-radius: 50%;}
+.user-btmbx .carousel-control-next-icon:before,.user-btmbx .carousel-control-prev-icon:before{content: '\f105';font-family: fontawesome;color: #0970DD;;font-weight: 600;font-size: 20px;}
+.user-btmbx .carousel-control-prev-icon:before{content: '\f104';}
+.user-btmbx .carousel-control-prev{left: -40px;}
+.user-btmbx .carousel-control-next{right: -40px;}
+.user-btmbx .carousel-control-next-icon:hover,.user-btmbx .carousel-control-prev-icon:hover{background: #0970DD;}
+.user-btmbx .carousel-control-next-icon:hover:before,.user-btmbx .carousel-control-prev-icon:hover:before{color: #fff;}
+.user-btmbx .carousel-control-prev,.user-btmbx .carousel-control-next,.user-btmbx .carousel-control-prev:hover,.user-btmbx .carousel-control-next:hover{margin: 0;opacity: 1 !important;}
 
 /*=========Admin List===========*/
 .admin-list .btn-custom{padding: 10px 12px;font-size: 14px;margin-left: 24px;}
