@@ -1,0 +1,70 @@
+<div class="modal-body p-0 payment-popup uploaddoc-popup">
+  <div class="d-flex justify-content-between align-items-end main-header">
+    <div class="popup-header">
+      <span>Upload Document</span>
+      <h4 class="modal-title">{{nameOfTitleDocument}}</h4>
+    </div>
+    <div class="star">
+      <img src="assets/images/doc.svg">
+    </div>
+  </div>
+
+  <div class="grid" *ngIf="!fileUploading && !viewSectionOfImage">
+    <div>
+      <button class="btn" (click)="play()" title="Start Camera">
+        START CAMERA
+      </button>
+      <button class="btn" (click)="startRecording()" title="Start Recording">
+        START RECORDING
+      </button>
+      <button class="btn" (click)="stopRecording()" title="Stop Recording">
+        STOP RECORDING
+      </button>
+      <div class="duration" *ngIf="isRecording">{{counter}}</div>
+    </div>
+
+    <div class="original" [hidden]="!isVideoRecordingEnable">
+      <video #video [width]="width" class="video" autoplay id="video-preview"></video>
+    </div>
+  </div>
+  <div class="row mr-md-0" *ngIf="fileUploading">
+    <div class="col-md-10">
+      <div class="upload-box upload-progress">
+        <h5>Uploading File...</h5>
+        <div class="progress-ratio d-flex justify-content-between"><span>
+            Uploading...</span><span>{{uploadProgress}} %</span></div>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploadProgress + '%' }"></div>
+        </div>
+        <p>Please wait, This may take some time</p>
+      </div>
+    </div>
+  </div>
+
+  <!----------------- VIEW image/file : START -------------->
+  <div class="row mr-md-0" *ngIf="viewSectionOfImage">
+    <div class="col-md-10" *ngIf="!fileUploading">
+      <div class="upload-doc-box" *ngIf="viewPreviewDisplayImage?.content_type === 'video/webm'">
+        <video controls width="100%" height="100%">
+
+          <source [src]="viewPreviewDisplayImage?.url | safeUrl" type="video/webm">
+
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+        <!-- <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe> -->
+        <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+          <img src="assets/images/edit.svg">Remove Image/File</span>
+      </div>
+    </div>
+
+  </div>
+  <!----------------- VIEW image/file : END -------------->
+
+  <div class="modal-footer d-flex justify-content-between">
+    <a class="btn modal-btn-cancel" (click)="cancelModal()" href="javascript:void(0)">Cancel</a>
+    <a [ngClass]="{'disabled': !uploadVideoBlob}" class="btn modal-btn-continue" (click)="submitIPVDocumentPopup()"
+      href="javascript:void(0)">
+      Save & Continue
+    </a>
+  </div>
+</div>

@@ -17,9 +17,19 @@ import { ActivatedRoute } from '@angular/router';
 export class UsersDetailComponent implements OnInit {
   userId: any;
   userData: any;
-  userKYCDocuments: any;
-  @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
+  aadhaarKYCDocuments: any;
+  cancelledChequeKYCDocuments: any;
+  ipvKYCDocuments: any;
+  signatureKYCDocuments: any;
+  panDocumentKYCDocuments: any;
+  addressProofKYCDocuments: any;
+  bankStatementKYCDocuments: any;
+  photographKYCDocuments: any;
 
+  @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
+  @ViewChild('fileuploadSignaturepopup') fileuploadSignaturepopup: any;
+  @ViewChild('ipvPopup') IPVPopup: any;
+  ipvDocumentStatus: string;
   /******** webcame: START *******/
   liveWebcam = false;
   webCamMediaPriview: any;
@@ -71,6 +81,13 @@ export class UsersDetailComponent implements OnInit {
   isDocumentVerified: any;
   isContentTypePdf: boolean;
   /********************** IMAGE/FILE UPLOAD: END **********************/
+  /********************** Signature PAD: START **********************/
+
+  signatureWidth: any;
+  points = [];
+  signatureImage;
+  isEnableSignaturePad: boolean;
+  /********************** Signature PAD: END **********************/
 
   constructor(
     config: NgbCarouselConfig,
@@ -86,13 +103,35 @@ export class UsersDetailComponent implements OnInit {
     config.pauseOnHover = false;
   }
 
+
   ngOnInit(): void {
     this.userId = this.route.snapshot.params.id;
     const userData = this.route.snapshot.data['user'];
     this.userData = userData?.result;
     console.log('this.userData', this.userData);
     console.log('userdata-documents-upload', userData?.result?.basic_info?.document_uploaded);
-    this.userKYCDocuments = userData?.result?.basic_info?.document_uploaded;
+    // this.userKYCDocuments = userData?.result?.document_status?.aadhar_document;
+    if (userData?.result?.basic_info?.document_uploaded) {
+      userData?.result?.basic_info?.document_uploaded.map((item: any) => {
+        if (item?.document_name === 'aadhar_document') {
+          this.aadhaarKYCDocuments = item;
+        } else if (item?.document_name === 'pan_document') {
+          this.panDocumentKYCDocuments = item;
+        } else if (item?.document_name === 'address_proof') {
+          this.addressProofKYCDocuments = item;
+        } else if (item?.document_name === 'cancelled_cheque') {
+          this.cancelledChequeKYCDocuments = item;
+        } else if (item?.document_name === 'signature') {
+          this.signatureKYCDocuments = item;
+        } else if (item?.document_name === 'bank_statement') {
+          this.bankStatementKYCDocuments = item;
+        } else if (item?.document_name === 'photograph') {
+          this.photographKYCDocuments = item;
+        } else if (item?.document_name === 'ipv') {
+          this.ipvKYCDocuments = item;
+        }
+      });
+    }
   }
 
   addOnsModel(btnElement) {
@@ -540,5 +579,117 @@ export class UsersDetailComponent implements OnInit {
   }
 
   /************* Document upload code: END ***************/
+
+  /************* SIGNATURE DOCUMENT: START ***************/
+  /**
+   * Open Signature upload modal
+   */
+  openSinaturePopupModal(nameOfDocument: any, nameOfModalTitle: any, documentStatus = '', allItem: any = '') {
+    this.allowedMimeType = allItem.mime_type;
+    this.maxUploadLimit = allItem.remaining_count;
+    this.isDocumentVerified = (documentStatus === 'verified') ? true : false;
+    this.onModalOpen();
+    this.webCamMediaList = [];
+    this.signatureWidth = 300;
+
+    this.nameOfDocument = nameOfDocument;
+    this.nameOfTitleDocument = nameOfModalTitle;
+
+    this.addNewDocumentImage();
+    this.aadharDisplayImage = '';
+    this.mediaPreviews = [];
+    this.uploader.clearQueue();
+    // if (documentStatus !== "not_uploaded") {
+    //   const objParam = { 'document_name': nameOfDocument };
+    //   this.userService.getDocumentDetails(objParam).subscribe((res: any) => {
+    //     if (res.success) {
+    //       this.fileUploading = false;
+    //       this.manageResultAfterUploadingFiles(res.result, false);
+    //     }
+    //   });
+    // }
+    this.modalRef = this.modalService.open(this.fileuploadSignaturepopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef.result.then((result) => {
+      this.aadharDisplayImage = '';
+      this.mediaPreviews = [];
+      this.uploader.clearQueue();
+      this.isEnableSignaturePad = false;
+    });
+  }
+
+  /***
+   * Enable Signature pad
+   */
+  enableSignaturePad() {
+    this.isEnableSignaturePad = true;
+    this.viewSectionOfImage = false;
+    this.fileUploading = false;
+  }
+
+  showImage(baseImage: any) {
+    // console.log('data', baseImage);
+    this.signatureImage = baseImage;
+  }
+
+  submitSignaturePadImageModal() {
+    let realImageBlob = [];
+    const blobImage = this.appendFileAndSubmit(this.signatureImage);
+    realImageBlob.push(blobImage);
+
+    // const queue = [];
+    let uploadParam: any = new FormData();
+    uploadParam.append('document_name', this.nameOfDocument);
+    realImageBlob.map((item: any, index) => {
+      uploadParam.append('file[]', item, `signatureimage${index}.jpeg`);
+    });
+    this.fileUploading = true;
+    this.isEnableSignaturePad = false;
+    this.userService.uploadDocument(uploadParam).subscribe((result: any) => {
+      if (result.type === 1 && result.loaded && result.total) {
+        const percentDone = Math.round(100 * result.loaded / result.total);
+        this.uploadProgress = percentDone;
+      } else if (result.body) {
+        this.fileUploading = false;
+        if (result.body.success) {
+          this.viewMediaPreviewsList = result.body.result;
+          this.viewPreviewDisplayImage = this.viewMediaPreviewsList[0];
+          this.uploader.clearQueue();
+          this.signatureImage = '';
+          this.viewSectionOfImage = true;
+          // this.getKYCDocumentsList(true);
+          this.modalRef.close();
+        }
+      }
+    }, error => {
+      this.fileUploading = false;
+    });
+  }
+  /************* SIGNATURE DOCUMENT: START ***************/
+
+  /************************** IN-PERSON-VIDEO:START **********************/
+  /**
+  * Open IPV upload modal (Dynamically setted)
+  */
+  openIPVPopupModal(nameOfDocument: any, nameOfModalTitle: any, documentStatus = '', allItem: any = '') {
+    this.isDocumentVerified = (documentStatus === 'verified') ? true : false;
+    this.nameOfDocument = nameOfDocument;
+    this.nameOfTitleDocument = nameOfModalTitle;
+    this.mediaPreviews = [];
+    this.ipvDocumentStatus = documentStatus
+    // if (documentStatus !== "not_uploaded") {
+    //   const objParam = { 'document_name': nameOfDocument };
+    //   this.dashboardService.getDocumentDetails(objParam).subscribe((res: any) => {
+    //     if (res.success) {
+    //       this.fileUploading = false;
+    //       // this.manageResultAfterUploadingFiles(res.result, false);
+    //     }
+    //   });
+    // }
+    this.modalRef = this.modalService.open(this.IPVPopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef.result.then((result) => {
+      this.aadharDisplayImage = '';
+      this.mediaPreviews = [];
+    });
+  }
 
 }

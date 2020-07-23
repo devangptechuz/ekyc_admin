@@ -41,7 +41,7 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
       name: new FormControl(''),
       gender: requiredNullSelection,
       dob: new FormControl(''),
-      marital_status: requiredNullSelection,
+      marital_status: new FormControl(null),
       occupation_type: requiredNullSelection,
       income_range: requiredNullSelection,
       father_spouse_name: new FormControl(''),
@@ -98,8 +98,8 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
         if (res.result.mother_name) {
           this.addressDetailsform.patchValue({ mother_name: res.result.mother_name });
         }
-        if (res.result.father_spouse_name) {
-          this.addressDetailsform.patchValue({ father_spouse_name: res.result.father_spouse_name });
+        if (res.result.father_name) {
+          this.addressDetailsform.patchValue({ father_spouse_name: res.result.father_name });
         }
         if (res.result.incomes) {
           this.IncomeRangeArray = res.result.incomes;

@@ -16,7 +16,7 @@
           <div class="hdr-right">
             <button class="btn btn-custom mr-2" type="button"
               [routerLink]="['/applications/details',userId]">cancel</button>
-            <button class="btn btn-custom" type="submit">Save Details <span class="icon-edit mr-2"></span></button>
+            <button class="btn btn-custom" type="submit">Save Details <span class="icon-simple-check"></span></button>
           </div>
         </div>
         <div class="row">
@@ -60,26 +60,28 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <label>Income Range</label>
-              <ng-select appearance="outline" placeholder="select" [searchable]="false" formControlName="income_range">
-                <ng-option [value]="item.id" *ngFor="let item of IncomeRangeArray">{{item.label}}</ng-option>
-              </ng-select>
-              <app-control-messages fieldName="Income Range" [control]="addressDetailsform.controls['income_range']">
-              </app-control-messages>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
               <label>Occupation Type</label>
               <ng-select appearance="outline" placeholder="select" [searchable]="false"
                 formControlName="occupation_type">
-                <ng-option [value]="item.id" *ngFor="let item of OccupationTypeArray">{{item.label}}</ng-option>
+                <ng-option [value]="item.id" *ngFor="let item of OccupationTypeArray">{{item.name}}</ng-option>
               </ng-select>
               <app-control-messages fieldName="Occupation Type"
                 [control]="addressDetailsform.controls['occupation_type']">
               </app-control-messages>
             </div>
           </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Income Range</label>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false" formControlName="income_range">
+                <ng-option [value]="item.id" *ngFor="let item of IncomeRangeArray">{{item.name}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Income Range" [control]="addressDetailsform.controls['income_range']">
+              </app-control-messages>
+            </div>
+          </div>
+
           <div class="col-md-4">
           </div>
           <div class="col-md-4">

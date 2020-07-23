@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WebcamModule } from 'ngx-webcam';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { SignaturePadModule } from '@ng-plus/signature-pad';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersDetailComponent } from './users-detail/users-detail.component';
@@ -18,9 +19,12 @@ import { EditApplicationComponent } from './edit-application/edit-application.co
 import { UserHistoryComponent } from './user-history/user-history.component';
 import { BankDetailComponent } from './bank-detail/bank-detail.component';
 import { EditPersoanlAddressDetailsComponent } from './edit-persoanl-address-details/edit-persoanl-address-details.component';
+import { InPersonVideoComponent } from './document-modal/in-person-video/in-person-video.component';
 
 @NgModule({
-  declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent, UserHistoryComponent, BankDetailComponent, EditPersoanlAddressDetailsComponent],
+  declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent,
+    UserHistoryComponent, BankDetailComponent, EditPersoanlAddressDetailsComponent,
+    InPersonVideoComponent],
   imports: [
     CommonModule,
     WebcamModule,
@@ -29,6 +33,7 @@ import { EditPersoanlAddressDetailsComponent } from './edit-persoanl-address-det
     NgxDatatableModule,
     NgxSelectModule,
     NgSelectModule,
+    SignaturePadModule,
     NgxMaskModule.forRoot(),
     ReactiveFormsModule.
       withConfig({ warnOnNgModelWithFormControl: 'never' }),

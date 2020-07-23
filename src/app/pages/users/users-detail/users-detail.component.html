@@ -200,7 +200,7 @@
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item"
-                           (click)="openDocumentPopupModal('aadhar_document', 'Aadhaar', 'not-uploaded')">Upload
+                           (click)="openDocumentPopupModal(aadhaarKYCDocuments?.document_name, aadhaarKYCDocuments?.document_modal_title, aadhaarKYCDocuments?.document_status, aadhaarKYCDocuments)">Upload
                            document</a>
                      </div>
                   </div>
@@ -251,8 +251,10 @@
                         Name</label>{{userData?.pan_details?.full_name}}</div>
                   <div class="col-md-12 d-flex flex-column mb-3">
                      <label>DOB</label>{{userData?.pan_details?.date_of_birth}}</div>
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>father’s
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>father’s/spouse's
                         name</label>{{userData?.personal_details?.father_name}}</div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Mother’s
+                        name</label>{{userData?.personal_details?.mother_name}}</div>
                </div>
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
@@ -266,8 +268,8 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0)"
-                           (click)="openDocumentPopupModal(userKYCDocuments?.document_name, userKYCDocuments?.document_modal_title, userKYCDocuments?.document_status,userKYCDocuments?.document_status)">Upload
+                        <a class="dropdown-item"
+                           (click)="openDocumentPopupModal(panDocumentKYCDocuments?.document_name, panDocumentKYCDocuments?.document_modal_title, panDocumentKYCDocuments?.document_status, panDocumentKYCDocuments)">Upload
                            document</a>
                      </div>
                   </div>
@@ -355,7 +357,9 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
+                        <a class="dropdown-item"
+                           (click)="openDocumentPopupModal(addressProofKYCDocuments?.document_name, addressProofKYCDocuments?.document_modal_title, addressProofKYCDocuments?.document_status, addressProofKYCDocuments)">Upload
+                           document</a>
                      </div>
 
                   </div>
@@ -420,7 +424,9 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
+                        <a class="dropdown-item"
+                           (click)="openDocumentPopupModal(bankStatementKYCDocuments?.document_name, bankStatementKYCDocuments?.document_modal_title, bankStatementKYCDocuments?.document_status, bankStatementKYCDocuments)">Upload
+                           document</a>
                      </div>
 
                   </div>
@@ -459,7 +465,9 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
+                        <a class="dropdown-item" href="javascript:void(0)"
+                           (click)="openSinaturePopupModal(signatureKYCDocuments?.document_name, signatureKYCDocuments?.document_modal_title, signatureKYCDocuments?.document_status, signatureKYCDocuments)">Upload
+                           document</a>
                      </div>
                   </div>
                   <!-- /************* Signature : CAROUSEL **************/ -->
@@ -486,7 +494,9 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
+                        <a class="dropdown-item"
+                           (click)="openDocumentPopupModal(photographKYCDocuments?.document_name, photographKYCDocuments?.document_modal_title, photographKYCDocuments?.document_status, photographKYCDocuments)">Upload
+                           document</a>
                      </div>
                   </div>
                   <!-- /************* Photograph : CAROUSEL **************/ -->
@@ -513,7 +523,9 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0)">Upload document</a>
+                        <a class="dropdown-item" href="javascript:void(0)"
+                           (click)="openIPVPopupModal(ipvKYCDocuments?.document_name, ipvKYCDocuments?.document_modal_title, ipvKYCDocuments?.document_status, ipvKYCDocuments)">
+                           Upload document</a>
                      </div>
                   </div>
                   <!-- /************* IN PERSON VIDEO : CAROUSEL **************/ -->
@@ -635,7 +647,7 @@
                   <div class="img-td-div" (click)="documentShowBigMedia(i,true)">
                      <img *ngIf="mediaPreview?.contentType !== 'application/pdf'" src="{{ mediaPreview?.file }}"
                         alt="img">
-                     <img *ngIf="mediaPreview?.contentType === 'application/pdf'" src="assets/images/doc.svg" alt="img">
+                     <img *ngIf="mediaPreview?.contentType === 'application/pdf'" src="assets/img/doc.svg" alt="img">
                   </div>
                </button>
             </div>
@@ -669,8 +681,7 @@
                   <div class="img-td-div" (click)="previewImageBig(i)">
                      <img *ngIf="mediaPreview?.content_type !== 'application/pdf'" src="{{ mediaPreview?.url }}"
                         alt="img">
-                     <img *ngIf="mediaPreview?.content_type === 'application/pdf'" src="assets/images/doc.svg"
-                        alt="img">
+                     <img *ngIf="mediaPreview?.content_type === 'application/pdf'" src="assets/img/doc.svg" alt="img">
                   </div>
                </button>
             </div>
@@ -690,4 +701,151 @@
          </a>
       </div>
    </div>
+</ng-template>
+
+<ng-template #fileuploadSignaturepopup let-c="close" let-d="dismiss">
+
+   <div class="modal-body p-0 payment-popup uploaddoc-popup">
+      <div class="modal-header yellowclr common-header">
+         <div class="popup-header">
+            <span>Upload Document</span>
+            <h4 class="modal-title">{{nameOfTitleDocument}}</h4>
+         </div>
+         <div class="popup-icon">
+            <img src="assets/img/doc.svg">
+         </div>
+      </div>
+      <!--------------------- SIGNATURE code: START --------------------->
+      <div *ngIf="isEnableSignaturePad && !viewSectionOfImage">
+
+         <div class="snapshot row mr-md-0">
+            <div class="col-md-10">
+               <ng-signature-pad backgroundColor="#F7F7F7" format="base64" (done)="showImage($event)">
+               </ng-signature-pad>
+               <!-- <img [src]="signatureImage" *ngIf="signatureImage" /> -->
+            </div>
+
+            <div class="col-md-2 p-md-0">
+               <div class="scroll-upload">
+                  <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
+                     Image/File</button>
+                  <button class="view-img" *ngFor="let mediaPreview of webCamMediaList; let i = index">
+                     <div class="img-td-div" (click)="webCamShowMediaBig(i)">
+                        <img src="{{ mediaPreview }}" alt="img">
+                     </div>
+                  </button>
+               </div>
+            </div>
+         </div>
+
+         <h4 *ngIf="errors.length > 0">Messages:</h4>
+         <ul *ngFor="let error of errors">
+            <li>{{error | json}}</li>
+         </ul>
+      </div>
+      <!--------------------- SIGNATURE code: End --------------------->
+
+      <!----------------- UPLOAD image/file aadhar: START -------------->
+      <div class="row mr-md-0" *ngIf="!viewSectionOfImage && !isEnableSignaturePad">
+         <div class="col-md-10" *ngIf="!fileUploading">
+            <div class="upload-box" *ngIf="addNewAadhaarImageUpload">
+               <a (click)="enableSignaturePad()" href="javascript:void(0)" class="d-flex flex-column"><img
+                     src="assets/img/modal-upload/signature.svg">
+                  <div class="d-flex align-items-center">
+                     <img src="assets/img/modal-upload/signature-blue.svg">Use Signature Pad
+                  </div>
+               </a>
+               <div class="or-text"><span>OR</span></div>
+               <a href="javascript:void(0)" class="d-flex flex-column align-items-center upload-file"><img
+                     src="assets/img/modal-upload/file-minus.svg">
+                  <input type="file" ng2FileSelect [uploader]="uploader" multiple>
+                  <div class="d-flex"><img src="assets/img/modal-upload/upload.svg">Upload File</div>
+               </a>
+            </div>
+
+            <div class="upload-doc-box d-flex justify-content-center align-items-center"
+               *ngIf="!addNewAadhaarImageUpload && !clickedWebcamPicture">
+               <img *ngIf="aadharDisplayImage?.contentType !== 'application/pdf'" src="{{aadharDisplayImage?.file}}">
+               <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'" src="assets/img/doc.svg"
+                  style="width: 100px;object-fit: contain;">
+               <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img src="assets/images/edit.svg">Edit
+                  Image/File</span>
+            </div>
+         </div>
+
+         <div class="col-md-10" *ngIf="fileUploading">
+            <div class="upload-box upload-progress">
+               <h5>Uploading File...</h5>
+               <div class="progress-ratio d-flex justify-content-between"><span>
+                     Uploading...</span><span>{{uploadProgress}} %</span></div>
+               <div class="progress">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploadProgress + '%' }"></div>
+               </div>
+               <p>Please wait, This may take some time</p>
+            </div>
+         </div>
+
+         <div class="col-md-2 p-md-0" *ngIf="!isEnableSignaturePad">
+            <div class="scroll-upload">
+               <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New Image/File</button>
+               <button class="view-img" *ngFor="let mediaPreview of mediaPreviews; let i = index">
+                  <div class="img-td-div" (click)="documentShowBigMedia(i,true)">
+                     <img *ngIf="mediaPreview?.contentType !== 'application/pdf'" src="{{ mediaPreview?.file }}"
+                        alt="img">
+                     <img class="pdf-listview" *ngIf="mediaPreview?.contentType === 'application/pdf'"
+                        src="assets/img/doc.svg" alt="img">
+                  </div>
+               </button>
+            </div>
+         </div>
+      </div>
+      <!----------------- UPLOAD image/file aadhar: END -------------->
+
+      <!----------------- VIEW image/file : START -------------->
+      <div class="row mr-md-0" *ngIf="viewSectionOfImage">
+         <div class="col-md-10" *ngIf="!fileUploading">
+            <div class="upload-doc-box"
+               *ngIf="viewPreviewDisplayImage?.content_type === 'image/jpeg' || viewPreviewDisplayImage?.content_type === 'image/jpg' || viewPreviewDisplayImage?.content_type === 'image/png'">
+               <img src="{{viewPreviewDisplayImage?.url}}">
+               <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+                  <img src="assets/images/edit.svg">Remove Image/File</span>
+            </div>
+            <div class="upload-doc-box" *ngIf="viewPreviewDisplayImage?.content_type === 'application/pdf'">
+               <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe>
+               <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+                  <img src="assets/images/edit.svg">Remove Image/File</span>
+            </div>
+         </div>
+
+         <div class="col-md-2 p-md-0">
+            <div class="scroll-upload">
+               <button *ngIf="!isDocumentVerified" class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
+                  Image/File</button>
+               <button class="view-img" *ngFor="let mediaPreview of viewMediaPreviewsList; let i = index">
+                  <div class="img-td-div" (click)="previewImageBig(i)">
+                     <img src="{{ mediaPreview?.url }}" alt="img">
+                  </div>
+               </button>
+            </div>
+         </div>
+      </div>
+      <!----------------- VIEW image/file : END -------------->
+
+      <div class="modal-footer d-flex justify-content-between">
+         <a class="btn modal-btn-cancel" (click)="c('cancel')" href="javascript:void(0)">Cancel</a>
+         <a *ngIf="!isEnableSignaturePad" [ngClass]="{'disabled': !uploader?.getNotUploadedItems().length}"
+            class="btn modal-btn-continue" (click)="submitDocumentUploadModal()" href="javascript:void(0)">
+            Save & Continue
+         </a>
+         <a *ngIf="isEnableSignaturePad" [ngClass]="{'disabled': !signatureImage?.length}"
+            class="btn modal-btn-continue" (click)="submitSignaturePadImageModal()" href="javascript:void(0)">
+            Save & Continue
+         </a>
+      </div>
+   </div>
+</ng-template>
+
+<ng-template #ipvPopup let-c="close" let-d="dismiss">
+   <app-in-person-video [ipvDocStatus]="ipvDocumentStatus" [nameDocument]="nameOfDocument"
+      [nameTitleDocument]="nameOfTitleDocument" (closeEvent)="cancelModal('ipv')"></app-in-person-video>
 </ng-template>
