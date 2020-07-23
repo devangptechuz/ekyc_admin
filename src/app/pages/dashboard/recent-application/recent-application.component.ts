@@ -13,14 +13,14 @@ export class RecentApplicationComponent implements OnInit {
   rows = [{
     'img': 'assets/img/portrait/avatars/avatar-03.png',
     'username': 'pragnesh',
-    'accountType': 'Equity',
+    'accountType': 'Equity, Mutual Fund',
     'status': 'Submitted',
     'applicationID': 'GP00421',
     'lastActivity': 'Apr 22 2020-02:31PM'
   }, {
     'img': 'assets/img/portrait/avatars/avatar-04.png',
     'username': 'ritu',
-    'accountType': 'IPO',
+    'accountType': 'IPO, Future & Options',
     'status': 'Incomplete',
     'applicationID': 'GP00422',
     'lastActivity': 'Apr 24 2020-02:21PM',

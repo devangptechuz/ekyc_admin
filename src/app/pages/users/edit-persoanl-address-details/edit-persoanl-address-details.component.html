@@ -6,16 +6,19 @@
   </div>
 </div>
 <section class="add-user add-admin-user">
-  <div class="container">
-    <div class="add-box">
-      <div class="hdr">
-        <div class="hdr-left">
-          <h2>Personal & Address Details</h2>
+  <form [formGroup]="addressDetailsform" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="add-box">
+        <div class="hdr">
+          <div class="hdr-left">
+            <h2>Personal & Address Details</h2>
+          </div>
+          <div class="hdr-right">
+            <button class="btn btn-custom mr-2" type="button"
+              [routerLink]="['/applications/details',userId]">cancel</button>
+            <button class="btn btn-custom" type="submit">Save Details <span class="icon-edit mr-2"></span></button>
+          </div>
         </div>
-        <div class="hdr-right">
-        </div>
-      </div>
-      <form [formGroup]="addressDetailsform" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
@@ -204,11 +207,11 @@
             </div>
           </div>
         </div>
-        <div class="footer-btn">
+        <!-- <div class="footer-btn">
           <button class="btn" type="button" [routerLink]="['/applications/details',userId]">cancel</button>
           <button class="btn" type="submit">Submit</button>
-        </div>
-      </form>
+        </div> -->
+      </div>
     </div>
-  </div>
+  </form>
 </section>
