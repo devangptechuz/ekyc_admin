@@ -43,4 +43,5 @@ body.layout-dark .dropdown-menu .dropdown-item:hover {background-color: rgba(9, 
 .layout-dark section.application .filter{background: rgba(255, 255, 255, 0.08);border: 1px solid #082544;color: rgba(255, 255, 255, 0.56);}
 .layout-dark section.application span.icon-filter{color: rgba(255, 255, 255, 0.56);}
 .layout-dark .modal-usrbox{background: rgba(0, 0, 0, 0.16);}
-.layout-dark .modal-usrbox span{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .modal-usrbox span,.layout-dark .admin-profile .hdr-left span{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .add-user .view-pic{background: rgba(238, 238, 238, 0.16);}

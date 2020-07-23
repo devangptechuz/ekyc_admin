@@ -238,6 +238,12 @@ a{cursor: pointer;transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-
 a:hover{text-decoration: none;}
 .modal-lg {max-width: 960px;}
 body form label{text-transform: inherit;}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active,input:-internal-autofill-selected  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
 
 .btn-custom{-webkit-transition: all 0.3s;-moz-transition: all 0.3s;-o-transition: all 0.3s;transition: all 0.3s;position: relative;border: none; overflow: hidden;position: relative;background: #0970DD;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);border-radius: 8px;font-weight: 500;font-size: 16px;line-height: 24px;letter-spacing: 1px;text-transform: capitalize;color: #FFFFFF;transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-out;-moz-transition: 0.3s ease-in-out;}
 .btn-custom:hover{color: #fff;background: #0759b1;box-shadow: 0 2px 7px rgba(0,0,0,.28);}
@@ -513,7 +519,7 @@ section.add-user .footer-btn .btn:disabled{color: #B0BAC5;opacity: 1;}
 section.add-user .checkbox label{font-weight: normal;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.56);}
 section.add-user .checkbox{margin: 0 0 24px;background: rgba(9, 112, 221, 0.16);border-radius: 8px;padding: 16px;}
 
-section.add-admin-user .hdr-right button{display: flex;align-items: center;min-width: 138px;padding: 16px;font-size: 12px;line-height: 18px;}
+section.add-admin-user .hdr-right button{display: flex;align-items: center;justify-content: center;min-width: 138px;padding: 16px;font-size: 12px;line-height: 18px;}
 .hdr-right .icon-simple-check{font-weight: 600;margin-left: 5px;}
 .ngx-select__toggle::after{content: "\e918";color:#666666;font-size: 5px;font-family: 'icomoon' !important;border: none;display: block;width: auto;height: auto;display: block;width: auto;height: auto;}
 .ngx-select__toggle .dropdown-toggle::after{display: none;}
@@ -545,6 +551,7 @@ ul.pic-action li{margin: 5px 0;}
 .admin-profile .hdr{padding-bottom: 16px;margin-bottom: 24px;}
 .btn-pw{width: 209px;height: 56px;}
 .admin-profile .hdr-right .icon-edit{font-size: 17px;} 
+.admin-profile .btn-pw{margin-bottom: 22px;}
 
 
 /*=========Application===========*/
@@ -708,7 +715,7 @@ input:checked + .slider:before {-webkit-transform: translateX(9px);-ms-transform
 .modal-footer .modal-cancel, .modal-footer .modal-cancel:not([href]):not([tabindex]){color: #DF0E40;}
 .modal-body p {font-size: 16px;line-height: 24px;color: rgba(0, 0, 0, 0.56);}
 .modal-body{padding: 0;}
-.modal-usrbox{margin: 40px 0 130px;background: #FAFAFA;border-radius: 8px;padding: 24px;}
+.modal-usrbox{align-items: center;margin: 40px 0 130px;background: #FAFAFA;border-radius: 8px;padding: 24px;}
 .modal-usrbox span{font-size: 14px;line-height: 21px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
 .modal-usrbox .name{width: 100%;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;display: block;font-size: 20px;line-height: 30px;text-transform: capitalize;color: rgba(0, 0, 0, 0.8);}
 .modal-usrbox .dummy-icon{width: 48px;height: 48px;background: rgba(9, 112, 221, 0.16);border-radius: 50%;display: flex;align-items: center;justify-content: center;}
