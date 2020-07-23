@@ -448,7 +448,7 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 .custom-datatable .datatable-checkbox input[type='checkbox']:checked:before {border-color: #fff;width: 9px;height: 5px;left: 4px;top: 4px;}
 */
 .ngx-datatable .datatable-footer .page-count{color: rgba(0, 0, 0, 0.32);font-size: 16px;padding: 0;}
-.custom-datatable .datatable-checkbox input[type='checkbox']{width: 16px;height: 16px;-moz-appearance: none;-webkit-appearance: none;}
+.custom-datatable .datatable-checkbox input[type='checkbox']{width: 16px;height: 13px;-moz-appearance: none;-webkit-appearance: none;}
 .custom-datatable .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-template-wrap{display: flex;flex-direction: row-reverse;justify-content: flex-end;}
 .custom-datatable .ngx-datatable.checkbox-table .datatable-header .datatable-header-cell:first-child .datatable-header-cell-template-wrap{display: inherit;}
 .custom-datatable .uname{color: rgba(0, 0, 0, 0.8);text-transform: capitalize;}

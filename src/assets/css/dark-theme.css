@@ -39,3 +39,6 @@ body.layout-dark .dropdown-menu .dropdown-item:hover {background-color: rgba(9, 
 .layout-dark .ngx-datatable.bootstrap .datatable-footer .datatable-pager a{color: rgba(255, 255, 255, 0.8)}
 .layout-dark .ngx-select__toggle::after{color: rgba(255, 255, 255, 0.56);}
 .layout-dark section.application .nav-tabs .nav-link:hover{background: rgba(255, 255, 255, 0.08);}
+.layout-dark .light-color-text{color: rgba(255, 255, 255, 0.32);}
+.layout-dark section.application .filter{background: rgba(255, 255, 255, 0.08);border: 1px solid #082544;color: rgba(255, 255, 255, 0.56);}
+.layout-dark section.application span.icon-filter{color: rgba(255, 255, 255, 0.56);}
