@@ -17,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UsersDetailComponent implements OnInit {
   userId: any;
   userData: any;
+  userKYCDocuments: any;
   @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
 
   /******** webcame: START *******/
@@ -79,7 +80,7 @@ export class UsersDetailComponent implements OnInit {
     private userService: UserService,
     private ref: ChangeDetectorRef
   ) {
-    // config.interval = 10000;
+    config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
     config.pauseOnHover = false;
@@ -90,6 +91,8 @@ export class UsersDetailComponent implements OnInit {
     const userData = this.route.snapshot.data['user'];
     this.userData = userData?.result;
     console.log('this.userData', this.userData);
+    console.log('userdata-documents-upload', userData?.result?.basic_info?.document_uploaded);
+    this.userKYCDocuments = userData?.result?.basic_info?.document_uploaded;
   }
 
   addOnsModel(btnElement) {

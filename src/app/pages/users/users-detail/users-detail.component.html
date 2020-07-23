@@ -267,7 +267,8 @@
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)"
-                           (click)="openDocumentPopupModal('pan_document', 'PAN', 'not-uploaded')">Upload document</a>
+                           (click)="openDocumentPopupModal(userKYCDocuments?.document_name, userKYCDocuments?.document_modal_title, userKYCDocuments?.document_status,userKYCDocuments?.document_status)">Upload
+                           document</a>
                      </div>
                   </div>
                   <ngb-carousel *ngIf="userData?.pan_details?.pan_documents">
