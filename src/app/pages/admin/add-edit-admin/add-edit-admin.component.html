@@ -49,23 +49,25 @@
                         </div>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
-                        <div class="view-pic">
-                            <img src="assets/img/user-ic.svg">
-                            <!-- <img src="assets/img/user-ic.svg" class="userpic"> -->
+                        <div class="view-pic" *ngIf="!userProfileURL">
+                           <img src="assets/img/user-ic.svg">
+                        </div>
+                        <div class="view-pic" *ngIf="userProfileURL">
+                           <img [src]="userProfileURL">
                         </div>
                         <ul class="pic-action">
-                            <li><a href="javascript:void(0)" ><span class="icon-close"></span>remove image</a></li>
-                            <li><a href="javascript:void(0)" ><span class="icon-camera"></span>take a picture</a></li>
-                            <li><a href="javascript:void(0)" ><span class="icon-upload" ></span>upload from computer</a></li>
+                            <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                   aria-describedby="inputGroupFileAddon01" (change)="onFileSelect($event)" accept="image/x-png,image/jpeg">
+                            <li ><button for="inputGroupFile01" ><span class="icon-upload" ></span>upload from computer</button></li>
                         </ul>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                       
+
                     </div>
                     <div class="col-md-3">
-                      
+
                     </div>
                 </div>
                 <div class="row">

@@ -37,6 +37,12 @@
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="50" name="user name" [sortable]="true" prop="username">
                               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                 <a class="user-img dummy-icon" *ngIf="!row.userProfile_url">
+                                    <img src="assets/img/user-ic.svg">
+                                 </a>
+                                 <a class="user-img" *ngIf="row.userProfile_url">
+                                    <img src="{{row.userProfile_url}}">
+                                 </a>
                                  <a data-tooltip title="{{row.username}}">{{row.username}}</a>
                               </ng-template>
                            </ngx-datatable-column>
