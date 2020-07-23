@@ -84,7 +84,7 @@ export class ListAdminComponent implements OnInit {
     this.confirmationDialogService.confirm(label).then((data) => {
       if (data) {
         this.spinner.show();
-        this.adminService.deleteAdmin({ id: id })
+        this.adminService.deleteAdmin({ id: [id] })
           .subscribe((res) => {
             if (res.success) {
               this.spinner.hide();

@@ -96,7 +96,7 @@ export class AdminProfileComponent implements OnInit {
     });
     this.adminProfileForm = this.formBuilder.group({
       username: ['', [Validators.required]],
-      mobileNumber: ['', [Validators.required]],
+      mobileNumber: ['', [Validators.required,this.validationService.mobileFormat]],
       email: ['', []],
       id: ['', []],
     });
@@ -317,6 +317,7 @@ export class AdminProfileComponent implements OnInit {
         const percentDone = Math.round(100 * result.loaded / result.total);
         this.uploadProgress = percentDone;
       } else if (result.body) {
+        this.imageUrl = result.body.result[0].url;
         this.fileUploading = false;
         if (result.body.success) {
           // this.manageResultAfterUploadingFiles(result.body.result, true);
@@ -324,6 +325,7 @@ export class AdminProfileComponent implements OnInit {
 
         }
       }
+
     }, error => {
       this.fileUploading = false;
     });
@@ -409,6 +411,7 @@ export class AdminProfileComponent implements OnInit {
       } else if (result.body) {
         this.fileUploading = false;
         if (result.body.success) {
+          this.imageUrl = result.body.result[0].url;
           // this.manageResultAfterUploadingFiles(result.body.result, true);
           this.modalRef.close();
         }
