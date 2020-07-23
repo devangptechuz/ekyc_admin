@@ -13,27 +13,27 @@ export class RecentAlertsComponent implements OnInit {
   rows = [{
     'username': 'pragnesh',
     'img': 'assets/img/portrait/avatars/avatar-01.png',
-    'AlertMessage': 'Something',
+    'AlertMessage': 'verification denied',
     'mobileNumber': '9039484848',
     'ApplicationID': '12390890',
     'DateofAlert': '02/11/1994',
-    'status': 'Complete'
+    'status': 'Incomplete'
   }, {
     'username': 'devu',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
-    'AlertMessage': 'Something',
+    'AlertMessage': 'invalid or blur document',
     'mobileNumber': '7939484848',
     'ApplicationID': '12390891',
     'DateofAlert': '02/11/1985',
-    'status': 'Incomplete'
+    'status': 'Submitted'
   }, {
     'username': 'devud',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
-    'AlertMessage': 'Something',
+    'AlertMessage': 'Name mismatch',
     'mobileNumber': '9039498437',
     'ApplicationID': '12390892',
     'DateofAlert': '02/11/1985',
-    'status': 'Complete'
+    'status': 'Incomplete'
   }, {
     'username': 'devang',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
@@ -45,7 +45,7 @@ export class RecentAlertsComponent implements OnInit {
   }, {
     'username': 'dev_test',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
-    'AlertMessage': 'Something',
+    'AlertMessage': 'Name mismatch',
     'mobileNumber': '9039498436',
     'ApplicationID': '12390894',
     'DateofAlert': '02/11/1985',
@@ -53,15 +53,15 @@ export class RecentAlertsComponent implements OnInit {
   }, {
     'username': 'devli',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
-    'AlertMessage': 'Something',
+    'AlertMessage': 'verification denied',
     'mobileNumber': '9039477437',
     'ApplicationID': '12312390895',
     'DateofAlert': '02/11/1985',
-    'status': 'Complete'
+    'status': 'Incomplete'
   }, {
     'username': 'ritesh',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
-    'AlertMessage': 'Something',
+    'AlertMessage': 'Name mismatch',
     'mobileNumber': '9039489102',
     'ApplicationID': '12312390897',
     'DateofAlert': '02/11/1985',

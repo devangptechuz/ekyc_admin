@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-logout-popup',
@@ -9,6 +9,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 export class LogoutPopupComponent implements OnInit {
   @Input() title: string;
   @Input() label: string;
+  @Input() userEmail: string;
   constructor(private activeModal: NgbActiveModal) { }
 
   ngOnInit() {

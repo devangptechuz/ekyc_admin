@@ -72,9 +72,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   onLogout(btnElement) {
+    let userEmail: string = this.cookieService.get('admin_user_email');
     btnElement && btnElement.parentElement && btnElement.parentElement.parentElement &&
       btnElement.parentElement.parentElement.blur();
-    this.confirmationDialogService.deleteConfirm(this.userName).then((data) => {
+    this.confirmationDialogService.deleteConfirm(this.userName, userEmail).then((data) => {
       if (data) {
         this.logout();
       }
