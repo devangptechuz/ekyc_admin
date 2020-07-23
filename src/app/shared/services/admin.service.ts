@@ -42,7 +42,7 @@ export class AdminService {
     }
 
     addAdmin(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}/insertSubAdmin`, data);
+        return this.http.post<any>(`${this.imageUrl}/insertSubAdmin`, data);
     }
 
     updatePassword(data): Observable<any> {
@@ -58,7 +58,7 @@ export class AdminService {
     }
 
     updateAdmin(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}/updateAdmin`, data);
+        return this.http.post<any>(`${this.imageUrl}/updateAdmin`, data);
     }
 
     deleteAdmin(data): Observable<any> {

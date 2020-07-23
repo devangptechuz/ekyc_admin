@@ -12,7 +12,7 @@
                         <h2 class="mb-0">{{adminTitle}}</h2>
                     </div>
 
-                    <div class="hdr-right">
+                    <div class="hdr-right d-flex">
                         <button class="btn btn-custom mr-3 mb-0" routerLink="/admins">cancel</button>
                         <button class="btn btn-custom mb-0">Save details<span class="icon-simple-check"></span></button>
                     </div>
@@ -61,10 +61,9 @@
                            <img [src]="userProfileURL" class="userpic">
                         </div>
                         <ul class="pic-action">
-                            <li><a href="javascript:void(0)"><span class="icon-close"></span>remove image</a></li>
-                            <li><a href="javascript:void(0)"><span class="icon-camera"></span>take a picture</a></li>
+                            <li><a href="javascript:void(0)"  (click)="removeImages()"><span class="icon-close"></span>remove image</a></li>
                             <li><button href="javascript:void(0)"><span class="icon-upload"></span>upload from computer<input type="file"  (change)="onFileSelect($event)" accept="image/x-png,image/jpeg" class="hide-file"></button>
-                            </li>                           
+                            </li>
                         </ul>
                     </div>
 
@@ -87,7 +86,7 @@
                             </app-control-messages>
                         </div>
                     </div>
-                </div>               
+                </div>
             </div>
         </div>
     </form>
