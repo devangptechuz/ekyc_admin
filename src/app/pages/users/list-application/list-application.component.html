@@ -88,10 +88,10 @@
                                     <ngx-datatable-column [width]="20" name="application status" [sortable]="false"
                                         prop="isDocumentUploaded">
                                         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                            <span class="greeb-color-text" *ngIf="row.isDocumentUploaded ">
+                                            <span class="green-color-text" *ngIf="row.isDocumentUploaded ">
                                                 Completed
                                             </span>
-                                            <span class="red-color-text" *ngIf="!row.isDocumentUploaded">
+                                            <span class="light-color-text" *ngIf="!row.isDocumentUploaded">
                                                 Incompleted
                                             </span>
                                         </ng-template>
