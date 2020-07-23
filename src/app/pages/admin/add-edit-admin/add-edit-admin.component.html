@@ -54,9 +54,11 @@
                         </div>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
-                        <div class="view-pic">
-                            <img src="assets/img/user-ic.svg">
-                            <!-- <img src="assets/img/user-ic.svg" class="userpic"> -->
+                        <div class="view-pic" *ngIf="!userProfileURL">
+                           <img src="assets/img/user-ic.svg">
+                        </div>
+                        <div class="view-pic" *ngIf="userProfileURL">
+                           <img [src]="userProfileURL">
                         </div>
                         <ul class="pic-action">
                             <li><a href="javascript:void(0)"><span class="icon-close"></span>remove image</a></li>

@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class AdminService {
     apiUrl = environment.api_url;
+    imageUrl = environment.imag_url;
     constructor(
         public http: HttpClient,
         public router: Router,
@@ -33,7 +34,7 @@ export class AdminService {
         let options = { params: params };
         options['reportProgress'] = true;
         options['observe'] = 'events';
-        return this.http.post<any>(`${this.apiUrl}/updateProfile`, data,options);
+        return this.http.post<any>(`${this.imageUrl}/updateProfile`, data,options);
     }
 
     getUserList() {

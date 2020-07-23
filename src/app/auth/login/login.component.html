@@ -22,7 +22,7 @@
                     <div class="form-group">
                       <label>Password</label>
                       <input type="password" class="form-control" name="password" id="password"
-                        placeholder="Enter password" #Password formControlName="password" required>
+                        placeholder="Enter Password" #Password formControlName="password" required>
                       <span (click)="togglePassword($event, Password)" class="{{toggleEye}}"
                         id="toggle-password"></span>
                       <app-control-messages fieldName="Password" [control]="loginForm.controls['password']">
@@ -44,6 +44,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="footer-login">
+      <p>(C) Copyright @ getProsper 2019</p>
     </div>
   </div>
 </section>

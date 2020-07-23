@@ -20,11 +20,14 @@
 
                 <div class="row admin-detail">
                     <div class="col-md-3">
-                        <label>Name</label>
-                        <input type="text" placeholder="Enter full name of the user" formControlName="username"
-                            class="form-control">
-                        <app-control-messages fieldName="Full Name" [control]="adminProfileForm.controls['username']">
-                        </app-control-messages>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" placeholder="Enter full name of the user" formControlName="username"
+                                class="form-control">
+                            <app-control-messages fieldName="Full Name" [control]="adminProfileForm.controls['username']">
+                            </app-control-messages>
+                        </div>
+                     <div class="form-group">
                         <label>Mobile Number</label>
                         <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber"
                             class="form-control">
@@ -32,13 +35,18 @@
                             [control]="adminProfileForm.controls['mobileNumber']">
                         </app-control-messages>
                     </div>
+                    </div>
                     <div class="col-md-3">
+                        <div class="form-group">
                         <label>Admin Id</label>
                         <input type="text" [attr.disabled]="true" placeholder="Enter Admin id" formControlName="id"
                             class="form-control">
+                        </div>
+                         <div class="form-group">
                         <label>Email Id</label>
                         <input type="email" [attr.disabled]="true" placeholder="Enter email id" formControlName="email"
                             class="form-control">
+                        </div>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
                         <div class="view-pic">

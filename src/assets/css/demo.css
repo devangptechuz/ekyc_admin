@@ -207,14 +207,17 @@ body .login-section .card{ height: auto; }
 
 
 /******************************** CUSTOME: CSS: START:17 july 2020 **********************************/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
-body{font-family: 'Poppins', sans-serif;color: rgba(0, 0, 0, 0.8);-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');*/
+ @import url("https://use.typekit.net/xee7cvk.css");
+body{font-family: poppins, sans-serif;color: rgba(0, 0, 0, 0.8);-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{font-family: 'Poppins', sans-serif;}
 header{box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);}
 h1{font-size: 30px}
 h2{font-size: 24px}
 h3{font-size: 20px}
 h4{font-size: 16px}
 p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
+button:focus{outline: none;}
 .form-group label{text-transform: capitalize;font-size: 14px;line-height: 21px;color: #0970DD;display: block;margin: 0 0 8px;}
 .form-control,input[type="text"], input[type="email"], input[type="phone"], input[type="number"], input[type="password"]{height: auto;border: 1px solid #DDDDDD;border-radius: 8px;padding: 15px;font-size: 16px;line-height: 22px;color: rgba(0, 0, 0, 0.8);}
 .form-control::-webkit-input-placeholder {color: rgba(0, 0, 0, 0.32);}
@@ -223,6 +226,10 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 .form-control:focus::-webkit-input-placeholder {color: rgba(0, 0, 0, 0.8);}
 .form-control:focus:-ms-input-placeholder {color: rgba(0, 0, 0, 0.8);}
 .form-control:focus::placeholder {color: rgba(0, 0, 0, 0.8);}
+.ng-select .ng-select-container,.ng-select.ng-select-single .ng-select-container{height: auto;border: 1px solid #DDDDDD;border-radius: 8px;padding: 15px;font-size: 16px;line-height: 22px;}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option{font-weight: normal;font-size: 12px;line-height: 18px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.8);}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked{    color: #0970DD;background: rgba(9, 112, 221, 0.04);}
+.ng-select .ng-select-container .ng-value-container .ng-placeholder{color: rgba(0, 0, 0, 0.32);}
 .btn.focus, .btn:focus,.form-control:focus{outline: none !important;box-shadow: none;}
 .form-control:focus{border-color: #ddd !important;}
 a{transition: 0.3s ease-in-out;-webkit-transition: 0.3s ease-in-out;-moz-transition: 0.3s ease-in-out;}
@@ -361,7 +368,7 @@ footer .ico span{    color: #fff;}
 
 /*=========Login===========*/
 body #login{background: none;}
-body .login-section:after{content: "";background: url(assets/img/shape.svg);width: 100%;height: 220px;display: block;background-size: cover;background-position: top;position: absolute;bottom: 0;z-index: -1;}
+body .login-section:after{content: "";background: url(assets/img/shape.svg);width: 100%;height: 350px;display: block;background-size: cover;background-position: top;position: absolute;bottom: 0;z-index: -1;}
 body .login-section .bg-white {padding: 40px;background: #FFFFFF;border: 1px solid #DDDDDD;box-sizing: border-box;box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);border-radius: 8px;margin: 24px 0 0;}
 body .login-section h2.card-title{text-align: center;margin: 0 0 24px;font-weight: 200;font-size: 24px;line-height: 36px;text-transform: capitalize;color: #96AB13;}
 .login-section .login-img {display: block;text-align: center;}
@@ -370,10 +377,10 @@ body .login-section h2.card-title{text-align: center;margin: 0 0 24px;font-weigh
 body .login-section .card{background: transparent;min-width: 560px;height: 100%;}
 .login-section .form-group label{text-transform: none;font-weight: 400;}
 form .form-group{position: relative;}
-.login-section #toggle-password{position: absolute;right: 15px;top: 50px;}
+.login-section #toggle-password{position: absolute;right: 15px;top: 50px;cursor: pointer;}
 .login-section .btn-custom{padding: 14px 40px;}
 .login-section .form-group{ margin-bottom: 16px !important;}
-.login-section  .login-btn{margin-top: 24px;}
+.login-section  .login-btn{margin-top: 24px;margin-bottom: 0 !important;}
 .icon-log-in{margin-right: 15px;}
 .login-btn {font-size: 14px;}
 .ng-touched.ng-invalid {border-color: red;}
@@ -381,6 +388,9 @@ form .form-group{position: relative;}
 body form .form-control::-webkit-input-placeholder {color: rgba(0, 0, 0, 0.32);} 
 body form .form-control:-ms-input-placeholder {color: rgba(0, 0, 0, 0.32);} 
 body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
+.login-section .icon-log-in{margin-right: 13px;font-size: 18px;}
+.footer-login{position: absolute;bottom: 0;text-align: center;margin: 0 auto;width: 100%;left: 0;color: #fff;}
+.footer-login p{margin: 0 0 15px;color: #fff;font-size: 10px;line-height: 15px;text-align: center;text-transform: capitalize;}
 
 /*=========Dashboard===========*/
 .custom-datatable{margin-top: 32px;}
@@ -470,6 +480,7 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 
 /*=========add user form===========*/
 section.add-user {margin: 32px 0;}
+section.add-user .danger{position: absolute;margin: 0;}
 section.add-user h2{text-transform: capitalize;font-weight: 200;}
 section.add-user .add-box{/*max-width: 960px;*/background: #FCFCFC;border: 1px solid #DDDDDD;border-radius: 8px;padding: 40px;}
 section.add-user .steps{font-weight: 500;font-size: 16px;line-height: 24px;color: #0970DD;display: inline-block;margin-bottom: 8px;}
@@ -506,9 +517,9 @@ section.add-admin-user .hdr-right button{padding: 16px;font-size: 12px;line-heig
 /* admin profile*/
 .admin-profile .admin-detail label{font-size: 12px;line-height: 18px;letter-spacing: 1px;color: #96AB13;margin: 0 0 8px;}
 .admin-profile .admin-detail h4{margin-bottom: 16px;font-weight: normal;line-height: 24px;text-transform: capitalize;}
-ul.pic-action{list-style: none;}
-ul.pic-action a{position: relative;font-weight: 500;font-size: 10px;line-height: 15px;letter-spacing: 1px;text-transform: uppercase;color: #0970DD;}
-ul.pic-action a span{font-size: 13px;width: 25px;display: inline-block;text-align: left;}
+ul.pic-action{list-style: none;max-width: 210px;padding-left: 25px;}
+ul.pic-action a,ul.pic-action button{background: transparent;border: none;position: relative;font-weight: 500;font-size: 10px;line-height: 15px;letter-spacing: 1px;text-transform: uppercase;color: #0970DD;}
+ul.pic-action a span,ul.pic-action button span{font-size: 13px;width: 25px;display: inline-block;text-align: left;}
 ul.pic-action li:first-child a span{font-size: 9px;}
 .add-user .view-pic{width: 116px;height: 116px;border-radius: 50%;background: #eee;display: flex;align-items: center;justify-content: center;}
 .add-user .view-pic img{width: 50px;}
@@ -613,6 +624,16 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 .doc-upbox .more-dropdown .dropdown-toggle span {margin-left: -2px;}
 .doc-upbox .carousel .picsum-img-wrapper img{object-fit: cover;min-height: 280px;max-height: 280px;border-radius: 8px;height: 100%;width: 100%;}
 .doc-upbox iframe{min-height: 280px;}
+.signature-box .carousel .picsum-img-wrapper img{object-fit: contain; }
+.signature-box{background: #f7f7f7}
+.user-btmbx .carousel-control-next-icon,.user-btmbx .carousel-control-prev-icon{width: 40px;height: 40px;background: #FFFFFF;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);display: flex;align-items: center;justify-content: center;background: #fff;opacity: 1;border-radius: 50%;}
+.user-btmbx .carousel-control-next-icon:before,.user-btmbx .carousel-control-prev-icon:before{content: '\f105';font-family: fontawesome;color: #0970DD;;font-weight: 600;font-size: 20px;}
+.user-btmbx .carousel-control-prev-icon:before{content: '\f104';}
+.user-btmbx .carousel-control-prev{left: -40px;}
+.user-btmbx .carousel-control-next{right: -40px;}
+.user-btmbx .carousel-control-next-icon:hover,.user-btmbx .carousel-control-prev-icon:hover{background: #0970DD;}
+.user-btmbx .carousel-control-next-icon:hover:before,.user-btmbx .carousel-control-prev-icon:hover:before{color: #fff;}
+.user-btmbx .carousel-control-prev,.user-btmbx .carousel-control-next,.user-btmbx .carousel-control-prev:hover,.user-btmbx .carousel-control-next:hover{margin: 0;opacity: 1 !important;}
 
 /*=========Admin List===========*/
 .admin-list .btn-custom{padding: 10px 12px;font-size: 14px;margin-left: 24px;}
