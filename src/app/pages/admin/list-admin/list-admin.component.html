@@ -46,7 +46,7 @@
                                  <a data-tooltip title="{{row.username}}">{{row.username}}</a>
                               </ng-template>
                            </ngx-datatable-column>
-                           <ngx-datatable-column [width]="80" name="Email" [sortable]="true" prop="email">
+                           <ngx-datatable-column [width]="100" name="Email" [sortable]="true" prop="email">
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="80" name="Mobile Number" [sortable]="true"
                               prop="mobileNumber">
@@ -83,6 +83,6 @@
    <label class="mb-0">Applications selected : <strong>{{adminsSelectCount}}</strong></label>
    <ul>
       <li (click)="deleteAdmins()"><img src="assets/img/trash.svg"><span>Delete selected</span></li>
-      <li (click)="cancelAll()"><img src="assets/img/not-allow.svg"><span>Cancel all</span></li>
+      <li (click)="cancelAll()" class="cancel"><img src="assets/img/not-allow.svg"><span>Cancel all</span></li>
    </ul>
 </div>
