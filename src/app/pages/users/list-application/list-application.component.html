@@ -61,12 +61,12 @@
                                     [selectionType]="'checkbox'" [selectAllRowsOnPage]="true"
                                     (select)='onSelect($event)'>
 
-                                    <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false"
+                                    <ngx-datatable-column [width]="10" [sortable]="false" [canAutoResize]="false"
                                         [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
                                         [checkboxable]="true" [sortable]="true" prop="selected">
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column [width]="80" name="user name" [sortable]="true"
+                                    <ngx-datatable-column [width]="10" name="user name" [sortable]="true"
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a data-tooltip title="{{row.userName}}"
@@ -74,15 +74,15 @@
                                                 routerLinkActive="router-link-active" class="uname">{{row.userName}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="80" name="application Id" [sortable]="true"
+                                    <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
                                         prop="id">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             {{row.id | uppercase}}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="80" name="Email" [sortable]="true" prop="email">
+                                    <ngx-datatable-column [width]="40" name="Email" [sortable]="true" prop="email">
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="80" name="Mobile Numer" [sortable]="true"
+                                    <ngx-datatable-column [width]="40" name="Mobile Number" [sortable]="true"
                                         prop="mobileNumber">
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="20" name="application status" [sortable]="false"

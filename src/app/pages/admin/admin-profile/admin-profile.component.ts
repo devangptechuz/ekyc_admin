@@ -109,12 +109,12 @@ export class AdminProfileComponent implements OnInit {
       return false;
     }
     delete this.adminProfileForm.value.id;
-    this.adminService.updateAdminProfile(this.adminPasswordForm.value).subscribe(
+    this.adminService.updateAdminProfile(this.adminProfileForm.value).subscribe(
       (result: any) => {
         if (result.success) {
           this.global.successToastr(result.message);
           this.spinner.hide();
-          this.adminPasswordForm.reset();
+          this.adminProfileForm.reset();
         } else {
           this.global.errorToastr(result.message);
         }
