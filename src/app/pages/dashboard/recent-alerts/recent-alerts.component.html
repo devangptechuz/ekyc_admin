@@ -41,7 +41,7 @@
                             </ngx-datatable-column>
                             <ngx-datatable-column name="Application Status" [sortable]="true" prop="status">
                                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                    <span *ngIf="row.status==='Incomplete'" class="grey-color-text">
+                                    <span *ngIf="row.status==='Incomplete'" class="light-color-text">
                                         {{row.status}}
                                     </span>
                                     <span *ngIf="row.status!=='Incomplete'">
