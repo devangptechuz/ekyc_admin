@@ -15,6 +15,8 @@ import { ActivatedRoute } from '@angular/router';
   providers: [NgbCarouselConfig]
 })
 export class UsersDetailComponent implements OnInit {
+  globalDocumentPopup: boolean;
+  userKYCDocuments: any;
   userId: any;
   userData: any;
   aadhaarKYCDocuments: any;
@@ -108,9 +110,8 @@ export class UsersDetailComponent implements OnInit {
     this.userId = this.route.snapshot.params.id;
     const userData = this.route.snapshot.data['user'];
     this.userData = userData?.result;
-    console.log('this.userData', this.userData);
-    console.log('userdata-documents-upload', userData?.result?.basic_info?.document_uploaded);
-    // this.userKYCDocuments = userData?.result?.document_status?.aadhar_document;
+
+    this.userKYCDocuments = userData?.result?.basic_info?.document_uploaded;
     if (userData?.result?.basic_info?.document_uploaded) {
       userData?.result?.basic_info?.document_uploaded.map((item: any) => {
         if (item?.document_name === 'aadhar_document') {
@@ -356,12 +357,49 @@ export class UsersDetailComponent implements OnInit {
       // });
     });
   }
+
+  /**
+   * Open popup modal
+   */
+  openPopupModal() {
+    this.globalDocumentPopup = true;
+    this.modalRef = this.modalService.open(this.fileuploadAadharpopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef.result.then((result) => {
+      this.aadharDisplayImage = '';
+      this.mediaPreviews = [];
+      this.globalDocumentPopup = false;
+      this.uploader.clearQueue();
+    });
+  }
+  /**
+   * select document options
+   * @param nameOfDocument 
+   * @param nameOfModalTitle 
+   * @param documentStatus 
+   * @param allItem 
+   */
+  documentSelection(value: any) {
+    this.userKYCDocuments.map((item: any) => {
+      if (item.document_name === value) {
+        this.allowedMimeType = item.mime_type;
+        this.maxUploadLimit = item.remaining_count;
+        this.isDocumentVerified = (item.document_status === 'verified') ? true : false;
+        this.onModalOpen();
+        this.nameOfDocument = item.document_name;
+        this.nameOfTitleDocument = item.document_modal_title;
+        this.addNewDocumentImage();
+        this.aadharDisplayImage = '';
+        this.mediaPreviews = [];
+        this.uploader.clearQueue();
+      }
+    });
+  }
   /**
    * Open Document upload modal (Dynamically setted)
    */
   openDocumentPopupModal(nameOfDocument: any, nameOfModalTitle: any, documentStatus = '', allItem: any = '') {
-    // this.allowedMimeType = allItem.mime_type;
-    // this.maxUploadLimit = allItem.remaining_count;
+    this.allowedMimeType = allItem.mime_type;
+    this.maxUploadLimit = allItem.remaining_count;
     this.isDocumentVerified = (documentStatus === 'verified') ? true : false;
     this.onModalOpen();
     this.nameOfDocument = nameOfDocument;
@@ -383,6 +421,7 @@ export class UsersDetailComponent implements OnInit {
     this.modalRef.result.then((result) => {
       this.aadharDisplayImage = '';
       this.mediaPreviews = [];
+      this.globalDocumentPopup = false;
       this.uploader.clearQueue();
     });
   }
@@ -464,6 +503,7 @@ export class UsersDetailComponent implements OnInit {
     this.webCamMediaList = [];
     this.viewSectionOfImage = true;
     this.mediaPreviews = [];
+    this.globalDocumentPopup = false;
     // if (getKYCDocumentsList) {
     //   this.getKYCDocumentsList();
     // }
@@ -610,6 +650,7 @@ export class UsersDetailComponent implements OnInit {
     // }
     this.modalRef = this.modalService.open(this.fileuploadSignaturepopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
     this.modalRef.result.then((result) => {
+      this.globalDocumentPopup = false;
       this.aadharDisplayImage = '';
       this.mediaPreviews = [];
       this.uploader.clearQueue();
@@ -656,6 +697,7 @@ export class UsersDetailComponent implements OnInit {
           this.uploader.clearQueue();
           this.signatureImage = '';
           this.viewSectionOfImage = true;
+          this.globalDocumentPopup = false;
           // this.getKYCDocumentsList(true);
           this.modalRef.close();
         }
@@ -687,9 +729,19 @@ export class UsersDetailComponent implements OnInit {
     // }
     this.modalRef = this.modalService.open(this.IPVPopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
     this.modalRef.result.then((result) => {
+      this.globalDocumentPopup = false;
       this.aadharDisplayImage = '';
       this.mediaPreviews = [];
     });
   }
+
+  /**
+   * submit aadhar upload and then close
+   */
+  cancelModal($event) {
+    this.globalDocumentPopup = false;
+    this.modalRef.close();
+  }
+
 
 }

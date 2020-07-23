@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { FileUploadModule } from 'ng2-file-upload';
+
 import { SharedModule } from 'app/shared/shared.module';
 import { EditApplicationComponent } from './edit-application/edit-application.component';
 import { UserHistoryComponent } from './user-history/user-history.component';
@@ -34,6 +36,7 @@ import { InPersonVideoComponent } from './document-modal/in-person-video/in-pers
     NgxSelectModule,
     NgSelectModule,
     SignaturePadModule,
+    FileUploadModule,
     NgxMaskModule.forRoot(),
     ReactiveFormsModule.
       withConfig({ warnOnNgModelWithFormControl: 'never' }),

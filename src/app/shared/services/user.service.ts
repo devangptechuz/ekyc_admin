@@ -60,6 +60,14 @@ export class UserService {
   }
 
   /**
+   * submit persoan & address details
+   * @param objParam 
+   */
+  submitPersonalDetails(objParam: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrlOfUser}/submitPersonalDetails`, objParam);
+  }
+
+  /**
    * Remove Image/Files from DB
    */
   removeImageFileDocument(obj: any) {

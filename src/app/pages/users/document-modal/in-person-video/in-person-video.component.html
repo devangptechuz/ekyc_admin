@@ -1,11 +1,11 @@
 <div class="modal-body p-0 payment-popup uploaddoc-popup">
-  <div class="d-flex justify-content-between align-items-end main-header">
+  <div class="modal-header yellowclr common-header">
     <div class="popup-header">
       <span>Upload Document</span>
       <h4 class="modal-title">{{nameOfTitleDocument}}</h4>
     </div>
-    <div class="star">
-      <img src="assets/images/doc.svg">
+    <div class="popup-icon">
+      <img src="assets/img/doc.svg">
     </div>
   </div>
 
@@ -53,7 +53,7 @@
         </video>
         <!-- <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe> -->
         <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
-          <img src="assets/images/edit.svg">Remove Image/File</span>
+          <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
       </div>
     </div>
 

@@ -24,28 +24,29 @@
                             <label>Name</label>
                             <input type="text" placeholder="Enter full name of the user" formControlName="username"
                                 class="form-control">
-                            <app-control-messages fieldName="Full Name" [control]="adminProfileForm.controls['username']">
+                            <app-control-messages fieldName="Full Name"
+                                [control]="adminProfileForm.controls['username']">
                             </app-control-messages>
                         </div>
-                     <div class="form-group">
-                        <label>Mobile Number</label>
-                        <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber"
-                            class="form-control">
-                        <app-control-messages fieldName="Mobile Number"
-                            [control]="adminProfileForm.controls['mobileNumber']">
-                        </app-control-messages>
-                    </div>
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber"
+                                class="form-control">
+                            <app-control-messages fieldName="Mobile Number"
+                                [control]="adminProfileForm.controls['mobileNumber']">
+                            </app-control-messages>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                        <label>Admin Id</label>
-                        <input type="text" [attr.disabled]="true" placeholder="Enter Admin id" formControlName="id"
-                            class="form-control">
+                            <label>Admin Id</label>
+                            <input type="text" [attr.disabled]="true" placeholder="Enter Admin id" formControlName="id"
+                                class="form-control">
                         </div>
-                         <div class="form-group">
-                        <label>Email Id</label>
-                        <input type="email" [attr.disabled]="true" placeholder="Enter email id" formControlName="email"
-                            class="form-control">
+                        <div class="form-group">
+                            <label>Email Id</label>
+                            <input type="email" [attr.disabled]="true" placeholder="Enter email id"
+                                formControlName="email" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
@@ -127,7 +128,8 @@
                 <div class="col-md-10" *ngIf="!liveWebcam">
                     <div class="upload-doc-box">
                         <img [src]="webCamMediaPriview" />
-                        <span (click)="removeWebCamMedia(webCamMediaPriview)"><img src="assets/images/edit.svg">Edit
+                        <span (click)="removeWebCamMedia(webCamMediaPriview)"><img
+                                src="assets/img/modal-upload/edit.svg">Edit
                             Image/File</span>
                     </div>
                 </div>
@@ -186,7 +188,8 @@
                         src="{{aadharDisplayImage?.file}}">
                     <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'" src="assets/images/doc.svg"
                         style="width: 100px;object-fit: contain;">
-                    <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img src="assets/images/edit.svg">Edit
+                    <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img
+                            src="assets/img/modal-upload/edit.svg">Edit
                         Image/File</span>
                 </div>
             </div>
@@ -226,13 +229,13 @@
                     *ngIf="viewPreviewDisplayImage?.content_type === 'image/jpeg' || viewPreviewDisplayImage?.content_type === 'image/jpg' || viewPreviewDisplayImage?.content_type === 'image/png'">
                     <img src="{{viewPreviewDisplayImage?.url}}">
                     <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
-                        <img src="assets/images/edit.svg">Remove Image/File</span>`
+                        <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>`
                 </div>
 
                 <div class="upload-doc-box" *ngIf="viewPreviewDisplayImage?.content_type === 'application/pdf'">
                     <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe>
                     <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
-                        <img src="assets/images/edit.svg">Remove Image/File</span>
+                        <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
 
                 </div>
             </div>

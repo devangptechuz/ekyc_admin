@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ValidationService } from 'app/shared/services/validator.service';
 import { UserService } from 'app/shared/services/user.service';
@@ -17,13 +17,14 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
   gender = [{ label: 'Male' }, { label: 'Female' }];
   countryList = [{ label: 'INDIA' }, { label: 'USA' }];
   maritalStatus = [
-    { id: 'Unmarried', label: 'Unmarried' },
+    { id: 'UnMarried', label: 'UnMarried' },
     { id: 'Married', label: 'Married' }]
   // { 'Unmarried': 'Unmarried', 'Married': 'Married' };
   OccupationTypeArray: any[];
   IncomeRangeArray: any[];
   constructor(
     public fb: FormBuilder,
+    private router: Router,
     private route: ActivatedRoute,
     public validate: ValidationService,
     private userService: UserService,
@@ -67,6 +68,54 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
       this.validate.validateAllFormFields(this.addressDetailsform);
       return false;
     }
+    let obj = this.addressDetailsform.value;
+    obj['id'] = this.userId;
+    if (this.addressDetailsform.value.name) {
+      obj['full_name'] = this.addressDetailsform.value.name;
+    }
+
+    obj['marriage_status'] = '';
+    if (this.addressDetailsform.value.marital_status) {
+      obj['marriage_status'] = this.addressDetailsform.value.marital_status;
+    }
+    if (this.addressDetailsform.value.dob) {
+      obj['date_of_birth'] = this.addressDetailsform.value.dob;
+    }
+    if (this.addressDetailsform.value.address_line1) {
+      obj['permanent_address_line1'] = this.addressDetailsform.value.address_line1;
+    }
+    if (this.addressDetailsform.value.address_line2) {
+      obj['permanent_address_line2'] = this.addressDetailsform.value.address_line2;
+    }
+    if (this.addressDetailsform.value.address_line3) {
+      obj['permanent_address_line3'] = this.addressDetailsform.value.address_line3;
+    }
+    if (this.addressDetailsform.value.pin_code) {
+      obj['permanent_pin_code'] = this.addressDetailsform.value.pin_code;
+    }
+    if (this.addressDetailsform.value.country) {
+      obj['permanent_country'] = this.addressDetailsform.value.country;
+    }
+    obj['same_as_parmanent'] = this.addressDetailsform.value.same_as;
+    delete obj.name;
+    delete obj.country;
+    delete obj.marital_status;
+    delete obj.dob;
+    delete obj.address_line1;
+    delete obj.address_line2;
+    delete obj.address_line3;
+    delete obj.pin_code;
+    delete obj.same_as;
+
+    // console.log('this.addressDetailsform', obj);
+    this.userService.submitPersonalDetails(obj).subscribe((res: any) => {
+      if (res.success) {
+        this.global.successToastr(res.message);
+        this.router.navigateByUrl('/applications/details/' + this.userId);
+      } else {
+        this.global.errorToastr(res.message);
+      }
+    });
   }
   /**
    * Get address details
@@ -80,7 +129,7 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
           this.addressDetailsform.patchValue({ name: res.result.full_name });
         }
         if (res.result.gender) {
-          this.addressDetailsform.patchValue({ gender: res.result.gender.toUpperCase() });
+          this.addressDetailsform.patchValue({ gender: res.result.gender });
         }
         if (res.result.date_of_birth) {
           const dob = res.result.date_of_birth.replace(/-/g, "/");

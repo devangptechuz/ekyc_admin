@@ -76,9 +76,8 @@
             <div class="col-md-6">
                <div class="d-flex justify-content-between rgt-hdr">
                   <h4 class="mb-0">Documents Uploaded</h4>
-                  <a href="javascript:void(0)"
-                     (click)="openDocumentPopupModal('aadhar_document', 'Aadhaar', 'not-uploaded')"><span
-                        class="icon-upload"></span> Upload document</a>
+                  <a href="javascript:void(0)" (click)="openPopupModal()"><span class="icon-upload"></span> Upload
+                     document</a>
                </div>
                <ul class="docupld-link">
                   <li class="" [ngClass]="{'active': item?.document_status!=='not_uploaded'}"
@@ -559,6 +558,16 @@
             <img src="assets/img/doc.svg">
          </div>
       </div>
+      {{globalDocumentPopup}}
+      <div class="col-md-4" [hidden]="!globalDocumentPopup">
+         <div class="form-group">
+            <label>Document Selection </label>
+            <ng-select placeholder="select" [searchable]="false" (change)="documentSelection($event)">
+               <ng-option [value]="item.document_name" *ngFor="let item of userKYCDocuments">
+                  {{item.document_button_lable}}</ng-option>
+            </ng-select>
+         </div>
+      </div>
 
       <!--------------------- Webcome code: START --------------------->
       <div *ngIf="clickedWebcamPicture && !fileUploading && !viewSectionOfImage">
@@ -768,7 +777,8 @@
                <img *ngIf="aadharDisplayImage?.contentType !== 'application/pdf'" src="{{aadharDisplayImage?.file}}">
                <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'" src="assets/img/doc.svg"
                   style="width: 100px;object-fit: contain;">
-               <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img src="assets/images/edit.svg">Edit
+               <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img
+                     src="assets/img/modal-upload/edit.svg">Edit
                   Image/File</span>
             </div>
          </div>
@@ -808,12 +818,12 @@
                *ngIf="viewPreviewDisplayImage?.content_type === 'image/jpeg' || viewPreviewDisplayImage?.content_type === 'image/jpg' || viewPreviewDisplayImage?.content_type === 'image/png'">
                <img src="{{viewPreviewDisplayImage?.url}}">
                <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
-                  <img src="assets/images/edit.svg">Remove Image/File</span>
+                  <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
             </div>
             <div class="upload-doc-box" *ngIf="viewPreviewDisplayImage?.content_type === 'application/pdf'">
                <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe>
                <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
-                  <img src="assets/images/edit.svg">Remove Image/File</span>
+                  <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
             </div>
          </div>
 
