@@ -53,7 +53,7 @@ export class ListAdminComponent implements OnInit {
           if (Data.success) {
             this.temp = [...Data['result']['userList']];
             this.rows = Data['result']['userList'];
-            this.count = Data['result']['count'];
+            this.count = Data['result']['Count'];
             this.spinner.hide();
           } else {
             this.spinner.hide();
