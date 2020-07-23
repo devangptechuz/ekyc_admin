@@ -88,18 +88,12 @@
                                     <ngx-datatable-column [width]="20" name="application status" [sortable]="false"
                                         prop="isDocumentUploaded">
                                         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                            <span *ngIf="row.isDocumentUploaded">
+                                            <span class="greeb-color-text" *ngIf="row.isDocumentUploaded ">
                                                 Completed
                                             </span>
-                                            <span *ngIf="!row.isDocumentUploaded">
-                                                InCompleted
+                                            <span class="red-color-text" *ngIf="!row.isDocumentUploaded">
+                                                Incompleted
                                             </span>
-                                            <!-- <span>
-                                                <button #btnElement (click)="onDelete(btnElement,value)" class="btn"><img src="../assets/img/trash.svg"></button>
-                                            </span>
-                                            <div class="hover-error"><img src="assets/img/error.svg"></div> -->
-                                            <!-- <i class="fa fa-angle-right arrow"></i> -->
-
                                         </ng-template>
                                     </ngx-datatable-column>
                                 </ngx-datatable>

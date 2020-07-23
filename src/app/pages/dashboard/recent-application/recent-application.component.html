@@ -5,24 +5,20 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <!-- <label>DISPLAY PER PAGE</label> -->
                     <h4 class="form-section text-bold-500"> Recent Application</h4>
-                     <span class="green-text">2% increase since last week<span class="icon-red-arrow"></span>
+                    <span class="green-text">2% increase since last week<span class="icon-red-arrow"></span>
                     </span>
                     <a href="javascipt:void(0)">view all alerts <i class="fa fa-angle-right"></i></a>
                 </div>
                 <div class="card-body">
                     <div class="card-block">
                         <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-                                       [headerHeight]="50" [scrollbarH]="false" [footerHeight]="50" [rowHeight]="70"
-                                       [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
+                            [headerHeight]="50" [scrollbarH]="false" [footerHeight]="50" [rowHeight]="70"
+                            [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
                             <ngx-datatable-column name="User Name" [sortable]="true" prop="uname">
-                                <ng-template
-                                        ngx-datatable-cell-template
-                                        let-rowIndex="rowIndex"
-                                        let-row="row"
-                                >
+                                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                     <a class="user-img dummy-icon" *ngIf="!row.img">
-                                         <img src="assets/img/user-ic.svg">
-                                     </a>
+                                        <img src="assets/img/user-ic.svg">
+                                    </a>
                                     <a class="user-img" *ngIf="row.img">
                                         <img src="{{row.img}}">
                                     </a>
@@ -36,6 +32,14 @@
                             <ngx-datatable-column name="Account Type" [sortable]="true" prop="accountType">
                             </ngx-datatable-column>
                             <ngx-datatable-column name="Application Status" [sortable]="true" prop="status">
+                                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                    <span *ngIf="row.status==='Incomplete'" class="grey-color-text">
+                                        {{row.status}}
+                                    </span>
+                                    <span *ngIf="row.status==='Submitted'">
+                                        {{row.status}}
+                                    </span>
+                                </ng-template>
                             </ngx-datatable-column>
                         </ngx-datatable>
                     </div>
@@ -44,4 +48,3 @@
         </div>
     </div>
 </section>
-

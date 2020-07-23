@@ -4,16 +4,20 @@
     </div>
 </div>
 <section class="add-user add-admin-user">
-    <div class="container">
-        <div class="add-box">
-            <div class="hdr">
-                <div class="hdr-left">
-                    <h2>{{adminTitle}}</h2>
+    <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="container">
+            <div class="add-box">
+                <div class="hdr">
+                    <div class="hdr-left">
+                        <h2>{{adminTitle}}</h2>
+                    </div>
+
+                    <div class="hdr-right">
+                        <button class="btn btn-custom mr-2" routerLink="/admins">cancel</button>
+                        <button class="btn btn-custom"><span class="icon-edit mr-2"></span>Submit</button>
+                    </div>
                 </div>
-                <div class="hdr-right">
-                </div>
-            </div>
-            <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" novalidate>
+
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
@@ -23,11 +27,12 @@
                             <app-control-messages fieldName="Full Name" [control]="adminForm.controls['username']">
                             </app-control-messages>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label>Mobile Number</label>
                             <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber"
                                 class="form-control">
-                            <app-control-messages fieldName="Mobile Number" [control]="adminForm.controls['mobileNumber']">
+                            <app-control-messages fieldName="Mobile Number"
+                                [control]="adminForm.controls['mobileNumber']">
                             </app-control-messages>
                         </div>
                     </div>
@@ -40,7 +45,7 @@
                             </app-control-messages>
                         </div>
 
-                          <div class="form-group">
+                        <div class="form-group">
                             <label>Email Id</label>
                             <input type="email" [attr.disabled]="editAdmin" placeholder="Enter email id"
                                 formControlName="email" class="form-control">
@@ -56,22 +61,14 @@
                            <img [src]="userProfileURL">
                         </div>
                         <ul class="pic-action">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                   aria-describedby="inputGroupFileAddon01" (change)="onFileSelect($event)" accept="image/x-png,image/jpeg">
-                            <li ><button for="inputGroupFile01" ><span class="icon-upload" ></span>upload from computer</button></li>
+                            <li><a href="javascript:void(0)"><span class="icon-close"></span>remove image</a></li>
+                            <li><a href="javascript:void(0)"><span class="icon-camera"></span>take a picture</a></li>
+                            <li><a href="javascript:void(0)"><span class="icon-upload"></span>upload from computer</a>
+                            </li>
                         </ul>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
 
-                    </div>
-                    <div class="col-md-3">
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3" *ngIf="!editAdmin">
+                    <div class="col-md-4" *ngIf="!editAdmin">
                         <div class="form-group">
                             <label>Password</label>
                             <input type="password" placeholder="Enter Password" formControlName="password"
@@ -80,32 +77,43 @@
                             </app-control-messages>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group" *ngIf="!editAdmin">
                             <label>Confirm Password</label>
-                            <input type="password" placeholder="Enter Confirm Password" formControlName="confirm_password"
-                                class="form-control">
+                            <input type="password" placeholder="Enter Confirm Password"
+                                formControlName="confirm_password" class="form-control">
                             <app-control-messages fieldName="Confirm Password"
                                 [control]="adminForm.controls['confirm_password']">
                             </app-control-messages>
                         </div>
                     </div>
                 </div>
-<!--                <div class="col-md-6 ">-->
-<!--                    <div class="form-group">-->
-<!--                        <input type="file"  id="inputGroupFile01"-->
-<!--                               (change)="onFileSelect($event)" accept="image/x-png,image/jpeg">-->
-<!--                        <label class="custom-file-label" for="inputGroupFile01"><a ><span class="icon-upload"  ></span>upload from computer</a></label>-->
-<!--                    </div>-->
-<!--                    <div class="imagePreview image-prev-block"  *ngIf="imageURL && imageURL !== ''">-->
-<!--                        <img [src]="imageURL" width="100" height="100" >-->
-<!--                    </div>-->
-<!--                </div>-->
-                <div class="footer-btn">
+                <!-- <div class="row">
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                </div> -->
+                <div class="row">
+
+                </div>
+                <!--                <div class="col-md-6 ">-->
+                <!--                    <div class="form-group">-->
+                <!--                        <input type="file"  id="inputGroupFile01"-->
+                <!--                               (change)="onFileSelect($event)" accept="image/x-png,image/jpeg">-->
+                <!--                        <label class="custom-file-label" for="inputGroupFile01"><a ><span class="icon-upload"  ></span>upload from computer</a></label>-->
+                <!--                    </div>-->
+                <!--                    <div class="imagePreview image-prev-block"  *ngIf="imageURL && imageURL !== ''">-->
+                <!--                        <img [src]="imageURL" width="100" height="100" >-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!-- <div class="footer-btn">
                     <button class="btn" routerLink="/admins">cancel</button>
                     <button class="btn" type="submit">Submit</button>
-                </div>
-            </form>
+                </div> -->
+            </div>
         </div>
-    </div>
+    </form>
 </section>
