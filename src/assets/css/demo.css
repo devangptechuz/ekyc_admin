@@ -339,10 +339,13 @@ header .navbar{display: flex;justify-content: space-between;padding: 18px 0;}
 .navbar .navbar-nav .nav-link{padding: 10px 0;position: relative;font-size: 16px;line-height: 24px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
 .navbar .navbar-nav li.active .nav-link,.navbar .navbar-nav li.active:hover .nav-link{font-weight: 600;color: #0970DD;}
 .navbar .nav-link:hover{color: rgba(0, 0, 0, 0.8);}
-header .dropdown-toggle{padding: 0 8px 0 0;font-size: 16px;line-height: 24px;text-transform: capitalize;}
+header .dropdown-toggle{display: flex;align-items: center;padding: 0 8px 0 0;font-size: 16px;line-height: 24px;text-transform: capitalize;}
 header .dropdown-toggle img{margin-right: 8px;}
-header .dropdown-toggle::after{content: "\f107";font-family: fontawesome;border: none;color:#ddd;position: absolute;right:0;top: 0;font-weight: 600;font-size: 18px;}
+header .dropdown-toggle::after{content: "\f107";font-family: fontawesome;border: none;color:#ddd;position: absolute;right:0;top: 6px;font-weight: 600;font-size: 18px;}
 header .profile-img{width: 32px;height: 32px;border-radius: 50%;object-fit: cover;}
+.dummy-icon{width: 32px;height: 32px;border-radius: 50%;background: rgba(9, 112, 221, 0.16);display: flex;align-items: center;justify-content: center;}
+header .dummy-icon img{margin: 0;}
+header .dummy-icon{margin-right: 8px;}
 header .dropdown-item .switch{margin-left: 25px;}
 .navbar .navbar-nav .nav-link:after {content: "";width: 0;display: block;background: #0970DD;height: 2px;position: absolute;left: auto;right: 0;bottom: 0;-webkit-transition: all 0.2s linear;-o-transition: all 0.2s linear;transition: all 0.2s linear;}
 .navbar .navbar-nav .nav-link:hover:after {width: 100%;right: auto;left: 0;}
@@ -462,11 +465,14 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 
 .fixed-status {background: #FFFFFF;border: 1px solid #0970DD;box-shadow: 0px -1px 8px rgba(0, 0, 0, 0.16);border-radius: 8px;position: sticky;bottom: 0;left: 0;right: 0;top: auto;width: 800px;margin: 0 auto;padding: 32px;display: flex;justify-content: space-between;}
 .fixed-status ul{display: flex;margin: 0;padding: 0;}
-.fixed-status ul li{cursor: pointer;margin-left: 30px;list-style: none;font-size: 14px;line-height: 21px;display: flex;align-items: center;}
+.fixed-status ul li{color: #DF0E40;cursor: pointer;margin-left: 30px;list-style: none;font-size: 14px;line-height: 21px;display: flex;align-items: center;}
 .fixed-status ul li:first-child{margin-left: 0;}
 .fixed-status ul li img{width: 13px;margin-right: 5px;}
 .fixed-status label{font-weight: 200;font-size: 14px;line-height: 21px;text-transform: capitalize;color: rgba(0, 0, 0, 0.8);}
-
+.fixed-status ul li.approved{color: #0970DD;}
+.fixed-status ul li.reject img{width: 16px;}
+.fixed-status ul li.cancel img{width: 16px;}
+.fixed-status ul li.approved img{width: 15px;}
 
 .total-detail{margin-top: 32px;}
 .total-detail .card{background: #FCFCFC;border: 1px solid #DDDDDD;border-radius: 8px;line-height: inherit;  transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-ms-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;    -webkit-transition: all 0.3s ease-in-out;}
@@ -530,7 +536,7 @@ ul.pic-action a span,ul.pic-action button span{font-size: 13px;width: 25px;displ
 ul.pic-action li:first-child a span{font-size: 9px;}
 ul.pic-action li{margin: 5px 0;}
 .add-user .view-pic{width: 116px;height: 116px;border-radius: 50%;background: #eee;display: flex;align-items: center;justify-content: center;}
-.add-user .view-pic img{width: 50px;}
+.add-user .view-pic img{width: 58px;}
 .add-user .view-pic .userpic{width: 100%;height: 100%;object-fit: cover; border-radius: 50%;}
 .admin-profile .hdr-left span{font-size: 14px;line-height: 21px;text-transform: capitalize;color: rgba(0, 0, 0, 0.32);}
 .admin-profile .hdr{padding-bottom: 16px;margin-bottom: 24px;}
@@ -688,10 +694,13 @@ input:checked + .slider:before {-webkit-transform: translateX(9px);-ms-transform
 .common-header .modal-title{font-weight: 500;font-size: 24px;line-height: 36px;}
 .common-header .popup-icon{justify-content: center;width: 56px;height: 56px;display: flex;align-items: center;border-radius: 50%;text-align: center;}
 .common-header .popup-icon img {margin: 0 auto;}
+.modal-dialog {max-width: 480px;}
+.modal-dialog.modal-lg{max-width: 960px;}
 .modal-content .user-box span{font-size: 14px;line-height: 21px;color: rgba(0, 0, 0, 0.56);}
 .modal-footer{border-color: #ddd;padding: 16px 0 0;}
-.modal-footer a{padding: 0;color: #0970DD;font-weight: 500;font-size: 16px;line-height: 24px;}
+.modal-footer a,.modal-footer a:not([href]):not([tabindex]){padding: 0;color: #0970DD;font-weight: 500;font-size: 16px;line-height: 24px;}
 .modal-footer a:hover{opacity: 0.8}
+.modal-footer .modal-cancel, .modal-footer .modal-cancel:not([href]):not([tabindex]){color: #DF0E40;}
 .modal-body p {font-size: 16px;line-height: 24px;color: rgba(0, 0, 0, 0.56);}
 .modal-body{padding: 0;}
 .modal-usrbox{margin: 40px 0 130px;background: #FAFAFA;border-radius: 8px;padding: 24px;}
@@ -702,7 +711,8 @@ input:checked + .slider:before {-webkit-transform: translateX(9px);-ms-transform
 .modal-usrbox .user-img{margin-right: 12px;}
 .modal-usrbox .usr-rht{width: calc(100% - 60px);}
 .modal-backdrop.show {opacity: .7;}
-
+.wr-msg{font-size: 16px;line-height: 24px;color: rgba(0, 0, 0, 0.56);}
+.mb-200{margin-bottom: 130px;}
 /* dashboard doc uload popup*/
 .uploaddoc-popup .star{background: rgba(250, 180, 1, 0.16);}
 .uploaddoc-popup .popup-header span{color:#FAB401}
@@ -744,7 +754,12 @@ button.view-img img{width: 110px;height: 60px;object-fit: cover;}
 
 .uploaddoc-popup  button.actionBtn {min-height: 80px;min-width: 100%;border-radius: 8px;margin: 0 0 10px;padding: 5px;font-size: 12px;}
 .upload-doc-box h1{color: #FAB401;font-size: 27px;}
- .modal-footer a.disabled{opacity: 1;color: #B0BAC5;}
+.modal-footer a.disabled{opacity: 1;color: #B0BAC5;}
+.customizer .custom-control-label{padding-left: 25px;}
+.customizer .layout-switch{display: flex;align-items: center;justify-content:center;}
+.customizer .custom-control-label::before{top: 3px;width: 17px;height: 17px;}
+.customizer .custom-control-label::after {top: 2px;left: -1px;width: 20px;height: 20px;}
+body.layout-dark .customizer .custom-radio {margin-left: 0;}
 /*=========Custom Scroll===========*/
 
 @media(min-width:768px) {
