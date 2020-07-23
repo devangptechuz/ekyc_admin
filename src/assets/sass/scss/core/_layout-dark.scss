@@ -348,25 +348,25 @@ body {
     // Modal
     .modal {
 
-      .modal-header {
-        background: $dl-bg-color;
-        border-bottom: 1px solid $dl-border-color;
-
+      .modal-header {       
         .close {
           color: $dl-text-color;
         }
       }
 
-      .modal-body {
-        background: $dl-bg-color;
+      .modal-body {       
 
         p {
-          color: $dl-text-color;
+          color: rgba(255, 255, 255, 0.56);
+        }
+        .modal-usrbox {
+          .name{
+          color: $white-normal-color;
+          }
         }
       }
 
-      .modal-footer {
-        background: $dl-bg-color;
+      .modal-footer {        
         border-top: 1px solid $dl-border-color;
 
       }
@@ -762,6 +762,10 @@ body {
       .uname{
           color: $white-normal-color;
       }
+    }
+    .modal-content{
+      background-color:#043873
+
     }
   }
   

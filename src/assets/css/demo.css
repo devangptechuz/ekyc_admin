@@ -99,7 +99,7 @@ my-app .main-panel .main-content .card{
 body p.label-control{ margin: 0; }
 
 body form label{ letter-spacing: 0; font-size: 13px; display: inline-block; width: 100%; margin-bottom: 4px; }
-form .form-group{ align-items: center; margin-bottom: 18px !important; }
+form .form-group{ align-items: center; margin-bottom: 22px !important; }
 
 select{ background-image: url(../img/down-arrow.png); background-repeat: no-repeat; background-position: right 10px center; background-size: 9px; border: 1px solid #bebebe; color: #797979; padding: 0 11px; height: 33px; width: 100%; background-color: transparent; -webkit-appearance:none; appearance:none; }
 
@@ -220,6 +220,7 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 button:focus{outline: none;}
 .form-group label{font-weight: normal;text-transform: capitalize;font-size: 14px;line-height: 21px;color: #0970DD;display: block;margin: 0 0 8px;}
 .form-control,input[type="text"], input[type="email"], input[type="phone"], input[type="number"], input[type="password"]{height: auto;border: 1px solid #DDDDDD !important;border-radius: 8px;padding: 15px;font-size: 16px;line-height: 22px;color: rgba(0, 0, 0, 0.8);}
+.ng-touched.ng-invalid {border-color: red !important;}
 .form-control::-webkit-input-placeholder {color: rgba(0, 0, 0, 0.32);}
 .form-control:-ms-input-placeholder {color: rgba(0, 0, 0, 0.32);}
 .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
@@ -332,6 +333,8 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 .icon-camera:before {content: "\e91d";}
 .icon-close:before {content: "\e91e";}
 .icon-edit:before {content: "\e91f";}
+.icon-plus:before {content: "\e920";}
+
 /*=========Header===========*/
 header .navbar{display: flex;justify-content: space-between;padding: 18px 0;}
 .navbar .navbar-collapse{justify-content: center;}
@@ -493,7 +496,7 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 
 /*=========add user form===========*/
 section.add-user {margin: 16px 0 32px;}
-section.add-user .danger{position: absolute;margin: 0;}
+section.add-user .danger{position: absolute;margin: 0;font-size: 11px;}
 section.add-user h2{text-transform: capitalize;font-weight: 200;}
 section.add-user .add-box{/*max-width: 960px;*/background: #FCFCFC;border: 1px solid #DDDDDD;border-radius: 8px;padding: 40px;}
 section.add-user .steps{font-weight: 500;font-size: 16px;line-height: 24px;color: #0970DD;display: inline-block;margin-bottom: 8px;}
@@ -510,7 +513,7 @@ section.add-user .footer-btn .btn:disabled{color: #B0BAC5;opacity: 1;}
 section.add-user .checkbox label{font-weight: normal;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.56);}
 section.add-user .checkbox{margin: 0 0 24px;background: rgba(9, 112, 221, 0.16);border-radius: 8px;padding: 16px;}
 
-section.add-admin-user .hdr-right button{min-width: 138px;padding: 16px;font-size: 12px;line-height: 18px;}
+section.add-admin-user .hdr-right button{display: flex;align-items: center;min-width: 138px;padding: 16px;font-size: 12px;line-height: 18px;}
 .hdr-right .icon-simple-check{font-weight: 600;margin-left: 5px;}
 .ngx-select__toggle::after{content: "\e918";color:#666666;font-size: 5px;font-family: 'icomoon' !important;border: none;display: block;width: auto;height: auto;display: block;width: auto;height: auto;}
 .ngx-select__toggle .dropdown-toggle::after{display: none;}
@@ -541,6 +544,7 @@ ul.pic-action li{margin: 5px 0;}
 .admin-profile .hdr-left span{font-size: 14px;line-height: 21px;text-transform: capitalize;color: rgba(0, 0, 0, 0.32);}
 .admin-profile .hdr{padding-bottom: 16px;margin-bottom: 24px;}
 .btn-pw{width: 209px;height: 56px;}
+.admin-profile .hdr-right .icon-edit{font-size: 17px;} 
 
 
 /*=========Application===========*/
@@ -650,7 +654,8 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 .user-btmbx .carousel-control-prev,.user-btmbx .carousel-control-next,.user-btmbx .carousel-control-prev:hover,.user-btmbx .carousel-control-next:hover{margin: 0;opacity: 1 !important;}
 
 /*=========Admin List===========*/
-.admin-list .btn-custom{padding: 10px 12px;font-size: 14px;margin-left: 24px;}
+.admin-list .btn-custom{padding: 10px 15px;font-size: 12px;margin-left: 24px;height: 50px;}
+.admin-list .btn-custom .icon-plus{margin-left: 7px;font-size: 14px;}
 
 
 /*=========Toster===========*/
