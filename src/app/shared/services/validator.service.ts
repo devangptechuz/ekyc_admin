@@ -128,7 +128,7 @@ export class ValidationService {
 
   mobileFormat(control) {
     if (control.value) {
-      if (control.value.match(/^([0-9 ]+)$/)) {
+      if (control.value.match(/^[789]\d{9}$/)) {
         return null;
       } else {
         return { invalidMobile: true };
@@ -249,7 +249,7 @@ export class ValidationService {
 
   MatchAccountNumber(AC: AbstractControl) {
     const accountNumber = AC.get('accountNumber').value; // to get value in input tag
-    const confirmAccountNumber = AC.get('confirmAccountNumber').value; // to get value in input tag        
+    const confirmAccountNumber = AC.get('confirmAccountNumber').value; // to get value in input tag
     if (accountNumber !== confirmAccountNumber) {
       AC.get('confirmAccountNumber').setErrors({ equalTo: true });
     } else {

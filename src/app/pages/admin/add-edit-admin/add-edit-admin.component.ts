@@ -93,11 +93,10 @@ export class AddEditAdminComponent implements OnInit {
     this.adminForm.updateValueAndValidity();
     this.adminForm.patchValue(this.editAdmin.result.userData);
     this.adminForm.controls.userType.setValue(this.editAdmin.result.userData.userType.toString())
-    debugger
-    if(this.editAdmin.result.userProfile_url){
-      this.userProfileURL = this.editAdmin.result.userProfile_url;
+    if(this.editAdmin.result.userData.userProfile_url && this.editAdmin.result.userData.userProfile_url !== ''){
+      this.userProfileURL = this.editAdmin.result.userData.userProfile_url;
     }
-    if(!this.editAdmin.result.userProfile_url){
+    if(!this.editAdmin.result.userData.userProfile_url){
       this.userProfileURL = '';
     }
   }
@@ -136,6 +135,7 @@ export class AddEditAdminComponent implements OnInit {
     this.formData.delete('email');
     this.formData.delete('password');
     this.formData.append('id', this.editAdmin.result.userData.id);
+    this.formData.append('profileImage', this.editAdmin.result.userData.userProfile);
     this.adminService.updateAdmin(this.formData).subscribe(
       (result: any) => {
         if (result.success) {
@@ -147,5 +147,10 @@ export class AddEditAdminComponent implements OnInit {
           this.global.errorToastr(result.message);
         }
       });
+  }
+
+  removeImages(){
+    this.userProfileURL = null;
+    this.adminForm.controls.userProfile.setValue('');
   }
 }
