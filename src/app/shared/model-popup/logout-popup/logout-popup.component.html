@@ -4,17 +4,18 @@
         <h3 class="mb-0">Logout of admin account</h3>
     </div>
     <div class="popup-icon">
-       <span class="icon-logout"></span>
+        <span class="icon-logout"></span>
     </div>
 </div>
 <div class="modal-body">
     <p class="wr-msg mb-2">Are you sure you want to logout
         of the following admin account?</p>
-   <div class="modal-usrbox d-flex">
-    <a class="user-img dummy-icon"><img src="assets/img/user-ic.svg"></a>
-    <div class="d-flex flex-column usr-rht"><a class="wr-msg mb-0" class="name">{{label}}</a>
-    <span>GPAID005048</span></div>
-   </div>
+    <div class="modal-usrbox d-flex">
+        <a class="user-img dummy-icon"><img src="assets/img/user-ic.svg"></a>
+        <div class="d-flex flex-column usr-rht"><a class="wr-msg mb-0" class="name">{{label}}</a>
+            <span style="text-transform: none;">{{userEmail | lowercase}}</span>
+        </div>
+    </div>
 </div>
 
 <div class="modal-footer d-flex justify-content-between">
