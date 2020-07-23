@@ -79,7 +79,7 @@ export class UsersDetailComponent implements OnInit {
     private userService: UserService,
     private ref: ChangeDetectorRef
   ) {
-    config.interval = 10000;
+    // config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
     config.pauseOnHover = false;

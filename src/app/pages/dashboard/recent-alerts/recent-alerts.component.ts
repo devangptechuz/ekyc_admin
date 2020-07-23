@@ -17,7 +17,7 @@ export class RecentAlertsComponent implements OnInit {
     'mobileNumber': '9039484848',
     'ApplicationID': '12390890',
     'DateofAlert': '02/11/1994',
-    'status': 'Active'
+    'status': 'Complete'
   }, {
     'username': 'devu',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
@@ -25,7 +25,7 @@ export class RecentAlertsComponent implements OnInit {
     'mobileNumber': '7939484848',
     'ApplicationID': '12390891',
     'DateofAlert': '02/11/1985',
-    'status': 'Active'
+    'status': 'Incomplete'
   }, {
     'username': 'devud',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
@@ -33,7 +33,7 @@ export class RecentAlertsComponent implements OnInit {
     'mobileNumber': '9039498437',
     'ApplicationID': '12390892',
     'DateofAlert': '02/11/1985',
-    'status': 'Active'
+    'status': 'Complete'
   }, {
     'username': 'devang',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
@@ -41,7 +41,7 @@ export class RecentAlertsComponent implements OnInit {
     'mobileNumber': '9839499037',
     'ApplicationID': '12390893',
     'DateofAlert': '02/11/1985',
-    'status': 'Active'
+    'status': 'Complete'
   }, {
     'username': 'dev_test',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
@@ -49,7 +49,7 @@ export class RecentAlertsComponent implements OnInit {
     'mobileNumber': '9039498436',
     'ApplicationID': '12390894',
     'DateofAlert': '02/11/1985',
-    'status': 'Active'
+    'status': 'Complete'
   }, {
     'username': 'devli',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
@@ -57,7 +57,7 @@ export class RecentAlertsComponent implements OnInit {
     'mobileNumber': '9039477437',
     'ApplicationID': '12312390895',
     'DateofAlert': '02/11/1985',
-    'status': 'Active'
+    'status': 'Complete'
   }, {
     'username': 'ritesh',
     'img': 'assets/img/portrait/avatars/avatar-02.png',
@@ -65,7 +65,7 @@ export class RecentAlertsComponent implements OnInit {
     'mobileNumber': '9039489102',
     'ApplicationID': '12312390897',
     'DateofAlert': '02/11/1985',
-    'status': 'Active'
+    'status': 'Complete'
   }];
   temp = [];
   loadingIndicator = true;
