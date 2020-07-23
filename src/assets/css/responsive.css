@@ -3,7 +3,8 @@
 }
 @media (max-width: 1441px){
 	.login-section .card-body {padding: 20px 0 0;}
-	body .login-section .card{min-width: 520px;}
+	body .login-section .card{min-width: 490px;}
 	.login-section .login-img img {width: 170px;}
-	body .login-section .bg-white{margin: 15px 0 0;}
+	body .login-section .bg-white{margin: 15px 0 0;padding: 25px;}
+	body .login-section:after{height: 250px;}
 }
