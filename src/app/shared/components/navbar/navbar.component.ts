@@ -12,12 +12,25 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ["./navbar.component.scss"]
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
+  options = {
+    direction: "ltr",
+    bgColor: "black",
+    transparentColor: "",
+    bgImage: "assets/img/sidebar-bg/01.jpg",
+    bgImageDisplay: true,
+    compactMenu: false,
+    sidebarSize: "sidebar-md",
+    layout: "Light"
+  };
+
   currentLang = "en";
   toggleClass = "ft-maximize";
   placement = "bottom-right";
   public isCollapsed = true;
   @Output()
   toggleHideSidebar = new EventEmitter<Object>();
+  selectedBgColor: string = "black";
+  isBgImageDisplay = true;
 
   public config: any = {};
   user: any;
@@ -85,5 +98,44 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.commonService.logout();
+  }
+
+  onLayout() {
+    if (this.options.layout === 'Dark') {
+      this.onLightLayout();
+    } else {
+      this.onDarkLayout();
+    }
+  }
+  darkBoolean = false;
+  onDarkLayout() {
+    // console.log('this.options.layout', this.options.layout);
+    // this.darkBoolean = !this.darkBoolean;
+    // console.log('this.options.layout', this.darkBoolean);
+    // if (this.darkBoolean) {
+    this.options.layout = "Dark";
+    this.options.bgColor = "black";
+    this.selectedBgColor = "black";
+    if (this.isBgImageDisplay) {
+      this.options.bgImageDisplay = true;
+    }
+    //emit event to FUll Layout
+    this.layoutService.emitCustomizerChange(this.options);
+    // }
+    // } else {
+    //   this.onLightLayout();
+    // }
+  }
+
+  onLightLayout() {
+    this.options.layout = "Light";
+    this.options.bgColor = "man-of-steel";
+    this.selectedBgColor = "man-of-steel";
+    if (this.isBgImageDisplay) {
+      this.options.bgImageDisplay = true;
+    }
+
+    //emit event to FUll Layout
+    this.layoutService.emitCustomizerChange(this.options);
   }
 }
