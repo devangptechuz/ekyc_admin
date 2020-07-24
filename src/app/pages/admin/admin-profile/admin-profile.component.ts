@@ -11,6 +11,7 @@ import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subject } from 'rxjs';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
+import {SharedService} from '../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-admin-profile',
@@ -85,6 +86,7 @@ export class AdminProfileComponent implements OnInit {
     private cookieService: CookieService,
     private ref: ChangeDetectorRef,
     private modalService: NgbModal,
+    private sharedService:SharedService
   ) { }
 
   ngOnInit() {
@@ -114,6 +116,7 @@ export class AdminProfileComponent implements OnInit {
       (result: any) => {
         if (result.success) {
           this.global.successToastr(result.message);
+          this.sharedService.setUsernameInfo(this.adminProfileForm.value.username);
           this.spinner.hide();
         } else {
           this.global.errorToastr(result.message);
@@ -319,6 +322,7 @@ export class AdminProfileComponent implements OnInit {
         this.uploadProgress = percentDone;
       } else if (result.body) {
         this.imageUrl = result.body.result[0].url;
+        this.sharedService.setImageUrl(result.body.result[0].url);
         this.fileUploading = false;
         if (result.body.success) {
           // this.manageResultAfterUploadingFiles(result.body.result, true);

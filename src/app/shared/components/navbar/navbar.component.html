@@ -27,8 +27,11 @@
       <div class="dropdown">
         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
           <!-- <img src="assets/img/1.jpg" alt="user pic" class="profile-img"> -->
-          <span class="dummy-icon">
+          <span *ngIf="!imageUrl" class="dummy-icon">
             <img src="assets/img/user-ic.svg" alt="user pic">
+          </span>
+          <span *ngIf="imageUrl" class="dummy-icon">
+            <img [src]="imageUrl" alt="user pic" class="profile-img" >
           </span>
           <span>{{userName}}</span>
         </button>

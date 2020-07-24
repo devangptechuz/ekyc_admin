@@ -20,7 +20,7 @@ export class GlobalService {
    */
   deleteMultiCookies(cookieParams: any) {
     cookieParams.map((item: any) => {
-      this.cookie.delete(item);
+      this.cookie.delete(item,'/');
     });
   }
   /**

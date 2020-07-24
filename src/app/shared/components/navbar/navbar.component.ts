@@ -5,6 +5,9 @@ import { ConfigService } from '../../services/config.service';
 import { CommonService } from "../../services/common.service";
 import { ConfirmationDialogService } from '../../services/confirmation-dialoge.service';
 import { CookieService } from 'ngx-cookie-service';
+import {SharedService} from '../../services/shared.service';
+import {AdminService} from '../../services/admin.service';
+import {GlobalService} from '../../services/global.service';
 
 @Component({
   selector: "app-navbar",
@@ -36,20 +39,32 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   user: any;
   userName: any;
   userType: any;
+  imageUrl: any;
 
   constructor(
     private layoutService: LayoutService,
     private configService: ConfigService,
     private commonService: CommonService,
     private confirmationDialogService: ConfirmationDialogService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private sharedVarService:SharedService,
+    private adminService:AdminService,
+    public global: GlobalService,
   ) { }
 
   ngOnInit() {
     this.config = this.configService.templateConf;
-    this.user = this.commonService.getLoggedInUser();
-    this.userName = this.cookieService.get('admin_user_userName');
-    this.userType = this.cookieService.get('admin_user_userType');
+    this.getProfileAdmin();
+    this.sharedVarService.getUsernameInfo().subscribe((result) => {
+      if(result && result !== ''){
+        this.userName = result;
+      }
+    });
+    this.sharedVarService.getImageUrl().subscribe((result) => {
+      if(result && result !== ''){
+        this.imageUrl = result;
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -90,14 +105,24 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       btnElement.parentElement.parentElement.blur();
     this.confirmationDialogService.deleteConfirm(this.userName, userEmail).then((data) => {
       if (data) {
-        this.logout();
+        this.commonService.logout();
       }
     }).catch(error => console.log(error));
   }
 
 
-  logout() {
-    this.commonService.logout();
+  getProfileAdmin(){
+    this.adminService.getAdminProfile()
+        .subscribe(
+            Data => {
+              if(Data.success){
+                this.imageUrl = Data['result']['userData']['userProfile_url'];
+                this.userName = Data['result']['userData']['username'];
+                this.userType = Data['result']['userData']['userType'];
+              }else {
+                this.global.errorToastr(Data.message);
+              }
+            });
   }
 
   onLayout() {
@@ -109,22 +134,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   darkBoolean = false;
   onDarkLayout() {
-    // console.log('this.options.layout', this.options.layout);
-    // this.darkBoolean = !this.darkBoolean;
-    // console.log('this.options.layout', this.darkBoolean);
-    // if (this.darkBoolean) {
     this.options.layout = "Dark";
     this.options.bgColor = "black";
     this.selectedBgColor = "black";
     if (this.isBgImageDisplay) {
       this.options.bgImageDisplay = true;
     }
-    //emit event to FUll Layout
     this.layoutService.emitCustomizerChange(this.options);
-    // }
-    // } else {
-    //   this.onLightLayout();
-    // }
   }
 
   onLightLayout() {
@@ -135,7 +151,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.options.bgImageDisplay = true;
     }
 
-    //emit event to FUll Layout
     this.layoutService.emitCustomizerChange(this.options);
   }
 }
