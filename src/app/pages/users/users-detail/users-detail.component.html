@@ -592,9 +592,11 @@
       <div class="col-md-4" [hidden]="!globalDocumentPopup">
          <div class="form-group">
             <label>Document Selection </label>
-            <ng-select placeholder="select" [searchable]="false" (change)="documentSelection($event)">
-               <ng-option [value]="item.document_name" *ngFor="let item of userKYCDocuments">
-                  {{item.document_button_lable}}</ng-option>
+            <ng-select placeholder="select" [searchable]="false" [items]="dropdownDocumentList"
+               bindLabel="document_button_lable" bindValue="document_name" [clearable]="false"
+               [(ngModel)]="defaultSelectedDocument" (change)="documentSelection($event)">
+               <!-- <ng-option [value]="item.document_name" *ngFor="let item of dropdownDocumentList">
+                  {{item.document_button_lable}}</ng-option> -->
             </ng-select>
          </div>
       </div>
@@ -722,7 +724,8 @@
                   <div class="img-td-div" (click)="previewImageBig(i)">
                      <img *ngIf="mediaPreview?.content_type !== 'application/pdf'" src="{{ mediaPreview?.url }}"
                         alt="img">
-                     <img *ngIf="mediaPreview?.content_type === 'application/pdf'" src="assets/img/doc.svg" alt="img">
+                     <img *ngIf="mediaPreview?.content_type === 'application/pdf'"
+                        src="assets/img/modal-upload/pdf_icon.png" alt="img">
                   </div>
                </button>
             </div>
@@ -761,7 +764,8 @@
 
          <div class="snapshot row mr-md-0">
             <div class="col-md-10">
-               <ng-signature-pad backgroundColor="#F7F7F7" format="base64" (done)="showImage($event)">
+               <ng-signature-pad backgroundColor="#F7F7F7" format="base64" (done)="showImage($event)"
+                  clearButtonClass="btn btn-custom" doneButtonClass="btn btn-custom">
                </ng-signature-pad>
                <!-- <img [src]="signatureImage" *ngIf="signatureImage" /> -->
             </div>
@@ -807,8 +811,8 @@
             <div class="upload-doc-box d-flex justify-content-center align-items-center"
                *ngIf="!addNewAadhaarImageUpload && !clickedWebcamPicture">
                <img *ngIf="aadharDisplayImage?.contentType !== 'application/pdf'" src="{{aadharDisplayImage?.file}}">
-               <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'" src="assets/img/doc.svg"
-                  style="width: 100px;object-fit: contain;">
+               <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'"
+                  src="assets/img/modal-upload/pdf_icon.png">
                <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img
                      src="assets/img/modal-upload/edit.svg">Edit
                   Image/File</span>
@@ -835,7 +839,7 @@
                      <img *ngIf="mediaPreview?.contentType !== 'application/pdf'" src="{{ mediaPreview?.file }}"
                         alt="img">
                      <img class="pdf-listview" *ngIf="mediaPreview?.contentType === 'application/pdf'"
-                        src="assets/img/doc.svg" alt="img">
+                        src="assets/img/modal-upload/pdf_icon.png" alt="img">
                   </div>
                </button>
             </div>

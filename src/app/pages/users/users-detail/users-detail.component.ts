@@ -7,6 +7,7 @@ import { Subject, Observable } from 'rxjs';
 import { GlobalService } from 'app/shared/services/global.service';
 import { UserService } from 'app/shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-users-detail',
@@ -27,6 +28,8 @@ export class UsersDetailComponent implements OnInit {
   addressProofKYCDocuments: any;
   bankStatementKYCDocuments: any;
   photographKYCDocuments: any;
+  dropdownDocumentList: any;
+  defaultSelectedDocument: any;
 
   @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
   @ViewChild('fileuploadSignaturepopup') fileuploadSignaturepopup: any;
@@ -93,6 +96,7 @@ export class UsersDetailComponent implements OnInit {
 
   constructor(
     config: NgbCarouselConfig,
+    private cookie: CookieService,
     private route: ActivatedRoute,
     private modalService: NgbModal,
     public global: GlobalService,
@@ -112,29 +116,6 @@ export class UsersDetailComponent implements OnInit {
     if (userData?.result) {
       this.manageUserData(userData?.result);
     }
-    // this.userData = userData?.result;
-    // this.userKYCDocuments = userData?.result?.basic_info?.document_uploaded;
-    // if (userData?.result?.basic_info?.document_uploaded) {
-    //   userData?.result?.basic_info?.document_uploaded.map((item: any) => {
-    //     if (item?.document_name === 'aadhar_document') {
-    //       this.aadhaarKYCDocuments = item;
-    //     } else if (item?.document_name === 'pan_document') {
-    //       this.panDocumentKYCDocuments = item;
-    //     } else if (item?.document_name === 'address_proof') {
-    //       this.addressProofKYCDocuments = item;
-    //     } else if (item?.document_name === 'cancelled_cheque') {
-    //       this.cancelledChequeKYCDocuments = item;
-    //     } else if (item?.document_name === 'signature') {
-    //       this.signatureKYCDocuments = item;
-    //     } else if (item?.document_name === 'bank_statement') {
-    //       this.bankStatementKYCDocuments = item;
-    //     } else if (item?.document_name === 'photograph') {
-    //       this.photographKYCDocuments = item;
-    //     } else if (item?.document_name === 'ipv') {
-    //       this.ipvKYCDocuments = item;
-    //     }
-    //   });
-    // }
   }
 
   manageUserData(result: any = '') {
@@ -189,19 +170,8 @@ export class UsersDetailComponent implements OnInit {
       disableMultipart: false, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
       maxFileSize: 5 * 1024 * 1024,
       allowedMimeType: this.allowedMimeType,
-      // headers: [{ name: 'Authorization', value: this.cookie.get('user_auth_token') }],
+      headers: [{ name: 'Authorization', value: this.cookie.get('admin_token') }],
       queueLimit: this.maxUploadLimit
-      // formatDataFunctionIsAsync: true,
-      // formatDataFunction: async (item) => {
-      //   return new Promise((resolve, reject) => {
-      //     resolve({
-      //       name: item._file.name,
-      //       length: item._file.size,
-      //       contentType: item._file.type,
-      //       date: new Date()
-      //     });
-      //   });
-      // }
     });
     this.hasBaseDropZoneOver = false;
     this.hasAnotherDropZoneOver = false;
@@ -393,6 +363,10 @@ export class UsersDetailComponent implements OnInit {
    */
   openPopupModal() {
     this.globalDocumentPopup = true;
+    const dropdownDocumentList = this.userKYCDocuments;
+    this.defaultSelectedDocument = dropdownDocumentList[0].document_name;
+    this.dropdownDocumentList = dropdownDocumentList.filter((ele: any) => ele.document_name !== 'ipv' && ele.document_name !== 'signature');
+    this.documentSelection();
     this.modalRef = this.modalService.open(this.fileuploadAadharpopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
     this.modalRef.result.then((result) => {
       this.aadharDisplayImage = '';
@@ -408,9 +382,19 @@ export class UsersDetailComponent implements OnInit {
    * @param documentStatus 
    * @param allItem 
    */
-  documentSelection(value: any) {
+  documentSelection(selectedDoc: any = '') {
+    if (selectedDoc) {
+      const selValue = selectedDoc.document_name;
+      this.selectDocProcess(selValue);
+    } else {
+      const selValue = this.userKYCDocuments[0].document_name;
+      this.selectDocProcess(selValue);
+    }
+  }
+
+  selectDocProcess(selValue: any) {
     this.userKYCDocuments.map((item: any) => {
-      if (item.document_name === value) {
+      if (item.document_name === selValue) {
         this.allowedMimeType = item.mime_type;
         this.maxUploadLimit = item.remaining_count;
         this.isDocumentVerified = (item.document_status === 'verified') ? true : false;
