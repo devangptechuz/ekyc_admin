@@ -99,7 +99,7 @@ export class UserService {
    * @param objParam 
    */
   submitBankDetails(objParam: any) {
-    return this.http.post<any>(this.baseUrlOfUser + `verifyBankDetails`, objParam);
+    return this.http.post<any>(`${this.baseUrlOfUser}/submitBankDetails`, objParam);
   }
 
 }

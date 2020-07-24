@@ -100,12 +100,14 @@ export class BankDetailComponent implements OnInit {
     } else {
       if (this.bankDetailsform.valid) {
         let obj = {};
+        obj['id'] = this.userId;
         obj['ifsc_code'] = this.bankDetailsform.value.IFSCCode.toUpperCase();
         obj['account_number'] = this.bankDetailsform.value.accountNumber;
         obj['confirm_account_number'] = this.bankDetailsform.value.confirmAccountNumber;
         this.userService.submitBankDetails(obj).subscribe((res: any) => {
           if (res.success) {
             this.global.successToastr(res.message);
+            this.router.navigate(['applications/details', this.userId])
           } else {
             this.global.errorToastr(res.message);
           }
