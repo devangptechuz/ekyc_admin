@@ -657,10 +657,10 @@
                </a>
             </div>
 
-            <div class="upload-doc-box" *ngIf="!addNewAadhaarImageUpload && !clickedWebcamPicture">
+            <div class="upload-doc-box d-flex justify-content-center align-items-center" *ngIf="!addNewAadhaarImageUpload && !clickedWebcamPicture">
                <img *ngIf="aadharDisplayImage?.contentType !== 'application/pdf'" src="{{aadharDisplayImage?.file}}">
                <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'"
-                  src="assets/img/modal-upload/pdf_icon.png" style="width: 100px;">
+                  src="assets/img/modal-upload/pdf_icon.png" style="width: 100px; object-fit: contain;">
                <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img
                      src="assets/img/modal-upload/edit.svg">Edit
                   Image/File</span>
@@ -687,7 +687,7 @@
                      <img *ngIf="mediaPreview?.contentType !== 'application/pdf'" src="{{ mediaPreview?.file }}"
                         alt="img">
                      <img *ngIf="mediaPreview?.contentType === 'application/pdf'"
-                        src="assets/img/modal-upload/pdf_icon.png" alt="img">
+                        src="assets/img/modal-upload/pdf_icon.png" alt="img" class="pdf-listview">
                   </div>
                </button>
             </div>
