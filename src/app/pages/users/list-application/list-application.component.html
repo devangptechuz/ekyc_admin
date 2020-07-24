@@ -46,10 +46,13 @@
                                     </span>
                                 </div>
                                 <div class="col-md-8 d-flex align-items-center justify-content-end">
-                                    <div class="search"><input type="search" name="" (keyup)='updateFilter($event)'
+                                    <div class="search">
+                                        <input type="search" #searchBytype name="searchbytype"
                                             placeholder="search by user name or email or mobilenumber"
-                                            class="form-control"><button class="btn-search"><span
-                                                class="icon-search"></span></button></div>
+                                            class="form-control" (keyup)='resetFilter($event)'>
+                                        <button (click)='updateFilter($event)' class="btn-search"><span
+                                                class="icon-search"></span></button>
+                                    </div>
                                     <div class="filter">Filter search<span class="icon-filter"></span></div>
                                 </div>
                             </div>

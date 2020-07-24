@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./list-application.component.scss']
 })
 export class ListApplicationComponent implements OnInit {
-
+  @ViewChild('searchBytype') searchBytype: ElementRef;
   rows = [];
   temp = [];
   selected = [];
@@ -57,8 +57,18 @@ export class ListApplicationComponent implements OnInit {
     });
   }
 
+  resetFilter($event) {
+    if (!$event.target.value) {
+      this.ngOnInit();
+    }
+  }
+
   updateFilter(event) {
-    const val = event.target.value.toLowerCase();
+    const searchBytype = this.searchBytype.nativeElement.value;
+    if (!searchBytype) {
+      this.global.errorToastr('Search box is empty')
+    }
+    const val = searchBytype.toLowerCase();
     this.rows = this.temp.filter((d) => {
       return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
         d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||

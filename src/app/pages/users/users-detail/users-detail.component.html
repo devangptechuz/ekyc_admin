@@ -14,10 +14,10 @@
                <div class="dropdown-menu dropdown-menu-right">
                   <a class="dropdown-item disable" href="javascript:void(0)"><span class="icon-simple-check"></span>
                      approve</a>
-                  <a class="dropdown-item" href="javascript:void(0)"><span class="icon-minus-file"></span> request
+                  <!-- <a class="dropdown-item" href="javascript:void(0)"><span class="icon-minus-file"></span> request
                      documents</a>
                   <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report
-                     application</a>
+                     application</a> -->
                   <a class="dropdown-item" href="javascript:void(0)"><span class="icon-notallow"></span>reject</a>
                </div>
             </div>
@@ -31,21 +31,18 @@
                <p class="mb-0 mt-2">application number : {{userData?.basic_info?.application_number | uppercase}}</p>
             </div>
             <div class="rght d-flex align-items-center">
-               <p class="mb-0">application not submitted</p>
+               <p class="mb-0">application submitted</p>
                <!-- <button class="btn btn-custom m-0">Respond <i class="fa fa-angle-down"></i></button> -->
                <div class="dropdown">
-                  <button type="button" class="btn dropdown-toggle btn-custom m-0 btn-aprvd disabled"
-                     data-toggle="dropdown">
+                  <button type="button" class="btn dropdown-toggle btn-custom m-0 btn-aprvd" data-toggle="dropdown">
                      Respond <i class="fa fa-angle-down"></i>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
                      <a class="dropdown-item disable" href="javascript:void(0)"><span class="icon-simple-check"></span>
                         approve</a>
-                     <a class="dropdown-item" href="javascript:void(0)"><span class="icon-minus-file"></span> request
-                        documents</a>
-                     <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report
-                        application</a>
                      <a class="dropdown-item" href="javascript:void(0)"><span class="icon-notallow"></span>reject</a>
+                     <!-- <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report
+                        application</a> -->
                   </div>
                </div>
             </div>
@@ -458,7 +455,7 @@
                <!-- <div class="d-flex justify-content-between mb-3">
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
                </div> -->
-               <div class="doc-upbox signature-box">
+               <div class="doc-upbox" [ngClass]="{'signature-box': userData?.sign_and_identity?.sign_url}">
                   <div class="dropdown more-dropdown">
                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                         <span class="icon-more-vertical"></span>
