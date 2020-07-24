@@ -109,12 +109,12 @@ export class AdminProfileComponent implements OnInit {
       return false;
     }
     delete this.adminProfileForm.value.id;
+    delete this.adminProfileForm.value.email;
     this.adminService.updateAdminProfile(this.adminProfileForm.value).subscribe(
       (result: any) => {
         if (result.success) {
           this.global.successToastr(result.message);
           this.spinner.hide();
-          this.adminProfileForm.reset();
         } else {
           this.global.errorToastr(result.message);
         }
@@ -159,6 +159,7 @@ export class AdminProfileComponent implements OnInit {
   }
 
   openDocumentPopupModal() {
+    this.addNewAadhaarImageUpload = true;
     this.onModalOpen();
     this.mediaPreviews = [];
     this.modalRef = this.modalService.open(this.fileuploadAadharpopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
@@ -368,6 +369,11 @@ export class AdminProfileComponent implements OnInit {
 
   public get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
+  }
+
+  cancelPopup(){
+    this.addNewAadhaarImageUpload = true;
+    this.modalRef.close();
   }
 
   public cameraWasSwitched(deviceId: string): void {
