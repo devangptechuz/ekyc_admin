@@ -259,7 +259,7 @@
         <!----------------- VIEW image/file : END -------------->
 
         <div class="modal-footer d-flex justify-content-between">
-            <a class="btn modal-btn-cancel" (click)="c('cancel')" href="javascript:void(0)">{{'Cancel'}}</a>
+            <a class="btn modal-btn-cancel"  (click)="cancelPopup()" href="javascript:void(0)">{{'Cancel'}}</a>
             <a *ngIf="!clickedWebcamPicture" [ngClass]="{'disabled': !uploader?.getNotUploadedItems().length}"
                 class="btn modal-btn-continue" (click)="submitDocumentUploadModal()" href="javascript:void(0)">
                 {{'Save & Continue' }}

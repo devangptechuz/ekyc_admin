@@ -26,7 +26,7 @@ export class AdminService {
     }
 
     updateAdminProfile(data): Observable<any>{
-        return this.http.put<any>(`${this.apiUrl}/updateAdminProfile`, data);
+        return this.http.post<any>(`${this.apiUrl}/updateAdminProfile`, data);
     }
 
     updateAdminProfileImage(data): Observable<any>{
