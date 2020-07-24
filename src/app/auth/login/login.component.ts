@@ -31,7 +31,7 @@ export class LoginComponent {
   ) { }
 
   ngOnInit() {
-    this.commonService.logout()
+    this.cookieService.delete('admin_token');
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     this.setLoginForm();
   }
@@ -50,10 +50,7 @@ export class LoginComponent {
     }
     this.commonService.login(this.loginForm.value).subscribe((res: any) => {
       if(res.success){
-          this.cookieService.set('admin_user_email',res.result.email);
-          this.cookieService.set('admin_user_token', res.result.token);
-          this.cookieService.set('admin_user_userName', res.result.username);
-          this.cookieService.set('admin_user_userType', res.result.userType);
+          this.cookieService.set('admin_token', res.result.token);
           this.router.navigateByUrl(this.returnUrl);
           this.spinner.hide();
           this.loginForm.reset();

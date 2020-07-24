@@ -9,11 +9,10 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | boolean {
-    const token = this.cookieService.get('admin_user_token');
+    const token = this.cookieService.get('admin_token');
     if (!token) {
       return true;
     }
-
     this.router.navigate(['/dashboard']);
     return false;
   }

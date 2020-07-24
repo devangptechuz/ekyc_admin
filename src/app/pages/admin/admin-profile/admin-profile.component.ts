@@ -174,7 +174,7 @@ export class AdminProfileComponent implements OnInit {
       disableMultipart: false, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
       maxFileSize: 5 * 1024 * 1024,
       allowedMimeType: this.allowedMimeType,
-      headers: [{ name: 'Authorization', value: this.cookieService.get('admin_user_token') }],
+      headers: [{ name: 'Authorization', value: this.cookieService.get('admin_token') }],
       queueLimit: this.maxUploadLimit
     });
     this.hasBaseDropZoneOver = false;
