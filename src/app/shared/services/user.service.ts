@@ -21,6 +21,9 @@ export class UserService {
     return this.http.get<any>(`${this.baseUrlOfUser}/userList`);
   }
 
+  /**
+   * get user details with loader 
+   */
   getUser(id): Observable<any> {
     return this.http.get<any>(`${this.baseUrlOfUser}/userDetail/${id}`);
   }
@@ -29,10 +32,22 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrlOfUser}/deleteUser`, data); //todo id=['']
   }
   /**
+   * get user details with hide loader 
+   */
+  getUserWithHideLoader(hideLoader: boolean = false, userId = null) {
+    let options = {}
+    if (hideLoader) {
+      const params = new HttpParams().set('hideLoader', 'true');
+      options = { params: params };
+      options['reportProgress'] = true;
+      options['observe'] = 'events';
+    }
+    return this.http.get<any>(`${this.baseUrlOfUser}/userDetail/${userId}`, options);
+  }
+  /**
    * get ekyc document list 
    */
   getDocumentAvailable(hideLoader: boolean = false, userId = null) {
-
     let options = {}
     if (hideLoader) {
       const params = new HttpParams().set('hideLoader', 'true');

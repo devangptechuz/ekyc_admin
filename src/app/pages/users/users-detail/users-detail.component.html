@@ -200,7 +200,7 @@
                            document</a>
                      </div>
                   </div>
-                  <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents">
+                  <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents?.length">
                      <ng-template ngbSlide *ngFor="let imageAadhaar of userData?.aadhar_details?.aadhar_documents">
                         <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type === 'application/pdf'">
                            <iframe [src]="imageAadhaar?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -269,7 +269,7 @@
                            document</a>
                      </div>
                   </div>
-                  <ngb-carousel *ngIf="userData?.pan_details?.pan_documents">
+                  <ngb-carousel *ngIf="userData?.pan_details?.pan_documents?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.pan_details?.pan_documents">
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -359,7 +359,7 @@
                      </div>
 
                   </div>
-                  <ngb-carousel *ngIf="userData?.personal_details?.address_url">
+                  <ngb-carousel *ngIf="userData?.personal_details?.address_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.personal_details?.address_url">
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -427,7 +427,7 @@
                   </div>
 
                   <!-- /************* Bank statement : CAROUSEL **************/ -->
-                  <ngb-carousel *ngIf="userData?.bank_details?.cancelled_cheque_url">
+                  <ngb-carousel *ngIf="userData?.bank_details?.cancelled_cheque_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.cancelled_cheque_url">
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -461,7 +461,7 @@
                   </div>
 
                   <!-- /************* Bank statement : CAROUSEL **************/ -->
-                  <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url">
+                  <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -500,7 +500,7 @@
                      </div>
                   </div>
                   <!-- /************* Signature : CAROUSEL **************/ -->
-                  <ngb-carousel *ngIf="userData?.sign_and_identity?.sign_url">
+                  <ngb-carousel *ngIf="userData?.sign_and_identity?.sign_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.sign_url">
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -529,7 +529,7 @@
                      </div>
                   </div>
                   <!-- /************* Photograph : CAROUSEL **************/ -->
-                  <ngb-carousel *ngIf="userData?.sign_and_identity?.photograph_url">
+                  <ngb-carousel *ngIf="userData?.sign_and_identity?.photograph_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.photograph_url">
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -558,7 +558,7 @@
                      </div>
                   </div>
                   <!-- /************* IN PERSON VIDEO : CAROUSEL **************/ -->
-                  <ngb-carousel *ngIf="userData?.sign_and_identity?.ipv_documents">
+                  <ngb-carousel *ngIf="userData?.sign_and_identity?.ipv_documents?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.ipv_documents">
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -657,7 +657,8 @@
                </a>
             </div>
 
-            <div class="upload-doc-box d-flex justify-content-center align-items-center" *ngIf="!addNewAadhaarImageUpload && !clickedWebcamPicture">
+            <div class="upload-doc-box d-flex justify-content-center align-items-center"
+               *ngIf="!addNewAadhaarImageUpload && !clickedWebcamPicture">
                <img *ngIf="aadharDisplayImage?.contentType !== 'application/pdf'" src="{{aadharDisplayImage?.file}}">
                <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'"
                   src="assets/img/modal-upload/pdf_icon.png" style="width: 100px; object-fit: contain;">

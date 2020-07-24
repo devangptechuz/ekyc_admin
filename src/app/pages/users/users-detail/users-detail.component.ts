@@ -109,11 +109,40 @@ export class UsersDetailComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.route.snapshot.params.id;
     const userData = this.route.snapshot.data['user'];
-    this.userData = userData?.result;
+    if (userData?.result) {
+      this.manageUserData(userData?.result);
+    }
+    // this.userData = userData?.result;
+    // this.userKYCDocuments = userData?.result?.basic_info?.document_uploaded;
+    // if (userData?.result?.basic_info?.document_uploaded) {
+    //   userData?.result?.basic_info?.document_uploaded.map((item: any) => {
+    //     if (item?.document_name === 'aadhar_document') {
+    //       this.aadhaarKYCDocuments = item;
+    //     } else if (item?.document_name === 'pan_document') {
+    //       this.panDocumentKYCDocuments = item;
+    //     } else if (item?.document_name === 'address_proof') {
+    //       this.addressProofKYCDocuments = item;
+    //     } else if (item?.document_name === 'cancelled_cheque') {
+    //       this.cancelledChequeKYCDocuments = item;
+    //     } else if (item?.document_name === 'signature') {
+    //       this.signatureKYCDocuments = item;
+    //     } else if (item?.document_name === 'bank_statement') {
+    //       this.bankStatementKYCDocuments = item;
+    //     } else if (item?.document_name === 'photograph') {
+    //       this.photographKYCDocuments = item;
+    //     } else if (item?.document_name === 'ipv') {
+    //       this.ipvKYCDocuments = item;
+    //     }
+    //   });
+    // }
+  }
 
-    this.userKYCDocuments = userData?.result?.basic_info?.document_uploaded;
-    if (userData?.result?.basic_info?.document_uploaded) {
-      userData?.result?.basic_info?.document_uploaded.map((item: any) => {
+  manageUserData(result: any = '') {
+    this.userData = result;
+
+    this.userKYCDocuments = result?.basic_info?.document_uploaded;
+    if (result?.basic_info?.document_uploaded) {
+      result?.basic_info?.document_uploaded.map((item: any) => {
         if (item?.document_name === 'aadhar_document') {
           this.aadhaarKYCDocuments = item;
         } else if (item?.document_name === 'pan_document') {
@@ -720,12 +749,14 @@ export class UsersDetailComponent implements OnInit {
   * Get all document lists
   */
   getKYCDocumentsList(hideLoader: boolean = false, userId: any = '') {
-    this.userService.getDocumentAvailable(hideLoader, userId).subscribe((res: any) => {
+    this.userService.getUserWithHideLoader(hideLoader, userId).subscribe((res: any) => {
       if (res.success) {
-        console.log(res.result.documents);
+        // console.log(res.result);
+        this.manageUserData(res.result);
       }
       if (hideLoader && res?.body?.success) {
-        console.log(res.body.result.documents);
+        // console.log(res.body.result);
+        this.manageUserData(res.body.result);
       }
     });
   }
