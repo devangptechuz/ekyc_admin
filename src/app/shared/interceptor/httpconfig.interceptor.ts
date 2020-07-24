@@ -40,7 +40,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
       this.spinner.show();
     }
     request.params.set('hideLoader', '');
-    const token: string = this.cookieService.get('admin_user_token');
+    const token: string = this.cookieService.get('admin_token');
     if (token) {
       if (request.url.search('/login') === -1) {
         request = request.clone({
