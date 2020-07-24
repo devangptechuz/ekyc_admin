@@ -510,9 +510,9 @@ export class UsersDetailComponent implements OnInit {
     this.viewSectionOfImage = true;
     this.mediaPreviews = [];
     this.globalDocumentPopup = false;
-    // if (getKYCDocumentsList) {
-    //   this.getKYCDocumentsList();
-    // }
+    if (getKYCDocumentsList) {
+      this.getKYCDocumentsList(true, this.userId);
+    }
   }
   /**
    * Converimage from binary to blob image
@@ -706,7 +706,7 @@ export class UsersDetailComponent implements OnInit {
           this.signatureImage = '';
           this.viewSectionOfImage = true;
           this.globalDocumentPopup = false;
-          // this.getKYCDocumentsList(true);
+          this.getKYCDocumentsList(true, this.userId);
           this.modalRef.close();
         }
       }
