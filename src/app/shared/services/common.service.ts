@@ -21,7 +21,7 @@ export class CommonService {
   ) { }
 
   logout() {
-    this.global.deleteMultiCookies(['admin_user_email', 'admin_user_token', 'admin_user_userName', 'admin_user_userType']);
+    this.cookieService.delete('admin_token','/');
     this.global.successToastr('Logout successfully');
     this.router.navigate(['/']);
   }
@@ -54,7 +54,7 @@ export class CommonService {
   }
 
   goToHome() {
-    const token = this.cookieService.get('admin_user_token');
+    const token = this.cookieService.get('admin_token');
     if (token) {
       return this.router.navigate(['/dashboard']);
     }

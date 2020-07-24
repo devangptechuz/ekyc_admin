@@ -40,6 +40,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   userName: any;
   userType: any;
   imageUrl: any;
+  userEmail:any;
 
   constructor(
     private layoutService: LayoutService,
@@ -100,10 +101,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   onLogout(btnElement) {
-    let userEmail: string = this.cookieService.get('admin_user_email');
     btnElement && btnElement.parentElement && btnElement.parentElement.parentElement &&
       btnElement.parentElement.parentElement.blur();
-    this.confirmationDialogService.deleteConfirm(this.userName, userEmail).then((data) => {
+    this.confirmationDialogService.deleteConfirm(this.userName, this.userEmail).then((data) => {
       if (data) {
         this.commonService.logout();
       }
@@ -119,6 +119,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
                 this.imageUrl = Data['result']['userData']['userProfile_url'];
                 this.userName = Data['result']['userData']['username'];
                 this.userType = Data['result']['userData']['userType'];
+                this.userEmail = Data['result']['userData']['email'];
               }else {
                 this.global.errorToastr(Data.message);
               }
