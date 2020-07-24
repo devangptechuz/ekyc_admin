@@ -329,6 +329,7 @@ export class UsersDetailComponent implements OnInit {
   */
   removeViewSectionMedia(fileId: any) {
     const obj = { id: fileId, document_name: this.nameOfDocument };
+    obj['userId'] = this.userId;
     this.userService.removeImageFileDocument(obj).subscribe((res: any) => {
       if (res.success) {
         this.viewMediaPreviewsList = res.result;
@@ -408,15 +409,16 @@ export class UsersDetailComponent implements OnInit {
     this.aadharDisplayImage = '';
     this.mediaPreviews = [];
     this.uploader.clearQueue();
-    // if (documentStatus !== "not_uploaded") {
-    //   const objParam = { 'document_name': nameOfDocument };
-    //   this.userService.getDocumentDetails(objParam).subscribe((res: any) => {
-    //     if (res.success) {
-    //       this.fileUploading = false;
-    //       this.manageResultAfterUploadingFiles(res.result, false);
-    //     }
-    //   });
-    // }
+    if (documentStatus !== "not_uploaded") {
+      const objParam = { 'document_name': nameOfDocument };
+      objParam['id'] = this.userId;
+      this.userService.getDocumentDetails(objParam).subscribe((res: any) => {
+        if (res.success) {
+          this.fileUploading = false;
+          this.manageResultAfterUploadingFiles(res.result, false);
+        }
+      });
+    }
     this.modalRef = this.modalService.open(this.fileuploadAadharpopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
     this.modalRef.result.then((result) => {
       this.aadharDisplayImage = '';
@@ -430,6 +432,8 @@ export class UsersDetailComponent implements OnInit {
    */
   submitDocumentUploadModal() {
     let uploadParam: any = new FormData();
+    // objParam['id'] = this.userId;
+    uploadParam.append('id', this.userId);
     uploadParam.append('document_name', this.nameOfDocument);
     this.uploader.queue.map((item: any, index) => {
       uploadParam.append('file[]', item._file);
@@ -462,6 +466,8 @@ export class UsersDetailComponent implements OnInit {
       realImageBlob.push(blobImage);
     });
     let uploadParam: any = new FormData();
+
+    uploadParam.append('id', this.userId);
     uploadParam.append('document_name', this.nameOfDocument);
     realImageBlob.map((item: any, index) => {
       console.log('item', item);
@@ -639,15 +645,16 @@ export class UsersDetailComponent implements OnInit {
     this.aadharDisplayImage = '';
     this.mediaPreviews = [];
     this.uploader.clearQueue();
-    // if (documentStatus !== "not_uploaded") {
-    //   const objParam = { 'document_name': nameOfDocument };
-    //   this.userService.getDocumentDetails(objParam).subscribe((res: any) => {
-    //     if (res.success) {
-    //       this.fileUploading = false;
-    //       this.manageResultAfterUploadingFiles(res.result, false);
-    //     }
-    //   });
-    // }
+    if (documentStatus !== "not_uploaded") {
+      const objParam = { 'document_name': nameOfDocument };
+      objParam['id'] = this.userId;
+      this.userService.getDocumentDetails(objParam).subscribe((res: any) => {
+        if (res.success) {
+          this.fileUploading = false;
+          this.manageResultAfterUploadingFiles(res.result, false);
+        }
+      });
+    }
     this.modalRef = this.modalService.open(this.fileuploadSignaturepopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
     this.modalRef.result.then((result) => {
       this.globalDocumentPopup = false;
@@ -679,6 +686,7 @@ export class UsersDetailComponent implements OnInit {
 
     // const queue = [];
     let uploadParam: any = new FormData();
+    uploadParam.append('id', this.userId);
     uploadParam.append('document_name', this.nameOfDocument);
     realImageBlob.map((item: any, index) => {
       uploadParam.append('file[]', item, `signatureimage${index}.jpeg`);
@@ -707,6 +715,20 @@ export class UsersDetailComponent implements OnInit {
     });
   }
   /************* SIGNATURE DOCUMENT: START ***************/
+
+  /**
+  * Get all document lists
+  */
+  getKYCDocumentsList(hideLoader: boolean = false) {
+    this.userService.getDocumentAvailable(hideLoader).subscribe((res: any) => {
+      if (res.success) {
+        console.log(res.result.documents);
+      }
+      if (hideLoader && res?.body?.success) {
+        console.log(res.body.result.documents);
+      }
+    });
+  }
 
   /************************** IN-PERSON-VIDEO:START **********************/
   /**

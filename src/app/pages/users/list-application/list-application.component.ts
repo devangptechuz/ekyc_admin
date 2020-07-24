@@ -57,6 +57,10 @@ export class ListApplicationComponent implements OnInit {
     });
   }
 
+  navigate($event) {
+    console.log('navigate', $event);
+  }
+
   resetFilter($event) {
     if (!$event.target.value) {
       this.ngOnInit();

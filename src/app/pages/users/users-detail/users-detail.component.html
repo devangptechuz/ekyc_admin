@@ -428,6 +428,40 @@
                   </div>
 
                   <!-- /************* Bank statement : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.bank_details?.cancelled_cheque_url">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.cancelled_cheque_url">
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
+               </div>
+               <label class="doc-type">Cancelled Check</label>
+
+               <!-- <div class="d-flex justify-content-between mb-2">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+
+               <!-- <div class="d-flex justify-content-between mb-2 mt-3">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+               <div class="doc-upbox mt-4">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item"
+                           (click)="openDocumentPopupModal(bankStatementKYCDocuments?.document_name, bankStatementKYCDocuments?.document_modal_title, bankStatementKYCDocuments?.document_status, bankStatementKYCDocuments)">Upload
+                           document</a>
+                     </div>
+
+                  </div>
+
+                  <!-- /************* Bank statement : CAROUSEL **************/ -->
                   <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
@@ -626,8 +660,8 @@
 
             <div class="upload-doc-box" *ngIf="!addNewAadhaarImageUpload && !clickedWebcamPicture">
                <img *ngIf="aadharDisplayImage?.contentType !== 'application/pdf'" src="{{aadharDisplayImage?.file}}">
-               <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'" src="assets/img/doc.svg"
-                  style="width: 100px;">
+               <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'"
+                  src="assets/img/modal-upload/pdf_icon.png" style="width: 100px;">
                <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img
                      src="assets/img/modal-upload/edit.svg">Edit
                   Image/File</span>
@@ -653,7 +687,8 @@
                   <div class="img-td-div" (click)="documentShowBigMedia(i,true)">
                      <img *ngIf="mediaPreview?.contentType !== 'application/pdf'" src="{{ mediaPreview?.file }}"
                         alt="img">
-                     <img *ngIf="mediaPreview?.contentType === 'application/pdf'" src="assets/img/doc.svg" alt="img">
+                     <img *ngIf="mediaPreview?.contentType === 'application/pdf'"
+                        src="assets/img/modal-upload/pdf_icon.png" alt="img">
                   </div>
                </button>
             </div>
@@ -667,13 +702,13 @@
             <div class="upload-doc-box"
                *ngIf="viewPreviewDisplayImage?.content_type === 'image/jpeg' || viewPreviewDisplayImage?.content_type === 'image/jpg' || viewPreviewDisplayImage?.content_type === 'image/png'">
                <img src="{{viewPreviewDisplayImage?.url}}">
-               <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+               <span (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
                   <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
             </div>
 
             <div class="upload-doc-box" *ngIf="viewPreviewDisplayImage?.content_type === 'application/pdf'">
                <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe>
-               <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+               <span (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
                   <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
 
             </div>
@@ -681,7 +716,7 @@
 
          <div class="col-md-2 p-md-0">
             <div class="scroll-upload">
-               <button *ngIf="!isDocumentVerified" class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
+               <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
                   Image/File</button>
                <button class="view-img" *ngFor="let mediaPreview of viewMediaPreviewsList; let i = index">
                   <div class="img-td-div" (click)="previewImageBig(i)">
@@ -814,19 +849,19 @@
             <div class="upload-doc-box"
                *ngIf="viewPreviewDisplayImage?.content_type === 'image/jpeg' || viewPreviewDisplayImage?.content_type === 'image/jpg' || viewPreviewDisplayImage?.content_type === 'image/png'">
                <img src="{{viewPreviewDisplayImage?.url}}">
-               <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+               <span (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
                   <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
             </div>
             <div class="upload-doc-box" *ngIf="viewPreviewDisplayImage?.content_type === 'application/pdf'">
                <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe>
-               <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+               <span (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
                   <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
             </div>
          </div>
 
          <div class="col-md-2 p-md-0">
             <div class="scroll-upload">
-               <button *ngIf="!isDocumentVerified" class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
+               <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
                   Image/File</button>
                <button class="view-img" *ngFor="let mediaPreview of viewMediaPreviewsList; let i = index">
                   <div class="img-td-div" (click)="previewImageBig(i)">

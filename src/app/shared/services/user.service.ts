@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-  baseUrlOfUser = environment.api_url
+  baseUrlOfUser = environment.api_url;
+  imageUploadUrl = environment.imag_url;
 
   constructor(
     public http: HttpClient,
@@ -30,7 +31,8 @@ export class UserService {
   /**
    * get ekyc document list 
    */
-  getDocumentAvailable(hideLoader: boolean = false) {
+  getDocumentAvailable(hideLoader: boolean = false, userId = null) {
+
     let options = {}
     if (hideLoader) {
       const params = new HttpParams().set('hideLoader', 'true');
@@ -38,7 +40,7 @@ export class UserService {
       options['reportProgress'] = true;
       options['observe'] = 'events';
     }
-    return this.http.get<any>(`${this.baseUrlOfUser}/getKycDocuments`, options);
+    return this.http.get<any>(`${this.baseUrlOfUser}/getKycDocuments/${userId}`, options);
   }
 
   /**
@@ -49,7 +51,7 @@ export class UserService {
     let options = { params: params };
     options['reportProgress'] = true;
     options['observe'] = 'events';
-    return this.http.post<any>(`https://rueleigzg6.execute-api.us-east-2.amazonaws.com/test/api/uploadUserDocuments`, obj, options);
+    return this.http.post<any>(`${this.imageUploadUrl}/uploadUserDocuments`, obj, options);
   }
 
   /**
@@ -57,6 +59,13 @@ export class UserService {
    */
   getDocumentDetails(objParam: any): Observable<Document> {
     return this.http.post<any>(`${this.baseUrlOfUser}/getUserDocuments`, objParam);
+  }
+
+  /**
+   * Remove Image/Files from DB
+   */
+  removeImageFileDocument(obj: any) {
+    return this.http.post<any>(`${this.baseUrlOfUser}/deleteUserDocument`, obj);
   }
 
   /**
@@ -68,13 +77,10 @@ export class UserService {
   }
 
   /**
-   * Remove Image/Files from DB
+   * get personal & address details
+   * @param userId 
    */
-  removeImageFileDocument(obj: any) {
-    return this.http.post<any>(`${this.baseUrlOfUser}/deleteUserDocument`, obj);
-  }
-
-  getPersoanlAddressDetails(userId: string) {
+  getPersonalAddressDetails(userId: string) {
     return this.http.get<any>(`${this.baseUrlOfUser}/getPersonalDetailsAndAddress/${userId}`);
   }
 
