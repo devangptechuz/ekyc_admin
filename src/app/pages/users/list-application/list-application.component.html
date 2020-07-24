@@ -17,11 +17,12 @@
             <li class="nav-item">
                 <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">rejected (102)</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">reported (6)</a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a href="https://devsite.getprosper.in/" class="nav-link app-link" target="_blank">Create new app</a>
+                <a href="https://devsite.getprosper.in/" class="nav-link app-link" target="_blank">Create new
+                    application</a>
             </li>
         </ul>
         <!-- Tab panes -->
@@ -75,8 +76,7 @@
                                     <ngx-datatable-column [width]="10" name="user name" [sortable]="true"
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a data-tooltip title="{{row.userName}}"
-                                                [routerLink]="['/applications/details',row.id]"
+                                            <a title="{{row.userName}}" [routerLink]="['/applications/details',row.id]"
                                                 routerLinkActive="router-link-active" class="uname">{{row.userName}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>

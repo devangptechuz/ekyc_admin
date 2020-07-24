@@ -346,7 +346,7 @@ export class UsersDetailComponent implements OnInit {
         this.maxUploadLimit++;
         this.uploader.clearQueue();
         this.onModalOpen();
-        // this.getKYCDocumentsList(true);
+        this.getKYCDocumentsList(true, this.userId);
         this.global.successToastr(res.message);
       } else {
         this.global.errorToastr(res.message);
@@ -719,8 +719,8 @@ export class UsersDetailComponent implements OnInit {
   /**
   * Get all document lists
   */
-  getKYCDocumentsList(hideLoader: boolean = false) {
-    this.userService.getDocumentAvailable(hideLoader).subscribe((res: any) => {
+  getKYCDocumentsList(hideLoader: boolean = false, userId: any = '') {
+    this.userService.getDocumentAvailable(hideLoader, userId).subscribe((res: any) => {
       if (res.success) {
         console.log(res.result.documents);
       }
