@@ -539,11 +539,11 @@ section.add-admin-user .hdr-right button{display: flex;align-items: center;justi
 /* admin profile*/
 .admin-profile .admin-detail label{font-size: 12px;line-height: 18px;letter-spacing: 1px;color: #96AB13;margin: 0 0 8px;}
 .admin-profile .admin-detail h4{margin-bottom: 16px;font-weight: normal;line-height: 24px;text-transform: capitalize;}
-ul.pic-action{margin: 0;list-style: none;max-width: 210px;padding-left: 25px;}
+ul.pic-action{margin: 0;list-style: none;max-width: 210px;padding-left: 25px;max-height: 116px;display: flex;justify-content: center;flex-flow: column;}
 ul.pic-action a,ul.pic-action button{padding: 0;background: transparent;border: none;position: relative;font-weight: 500;font-size: 10px;line-height: 15px;letter-spacing: 1px;text-transform: uppercase;color: #0970DD;}
 ul.pic-action a span,ul.pic-action button span{font-size: 13px;width: 25px;display: inline-block;text-align: left;}
 ul.pic-action li:first-child a span{font-size: 9px;}
-ul.pic-action li{margin: 5px 0;}
+ul.pic-action li{margin: 2px 0;}
 .add-user .view-pic{width: 116px;height: 116px;border-radius: 50%;background: #eee;display: flex;align-items: center;justify-content: center;}
 .add-user .view-pic img{width: 58px;}
 .add-user .view-pic .userpic{width: 100%;height: 100%;object-fit: cover; border-radius: 50%;}
@@ -557,7 +557,8 @@ ul.pic-action li{margin: 5px 0;}
 /*=========Application===========*/
 section.application {margin: 32px 0;}
 section.application .nav-tabs{margin-left: 40px;border: none;}
-section.application .nav-tabs .nav-link{padding: 15px 24px;font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
+section.application .nav-tabs .app-link.nav-link{color: #0970DD;font-weight: 500;}
+section.application .nav-tabs .nav-link{padding: 15px 20px;font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
 section.application .nav-tabs .nav-link:hover{background: #F5F9FE;border-radius: 8px 8px 0px 0px;color: #0970DD;}
 section.application .tab-content{padding: 0;background: #FCFCFC;border: 1px solid #DDDDDD;box-sizing: border-box;border-radius: 8px;}
 section.application .nav-tabs .nav-link.active{background: #0970DD;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);border-radius: 8px 8px 0px 0px;color: #fff;border: none;}
@@ -582,6 +583,8 @@ section.application .tble {padding: 0 40px 40px;}
 .ngx-datatable .datatable-footer .datatable-footer-inner{margin-top: 0;}
 .ngx-datatable.bootstrap .datatable-footer .datatable-pager a{color: rgba(0, 0, 0, 0.56);}
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover,.nav-tabs .nav-link{border:none;}
+.coming-soon {padding: 100px 0;text-align: center;}
+section.application .coming-soon h2{margin: 20px 0 0 40px;text-transform: uppercase;font-weight: 600;}
 
 
 /*user-view*/
@@ -710,7 +713,7 @@ input:checked + .slider:before {-webkit-transform: translateX(9px);-ms-transform
 .modal-dialog.modal-lg{max-width: 960px;}
 .modal-content .user-box span{font-size: 14px;line-height: 21px;color: rgba(0, 0, 0, 0.56);}
 .modal-footer{border-color: #ddd;padding: 16px 0 0;}
-.modal-footer a,.modal-footer a:not([href]):not([tabindex]){padding: 0;color: #0970DD;font-weight: 500;font-size: 16px;line-height: 24px;}
+.modal-footer a,.modal-footer a:not([href]):not([tabindex]),.modal-footer a:hover{padding: 0;color: #0970DD;font-weight: 500;font-size: 16px;line-height: 24px;}
 .modal-footer a:hover{opacity: 0.8}
 .modal-footer .modal-cancel, .modal-footer .modal-cancel:not([href]):not([tabindex]){color: #DF0E40;}
 .modal-body p {font-size: 16px;line-height: 24px;color: rgba(0, 0, 0, 0.56);}
@@ -772,6 +775,8 @@ button.view-img img{width: 110px;height: 60px;object-fit: cover;}
 .customizer .custom-control-label::before{top: 3px;width: 17px;height: 17px;}
 .customizer .custom-control-label::after {top: 2px;left: -1px;width: 20px;height: 20px;}
 body.layout-dark .customizer .custom-radio {margin-left: 0;}
+
+
 /*=========Custom Scroll===========*/
 
 @media(min-width:768px) {

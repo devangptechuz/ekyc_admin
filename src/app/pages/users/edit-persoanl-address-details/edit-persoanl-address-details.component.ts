@@ -121,7 +121,7 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
    * Get address details
    */
   getAddressDetails(userId) {
-    this.userService.getPersoanlAddressDetails(userId).subscribe((res) => {
+    this.userService.getPersonalAddressDetails(userId).subscribe((res) => {
       // console.log('res', res);
       if (res.success) {
         // this.verifiedSteps.isAadharVerified = true;

@@ -20,6 +20,9 @@
             <li class="nav-item">
                 <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">reported (6)</a>
             </li>
+            <li class="nav-item">
+                <a href="https://devsite.getprosper.in/" class="nav-link app-link" target="_blank">Create new app</a>
+            </li>
         </ul>
         <!-- Tab panes -->
         <div id="content" class="tab-content" role="tablist">
@@ -46,10 +49,13 @@
                                     </span>
                                 </div>
                                 <div class="col-md-8 d-flex align-items-center justify-content-end">
-                                    <div class="search"><input type="search" name="" (keyup)='updateFilter($event)'
+                                    <div class="search">
+                                        <input type="search" #searchBytype name="searchbytype"
                                             placeholder="search by user name or email or mobilenumber"
-                                            class="form-control"><button class="btn-search"><span
-                                                class="icon-search"></span></button></div>
+                                            class="form-control" (keyup)='resetFilter($event)'>
+                                        <button (click)='updateFilter($event)' class="btn-search"><span
+                                                class="icon-search"></span></button>
+                                    </div>
                                     <div class="filter">Filter search<span class="icon-filter"></span></div>
                                 </div>
                             </div>
@@ -115,7 +121,10 @@
                 <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel"
                     aria-labelledby="heading-B">
                     <div class="card-body">
-                        comming soon
+                        <div class="coming-soon">
+                            <img src="assets/img/soon.svg">
+                            <h2>Coming Soon</h2>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,7 +141,10 @@
                 <div id="collapse-C" class="collapse" role="tabpanel" data-parent="#content"
                     aria-labelledby="heading-C">
                     <div class="card-body">
-                        comming soon
+                        <div class="coming-soon">
+                            <img src="assets/img/soon.svg">
+                            <h2>Coming Soon</h2>
+                        </div>
                     </div>
                 </div>
             </div>
