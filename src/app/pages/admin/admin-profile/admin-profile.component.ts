@@ -343,6 +343,7 @@ export class AdminProfileComponent implements OnInit {
               if (res.success) {
                 this.spinner.hide();
                 this.global.successToastr(res.message);
+                this.sharedService.setDeleteImageUrl(null);
                 this.ngOnInit();
               } else {
                 this.spinner.hide();
@@ -422,6 +423,7 @@ export class AdminProfileComponent implements OnInit {
         this.fileUploading = false;
         if (result.body.success) {
           this.imageUrl = result.body.result[0].url;
+          this.sharedService.setImageUrl(result.body.result[0].url);
           // this.manageResultAfterUploadingFiles(result.body.result, true);
           this.modalRef.close();
         }

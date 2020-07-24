@@ -66,6 +66,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.imageUrl = result;
       }
     });
+    this.sharedVarService.getDeleteImageUrl().subscribe((result) => {
+      if(result == null){
+        this.imageUrl = result;
+      }
+    });
   }
 
   ngAfterViewInit() {

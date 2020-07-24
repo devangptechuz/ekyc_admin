@@ -26,4 +26,10 @@ export class SharedService {
   setImageUrl(newValue): any {
     this.imageUrl.next(newValue);
   }
+  setDeleteImageUrl(newValue): any {
+    this.imageUrl.next(newValue);
+  }
+  getDeleteImageUrl(): Observable<any> {
+    return this.imageUrl.asObservable();
+  }
 }
