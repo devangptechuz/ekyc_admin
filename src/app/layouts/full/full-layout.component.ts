@@ -265,6 +265,12 @@ export class FullLayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.options = $event;
   }
 
+  onActivate(event) {
+    window.scroll(0, 0);
+    //or document.body.scrollTop = 0;
+    //or document.querySelector('body').scrollTo(0,0)
+  }
+
   onClick(event) {
     //initialize window resizer event on sidebar toggle click event
     setTimeout(() => {

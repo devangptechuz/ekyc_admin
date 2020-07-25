@@ -8,6 +8,7 @@ import { ConfirmationDialogService } from '../../../shared/services/confirmation
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalService } from '../../../shared/services/global.service';
 import { environment } from '../../../../environments/environment';
+import { isArray } from 'util';
 
 @Component({
   selector: 'app-list-sub-admin',
@@ -71,7 +72,7 @@ export class ListAdminComponent implements OnInit {
       const id = [];
       this.selected.filter((data) => {
         id.push(data.id);
-      })
+      });
       this.deleteConfirmServiceCall('Admins', id);
     }
   }
@@ -81,10 +82,16 @@ export class ListAdminComponent implements OnInit {
   }
 
   deleteConfirmServiceCall(label, id) {
+    let objParam = {};
+    if (isArray(id)) {
+      objParam['id'] = id;
+    } else {
+      objParam['id'] = [id];
+    }
     this.confirmationDialogService.confirm(label).then((data) => {
       if (data) {
         this.spinner.show();
-        this.adminService.deleteAdmin({ id: [id] })
+        this.adminService.deleteAdmin(objParam)
           .subscribe((res) => {
             if (res.success) {
               this.spinner.hide();

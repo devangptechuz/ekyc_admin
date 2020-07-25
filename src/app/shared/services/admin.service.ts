@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
@@ -25,16 +25,16 @@ export class AdminService {
         return this.http.get<any>(`${this.apiUrl}/adminProfile`);
     }
 
-    updateAdminProfile(data): Observable<any>{
+    updateAdminProfile(data): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}/updateAdminProfile`, data);
     }
 
-    updateAdminProfileImage(data): Observable<any>{
+    updateAdminProfileImage(data): Observable<any> {
         const params = new HttpParams().set('hideLoader', 'true');
         let options = { params: params };
         options['reportProgress'] = true;
         options['observe'] = 'events';
-        return this.http.post<any>(`${this.imageUrl}/updateProfile`, data,options);
+        return this.http.post<any>(`${this.imageUrl}/commonUpload`, data, options);
     }
 
     getUserList() {
@@ -42,7 +42,7 @@ export class AdminService {
     }
 
     addAdmin(data): Observable<any> {
-        return this.http.post<any>(`${this.imageUrl}/insertSubAdmin`, data);
+        return this.http.post<any>(`${this.imageUrl}/commonUpload`, data);
     }
 
     updatePassword(data): Observable<any> {
@@ -58,7 +58,7 @@ export class AdminService {
     }
 
     updateAdmin(data): Observable<any> {
-        return this.http.post<any>(`${this.imageUrl}/updateAdmin`, data);
+        return this.http.post<any>(`${this.imageUrl}/commonUpload`, data);
     }
 
     deleteAdmin(data): Observable<any> {

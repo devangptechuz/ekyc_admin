@@ -136,6 +136,8 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
   *   on page load, displayed video camera by default
   */
   initialRecording() {
+    this.interval = '';
+    this.counter = 0;
     this.mediaConstraints = {
       video: {
         // mirrored: true,
@@ -403,27 +405,28 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
   /******************************* VIDEO: END**********************/
 
   submitIPVDocumentPopup() {
-    let realImageBlob = [];
-    let uploadParam: any = new FormData();
-    uploadParam.append('document_name', this.nameOfDocument);
-    uploadParam.append('file[]', this.uploadVideoBlob, `recordedvideo.webm`);
-    this.uploadProgress = 0;
-    this.fileUploading = true;
-    this.userService.uploadDocument(uploadParam).subscribe((result: any) => {
-      if (result.type === 1 && result.loaded && result.total) {
-        const percentDone = Math.round(100 * result.loaded / result.total);
-        this.uploadProgress = percentDone;
-      } else if (result.body) {
-        this.fileUploading = false;
-        if (result.body.success) {
-          this.uploadVideoBlob = '';
-          // this.manageResultAfterUploadingFiles(result.body.result, true);
-          this.closeEvent.emit();
-        }
-      }
-    }, error => {
-      this.fileUploading = false;
-    });
+    this.global.warningToastr("In person video is under development process. We will update it soon");
+    // let realImageBlob = [];
+    // let uploadParam: any = new FormData();
+    // uploadParam.append('document_name', this.nameOfDocument);
+    // uploadParam.append('file[]', this.uploadVideoBlob, `recordedvideo.webm`);
+    // this.uploadProgress = 0;
+    // this.fileUploading = true;
+    // this.userService.uploadDocument(uploadParam).subscribe((result: any) => {
+    //   if (result.type === 1 && result.loaded && result.total) {
+    //     const percentDone = Math.round(100 * result.loaded / result.total);
+    //     this.uploadProgress = percentDone;
+    //   } else if (result.body) {
+    //     this.fileUploading = false;
+    //     if (result.body.success) {
+    //       this.uploadVideoBlob = '';
+    //       // this.manageResultAfterUploadingFiles(result.body.result, true);
+    //       this.closeEvent.emit();
+    //     }
+    //   }
+    // }, error => {
+    //   this.fileUploading = false;
+    // });
   }
 
   /**

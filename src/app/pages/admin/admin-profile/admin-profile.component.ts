@@ -11,7 +11,7 @@ import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subject } from 'rxjs';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
-import {SharedService} from '../../../shared/services/shared.service';
+import { SharedService } from '../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-admin-profile',
@@ -45,7 +45,7 @@ export class AdminProfileComponent implements OnInit {
   public mediaImages = [];
   aadharDisplayImage: any;
   maxUploadLimit = 2;
-  id:any;
+  id: any;
 
   viewSectionOfImage: boolean;
   viewPreviewDisplayImage: any;
@@ -69,10 +69,10 @@ export class AdminProfileComponent implements OnInit {
     height: { ideal: 316 }
   };
   public deviceId: string;
-  imageUrl:any;
-  updatePasswordDate:any;
-  updateProfileDate:any;
-  userType:any;
+  imageUrl: any;
+  updatePasswordDate: any;
+  updateProfileDate: any;
+  userType: any;
 
   constructor(
     private router: Router,
@@ -86,7 +86,7 @@ export class AdminProfileComponent implements OnInit {
     private cookieService: CookieService,
     private ref: ChangeDetectorRef,
     private modalService: NgbModal,
-    private sharedService:SharedService
+    private sharedService: SharedService
   ) { }
 
   ngOnInit() {
@@ -98,7 +98,7 @@ export class AdminProfileComponent implements OnInit {
     });
     this.adminProfileForm = this.formBuilder.group({
       username: ['', [Validators.required]],
-      mobileNumber: ['', [Validators.required,this.validationService.mobileFormat]],
+      mobileNumber: ['', [Validators.required, this.validationService.mobileFormat]],
       email: ['', []],
       id: ['', []],
     });
@@ -124,24 +124,24 @@ export class AdminProfileComponent implements OnInit {
       });
   }
 
-  getProfileAdmin(){
+  getProfileAdmin() {
     this.adminService.getAdminProfile()
-        .subscribe(
-            Data => {
-              if(Data.success){
-                this.adminProfile = Data['result']['userData'];
-                this.adminProfileForm.patchValue(Data['result']['userData']);
-                this.imageUrl = Data['result']['userData']['userProfile_url'];
-                this.id = Data['result']['userData']['id'];
-                this.userType = Data['result']['userData']['userType'];
-                this.updateProfileDate = Data['result']['userData']['updateProfileDate'];
-                this.updatePasswordDate = Data['result']['userData']['updatePasswordDate'];
-                this.spinner.hide();
-              }else {
-                this.spinner.hide();
-                this.global.errorToastr(Data.message);
-              }
-            });
+      .subscribe(
+        Data => {
+          if (Data.success) {
+            this.adminProfile = Data['result']['userData'];
+            this.adminProfileForm.patchValue(Data['result']['userData']);
+            this.imageUrl = Data['result']['userData']['userProfile_url'];
+            this.id = Data['result']['userData']['id'];
+            this.userType = Data['result']['userData']['userType'];
+            this.updateProfileDate = Data['result']['userData']['updateProfileDate'];
+            this.updatePasswordDate = Data['result']['userData']['updatePasswordDate'];
+            this.spinner.hide();
+          } else {
+            this.spinner.hide();
+            this.global.errorToastr(Data.message);
+          }
+        });
   }
   onSubmit() {
     if (!this.adminPasswordForm.valid) {
@@ -311,6 +311,7 @@ export class AdminProfileComponent implements OnInit {
 
   submitDocumentUploadModal() {
     let uploadParam: any = new FormData();
+    uploadParam.append('api_name', 'update_profile');
     this.uploader.queue.map((item: any, index) => {
       uploadParam.append('file[]', item._file);
     });
@@ -336,20 +337,20 @@ export class AdminProfileComponent implements OnInit {
     });
   }
 
-  deleteImage(){
-        this.spinner.show();
-        this.adminService.deleteAdminProfile()
-            .subscribe((res) => {
-              if (res.success) {
-                this.spinner.hide();
-                this.global.successToastr(res.message);
-                this.sharedService.setDeleteImageUrl(null);
-                this.ngOnInit();
-              } else {
-                this.spinner.hide();
-                this.global.errorToastr(res.message);
-              }
-            });
+  deleteImage() {
+    this.spinner.show();
+    this.adminService.deleteAdminProfile()
+      .subscribe((res) => {
+        if (res.success) {
+          this.spinner.hide();
+          this.global.successToastr(res.message);
+          this.sharedService.setDeleteImageUrl(null);
+          this.ngOnInit();
+        } else {
+          this.spinner.hide();
+          this.global.errorToastr(res.message);
+        }
+      });
   }
 
   fileUploadingProcessStarting() {
@@ -376,7 +377,7 @@ export class AdminProfileComponent implements OnInit {
     return this.nextWebcam.asObservable();
   }
 
-  cancelPopup(){
+  cancelPopup() {
     this.addNewAadhaarImageUpload = true;
     this.modalRef.close();
   }
@@ -409,6 +410,7 @@ export class AdminProfileComponent implements OnInit {
       realImageBlob.push(blobImage);
     });
     let uploadParam: any = new FormData();
+    uploadParam.append('api_name', 'update_profile');
     uploadParam.append('userProfile', this.nameOfDocument);
     realImageBlob.map((item: any, index) => {
       console.log('item', item);

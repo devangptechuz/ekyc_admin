@@ -19,9 +19,12 @@ import { SidebarLinkDirective } from './directives/sidebarlink.directive';
 import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
-import {RoleCheckPipe, SafeUrlPipe, UserTypePipe} from './pipe/status.pipe';
-import { DeleteModelComponent } from './model-popup/delete-model/delete-model.component';
+import { RoleCheckPipe, SafeUrlPipe, UserTypePipe } from './pipe/status.pipe';
 import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.component';
+
+import { DeleteModelComponent } from './model-popup/delete-model/delete-model.component';
+import { ApprovedModelComponent } from './model-popup/approved-model/approved-model.component';
+import { RejectModelComponent } from './model-popup/reject-model/reject-model.component';
 
 
 @NgModule({
@@ -38,7 +41,9 @@ import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.co
         RoleCheckPipe,
         UserTypePipe,
         SafeUrlPipe,
-        DeleteModelComponent
+        DeleteModelComponent,
+        ApprovedModelComponent,
+        RejectModelComponent
     ],
     imports: [
         RouterModule,
@@ -62,7 +67,9 @@ import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.co
         RoleCheckPipe,
         UserTypePipe,
         SafeUrlPipe,
-        LogoutPopupComponent
+        LogoutPopupComponent,
+        ApprovedModelComponent,
+        RejectModelComponent
     ]
 })
 export class SharedModule { }

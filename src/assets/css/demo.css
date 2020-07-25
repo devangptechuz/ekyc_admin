@@ -782,6 +782,23 @@ button.view-img img.pdf-listview {-o-object-fit: contain;object-fit: contain;}
 .customizer .custom-control-label::after {top: 2px;left: -1px;width: 20px;height: 20px;}
 body.layout-dark .customizer .custom-radio {margin-left: 0;}
 
+/* ngb-datepicker-navigation button{background: inherit !important;box-shadow: none !important;margin: 0 !important;min-width: 100% !important;padding: 0 !important;color: #999 !important;}
+ngb-datepicker-navigation button:focus{outline: none;}
+.datepicker .form-control{border-radius: .25rem !important;}
+.datepicker .calendar{position: absolute;right: 6px;top: 13px;}
+.datepicker .calendar span.btn-outline-secondary{border:none !important;display: flex;align-items: center;justify-content: center;}
+.datepicker .calendar i{color: #989696;font-size: 20px;}
+.datepicker .calendar span.btn-outline-secondary:hover{background: none;opacity: 0.8}
+section.dashboard select.form-control{padding-right: 30px !important} */
+/* upload video*/
+.upload-video {padding: 0 0 60px;}
+.upload-video .btn-custom{border: none;padding: 10px 20px;}
+.video-prvw{display: flex;flex-flow: column;align-items: flex-start;margin: 20px 0 0;}
+.video-prvw .video-btn{padding: 0;display: flex;align-items: center;}
+.video-prvw .video-btn .btn:first-child {margin-right: 10px;}
+.video-prvw .video-btn .btn{font-size: 12px;}
+.video-prvw .original{ margin: 0 0 20px;}
+
 
 /*=========Custom Scroll===========*/
 

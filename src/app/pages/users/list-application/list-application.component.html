@@ -65,10 +65,10 @@
                                     [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
                                     [rowHeight]="80" [limit]="limitRow" [rows]="rows"
                                     [sorts]="[{prop: 'uname', dir: 'asc'}]" [selected]="selected"
-                                    [selectionType]="'checkbox'" [selectAllRowsOnPage]="true"
+                                    [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
                                     (select)='onSelect($event)'>
 
-                                    <ngx-datatable-column [width]="10" [sortable]="false" [canAutoResize]="false"
+                                    <ngx-datatable-column [width]=" 10" [sortable]="false" [canAutoResize]="false"
                                         [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
                                         [checkboxable]="true" [sortable]="true" prop="selected">
                                     </ngx-datatable-column>
@@ -83,13 +83,28 @@
                                     <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
                                         prop="id">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            {{row.id | uppercase}}
+                                            <a title="{{row.id}}" [routerLink]="['/applications/details',row.id]"
+                                                routerLinkActive="router-link-active" class="uname">
+                                                {{row.id | uppercase}}
+                                            </a>
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="40" name="Email" [sortable]="true" prop="email">
+                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                            <a [routerLink]="['/applications/details',row.id]"
+                                                routerLinkActive="router-link-active" class="uname">
+                                                {{row.email}}
+                                            </a>
+                                        </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="40" name="Mobile Number" [sortable]="true"
                                         prop="mobileNumber">
+                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                            <a [routerLink]="['/applications/details',row.id]"
+                                                routerLinkActive="router-link-active" class="uname">
+                                                {{row.mobileNumber}}
+                                            </a>
+                                        </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="20" name="application status" [sortable]="false"
                                         prop="isDocumentUploaded">
@@ -154,9 +169,12 @@
 <div *ngIf="deleteFlag" class="fixed-status">
     <label class="mb-0">Applications selected : <strong>{{usersSelectCount}}</strong></label>
     <ul>
-        <li (click)="deleteUsers()" class="delete"><img src="assets/img/trash.svg">Delete All</li>
-        <li (click)="cancelAll()" class="reject"><img src="assets/img/not-allow.svg">Reject all</li>
-        <li class="approved"><img src="assets/img/check-circle.svg">Approve all</li>
+        <!-- <li (click)="deleteApplications()" class="delete"><img src="assets/img/trash.svg">Delete All</li> -->
+        <li (click)="rejectApproveApplications('reject')" class="reject"><img src="assets/img/not-allow.svg">Reject all
+        </li>
+        <li class="approved" (click)="rejectApproveApplications('approved')"><img
+                src="assets/img/check-circle.svg">Approve all</li>
+        <li (click)="cancelAll()" class="cancel"><img src="assets/img/not-allow.svg"><span>Cancel all</span></li>
     </ul>
 </div>
 <!--

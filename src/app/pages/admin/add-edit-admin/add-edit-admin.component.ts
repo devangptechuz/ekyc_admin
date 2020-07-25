@@ -3,10 +3,10 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ValidationService } from "app/shared/services/validator.service";
 import { NgxSpinnerService } from "ngx-spinner";
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../../../shared/services/admin.service';
-import {GlobalService} from '../../../shared/services/global.service';
-import {FileUploader} from 'ng2-file-upload';
+import { GlobalService } from '../../../shared/services/global.service';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-register-admin',
@@ -21,7 +21,7 @@ export class AddEditAdminComponent implements OnInit {
   editAdmin;
   uploader: FileUploader;
   adminTitle = 'Add new admin user';
-  userProfileURL:any;
+  userProfileURL: any;
   formData;
   userType = [{
     type: '1',
@@ -47,11 +47,11 @@ export class AddEditAdminComponent implements OnInit {
     this.adminForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       userType: ['1', [Validators.required]],
-      mobileNumber: ['', [Validators.required,this.validationService.mobileFormat]],
+      mobileNumber: ['', [Validators.required, this.validationService.mobileFormat]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required,this.validationService.passwordValidator]],
+      password: ['', [Validators.required, this.validationService.passwordValidator]],
       confirm_password: '',
-      userProfile:''
+      userProfile: ''
     }, {
       validator: this.validationService.MatchPassword('password', 'confirm_password')
     });
@@ -78,7 +78,7 @@ export class AddEditAdminComponent implements OnInit {
     }
   }
 
-  removeuserProfiles(){
+  removeuserProfiles() {
     this.userProfileURL = null;
     this.adminForm.controls.userProfile.setValue('');
   }
@@ -93,10 +93,10 @@ export class AddEditAdminComponent implements OnInit {
     this.adminForm.updateValueAndValidity();
     this.adminForm.patchValue(this.editAdmin.result.userData);
     this.adminForm.controls.userType.setValue(this.editAdmin.result.userData.userType.toString())
-    if(this.editAdmin.result.userData.userProfile_url && this.editAdmin.result.userData.userProfile_url !== ''){
+    if (this.editAdmin.result.userData.userProfile_url && this.editAdmin.result.userData.userProfile_url !== '') {
       this.userProfileURL = this.editAdmin.result.userData.userProfile_url;
     }
-    if(!this.editAdmin.result.userData.userProfile_url){
+    if (!this.editAdmin.result.userData.userProfile_url) {
       this.userProfileURL = '';
     }
   }
@@ -107,11 +107,12 @@ export class AddEditAdminComponent implements OnInit {
       return false;
     }
     this.formData = new FormData();
+    this.formData.append('api_name', 'insert_sub_admin');
     this.formData.append('userProfile', this.adminForm.get('userProfile').value);
     Object.entries(this.adminForm.value).forEach(
-        ([key, value]: any[]) => {
-          this.formData.set(key, value);
-        });
+      ([key, value]: any[]) => {
+        this.formData.set(key, value);
+      });
     this.formData.delete('confirm_password');
     if (this.editMode) {
       this.adminService.addAdmin(this.formData).subscribe(
@@ -135,6 +136,7 @@ export class AddEditAdminComponent implements OnInit {
     this.formData.delete('email');
     this.formData.delete('password');
     this.formData.append('id', this.editAdmin.result.userData.id);
+    this.formData.append('api_name', 'update_admin');
     this.formData.append('profileImage', this.editAdmin.result.userData.userProfile);
     this.adminService.updateAdmin(this.formData).subscribe(
       (result: any) => {
@@ -149,7 +151,7 @@ export class AddEditAdminComponent implements OnInit {
       });
   }
 
-  removeImages(){
+  removeImages() {
     this.userProfileURL = null;
     this.adminForm.controls.userProfile.setValue('');
   }

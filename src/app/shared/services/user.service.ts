@@ -31,6 +31,10 @@ export class UserService {
   deleteUser(data): Observable<any> {
     return this.http.post<any>(`${this.baseUrlOfUser}/deleteUser`, data); //todo id=['']
   }
+
+  approveRejectUser(objParam: any) {
+    return this.http.post<any>(`${this.baseUrlOfUser}/approveRejectUser`, objParam); //todo id=['']
+  }
   /**
    * get user details with hide loader 
    */
@@ -66,7 +70,7 @@ export class UserService {
     let options = { params: params };
     options['reportProgress'] = true;
     options['observe'] = 'events';
-    return this.http.post<any>(`${this.imageUploadUrl}/uploadUserDocuments`, obj, options);
+    return this.http.post<any>(`${this.imageUploadUrl}/commonUpload`, obj, options);
   }
 
   /**

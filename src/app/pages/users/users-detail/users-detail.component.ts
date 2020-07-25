@@ -103,7 +103,7 @@ export class UsersDetailComponent implements OnInit {
     private userService: UserService,
     private ref: ChangeDetectorRef
   ) {
-    config.interval = 10000;
+    config.interval = 20000;
     config.wrap = false;
     config.keyboard = false;
     config.pauseOnHover = false;
@@ -447,6 +447,7 @@ export class UsersDetailComponent implements OnInit {
     let uploadParam: any = new FormData();
     // objParam['id'] = this.userId;
     uploadParam.append('id', this.userId);
+    uploadParam.append('api_name', 'upload_user_document');
     uploadParam.append('document_name', this.nameOfDocument);
     this.uploader.queue.map((item: any, index) => {
       uploadParam.append('file[]', item._file);
@@ -481,6 +482,7 @@ export class UsersDetailComponent implements OnInit {
     let uploadParam: any = new FormData();
 
     uploadParam.append('id', this.userId);
+    uploadParam.append('api_name', 'upload_user_document');
     uploadParam.append('document_name', this.nameOfDocument);
     realImageBlob.map((item: any, index) => {
       console.log('item', item);
@@ -700,6 +702,7 @@ export class UsersDetailComponent implements OnInit {
     // const queue = [];
     let uploadParam: any = new FormData();
     uploadParam.append('id', this.userId);
+    uploadParam.append('api_name', 'upload_user_document');
     uploadParam.append('document_name', this.nameOfDocument);
     realImageBlob.map((item: any, index) => {
       uploadParam.append('file[]', item, `signatureimage${index}.jpeg`);

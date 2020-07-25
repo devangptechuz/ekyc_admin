@@ -1,0 +1,30 @@
+<div class="modal-header blueclr common-header">
+  <div class="popup-header">
+    <span>Confirmation</span>
+    <h2 class="mb-0">Approve application</h2>
+  </div>
+  <div class="popup-icon">
+    <img src="../../../../assets/img/blue-true.svg">
+  </div>
+</div>
+<div class="modal-boy">
+  <p class="wr-msg mb-2" *ngIf="selectedEntries">
+    {{selectedEntries}} Entries Selected.
+  </p>
+  <p class="wr-msg mb-2">
+    By approving the applicaiton you will enable the user to successfully start trading through the getProsper platform.
+  </p>
+  <p class="wr-msg mb-2">
+    You will not be able to update the status for this application once you approve it. Anyhow, in case of changes
+    required you can contact super admin to update the staus later.
+  </p>
+  <p class="wr-msg mb-2">Are you sure you want to approve these {{ label }}?</p>
+  <br>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+  <a class="btn modal-btn-continue" (click)="decline()">
+    Cancel
+  </a>
+  <a class="btn modal-continue" (click)="accept()">Approve {{label}}</a>
+</div>

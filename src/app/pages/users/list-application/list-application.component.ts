@@ -8,6 +8,7 @@ import { AdminService } from 'app/shared/services/admin.service';
 import { ConfirmationDialogService } from '../../../shared/services/confirmation-dialoge.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from '../../../../environments/environment';
+import { isArray } from 'util';
 
 @Component({
   selector: 'app-list-application',
@@ -29,9 +30,7 @@ export class ListApplicationComponent implements OnInit {
     { label: '10', value: '10' },
     { label: '15', value: '15' },
   ];
-  footerMessage = {
-    'totalMessage': 'Total'
-  };
+  footerMessage = {};
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
@@ -49,16 +48,10 @@ export class ListApplicationComponent implements OnInit {
         this.temp = [...Data['result']['userList']];
         this.rows = Data['result']['userList'];
         this.count = Data['result']['Count'];
-        // this.spinner.hide();
       } else {
-        // this.spinner.hide();
         this.global.errorToastr(Data.message);
       }
     });
-  }
-
-  navigate($event) {
-    console.log('navigate', $event);
   }
 
   resetFilter($event) {
@@ -81,31 +74,155 @@ export class ListApplicationComponent implements OnInit {
     this.table.offset = 0;
   }
 
+  // onActivate(event) {
+  //   if (event.type === 'click') {
+  //     this.router.navigate(['applications/details', event.row.id]);
+  //   }
+  // }
+
   onEdit(e) {
     console.log("edit page");
   }
 
   cancelAll() {
-    this.onSelect({ selected: [] });
-    this.selected.length = 0;
+    // this.onSelect({ selected: [] });
     this.deleteFlag = false;
+    this.selected = [];
+    this.usersSelectCount = 0;
+  }
+  /**
+   * on select deselect event
+   */
+  onSelect({ selected }) {
+    this.selected.splice(0, this.selected.length);
+    this.selected.push(...selected);
+    if (this.selected.length) {
+      this.usersSelectCount = this.selected.length;
+      this.deleteFlag = this.selected.length > 0;
+    } else {
+      this.cancelAll();
+    }
   }
 
-  onSelect(row) {
-    this.deleteFlag = this.selected.length > 0;
-    this.usersSelectCount = this.selected.length
-  }
-
-  deleteUsers() {
+  /**
+   * delete application event
+   */
+  rejectApproveApplications(approveReject: string) {
     if (this.selected.length > 0) {
       const id = [];
       this.selected.filter((data) => {
         id.push(data.id);
-      })
-      this.confirmationDialogService.confirm('Admins').then((data) => {
+      });
+      if (approveReject === 'approved') {
+        this.approveConfirmServiceCall('Applications', id);
+      } else if (approveReject === 'reject') {
+        this.rejectConfirmServiceCall('Applications', id);
+      }
+    }
+  }
+  /**
+   * reject confirmation modal popup
+   * @param label 
+   * @param id 
+   */
+  approveConfirmServiceCall(label: any, id: any) {
+    let objParam = {};
+    if (isArray(id)) {
+      objParam['id'] = id;
+    } else {
+      objParam['id'] = [id];
+      label = 'Application';
+    }
+    if (this.selected.length > 0) {
+      this.confirmationDialogService.approveConfirm(label, objParam['id']).then((data) => {
+        if (data) {
+          objParam['api_name'] = 'approved';
+          this.userService.approveRejectUser(objParam)
+            .subscribe((res) => {
+              if (res.success) {
+                if (res.message) {
+                  this.global.successToastr(res.message);
+                } else {
+                  this.global.successToastr('Approved Successfully');
+                }
+                this.ngOnInit();
+              } else {
+                this.global.errorToastr(res.message);
+              }
+            });
+        }
+      }).catch(error => console.log(error));
+    }
+  }
+
+  /**
+   * reject confirmation modal popup
+   * @param label 
+   * @param id 
+   */
+  rejectConfirmServiceCall(label: any, id: any) {
+    let objParam = {};
+    if (isArray(id)) {
+      objParam['id'] = id;
+    } else {
+      objParam['id'] = [id];
+      label = 'Application';
+    }
+    if (this.selected.length > 0) {
+      this.confirmationDialogService.rejectConfirm(label, objParam['id']).then((data) => {
+        if (data) {
+          objParam['api_name'] = 'reject';
+          this.userService.approveRejectUser(objParam)
+            .subscribe((res) => {
+              if (res.success) {
+                if (res.message) {
+                  this.global.successToastr(res.message);
+                } else {
+                  this.global.successToastr('Rejected Successfully');
+                }
+                this.ngOnInit();
+              } else {
+                this.global.errorToastr(res.message);
+              }
+            });
+        }
+      }).catch(error => console.log(error));
+    }
+  }
+
+  /**
+   * delete application event
+   */
+  deleteApplications() {
+    if (this.selected.length > 0) {
+      const id = [];
+      this.selected.filter((data) => {
+        id.push(data.id);
+      });
+      this.deleteConfirmServiceCall('Applications', id);
+    }
+  }
+
+  onDelete(id) {
+    this.deleteConfirmServiceCall('Application', id);
+  }
+
+  deleteConfirmServiceCall(label: any, id: any) {
+    let objParam = {};
+    if (isArray(id)) {
+      objParam['id'] = id;
+    } else {
+      objParam['id'] = [id];
+    }
+    if (this.selected.length > 0) {
+      // const id = [];
+      // this.selected.filter((data) => {
+      //   id.push(data.id);
+      // })
+      this.confirmationDialogService.confirm(label).then((data) => {
         if (data) {
           this.spinner.show();
-          this.userService.deleteUser({ id: id })
+          this.userService.deleteUser(objParam)
             .subscribe((res) => {
               if (res.success) {
                 this.spinner.hide();
@@ -119,9 +236,5 @@ export class ListApplicationComponent implements OnInit {
         }
       }).catch(error => console.log(error));
     }
-  }
-
-  onDelete(e, v) {
-    console.log("Delete data");
   }
 }

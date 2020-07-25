@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteModelComponent } from '../model-popup/delete-model/delete-model.component';
 import { LogoutPopupComponent } from '../model-popup/logout-popup/logout-popup.component';
+import { ApprovedModelComponent } from '../model-popup/approved-model/approved-model.component';
+import { RejectModelComponent } from '../model-popup/reject-model/reject-model.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,20 @@ export class ConfirmationDialogService {
   public confirm(label: string): Promise<boolean> {
     const modalRef = this.modalService.open(DeleteModelComponent, { centered: true });
     modalRef.componentInstance.label = label;
+    return modalRef.result;
+  }
+
+  public approveConfirm(label: string, ids: any): Promise<boolean> {
+    const modalRef = this.modalService.open(ApprovedModelComponent, { centered: true });
+    modalRef.componentInstance.label = label;
+    modalRef.componentInstance.selectedEntries = ids.length;
+    return modalRef.result;
+  }
+
+  public rejectConfirm(label: string, ids: any): Promise<boolean> {
+    const modalRef = this.modalService.open(RejectModelComponent, { centered: true });
+    modalRef.componentInstance.label = label;
+    modalRef.componentInstance.selectedEntries = ids.length;
     return modalRef.result;
   }
 

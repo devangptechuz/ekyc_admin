@@ -10,21 +10,29 @@
   </div>
 
   <div class="grid" *ngIf="!fileUploading && !viewSectionOfImage">
-    <div>
-      <button class="btn" (click)="play()" title="Start Camera">
-        START CAMERA
-      </button>
-      <button class="btn" (click)="startRecording()" title="Start Recording">
-        START RECORDING
-      </button>
-      <button class="btn" (click)="stopRecording()" title="Stop Recording">
-        STOP RECORDING
-      </button>
-      <div class="duration" *ngIf="isRecording">{{counter}}</div>
+    <div class="upload-video " [hidden]="isVideoRecordingEnable">
+      <div class="upload-box d-flex align-items-center justify-content-center">
+        <a href="javascript:void(0)" class="d-flex flex-column" (click)="play()">
+          <img src="assets/img/modal-upload/camera.svg">
+          <div class="d-flex align-items-center">
+            <img src="assets/img/modal-upload/camera-sml.svg">Start Camera
+          </div>
+        </a>
+      </div>
     </div>
-
-    <div class="original" [hidden]="!isVideoRecordingEnable">
-      <video #video [width]="width" class="video" autoplay id="video-preview"></video>
+    <div class="video-prvw" [hidden]="!isVideoRecordingEnable">
+      <div class="original">
+        <video #video [width]="width" class="video" autoplay id="video-preview"></video>
+      </div>
+      <div class="video-btn mb-2">
+        <button class="btn btn-custom" (click)="startRecording()" title="Start Recording">
+          Start Recording
+        </button>
+        <div class="duration mr-2" *ngIf="isRecording">{{counter}} / 10</div>
+        <button class="btn btn-custom" (click)="stopRecording()" title="Stop Recording">
+          Stop Recording
+        </button>
+      </div>
     </div>
   </div>
   <div class="row mr-md-0" *ngIf="fileUploading">
