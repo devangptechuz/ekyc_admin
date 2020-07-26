@@ -17,6 +17,8 @@ import { isArray } from 'util';
 })
 export class ListApplicationComponent implements OnInit {
   @ViewChild('searchBytype') searchBytype: ElementRef;
+  @ViewChild('searchBytypeAgain') searchBytypeAgain: ElementRef;
+
   rows = [];
   temp = [];
   selected = [];
@@ -24,6 +26,11 @@ export class ListApplicationComponent implements OnInit {
   limitRow: Number = environment.userlimitRow;
   selectedItem;
   count: any;
+
+  countUnderReview: number;
+  countApproved: number;
+  countRejected: number;
+
   deleteFlag = false;
   usersSelectCount;
   perPage = [
@@ -31,6 +38,7 @@ export class ListApplicationComponent implements OnInit {
     { label: '15', value: '15' },
   ];
   footerMessage = {};
+  typeOflist: string;
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
@@ -43,25 +51,42 @@ export class ListApplicationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUserList().subscribe((Data: any) => {
-      if (Data.success) {
-        this.temp = [...Data['result']['userList']];
-        this.rows = Data['result']['userList'];
-        this.count = Data['result']['Count'];
-      } else {
-        this.global.errorToastr(Data.message);
-      }
-    });
+    this.getApplicationListByType();
+    // this.userService.getUserList().subscribe((Data: any) => {
+    //   if (Data.success) {
+    //     this.temp = [...Data['result']['userList']];
+    //     this.rows = Data['result']['userList'];
+    //     this.count = Data['result']['Count'];
+    //   } else {
+    //     this.global.errorToastr(Data.message);
+    //   }
+    // });
   }
 
   resetFilter($event) {
+    console.log('this.typeOflist', this.typeOflist);
     if (!$event.target.value) {
-      this.ngOnInit();
+      this.getApplicationListByType(this.typeOflist);
     }
   }
 
   updateFilter(event) {
     const searchBytype = this.searchBytype.nativeElement.value;
+    if (!searchBytype) {
+      this.global.errorToastr('Search box is empty')
+    }
+    const val = searchBytype.toLowerCase();
+    this.rows = this.temp.filter((d) => {
+      return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
+        d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
+        d.userName.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+    this.table.offset = 0;
+  }
+
+  updateFilterAgain(event) {
+    const searchBytype = this.searchBytypeAgain.nativeElement.value;
+    console.log('searchBytype', searchBytype);
     if (!searchBytype) {
       this.global.errorToastr('Search box is empty')
     }
@@ -80,8 +105,25 @@ export class ListApplicationComponent implements OnInit {
   //   }
   // }
 
-  onEdit(e) {
-    console.log("edit page");
+  /**
+   * Get application list by type(all,rejected,approved,under_review)
+   * @param typeOflist 
+   */
+  getApplicationListByType(typeOflist: any = '') {
+    this.cancelAll();
+    this.typeOflist = typeOflist;
+    this.userService.getUserList(this.typeOflist).subscribe((Data: any) => {
+      if (Data.success) {
+        this.temp = [...Data['result']['userList']];
+        this.rows = Data['result']['userList'];
+        this.count = Data['result']['Count'];
+        this.countUnderReview = Data['result']['Count'];
+        this.countApproved = Data['result']['Count'];
+        this.countRejected = Data['result']['Count'];
+      } else {
+        this.global.errorToastr(Data.message);
+      }
+    });
   }
 
   cancelAll() {
@@ -115,7 +157,7 @@ export class ListApplicationComponent implements OnInit {
       });
       if (approveReject === 'approved') {
         this.approveConfirmServiceCall('Applications', id);
-      } else if (approveReject === 'reject') {
+      } else if (approveReject === 'rejected') {
         this.rejectConfirmServiceCall('Applications', id);
       }
     }
@@ -128,16 +170,20 @@ export class ListApplicationComponent implements OnInit {
   approveConfirmServiceCall(label: any, id: any) {
     let objParam = {};
     if (isArray(id)) {
-      objParam['id'] = id;
+      objParam['userIds'] = id;
     } else {
-      objParam['id'] = [id];
+      objParam['userIds'] = [id];
       label = 'Application';
     }
+
+    let typeOfApplication = '';
+    typeOfApplication = this.typeOflist;
+
     if (this.selected.length > 0) {
-      this.confirmationDialogService.approveConfirm(label, objParam['id']).then((data) => {
+      objParam['type'] = 'Approve';
+      this.confirmationDialogService.approveConfirm(label, objParam['userIds']).then((data) => {
         if (data) {
-          objParam['api_name'] = 'approved';
-          this.userService.approveRejectUser(objParam)
+          this.userService.approveRejectApplication(objParam)
             .subscribe((res) => {
               if (res.success) {
                 if (res.message) {
@@ -145,7 +191,7 @@ export class ListApplicationComponent implements OnInit {
                 } else {
                   this.global.successToastr('Approved Successfully');
                 }
-                this.ngOnInit();
+                this.getApplicationListByType(typeOfApplication);
               } else {
                 this.global.errorToastr(res.message);
               }
@@ -163,16 +209,20 @@ export class ListApplicationComponent implements OnInit {
   rejectConfirmServiceCall(label: any, id: any) {
     let objParam = {};
     if (isArray(id)) {
-      objParam['id'] = id;
+      objParam['userIds'] = id;
     } else {
-      objParam['id'] = [id];
+      objParam['userIds'] = [id];
       label = 'Application';
     }
+
+    let typeOfApplication = '';
+    typeOfApplication = this.typeOflist;
+
     if (this.selected.length > 0) {
-      this.confirmationDialogService.rejectConfirm(label, objParam['id']).then((data) => {
+      objParam['type'] = 'Reject';
+      this.confirmationDialogService.rejectConfirm(label, objParam['userIds']).then((data) => {
         if (data) {
-          objParam['api_name'] = 'reject';
-          this.userService.approveRejectUser(objParam)
+          this.userService.approveRejectApplication(objParam)
             .subscribe((res) => {
               if (res.success) {
                 if (res.message) {
@@ -180,7 +230,7 @@ export class ListApplicationComponent implements OnInit {
                 } else {
                   this.global.successToastr('Rejected Successfully');
                 }
-                this.ngOnInit();
+                this.getApplicationListByType(typeOfApplication);
               } else {
                 this.global.errorToastr(res.message);
               }

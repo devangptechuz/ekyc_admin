@@ -17,17 +17,21 @@ export class ConfirmationDialogService {
     return modalRef.result;
   }
 
-  public approveConfirm(label: string, ids: any): Promise<boolean> {
+  public approveConfirm(label: string, ids: any = ''): Promise<boolean> {
     const modalRef = this.modalService.open(ApprovedModelComponent, { centered: true });
     modalRef.componentInstance.label = label;
-    modalRef.componentInstance.selectedEntries = ids.length;
+    if (ids) {
+      modalRef.componentInstance.selectedEntries = ids.length;
+    }
     return modalRef.result;
   }
 
-  public rejectConfirm(label: string, ids: any): Promise<boolean> {
+  public rejectConfirm(label: string, ids: any = ''): Promise<boolean> {
     const modalRef = this.modalService.open(RejectModelComponent, { centered: true });
     modalRef.componentInstance.label = label;
-    modalRef.componentInstance.selectedEntries = ids.length;
+    if (ids) {
+      modalRef.componentInstance.selectedEntries = ids.length;
+    }
     return modalRef.result;
   }
 

@@ -18,7 +18,8 @@
     You will not be able to update the status for this application once you approve it. Anyhow, in case of changes
     required you can contact super admin to update the staus later.
   </p>
-  <p class="wr-msg mb-2">Are you sure you want to approve these {{ label }}?</p>
+  <p class="wr-msg mb-2" *ngIf="selectedEntries">Are you sure you want to approve these {{ label }}?</p>
+  <p class="wr-msg mb-2" *ngIf="!selectedEntries">Are you sure you want to approve {{ label }}?</p>
   <br>
 </div>
 

@@ -15,7 +15,8 @@
     The entries once reject will have to re-submit it. We recommend you to cross verify the selected
     entries for any important information.
   </p>
-  <p class="wr-msg mb-200">Are you sure you want to reject these {{ label }}?</p>
+  <p class="wr-msg mb-200" *ngIf="selectedEntries">Are you sure you want to reject these {{ label }}?</p>
+  <p class="wr-msg mb-200" *ngIf="!selectedEntries">Are you sure you want to reject {{ label }}?</p>
   <br>
 </div>
 

@@ -17,10 +17,15 @@ export class UserService {
     public router: Router
   ) { }
 
-  getUserList() {
-    return this.http.get<any>(`${this.baseUrlOfUser}/userList`);
+  getUserList(byKey: any = '') {
+    let obj = '';
+    if (byKey) {
+      obj = `application_status=${byKey}`;
+      return this.http.get<any>(`${this.baseUrlOfUser}/userList?${obj}`);
+    } else {
+      return this.http.get<any>(`${this.baseUrlOfUser}/userList`);
+    }
   }
-
   /**
    * get user details with loader 
    */
@@ -32,8 +37,8 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrlOfUser}/deleteUser`, data); //todo id=['']
   }
 
-  approveRejectUser(objParam: any) {
-    return this.http.post<any>(`${this.baseUrlOfUser}/approveRejectUser`, objParam); //todo id=['']
+  approveRejectApplication(objParam: any) {
+    return this.http.post<any>(`${this.baseUrlOfUser}/approveRejectApplication`, objParam); //todo id=['']
   }
   /**
    * get user details with hide loader 

@@ -17,10 +17,11 @@
                            <h2 class="mb-0">Total Admin users ({{count}})</h2>
                         </div>
                         <div class="col-md-8 d-flex align-items-center justify-content-end">
-                           <div class="search"><input type="search" name="" (keyup)='updateFilter($event)'
-                                 placeholder="search by Admin user name or email or phone number"
-                                 class="form-control"><button class="btn-search"><span
-                                    class="icon-search"></span></button></div>
+                           <div class="search"><input type="search" name="" #searchBytype (keyup)='resetFilter($event)'
+                                 placeholder="search by Admin user name or email or phone number" class="form-control">
+                              <button class="btn-search" (click)='updateFilter($event)'><span
+                                    class="icon-search"></span></button>
+                           </div>
                            <div><button class="btn btn-custom mb-0" routerLink="/admins/add-admin">Add New
                                  Admin <span class="icon-plus"></span></button></div>
                         </div>

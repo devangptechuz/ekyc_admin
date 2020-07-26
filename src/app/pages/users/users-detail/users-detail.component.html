@@ -12,13 +12,14 @@
                   <span class="icon-more-vertical"></span>
                </button>
                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item disable" href="javascript:void(0)"><span class="icon-simple-check"></span>
-                     approve</a>
-                  <!-- <a class="dropdown-item" href="javascript:void(0)"><span class="icon-minus-file"></span> request
-                     documents</a>
-                  <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report
-                     application</a> -->
-                  <a class="dropdown-item" href="javascript:void(0)"><span class="icon-notallow"></span>reject</a>
+                  <a class="dropdown-item" href="javascript:void(0)" (click)="approveConfirm()">
+                     <span class="icon-simple-check"></span> approve</a>
+                  <a class="dropdown-item disable" href="javascript:void(0)">
+                     <span class="icon-minus-file"></span> request documents</a>
+                  <a class="dropdown-item disable" href="javascript:void(0)">
+                     <span class="icon-alert-octagon"></span>report application</a>
+                  <a class="dropdown-item" href="javascript:void(0)" (click)="rejectConfirm()">
+                     <span class="icon-notallow"></span>reject</a>
                </div>
             </div>
          </div>
@@ -34,13 +35,16 @@
                <p class="mb-0">application submitted</p>
                <!-- <button class="btn btn-custom m-0">Respond <i class="fa fa-angle-down"></i></button> -->
                <div class="dropdown">
-                  <button type="button" class="btn dropdown-toggle btn-custom m-0 btn-aprvd" data-toggle="dropdown">
-                     Respond <i class="fa fa-angle-down"></i>
+                  <button type="button" class="btn dropdown-toggle btn-custom m-0" [ngClass]="{'btn-reject': adminApproval === 'rejected',
+                  'btn-aprvd': adminApproval === 'approved'}" data-toggle="dropdown">
+                     {{adminApproval || 'Respond'}} <i class="fa fa-angle-down"></i>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
-                     <a class="dropdown-item disable" href="javascript:void(0)"><span class="icon-simple-check"></span>
+                     <a class="dropdown-item" href="javascript:void(0)" (click)="approveConfirm()"><span
+                           class="icon-simple-check"></span>
                         approve</a>
-                     <a class="dropdown-item" href="javascript:void(0)"><span class="icon-notallow"></span>reject</a>
+                     <a class="dropdown-item" href="javascript:void(0)" (click)="rejectConfirm()"><span
+                           class="icon-notallow"></span>reject</a>
                      <!-- <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report
                         application</a> -->
                   </div>

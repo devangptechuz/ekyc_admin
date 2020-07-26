@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -16,6 +16,7 @@ import { isArray } from 'util';
   styleUrls: ['./list-admin.component.scss']
 })
 export class ListAdminComponent implements OnInit {
+  @ViewChild('searchBytype') searchBytype: ElementRef;
 
   rows = [];
   temp = [];
@@ -107,18 +108,37 @@ export class ListAdminComponent implements OnInit {
   }
 
   cancelAll() {
-    this.onSelect({ selected: [] });
-    this.selected.length = 0;
+    // this.onSelect({ selected: [] });
     this.deleteFlag = false;
+    this.selected = [];
+    this.adminsSelectCount = 0;
+  }
+  /**
+   * on select deselect event
+   */
+  onSelect({ selected }) {
+    this.selected.splice(0, this.selected.length);
+    this.selected.push(...selected);
+    if (this.selected.length) {
+      this.adminsSelectCount = this.selected.length;
+      this.deleteFlag = this.selected.length > 0;
+    } else {
+      this.cancelAll();
+    }
   }
 
-  onSelect(row) {
-    this.deleteFlag = this.selected.length > 0;
-    this.adminsSelectCount = this.selected.length
+  resetFilter($event) {
+    if (!$event.target.value) {
+      this.ngOnInit();
+    }
   }
 
   updateFilter(event) {
-    const val = event.target.value.toLowerCase();
+    const searchBytype = this.searchBytype.nativeElement.value;
+    if (!searchBytype) {
+      this.global.errorToastr('Search box is empty')
+    }
+    const val = searchBytype.toLowerCase();
     this.rows = this.temp.filter((d) => {
       return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
         d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||

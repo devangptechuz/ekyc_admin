@@ -8,6 +8,7 @@ import { GlobalService } from 'app/shared/services/global.service';
 import { UserService } from 'app/shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { ConfirmationDialogService } from 'app/shared/services/confirmation-dialoge.service';
 
 @Component({
   selector: 'app-users-detail',
@@ -30,6 +31,7 @@ export class UsersDetailComponent implements OnInit {
   photographKYCDocuments: any;
   dropdownDocumentList: any;
   defaultSelectedDocument: any;
+  adminApproval: any;
 
   @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
   @ViewChild('fileuploadSignaturepopup') fileuploadSignaturepopup: any;
@@ -101,7 +103,8 @@ export class UsersDetailComponent implements OnInit {
     private modalService: NgbModal,
     public global: GlobalService,
     private userService: UserService,
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
+    private confirmationDialogService: ConfirmationDialogService
   ) {
     config.interval = 20000;
     config.wrap = false;
@@ -122,6 +125,14 @@ export class UsersDetailComponent implements OnInit {
     this.userData = result;
 
     this.userKYCDocuments = result?.basic_info?.document_uploaded;
+    this.adminApproval = result?.basic_info?.adminApproval;
+    console.log('this.adminApproval', this.adminApproval);
+    if (this.adminApproval === 'Reject') {
+      this.adminApproval = 'rejected';
+    } else if (this.adminApproval === 'Approve') {
+      this.adminApproval = 'approved';
+    }
+
     if (result?.basic_info?.document_uploaded) {
       result?.basic_info?.document_uploaded.map((item: any) => {
         if (item?.document_name === 'aadhar_document') {
@@ -783,5 +794,60 @@ export class UsersDetailComponent implements OnInit {
     this.modalRef.close();
   }
 
+  /**
+   * approve confirm modal pop-up
+   */
+  approveConfirm() {
+    const label = 'Application';
+    let objParam = {}
+    objParam['userIds'] = [this.userId];
+    objParam['type'] = 'Approve';
+    this.confirmationDialogService.approveConfirm(label).then((data) => {
+      if (data) {
+        this.userService.approveRejectApplication(objParam)
+          .subscribe((res) => {
+            if (res.success) {
+              if (res.message) {
+                this.adminApproval = 'approved';
+                this.global.successToastr(res.message);
+              } else {
+                this.global.successToastr('Approved Successfully');
+              }
+              this.ngOnInit();
+            } else {
+              this.global.errorToastr(res.message);
+            }
+          });
+      }
+    }).catch(error => console.log(error));
+  }
+
+  /**
+   * reject confirm modal pop-up
+   */
+  rejectConfirm() {
+    const label = 'Application';
+    let objParam = {}
+    objParam['userIds'] = [this.userId];
+    objParam['type'] = 'Reject';
+    this.confirmationDialogService.rejectConfirm(label).then((data) => {
+      if (data) {
+        this.userService.approveRejectApplication(objParam)
+          .subscribe((res) => {
+            if (res.success) {
+              if (res.message) {
+                this.adminApproval = 'rejected';
+                this.global.successToastr(res.message);
+              } else {
+                this.global.successToastr('Reject Successfully');
+              }
+              this.ngOnInit();
+            } else {
+              this.global.errorToastr(res.message);
+            }
+          });
+      }
+    }).catch(error => console.log(error));
+  }
 
 }
