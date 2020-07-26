@@ -41,10 +41,21 @@
           <div class="col-md-2">
             <div class="form-group">
               <label>Date of Birth</label>
-              <input type="text" placeholder="DD/MM/YYYY" class="form-control" formControlName="dob">
-              <app-control-messages fieldName="Date of birth" [control]="addressDetailsform.controls['dob']">
-              </app-control-messages>
+              <div class="input-group datepicker">
+                <input type="text" class="form-control" placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"
+                  formControlName="dob" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append calendar">
+                  <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"
+                      aria-hidden="true"></i></span>
+                </div>
+                <app-control-messages fieldName="Date of birth" [control]="addressDetailsform.controls['dob']">
+                </app-control-messages>
+              </div>
             </div>
+            <!-- <div class="form-group">
+              <label>Date of Birth</label>
+              <input type="text" placeholder="DD/MM/YYYY" class="form-control" formControlName="dob">
+            </div> -->
           </div>
           <div class="col-md-4">
             <div class="form-group">

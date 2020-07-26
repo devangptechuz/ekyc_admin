@@ -1,16 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ValidationService } from 'app/shared/services/validator.service';
 import { UserService } from 'app/shared/services/user.service';
 import { GlobalService } from 'app/shared/services/global.service';
+import { NgbModal, NgbDatepicker, NgbCalendar, NgbDatepickerConfig, NgbDateAdapter, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { CustomAdapter, CustomDateParserFormatter } from 'app/shared/datepicker-adapter/customeAdapter';
+
 
 @Component({
   selector: 'app-edit-persoanl-address-details',
   templateUrl: './edit-persoanl-address-details.component.html',
-  styleUrls: ['./edit-persoanl-address-details.component.scss']
+  styleUrls: ['./edit-persoanl-address-details.component.scss'],
+  providers: [
+    { provide: NgbDateAdapter, useClass: CustomAdapter },
+    { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter }
+  ]
 })
 export class EditPersoanlAddressDetailsComponent implements OnInit {
+  @ViewChild('dp') dp: NgbDatepicker;
   userId: any;
   addressDetailsform: FormGroup;
   addAddress: boolean;
@@ -26,11 +34,18 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private router: Router,
+    config: NgbDatepickerConfig,
     private route: ActivatedRoute,
     public validate: ValidationService,
     private userService: UserService,
     private global: GlobalService
-  ) { }
+  ) {
+    const currentDate = new Date();
+
+    config.minDate = { year: 1947, month: 1, day: 1 };
+    config.maxDate = { year: currentDate.getFullYear(), month: currentDate.getMonth() + 1, day: currentDate.getDate() };
+    config.outsideDays = 'hidden';
+  }
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params.id;
