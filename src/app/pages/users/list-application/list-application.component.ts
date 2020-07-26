@@ -56,7 +56,7 @@ export class ListApplicationComponent implements OnInit {
     //   if (Data.success) {
     //     this.temp = [...Data['result']['userList']];
     //     this.rows = Data['result']['userList'];
-    //     this.count = Data['result']['Count'];
+    //     this.count = Data['result']['all_count'];
     //   } else {
     //     this.global.errorToastr(Data.message);
     //   }
@@ -116,10 +116,10 @@ export class ListApplicationComponent implements OnInit {
       if (Data.success) {
         this.temp = [...Data['result']['userList']];
         this.rows = Data['result']['userList'];
-        this.count = Data['result']['Count'];
-        this.countUnderReview = Data['result']['Count'];
-        this.countApproved = Data['result']['Count'];
-        this.countRejected = Data['result']['Count'];
+        this.count = Data['result']['all_count'];
+        this.countUnderReview = Data['result']['under_review_count'];
+        this.countApproved = Data['result']['approved_count'];
+        this.countRejected = Data['result']['rejected_count'];
       } else {
         this.global.errorToastr(Data.message);
       }

@@ -35,9 +35,9 @@
                <p class="mb-0">application submitted</p>
                <!-- <button class="btn btn-custom m-0">Respond <i class="fa fa-angle-down"></i></button> -->
                <div class="dropdown">
-                  <button type="button" class="btn dropdown-toggle btn-custom m-0" [ngClass]="{'btn-reject': adminApproval === 'rejected',
-                  'btn-aprvd': adminApproval === 'approved'}" data-toggle="dropdown">
-                     {{adminApproval || 'Respond'}} <i class="fa fa-angle-down"></i>
+                  <button type="button" class="btn dropdown-toggle btn-custom m-0" [ngClass]="{'btn-reject': adminApproval === 'Reject',
+                  'btn-aprvd': adminApproval === 'Approved'}" data-toggle="dropdown">
+                     {{adminApprovalText || 'Respond'}} <i class="fa fa-angle-down"></i>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
                      <a class="dropdown-item" href="javascript:void(0)" (click)="approveConfirm()"><span

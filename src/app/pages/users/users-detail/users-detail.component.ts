@@ -32,6 +32,7 @@ export class UsersDetailComponent implements OnInit {
   dropdownDocumentList: any;
   defaultSelectedDocument: any;
   adminApproval: any;
+  adminApprovalText: string;
 
   @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
   @ViewChild('fileuploadSignaturepopup') fileuploadSignaturepopup: any;
@@ -121,17 +122,22 @@ export class UsersDetailComponent implements OnInit {
     }
   }
 
+  manageApplicationStatus(adminApproval: string = '') {
+    this.adminApproval = adminApproval;
+    this.adminApprovalText = adminApproval;
+    console.log('test', this.adminApprovalText);
+    if (this.adminApproval === 'Reject') {
+      this.adminApprovalText = 'rejected';
+    } else if (this.adminApproval === 'Approved') {
+      this.adminApprovalText = 'approved';
+    }
+  }
   manageUserData(result: any = '') {
     this.userData = result;
 
     this.userKYCDocuments = result?.basic_info?.document_uploaded;
     this.adminApproval = result?.basic_info?.adminApproval;
-    console.log('this.adminApproval', this.adminApproval);
-    if (this.adminApproval === 'Reject') {
-      this.adminApproval = 'rejected';
-    } else if (this.adminApproval === 'Approve') {
-      this.adminApproval = 'approved';
-    }
+    this.manageApplicationStatus(this.adminApproval);
 
     if (result?.basic_info?.document_uploaded) {
       result?.basic_info?.document_uploaded.map((item: any) => {
@@ -807,13 +813,13 @@ export class UsersDetailComponent implements OnInit {
         this.userService.approveRejectApplication(objParam)
           .subscribe((res) => {
             if (res.success) {
+              this.manageApplicationStatus('Approved');
               if (res.message) {
-                this.adminApproval = 'approved';
                 this.global.successToastr(res.message);
               } else {
                 this.global.successToastr('Approved Successfully');
               }
-              this.ngOnInit();
+              // this.ngOnInit();
             } else {
               this.global.errorToastr(res.message);
             }
@@ -835,13 +841,13 @@ export class UsersDetailComponent implements OnInit {
         this.userService.approveRejectApplication(objParam)
           .subscribe((res) => {
             if (res.success) {
+              this.manageApplicationStatus('Reject');
               if (res.message) {
-                this.adminApproval = 'rejected';
                 this.global.successToastr(res.message);
               } else {
                 this.global.successToastr('Reject Successfully');
               }
-              this.ngOnInit();
+              // this.ngOnInit();
             } else {
               this.global.errorToastr(res.message);
             }

@@ -200,6 +200,10 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>Country</label>
+                <!-- <select formControlName="corres_country">
+                  <option value="">select</option>
+                  <option [value]="item.label" *ngFor="let item of countryList">{{item.label}}</option>
+                </select> -->
                 <ng-select placeholder="select" [searchable]="false" formControlName="corres_country">
                   <ng-option [value]="item.label" *ngFor="let item of countryList">{{item.label}}</ng-option>
                 </ng-select>

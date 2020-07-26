@@ -28,9 +28,9 @@ export class BankDetailComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.route.snapshot.params.id;
 
-    const requiredIFSCCode = new FormControl('', [ValidationService.required]);
-    const accountNumber = new FormControl('', [ValidationService.required, this.validate.accountNumberValidator]);
-    const requiredConfirmAccount = new FormControl('', [ValidationService.required]);
+    const requiredIFSCCode = new FormControl('', [this.validate.required]);
+    const accountNumber = new FormControl('', [this.validate.required, this.validate.accountNumberValidator]);
+    const requiredConfirmAccount = new FormControl('', [this.validate.required]);
     this.bankDetailsform = this.fb.group({
       IFSCCode: requiredIFSCCode,
       accountNumber: accountNumber,

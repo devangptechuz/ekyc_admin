@@ -44,7 +44,7 @@ export class ValidationService {
     return config[validatorName];
   }
 
-  static required(control: FormControl) {
+  required(control: FormControl) {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
     return isValid ? null : { 'required': true };
