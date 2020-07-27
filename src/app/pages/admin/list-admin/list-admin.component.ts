@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { AdminService } from '../../../shared/services/admin.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationDialogService } from '../../../shared/services/confirmation-dialoge.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalService } from '../../../shared/services/global.service';
 import { environment } from '../../../../environments/environment';
 import { isArray } from 'util';
@@ -26,6 +25,7 @@ export class ListAdminComponent implements OnInit {
   adminsSelectCount;
   count: any;
   deleteFlag = false;
+  searchValue:string = null;
   selectedItem;
   perPage = [
     { label: '10', value: '10' },
@@ -137,6 +137,12 @@ export class ListAdminComponent implements OnInit {
     if (event.keyCode === 13) {
       this.updateFilter(event);
     }
+  }
+
+
+  removeText(){
+    this.searchValue = '';
+    this.ngOnInit();
   }
 
   updateFilter(event) {
