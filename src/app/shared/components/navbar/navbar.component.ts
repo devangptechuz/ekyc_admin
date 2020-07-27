@@ -110,7 +110,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       btnElement.parentElement.parentElement.blur();
     this.confirmationDialogService.deleteConfirm(this.userName, this.userEmail).then((data) => {
       if (data) {
-        this.commonService.logout();
+        this.commonService.logoutFromAdmin();
       }
     }).catch(error => console.log(error));
   }
