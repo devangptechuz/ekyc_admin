@@ -54,10 +54,16 @@
                            <ngx-datatable-column [width]="80" name="Mobile Number" [sortable]="true"
                               prop="mobileNumber">
                            </ngx-datatable-column>
-                           <ngx-datatable-column [width]="80" name="Account type" [sortable]="true" prop="status">
+                           <ngx-datatable-column [width]="50" name="Account type" [sortable]="true" prop="status">
                               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                  <span
                                     [ngClass]="{'super-admin-class': row.userType==='1'}">{{row.userType | userType}}</span>
+                              </ng-template>
+                           </ngx-datatable-column>
+                           <ngx-datatable-column [width]="50" name="Admin Status" [sortable]="true" prop="status">
+                              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                 <span *ngIf="row.status" class="green-color-text">Active</span>
+                                 <span *ngIf="!row.status" class="red-color-text">Deactive</span>
                               </ng-template>
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="20" name="Actions" [sortable]="false" prop="id">
@@ -69,9 +75,9 @@
                                     <div class="dropdown-menu dropdown-menu-right">
                                        <a class="dropdown-item" href="javascript:void(0)" (click)="onEdit(value)">
                                           <span class="ft-edit"></span> approve</a>
-                                       <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(value)">
+                                       <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(value,1)">
                                           <span class="icon-allow"></span>Activate User</a>
-                                       <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(value)">
+                                       <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(value,0)">
                                           <span class="icon-notallow"></span>Deactivate User</a>
                                     </div>
                                  </div>
@@ -98,8 +104,9 @@
 <div *ngIf="deleteFlag" class="fixed-status">
    <label class="mb-0">Applications selected : <strong>{{adminsSelectCount}}</strong></label>
    <ul>
-      <li (click)="deleteAdmins()"><img src="assets/img/not-allow.svg"><span>Deactivate selected</span></li>
-      <li (click)="deleteAdmins()"><img src="assets/img/allow.svg"><span>Activated selected</span></li>
+      <li (click)="deleteAdmins(0)" class="cancel"><img src="assets/img/not-allow.svg"><span>Deactivate selected</span>
+      </li>
+      <li (click)="deleteAdmins(1)"><img src="assets/img/true.svg"><span>Activate selected</span></li>
       <li (click)="cancelAll()" class="cancel"><img src="assets/img/not-allow.svg"><span>Cancel all</span></li>
    </ul>
 </div>

@@ -25,7 +25,7 @@ export class ListAdminComponent implements OnInit {
   adminsSelectCount;
   count: any;
   deleteFlag = false;
-  searchValue:string = null;
+  searchValue: string = null;
   selectedItem;
   perPage = [
     { label: '10', value: '10' },
@@ -68,38 +68,38 @@ export class ListAdminComponent implements OnInit {
     this.router.navigateByUrl('/admins/edit-admin/' + v);
   }
 
-  deleteAdmins() {
+  deleteAdmins(typeOfChange: number) {
     if (this.selected.length > 0) {
       const id = [];
       this.selected.filter((data) => {
         id.push(data.id);
       });
-      this.deleteConfirmServiceCall('Admins', id);
+      this.deleteConfirmServiceCall('Admins', id, typeOfChange);
     }
   }
 
-  onDelete(id) {
-    this.deleteConfirmServiceCall('Admin', id);
+  onDelete(id, typeOfChange: number) {
+    this.deleteConfirmServiceCall('Admin', id, typeOfChange);
   }
 
-  deleteConfirmServiceCall(label, id) {
+  deleteConfirmServiceCall(label, id, typeOfChange: number) {
     let objParam = {};
     if (isArray(id)) {
-      objParam['id'] = id;
+      objParam['ids'] = id;
+      objParam['status'] = typeOfChange;
     } else {
-      objParam['id'] = [id];
+      objParam['ids'] = [id];
+      objParam['status'] = typeOfChange;
     }
     this.confirmationDialogService.confirm(label).then((data) => {
       if (data) {
-        this.spinner.show();
         this.adminService.deleteAdmin(objParam)
           .subscribe((res) => {
             if (res.success) {
-              this.spinner.hide();
               this.global.successToastr(res.message);
+              this.cancelAll();
               this.ngOnInit();
             } else {
-              this.spinner.hide();
               this.global.errorToastr(res.message);
             }
           });
@@ -140,7 +140,7 @@ export class ListAdminComponent implements OnInit {
   }
 
 
-  removeText(){
+  removeText() {
     this.searchValue = '';
     this.ngOnInit();
   }
