@@ -133,7 +133,7 @@ export class ListAdminComponent implements OnInit {
     }
   }
 
-  onEnterPress(event){
+  onEnterPress(event) {
     if (event.keyCode === 13) {
       this.updateFilter(event);
     }

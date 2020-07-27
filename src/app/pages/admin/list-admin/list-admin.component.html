@@ -17,13 +17,13 @@
                            <h2 class="mb-0">Total Admin users ({{count}})</h2>
                         </div>
                         <div class="col-md-8 d-flex align-items-center justify-content-end">
-                           <div class="search"><input type="search" [(ngModel)]="searchValue"  name="" #searchBytype (keyup)='resetFilter($event)' (keydown)="onEnterPress($event)"
-                                 placeholder="search by Admin user name or email or phone number"  class="form-control">
-                              <button class="btn-search"  (click)='updateFilter($event)'><span
+                           <div class="search"><input type="search" [(ngModel)]="searchValue" name="" #searchBytype
+                                 (keyup)='resetFilter($event)' (keydown)="onEnterPress($event)"
+                                 placeholder="search by Admin user name or email or phone number" class="form-control">
+                              <button class="btn-search" (click)='updateFilter($event)'><span
                                     class="icon-search"></span></button>
                            <button *ngIf="searchValue"  (click)='removeText()' class="close-icon">&times;</button>
                            </div>
-                           
                            <div><button class="btn btn-custom mb-0" routerLink="/admins/add-admin">Add New
                                  Admin <span class="icon-plus"></span></button></div>
                         </div>
@@ -62,14 +62,27 @@
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="20" name="Actions" [sortable]="false" prop="id">
                               <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-                                 <span>
+                                 <div class="dropdown more-dropdown">
+                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                       <span class="icon-more-vertical"></span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                       <a class="dropdown-item" href="javascript:void(0)" (click)="onEdit(value)">
+                                          <span class="ft-edit"></span> approve</a>
+                                       <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(value)">
+                                          <span class="icon-allow"></span>Activate User</a>
+                                       <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(value)">
+                                          <span class="icon-notallow"></span>Deactivate User</a>
+                                    </div>
+                                 </div>
+                                 <!-- <span>
                                     <button (click)="onEdit(value)" class="success mr-2 btn-action">
                                        <i class="ft-edit-2 font-medium-3"></i>
                                     </button>
                                     <button (click)="onDelete(value)" class="danger btn-action">
                                        <i class="ft-trash font-medium-3"></i>
                                     </button>
-                                 </span>
+                                 </span> -->
                               </ng-template>
                            </ngx-datatable-column>
                         </ngx-datatable>
@@ -85,7 +98,8 @@
 <div *ngIf="deleteFlag" class="fixed-status">
    <label class="mb-0">Applications selected : <strong>{{adminsSelectCount}}</strong></label>
    <ul>
-      <li (click)="deleteAdmins()"><img src="assets/img/trash.svg"><span>Delete selected</span></li>
+      <li (click)="deleteAdmins()"><img src="assets/img/not-allow.svg"><span>Deactivate selected</span></li>
+      <li (click)="deleteAdmins()"><img src="assets/img/allow.svg"><span>Activated selected</span></li>
       <li (click)="cancelAll()" class="cancel"><img src="assets/img/not-allow.svg"><span>Cancel all</span></li>
    </ul>
 </div>
