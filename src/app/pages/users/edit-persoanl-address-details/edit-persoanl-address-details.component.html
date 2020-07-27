@@ -32,7 +32,7 @@
             <div class="form-group">
               <label>Gender</label>
               <ng-select appearance="outline" placeholder="select" [searchable]="false" formControlName="gender">
-                <ng-option [value]="item.label" *ngFor="let item of gender">{{item.label}}</ng-option>
+                <ng-option [value]="item.value" *ngFor="let item of gender">{{item.label}}</ng-option>
               </ng-select>
               <app-control-messages fieldName="Gender" [control]="addressDetailsform.controls['gender']">
               </app-control-messages>

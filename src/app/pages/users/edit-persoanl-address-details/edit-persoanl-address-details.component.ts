@@ -22,7 +22,7 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
   userId: any;
   addressDetailsform: FormGroup;
   addAddress: boolean;
-  gender = [{ label: 'Male' }, { label: 'Female' }];
+  gender = [{ value: 'MALE', label: 'Male' }, { value: 'FEMALE', label: 'Female' }];
   countryList = [{ label: 'INDIA' }, { label: 'USA' }];
   maritalStatus = [
     { id: 'Unmarried', label: 'Unmarried' },
@@ -88,12 +88,12 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
     obj['id'] = this.userId;
     if (this.addressDetailsform.value.name) {
       obj['full_name'] = this.addressDetailsform.value.name;
+      // obj['fullName'] = this.addressDetailsform.value.name;
     }
 
-    obj['marital_status'] = '';
-    if (this.addressDetailsform.value.marital_status) {
-      obj['marital_status'] = this.addressDetailsform.value.marital_status;
-    }
+    // if (this.addressDetailsform.value.marital_status) {
+    //   obj['marital_status'] = this.addressDetailsform.value.marital_status;
+    // }
     if (this.addressDetailsform.value.dob) {
       obj['date_of_birth'] = this.addressDetailsform.value.dob;
     }
@@ -123,7 +123,6 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
     }
     delete obj.name;
     delete obj.country;
-    delete obj.marital_status;
     delete obj.dob;
     delete obj.address_line1;
     delete obj.address_line2;
@@ -228,7 +227,7 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
   * Check for same as permenent
   */
   checkForSameAsPermenent(event) {
-    console.log('event.target.checked', event.target.checked);
+    // console.log('event.target.checked', event.target.checked);
     if (event.target.checked) {
       this.addressDetailsform.get('same_as').setValue(true);
       this.addAddress = false;
