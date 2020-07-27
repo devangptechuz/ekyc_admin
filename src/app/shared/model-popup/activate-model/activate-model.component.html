@@ -1,0 +1,24 @@
+<div class="modal-header blueclr common-header">
+  <div class="popup-header">
+    <span>{{'Confirmation'}}</span>
+    <h2 class="mb-0">Activate selected entry</h2>
+  </div>
+  <div class="popup-icon">
+    <img src="../../../../assets/img/blue-true.svg">
+  </div>
+</div>
+<div class="modal-boy">
+  <p class="wr-msg mb-2">
+    The entries once activate will be able to accessed again in future. We recommend you to cross verify the
+    selected entry for any important information.
+  </p>
+  <p class="wr-msg mb-200">Are you sure you want to activate this {{ label }}?</p>
+  <br>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+  <a class="btn modal-btn-continue" (click)="decline()">
+    Cancel
+  </a>
+  <a class="btn modal-continue" (click)="accept()">Activate Entry</a>
+</div>

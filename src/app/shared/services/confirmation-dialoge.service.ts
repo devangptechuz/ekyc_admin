@@ -4,6 +4,8 @@ import { DeleteModelComponent } from '../model-popup/delete-model/delete-model.c
 import { LogoutPopupComponent } from '../model-popup/logout-popup/logout-popup.component';
 import { ApprovedModelComponent } from '../model-popup/approved-model/approved-model.component';
 import { RejectModelComponent } from '../model-popup/reject-model/reject-model.component';
+import { DeactivateModelComponent } from '../model-popup/deactivate-model/deactivate-model.component';
+import { ActivateModelComponent } from '../model-popup/activate-model/activate-model.component';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,18 @@ export class ConfirmationDialogService {
 
   public confirm(label: string): Promise<boolean> {
     const modalRef = this.modalService.open(DeleteModelComponent, { centered: true });
+    modalRef.componentInstance.label = label;
+    return modalRef.result;
+  }
+
+  public deactivateAdminConfirm(label: string): Promise<boolean> {
+    const modalRef = this.modalService.open(DeactivateModelComponent, { centered: true });
+    modalRef.componentInstance.label = label;
+    return modalRef.result;
+  }
+
+  public activateAdminConfirm(label: string): Promise<boolean> {
+    const modalRef = this.modalService.open(ActivateModelComponent, { centered: true });
     modalRef.componentInstance.label = label;
     return modalRef.result;
   }

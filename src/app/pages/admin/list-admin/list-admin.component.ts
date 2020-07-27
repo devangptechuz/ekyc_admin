@@ -91,20 +91,37 @@ export class ListAdminComponent implements OnInit {
       objParam['ids'] = [id];
       objParam['status'] = typeOfChange;
     }
-    this.confirmationDialogService.confirm(label).then((data) => {
-      if (data) {
-        this.adminService.deleteAdmin(objParam)
-          .subscribe((res) => {
-            if (res.success) {
-              this.global.successToastr(res.message);
-              this.cancelAll();
-              this.ngOnInit();
-            } else {
-              this.global.errorToastr(res.message);
-            }
-          });
-      }
-    }).catch(error => console.log(error));
+    if (typeOfChange) {
+      this.confirmationDialogService.activateAdminConfirm(label).then((data) => {
+        if (data) {
+          this.adminService.deleteAdmin(objParam)
+            .subscribe((res) => {
+              if (res.success) {
+                this.global.successToastr(res.message);
+                this.cancelAll();
+                this.ngOnInit();
+              } else {
+                this.global.errorToastr(res.message);
+              }
+            });
+        }
+      }).catch(error => console.log(error));
+    } else {
+      this.confirmationDialogService.deactivateAdminConfirm(label).then((data) => {
+        if (data) {
+          this.adminService.deleteAdmin(objParam)
+            .subscribe((res) => {
+              if (res.success) {
+                this.global.successToastr(res.message);
+                this.cancelAll();
+                this.ngOnInit();
+              } else {
+                this.global.errorToastr(res.message);
+              }
+            });
+        }
+      }).catch(error => console.log(error));
+    }
   }
 
   cancelAll() {

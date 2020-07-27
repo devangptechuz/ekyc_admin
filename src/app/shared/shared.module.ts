@@ -25,6 +25,8 @@ import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.co
 import { DeleteModelComponent } from './model-popup/delete-model/delete-model.component';
 import { ApprovedModelComponent } from './model-popup/approved-model/approved-model.component';
 import { RejectModelComponent } from './model-popup/reject-model/reject-model.component';
+import { DeactivateModelComponent } from './model-popup/deactivate-model/deactivate-model.component';
+import { ActivateModelComponent } from './model-popup/activate-model/activate-model.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { RejectModelComponent } from './model-popup/reject-model/reject-model.co
         SafeUrlPipe,
         DeleteModelComponent,
         ApprovedModelComponent,
-        RejectModelComponent
+        RejectModelComponent,
+        DeactivateModelComponent,
+        ActivateModelComponent
     ],
     imports: [
         RouterModule,
@@ -69,7 +73,9 @@ import { RejectModelComponent } from './model-popup/reject-model/reject-model.co
         SafeUrlPipe,
         LogoutPopupComponent,
         ApprovedModelComponent,
-        RejectModelComponent
+        RejectModelComponent,
+        DeactivateModelComponent,
+        ActivateModelComponent
     ]
 })
 export class SharedModule { }
