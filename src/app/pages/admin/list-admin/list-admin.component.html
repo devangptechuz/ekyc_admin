@@ -21,8 +21,9 @@
                                  placeholder="search by Admin user name or email or phone number"  class="form-control">
                               <button class="btn-search"  (click)='updateFilter($event)'><span
                                     class="icon-search"></span></button>
+                           <button *ngIf="searchValue"  (click)='removeText()' class="close-icon">&times;</button>
                            </div>
-                            <button *ngIf="searchValue"  (click)='removeText()'>X</button>
+                           
                            <div><button class="btn btn-custom mb-0" routerLink="/admins/add-admin">Add New
                                  Admin <span class="icon-plus"></span></button></div>
                         </div>
