@@ -133,6 +133,12 @@ export class ListAdminComponent implements OnInit {
     }
   }
 
+  onEnterPress(event){
+    if (event.keyCode === 13) {
+      this.updateFilter(event);
+    }
+  }
+
   updateFilter(event) {
     const searchBytype = this.searchBytype.nativeElement.value;
     if (!searchBytype) {
