@@ -41,13 +41,14 @@
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="50" name="user name" [sortable]="true" prop="username">
                               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                 <a class="user-img dummy-icon" *ngIf="!row.userProfile_url">
+                                 <a class="user-img dummy-icon" *ngIf="!row.userProfile_url" (click)="onEdit(row.id)">
                                     <img src="assets/img/user-ic.svg">
                                  </a>
-                                 <a class="user-img" *ngIf="row.userProfile_url">
+                                 <a class="user-img" *ngIf="row.userProfile_url" (click)="onEdit(row.id)">
                                     <img src="{{row.userProfile_url}}">
                                  </a>
-                                 <a title="{{row.username}}" class="wrap-text">{{row.username}}</a>
+                                 <a title="{{row.username}}" class="wrap-text"
+                                    (click)="onEdit(row.id)">{{row.username}}</a>
                               </ng-template>
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="100" name="Email" [sortable]="true" prop="email">

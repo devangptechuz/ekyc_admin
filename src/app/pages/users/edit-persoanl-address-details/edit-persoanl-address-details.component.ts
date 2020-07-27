@@ -25,7 +25,7 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
   gender = [{ label: 'Male' }, { label: 'Female' }];
   countryList = [{ label: 'INDIA' }, { label: 'USA' }];
   maritalStatus = [
-    { id: 'UnMarried', label: 'UnMarried' },
+    { id: 'Unmarried', label: 'Unmarried' },
     { id: 'Married', label: 'Married' }]
   // { 'Unmarried': 'Unmarried', 'Married': 'Married' };
   OccupationTypeArray: any[];
@@ -90,9 +90,9 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
       obj['full_name'] = this.addressDetailsform.value.name;
     }
 
-    obj['marriage_status'] = '';
+    obj['marital_status'] = '';
     if (this.addressDetailsform.value.marital_status) {
-      obj['marriage_status'] = this.addressDetailsform.value.marital_status;
+      obj['marital_status'] = this.addressDetailsform.value.marital_status;
     }
     if (this.addressDetailsform.value.dob) {
       obj['date_of_birth'] = this.addressDetailsform.value.dob;
@@ -159,8 +159,8 @@ export class EditPersoanlAddressDetailsComponent implements OnInit {
           const dob = res.result.date_of_birth.replace(/-/g, "/");
           this.addressDetailsform.patchValue({ dob: dob });
         }
-        if (res.result.marrital_status) {
-          this.addressDetailsform.patchValue({ dob: res.result.marrital_status });
+        if (res.result.marital_status) {
+          this.addressDetailsform.patchValue({ marital_status: res.result.marital_status });
         }
         if (res.result.occupation_type) {
           this.addressDetailsform.patchValue({ occupation_type: res.result.occupation_type });
