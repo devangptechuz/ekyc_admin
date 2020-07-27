@@ -22,6 +22,11 @@ export class CommonService {
 
   logout() {
     this.cookieService.delete('admin_token','/');
+    this.router.navigate(['/']);
+  }
+
+  logoutFromAdmin(){
+    this.cookieService.delete('admin_token','/');
     this.global.successToastr('Logout successfully');
     this.router.navigate(['/']);
   }
