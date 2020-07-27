@@ -66,7 +66,7 @@
                                  <span *ngIf="!row.status" class="red-color-text">Deactive</span>
                               </ng-template>
                            </ngx-datatable-column>
-                           <ngx-datatable-column [width]="20" name="Actions" [sortable]="false" prop="id">
+                           <ngx-datatable-column [width]="10" name="Actions" [sortable]="false" prop="id">
                               <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
                                  <div class="dropdown more-dropdown">
                                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -76,7 +76,7 @@
                                        <a class="dropdown-item" href="javascript:void(0)" (click)="onEdit(value)">
                                           <span class="ft-edit"></span> approve</a>
                                        <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(value,1)">
-                                          <span class="icon-allow"></span>Activate User</a>
+                                          <span class="icon-user"></span>Activate User</a>
                                        <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(value,0)">
                                           <span class="icon-notallow"></span>Deactivate User</a>
                                     </div>
