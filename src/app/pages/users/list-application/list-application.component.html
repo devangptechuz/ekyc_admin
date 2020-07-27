@@ -80,14 +80,14 @@
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a title="{{row.userName}}" [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname">{{row.userName}}</a>
+                                                routerLinkActive="router-link-active" class="uname wrap-text">{{row.userName}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
                                         prop="id">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a title="{{row.id}}" [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname">
+                                                routerLinkActive="router-link-active" class="uname wrap-text">
                                                 {{row.id | uppercase}}
                                             </a>
                                         </ng-template>
@@ -215,7 +215,7 @@
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a title="{{row.userName}}" [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname">{{row.userName}}</a>
+                                                routerLinkActive="router-link-active" class="uname wrap-text">{{row.userName}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
@@ -240,7 +240,7 @@
                                         prop="mobileNumber">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname">
+                                                routerLinkActive="router-link-active" class="wrap-text">
                                                 {{row.mobileNumber}}
                                             </a>
                                         </ng-template>

@@ -44,7 +44,7 @@
                                  <a class="user-img" *ngIf="row.userProfile_url">
                                     <img src="{{row.userProfile_url}}">
                                  </a>
-                                 <a title="{{row.username}}">{{row.username}}</a>
+                                 <a title="{{row.username}}" class="wrap-text">{{row.username}}</a>
                               </ng-template>
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="100" name="Email" [sortable]="true" prop="email">

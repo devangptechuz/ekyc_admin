@@ -22,7 +22,7 @@
                                     <a class="user-img" *ngIf="row.img">
                                         <img src="{{row.img}}">
                                     </a>
-                                    <a data-tooltip title="{{row.username}}">{{row.username}}</a>
+                                    <a data-tooltip title="{{row.username}}" class="wrap-text">{{row.username}}</a>
                                 </ng-template>
                             </ngx-datatable-column>
                             <ngx-datatable-column name="Application Id" [sortable]="true" prop="applicationID">
