@@ -501,7 +501,9 @@ button.view-img img{width: 110px;height: 60px;object-fit: cover;}
 
 .uploaddoc-popup  button.actionBtn {min-height: 80px;min-width: 100%;border-radius: 8px;margin: 0 0 10px;padding: 5px;font-size: 12px;}
 .upload-doc-box h1{color: #FAB401;font-size: 27px;}
- .modal-footer a.disabled{opacity: 1;color: #B0BAC5;}
+.modal-footer a.disabled{opacity: 1;color: #B0BAC5;}
+
+
 /*=========Custom Scroll===========*/
 
 @media(min-width:768px) {

@@ -570,6 +570,7 @@ section.application h2{font-weight: 200;line-height: 36px;letter-spacing: 1px;te
 section.application .header{padding: 40px;margin: 0;border-bottom: 1px solid #DDDDDD;}
 section.application .header input{font-size: 12px;line-height: 18px;min-width: 146px;}
 section.application .search input{min-width: 438px;}
+section.application .search .close-icon{position: absolute;background: transparent;right: 52px;top: 13px;border: none;font-size: 18px;}
 section.application .filter,section.application .search {position: relative;}
 section.application .btn-search{color: rgba(0, 0, 0, 0.56);border-left: 1px solid #DDDDDD;background: transparent;border: none;cursor: pointer;display: inline-block;}
 section.application .btn-search .icon-search{font-size: 18px;}
