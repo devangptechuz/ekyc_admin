@@ -26,6 +26,7 @@ export class ListApplicationComponent implements OnInit {
   loadingIndicator = true;
   limitRow: Number = environment.userlimitRow;
   selectedItem;
+  searchValue:string = null;
   count: any;
 
   countUnderReview: number;
@@ -80,6 +81,12 @@ export class ListApplicationComponent implements OnInit {
     if (!event.target.value && event.keyCode !== 13) {
       this.getApplicationListByType(this.typeOflist);
     }
+  }
+
+
+  removeText(){
+    this.searchValue = '';
+    this.ngOnInit();
   }
 
   updateFilter(event) {

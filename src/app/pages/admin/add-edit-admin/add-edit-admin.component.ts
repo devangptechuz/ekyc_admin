@@ -107,7 +107,6 @@ export class AddEditAdminComponent implements OnInit {
       return false;
     }
     this.formData = new FormData();
-    this.formData.append('api_name', 'insert_sub_admin');
     this.formData.append('userProfile', this.adminForm.get('userProfile').value);
     Object.entries(this.adminForm.value).forEach(
       ([key, value]: any[]) => {
@@ -115,6 +114,7 @@ export class AddEditAdminComponent implements OnInit {
       });
     this.formData.delete('confirm_password');
     if (this.editMode) {
+      this.formData.append('api_name', 'insert_sub_admin');
       this.adminService.addAdmin(this.formData).subscribe(
         (result: any) => {
           if (result.success) {
