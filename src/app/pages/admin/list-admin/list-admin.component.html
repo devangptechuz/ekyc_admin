@@ -17,7 +17,8 @@
                            <h2 class="mb-0">Total Admin users ({{count}})</h2>
                         </div>
                         <div class="col-md-8 d-flex align-items-center justify-content-end">
-                           <div class="search"><input type="search" [(ngModel)]="searchValue" name="" #searchBytype
+                           <div class="search">
+                              <input type="search" [(ngModel)]="searchValue" name="" #searchBytype
                                  (keyup)='resetFilter($event)' (keydown)="onEnterPress($event)"
                                  placeholder="search by Admin user name or email or phone number" class="form-control">
                               <button class="btn-search" (click)='updateFilter($event)'><span
