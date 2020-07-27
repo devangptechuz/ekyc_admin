@@ -21,6 +21,7 @@ export class ListApplicationComponent implements OnInit {
 
   rows = [];
   temp = [];
+  tempOther = [];
   selected = [];
   loadingIndicator = true;
   limitRow: Number = environment.userlimitRow;
@@ -63,51 +64,56 @@ export class ListApplicationComponent implements OnInit {
     // });
   }
 
-  resetFilter($event) {
-    console.log('this.typeOflist', this.typeOflist);
-    if (!$event.target.value) {
+  onEnterPress(event){
+    if (event.keyCode === 13) {
+      this.updateFilter(event);
+    }
+  }
+
+  onEnterPressAgain(event){
+    if (event.keyCode === 13) {
+      this.updateFilterAgain(event);
+    }
+  }
+
+  resetFilter(event) {
+    if (!event.target.value && event.keyCode !== 13) {
       this.getApplicationListByType(this.typeOflist);
     }
   }
 
   updateFilter(event) {
-    const searchBytype = this.searchBytype.nativeElement.value;
-    if (!searchBytype) {
-      this.global.errorToastr('Search box is empty')
+    const searchByType = this.searchBytype.nativeElement.value;
+    const searchByKey = event.target.value;
+    if (!searchByType && !searchByKey) {
+     return this.global.errorToastr('Search box is empty')
     }
-    const val = searchBytype.toLowerCase();
-    this.rows = this.temp.filter((d) => {
-      return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
-        d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
-        d.userName.toLowerCase().indexOf(val) !== -1 || !val;
-    });
-    this.table.offset = 0;
+    const val = searchByType.toLowerCase() || searchByKey.toLowerCase();
+    this.commonFunctionFilter(val);
   }
 
   updateFilterAgain(event) {
     const searchBytype = this.searchBytypeAgain.nativeElement.value;
-    console.log('searchBytype', searchBytype);
     if (!searchBytype) {
-      this.global.errorToastr('Search box is empty')
+     return this.global.errorToastr('Search box is empty')
     }
     const val = searchBytype.toLowerCase();
+    this.commonFunctionFilter(val);
+  }
+
+  commonFunctionFilter(val){
     this.rows = this.temp.filter((d) => {
       return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
-        d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
-        d.userName.toLowerCase().indexOf(val) !== -1 || !val;
+          d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
+          d.userName.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.table.offset = 0;
   }
 
-  // onActivate(event) {
-  //   if (event.type === 'click') {
-  //     this.router.navigate(['applications/details', event.row.id]);
-  //   }
-  // }
 
   /**
    * Get application list by type(all,rejected,approved,under_review)
-   * @param typeOflist 
+   * @param typeOflist
    */
   getApplicationListByType(typeOflist: any = '') {
     this.cancelAll();
@@ -115,7 +121,7 @@ export class ListApplicationComponent implements OnInit {
     this.userService.getUserList(this.typeOflist).subscribe((Data: any) => {
       if (Data.success) {
         this.temp = [...Data['result']['userList']];
-        this.rows = Data['result']['userList'];
+        this.rows = [...Data['result']['userList']];
         this.count = Data['result']['all_count'];
         this.countUnderReview = Data['result']['under_review_count'];
         this.countApproved = Data['result']['approved_count'];
@@ -164,8 +170,8 @@ export class ListApplicationComponent implements OnInit {
   }
   /**
    * reject confirmation modal popup
-   * @param label 
-   * @param id 
+   * @param label
+   * @param id
    */
   approveConfirmServiceCall(label: any, id: any) {
     let objParam = {};
@@ -203,8 +209,8 @@ export class ListApplicationComponent implements OnInit {
 
   /**
    * reject confirmation modal popup
-   * @param label 
-   * @param id 
+   * @param label
+   * @param id
    */
   rejectConfirmServiceCall(label: any, id: any) {
     let objParam = {};
