@@ -705,11 +705,9 @@ body {
     #regestration,
     #lock-screen,
     #coming-soon,
-    #maintenance {
-      background-image: url('../../assets/img/gallery/dark-bg.jpg') !important;
+    #maintenance {     
 
-      .fg-image,
-      .login-img,
+      .fg-image,     
       .register-img,
       .lock-screen-img {
         background: #494b62 !important;
