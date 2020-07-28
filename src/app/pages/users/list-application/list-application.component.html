@@ -56,10 +56,12 @@
                                     <div class="search">
                                         <input type="search" #searchBytype name="searchbytype" [(ngModel)]="searchValue"
                                             placeholder="search by user name or email or mobilenumber"
-                                            class="form-control" (keyup)='resetFilter($event)' (keydown)="onEnterPress($event)">
+                                            class="form-control" (keyup)='resetFilter($event)'
+                                            (keydown)="onEnterPress($event)">
                                         <button (click)='updateFilter($event)' class="btn-search"><span
                                                 class="icon-search"></span></button>
-                                        <button *ngIf="searchValue"  (click)='removeText()' class="close-icon">&times;</button>
+                                        <button *ngIf="searchValue" (click)='removeText()'
+                                            class="close-icon">&times;</button>
                                     </div>
                                     <div class="filter">Filter search<span class="icon-filter"></span></div>
                                 </div>
@@ -81,7 +83,8 @@
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a title="{{row.userName}}" [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname wrap-text">{{row.userName}}</a>
+                                                routerLinkActive="router-link-active"
+                                                class="uname wrap-text">{{row.userName}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
@@ -190,12 +193,15 @@
                                 </div>
                                 <div class="col-md-8 d-flex align-items-center justify-content-end">
                                     <div class="search">
-                                        <input type="search" #searchBytypeAgain name="searchBytypeAgain" [(ngModel)]="searchValue"
+                                        <input type="search" #searchBytypeAgain name="searchBytypeAgain"
+                                            [(ngModel)]="searchValue"
                                             placeholder="search by user name or email or mobilenumber"
-                                            class="form-control" (keyup)='resetFilter($event)' (keydown)="onEnterPressAgain($event)">
+                                            class="form-control" (keyup)='resetFilter($event)'
+                                            (keydown)="onEnterPressAgain($event)">
                                         <button (click)='updateFilterAgain($event)' class="btn-search"><span
                                                 class="icon-search"></span></button>
-                                        <button *ngIf="searchValue"  (click)='removeText()' class="close-icon">&times;</button>
+                                        <button *ngIf="searchValue" (click)='removeText()'
+                                            class="close-icon">&times;</button>
                                     </div>
                                     <div class="filter">Filter search<span class="icon-filter"></span></div>
                                 </div>
@@ -217,7 +223,8 @@
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a title="{{row.userName}}" [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname wrap-text">{{row.userName}}</a>
+                                                routerLinkActive="router-link-active"
+                                                class="uname wrap-text">{{row.userName}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
@@ -242,7 +249,8 @@
                                         prop="mobileNumber">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="wrap-text">
+                                                routerLinkActive="router-link-active" class="wrap-text uname"
+                                                style="text-transform: lowercase;">
                                                 {{row.mobileNumber}}
                                             </a>
                                         </ng-template>
