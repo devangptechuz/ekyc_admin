@@ -16,9 +16,9 @@ import { map, catchError } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonService } from '../services/common.service';
 import { ToastrService } from 'ngx-toastr';
-import {CookieService} from 'ngx-cookie-service';
 import {GlobalService} from '../services/global.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {CookiesService} from '@ngx-utils/cookies';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
@@ -26,7 +26,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     private spinner: NgxSpinnerService,
     private common: CommonService,
     private toaster: ToastrService,
-    private cookieService: CookieService,
+    private cookies:CookiesService,
     public global: GlobalService,
     private route: ActivatedRoute,
     private router: Router,
@@ -40,7 +40,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
       this.spinner.show();
     }
     request.params.set('hideLoader', '');
-    const token: string = this.cookieService.get('admin_token');
+    const token: string = this.cookies.get('admin_token');
     if (token) {
       if (request.url.search('/login') === -1) {
         request = request.clone({

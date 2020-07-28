@@ -4,7 +4,6 @@ import { LayoutService } from '../../services/layout.service';
 import { ConfigService } from '../../services/config.service';
 import { CommonService } from "../../services/common.service";
 import { ConfirmationDialogService } from '../../services/confirmation-dialoge.service';
-import { CookieService } from 'ngx-cookie-service';
 import {SharedService} from '../../services/shared.service';
 import {AdminService} from '../../services/admin.service';
 import {GlobalService} from '../../services/global.service';
@@ -47,7 +46,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private configService: ConfigService,
     private commonService: CommonService,
     private confirmationDialogService: ConfirmationDialogService,
-    private cookieService: CookieService,
     private sharedVarService:SharedService,
     private adminService:AdminService,
     public global: GlobalService,

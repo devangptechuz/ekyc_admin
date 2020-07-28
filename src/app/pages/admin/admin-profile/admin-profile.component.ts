@@ -8,7 +8,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { GlobalService } from '../../../shared/services/global.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
-import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subject } from 'rxjs';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { SharedService } from '../../../shared/services/shared.service';
@@ -83,7 +82,6 @@ export class AdminProfileComponent implements OnInit {
     private validationService: ValidationService,
     private spinner: NgxSpinnerService,
     public global: GlobalService,
-    private cookieService: CookieService,
     private ref: ChangeDetectorRef,
     private modalService: NgbModal,
     private sharedService: SharedService
@@ -174,7 +172,7 @@ export class AdminProfileComponent implements OnInit {
       disableMultipart: false, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
       maxFileSize: 5 * 1024 * 1024,
       allowedMimeType: this.allowedMimeType,
-      headers: [{ name: 'Authorization', value: this.cookieService.get('admin_token') }],
+      // headers: [{ name: 'Authorization', value: this.cookieService.get('admin_token') }],
       queueLimit: this.maxUploadLimit
     });
     this.hasBaseDropZoneOver = false;

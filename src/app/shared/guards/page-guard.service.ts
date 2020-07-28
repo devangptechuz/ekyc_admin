@@ -2,13 +2,14 @@ import {CanActivate, CanActivateChild, ActivatedRouteSnapshot, Router} from '@an
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommonService } from '../services/common.service';
-import {CookieService} from 'ngx-cookie-service';
+import {CookiesService} from '@ngx-utils/cookies';
+
 
 @Injectable()
 export class PageGuard implements CanActivate, CanActivateChild {
   constructor(
     public commonService: CommonService,
-    private cookieService:CookieService,
+    private cookies:CookiesService,
     public router: Router,
   ) { }
 
@@ -21,7 +22,7 @@ export class PageGuard implements CanActivate, CanActivateChild {
   }
 
   check(data) {
-    const token = this.cookieService.get('admin_token');
+    const token = this.cookies.get('admin_token');
     if (token) {
      const tokenData = this.commonService.getDecodedAccessToken(token);
      if (tokenData) {

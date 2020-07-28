@@ -20,7 +20,7 @@
                            <div class="search">
                               <input type="search" [(ngModel)]="searchValue" name="" #searchBytype
                                  (keyup)='resetFilter($event)' (keydown)="onEnterPress($event)"
-                                 placeholder="search by Admin user name or email or phone number" class="form-control">
+                                 placeholder="Search by Admin Username or Email or Mobile Number" class="form-control">
                               <button class="btn-search" (click)='updateFilter($event)'><span
                                     class="icon-search"></span></button>
                               <button *ngIf="searchValue" (click)='removeText()' class="close-icon">&times;</button>
@@ -39,7 +39,7 @@
                               [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true"
                               prop="selected">
                            </ngx-datatable-column>
-                           <ngx-datatable-column [width]="50" name="user name" [sortable]="true" prop="username">
+                           <ngx-datatable-column [width]="50" name="username" [sortable]="true" prop="username">
                               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                  <a class="user-img dummy-icon" *ngIf="!row.userProfile_url" (click)="onEdit(row.id)">
                                     <img src="assets/img/user-ic.svg">
