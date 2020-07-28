@@ -26,8 +26,6 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AddEditAdmin } from './pages/admin/shared/add-edit.resolver';
 import {BrowserModule} from '@angular/platform-browser';
-import {ServerModule} from '@angular/platform-server';
-import {ServerCookiesModule} from '@ngx-utils/cookies/server';
 import {BrowserCookiesModule} from '@ngx-utils/cookies/browser';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
