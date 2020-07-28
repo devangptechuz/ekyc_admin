@@ -25,6 +25,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AddEditAdmin } from './pages/admin/shared/add-edit.resolver';
+import {BrowserModule} from '@angular/platform-browser';
+import {ServerModule} from '@angular/platform-server';
+import {ServerCookiesModule} from '@ngx-utils/cookies/server';
+import {BrowserCookiesModule} from '@ngx-utils/cookies/browser';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -35,6 +39,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent, NotfoundComponent],
     imports: [
         BrowserAnimationsModule,
+        BrowserModule.withServerTransition({appId: 'your-app-id'}),
+        BrowserCookiesModule.forRoot(),
         AppRoutingModule,
         SharedModule,
         HttpClientModule,
