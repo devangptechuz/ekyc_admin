@@ -471,8 +471,9 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 .green-color-text{color: #19D097;}
 .red-color-text{color: #DF0E40;}
 .wrap-text{max-width: 100px;overflow: hidden;text-overflow: ellipsis;}
-.application .wrap-text{max-width: 140px;}
-
+.application .user-wrap{max-width: 140px;}
+.email-wrap{max-width:190px;}
+.id-wrap{max-width: 220px;}
 
 .datatable-checkbox input[type='checkbox']:before,.datatable-checkbox input[type='checkbox']:after {content: "";height: 18px;width: 18px;position: absolute;border-radius: 4px;border: 1px solid #ddd;}
 .datatable-checkbox input[type='checkbox']:before{transition: none;}
