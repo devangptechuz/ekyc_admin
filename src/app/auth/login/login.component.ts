@@ -5,8 +5,8 @@ import { CommonService } from 'app/shared/services/common.service';
 import { ValidationService } from "app/shared/services/validator.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CookieService} from 'ngx-cookie-service';
 import {GlobalService} from '../../shared/services/global.service';
+import {CookiesService} from '@ngx-utils/cookies';
 
 @Component({
   selector: 'app-login',
@@ -26,12 +26,12 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private validationService: ValidationService,
     private spinner: NgxSpinnerService,
-    private cookieService: CookieService,
-    public global: GlobalService
+    public global: GlobalService,
+    private cookies: CookiesService
   ) { }
 
   ngOnInit() {
-    this.cookieService.delete('admin_token');
+    this.cookies.remove('admin_token');
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     this.setLoginForm();
   }
@@ -50,7 +50,7 @@ export class LoginComponent {
     }
     this.commonService.login(this.loginForm.value).subscribe((res: any) => {
       if(res.success){
-          this.cookieService.set('admin_token', res.result.token);
+          this.cookies.put('admin_token', res.result.token);
           this.router.navigateByUrl(this.returnUrl);
           this.spinner.hide();
           this.loginForm.reset();

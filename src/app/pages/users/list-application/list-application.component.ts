@@ -144,6 +144,7 @@ export class ListApplicationComponent implements OnInit {
     this.deleteFlag = false;
     this.selected = [];
     this.usersSelectCount = 0;
+    this.searchValue = '';
   }
   /**
    * on select deselect event

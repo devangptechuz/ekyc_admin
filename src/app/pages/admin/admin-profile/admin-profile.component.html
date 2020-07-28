@@ -10,7 +10,7 @@
                 <div class="hdr">
                     <div class="hdr-left">
                         <h2>Personal Information</h2>
-                        <span>last updated on : {{updateProfileDate}}</span>
+                        <span>last updated on : {{updateProfileDate | date:'MMM dd yyyy - hh:mm a'}}</span>
                     </div>
                     <div class="hdr-right">
                         <button class="btn btn-custom" (click)="submitProfile()"><span
@@ -68,7 +68,7 @@
                 <div class="hdr mt-4">
                     <div class="hdr-left">
                         <h2>Password Setting</h2>
-                        <span>last updated on : {{updatePasswordDate}}</span>
+                        <span>last updated on : {{updatePasswordDate | date:'MMM dd yyyy - hh:mm a'}}</span>
                     </div>
                     <div class="hdr-right">
                     </div>
