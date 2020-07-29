@@ -224,7 +224,7 @@
                                         prop="id">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a title="{{row.id}}" [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname">
+                                                routerLinkActive="router-link-active" class="uname id-wrap wrap-text">
                                                 {{row.id | uppercase}}
                                             </a>
                                         </ng-template>
@@ -232,7 +232,7 @@
                                     <ngx-datatable-column [width]="40" name="Email" [sortable]="true" prop="email">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname"
+                                                routerLinkActive="router-link-active" class="uname email-wrap wrap-text"
                                                 style="text-transform: lowercase;">
                                                 {{row.email | lowercase}}
                                             </a>
@@ -242,7 +242,7 @@
                                         prop="mobileNumber">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="wrap-text">
+                                                routerLinkActive="router-link-active" class="wrap-text uname">
                                                 {{row.mobileNumber}}
                                             </a>
                                         </ng-template>

@@ -51,6 +51,9 @@
                               </ng-template>
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="100" name="Email" [sortable]="true" prop="email">
+                              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                 <span class="uname email-wrap wrap-text" style="text-transform: lowercase;">{{row.email}}</span>
+                              </ng-template>
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="80" name="Mobile Number" [sortable]="true"
                               prop="mobileNumber">
