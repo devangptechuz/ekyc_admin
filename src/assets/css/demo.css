@@ -363,6 +363,8 @@ header .navbar .dropdown{margin-right: 10px;}
 header .navbar .dropdown-menu-right{right: -30px !important;}
 .navbar-toggler{background: #000;}
 header .navbar .dropdown-item span{font-size: 14px;}
+header .dropdown-item{position: relative;}
+header .check-switch{cursor: pointer;width: 100%;height: 100%;position: absolute;left: 0;opacity: 0;}
 
 /*=========Footer===========*/
 footer{background: #26394E;padding:80px 0;width: 100%;float: left;}
@@ -660,7 +662,7 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 .user-header{margin-bottom: 16px;}
 .user-btmbx .dropdown-item{font-size: 12px;line-height: 18px;}
 .doc-upbox .more-dropdown .dropdown-toggle span {margin-left: -2px;}
-.doc-upbox .carousel .picsum-img-wrapper img{object-fit: cover;min-height: 280px;max-height: 280px;border-radius: 8px;height: 100%;width: 100%;}
+.doc-upbox .carousel .picsum-img-wrapper img{object-fit: contain;min-height: 280px;max-height: 280px;border-radius: 8px;height: 100%;width: 100%;}
 .doc-upbox iframe{min-height: 280px;}
 .signature-box .carousel .picsum-img-wrapper img{object-fit: contain; }
 .signature-box{background: #f7f7f7}
@@ -697,8 +699,8 @@ ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
 .switch input {opacity: 0;width: 0;height: 0;}
 .slider {position: absolute;cursor: pointer;top: 0;left: 0;right: 0;bottom: 0;background-color: #EEEEEE;-webkit-transition: .4s;transition: .4s;}
 .slider:before {position: absolute;content: "";height: 16px;width: 16px;left: 0;bottom:-4px; background-color: #B0BAC5;transition: .4s;}
-input:checked + .slider {background-color: #EEEEEE;}
-input:checked + .slider:before {-webkit-transform: translateX(9px);-ms-transform: translateX(9px);transform: translateX(9px);}
+input:checked + .switch .slider {background-color: #EEEEEE;}
+input:checked + .switch .slider:before {-webkit-transform: translateX(9px);-ms-transform: translateX(9px);transform: translateX(9px);}
 .slider.round {border-radius: 34px;max-width: initial;margin: 0;}
 .slider.round:before {border-radius: 50%;}
 
@@ -768,7 +770,7 @@ button.view-img img.pdf-listview {-o-object-fit: contain;object-fit: contain;}
 .scroll-upload::-webkit-scrollbar-track {border-radius: 10px;}
 .scroll-upload::-webkit-scrollbar-thumb {background: #C4C4C4;border-radius: 10px;}
 .scroll-upload::-webkit-scrollbar-thumb:hover {background: transparent;}
-.upload-doc-box img{width: 100%;height: 100%;object-fit: cover;}
+.upload-doc-box img{width: 100%;height: 100%;object-fit: contain;}
 .uploaddoc-popup .upload-progress{flex-direction: column;justify-content: center;}
 .uploaddoc-popup .upload-progress .progress{overflow: visible;border-radius: 8px;width: 100%;margin: 0 0 24px;height: 6px;background: #DDDDDD;}
 .uploaddoc-popup .upload-progress h5{font-weight: 500;font-size: 24px;line-height: 36px;text-align: center;color: rgba(0, 0, 0, 0.8);}
