@@ -62,7 +62,11 @@
                         </div>
                         <ul class="pic-action">
                             <li><a href="javascript:void(0)"  (click)="removeImages()"><span class="icon-close"></span>remove image</a></li>
-                            <li><button href="javascript:void(0)"><span class="icon-upload"></span>upload from computer<input type="file"  (change)="onFileSelect($event)" accept="image/x-png,image/jpeg" class="hide-file"></button>
+                            <li>
+                                <a href="javascript:void(0)" >
+                                    <span class="icon-upload"></span>upload from computer<input type="file"  (change)="onFileSelect($event)" accept="image/x-png,image/jpeg" class="hide-file">
+                                </a>
+
                             </li>
                         </ul>
                     </div>
