@@ -35,8 +35,8 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Admin Id</label>
-                            <input type="text" [attr.disabled]="true" placeholder="Enter Admin id" formControlName="id"
-                                class="form-control">
+                            <input type="text" [attr.disabled]="true" [ngModel]="inputvalue"  placeholder="Enter Admin id" formControlName="id"
+                                class="form-control" (ngModelChange)="inputvalue = $event.toUpperCase()">
                         </div>
                         <div class="form-group">
                             <label>Email Id</label>

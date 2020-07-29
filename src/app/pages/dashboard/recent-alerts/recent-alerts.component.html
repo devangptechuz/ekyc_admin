@@ -14,7 +14,7 @@
                         <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
                             [headerHeight]="50" [scrollbarH]="false" [footerHeight]="50" [rowHeight]="70"
                             [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]">
-                            <ngx-datatable-column name="User Name" [sortable]="true" prop="username">
+                            <ngx-datatable-column name="Username" [sortable]="true" prop="username">
                                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                     <a class="user-img dummy-icon" *ngIf="!row.img">
                                         <img src="assets/img/user-ic.svg">
