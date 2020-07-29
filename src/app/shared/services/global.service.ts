@@ -1,28 +1,25 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
-  language: any = this.cookie.get('browserLanguage') || 'en';
   constructor(
     private router: Router,
-    private toastr: ToastrService,
-    private cookie: CookieService,
+    private toastr: ToastrService
   ) { }
 
 
   /**
    * Delete multiple cookie as per passed array
    */
-  deleteMultiCookies(cookieParams: any) {
-    cookieParams.map((item: any) => {
-      this.cookie.delete(item,'/');
-    });
-  }
+  // deleteMultiCookies(cookieParams: any) {
+  //   cookieParams.map((item: any) => {
+  //     this.cookie.delete(item,'/');
+  //   });
+  // }
   /**
    * get expired time or set expired time
    */
