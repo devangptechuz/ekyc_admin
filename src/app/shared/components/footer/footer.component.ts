@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
     selector: 'app-footer',
@@ -9,4 +9,6 @@ import { Component, HostBinding } from '@angular/core';
 export class FooterComponent{
     //Variables
     currentDate : Date = new Date();
+    constructor() { }
+
 }
