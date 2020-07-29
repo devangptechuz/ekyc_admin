@@ -810,7 +810,8 @@ ngb-datepicker-navigation button:focus{outline: none;}
 .video-prvw .video-btn .btn:first-child {margin-right: 10px;}
 .video-prvw .video-btn .btn{font-size: 12px;}
 .video-prvw .original{ margin: 0 0 20px;}
-
+.scroll-to-top{z-index: 99;}
+.scroll-to-top button{font-size: 24px;background: #0970DD;box-shadow: 0px 4px 8px rgba(9, 112, 221, 0.24);border-radius: 40px;border: none;width: 56px;height: 56px;color: #fff;}
 
 /*=========Custom Scroll===========*/
 
