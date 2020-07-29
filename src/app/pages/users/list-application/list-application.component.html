@@ -55,7 +55,7 @@
                                 <div class="col-md-8 d-flex align-items-center justify-content-end">
                                     <div class="search">
                                         <input type="search" #searchBytype name="searchbytype" [(ngModel)]="searchValue"
-                                            placeholder="search by user name or email or mobilenumber"
+                                            placeholder="Search by Username or Email or Mobile Number"
                                             class="form-control" (keyup)='resetFilter($event)' (keydown)="onEnterPress($event)">
                                         <button (click)='updateFilter($event)' class="btn-search"><span
                                                 class="icon-search"></span></button>
@@ -77,7 +77,7 @@
                                         [checkboxable]="true" [sortable]="true" prop="selected">
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column [width]="10" name="user name" [sortable]="true"
+                                    <ngx-datatable-column [width]="10" name="username" [sortable]="true"
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a title="{{row.userName}}" [routerLink]="['/applications/details',row.id]"
@@ -191,7 +191,7 @@
                                 <div class="col-md-8 d-flex align-items-center justify-content-end">
                                     <div class="search">
                                         <input type="search" #searchBytypeAgain name="searchBytypeAgain" [(ngModel)]="searchValue"
-                                            placeholder="search by user name or email or mobilenumber"
+                                            placeholder="Search by Admin Username or Email or Mobile Number"
                                             class="form-control" (keyup)='resetFilter($event)' (keydown)="onEnterPressAgain($event)">
                                         <button (click)='updateFilterAgain($event)' class="btn-search"><span
                                                 class="icon-search"></span></button>
@@ -213,7 +213,7 @@
                                         [checkboxable]="true" [sortable]="true" prop="selected">
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column [width]="10" name="user name" [sortable]="true"
+                                    <ngx-datatable-column [width]="10" name="username" [sortable]="true"
                                         prop="userName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                             <a title="{{row.userName}}" [routerLink]="['/applications/details',row.id]"
