@@ -27,55 +27,56 @@ import { ApprovedModelComponent } from './model-popup/approved-model/approved-mo
 import { RejectModelComponent } from './model-popup/reject-model/reject-model.component';
 import { DeactivateModelComponent } from './model-popup/deactivate-model/deactivate-model.component';
 import { ActivateModelComponent } from './model-popup/activate-model/activate-model.component';
+import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
 
 
 @NgModule({
-    exports: [
-        CommonModule,
-        FooterComponent,
-        NavbarComponent,
-        SidebarComponent,
-        ControlMessagesComponent,
-        CustomizerComponent,
-        ToggleFullscreenDirective,
-        SidebarDirective,
-        NgbModule,
-        RoleCheckPipe,
-        UserTypePipe,
-        SafeUrlPipe,
-        DeleteModelComponent,
-        ApprovedModelComponent,
-        RejectModelComponent,
-        DeactivateModelComponent,
-        ActivateModelComponent
-    ],
-    imports: [
-        RouterModule,
-        CommonModule,
-        NgbModule,
-        PerfectScrollbarModule
-    ],
-    declarations: [
-        FooterComponent,
-        DeleteModelComponent,
-        NavbarComponent,
-        SidebarComponent,
-        ControlMessagesComponent,
-        CustomizerComponent,
-        ToggleFullscreenDirective,
-        SidebarDirective,
-        SidebarLinkDirective,
-        SidebarListDirective,
-        SidebarAnchorToggleDirective,
-        SidebarToggleDirective,
-        RoleCheckPipe,
-        UserTypePipe,
-        SafeUrlPipe,
-        LogoutPopupComponent,
-        ApprovedModelComponent,
-        RejectModelComponent,
-        DeactivateModelComponent,
-        ActivateModelComponent
-    ]
+        exports: [
+                CommonModule,
+                FooterComponent,
+                NavbarComponent,
+                SidebarComponent,
+                ControlMessagesComponent,
+                CustomizerComponent,
+                ToggleFullscreenDirective,
+                SidebarDirective,
+                NgbModule,
+                RoleCheckPipe,
+                UserTypePipe,
+                SafeUrlPipe,
+                DeleteModelComponent,
+                ApprovedModelComponent,
+                RejectModelComponent,
+                ScrollTopComponent
+        ],
+        imports: [
+                RouterModule,
+                CommonModule,
+                NgbModule,
+                PerfectScrollbarModule
+        ],
+        declarations: [
+                FooterComponent,
+                DeleteModelComponent,
+                NavbarComponent,
+                SidebarComponent,
+                ControlMessagesComponent,
+                CustomizerComponent,
+                ToggleFullscreenDirective,
+                SidebarDirective,
+                SidebarLinkDirective,
+                SidebarListDirective,
+                SidebarAnchorToggleDirective,
+                SidebarToggleDirective,
+                RoleCheckPipe,
+                UserTypePipe,
+                SafeUrlPipe,
+                LogoutPopupComponent,
+                ApprovedModelComponent,
+                RejectModelComponent,
+                DeactivateModelComponent,
+                ActivateModelComponent,
+                ScrollTopComponent
+        ]
 })
 export class SharedModule { }

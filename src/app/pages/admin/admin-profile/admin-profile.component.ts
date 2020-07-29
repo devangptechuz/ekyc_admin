@@ -20,6 +20,7 @@ import { SharedService } from '../../../shared/services/shared.service';
 export class AdminProfileComponent implements OnInit {
   adminPasswordForm: FormGroup;
   adminProfileForm: FormGroup;
+  inputvalue
   adminProfile = {};
   public allowedMimeType = ['image/png', 'image/jpeg', 'image/jpg'];
   fileUploading: boolean;

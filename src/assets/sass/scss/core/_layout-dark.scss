@@ -768,6 +768,35 @@ body {
     .hdr{
       border-color:$dl-border-color;
     }
+    .uploaddoc-popup {
+      .upload-box{   
+       background:$bg-color-dark;
+        border-color:$dl-border-color;
+      }
+    }
+    .or-text {
+      &:before{
+        background-color:$white-bg-color;
+      }
+      span{
+        background:$bg-color-dark;
+        color:$white-normal-color;
+      }
+
+    }
+    .uploaddoc-popup {
+      .progress-ratio{
+        color: rgba(255, 255, 255, 0.32);
+      }
+      .upload-progress {
+        h5{
+          color:$white-normal-color;
+        }
+        p{
+          color: rgba(255, 255, 255, 0.56);
+        }
+      }
+    }
   }
   
 }

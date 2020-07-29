@@ -1,8 +1,3 @@
-<div class="brdcum">
-    <div class="container">
-        <a href="javascript:void(0)"><span class="icon-left-ar mr-2"></span>Back to Application Details</a>
-    </div>
-</div>
 <section class="add-user admin-profile add-admin-user">
     <form [formGroup]="adminProfileForm" novalidate>
         <div class="container">
@@ -10,7 +5,7 @@
                 <div class="hdr">
                     <div class="hdr-left">
                         <h2>Personal Information</h2>
-                        <span>last updated on : {{updateProfileDate}}</span>
+                        <span>last updated on : {{updateProfileDate | date:'MMM dd yyyy - hh:mm a'}}</span>
                     </div>
                     <div class="hdr-right">
                         <button class="btn btn-custom" (click)="submitProfile()"><span
@@ -40,8 +35,8 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Admin Id</label>
-                            <input type="text" [attr.disabled]="true" placeholder="Enter Admin id" formControlName="id"
-                                class="form-control">
+                            <input type="text" [attr.disabled]="true" [ngModel]="inputvalue"  placeholder="Enter Admin id" formControlName="id"
+                                class="form-control" (ngModelChange)="inputvalue = $event.toUpperCase()">
                         </div>
                         <div class="form-group">
                             <label>Email Id</label>
@@ -68,7 +63,7 @@
                 <div class="hdr mt-4">
                     <div class="hdr-left">
                         <h2>Password Setting</h2>
-                        <span>last updated on : {{updatePasswordDate}}</span>
+                        <span>last updated on : {{updatePasswordDate | date:'MMM dd yyyy - hh:mm a'}}</span>
                     </div>
                     <div class="hdr-right">
                     </div>
@@ -79,7 +74,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>new password</label>
-                                <input type="password" placeholder="enter new password" formControlName="password"
+                                <input type="password" placeholder="Enter new password" formControlName="password"
                                     class="form-control">
                                 <app-control-messages fieldName="Password"
                                     [control]="adminPasswordForm.controls['password']">
@@ -89,7 +84,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>confirm password</label>
-                                <input type="password" placeholder="confirm new password"
+                                <input type="password" placeholder="Confirm new password"
                                     formControlName="confirm_password" class="form-control">
                                 <app-control-messages fieldName="Confirm Password"
                                     [control]="adminPasswordForm.controls['confirm_password']">
@@ -112,13 +107,13 @@
 <ng-template #fileuploadAadharpopup let-c="close" let-d="dismiss">
 
     <div class="modal-body p-0 payment-popup uploaddoc-popup">
-        <div class="modal-header yellowclr common-header">
+        <div class="modal-header blueclr common-header">
             <div class="popup-header">
-                <span>Upload Profile</span>
-                <h4 class="modal-title">Update Profile Pic</h4>
+                <span>Edit Details</span>
+                <h4 class="modal-title">Update profile picture</h4>
             </div>
             <div class="popup-icon">
-                <img src="assets/img/doc.svg">
+                <img src="assets/img/modal-upload/camera-sml.svg">
             </div>
         </div>
 
@@ -197,7 +192,7 @@
             <div class="col-md-10" *ngIf="fileUploading">
                 <div class="upload-box upload-progress">
                     <h5>Uploading File...</h5>
-                    <div class="p444444rogress-ratio d-flex justify-content-between"><span>
+                    <div class="progress-ratio d-flex justify-content-between"><span>
                             Uploading...</span><span>{{uploadProgress}} %</span></div>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploadProgress + '%' }">

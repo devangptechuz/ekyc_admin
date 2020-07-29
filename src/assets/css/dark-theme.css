@@ -27,7 +27,7 @@ body.layout-dark p, body.layout-dark .content-sub-header, body.layout-dark .tabl
 .layout-dark .form-control:focus:-ms-input-placeholder {color:rgba(255, 255, 255, 0.8);}
 .layout-dark section.application .btn-search{color:rgba(255, 255, 255, 0.56);}
 .layout-dark .datatable-checkbox input[type='checkbox']:after{background: transparent;}
-.layout-dark input:checked + .slider {background-color: rgba(0, 0, 0, 0.32);}
+.layout-dark input:checked + .switch .slider {background-color: rgba(0, 0, 0, 0.32);}
 .layout-dark .slider:before{background-color: #0970DD;}
 body.layout-dark .dropdown-menu .dropdown-item:hover {background-color: rgba(9, 112, 221, 0.16);}
 .layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-body-row .datatable-row-center{border-color: #082544;}
