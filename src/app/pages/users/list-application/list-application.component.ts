@@ -23,6 +23,10 @@ export class ListApplicationComponent implements OnInit {
   temp = [];
   tempOther = [];
   selected = [];
+  item = [{
+    name:"pragnesh"
+  }];
+  selectedPeople = [];
   loadingIndicator = true;
   limitRow: Number = environment.userlimitRow;
   selectedItem;
