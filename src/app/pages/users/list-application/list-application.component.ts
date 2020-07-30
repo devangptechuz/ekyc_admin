@@ -301,4 +301,8 @@ export class ListApplicationComponent implements OnInit {
       }).catch(error => console.log(error));
     }
   }
+
+  setPage(pageInfo){
+    window.scrollTo(0, 150);
+  }
 }

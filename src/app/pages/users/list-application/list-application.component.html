@@ -69,8 +69,7 @@
                             <div class="tble">
                                 <ngx-datatable class="bootstrap checkbox-table" [loadingIndicator]="loadingIndicator"
                                     [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
-                                    [rowHeight]="80" [limit]="limitRow" [rows]="rows"
-                                    [sorts]="[{prop: 'uname', dir: 'asc'}]" [selected]="selected"
+                                    [rowHeight]="80" [limit]="limitRow" [rows]="rows" (page)='setPage($event)' [selected]="selected"
                                     [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
                                     (select)='onSelect($event)'>
 
