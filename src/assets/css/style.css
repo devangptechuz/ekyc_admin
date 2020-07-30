@@ -169,8 +169,8 @@ form .form-group{position: relative;}
 .login-btn {font-size: 14px;}
 .ng-touched.ng-invalid {border-color: red;}
 .login-section .form-group .danger{color: red !important;}
-body form .form-control::-webkit-input-placeholder {color: rgba(0, 0, 0, 0.32);} 
-body form .form-control:-ms-input-placeholder {color: rgba(0, 0, 0, 0.32);} 
+body form .form-control::-webkit-input-placeholder {color: rgba(0, 0, 0, 0.32);}
+body form .form-control:-ms-input-placeholder {color: rgba(0, 0, 0, 0.32);}
 body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 
 /*=========Dashboard===========*/
@@ -510,14 +510,14 @@ button.view-img img{width: 110px;height: 60px;object-fit: cover;}
     .nav-tabs {
         display: flex;
     }
-    
+
     .card {
         border: none;
     }
 
     .card .card-header {
         display:none;
-    }  
+    }
 
     .card .collapse{
         display:block;

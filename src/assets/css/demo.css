@@ -813,6 +813,28 @@ ngb-datepicker-navigation button:focus{outline: none;}
 .scroll-to-top{z-index: 99;}
 .scroll-to-top button{font-size: 24px;background: #0970DD;box-shadow: 0px 4px 8px rgba(9, 112, 221, 0.24);border-radius: 40px;border: none;width: 56px;height: 56px;color: #fff;}
 
+
+
+/*tooltip*/
+.info-tp-content {background: #FFFFFF;border: 1px solid #DDDDDD;box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.24);border-radius: 8px;position: absolute;padding: 24px;right: -60px;width: 328px;margin-top: 10px;opacity: 0;visibility: hidden;transform: translateY(10px);transition: 0.3s ease-in-out}
+.info-tp img{cursor: pointer;}
+.info-tp:hover .info-tp-content{opacity: 1;visibility: visible;transform: translateY(0);}
+.info-tp-content p{font-size: 10px;line-height: 15px;color: rgba(0, 0, 0, 0.56);margin-bottom: 15px;}
+.info-tp-content ol{padding-left: 10px;margin: 0;}
+.info-tp-content ol li{font-size: 10px;line-height: 15px;color: rgba(0, 0, 0, 0.56);}
+.info-tp-content ol li.trueli{color: #19D097;}
+
+
+.pw-input {position: relative;}
+.pw-input .current_password{position: absolute;right: 16px;top: 37%;cursor: pointer;}
+.pw-strength{font-size: 14px;line-height: 21px;color: rgba(0, 0, 0, 0.56);}
+.pw-strength .medium{color: #5eb8e4;}
+.pw-strength .strong{color: #3c763d;}
+.pw-strength .weak{color: #DF0E40;}
+.pw-strength span{margin-left: 5px;text-transform: uppercase;font-weight: 500;}
+
+
+
 /*=========Custom Scroll===========*/
 
 @media(min-width:768px) {

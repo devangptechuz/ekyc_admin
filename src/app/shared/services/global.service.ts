@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class GlobalService {
+  eye_img: any = 'assets/images/eye.svg';
   constructor(
     private router: Router,
     private toastr: ToastrService

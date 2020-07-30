@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../../../shared/services/admin.service';
 import { GlobalService } from '../../../shared/services/global.service';
 import { FileUploader } from 'ng2-file-upload';
+import {CommonService} from '../../../shared/services/common.service';
 
 @Component({
   selector: 'app-register-admin',
@@ -23,6 +24,7 @@ export class AddEditAdminComponent implements OnInit {
   adminTitle = 'Add new admin user';
   userProfileURL: any;
   formData;
+  password:string;
   userType = [{
     type: '1',
     label: 'Super Admin'
@@ -39,7 +41,8 @@ export class AddEditAdminComponent implements OnInit {
     private formBuilder: FormBuilder,
     private validationService: ValidationService,
     private spinner: NgxSpinnerService,
-    public global: GlobalService
+    public global: GlobalService,
+    public commonService:CommonService
   ) { }
 
   ngOnInit(): void {
@@ -150,6 +153,18 @@ export class AddEditAdminComponent implements OnInit {
         }
       });
   }
+
+  current_password(value) {
+    const input = document.getElementById(value);
+    if (input.getAttribute('type') === 'password') {
+      input.setAttribute('type', 'text');
+      (<HTMLInputElement>document.getElementById(value + 'img')).setAttribute('src', 'assets/images/eye-close.svg');
+    } else {
+      input.setAttribute('type', 'password');
+      (<HTMLInputElement>document.getElementById(value + 'img')).setAttribute('src', 'assets/images/eye.svg');
+    }
+  }
+
 
   removeImages() {
     this.userProfileURL = null;
