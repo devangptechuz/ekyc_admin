@@ -7,6 +7,7 @@ import { GlobalService } from 'app/shared/services/global.service';
 import { AdminService } from 'app/shared/services/admin.service';
 import { ConfirmationDialogService } from '../../../shared/services/confirmation-dialoge.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { applicationFilter } from '../shared/constant';
 import { environment } from '../../../../environments/environment';
 import { isArray } from 'util';
 
@@ -23,6 +24,8 @@ export class ListApplicationComponent implements OnInit {
   temp = [];
   tempOther = [];
   selected = [];
+  item = applicationFilter;
+  selectedPeople = [];
   loadingIndicator = true;
   limitRow: Number = environment.userlimitRow;
   selectedItem;
@@ -83,6 +86,9 @@ export class ListApplicationComponent implements OnInit {
     }
   }
 
+  public onClearAll() {
+
+  }
 
   removeText(){
     this.searchValue = '';
@@ -300,5 +306,9 @@ export class ListApplicationComponent implements OnInit {
         }
       }).catch(error => console.log(error));
     }
+  }
+
+  setPage(pageInfo){
+    window.scrollTo(0, 150);
   }
 }

@@ -9,6 +9,7 @@ import { GlobalService } from '../../../shared/services/global.service';
 import { environment } from '../../../../environments/environment';
 import { isArray } from 'util';
 
+
 @Component({
   selector: 'app-list-sub-admin',
   templateUrl: './list-admin.component.html',
@@ -33,6 +34,7 @@ export class ListAdminComponent implements OnInit {
   ];
   footerMessage = {
   };
+
 
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
@@ -175,5 +177,14 @@ export class ListAdminComponent implements OnInit {
     });
     this.table.offset = 0;
   }
+
+  setPage(pageInfo){
+    window.scrollTo(0, 150);
+  }
+
+  handlePageChange (event: any): void {
+    console.log(event);
+  }
+
 
 }
