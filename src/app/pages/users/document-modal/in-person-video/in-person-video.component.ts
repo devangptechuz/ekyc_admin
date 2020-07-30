@@ -5,9 +5,10 @@ import * as ebml from 'ts-ebml';
 import { MediaStreamRecorder } from 'recordrtc/RecordRTC.min';
 import { NgbModal, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
-import {CookiesService} from '@ngx-utils/cookies';
+import { CookiesService } from '@ngx-utils/cookies';
 import { UserService } from 'app/shared/services/user.service';
 import { GlobalService } from 'app/shared/services/global.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-in-person-video',
@@ -19,6 +20,7 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
   @Input() nameDocument: string;
   @Input() nameTitleDocument: string;
   @Input() ipvDocStatus: string;
+  userId: any;
   isVideoRecordingEnable: boolean;
   /*********************** IN PERSON VIDEO: START **************************/
   private stream: MediaStream;
@@ -49,10 +51,12 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
   isFileSelected: boolean;
   interval: any;
   duration: any;
-  width = 400;
+  width = 700;
   height = 500;
   counter = 0;
   uploadVideo: any;
+  uploadVideoBlob: any;
+  videoSrc: any;
   /*********************** IN PERSON VIDEO: END **************************/
 
   /*********************** File Upload: START **************************/
@@ -62,12 +66,12 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
   response: string;
   addNewAadhaarImageUpload = true;
   uploadProgress = 0;
-  public allowedMimeType = ['image/png', 'video/webm', 'video/mp4'];
+  public allowedMimeType = ['video/webm', 'video/mp4'];
   public altMedia = [];
   public mediaPreviews = [];
   public mediaImages = [];
   aadharDisplayImage: any;
-  maxUploadLimit = 2;
+  maxUploadLimit = 1;
 
   private modalRef: NgbModalRef;
   nameOfTitleDocument: any;
@@ -82,6 +86,7 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
 
   constructor(
     public global: GlobalService,
+    private route: ActivatedRoute,
     private ref: ChangeDetectorRef,
     private cookie: CookiesService,
     private userService: UserService,
@@ -89,6 +94,7 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
+    this.userId = this.route.snapshot.params.id;
     this.nameOfDocument = this.nameDocument;
     this.nameOfTitleDocument = this.nameTitleDocument;
     setTimeout(() => {
@@ -101,6 +107,12 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
   }
 
   cancelModal() {
+    this.videoSrc = '';
+    if (this.stream) {
+      const stream = this.stream;
+      stream.getAudioTracks().forEach(track => track.stop());
+      stream.getVideoTracks().forEach(track => track.stop());
+    }
     this.isVideoRecordingEnable = false;
     this.closeEvent.emit('ipv');
   }
@@ -110,17 +122,32 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
  */
   onModalOpen() {
     if (this.ipvDocStatus !== 'not_uploaded') {
-      const objParam = { 'document_name': 'ipv' };
+      const objParam = { id: this.userId, 'document_name': 'ipv' };
       this.userService.getDocumentDetails(objParam).subscribe((res: any) => {
         if (res.success) {
           this.viewMediaPreviewsList = res.result;
           this.viewPreviewDisplayImage = this.viewMediaPreviewsList[0];
           this.fileUploading = false;
           this.viewSectionOfImage = true;
-          console.log('this.viewPreviewDisplayImage', this.viewPreviewDisplayImage);
+          // console.log('this.viewPreviewDisplayImage', this.viewPreviewDisplayImage);
         }
       });
     }
+  }
+
+  /**
+   * To add new video
+   */
+  addNewVideo() {
+    this.videoSrc = '';
+    if (this.stream) {
+      const stream = this.stream;
+      stream.getAudioTracks().forEach(track => track.stop());
+      stream.getVideoTracks().forEach(track => track.stop());
+    }
+    this.fileUploading = false;
+    this.viewSectionOfImage = false;
+    this.isVideoRecordingEnable = false;
   }
 
   play() {
@@ -170,10 +197,11 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
            */
           this.interval = setInterval(() => {
             if (this.counter >= 0) {
-              this.counter++;
-              if (this.counter > 10) {
-                console.log('second counter', this.counter);
+              // console.log('this.counter', this.counter);
+              if (this.counter >= 10) {
                 this.stopRecording();
+              } else {
+                this.counter++;
               }
             }
           }, 1000);
@@ -187,7 +215,7 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
       }
     }
   }
-  srcVideo: any;
+
 
   /* *
      = stop video recording
@@ -202,7 +230,10 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
     recordRTC.getDataURL((dataURL: any) => {
       this.isRecorded = true;
       this.isFileSelected = false;
-      console.log('dataURL >>', dataURL);
+      // console.log('dataURL >>', dataURL);
+      const dataString = dataURL.split('base64');
+      // console.log('dataString[1]', dataString[1]);
+      this.videoSrc = `data:video/webm;base64${dataString[1]}`;
     });
 
     const stream = this.stream;
@@ -359,7 +390,6 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
       this.isShowButton = false;
     }, 800);
   }
-  uploadVideoBlob: any;
   /**
      = process recorded video
    ------------------------------------------------------ */
@@ -405,35 +435,37 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
   /******************************* VIDEO: END**********************/
 
   submitIPVDocumentPopup() {
-    this.global.warningToastr("In person video is under development process. We will update it soon");
-    // let realImageBlob = [];
-    // let uploadParam: any = new FormData();
-    // uploadParam.append('document_name', this.nameOfDocument);
-    // uploadParam.append('file[]', this.uploadVideoBlob, `recordedvideo.webm`);
-    // this.uploadProgress = 0;
-    // this.fileUploading = true;
-    // this.userService.uploadDocument(uploadParam).subscribe((result: any) => {
-    //   if (result.type === 1 && result.loaded && result.total) {
-    //     const percentDone = Math.round(100 * result.loaded / result.total);
-    //     this.uploadProgress = percentDone;
-    //   } else if (result.body) {
-    //     this.fileUploading = false;
-    //     if (result.body.success) {
-    //       this.uploadVideoBlob = '';
-    //       // this.manageResultAfterUploadingFiles(result.body.result, true);
-    //       this.closeEvent.emit();
-    //     }
-    //   }
-    // }, error => {
-    //   this.fileUploading = false;
-    // });
+    // this.global.warningToastr("In person video is under development process. We will update it soon");
+    let realImageBlob = [];
+    let uploadParam: any = new FormData();
+    uploadParam.append('id', this.userId);
+    uploadParam.append('api_name', 'upload_user_document');
+    uploadParam.append('document_name', this.nameOfDocument);
+    uploadParam.append('file[]', this.uploadVideoBlob, `recordedvideo.webm`);
+    this.uploadProgress = 0;
+    this.fileUploading = true;
+    this.userService.uploadDocument(uploadParam).subscribe((result: any) => {
+      if (result.type === 1 && result.loaded && result.total) {
+        const percentDone = Math.round(100 * result.loaded / result.total);
+        this.uploadProgress = percentDone;
+      } else if (result.body) {
+        this.fileUploading = false;
+        if (result.body.success) {
+          this.uploadVideoBlob = '';
+          this.manageResultAfterUploadingFiles(result.body.result, true);
+          this.closeEvent.emit();
+        }
+      }
+    }, error => {
+      this.fileUploading = false;
+    });
   }
 
   /**
  * Remove image from db in preview list using id and document_name
  */
   removeViewSectionMedia(fileId: any) {
-    const obj = { id: fileId, document_name: this.nameOfDocument };
+    const obj = { id: fileId, userId: this.userId, document_name: this.nameOfDocument };
     this.userService.removeImageFileDocument(obj).subscribe((res: any) => {
       if (res.success) {
         this.viewMediaPreviewsList = res.result;
@@ -445,7 +477,7 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
           this.fileUploading = false;
           this.viewSectionOfImage = false;
           this.viewMediaPreviewsList = [];
-          this.getKYCDocumentsList(true);
+          // this.getKYCDocumentsList(true);
         }
         this.global.successToastr(res.message);
       } else {

@@ -579,16 +579,16 @@
                      </div>
                   </div>
                   <!-- /************* IN PERSON VIDEO : CAROUSEL **************/ -->
-                  <ngb-carousel *ngIf="userData?.sign_and_identity?.ipv_documents?.length">
-                     <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.ipv_documents">
-                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
-                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
-                        </div>
-                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
-                           <img width="100%" [src]="imageItem?.url" alt="Random first slide">
-                        </div>
-                     </ng-template>
-                  </ngb-carousel>
+                  <div *ngIf="userData?.sign_and_identity?.in_person_url?.length">
+                     <div *ngFor="let imageItem of userData?.sign_and_identity?.in_person_url">
+                        <!-- <div class="picsum-img-wrapper"> -->
+                        <video controls width="100%" height="100%">
+                           <source [src]="imageItem?.url | safeUrl" type="video/webm">
+                           Sorry, your browser doesn't support embedded videos.
+                        </video>
+                        <!-- </div> -->
+                     </div>
+                  </div>
                </div>
                <label class="doc-type">In Person Video</label>
             </div>
