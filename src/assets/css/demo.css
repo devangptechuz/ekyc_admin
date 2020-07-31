@@ -597,7 +597,15 @@ section.application .tble {padding: 0 40px 40px;}
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover,.nav-tabs .nav-link{border:none;}
 .coming-soon {padding: 100px 0;text-align: center;}
 section.application .coming-soon h2{margin: 20px 0 0 40px;text-transform: uppercase;font-weight: 600;}
-
+section.application .ng-select .ng-select-container .ng-value-container .ng-input>input{max-width: 97px;border: none !important;padding: 0;min-width: inherit;height: auto;}
+section.application .ng-select.ng-select-multiple .ng-select-container .ng-value-container{padding: 0;}
+section.application .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder{top: 15px;padding: 0;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.56);}
+section.application .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-input{padding: 0;}
+section.application .ng-select .ng-select-container{max-height: 50px;}
+section.application .ng-select{margin-left: 24px;}
+section.application .ng-select .ng-arrow-wrapper:before{content: "\e901";font-family: icomoon!important;}
+section.application .ng-select .ng-arrow-wrapper .ng-arrow{display: none;}
+section.application .ng-select .ng-arrow-wrapper{width: auto;padding-right:0;}
 
 /*user-view*/
 section.user-view {margin: 32px 0;}
