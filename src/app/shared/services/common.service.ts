@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 
 import { environment } from '../../../environments/environment';
-import {GlobalService} from './global.service';
-import {CookiesService} from '@ngx-utils/cookies';
+import { GlobalService } from './global.service';
+import { CookiesService } from '@ngx-utils/cookies';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class CommonService {
     public http: HttpClient,
     public router: Router,
     public global: GlobalService,
-    private cookies:CookiesService
+    private cookies: CookiesService
   ) { }
 
   logout() {
@@ -34,7 +34,7 @@ export class CommonService {
     this.router.navigate(['/']);
   }
 
-  logoutFromAdmin(){
+  logoutFromAdmin() {
     this.cookies.remove('admin_token');
     this.global.successToastr('Logout successfully');
     this.router.navigate(['/']);
@@ -98,9 +98,9 @@ export class CommonService {
     if (strongRegex.test(password)) {
       this.passwordStrength = 'strong';
     }
-        // else if (mediumRegex.test(password)) {
-        //   this.passwordStrength = 'medium';
-    // }
+    else if (mediumRegex.test(password)) {
+      this.passwordStrength = 'medium';
+    }
     else if (password !== '') {
       this.passwordStrength = 'weak';
     } else {
@@ -110,7 +110,7 @@ export class CommonService {
     const lowerCaseRegex = new RegExp("^(?=.*[a-z])");
     const upperCaseRegex = new RegExp("^(?=.*[A-Z])");
     var p = password,
-        passwordErrors = [];
+      passwordErrors = [];
     if (p.length < 8) {
       passwordErrors.push(1);
     }
@@ -144,6 +144,19 @@ export class CommonService {
       });
     } else {
       this.passwordErrors = [];
+    }
+  }
+
+  progressBarCountOfPassword(passwordType: any = '') {
+    switch (passwordType) {
+      case "weak":
+        return 33;
+      case "medium":
+        return 66;
+      case "strong":
+        return 100;
+      default:
+        return 0;
     }
   }
 

@@ -545,6 +545,13 @@ section.add-admin-user .hdr-right button{display: flex;align-items: center;justi
 .brdcum a:hover span.icon-left-ar{left: -2px;}
 .collapse-address.checkbox label:after, .checkbox label:before{top: 18px;left: 16px;}
 .collapse-address.checkbox input[type=checkbox]:checked~label:after{top: 23px;left: 20px;}
+.password-strength-line { margin: 5px 0;}
+.password-strength-line .progress .progress-bar{background-color: none;}
+.password-strength-line .progress{ height: 5px;}
+.password-strength-line .progress .progress-bar.red{background-color: red;}
+.password-strength-line .progress .progress-bar.orange{background-color: orange;}
+.password-strength-line .progress .progress-bar.green{background-color: green;}
+
 
 
 /* admin profile*/
@@ -856,7 +863,7 @@ ngb-datepicker-navigation button:focus{outline: none;}
 .pw-input {position: relative;}
 .pw-input .current_password{position: absolute;right: 16px;top: 37%;cursor: pointer;}
 .pw-strength{font-size: 14px;line-height: 21px;color: rgba(0, 0, 0, 0.56);}
-.pw-strength .medium{color: #5eb8e4;}
+.pw-strength .medium{color: #FFA500;}
 .pw-strength .strong{color: #3c763d;}
 .pw-strength .weak{color: #DF0E40;}
 .pw-strength span{margin-left: 5px;text-transform: uppercase;font-weight: 500;}

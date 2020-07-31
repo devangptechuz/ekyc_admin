@@ -11,6 +11,7 @@ import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Observable, Subject } from 'rxjs';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { SharedService } from '../../../shared/services/shared.service';
+import { CommonService } from 'app/shared/services/common.service';
 
 @Component({
   selector: 'app-admin-profile',
@@ -78,6 +79,7 @@ export class AdminProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
+    public commonService: CommonService,
     private adminService: AdminService,
     private formBuilder: FormBuilder,
     private validationService: ValidationService,
@@ -91,7 +93,7 @@ export class AdminProfileComponent implements OnInit {
   ngOnInit() {
     this.adminPasswordForm = this.formBuilder.group({
       password: ['', [Validators.required]],
-      confirm_password: ['', [Validators.required]],
+      confirm_password: ['', [Validators.required, this.validationService.passwordValidator]],
     }, {
       validator: this.validationService.MatchPassword('password', 'confirm_password')
     });
@@ -154,6 +156,7 @@ export class AdminProfileComponent implements OnInit {
           this.global.successToastr(result.message);
           this.spinner.hide();
           this.adminPasswordForm.reset();
+          this.commonService.passwordStrength = '';
         } else {
           this.global.errorToastr(result.message);
         }

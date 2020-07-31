@@ -35,8 +35,9 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Admin Id</label>
-                            <input type="text" [attr.disabled]="true" [ngModel]="inputvalue"  placeholder="Enter Admin id" formControlName="id"
-                                class="form-control" (ngModelChange)="inputvalue = $event.toUpperCase()">
+                            <input type="text" [attr.disabled]="true" [ngModel]="inputvalue"
+                                placeholder="Enter Admin id" formControlName="id" class="form-control"
+                                (ngModelChange)="inputvalue = $event.toUpperCase()">
                         </div>
                         <div class="form-group">
                             <label>Email Id</label>
@@ -75,7 +76,37 @@
                             <div class="form-group">
                                 <label>new password</label>
                                 <input type="password" placeholder="Enter new password" formControlName="password"
-                                    class="form-control">
+                                    class="form-control" (keyup)="commonService.strength($event)">
+                                <div class="password-strength-line" *ngIf="commonService.passwordStrength">
+                                    <div class="upload-box upload-progress">
+                                        <div class="progress">
+                                            <div class="progress-bar"
+                                                [ngClass]="{'red': commonService.passwordStrength==='weak','orange': commonService.passwordStrength==='medium','green': commonService.passwordStrength==='strong'}"
+                                                role="progressbar"
+                                                [style.width]="commonService.progressBarCountOfPassword(commonService.passwordStrength) + '%'">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between" *ngIf="commonService.passwordStrength">
+                                    <div class="pw pw-strength">Password Strength <span
+                                            class="{{commonService.passwordStrength}}">{{commonService.passwordStrength }}</span>
+                                    </div>
+
+                                    <div class="info-tp"><img src="assets/images/info.svg">
+                                        <div class="info-tp-content">
+                                            <p>It is recommended to create a strong password to protect your account
+                                                from
+                                                any false login. Any
+                                                strong password should satisfy the following points:</p>
+                                            <ol class="passwordErrors">
+                                                <li [ngClass]="{'trueli': passwordItem.valid_password_type}"
+                                                    *ngFor="let passwordItem of commonService.passwordMaintain">
+                                                    {{passwordItem.message }}</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
                                 <app-control-messages fieldName="Password"
                                     [control]="adminPasswordForm.controls['password']">
                                 </app-control-messages>
@@ -254,7 +285,7 @@
         <!----------------- VIEW image/file : END -------------->
 
         <div class="modal-footer d-flex justify-content-between">
-            <a class="btn modal-btn-cancel"  (click)="cancelPopup()" href="javascript:void(0)">{{'Cancel'}}</a>
+            <a class="btn modal-btn-cancel" (click)="cancelPopup()" href="javascript:void(0)">{{'Cancel'}}</a>
             <a *ngIf="!clickedWebcamPicture" [ngClass]="{'disabled': !uploader?.getNotUploadedItems().length}"
                 class="btn modal-btn-continue" (click)="submitDocumentUploadModal()" href="javascript:void(0)">
                 {{'Save & Continue' }}
