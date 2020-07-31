@@ -55,16 +55,19 @@
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
                         <div class="view-pic" *ngIf="!userProfileURL">
-                           <img src="assets/img/admin-ic.svg">
+                            <img src="assets/img/admin-ic.svg">
                         </div>
                         <div class="view-pic" *ngIf="userProfileURL">
-                           <img [src]="userProfileURL" class="userpic">
+                            <img [src]="userProfileURL" class="userpic">
                         </div>
                         <ul class="pic-action">
-                            <li><a href="javascript:void(0)"  (click)="removeImages()"><span class="icon-close"></span>remove image</a></li>
+                            <li><a href="javascript:void(0)" (click)="removeImages()"><span
+                                        class="icon-close"></span>remove image</a></li>
                             <li>
-                                <a href="javascript:void(0)" >
-                                    <span class="icon-upload"></span>upload from computer<input type="file"  (change)="onFileSelect($event)" accept="image/x-png,image/jpeg" class="hide-file">
+                                <a href="javascript:void(0)">
+                                    <span class="icon-upload"></span>upload from computer<input type="file"
+                                        (change)="onFileSelect($event)" accept="image/x-png,image/jpeg"
+                                        class="hide-file">
                                 </a>
 
                             </li>
@@ -74,9 +77,20 @@
                     <div class="col-md-4" *ngIf="!editAdmin">
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" [(ngModel)]="password" (keyup)="commonService.strength($event)" placeholder="Enter Password" formControlName="password"
-                                class="form-control">
-                            <password-strength-meter [password]="password"></password-strength-meter>
+                            <input type="password" [(ngModel)]="password" (keyup)="commonService.strength($event)"
+                                placeholder="Enter Password" formControlName="password" class="form-control">
+
+                            <div class="password-strength-line" *ngIf="commonService.passwordStrength">
+                                <div class="upload-box upload-progress">
+                                    <div class="progress">
+                                        <div class="progress-bar"
+                                            [ngClass]="{'red': commonService.passwordStrength==='weak','orange': commonService.passwordStrength==='medium','green': commonService.passwordStrength==='strong'}"
+                                            role="progressbar"
+                                            [style.width]="commonService.progressBarCountOfPassword(commonService.passwordStrength) + '%'">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="d-flex justify-content-between" *ngIf="commonService.passwordStrength">
                                 <div class="pw pw-strength">Password Strength <span
                                         class="{{commonService.passwordStrength}}">{{commonService.passwordStrength }}</span>
@@ -84,7 +98,8 @@
 
                                 <div class="info-tp"><img src="assets/images/info.svg">
                                     <div class="info-tp-content">
-                                        <p>It is recommended to create a strong password to protect your account from any false login. Any
+                                        <p>It is recommended to create a strong password to protect your account from
+                                            any false login. Any
                                             strong password should satisfy the following points:</p>
                                         <ol class="passwordErrors">
                                             <li [ngClass]="{'trueli': passwordItem.valid_password_type}"

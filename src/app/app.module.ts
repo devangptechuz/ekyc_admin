@@ -24,8 +24,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 // Modules
 import { NotfoundComponent } from './notfound/notfound.component';
 import { AddEditAdmin } from './pages/admin/shared/add-edit.resolver';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserCookiesModule} from '@ngx-utils/cookies/browser';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserCookiesModule } from '@ngx-utils/cookies/browser';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -36,7 +36,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent, NotfoundComponent],
     imports: [
         BrowserAnimationsModule,
-        BrowserModule.withServerTransition({appId: 'your-app-id'}),
+        BrowserModule.withServerTransition({ appId: 'your-app-id' }),
         BrowserCookiesModule.forRoot(),
         AppRoutingModule,
         SharedModule,
@@ -46,7 +46,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         // Libraries
         ToastrModule.forRoot({ timeOut: 4000, positionClass: 'toast-top-right', preventDuplicates: true }),
         NgxSpinnerModule,
-
     ],
     providers: [
         {
