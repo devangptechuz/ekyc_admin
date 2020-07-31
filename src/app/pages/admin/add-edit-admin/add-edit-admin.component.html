@@ -74,8 +74,26 @@
                     <div class="col-md-4" *ngIf="!editAdmin">
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" placeholder="Enter Password" formControlName="password"
+                            <input type="password" [(ngModel)]="password" (keyup)="commonService.strength($event)" placeholder="Enter Password" formControlName="password"
                                 class="form-control">
+                            <password-strength-meter [password]="password"></password-strength-meter>
+                            <div class="d-flex justify-content-between" *ngIf="commonService.passwordStrength">
+                                <div class="pw pw-strength">Password Strength <span
+                                        class="{{commonService.passwordStrength}}">{{commonService.passwordStrength }}</span>
+                                </div>
+
+                                <div class="info-tp"><img src="assets/images/info.svg">
+                                    <div class="info-tp-content">
+                                        <p>It is recommended to create a strong password to protect your account from any false login. Any
+                                            strong password should satisfy the following points:</p>
+                                        <ol class="passwordErrors">
+                                            <li [ngClass]="{'trueli': passwordItem.valid_password_type}"
+                                                *ngFor="let passwordItem of commonService.passwordMaintain">
+                                                {{passwordItem.message }}</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
                             <app-control-messages fieldName="Password" [control]="adminForm.controls['password']">
                             </app-control-messages>
                         </div>

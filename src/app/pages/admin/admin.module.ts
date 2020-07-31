@@ -12,6 +12,7 @@ import { NgxSelectModule } from 'ngx-select-ex';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { WebcamModule } from 'ngx-webcam';
 import { FileUploadModule } from 'ng2-file-upload';
+import {PasswordStrengthMeterModule} from 'angular-password-strength-meter';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     NgxDatatableModule,
     FileUploadModule,
     WebcamModule,
+    PasswordStrengthMeterModule,
     NgxSelectModule,
     ReactiveFormsModule.
       withConfig({ warnOnNgModelWithFormControl: 'never' }),
