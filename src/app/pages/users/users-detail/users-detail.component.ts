@@ -811,6 +811,7 @@ export class UsersDetailComponent implements OnInit {
     let objParam = {}
     objParam['userIds'] = [this.userId];
     objParam['type'] = 'Approve';
+
     this.confirmationDialogService.approveConfirm(label).then((data) => {
       if (data) {
         this.userService.approveRejectApplication(objParam)
@@ -836,11 +837,19 @@ export class UsersDetailComponent implements OnInit {
    */
   rejectConfirm() {
     const label = 'Application';
-    let objParam = {}
-    objParam['userIds'] = [this.userId];
-    objParam['type'] = 'Reject';
-    this.confirmationDialogService.rejectConfirm(label).then((data) => {
+    let popupParam = {}
+    popupParam['type'] = 'Reject';
+    popupParam['lable'] = 'Reject application';
+    popupParam['title'] = 'Select reason to continue';
+    popupParam['userId'] = this.userId;
+    popupParam['button_name'] = 'Reject Application';
+
+    this.confirmationDialogService.reasonToConfirm(popupParam).then((data) => {
       if (data) {
+        console.log('tes');
+        let objParam = {}
+        objParam['userIds'] = [this.userId];
+        objParam['type'] = 'Reject';
         this.userService.approveRejectApplication(objParam)
           .subscribe((res) => {
             if (res.success) {
@@ -850,7 +859,6 @@ export class UsersDetailComponent implements OnInit {
               } else {
                 this.global.successToastr('Reject Successfully');
               }
-              // this.ngOnInit();
             } else {
               this.global.errorToastr(res.message);
             }

@@ -12,6 +12,7 @@ export class RejectModelComponent implements OnInit {
   constructor(private activeModal: NgbActiveModal) { }
 
   ngOnInit() {
+    console.log('reason to reject');
   }
 
   public decline() {

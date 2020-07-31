@@ -6,6 +6,7 @@ import { ApprovedModelComponent } from '../model-popup/approved-model/approved-m
 import { RejectModelComponent } from '../model-popup/reject-model/reject-model.component';
 import { DeactivateModelComponent } from '../model-popup/deactivate-model/deactivate-model.component';
 import { ActivateModelComponent } from '../model-popup/activate-model/activate-model.component';
+import { ReasonRejectModelComponent } from '../model-popup/reason-reject-model/reason-reject-model.component';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,12 @@ export class ConfirmationDialogService {
     if (ids) {
       modalRef.componentInstance.selectedEntries = ids.length;
     }
+    return modalRef.result;
+  }
+
+  public reasonToConfirm(objectOfModal: any = ''): Promise<boolean> {
+    const modalRef = this.modalService.open(ReasonRejectModelComponent, { centered: true });
+    modalRef.componentInstance.objectOfModal = objectOfModal;
     return modalRef.result;
   }
 

@@ -28,6 +28,8 @@ import { RejectModelComponent } from './model-popup/reject-model/reject-model.co
 import { DeactivateModelComponent } from './model-popup/deactivate-model/deactivate-model.component';
 import { ActivateModelComponent } from './model-popup/activate-model/activate-model.component';
 import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
+import { ReasonRejectModelComponent } from './model-popup/reason-reject-model/reason-reject-model.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -47,11 +49,14 @@ import { ScrollTopComponent } from './components/scroll-top/scroll-top.component
                 DeleteModelComponent,
                 ApprovedModelComponent,
                 RejectModelComponent,
-                ScrollTopComponent
+                ScrollTopComponent,
+                ReasonRejectModelComponent
         ],
         imports: [
                 RouterModule,
                 CommonModule,
+                ReactiveFormsModule,
+                FormsModule,
                 NgbModule,
                 PerfectScrollbarModule
         ],
@@ -76,7 +81,8 @@ import { ScrollTopComponent } from './components/scroll-top/scroll-top.component
                 RejectModelComponent,
                 DeactivateModelComponent,
                 ActivateModelComponent,
-                ScrollTopComponent
+                ScrollTopComponent,
+                ReasonRejectModelComponent
         ]
 })
 export class SharedModule { }

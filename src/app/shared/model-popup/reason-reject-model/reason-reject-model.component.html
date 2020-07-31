@@ -1,0 +1,49 @@
+<div class="modal-header common-header" [ngClass]="{'redclr': objectOfModal?.type==='Reject'}">
+  <div class="popup-header">
+    <span>{{objectOfModal?.lable}}</span>
+    <h2 class="mb-0">{{objectOfModal?.title}}</h2>
+  </div>
+  <div class="popup-icon">
+    <img src="../../../../assets/img/not-allow.svg">
+  </div>
+</div>
+<div class="modal-boy">
+  <form [formGroup]="reasonDetailsform">
+    <!-- <ul class="list-of-reasons" *ngIf="listOfReasons?.length">
+      <li *ngFor="let reasonItem of listOfReasons" formArrayName="accountArray">
+        {{reasonItem?.username}} <input type="checkbox" name="">
+      </li>
+    </ul> -->
+    <div *ngIf="listOfReasons?.length" class="reason-modal-popup">
+      <div class="multiselect-list">
+        <div class="type-list">
+          <div class="custom-checkbox" formArrayName="reasonsArray" *ngFor="let reason of listOfReasons;let i = index;">
+            <div [formGroupName]="i">
+              <input type="checkbox" id="logo{{i}}" value="{{ reason.id }}" formControlName="name"
+                (change)="selectReason($event)">
+              <label>
+                {{ reason?.username }}
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Reason Not Listed?</label>
+                <input type="text" placeholder="Some Custom Reason Entered By User..." class="form-control"
+                  formControlName="reason_not_listed">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+  <a class="btn modal-btn-continue" (click)="decline()">
+    Cancel
+  </a>
+  <a class="btn modal-cancel" (click)="accept()">{{objectOfModal?.button_name}}</a>
+</div>

@@ -21,6 +21,14 @@ export class AdminService {
         return this.http.get<any>(`${this.apiUrl}/adminUserList`);
     }
 
+    getTestAdmins() {
+        const params = new HttpParams().set('hideLoader', 'true');
+        let options = { params: params };
+        options['reportProgress'] = true;
+        options['observe'] = 'events';
+        return this.http.get<any>(`${this.apiUrl}/adminUserList`, options);
+    }
+
     getAdminProfile() {
         return this.http.get<any>(`${this.apiUrl}/adminProfile`);
     }
