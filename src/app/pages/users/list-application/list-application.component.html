@@ -63,58 +63,63 @@
                                         <button *ngIf="searchValue" (click)='removeText()'
                                             class="close-icon">&times;</button>
                                     </div>
-<!--                                    <div class="filter">Filter search<span class="icon-filter"></span></div>-->
-                                    <ng-select [items]="item"
-                                               [multiple]="true"
-                                               bindLabel="name"
-                                               groupBy="label"
-                                               [selectableGroupAsModel]="false"
-                                               [closeOnSelect]="false"
-                                               placeholder="Select City">
+                                    <!--                                    <div class="filter">Filter search<span class="icon-filter"></span></div>-->
+                                    <ng-select [items]="item" [multiple]="true" bindLabel="name" groupBy="label"
+                                        [selectableGroupAsModel]="false" [closeOnSelect]="false"
+                                        placeholder="Select City">
                                         <ng-template ng-header-tmp>
-                                            <div >
+                                            <div>
                                                 <span>Filter Search</span>
-                                                <button class="btn btn-link float-right"
-                                                        (click)="onClearAll()">Clear All</button>
+                                                <button class="btn btn-link float-right" (click)="onClearAll()">Clear
+                                                    All</button>
                                             </div>
                                         </ng-template>
                                         <ng-template ng-footer-tmp>
-                                                <input type="text" class="form-control" placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"
-                                                       formControlName="dob" ngbDatepicker #d="ngbDatepicker">
-                                                <div class="input-group-append calendar">
-                                                    date <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                                </div>
-                                            <input type="text" class="form-control" placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"
-                                                       formControlName="dob" ngbDatepicker #d="ngbDatepicker">
-                                                <div class="input-group-append calendar">
-                                                    date <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                                </div>
+                                            <input type="text" class="form-control" placeholder="DD/MM/YYYY"
+                                                dateFormat="dd/MM/yyyy" formControlName="dob" ngbDatepicker
+                                                #d="ngbDatepicker">
+                                            <div class="input-group-append calendar">
+                                                date <span class="btn btn-outline-secondary" (click)="d.toggle()"
+                                                    type="button"><i class="fa fa-calendar"
+                                                        aria-hidden="true"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="DD/MM/YYYY"
+                                                dateFormat="dd/MM/yyyy" formControlName="dob" ngbDatepicker
+                                                #d="ngbDatepicker">
+                                            <div class="input-group-append calendar">
+                                                date <span class="btn btn-outline-secondary" (click)="d.toggle()"
+                                                    type="button"><i class="fa fa-calendar"
+                                                        aria-hidden="true"></i></span>
+                                            </div>
                                         </ng-template>
 
-                                        <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
-                                            {{item.label}}<input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/>
+                                        <ng-template ng-optgroup-tmp let-item="item" let-item$="item$"
+                                            let-index="index">
+                                            {{item.label}}<input id="item-{{index}}" type="checkbox"
+                                                [ngModel]="item$.selected" />
                                         </ng-template>
                                         <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
-                                            {{item.name}} <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/>
+                                            {{item.name}} <input id="item-{{index}}" type="checkbox"
+                                                [ngModel]="item$.selected" />
                                         </ng-template>
-<!--                                        <ng-template>-->
-<!--                                            <div class="input-group datepicker">-->
-<!--                                                <input type="text"  placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"-->
-<!--                                                       ngbDatepicker #d="ngbDatepicker">-->
-<!--                                                <div class="input-group-append calendar">-->
-<!--                                                    date <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"-->
-<!--                                                                                                                                       aria-hidden="true"></i></span>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </ng-template>-->
+                                        <!--                                        <ng-template>-->
+                                        <!--                                            <div class="input-group datepicker">-->
+                                        <!--                                                <input type="text"  placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"-->
+                                        <!--                                                       ngbDatepicker #d="ngbDatepicker">-->
+                                        <!--                                                <div class="input-group-append calendar">-->
+                                        <!--                                                    date <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"-->
+                                        <!--                                                                                                                                       aria-hidden="true"></i></span>-->
+                                        <!--                                                </div>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </ng-template>-->
                                     </ng-select>
                                 </div>
                             </div>
                             <div class="tble">
                                 <ngx-datatable class="bootstrap checkbox-table" [loadingIndicator]="loadingIndicator"
                                     [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
-                                    [rowHeight]="80" [limit]="limitRow" [rows]="rows" (page)='setPage($event)' [selected]="selected"
-                                    [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
+                                    [rowHeight]="80" [limit]="limitRow" [rows]="rows" (page)='setPage($event)'
+                                    [selected]="selected" [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
                                     (select)='onSelect($event)'>
 
                                     <ngx-datatable-column [width]=" 10" [sortable]="false" [canAutoResize]="false"
@@ -352,12 +357,12 @@
 <div *ngIf="deleteFlag" class="fixed-status">
     <label class="mb-0">Applications selected : <strong>{{usersSelectCount}}</strong></label>
     <ul>
-        <!-- <li (click)="deleteApplications()" class="delete"><img src="assets/img/trash.svg">Delete All</li> -->
-        <li (click)="rejectApproveApplications('rejected')" class="reject"><img src="assets/img/not-allow.svg">Reject
+        <li (click)="deleteApplications()" class="delete"><img src="assets/img/trash.svg">Delete All</li>
+        <!-- <li (click)="rejectApproveApplications('rejected')" class="reject"><img src="assets/img/not-allow.svg">Reject
             all
         </li>
         <li class="approved" (click)="rejectApproveApplications('approved')"><img
-                src="assets/img/check-circle.svg">Approve all</li>
+                src="assets/img/check-circle.svg">Approve all</li> -->
         <li (click)="cancelAll()" class="cancel"><img src="assets/img/not-allow.svg"><span>Cancel all</span></li>
     </ul>
 </div>

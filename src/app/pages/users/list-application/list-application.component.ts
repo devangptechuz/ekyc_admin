@@ -29,7 +29,7 @@ export class ListApplicationComponent implements OnInit {
   loadingIndicator = true;
   limitRow: Number = environment.userlimitRow;
   selectedItem;
-  searchValue:string = null;
+  searchValue: string = null;
   count: any;
 
   countUnderReview: number;
@@ -68,13 +68,13 @@ export class ListApplicationComponent implements OnInit {
     // });
   }
 
-  onEnterPress(event){
+  onEnterPress(event) {
     if (event.keyCode === 13) {
       this.updateFilter(event);
     }
   }
 
-  onEnterPressAgain(event){
+  onEnterPressAgain(event) {
     if (event.keyCode === 13) {
       this.updateFilterAgain(event);
     }
@@ -90,7 +90,7 @@ export class ListApplicationComponent implements OnInit {
 
   }
 
-  removeText(){
+  removeText() {
     this.searchValue = '';
     this.ngOnInit();
   }
@@ -99,7 +99,7 @@ export class ListApplicationComponent implements OnInit {
     const searchByType = this.searchBytype.nativeElement.value;
     const searchByKey = event.target.value;
     if (!searchByType && !searchByKey) {
-     return this.global.errorToastr('Search box is empty')
+      return this.global.errorToastr('Search box is empty')
     }
     const val = searchByType.toLowerCase() || searchByKey.toLowerCase();
     this.commonFunctionFilter(val);
@@ -108,17 +108,17 @@ export class ListApplicationComponent implements OnInit {
   updateFilterAgain(event) {
     const searchBytype = this.searchBytypeAgain.nativeElement.value;
     if (!searchBytype) {
-     return this.global.errorToastr('Search box is empty')
+      return this.global.errorToastr('Search box is empty')
     }
     const val = searchBytype.toLowerCase();
     this.commonFunctionFilter(val);
   }
 
-  commonFunctionFilter(val){
+  commonFunctionFilter(val) {
     this.rows = this.temp.filter((d) => {
       return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
-          d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
-          d.userName.toLowerCase().indexOf(val) !== -1 || !val;
+        d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
+        d.userName.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.table.offset = 0;
   }
@@ -264,6 +264,8 @@ export class ListApplicationComponent implements OnInit {
    * delete application event
    */
   deleteApplications() {
+    this.global.warningToastr('This feature is under developmeent.');
+    return;
     if (this.selected.length > 0) {
       const id = [];
       this.selected.filter((data) => {
@@ -308,7 +310,7 @@ export class ListApplicationComponent implements OnInit {
     }
   }
 
-  setPage(pageInfo){
+  setPage(pageInfo) {
     window.scrollTo(0, 150);
   }
 }
