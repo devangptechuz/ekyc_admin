@@ -13,6 +13,15 @@ import {CookiesService} from '@ngx-utils/cookies';
 })
 export class CommonService {
   apiUrl = environment.api_url;
+  passwordStrength: any;
+  passwordErrors: any;
+  passwordMaintain = [
+    { 'id': 1, 'message': 'Must contain at least 8 letters.' },
+    { 'id': 2, 'message': 'Must contain at least one lowercase character(a-z).' },
+    { 'id': 3, 'message': 'Must contain at least one uppercase character(A-Z).' },
+    { 'id': 4, 'message': 'Must contain at least one special character(eg $).' },
+    { 'id': 5, 'message': 'Must contain at least one digit(0-9).' },
+  ];
   constructor(
     public http: HttpClient,
     public router: Router,
@@ -79,6 +88,62 @@ export class CommonService {
       return jwt_decode(token);
     } catch (Error) {
       return null;
+    }
+  }
+
+  strength(event: any) {
+    const password = event.target.value;
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+    if (strongRegex.test(password)) {
+      this.passwordStrength = 'strong';
+    }
+        // else if (mediumRegex.test(password)) {
+        //   this.passwordStrength = 'medium';
+    // }
+    else if (password !== '') {
+      this.passwordStrength = 'weak';
+    } else {
+      this.passwordStrength = '';
+    }
+
+    const lowerCaseRegex = new RegExp("^(?=.*[a-z])");
+    const upperCaseRegex = new RegExp("^(?=.*[A-Z])");
+    var p = password,
+        passwordErrors = [];
+    if (p.length < 8) {
+      passwordErrors.push(1);
+    }
+    if (!lowerCaseRegex.test(password)) {
+      passwordErrors.push(2);
+    }
+    if (!upperCaseRegex.test(password)) {
+      passwordErrors.push(3);
+    }
+    if (p.search(/[*@!#$%&()^~{}]+/) < 0) {
+      passwordErrors.push(4);
+    }
+    if (p.search(/[0-9]/) < 0) {
+      passwordErrors.push(5);
+    }
+    if (password) {
+      this.passwordMaintain.map((item: any) => {
+        item['valid_password_type'] = true;
+      });
+    } else {
+      this.passwordMaintain.map((item: any) => {
+        item['valid_password_type'] = false;
+      });
+    }
+    if ((passwordErrors.length > 0) && (password)) {
+      this.passwordErrors = passwordErrors;
+      this.passwordMaintain.map((item: any) => {
+        if (passwordErrors.includes(Number(item.id))) {
+          item['valid_password_type'] = false;
+        }
+      });
+    } else {
+      this.passwordErrors = [];
     }
   }
 

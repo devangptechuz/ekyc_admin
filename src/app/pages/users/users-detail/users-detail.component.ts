@@ -7,7 +7,7 @@ import { Subject, Observable } from 'rxjs';
 import { GlobalService } from 'app/shared/services/global.service';
 import { UserService } from 'app/shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import {CookiesService} from '@ngx-utils/cookies';
+import { CookiesService } from '@ngx-utils/cookies';
 import { ConfirmationDialogService } from 'app/shared/services/confirmation-dialoge.service';
 
 @Component({
@@ -125,7 +125,7 @@ export class UsersDetailComponent implements OnInit {
   manageApplicationStatus(adminApproval: string = '') {
     this.adminApproval = adminApproval;
     this.adminApprovalText = adminApproval;
-    console.log('test', this.adminApprovalText);
+    // console.log('test', this.adminApprovalText);
     if (this.adminApproval === 'Reject') {
       this.adminApprovalText = 'rejected';
     } else if (this.adminApproval === 'Approved') {
@@ -797,6 +797,9 @@ export class UsersDetailComponent implements OnInit {
    */
   cancelModal($event) {
     this.globalDocumentPopup = false;
+    if ($event === 'ipv') {
+      this.getKYCDocumentsList(true, this.userId);
+    }
     this.modalRef.close();
   }
 
