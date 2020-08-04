@@ -63,10 +63,10 @@
                                         <button *ngIf="searchValue" (click)='removeText()'
                                             class="close-icon">&times;</button>
                                     </div>
-                                    <!--                                    <div class="filter">Filter search<span class="icon-filter"></span></div>-->
+                                    <!--<div class="filter">Filter search<span class="icon-filter"></span></div>-->
                                     <ng-select [items]="item" [multiple]="true" bindLabel="name" groupBy="label"
                                         [selectableGroupAsModel]="false" [closeOnSelect]="false"
-                                        placeholder="Select City">
+                                        placeholder="Filter search">
                                         <ng-template ng-header-tmp>
                                             <div>
                                                 <span>Filter Search</span>
