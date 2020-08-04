@@ -396,11 +396,11 @@ body {
       }
     }
 
-    .tab-content {
-
+    .tab-content {      
       .tabpane,
       .active {
         background: $dl-bg-color !important;
+        border-color: $dl-border-color;
       }
     }
 

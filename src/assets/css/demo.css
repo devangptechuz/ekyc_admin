@@ -285,6 +285,50 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 .checkbox label:after {transition: .1s ease-in-out;}
 .checkbox label:before{background: #FFFFFF;}
 
+/*=========Custom checkbox===========*/
+.custom-checkbox{position: relative;}
+.custom-checkbox input{width: 100%;height: 100%;position: absolute;top: 0;left: 0;z-index: 9;opacity: 0;cursor: pointer;}
+.custom-checkbox label{position: relative;padding-left: 30px;margin: 0;}
+.custom-checkbox label:before{content: ""; height: 16px;width: 16px;border-radius: 4px;background: rgba(221, 221, 221, 0.16);border: 1px solid #DDDDDD;position: absolute;left: 0;top: 3px;}
+.custom-checkbox label:after,.custom-checkbox input[type=checkbox]:checked + label:after{content: "";background: url(../img/check.svg) no-repeat;background-size: 63%;background-position: center;left: 0;top: 3px;width: 16px;height: 16px;position: absolute;opacity: 0;visibility: visible;-webkit-transition: all 0.2s ease;transition: all 0.2s ease;}
+.custom-checkbox input[type=checkbox]:checked + label:before{background: #0970DD;border-color: #0970DD;}
+.custom-checkbox input[type=checkbox]:checked + label:after{opacity: 1;visibility: visible;}
+.custom-checkbox [type="checkbox"]:not(:checked) + label:after {opacity: 0;-webkit-transform: scale(0);transform: scale(0);}
+.custom-checkbox [type="checkbox"]:checked + label:after {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}
+.reason-modal-popup  .multiselect-list .type-list{max-height: 300px; overflow-y: scroll; overflow-x: hidden;}
+
+.multiselect-list .type-list .custom-checkbox label:before{
+    right: 20px;left: auto;top: 50%;transform: translateY(-50%);}
+
+.multiselect-list .type-list .custom-checkbox label:after, 
+.multiselect-list .type-list .custom-checkbox input[type=checkbox]:checked + label:after{
+    right: 20px;left: auto;top: 48%;transform: translateY(-48%);}
+
+   
+.multiselect-list .type-list .custom-radio label:before{right: 15px;left: auto;top: 50%;transform: translateY(-50%);}
+
+.multiselect-list .type-list .custom-radio label:after,
+.multiselect-list .type-list .custom-radio input[type=radio]:checked + label:after{right: 19px;left: auto;top: 50%;transform: translateY(-50%);}
+
+.multiselect-list .custom-checkbox label,.multiselect-list .custom-radio label{margin-bottom: 8px;height: 56px;text-transform: capitalize;border: 1px solid #DDDDDD;border-radius: 8px;background: #fff;padding: 16px;display: flex;width: 100%;position: relative;align-items: center;font-size: 16px;line-height: 24px;color: rgba(0, 0, 0, 0.8);transition: 0.1s ease-in-out;font-weight: 400;}
+.multiselect-list .type-list label span{width:89%;overflow: hidden;text-overflow: ellipsis;display: block;white-space: nowrap;}
+.multiselect-list input[type=checkbox]:checked + label .amt{color: #0970DD;}
+.multiselect-list .type-list .disabled label{font-weight: 400;background: #FAFAFA;color: rgba(0, 0, 0, 0.24);}
+.multiselect-list .type-list .green-check input[type=checkbox]:checked + label,.multiselect-list .type-list .green-check input[type=radio]:checked + label{border-color: #19D097;}
+.green-check input[type=checkbox]:checked + label:before {background: rgba(25, 208, 151, 0.16);border-color: #19D097;}
+.green-check label:after, .custom-checkbox input[type=checkbox]:checked + label:after{    background: url(../img/green-check.svg) no-repeat;background-position: center;background-size: 63%;}
+
+/*=========Custom radio===========*/
+.custom-radio{position: relative;}
+.custom-radio input{width: 100%;height: 100%;position: absolute;top: 0;left: 0;z-index: 9;opacity: 0;cursor: pointer;}
+.custom-radio label{position: relative;padding-left: 30px;margin: 0;}
+.custom-radio label:before{content: ""; height: 16px;width: 16px;border-radius: 50%;background: rgba(221, 221, 221, 0.16);border: 1px solid #DDDDDD;position: absolute;left: 0;top: 3px;}
+.custom-radio label:after,.custom-radio input[type=radio]:checked + label:after{content: "";background: #19D097;left: 0;left: 4px;top: 7px;border-radius: 50%;width: 8px;height: 8px;position: absolute;opacity: 0;visibility: visible;-webkit-transition: all 0.2s ease;transition: all 0.2s ease;}
+.custom-radio input[type=radio]:checked + label:before{background: transparent;border-color: #19D097;}
+.custom-radio input[type=radio]:checked + label:after{opacity: 1;visibility: visible;}
+.custom-radio [type="radio"]:not(:checked) + label:after {opacity: 0;-webkit-transform: scale(0);transform: scale(0);}
+.custom-radio [type="radio"]:checked + label:after {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}
+
 @font-face {
   font-family: 'icomoon';
   src:  url('../fonts/icomoon.eot?dou5i7');
@@ -542,7 +586,7 @@ section.add-user .footer-btn .btn:disabled{color: #B0BAC5;opacity: 1;}
 section.add-user .checkbox label{font-weight: normal;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.56);}
 section.add-user .checkbox{margin: 0 0 24px;background: rgba(9, 112, 221, 0.16);border-radius: 8px;padding: 16px;}
 
-section.add-admin-user .hdr-right button{display: flex;align-items: center;justify-content: center;min-width: 138px;padding: 16px;font-size: 12px;line-height: 18px;}
+section.admin-profile .hdr-right button{display: flex;align-items: center;justify-content: center;min-width: 138px;padding: 16px;font-size: 12px;line-height: 18px;}
 .hdr-right .icon-simple-check{font-weight: 600;margin-left: 5px;}
 .ngx-select__toggle::after{content: "\e918";color:#666666;font-size: 5px;font-family: 'icomoon' !important;border: none;display: block;width: auto;height: auto;display: block;width: auto;height: auto;}
 .ngx-select__toggle .dropdown-toggle::after{display: none;}
@@ -586,12 +630,15 @@ ul.pic-action li{margin: 2px 0;}
 
 /*=========Application===========*/
 section.application {margin: 32px 0;}
-section.application .nav-tabs{margin-left: 40px;border: none;}
-section.application .nav-tabs .app-link.nav-link{color: #0970DD;font-weight: 500;}
-section.application .nav-tabs .nav-link{padding: 15px 20px;font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
-section.application .nav-tabs .nav-link:hover{background: #F5F9FE;border-radius: 8px 8px 0px 0px;color: #0970DD;}
-section.application .tab-content{padding: 0;background: #FCFCFC;border: 1px solid #DDDDDD;box-sizing: border-box;border-radius: 8px;}
-section.application .nav-tabs .nav-link.active{background: #0970DD;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);border-radius: 8px 8px 0px 0px;color: #fff;border: none;}
+.nav-tabs{margin-left: 40px;border: none;}
+.custom-tabs .app-link.nav-link{color: #0970DD;font-weight: 500;}
+.custom-tabs .nav-link{padding: 15px 20px;font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
+.custom-tabs .nav-link:hover{background: #F5F9FE;border-radius: 8px 8px 0px 0px;color: #0970DD;}
+.custom-tabs .tab-content{padding: 0;background: #FCFCFC;border: 1px solid #DDDDDD;box-sizing: border-box;border-radius: 8px;}
+.custom-tabs .nav-link.active{background: #0970DD;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);border-radius: 8px 8px 0px 0px;color: #fff;border: none;}
+.custom-tabs .card{background: transparent;}
+.admin-profile .custom-tabs .card-body{padding: 40px;}
+section.add-user .custom-tabs .add-box{border: none;padding: 0;background: transparent;}
 section.application .card-body{padding: 0;}
 section.application h2{font-weight: 200;line-height: 36px;letter-spacing: 1px;text-transform: capitalize;}
 section.application .header{padding: 40px;margin: 0;border-bottom: 1px solid #DDDDDD;}
@@ -608,7 +655,6 @@ section.application .btn-search:focus{outline: none;}
 section.application .search input:focus + .btn-search{color:#0970DD}
 section.application .search input:hover{box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);-webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);-moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);}
 section.application span.icon-filter{font-size: initial;color: rgba(0, 0, 0, 0.56);}
-section.application .card{background: transparent;}
 section.application .tble {padding: 0 40px 40px;}
 .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a, .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a{background-color: #0970dd;color: #fff;}
 .ngx-datatable .datatable-footer .datatable-footer-inner{margin-top: 0;}
@@ -905,23 +951,15 @@ ngb-datepicker-navigation button:focus{outline: none;}
 .pw-strength .weak{color: #DF0E40;}
 .pw-strength span{margin-left: 5px;text-transform: uppercase;font-weight: 500;}
 
-/* added by devang: 31-07-2020*/
-/*=========Custom checkbox===========*/
-.reason-modal-popup .custom-checkbox{position: relative;}
-.reason-modal-popup .custom-checkbox input{width: 100%;height: 100%;position: absolute;top: 0;left: 0;z-index: 9;opacity: 0;cursor: pointer;}
-.reason-modal-popup .custom-checkbox label{position: relative;padding-left: 30px;margin: 0;}
-.reason-modal-popup .custom-checkbox label:before{content: ""; height: 16px;width: 16px;border-radius: 4px;background: rgba(221, 221, 221, 0.16);border: 1px solid #DDDDDD;position: absolute;left: 0;top: 3px;}
-.reason-modal-popup .custom-checkbox label:after,.custom-checkbox input[type=checkbox]:checked + label:after{content: "";background: url(../img/check.svg) no-repeat;background-size: 63%;background-position: center;left: 0;top: 3px;width: 16px;height: 16px;position: absolute;opacity: 0;visibility: visible;-webkit-transition: all 0.2s ease;transition: all 0.2s ease;}
-.reason-modal-popup .custom-checkbox input[type=checkbox]:checked + label:before{background: #0970DD;border-color: #0970DD;}
-.reason-modal-popup .custom-checkbox input[type=checkbox]:checked + label:after{opacity: 1;visibility: visible;}
-.reason-modal-popup .custom-checkbox [type="checkbox"]:not(:checked) + label:after {opacity: 0;-webkit-transform: scale(0);transform: scale(0);}
-.reason-modal-popup .custom-checkbox [type="checkbox"]:checked + label:after {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}
-.reason-modal-popup .multiselect-list .type-list{max-height: 300px; overflow-y: scroll; overflow-x: hidden;}
-.reason-modal-popup .multiselect-list .type-list .custom-checkbox label:before{right: 20px;left: auto;top: 50%;transform: translateY(-50%);}
-.reason-modal-popup .multiselect-list .type-list .custom-checkbox label:after, .multiselect-list .type-list .custom-checkbox input[type=checkbox]:checked + label:after{right: 20px;left: auto;top: 48%;transform: translateY(-48%);}
-.reason-modal-popup .multiselect-list .type-list .custom-checkbox label{margin-bottom: 8px;height: 56px;text-transform: capitalize;border: 1px solid #DDDDDD;border-radius: 8px;background: #fff;padding: 16px;display: flex;width: 100%;position: relative;align-items: center;font-size: 16px;line-height: 24px;color: rgba(0, 0, 0, 0.8);transition: 0.1s ease-in-out;}
-.reason-modal-popup .multiselect-list input[type=checkbox]:checked + label .amt{color: #0970DD;}
 
+.add-box .multiselect-list .type-list .custom-checkbox label{font-weight: 400;white-space: nowrap;margin-bottom: 16px;background: #FAFAFA;border: 1px solid #DDDDDD;}
+
+
+.admin-profile .custom-radio p{margin: 5px 0 0;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.32);}
+.admin-profile .custom-radio label{height: auto;}
+.admin-profile .custom-radio img{margin-right: 16px;}
+.slct-theme{color: rgba(0, 0, 0, 0.32);}
+.slct-theme strong {font-weight: 500;color: rgba(0, 0, 0, 0.8);}
 /*=========Custom Scroll===========*/
 
 @media(min-width:768px) {
