@@ -40,6 +40,11 @@ export class UserService {
   approveRejectApplication(objParam: any) {
     return this.http.post<any>(`${this.baseUrlOfUser}/approveRejectApplication`, objParam); //todo id=['']
   }
+
+  requestToApplicants(objParam: any) {
+    return this.http.post<any>(`${this.baseUrlOfUser}/approveRejectApplication`, objParam); //todo id=['']
+  }
+
   /**
    * get user details with hide loader 
    */

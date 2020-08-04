@@ -56,6 +56,12 @@ export class ConfirmationDialogService {
     return modalRef.result;
   }
 
+  public requestToConfirm(objectOfModal: any = ''): Promise<boolean> {
+    const modalRef = this.modalService.open(ReasonRejectModelComponent, { centered: true });
+    modalRef.componentInstance.objectOfModal = objectOfModal;
+    return modalRef.result;
+  }
+
   public deleteConfirm(name: any, userEmail: string): Promise<boolean> {
     const modalRef = this.modalService.open(LogoutPopupComponent, { centered: true });
     modalRef.componentInstance.label = name;

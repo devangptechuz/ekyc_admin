@@ -846,7 +846,6 @@ export class UsersDetailComponent implements OnInit {
 
     this.confirmationDialogService.reasonToConfirm(popupParam).then((data) => {
       if (data) {
-        console.log('tes');
         let objParam = {}
         objParam['userIds'] = [this.userId];
         objParam['type'] = 'Reject';
@@ -859,6 +858,37 @@ export class UsersDetailComponent implements OnInit {
               } else {
                 this.global.successToastr('Reject Successfully');
               }
+            } else {
+              this.global.errorToastr(res.message);
+            }
+          });
+      }
+    }).catch(error => console.log(error));
+  }
+
+  /**
+   * request for review, document,re-upload document: confirm modal pop-up
+   */
+  requestConfirm(typeOfrequest: any = '') {
+    const label = 'Application';
+    let popupParam = {};
+    if (typeOfrequest === 'request_for_document') {
+      popupParam['type'] = 'request_for_document';
+    }
+    popupParam['lable'] = 'Request document';
+    popupParam['title'] = 'Select from the list';
+    popupParam['userId'] = this.userId;
+    popupParam['button_name'] = 'Request Document';
+
+    this.confirmationDialogService.requestToConfirm(popupParam).then((data) => {
+      if (data) {
+        let objParam = {}
+        objParam['userIds'] = [this.userId];
+        objParam['type'] = 'request_for_document';
+        this.userService.requestToApplicants(objParam)
+          .subscribe((res) => {
+            if (res.success) {
+              this.global.successToastr(res.message);
             } else {
               this.global.errorToastr(res.message);
             }
