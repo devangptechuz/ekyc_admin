@@ -382,6 +382,7 @@ export class UsersDetailComponent implements OnInit {
     this.globalDocumentPopup = true;
     const dropdownDocumentList = this.userKYCDocuments;
     this.defaultSelectedDocument = dropdownDocumentList[0].document_name;
+    console.log('test', this.defaultSelectedDocument);
     this.dropdownDocumentList = dropdownDocumentList.filter((ele: any) => ele.document_name !== 'ipv' && ele.document_name !== 'signature');
     this.documentSelection();
     this.modalRef = this.modalService.open(this.fileuploadAadharpopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
@@ -410,6 +411,7 @@ export class UsersDetailComponent implements OnInit {
   }
 
   selectDocProcess(selValue: any) {
+    console.log('selValue', selValue);
     this.userKYCDocuments.map((item: any) => {
       if (item.document_name === selValue) {
         this.allowedMimeType = item.mime_type;
@@ -874,17 +876,26 @@ export class UsersDetailComponent implements OnInit {
     let popupParam = {};
     if (typeOfrequest === 'request_for_document') {
       popupParam['type'] = 'request_for_document';
+      popupParam['lable'] = 'Request document';
+      popupParam['title'] = 'Select from the list';
+      popupParam['button_name'] = 'Request Document';
+    } else if (typeOfrequest === 'data_review') {
+      popupParam['type'] = 'data_review';
+      popupParam['lable'] = 'Request re-upload';
+      popupParam['title'] = 'Select your reason';
+      popupParam['button_name'] = 'Request Review';
     }
-    popupParam['lable'] = 'Request document';
-    popupParam['title'] = 'Select from the list';
     popupParam['userId'] = this.userId;
-    popupParam['button_name'] = 'Request Document';
 
     this.confirmationDialogService.requestToConfirm(popupParam).then((data) => {
       if (data) {
         let objParam = {}
         objParam['userIds'] = [this.userId];
-        objParam['type'] = 'request_for_document';
+        if (typeOfrequest === 'request_for_document') {
+          objParam['type'] = 'request_for_document';
+        } else if (typeOfrequest === 'data_review') {
+          objParam['type'] = 'data_review';
+        }
         this.userService.requestToApplicants(objParam)
           .subscribe((res) => {
             if (res.success) {

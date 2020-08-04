@@ -1,263 +1,278 @@
 <section class="add-user admin-profile mt-5">
     <form [formGroup]="adminProfileForm" novalidate>
         <div class="container custom-tabs">
-                <ul id="tabs" class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">Application preferences</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">Application preferences</a>
-                    </li>                   
-                </ul>
+            <ul id="tabs" class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">Application
+                        preferences</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">
+                        Account settings
+                    </a>
+                </li>
+            </ul>
 
 
-                <div id="content" class="tab-content" role="tablist">
-                    <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
-                        <div class="card-header" role="tab" id="heading-A">
-                            <h5 class="mb-0">
-                                <!-- Note: `data-parent` removed from here -->
-                                <a data-toggle="collapse" href="#collapse-A" aria-expanded="true" aria-controls="collapse-A">
-                                   Account settings
-                                </a>
-                            </h5>
+            <div id="content" class="tab-content" role="tablist">
+                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+                    <div class="card-header" role="tab" id="heading-A">
+                        <h5 class="mb-0">
+                            <!-- Note: `data-parent` removed from here -->
+                            <a data-toggle="collapse" href="#collapse-A" aria-expanded="true"
+                                aria-controls="collapse-A">
+                                Application preferences
+                            </a>
+                        </h5>
+                    </div>
+
+                    <!-- Note: New place of `data-parent` -->
+                    <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel"
+                        aria-labelledby="heading-A">
+                        <div class="card-body">
+                            <div class="hdr">
+                                <div class="hdr-left">
+                                    <h2>Dashboard Content</h2>
+                                </div>
+                            </div>
+                            <p class="mb-4">Select the data you want to be visible on your dashboard. This will help you
+                                keep track of important numbers at a glance.</p>
+                            <div class="row multiselect-list">
+                                <div class="col-md-4 type-list">
+                                    <div class="custom-checkbox green-check disabled">
+                                        <input type="checkbox">
+                                        <label><span>Number of new applications</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 type-list">
+                                    <div class="custom-checkbox green-check">
+                                        <input type="checkbox">
+                                        <label><span>applications with alert messages</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 type-list">
+                                    <div class="custom-checkbox green-check">
+                                        <input type="checkbox">
+                                        <label><span>number of applications under review</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 type-list">
+                                    <div class="custom-checkbox green-check">
+                                        <input type="checkbox">
+                                        <label><span>Total number of users onboard</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 type-list">
+                                    <div class="custom-checkbox green-check">
+                                        <input type="checkbox">
+                                        <label><span>enter new password</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 type-list">
+                                    <div class="custom-checkbox green-check">
+                                        <input type="checkbox">
+                                        <label><span>applicaitons with incomplete kYC</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 type-list">
+                                    <div class="custom-checkbox green-check">
+                                        <input type="checkbox">
+                                        <label><span>number of rejected applications</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hdr mt-5">
+                                <div class="hdr-left">
+                                    <h2>application theme</h2>
+                                </div>
+                            </div>
+                            <div class="row multiselect-list">
+                                <div class="col-md-4">
+                                    <p class="mb-0 slct-theme">
+                                        <strong>Select a theme as your default mode.</strong>
+                                        You may switch between modes from profile dropdown anytime but when you login it
+                                        will be switched back to selected default mode.
+                                </div>
+                                <div class="col-md-4 type-list">
+                                    <div class="custom-radio green-check">
+                                        <input type="radio" name="mode">
+                                        <label><img src="assets/img/light.svg">
+                                            <div class="d-flex flex-wrap mr-3">
+                                                <span>Light Mode</span>
+                                                <p>Preferred for a short time usage with sufficient surround light</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 type-list">
+                                    <div class="custom-radio green-check">
+                                        <input type="radio" name="mode">
+                                        <label><img src="assets/img/dark.svg">
+                                            <div class="d-flex flex-wrap mr-3">
+                                                <span>Dark Mode</span>
+                                                <p>Preferred for a longer screen time with low surround light</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Note: New place of `data-parent` -->
-                        <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel" aria-labelledby="heading-A">
-                            <div class="card-body">                              
+                <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+                    <div class="card-header" role="tab" id="heading-B">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false"
+                                aria-controls="collapse-B">
+                                Account settings
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel"
+                        aria-labelledby="heading-B">
+                        <div class="card-body">
+                            <div class="add-box">
                                 <div class="hdr">
                                     <div class="hdr-left">
-                                        <h2>Dashboard Content</h2>               
-                                    </div>                                       
-                                </div>                                
-                                <p class="mb-4">Select the data you want to be visible on your dashboard. This will help you keep track of important numbers at a glance.</p>
-                                 <div class="row multiselect-list">
-                                    <div class="col-md-4 type-list">
-                                        <div class="custom-checkbox green-check disabled">
-                                            <input type="checkbox">
-                                            <label><span>Number of new applications</span></label>
-                                        </div>                     
-                                    </div> 
-                                     <div class="col-md-4 type-list">
-                                        <div class="custom-checkbox green-check">
-                                            <input type="checkbox">
-                                            <label><span>applications with alert messages</span></label>
-                                        </div>                     
-                                    </div> 
-                                     <div class="col-md-4 type-list">
-                                        <div class="custom-checkbox green-check">
-                                            <input type="checkbox">
-                                            <label><span>number of applications under review</span></label>
-                                        </div>                     
-                                    </div> 
-                                     <div class="col-md-4 type-list">
-                                        <div class="custom-checkbox green-check">
-                                            <input type="checkbox">
-                                            <label><span>Total number of users onboard</span></label>
-                                        </div>                     
-                                    </div> 
-                                     <div class="col-md-4 type-list">
-                                        <div class="custom-checkbox green-check">
-                                            <input type="checkbox">
-                                            <label><span>enter new password</span></label>
-                                        </div>                     
-                                    </div> 
-                                    <div class="col-md-4 type-list">
-                                        <div class="custom-checkbox green-check">
-                                            <input type="checkbox">
-                                            <label><span>applicaitons with incomplete kYC</span></label>
-                                        </div>                     
-                                    </div> 
-                                    <div class="col-md-4 type-list">
-                                        <div class="custom-checkbox green-check">
-                                            <input type="checkbox">
-                                            <label><span>number of rejected applications</span></label>
-                                        </div>                     
-                                    </div> 
+                                        <h2>Personal Information</h2>
+                                        <span>last updated on :
+                                            {{updateProfileDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                                    </div>
+                                    <div class="hdr-right">
+                                        <button class="btn btn-custom" (click)="submitProfile()"><span
+                                                class="icon-edit mr-2"></span>Update details</button>
+                                    </div>
                                 </div>
-                                  <div class="hdr mt-5">
+
+                                <div class="row admin-detail">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" placeholder="Enter full name of the user"
+                                                formControlName="username" class="form-control">
+                                            <app-control-messages fieldName="Full Name"
+                                                [control]="adminProfileForm.controls['username']">
+                                            </app-control-messages>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mobile Number</label>
+                                            <input type="text" placeholder="Enter mobile number"
+                                                formControlName="mobileNumber" class="form-control">
+                                            <app-control-messages fieldName="Mobile Number"
+                                                [control]="adminProfileForm.controls['mobileNumber']">
+                                            </app-control-messages>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Admin Id</label>
+                                            <input type="text" [attr.disabled]="true" [ngModel]="inputvalue"
+                                                placeholder="Enter Admin id" formControlName="id" class="form-control"
+                                                (ngModelChange)="inputvalue = $event.toUpperCase()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email Id</label>
+                                            <input type="email" [attr.disabled]="true" placeholder="Enter email id"
+                                                formControlName="email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 d-flex justify-content-end">
+                                        <div class="view-pic">
+                                            <img *ngIf="!imageUrl" src="assets/img/admin-ic.svg">
+                                            <img *ngIf="imageUrl" [src]=imageUrl class="userpic">
+                                        </div>
+                                        <ul class="pic-action">
+                                            <li><a href="javascript:void(0)" (click)="deleteImage()"><span
+                                                        class="icon-close"></span>remove image</a></li>
+                                            <li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span
+                                                        class="icon-camera"></span>take a picture</a></li>
+                                            <li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span
+                                                        class="icon-upload"></span>upload from computer</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="hdr mt-4">
                                     <div class="hdr-left">
-                                        <h2>application theme</h2>               
-                                    </div>                                       
+                                        <h2>Password Setting</h2>
+                                        <span>last updated on :
+                                            {{updatePasswordDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                                    </div>
+                                    <div class="hdr-right">
+                                    </div>
                                 </div>
-                                <div class="row multiselect-list">
-                                    <div class="col-md-4">
-                                        <p class="mb-0 slct-theme">
-                                        <strong>Select a theme as your default mode.</strong>
-You may switch between modes from profile dropdown anytime but when you login it will be switched back to selected default mode.
-                                    </div>
-                                     <div class="col-md-4 type-list">
-                                        <div class="custom-radio green-check">
-                                            <input type="radio" name="mode">
-                                            <label><img src="assets/img/light.svg">
-                                                <div class="d-flex flex-wrap mr-3">
-                                                    <span>Light Mode</span>
-                                                    <p>Preferred for a short time usage with sufficient surround light</p>
+
+                                <form [formGroup]="adminPasswordForm" (ngSubmit)="onSubmit()" novalidate>
+                                    <div class="row align-items-top">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>new password</label>
+                                                <input type="password" placeholder="Enter new password"
+                                                    formControlName="password" class="form-control"
+                                                    (keyup)="commonService.strength($event)">
+                                                <div class="password-strength-line"
+                                                    *ngIf="commonService.passwordStrength">
+                                                    <div class="upload-box upload-progress">
+                                                        <div class="progress">
+                                                            <div class="progress-bar"
+                                                                [ngClass]="{'red': commonService.passwordStrength==='weak','orange': commonService.passwordStrength==='medium','green': commonService.passwordStrength==='strong'}"
+                                                                role="progressbar"
+                                                                [style.width]="commonService.progressBarCountOfPassword(commonService.passwordStrength) + '%'">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </label>
-                                        </div>  
-                                    </div> 
-                                    <div class="col-md-4 type-list">
-                                        <div class="custom-radio green-check">
-                                            <input type="radio" name="mode">
-                                            <label><img src="assets/img/dark.svg">
-                                                <div class="d-flex flex-wrap mr-3">
-                                                    <span>Dark Mode</span>
-                                                    <p>Preferred for a longer screen time with low surround light</p>
+                                                <div class="d-flex justify-content-between"
+                                                    *ngIf="commonService.passwordStrength">
+                                                    <div class="pw pw-strength">Password Strength <span
+                                                            class="{{commonService.passwordStrength}}">{{commonService.passwordStrength }}</span>
+                                                    </div>
+
+                                                    <div class="info-tp"><img src="assets/images/info.svg">
+                                                        <div class="info-tp-content">
+                                                            <p>It is recommended to create a strong password to protect
+                                                                your account
+                                                                from
+                                                                any false login. Any
+                                                                strong password should satisfy the following points:</p>
+                                                            <ol class="passwordErrors">
+                                                                <li [ngClass]="{'trueli': passwordItem.valid_password_type}"
+                                                                    *ngFor="let passwordItem of commonService.passwordMaintain">
+                                                                    {{passwordItem.message }}</li>
+                                                            </ol>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </label>
-                                        </div>  
+                                                <app-control-messages fieldName="Password"
+                                                    [control]="adminPasswordForm.controls['password']">
+                                                </app-control-messages>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>confirm password</label>
+                                                <input type="password" placeholder="Confirm new password"
+                                                    formControlName="confirm_password" class="form-control">
+                                                <app-control-messages fieldName="Confirm Password"
+                                                    [control]="adminPasswordForm.controls['confirm_password']">
+                                                </app-control-messages>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button class="btn btn-custom btn-pw">change password</button>
+                                        </div>
+
                                     </div>
-                                </div>   
+                                </form>
                             </div>
                         </div>
                     </div>
-
-                    <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
-                        <div class="card-header" role="tab" id="heading-B">
-                            <h5 class="mb-0">
-                                <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false" aria-controls="collapse-B">
-                                    Application preferences
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel" aria-labelledby="heading-B">
-                            <div class="card-body">
-                                <div class="add-box">
-                                        <div class="hdr">
-                                            <div class="hdr-left">
-                                                <h2>Personal Information</h2>
-                                                <span>last updated on : {{updateProfileDate | date:'MMM dd yyyy - hh:mm a'}}</span>
-                                            </div>
-                                            <div class="hdr-right">
-                                                <button class="btn btn-custom" (click)="submitProfile()"><span
-                                                        class="icon-edit mr-2"></span>Update details</button>
-                                            </div>
-                                        </div>
-
-                                        <div class="row admin-detail">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" placeholder="Enter full name of the user" formControlName="username"
-                                                        class="form-control">
-                                                    <app-control-messages fieldName="Full Name"
-                                                        [control]="adminProfileForm.controls['username']">
-                                                    </app-control-messages>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Mobile Number</label>
-                                                    <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber"
-                                                        class="form-control">
-                                                    <app-control-messages fieldName="Mobile Number"
-                                                        [control]="adminProfileForm.controls['mobileNumber']">
-                                                    </app-control-messages>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Admin Id</label>
-                                                    <input type="text" [attr.disabled]="true" [ngModel]="inputvalue"
-                                                        placeholder="Enter Admin id" formControlName="id" class="form-control"
-                                                        (ngModelChange)="inputvalue = $event.toUpperCase()">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Email Id</label>
-                                                    <input type="email" [attr.disabled]="true" placeholder="Enter email id"
-                                                        formControlName="email" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 d-flex justify-content-end">
-                                                <div class="view-pic">
-                                                    <img *ngIf="!imageUrl" src="assets/img/admin-ic.svg">
-                                                    <img *ngIf="imageUrl" [src]=imageUrl class="userpic">
-                                                </div>
-                                                <ul class="pic-action">
-                                                    <li><a href="javascript:void(0)" (click)="deleteImage()"><span
-                                                                class="icon-close"></span>remove image</a></li>
-                                                    <li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span
-                                                                class="icon-camera"></span>take a picture</a></li>
-                                                    <li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span
-                                                                class="icon-upload"></span>upload from computer</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="hdr mt-4">
-                                            <div class="hdr-left">
-                                                <h2>Password Setting</h2>
-                                                <span>last updated on : {{updatePasswordDate | date:'MMM dd yyyy - hh:mm a'}}</span>
-                                            </div>
-                                            <div class="hdr-right">
-                                            </div>
-                                        </div>
-
-                                        <form [formGroup]="adminPasswordForm" (ngSubmit)="onSubmit()" novalidate>
-                                            <div class="row align-items-top">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>new password</label>
-                                                        <input type="password" placeholder="Enter new password" formControlName="password"
-                                                            class="form-control" (keyup)="commonService.strength($event)">
-                                                        <div class="password-strength-line" *ngIf="commonService.passwordStrength">
-                                                            <div class="upload-box upload-progress">
-                                                                <div class="progress">
-                                                                    <div class="progress-bar"
-                                                                        [ngClass]="{'red': commonService.passwordStrength==='weak','orange': commonService.passwordStrength==='medium','green': commonService.passwordStrength==='strong'}"
-                                                                        role="progressbar"
-                                                                        [style.width]="commonService.progressBarCountOfPassword(commonService.passwordStrength) + '%'">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between" *ngIf="commonService.passwordStrength">
-                                                            <div class="pw pw-strength">Password Strength <span
-                                                                    class="{{commonService.passwordStrength}}">{{commonService.passwordStrength }}</span>
-                                                            </div>
-
-                                                            <div class="info-tp"><img src="assets/images/info.svg">
-                                                                <div class="info-tp-content">
-                                                                    <p>It is recommended to create a strong password to protect your account
-                                                                        from
-                                                                        any false login. Any
-                                                                        strong password should satisfy the following points:</p>
-                                                                    <ol class="passwordErrors">
-                                                                        <li [ngClass]="{'trueli': passwordItem.valid_password_type}"
-                                                                            *ngFor="let passwordItem of commonService.passwordMaintain">
-                                                                            {{passwordItem.message }}</li>
-                                                                    </ol>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <app-control-messages fieldName="Password"
-                                                            [control]="adminPasswordForm.controls['password']">
-                                                        </app-control-messages>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>confirm password</label>
-                                                        <input type="password" placeholder="Confirm new password"
-                                                            formControlName="confirm_password" class="form-control">
-                                                        <app-control-messages fieldName="Confirm Password"
-                                                            [control]="adminPasswordForm.controls['confirm_password']">
-                                                        </app-control-messages>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <button class="btn btn-custom btn-pw">change password</button>
-                                                </div>
-
-                                            </div>
-                                        </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  
                 </div>
+
             </div>
-        
+        </div>
+
     </form>
 </section>
 

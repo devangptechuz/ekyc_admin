@@ -185,7 +185,7 @@
                      <!-------------- KRA VERIFY DATA: END -------------->
                   </div>
                </div>
-               <button class="btn btn-custom font-sml disabled">request reveiw</button>
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request reveiw</button>
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
@@ -257,7 +257,7 @@
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Mother’s
                         name</label>{{userData?.personal_details?.mother_name}}</div>
                </div>
-               <button class="btn btn-custom font-sml disabled">request reveiw</button>
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request reveiw</button>
             </div>
             <div class="col-md-6">
                <!-- <div class="d-flex justify-content-between mb-2">
@@ -363,7 +363,7 @@
                   [routerLink]="['/applications/edit-personal-address',userId]"
                   routerLinkActive="router-link-active">edit
                   details</button>
-               <button class="btn btn-custom font-sml disabled">request reveiw</button>
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request reveiw</button>
             </div>
             <div class="col-md-6">
                <!-- <div class="d-flex justify-content-between mb-2">
@@ -426,7 +426,7 @@
                </div>
                <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/bank-details',userId]"
                   routerLinkActive="router-link-active">edit details</button>
-               <button class="btn btn-custom font-sml disabled">request reveiw</button>
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request reveiw</button>
             </div>
             <div class="col-md-6">
                <!-- <div class="d-flex justify-content-between mb-2">
