@@ -444,7 +444,11 @@ body {
     // Progress
 
     .progress {
-      background: $bg-color-dark;
+      background: rgba(0, 0, 0, 0.16);
+    }
+    .info-tp-content{
+       background-color: $dl-bg-color;
+       border:none;
     }
 
     // Tooltip And PopOver
@@ -794,6 +798,16 @@ body {
         }
         p{
           color: rgba(255, 255, 255, 0.56);
+        }
+      }
+    }
+    .info-tp-content {
+      ol {
+        li{
+           color:rgba(255, 255, 255, 0.56);
+            &.trueli {
+                color: #19D097;
+            }
         }
       }
     }
