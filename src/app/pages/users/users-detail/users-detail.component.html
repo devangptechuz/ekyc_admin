@@ -138,12 +138,12 @@
                <h2>Aadhaar Details</h2>
                <p><strong>{{userData?.aadhar_details?.aadhar_number | mask:'AAAA AAAA AAAA'}}</strong>
                   <span *ngIf="userData?.aadhar_details?.isKRAVerified"
-                     class="green-status status-box ml-2">VERIFIED</span>
+                        class="green-status status-box ml-2">VERIFIED</span>
                   <span *ngIf="userData?.aadhar_details?.isAadharVerifiedByDigiLocker"
-                     class="green-status status-box ml-2">VERIFIED</span>
+                        class="green-status status-box ml-2">VERIFIED</span>
                   <span
-                     *ngIf="!userData?.aadhar_details?.isAadharVerifiedByDigiLocker && !userData?.aadhar_details?.isKRAVerified"
-                     class="yellow-status status-box ml-2">NOT
+                          *ngIf="!userData?.aadhar_details?.isAadharVerifiedByDigiLocker && !userData?.aadhar_details?.isKRAVerified"
+                          class="yellow-status status-box ml-2">NOT
                      VERIFIED</span>
                </p>
             </div>
@@ -161,26 +161,32 @@
                </div>
                <div class="row cmn-layout">
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Full
-                        Name</label>{{userData?.aadhar_details?.full_name}}</div>
+                     Name</label>{{userData?.aadhar_details?.full_name}}
+                  </div>
                   <div class="col-md-6 d-flex flex-column mb-3">
                      <label>DOB</label>{{userData?.pan_details?.date_of_birth}}
                   </div>
                   <div class="col-md-6 d-flex flex-column mb-3">
-                     <label>Gender</label>{{userData?.aadhar_details?.gender}}</div>
+                     <label>Gender</label>{{userData?.aadhar_details?.gender}}
+                  </div>
                   <div class="col-md-6 d-flex flex-column"><label>Permanent
-                        Address</label>
+                     Address</label>
                      <!-------------- KRA VERIFY DATA: START -------------->
                      <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line1">
-                        {{userData?.personal_details?.permanent_address?.address_line1}},</ng-container>
+                        {{userData?.personal_details?.permanent_address?.address_line1}},
+                     </ng-container>
                      <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line2">
-                        {{userData?.personal_details?.permanent_address?.address_line2}},</ng-container>
+                        {{userData?.personal_details?.permanent_address?.address_line2}},
+                     </ng-container>
                      <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line3">
-                        {{userData?.personal_details?.permanent_address?.address_line3}},</ng-container>
+                        {{userData?.personal_details?.permanent_address?.address_line3}},
+                     </ng-container>
                      <ng-container *ngIf="userData?.personal_details?.permanent_address?.pin_code">
                         {{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}}
                      </ng-container>
                      <ng-container *ngIf="userData?.personal_details?.permanent_address?.country">
-                        {{userData?.personal_details?.permanent_address?.country}}</ng-container>
+                        {{userData?.personal_details?.permanent_address?.country}}
+                     </ng-container>
                      <!-------------- KRA VERIFY DATA: END -------------->
                   </div>
                </div>
@@ -189,7 +195,7 @@
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
                   <span class="cmn-txt"
-                     *ngIf="userData?.aadhar_details?.uploaded_date">{{userData?.aadhar_details?.uploaded_date}}</span>
+                        *ngIf="userData?.aadhar_details?.uploaded_date">{{userData?.aadhar_details?.uploaded_date}}</span>
                   <span class="digi-text" *ngIf="userData?.aadhar_details?.isPanFileVerifiedByDigiLocker">Submitted
                      using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2"></span>
                </div>
@@ -202,6 +208,9 @@
                         <a class="dropdown-item"
                            (click)="openDocumentPopupModal(aadhaarKYCDocuments?.document_name, aadhaarKYCDocuments?.document_modal_title, aadhaarKYCDocuments?.document_status, aadhaarKYCDocuments)">Upload
                            document</a>
+                        <a class="dropdown-item" *ngIf="userData?.aadhar_details?.aadhar_documents?.length"
+                           (click)="imageAndPdfModel({userData:userData,objects:['aadhar_details','aadhar_documents'],
+                           label:'Aadhaar Card'})">Zoom In Zoom Out</a>
                      </div>
                   </div>
                   <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents?.length">
@@ -221,9 +230,7 @@
                <label class="doc-type">aadhaar card</label>
             </div>
          </div>
-      </div>
-      <!-- User box - permanent account number (PAN)-->
-      <div class="user-box">
+
          <div class="user-bxhdr d-flex justify-content-between">
             <div class="lft">
                <h2>permanent account number (PAN)</h2>
@@ -248,13 +255,17 @@
                </div>
                <div class="row cmn-layout">
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Full
-                        Name</label>{{userData?.pan_details?.full_name}}</div>
+                     Name</label>{{userData?.pan_details?.full_name}}
+                  </div>
                   <div class="col-md-12 d-flex flex-column mb-3">
-                     <label>DOB</label>{{userData?.pan_details?.date_of_birth}}</div>
+                     <label>DOB</label>{{userData?.pan_details?.date_of_birth}}
+                  </div>
                   <div class="col-md-12 d-flex flex-column mb-3"><label>father’s/spouse's
-                        name</label>{{userData?.personal_details?.father_name}}</div>
+                     name</label>{{userData?.personal_details?.father_name}}
+                  </div>
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Mother’s
-                        name</label>{{userData?.personal_details?.mother_name}}</div>
+                     name</label>{{userData?.personal_details?.mother_name}}
+                  </div>
                </div>
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
@@ -271,6 +282,9 @@
                         <a class="dropdown-item"
                            (click)="openDocumentPopupModal(panDocumentKYCDocuments?.document_name, panDocumentKYCDocuments?.document_modal_title, panDocumentKYCDocuments?.document_status, panDocumentKYCDocuments)">Upload
                            document</a>
+                        <a class="dropdown-item" *ngIf="userData?.pan_details?.pan_documents?.length"
+                           (click)="imageAndPdfModel({userData:userData,objects:['pan_details','pan_documents'],
+                           label:'PAN Card'})">Zoom In Zoom Out</a>
                      </div>
                   </div>
                   <ngb-carousel *ngIf="userData?.pan_details?.pan_documents?.length">
@@ -287,15 +301,13 @@
                <label class="doc-type">PAN Card</label>
             </div>
          </div>
-      </div>
-      <!-- User box - personal & address details-->
-      <div class="user-box">
+
          <div class="user-bxhdr d-flex justify-content-between">
             <div class="lft">
                <h2>personal & address details</h2>
             </div>
             <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar <span
-                     class="icon-alert ml-3"></span></span></div>
+                    class="icon-alert ml-3"></span></span></div>
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
@@ -304,25 +316,32 @@
                </div> -->
                <div class="row cmn-layout">
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Full
-                        Name</label>{{userData?.personal_details?.full_name}}</div>
+                     Name</label>{{userData?.personal_details?.full_name}}
+                  </div>
                   <div class="col-md-6 d-flex flex-column mb-3">
-                     <label>DOB</label>{{userData?.personal_details?.date_of_birth}}</div>
+                     <label>DOB</label>{{userData?.personal_details?.date_of_birth}}
+                  </div>
                   <div class="col-md-6 d-flex flex-column mb-3">
-                     <label>Gender</label>{{userData?.personal_details?.gender}}</div>
+                     <label>Gender</label>{{userData?.personal_details?.gender}}
+                  </div>
                   <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>
                      <p style="word-break: break-word;">
                         <!-------------- KRA VERIFY DATA: START -------------->
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line1">
-                           {{userData?.personal_details?.permanent_address?.address_line1}},</ng-container>
+                           {{userData?.personal_details?.permanent_address?.address_line1}},
+                        </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line2">
-                           {{userData?.personal_details?.permanent_address?.address_line2}},</ng-container>
+                           {{userData?.personal_details?.permanent_address?.address_line2}},
+                        </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line3">
-                           {{userData?.personal_details?.permanent_address?.address_line3}},</ng-container>
+                           {{userData?.personal_details?.permanent_address?.address_line3}},
+                        </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.pin_code">
                            {{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}}
                         </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.country">
-                           {{userData?.personal_details?.permanent_address?.country}}</ng-container>
+                           {{userData?.personal_details?.permanent_address?.country}}
+                        </ng-container>
                         <!-------------- KRA VERIFY DATA: END -------------->
                      </p>
                   </div>
@@ -330,25 +349,32 @@
                      <p *ngIf="userData?.personal_details?.is_corres_same_permanent" style="word-break: break-word;">
                         <!-------------- KRA VERIFY DATA: START -------------->
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line1">
-                           {{userData?.personal_details?.permanent_address?.address_line1}},</ng-container>
+                           {{userData?.personal_details?.permanent_address?.address_line1}},
+                        </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line2">
-                           {{userData?.personal_details?.permanent_address?.address_line2}},</ng-container>
+                           {{userData?.personal_details?.permanent_address?.address_line2}},
+                        </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line3">
-                           {{userData?.personal_details?.permanent_address?.address_line3}},</ng-container>
+                           {{userData?.personal_details?.permanent_address?.address_line3}},
+                        </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.pin_code">
                            {{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}}
                         </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.country">
-                           {{userData?.personal_details?.permanent_address?.country}}</ng-container>
+                           {{userData?.personal_details?.permanent_address?.country}}
+                        </ng-container>
                         <!-------------- KRA VERIFY DATA: END -------------->
                      </p>
                      <p *ngIf="!userData?.personal_details?.is_corres_same_permanent" style="word-break: break-word;">
                         <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line1">
-                           {{userData?.personal_details?.corrospondence_address?.address_line1}},</ng-container>
+                           {{userData?.personal_details?.corrospondence_address?.address_line1}},
+                        </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line2">
-                           {{userData?.personal_details?.corrospondence_address?.address_line2}},</ng-container>
+                           {{userData?.personal_details?.corrospondence_address?.address_line2}},
+                        </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line3">
-                           {{userData?.personal_details?.corrospondence_address?.address_line3}},</ng-container>
+                           {{userData?.personal_details?.corrospondence_address?.address_line3}},
+                        </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.pin_code">
                            {{userData?.personal_details?.corrospondence_address?.pin_code | mask:'000 000'}}
                         </ng-container>
@@ -359,9 +385,10 @@
                   </div>
                </div>
                <button class="btn btn-custom btn-border font-sml"
-                  [routerLink]="['/applications/edit-personal-address',userId]"
-                  routerLinkActive="router-link-active">edit
-                  details</button>
+                       [routerLink]="['/applications/edit-personal-address',userId]"
+                       routerLinkActive="router-link-active">edit
+                  details
+               </button>
                <button class="btn btn-custom font-sml disabled">request reveiw</button>
             </div>
             <div class="col-md-6">
@@ -377,6 +404,9 @@
                         <a class="dropdown-item"
                            (click)="openDocumentPopupModal(addressProofKYCDocuments?.document_name, addressProofKYCDocuments?.document_modal_title, addressProofKYCDocuments?.document_status, addressProofKYCDocuments)">Upload
                            document</a>
+                        <a class="dropdown-item" *ngIf="userData?.personal_details?.address_url?.length"
+                           (click)="imageAndPdfModel({userData:userData,objects:['personal_details','address_url'],
+                           label:'Address Proof'})">Zoom In Zoom Out</a>
                      </div>
 
                   </div>
@@ -395,7 +425,8 @@
             </div>
          </div>
       </div>
-      <!-- User box - bank details-->
+
+
       <div class="user-box">
          <div class="user-bxhdr d-flex justify-content-between">
             <div class="lft">
@@ -444,6 +475,9 @@
                         <a class="dropdown-item"
                            (click)="openDocumentPopupModal(cancelledChequeKYCDocuments?.document_name, cancelledChequeKYCDocuments?.document_modal_title, cancelledChequeKYCDocuments?.document_status, cancelledChequeKYCDocuments)">Upload
                            document</a>
+                        <a class="dropdown-item" *ngIf="userData?.bank_details?.cancelled_cheque_url?.length"
+                           (click)="imageAndPdfModel({userData:userData,objects:['bank_details','cancelled_cheque_url'],
+                           label:'Address Proof'})">Zoom In Zoom Out</a>
                      </div>
                   </div>
 
@@ -454,7 +488,7 @@
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
-                           <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           <img width="100%" [src]="imageItem?.url" alt="Random first slide"  (click)="open(imageItem?.url)">
                         </div>
                      </ng-template>
                   </ngb-carousel>

@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h5 class="modal-title">{{title}}</h5>
+    <button type="button" class="close" data-dismiss="modal" (click)="closeModal('dismiss')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body container">
+    <div >
+        <div class="modal-body p-0 payment-popup uploaddoc-popup">
+            <div class="modal-header yellowclr common-header">
+                <div class="popup-header">
+                    <span>Upload Document</span>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="popup-icon">
+                    <img src="assets/img/doc.svg">
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" (click)="zoomin()"> Zoom In</button>
+    <button type="button" (click)="zoomout()"> Zoom Out</button>
+</div>

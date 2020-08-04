@@ -9,6 +9,7 @@ import { UserService } from 'app/shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { CookiesService } from '@ngx-utils/cookies';
 import { ConfirmationDialogService } from 'app/shared/services/confirmation-dialoge.service';
+import {ImagePopupComponent} from '../image-popup/image-popup.component';
 
 @Component({
   selector: 'app-users-detail',
@@ -166,6 +167,15 @@ export class UsersDetailComponent implements OnInit {
     const modelRef = this.modelRef(btnElement);
     const modelData = {};
     modelData["title"] = "Add Ons";
+    modelRef.componentInstance.fromParent = modelData;
+  }
+
+  imageAndPdfModel({ userData,objects,label }) {
+    const modelRef = this.modalService.open(ImagePopupComponent, { centered: true });
+    const modelData = {};
+    modelData["title"] = label;
+    modelData["userData"] = userData;
+    modelData["arrayOfString"] = objects;
     modelRef.componentInstance.fromParent = modelData;
   }
 
