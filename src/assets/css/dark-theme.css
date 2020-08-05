@@ -17,8 +17,9 @@ body.layout-dark p, body.layout-dark .content-sub-header, body.layout-dark .tabl
 .layout-dark .cmn-txt{color: rgba(255, 255, 255, 0.56);}
 .layout-dark .doc-upbox{background: #082544;}
 .layout-dark .user-btmbx > .col-md-6:first-child{border-color:#082544;}
-.layout-dark section.application .nav-tabs .nav-link{color: rgba(255, 255, 255, 0.56);}
-.layout-dark section.application .tab-content{background: #093260 ;border: 1px solid #082544;}
+.layout-dark .custom-tabs .nav-tabs .nav-link{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .custom-tabs .tab-content{background: #093260 ;border: 1px solid #082544;}
+.layout-dark .custom-tabs .nav-tabs .nav-link:hover{background: rgba(255, 255, 255, 0.08);}
 .layout-dark .form-control::placeholder{color: rgba(255, 255, 255, 0.32);}
 .layout-dark .form-control::-webkit-input-placeholder {color: rgba(255, 255, 255, 0.32);}
 .layout-dark .form-control:-ms-input-placeholder {color:rgba(255, 255, 255, 0.32);}
@@ -39,7 +40,7 @@ body.layout-dark .dropdown-menu .dropdown-item:hover {background-color: rgba(9, 
 .layout-dark .ngx-datatable .datatable-footer .page-count{color: rgba(255, 255, 255, 0.32)}
 .layout-dark .ngx-datatable.bootstrap .datatable-footer .datatable-pager a{color: rgba(255, 255, 255, 0.8)}
 .layout-dark .ngx-select__toggle::after{color: rgba(255, 255, 255, 0.56);}
-.layout-dark section.application .nav-tabs .nav-link:hover{background: rgba(255, 255, 255, 0.08);}
+
 .layout-dark .light-color-text{color: rgba(255, 255, 255, 0.32);}
 .layout-dark section.application .filter{background: rgba(255, 255, 255, 0.08);border: 1px solid #082544;color: rgba(255, 255, 255, 0.56);}
 .layout-dark section.application span.icon-filter{color: rgba(255, 255, 255, 0.56);}
@@ -69,3 +70,11 @@ body.layout-dark .dropdown-menu .dropdown-item:hover {background-color: rgba(9, 
 .layout-dark .history ul li.blue{background: rgba(0, 0, 0, 0.16);border-color: #0970DD;}
 .layout-dark .history ul li.red{background: rgba(223, 14, 64, 0.16);}
 .layout-dark .pw-strength{color: rgba(255, 255, 255, 0.8)}
+
+.layout-dark .multiselect-list .custom-checkbox label,
+.layout-dark .multiselect-list .custom-radio label{border-color: #082544;background: rgba(0, 0, 0, 0.08);color: rgba(255, 255, 255, 0.8);}
+.layout-dark .custom-checkbox label:before{background:rgba(221, 221, 221, 0.16);border-color: rgba(255, 255, 255, 0.8);}
+.layout-dark .multiselect-list .type-list .disabled label{color: rgba(255, 255, 255, 0.24);}
+.layout-dark .slct-theme strong{color: rgba(255, 255, 255, 0.8);}
+.layout-dark .slct-theme{color: rgba(255, 255, 255, 0.24);}
+.layout-dark .admin-profile .custom-radio p{color: rgba(255, 255, 255, 0.32);}
