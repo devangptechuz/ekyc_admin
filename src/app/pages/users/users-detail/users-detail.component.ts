@@ -9,6 +9,7 @@ import { UserService } from 'app/shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { CookiesService } from '@ngx-utils/cookies';
 import { ConfirmationDialogService } from 'app/shared/services/confirmation-dialoge.service';
+import {ImagePopupComponent} from '../document-modal/image-popup/image-popup.component';
 
 @Component({
   selector: 'app-users-detail',
@@ -33,10 +34,12 @@ export class UsersDetailComponent implements OnInit {
   defaultSelectedDocument: any;
   adminApproval: any;
   adminApprovalText: string;
+  reviewAll:boolean
 
   @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
   @ViewChild('fileuploadSignaturepopup') fileuploadSignaturepopup: any;
   @ViewChild('ipvPopup') IPVPopup: any;
+  @ViewChild('imageDisplay') imageDisplay: any;
   ipvDocumentStatus: string;
   /******** webcame: START *******/
   liveWebcam = false;
@@ -134,11 +137,9 @@ export class UsersDetailComponent implements OnInit {
   }
   manageUserData(result: any = '') {
     this.userData = result;
-
     this.userKYCDocuments = result?.basic_info?.document_uploaded;
     this.adminApproval = result?.basic_info?.adminApproval;
     this.manageApplicationStatus(this.adminApproval);
-
     if (result?.basic_info?.document_uploaded) {
       result?.basic_info?.document_uploaded.map((item: any) => {
         if (item?.document_name === 'aadhar_document') {
@@ -166,6 +167,15 @@ export class UsersDetailComponent implements OnInit {
     const modelRef = this.modelRef(btnElement);
     const modelData = {};
     modelData["title"] = "Add Ons";
+    modelRef.componentInstance.fromParent = modelData;
+  }
+
+  imageAndPdfModel({ userData,objects,label }) {
+    const modelRef = this.modalService.open(ImagePopupComponent, { centered: true });
+    const modelData = {};
+    modelData["title"] = label;
+    modelData["userData"] = userData;
+    modelData["arrayOfString"] = objects;
     modelRef.componentInstance.fromParent = modelData;
   }
 
@@ -382,6 +392,7 @@ export class UsersDetailComponent implements OnInit {
     this.globalDocumentPopup = true;
     const dropdownDocumentList = this.userKYCDocuments;
     this.defaultSelectedDocument = dropdownDocumentList[0].document_name;
+    // console.log('test', this.defaultSelectedDocument);
     this.dropdownDocumentList = dropdownDocumentList.filter((ele: any) => ele.document_name !== 'ipv' && ele.document_name !== 'signature');
     this.documentSelection();
     this.modalRef = this.modalService.open(this.fileuploadAadharpopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
@@ -410,8 +421,10 @@ export class UsersDetailComponent implements OnInit {
   }
 
   selectDocProcess(selValue: any) {
+    // console.log('selValue', selValue);
     this.userKYCDocuments.map((item: any) => {
       if (item.document_name === selValue) {
+        // this.defaultSelectedDocument = item.document_name;
         this.allowedMimeType = item.mime_type;
         this.maxUploadLimit = item.remaining_count;
         this.isDocumentVerified = (item.document_status === 'verified') ? true : false;
@@ -752,7 +765,7 @@ export class UsersDetailComponent implements OnInit {
   /**
   * Get all document lists
   */
-  getKYCDocumentsList(hideLoader: boolean = false, userId: any = '') {
+    getKYCDocumentsList(hideLoader: boolean = false, userId: any = '') {
     this.userService.getUserWithHideLoader(hideLoader, userId).subscribe((res: any) => {
       if (res.success) {
         // console.log(res.result);
@@ -791,6 +804,32 @@ export class UsersDetailComponent implements OnInit {
       this.mediaPreviews = [];
     });
   }
+
+
+  openImageDisplayModal(nameOfDocument: any, nameOfModalTitle: any, documentStatus = '', allItem: any = '') {
+    this.reviewAll = false;
+    this.nameOfDocument = nameOfDocument;
+    this.nameOfTitleDocument = nameOfModalTitle;
+    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef.result.then((result) => {
+      this.globalDocumentPopup = false;
+      this.aadharDisplayImage = '';
+      this.mediaPreviews = [];
+    });
+  }
+
+
+  reviewAllModal() {
+    this.reviewAll = true;
+    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef.result.then((result) => {
+      this.globalDocumentPopup = false;
+      this.aadharDisplayImage = '';
+      this.mediaPreviews = [];
+    });
+  }
+
+
 
   /**
    * submit aadhar upload and then close
@@ -846,7 +885,6 @@ export class UsersDetailComponent implements OnInit {
 
     this.confirmationDialogService.reasonToConfirm(popupParam).then((data) => {
       if (data) {
-        console.log('tes');
         let objParam = {}
         objParam['userIds'] = [this.userId];
         objParam['type'] = 'Reject';
@@ -859,6 +897,46 @@ export class UsersDetailComponent implements OnInit {
               } else {
                 this.global.successToastr('Reject Successfully');
               }
+            } else {
+              this.global.errorToastr(res.message);
+            }
+          });
+      }
+    }).catch(error => console.log(error));
+  }
+
+  /**
+   * request for review, document,re-upload document: confirm modal pop-up
+   */
+  requestConfirm(typeOfrequest: any = '') {
+    const label = 'Application';
+    let popupParam = {};
+    if (typeOfrequest === 'request_for_document') {
+      popupParam['type'] = 'request_for_document';
+      popupParam['lable'] = 'Request document';
+      popupParam['title'] = 'Select from the list';
+      popupParam['button_name'] = 'Request Document';
+    } else if (typeOfrequest === 'data_review') {
+      popupParam['type'] = 'data_review';
+      popupParam['lable'] = 'Request re-upload';
+      popupParam['title'] = 'Select your reason';
+      popupParam['button_name'] = 'Request Review';
+    }
+    popupParam['userId'] = this.userId;
+
+    this.confirmationDialogService.requestToConfirm(popupParam).then((data) => {
+      if (data) {
+        let objParam = {}
+        objParam['userIds'] = [this.userId];
+        if (typeOfrequest === 'request_for_document') {
+          objParam['type'] = 'request_for_document';
+        } else if (typeOfrequest === 'data_review') {
+          objParam['type'] = 'data_review';
+        }
+        this.userService.requestToApplicants(objParam)
+          .subscribe((res) => {
+            if (res.success) {
+              this.global.successToastr(res.message);
             } else {
               this.global.errorToastr(res.message);
             }

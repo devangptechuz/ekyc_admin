@@ -1,10 +1,13 @@
-<div class="modal-header common-header" [ngClass]="{'redclr': objectOfModal?.type==='Reject'}">
+<div class="modal-header common-header"
+  [ngClass]="{'redclr': objectOfModal?.type==='Reject','yellowclr': objectOfModal?.type==='request_for_document' || objectOfModal?.type==='data_review'}">
   <div class="popup-header">
     <span>{{objectOfModal?.lable}}</span>
     <h2 class="mb-0">{{objectOfModal?.title}}</h2>
   </div>
   <div class="popup-icon">
-   <span class="icon-alert-octagon"></span>
+    <img *ngIf="objectOfModal?.type==='Reject'" src="../../../../assets/img/not-allow.svg">
+    <img *ngIf="objectOfModal?.type==='request_for_document' || objectOfModal?.type==='data_review'"
+      src="../../../../assets/img/doc.svg">
   </div>
 </div>
 <div class="modal-boy">
@@ -17,7 +20,7 @@
     <div *ngIf="listOfReasons?.length" class="reason-modal-popup">
       <div class="multiselect-list">
         <div class="type-list">
-          <div class="custom-checkbox green-check" formArrayName="reasonsArray" *ngFor="let reason of listOfReasons;let i = index;">
+          <div class="custom-checkbox" formArrayName="reasonsArray" *ngFor="let reason of listOfReasons;let i = index;">
             <div [formGroupName]="i">
               <input type="checkbox" id="logo{{i}}" value="{{ reason.id }}" formControlName="name"
                 (change)="selectReason($event)">
@@ -28,9 +31,13 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group rsn-txt">
-                <label class="mt-1">Reason Not Listed?</label>
-                <input type="text" placeholder="Some Custom Reason Entered By User..." class="form-control"
+              <div class="form-group">
+                <label class="mt-1" *ngIf="objectOfModal?.type==='Reject' || objectOfModal?.type==='data_review'">Reason
+                  Not
+                  Listed?</label>
+                <label class="mt-1" *ngIf="objectOfModal?.type==='request_for_document'">Document Not
+                  Listed?</label>
+                <input type="text" placeholder="Some Custom Text Entered By User..." class="form-control"
                   formControlName="reason_not_listed">
               </div>
             </div>
@@ -45,5 +52,7 @@
   <a class="btn modal-btn-continue" (click)="decline()">
     Cancel
   </a>
-  <a class="btn modal-cancel" (click)="accept()">{{objectOfModal?.button_name}}</a>
+  <a class="btn"
+    [ngClass]="{'modal-cancel': objectOfModal?.type==='Reject','modal-btn-continue': objectOfModal?.type==='request_for_document' || objectOfModal?.type==='data_review'}"
+    (click)="accept()">{{objectOfModal?.button_name}}</a>
 </div>

@@ -165,21 +165,27 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
   initialRecording() {
     this.interval = '';
     this.counter = 0;
-    this.mediaConstraints = {
-      video: {
-        // mirrored: true,
-        //facingMode: this.frontCamera ? "user" : "environment",
-        facingMode: 'environment',
-        width: { ideal: 1280 },
-        height: { ideal: 720 }
-      },
-      audio: {
-        echoCancellation: true
+    this.userService.sendOtpForIPV().subscribe((res: any) => {
+      if (res.success) {
+        this.mediaConstraints = {
+          video: {
+            // mirrored: true,
+            //facingMode: this.frontCamera ? "user" : "environment",
+            facingMode: 'environment',
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
+          },
+          audio: {
+            echoCancellation: true
+          }
+        };
+        navigator.mediaDevices
+          .getUserMedia(this.mediaConstraints)
+          .then(this.successCallback.bind(this), this.errorCallback.bind(this));
+      } else {
+        this.global.errorToastr(res?.message);
       }
-    };
-    navigator.mediaDevices
-      .getUserMedia(this.mediaConstraints)
-      .then(this.successCallback.bind(this), this.errorCallback.bind(this));
+    });
   }
 
   /* *
