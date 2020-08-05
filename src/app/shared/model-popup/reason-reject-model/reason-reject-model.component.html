@@ -53,6 +53,6 @@
     Cancel
   </a>
   <a class="btn"
-    [ngClass]="{'modal-cancel': objectOfModal?.type==='Reject','modal-btn-continue': objectOfModal?.type==='request_for_document','modal-btn-continue': objectOfModal?.type==='data_review'}"
+    [ngClass]="{'modal-cancel': objectOfModal?.type==='Reject','modal-btn-continue': objectOfModal?.type==='request_for_document' || objectOfModal?.type==='data_review'}"
     (click)="accept()">{{objectOfModal?.button_name}}</a>
 </div>

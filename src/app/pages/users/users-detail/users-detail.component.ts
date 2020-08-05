@@ -382,7 +382,7 @@ export class UsersDetailComponent implements OnInit {
     this.globalDocumentPopup = true;
     const dropdownDocumentList = this.userKYCDocuments;
     this.defaultSelectedDocument = dropdownDocumentList[0].document_name;
-    console.log('test', this.defaultSelectedDocument);
+    // console.log('test', this.defaultSelectedDocument);
     this.dropdownDocumentList = dropdownDocumentList.filter((ele: any) => ele.document_name !== 'ipv' && ele.document_name !== 'signature');
     this.documentSelection();
     this.modalRef = this.modalService.open(this.fileuploadAadharpopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
@@ -411,9 +411,10 @@ export class UsersDetailComponent implements OnInit {
   }
 
   selectDocProcess(selValue: any) {
-    console.log('selValue', selValue);
+    // console.log('selValue', selValue);
     this.userKYCDocuments.map((item: any) => {
       if (item.document_name === selValue) {
+        // this.defaultSelectedDocument = item.document_name;
         this.allowedMimeType = item.mime_type;
         this.maxUploadLimit = item.remaining_count;
         this.isDocumentVerified = (item.document_status === 'verified') ? true : false;

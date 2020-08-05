@@ -126,7 +126,8 @@
             </div>
             <div class="col-md-6">
                <span class="cmn-txt mb-3 d-block">Received on Jan 20 2020 - 05:36 PM</span>
-               <p class="mb-1">The transaction receipt was generated on 20 Jan 2020 - 06:36 & was successfully sent to
+               <p class="mb-1">The transaction receipt was generated on 20 Jan 2020 - 06:36 & was successfully sent
+                  to
                   the user via email on 20 Jan 2020 - 07:36</p>
                <button class="btn btn-custom font-sml disabled">View receipt</button>
             </div>
@@ -185,7 +186,8 @@
                      <!-------------- KRA VERIFY DATA: END -------------->
                   </div>
                </div>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request reveiw</button>
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+                  reveiw</button>
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between mb-2">
@@ -257,7 +259,8 @@
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Mother’s
                         name</label>{{userData?.personal_details?.mother_name}}</div>
                </div>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request reveiw</button>
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+                  reveiw</button>
             </div>
             <div class="col-md-6">
                <!-- <div class="d-flex justify-content-between mb-2">
@@ -295,8 +298,8 @@
             <div class="lft">
                <h2>personal & address details</h2>
             </div>
-            <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar <span
-                     class="icon-alert ml-3"></span></span></div>
+            <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar
+                  <span class="icon-alert ml-3"></span></span></div>
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
@@ -363,7 +366,8 @@
                   [routerLink]="['/applications/edit-personal-address',userId]"
                   routerLinkActive="router-link-active">edit
                   details</button>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request reveiw</button>
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+                  reveiw</button>
             </div>
             <div class="col-md-6">
                <!-- <div class="d-flex justify-content-between mb-2">
@@ -402,8 +406,8 @@
             <div class="lft">
                <h2>Bank details</h2>
             </div>
-            <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar <span
-                     class="icon-alert ml-3"></span></span></div>
+            <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar
+                  <span class="icon-alert ml-3"></span></span></div>
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
@@ -425,8 +429,10 @@
                   </div>
                </div>
                <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/bank-details',userId]"
-                  routerLinkActive="router-link-active">edit details</button>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request reveiw</button>
+                  routerLinkActive="router-link-active">edit
+                  details</button>
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+                  reveiw</button>
             </div>
             <div class="col-md-6">
                <!-- <div class="d-flex justify-content-between mb-2">
@@ -612,7 +618,7 @@
       </div>
 
       <div class="col-md-4" [hidden]="!globalDocumentPopup">
-         <div class="form-group">
+         <div class="form-group document-dropdown">
             <label>Document Selection </label>
             <ng-select placeholder="select" [searchable]="false" [items]="dropdownDocumentList"
                bindLabel="document_button_lable" bindValue="document_name" [clearable]="false"
