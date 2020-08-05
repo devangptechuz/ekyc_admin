@@ -39,7 +39,8 @@
               "src/assets/vendor/pace/pace.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/jquery.panzoom/dist/jquery.panzoom.min.js"
             ]
           },
           "configurations": {

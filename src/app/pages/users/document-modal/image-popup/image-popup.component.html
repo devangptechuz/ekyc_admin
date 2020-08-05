@@ -1,0 +1,33 @@
+<div class="modal-body p-0 payment-popup uploaddoc-popup">
+    <div class="modal-header yellowclr common-header">
+        <div class="popup-header">
+            <span>Display Document</span>
+            <h4 class="modal-title">{{nameTitleDocument}}</h4>
+        </div>
+        <div class="popup-icon">
+            <img src="assets/img/doc.svg">
+        </div>
+    </div>
+    <div *ngIf="flag">
+        <ngx-select [items]="applicationType"  optionValueField="value" (select)="doSelect($event)"
+                    [(ngModel)]="selected" optionTextField="label"></ngx-select>
+    </div>
+<!--    <button class="transparent-button" (click)="zoomToggle(false)">-</button>-->
+<!--    <span>{{currentZoomLevel * 100}}%</span>-->
+<!--    <button class="transparent-button" (click)="zoomToggle(true)">+</button>-->
+    <ngb-carousel *ngIf="userData">
+        <ng-template ngbSlide  *ngFor="let imageItem of userData[docNameUrl][docUrl];let i = index">
+            <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                <iframe [src]="imageItem?.url | safeUrl"  height="100%" width="100%"></iframe>
+            </div>
+            <div   *ngIf="imageItem?.content_type !== 'application/pdf'" >
+                <img width="100%" style="overflow: hidden" id="scene" #scene [src]="imageItem?.url" alt="Random first slide">
+            </div>
+        </ng-template>
+    </ngb-carousel>
+
+    <!----------------- VIEW image/file : END -------------->
+    <div class="modal-footer d-flex justify-content-between">
+        <a class="btn modal-btn-cancel" (click)="cancelModal()" href="javascript:void(0)">{{'Cancel'}}</a>
+    </div>
+</div>
