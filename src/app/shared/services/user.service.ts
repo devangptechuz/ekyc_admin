@@ -33,6 +33,13 @@ export class UserService {
     return this.http.get<any>(`${this.baseUrlOfUser}/userDetail/${id}`);
   }
 
+  /**
+   * get user activity 
+   */
+  getUserActivity(id): Observable<any> {
+    return this.http.get<any>(`${this.baseUrlOfUser}/getUserActivities/${id}`);
+  }
+
   deleteUser(data): Observable<any> {
     return this.http.post<any>(`${this.baseUrlOfUser}/deleteUser`, data); //todo id=['']
   }
@@ -95,6 +102,13 @@ export class UserService {
    */
   removeImageFileDocument(obj: any) {
     return this.http.post<any>(`${this.baseUrlOfUser}/deleteUserDocument`, obj);
+  }
+
+  /**
+   * send otp for IPV
+   */
+  sendOtpForIPV() {
+    return this.http.get<any>(`${environment.second_api_url}/sendOtpForIPV`);
   }
 
   /**
