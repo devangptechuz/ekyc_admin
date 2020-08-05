@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserHistoryComponent implements OnInit {
   userId: any;
+  applicationHistory: any;
   constructor(
     private route: ActivatedRoute,
   ) {
@@ -15,6 +16,10 @@ export class UserHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const userData = this.route.snapshot.data['user'];
+    if (userData?.result) {
+      this.applicationHistory = userData?.result;
+    }
   }
 
 }

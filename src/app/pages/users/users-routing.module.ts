@@ -7,6 +7,7 @@ import { EditApplicationComponent } from './edit-application/edit-application.co
 import { UserHistoryComponent } from './user-history/user-history.component';
 import { BankDetailComponent } from './bank-detail/bank-detail.component';
 import { EditPersoanlAddressDetailsComponent } from './edit-persoanl-address-details/edit-persoanl-address-details.component';
+import { ApplicationHistory } from './shared/application-history.resolver';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
     data: {
       title: 'user-history',
     },
+    resolve: { user: ApplicationHistory }
   },
   {
     path: 'edit-application',
