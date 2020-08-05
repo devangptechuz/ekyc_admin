@@ -22,7 +22,7 @@ import { UserHistoryComponent } from './user-history/user-history.component';
 import { BankDetailComponent } from './bank-detail/bank-detail.component';
 import { EditPersoanlAddressDetailsComponent } from './edit-persoanl-address-details/edit-persoanl-address-details.component';
 import { InPersonVideoComponent } from './document-modal/in-person-video/in-person-video.component';
-import { ImagePopupComponent } from './image-popup/image-popup.component';
+import { ImagePopupComponent } from './document-modal/image-popup/image-popup.component';
 
 @NgModule({
   declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent,

@@ -97,7 +97,8 @@
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>photograph</a></li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>in person video</a></li> -->
                </ul>
-               <button class="btn btn-custom disabled">reveiw all</button>
+               <button class="btn btn-custom disabled"
+                       (click)="reviewAllModal()">review all</button>
             </div>
          </div>
       </div>
@@ -209,8 +210,7 @@
                            (click)="openDocumentPopupModal(aadhaarKYCDocuments?.document_name, aadhaarKYCDocuments?.document_modal_title, aadhaarKYCDocuments?.document_status, aadhaarKYCDocuments)">Upload
                            document</a>
                         <a class="dropdown-item" *ngIf="userData?.aadhar_details?.aadhar_documents?.length"
-                           (click)="imageAndPdfModel({userData:userData,objects:['aadhar_details','aadhar_documents'],
-                           label:'Aadhaar Card'})">Zoom In Zoom Out</a>
+                           (click)="openImageDisplayModal(aadhaarKYCDocuments?.document_name, aadhaarKYCDocuments?.document_modal_title, aadhaarKYCDocuments?.document_status, aadhaarKYCDocuments)">Zoom In Zoom Out</a>
                      </div>
                   </div>
                   <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents?.length">
@@ -283,8 +283,7 @@
                            (click)="openDocumentPopupModal(panDocumentKYCDocuments?.document_name, panDocumentKYCDocuments?.document_modal_title, panDocumentKYCDocuments?.document_status, panDocumentKYCDocuments)">Upload
                            document</a>
                         <a class="dropdown-item" *ngIf="userData?.pan_details?.pan_documents?.length"
-                           (click)="imageAndPdfModel({userData:userData,objects:['pan_details','pan_documents'],
-                           label:'PAN Card'})">Zoom In Zoom Out</a>
+                           (click)="openImageDisplayModal(panDocumentKYCDocuments?.document_name, panDocumentKYCDocuments?.document_modal_title, panDocumentKYCDocuments?.document_status, panDocumentKYCDocuments)">Zoom In Zoom Out</a>
                      </div>
                   </div>
                   <ngb-carousel *ngIf="userData?.pan_details?.pan_documents?.length">
@@ -405,8 +404,7 @@
                            (click)="openDocumentPopupModal(addressProofKYCDocuments?.document_name, addressProofKYCDocuments?.document_modal_title, addressProofKYCDocuments?.document_status, addressProofKYCDocuments)">Upload
                            document</a>
                         <a class="dropdown-item" *ngIf="userData?.personal_details?.address_url?.length"
-                           (click)="imageAndPdfModel({userData:userData,objects:['personal_details','address_url'],
-                           label:'Address Proof'})">Zoom In Zoom Out</a>
+                           (click)="openImageDisplayModal(addressProofKYCDocuments?.document_name, addressProofKYCDocuments?.document_modal_title, addressProofKYCDocuments?.document_status, addressProofKYCDocuments)">Zoom In Zoom Out</a>
                      </div>
 
                   </div>
@@ -476,8 +474,7 @@
                            (click)="openDocumentPopupModal(cancelledChequeKYCDocuments?.document_name, cancelledChequeKYCDocuments?.document_modal_title, cancelledChequeKYCDocuments?.document_status, cancelledChequeKYCDocuments)">Upload
                            document</a>
                         <a class="dropdown-item" *ngIf="userData?.bank_details?.cancelled_cheque_url?.length"
-                           (click)="imageAndPdfModel({userData:userData,objects:['bank_details','cancelled_cheque_url'],
-                           label:'Address Proof'})">Zoom In Zoom Out</a>
+                           (click)="openImageDisplayModal(cancelledChequeKYCDocuments?.document_name, cancelledChequeKYCDocuments?.document_modal_title, cancelledChequeKYCDocuments?.document_status, cancelledChequeKYCDocuments)">Zoom In Zoom Out</a>
                      </div>
                   </div>
 
@@ -488,7 +485,7 @@
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
-                           <img width="100%" [src]="imageItem?.url" alt="Random first slide"  (click)="open(imageItem?.url)">
+                           <img width="100%" [src]="imageItem?.url" alt="Random first slide" >
                         </div>
                      </ng-template>
                   </ngb-carousel>
@@ -511,6 +508,8 @@
                         <a class="dropdown-item"
                            (click)="openDocumentPopupModal(bankStatementKYCDocuments?.document_name, bankStatementKYCDocuments?.document_modal_title, bankStatementKYCDocuments?.document_status, bankStatementKYCDocuments)">Upload
                            document</a>
+                        <a class="dropdown-item" *ngIf="userData?.bank_details?.bank_statement_url?.length"
+                           (click)="openImageDisplayModal(bankStatementKYCDocuments?.document_name, bankStatementKYCDocuments?.document_modal_title, bankStatementKYCDocuments?.document_status, bankStatementKYCDocuments)">Zoom In Zoom Out</a>
                      </div>
 
                   </div>
@@ -552,6 +551,8 @@
                         <a class="dropdown-item" href="javascript:void(0)"
                            (click)="openSinaturePopupModal(signatureKYCDocuments?.document_name, signatureKYCDocuments?.document_modal_title, signatureKYCDocuments?.document_status, signatureKYCDocuments)">Upload
                            document</a>
+                        <a class="dropdown-item" *ngIf="userData?.sign_and_identity?.sign_url?.length"
+                           (click)="openImageDisplayModal(signatureKYCDocuments?.document_name, signatureKYCDocuments?.document_modal_title, signatureKYCDocuments?.document_status, signatureKYCDocuments)">Zoom In Zoom Out</a>
                      </div>
                   </div>
                   <!-- /************* Signature : CAROUSEL **************/ -->
@@ -581,6 +582,8 @@
                         <a class="dropdown-item"
                            (click)="openDocumentPopupModal(photographKYCDocuments?.document_name, photographKYCDocuments?.document_modal_title, photographKYCDocuments?.document_status, photographKYCDocuments)">Upload
                            document</a>
+                        <a class="dropdown-item" *ngIf="userData?.sign_and_identity?.photograph_url?.length"
+                           (click)="openImageDisplayModal(photographKYCDocuments?.document_name, photographKYCDocuments?.document_modal_title, photographKYCDocuments?.document_status, photographKYCDocuments)">Zoom In Zoom Out</a>
                      </div>
                   </div>
                   <!-- /************* Photograph : CAROUSEL **************/ -->
@@ -950,3 +953,11 @@
    <app-in-person-video [ipvDocStatus]="ipvDocumentStatus" [nameDocument]="nameOfDocument"
       [nameTitleDocument]="nameOfTitleDocument" (closeEvent)="cancelModal('ipv')"></app-in-person-video>
 </ng-template>
+
+<ng-template #imageDisplay let-c="close" let-d="dismiss">
+   <app-image-popup [ipvDocStatus]="ipvDocumentStatus" [aadhaarKYCDocuments]="aadhaarKYCDocuments" [nameOfDocument]="nameOfDocument"
+                    [reviewAll]="reviewAll" (closeEvent)="cancelModal('imgDisplay')"></app-image-popup>
+</ng-template>
+
+
+
