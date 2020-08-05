@@ -9,6 +9,7 @@ import { UserService } from 'app/shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { CookiesService } from '@ngx-utils/cookies';
 import { ConfirmationDialogService } from 'app/shared/services/confirmation-dialoge.service';
+import {ImagePopupComponent} from '../document-modal/image-popup/image-popup.component';
 
 @Component({
   selector: 'app-users-detail',
@@ -33,10 +34,12 @@ export class UsersDetailComponent implements OnInit {
   defaultSelectedDocument: any;
   adminApproval: any;
   adminApprovalText: string;
+  reviewAll:boolean
 
   @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
   @ViewChild('fileuploadSignaturepopup') fileuploadSignaturepopup: any;
   @ViewChild('ipvPopup') IPVPopup: any;
+  @ViewChild('imageDisplay') imageDisplay: any;
   ipvDocumentStatus: string;
   /******** webcame: START *******/
   liveWebcam = false;
@@ -134,11 +137,9 @@ export class UsersDetailComponent implements OnInit {
   }
   manageUserData(result: any = '') {
     this.userData = result;
-
     this.userKYCDocuments = result?.basic_info?.document_uploaded;
     this.adminApproval = result?.basic_info?.adminApproval;
     this.manageApplicationStatus(this.adminApproval);
-
     if (result?.basic_info?.document_uploaded) {
       result?.basic_info?.document_uploaded.map((item: any) => {
         if (item?.document_name === 'aadhar_document') {
@@ -166,6 +167,15 @@ export class UsersDetailComponent implements OnInit {
     const modelRef = this.modelRef(btnElement);
     const modelData = {};
     modelData["title"] = "Add Ons";
+    modelRef.componentInstance.fromParent = modelData;
+  }
+
+  imageAndPdfModel({ userData,objects,label }) {
+    const modelRef = this.modalService.open(ImagePopupComponent, { centered: true });
+    const modelData = {};
+    modelData["title"] = label;
+    modelData["userData"] = userData;
+    modelData["arrayOfString"] = objects;
     modelRef.componentInstance.fromParent = modelData;
   }
 
@@ -755,7 +765,7 @@ export class UsersDetailComponent implements OnInit {
   /**
   * Get all document lists
   */
-  getKYCDocumentsList(hideLoader: boolean = false, userId: any = '') {
+    getKYCDocumentsList(hideLoader: boolean = false, userId: any = '') {
     this.userService.getUserWithHideLoader(hideLoader, userId).subscribe((res: any) => {
       if (res.success) {
         // console.log(res.result);
@@ -794,6 +804,32 @@ export class UsersDetailComponent implements OnInit {
       this.mediaPreviews = [];
     });
   }
+
+
+  openImageDisplayModal(nameOfDocument: any, nameOfModalTitle: any, documentStatus = '', allItem: any = '') {
+    this.reviewAll = false;
+    this.nameOfDocument = nameOfDocument;
+    this.nameOfTitleDocument = nameOfModalTitle;
+    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef.result.then((result) => {
+      this.globalDocumentPopup = false;
+      this.aadharDisplayImage = '';
+      this.mediaPreviews = [];
+    });
+  }
+
+
+  reviewAllModal() {
+    this.reviewAll = true;
+    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef.result.then((result) => {
+      this.globalDocumentPopup = false;
+      this.aadharDisplayImage = '';
+      this.mediaPreviews = [];
+    });
+  }
+
+
 
   /**
    * submit aadhar upload and then close
