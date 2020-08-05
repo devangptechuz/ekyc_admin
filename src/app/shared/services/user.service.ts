@@ -105,13 +105,6 @@ export class UserService {
   }
 
   /**
-   * send otp for IPV
-   */
-  sendOtpForIPV() {
-    return this.http.get<any>(`${environment.second_api_url}/sendOtpForIPV`);
-  }
-
-  /**
    * submit persoan & address details
    * @param objParam 
    */
