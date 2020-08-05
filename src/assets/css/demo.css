@@ -589,7 +589,7 @@ section.add-user .footer-btn .btn:disabled{color: #B0BAC5;opacity: 1;}
 section.add-user .checkbox label{font-weight: normal;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.56);}
 section.add-user .checkbox{margin: 0 0 24px;background: rgba(9, 112, 221, 0.16);border-radius: 8px;padding: 16px;}
 
-section.admin-profile .hdr-right button{display: flex;align-items: center;justify-content: center;min-width: 138px;padding: 16px;font-size: 12px;line-height: 18px;}
+section.admin-profile .hdr-right button,section.add-admin-user .hdr-right button{display: flex;align-items: center;justify-content: center;min-width: 138px;padding: 16px;font-size: 12px;line-height: 18px;}
 .hdr-right .icon-simple-check{font-weight: 600;margin-left: 5px;}
 .ngx-select__toggle::after{content: "\e918";color:#666666;font-size: 5px;font-family: 'icomoon' !important;border: none;display: block;width: auto;height: auto;display: block;width: auto;height: auto;}
 .ngx-select__toggle .dropdown-toggle::after{display: none;}
@@ -693,8 +693,8 @@ section.application .ng-dropdown-panel label{flex: 0 0 100%;font-weight: 500;fon
 section.application .position-relative{flex: 1;}
 section.application input[type='checkbox']:before,section.application input[type='checkbox']:after{height: 16px !important;width: 16px;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);position: absolute;background: #fff;}
 section.application input[type='checkbox']:checked:after{left: 4px;height: .3rem !important;top: 4px;}
-.ng-select .ng-value{display: none;}
-.ng-select .ng-value:first-child{display: block;}
+/*.ng-select .ng-value{display: none;}*/
+
 
 .ng-dropdown-panel .scroll-host::-webkit-scrollbar-track {background: transparent;}
 .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb {background: #C4C4C4;}
@@ -819,6 +819,8 @@ input:checked + .switch .slider:before {-webkit-transform: translateX(9px);-ms-t
 .common-header.blueclr .popup-header span{color: #0970DD;}
 .common-header.blueclr .popup-icon{background:rgba(9, 112, 221, 0.16);}
 .common-header.blueclr .popup-icon .icon-logout{color: #0970DD;font-size: 22px;}
+.common-header.redclr .popup-icon span{    font-size: 24px;
+    color: #DF0E40;}
 .common-header .modal-title{font-weight: 500;font-size: 24px;line-height: 36px;}
 .common-header .popup-icon{justify-content: center;width: 56px;height: 56px;display: flex;align-items: center;border-radius: 50%;text-align: center;}
 .common-header .popup-icon img {margin: 0 auto;}
@@ -963,6 +965,14 @@ ngb-datepicker-navigation button:focus{outline: none;}
 .admin-profile .custom-radio img{margin-right: 16px;}
 .slct-theme{color: rgba(0, 0, 0, 0.32);}
 .slct-theme strong {font-weight: 500;color: rgba(0, 0, 0, 0.8);}
+.form-group.rsn-txt label{font-size: 12px;line-height: 18px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);margin: 20px 0 5px;display: block;}
+.form-group.rsn-txt .form-control::-webkit-input-placeholder {color: rgba(0, 0, 0, 0.8);}
+.form-group.rsn-txt .form-control:-ms-input-placeholder {color: rgba(0, 0, 0, 0.8);}
+.form-group.rsn-txt .form-control::placeholder {color: rgba(0, 0, 0,  0.8);}
+.form-group.rsn-txt .form-control:focus::-webkit-input-placeholder {color: rgba(0, 0, 0, 0.8);}
+.form-group.rsn-txt .form-control:focus:-ms-input-placeholder {color: rgba(0, 0, 0, 0.8);}
+.form-group.rsn-txt .form-control:focus::placeholder {color: rgba(0, 0, 0, 0.8);}
+.form-group.rsn-txt input[type="text"]{font-size: 14px;}
 /*=========Custom Scroll===========*/
 
 @media(min-width:768px) {
