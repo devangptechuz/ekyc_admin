@@ -20,7 +20,7 @@
     <div *ngIf="listOfReasons?.length" class="reason-modal-popup">
       <div class="multiselect-list">
         <div class="type-list">
-          <div class="custom-checkbox" formArrayName="reasonsArray" *ngFor="let reason of listOfReasons;let i = index;">
+          <div class="custom-checkbox green-check" formArrayName="reasonsArray" *ngFor="let reason of listOfReasons;let i = index;">
             <div [formGroupName]="i">
               <input type="checkbox" id="logo{{i}}" value="{{ reason.id }}" formControlName="name"
                 (change)="selectReason($event)">
@@ -31,7 +31,7 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group">
+              <div class="form-group rsn-txt">
                 <label class="mt-1" *ngIf="objectOfModal?.type==='Reject' || objectOfModal?.type==='data_review'">Reason
                   Not
                   Listed?</label>

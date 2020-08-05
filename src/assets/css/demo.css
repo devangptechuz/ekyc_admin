@@ -819,8 +819,7 @@ input:checked + .switch .slider:before {-webkit-transform: translateX(9px);-ms-t
 .common-header.blueclr .popup-header span{color: #0970DD;}
 .common-header.blueclr .popup-icon{background:rgba(9, 112, 221, 0.16);}
 .common-header.blueclr .popup-icon .icon-logout{color: #0970DD;font-size: 22px;}
-.common-header.redclr .popup-icon span{    font-size: 24px;
-    color: #DF0E40;}
+.common-header.redclr .popup-icon span{font-size: 24px;color: #DF0E40;}
 .common-header .modal-title{font-weight: 500;font-size: 24px;line-height: 36px;}
 .common-header .popup-icon{justify-content: center;width: 56px;height: 56px;display: flex;align-items: center;border-radius: 50%;text-align: center;}
 .common-header .popup-icon img {margin: 0 auto;}
@@ -853,7 +852,7 @@ input:checked + .switch .slider:before {-webkit-transform: translateX(9px);-ms-t
 .or-text {height: 120px;position: relative;}
 .or-text:before{content:"";background-color: #DDDDDD;width: 1px;height: 100%;display: block;position: relative;}
 .or-text span{position: absolute;padding: 7px 0;top: 50%;transform: translateY(-50%);background: #F7F7F7;left: -10px;color: rgba(0, 0, 0, 0.24);}
-button.add-img {background: #0970DD;cursor: pointer;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.24);border-radius: 8px;color: #fff;display: flex;align-items: center;justify-content: center;flex-flow: column;font-weight: 500;font-size: 10px;line-height: 15px;min-height: 80px;min-width: 100%;}
+button.add-img {border: none;background: #0970DD;cursor: pointer;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.24);border-radius: 8px;color: #fff;display: flex;align-items: center;justify-content: center;flex-flow: column;font-weight: 500;font-size: 10px;line-height: 15px;min-height: 80px;min-width: 100%;}
 button.add-img span{font-size: 21px;margin-bottom: 5px;}
 button.view-img{background: #000000;border: 4px solid #0970DD;box-shadow: 0px 4px 8px rgba(9, 112, 221, 0.32);border-radius: 8px;width: 100%;min-height: 80px;max-height: 80px;margin: 16px 0 0;}
 button.view-img img{width: 110px;height: 60px;object-fit: cover;}
