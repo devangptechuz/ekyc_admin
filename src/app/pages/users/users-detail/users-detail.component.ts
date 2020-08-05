@@ -9,7 +9,7 @@ import { UserService } from 'app/shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { CookiesService } from '@ngx-utils/cookies';
 import { ConfirmationDialogService } from 'app/shared/services/confirmation-dialoge.service';
-import {ImagePopupComponent} from '../document-modal/image-popup/image-popup.component';
+import { ImagePopupComponent } from '../document-modal/image-popup/image-popup.component';
 
 @Component({
   selector: 'app-users-detail',
@@ -34,7 +34,7 @@ export class UsersDetailComponent implements OnInit {
   defaultSelectedDocument: any;
   adminApproval: any;
   adminApprovalText: string;
-  reviewAll:boolean
+  reviewAll: boolean
 
   @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
   @ViewChild('fileuploadSignaturepopup') fileuploadSignaturepopup: any;
@@ -170,7 +170,7 @@ export class UsersDetailComponent implements OnInit {
     modelRef.componentInstance.fromParent = modelData;
   }
 
-  imageAndPdfModel({ userData,objects,label }) {
+  imageAndPdfModel({ userData, objects, label }) {
     const modelRef = this.modalService.open(ImagePopupComponent, { centered: true });
     const modelData = {};
     modelData["title"] = label;
@@ -765,7 +765,7 @@ export class UsersDetailComponent implements OnInit {
   /**
   * Get all document lists
   */
-    getKYCDocumentsList(hideLoader: boolean = false, userId: any = '') {
+  getKYCDocumentsList(hideLoader: boolean = false, userId: any = '') {
     this.userService.getUserWithHideLoader(hideLoader, userId).subscribe((res: any) => {
       if (res.success) {
         // console.log(res.result);
@@ -921,6 +921,11 @@ export class UsersDetailComponent implements OnInit {
       popupParam['lable'] = 'Request re-upload';
       popupParam['title'] = 'Select your reason';
       popupParam['button_name'] = 'Request Review';
+    } else if (typeOfrequest === 'remind_user') {
+      popupParam['type'] = 'remind_user';
+      popupParam['lable'] = 'Remind user';
+      popupParam['title'] = 'Select method to remind';
+      popupParam['button_name'] = 'Remind User';
     }
     popupParam['userId'] = this.userId;
 
@@ -932,6 +937,8 @@ export class UsersDetailComponent implements OnInit {
           objParam['type'] = 'request_for_document';
         } else if (typeOfrequest === 'data_review') {
           objParam['type'] = 'data_review';
+        } else if (typeOfrequest === 'remind_user') {
+          objParam['type'] = 'remind_user';
         }
         this.userService.requestToApplicants(objParam)
           .subscribe((res) => {
