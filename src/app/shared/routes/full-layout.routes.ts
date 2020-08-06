@@ -13,11 +13,11 @@ export const Full_ROUTES: Routes = [
         loadChildren: () => import('../../pages/admin/admin.module').then(m => m.AdminModule),
         canActivateChild: [PageGuard]
     },
-    // {
-    //     path: 'users',
-    //     loadChildren: () => import('../../pages/users/users.module').then(m => m.UsersModule),
-    //     canActivateChild: [PageGuard]
-    // },
+    {
+        path: 'settings',
+        loadChildren: () => import('../../pages/admin/admin.module').then(m => m.AdminModule),
+        canActivateChild: [PageGuard]
+    },
     {
         path: 'applications',
         loadChildren: () => import('../../pages/users/users.module').then(m => m.UsersModule),
