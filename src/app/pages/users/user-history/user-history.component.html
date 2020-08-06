@@ -13,7 +13,7 @@
 						<img src="assets/img/user-ic.svg">
 					</div>
 					<img src="assets/img/1.jpg" class="mr-2"> -->
-					rakesh kumar prajapat
+					{{userName}}
 				</div>
 				<h6 class="mb-0">Application Number : <span class="text-uppercase">{{userId}}</span></h6>
 			</div>
@@ -22,8 +22,8 @@
 				<li
 					[ngClass]="{'white': !application?.colorCode,'green': application?.colorCode === 'green','red': application?.colorCode === 'red','blue': application?.colorCode === 'blue'}"
 					*ngFor="let application of applicationHistory">
-					<span>Jan 20 2020 - 02:45 pM</span>
-					<p>{{application?.activity}}</p>
+					<span>{{application?.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+					<p>{{application?.message}} <span *ngIf="application?.adminName">BY {{application?.adminName}}</span></p>
 				</li>
 				<!-- <li class="white">
    				<span>Jan 20 2020 - 02:45 pM</span>
