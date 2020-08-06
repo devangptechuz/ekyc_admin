@@ -30,13 +30,83 @@
                         </div>
                      </div>
                      <div class="tble">
-                        <ngx-datatable class="bootstrap checkbox-table" [loadingIndicator]="loadingIndicator"
+                        <ngx-datatable class="bootstrap checkbox-table expandable" [loadingIndicator]="loadingIndicator"
                            [columnMode]="'force'" [headerHeight]="30" [scrollbarH]="true" [footerHeight]="50"
                            [rowHeight]="70" [limit]="limitRow" [rows]="rows" [selected]="selected"
                            [selectionType]="'checkbox'" [selectAllRowsOnPage]="false" (page)='setPage($event)' (select)='onSelect($event)'>
+                           <ngx-datatable-row-detail [rowHeight]="250" #myDetailRow (toggle)="onDetailToggle($event)">
+                              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                                 <div  class="row">
+                                    <div class="col-md-8">
+                                       <div class="d-flex justify-content-between rgt-hdr">
+                                          <h4 class="mb-0">User Permission</h4>
+                                       </div>
+                                       <ul class="docupld-link">
+                                          <li class="" [ngClass]="'active'">
+                                             <a href="javascript:void(0)" style="pointer-events: none;">
+                                                <span class="icon-check-circle"></span>Mange other admin user accounts
+                                             </a>
+                                          </li>
+                                          <li class="" [ngClass]="'active'">
+                                             <a href="javascript:void(0)" style="pointer-events: none;">
+                                                <span class="icon-check-circle"></span>Access all Applications created by Org
+                                             </a>
+                                          </li>
+                                          <li class="" [ngClass]="'active'">
+                                             <a href="javascript:void(0)" style="pointer-events: none;">
+                                                <span class="icon-check-circle"></span>Upload documents on behalf of user
+                                             </a>
+                                          </li>
+                                          <li class="" [ngClass]="'active'">
+                                             <a href="javascript:void(0)" style="pointer-events: none;">
+                                                <span class="icon-check-circle"></span>can export customer’s data
+                                             </a>
+                                          </li>
+                                          <li class="" [ngClass]="'active'">
+                                             <a href="javascript:void(0)" style="pointer-events: none;">
+                                                <span class="icon-check-circle"></span>review applications
+                                             </a>
+                                          </li>
+                                          <li class="" [ngClass]="'active'">
+                                             <a href="javascript:void(0)" style="pointer-events: none;">
+                                                <span class="icon-check-circle"></span>create new applications
+                                             </a>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                    <div class="col-md-4">
+                                       <div class="d-flex justify-content-between rgt-hdr">
+                                          <h4 class="mb-0">Account Setting</h4>
+                                       </div>
+                                       <ul class="docupld-link">
+                                          <li class="" >
+                                             <a class="dropdown-item" href="javascript:void(0)" (click)="onEdit(row.id)">
+                                                <span class="ft-edit"></span> Edit</a>
+                                          </li>
+                                          <li class="">
+                                             <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(row.id,1)">
+                                                <span class="icon-user"></span>Activate User</a>
+                                          </li>
+                                          <li class="" >
+                                             <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(row.id,0)">
+                                                <span class="icon-notallow"></span>Deactivate User</a>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </ng-template>
+                           </ngx-datatable-row-detail>
                            <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false"
-                              [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true"
-                              prop="selected">
+                                                 [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true"
+                                                 prop="selected">
+                           </ngx-datatable-column>
+                           <ngx-datatable-column [width]="50" [resizeable]="false"
+                                  name="" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+                              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                 <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
+                                         title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
+                                 </a>
+                              </ng-template>
                            </ngx-datatable-column>
                            <ngx-datatable-column [width]="50" name="username" [sortable]="true" prop="username">
                               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
