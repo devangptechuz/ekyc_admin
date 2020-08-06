@@ -16,7 +16,7 @@
 <!--    <button class="transparent-button" (click)="zoomToggle(false)">-</button>-->
 <!--    <span>{{currentZoomLevel * 100}}%</span>-->
 <!--    <button class="transparent-button" (click)="zoomToggle(true)">+</button>-->
-    <div class="">
+    <div class="zoom-carousel">
         <ngb-carousel *ngIf="userData">
             <ng-template ngbSlide  *ngFor="let imageItem of userData[docNameUrl][docUrl];let i = index">
                 <div class="picsum-img-wrapper doc-upbox" *ngIf="imageItem?.content_type === 'application/pdf'">
