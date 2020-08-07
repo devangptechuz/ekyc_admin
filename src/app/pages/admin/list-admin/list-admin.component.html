@@ -37,7 +37,7 @@
                            <ngx-datatable-row-detail [rowHeight]="250" #myDetailRow (toggle)="onDetailToggle($event)">
                               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                                  <div  class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-8 left">
                                        <div class="d-flex justify-content-between rgt-hdr">
                                           <h4 class="mb-0">User Permission</h4>
                                        </div>
@@ -99,15 +99,7 @@
                            <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false"
                                                  [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true"
                                                  prop="selected">
-                           </ngx-datatable-column>
-                           <ngx-datatable-column [width]="50" [resizeable]="false"
-                                  name="" [sortable]="false" [draggable]="false" [canAutoResize]="false">
-                              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                 <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
-                                         title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
-                                 </a>
-                              </ng-template>
-                           </ngx-datatable-column>
+                           </ngx-datatable-column>                           
                            <ngx-datatable-column [width]="50" name="username" [sortable]="true" prop="username">
                               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                  <a class="user-img dummy-icon" *ngIf="!row.userProfile_url" (click)="onEdit(row.id)">
@@ -163,6 +155,14 @@
                                        <i class="ft-trash font-medium-3"></i>
                                     </button>
                                  </span> -->
+                              </ng-template>
+                           </ngx-datatable-column>
+                           <ngx-datatable-column [width]="50" [resizeable]="false"
+                                  name="" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+                              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                 <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" [class.open-datarow]="expanded"
+                                         title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
+                                 </a>
                               </ng-template>
                            </ngx-datatable-column>
                         </ngx-datatable>

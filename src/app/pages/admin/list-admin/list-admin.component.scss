@@ -1,9 +1,5 @@
-.ngx-datagrid {
-  .datatable-body {
-    min-height: 700px;
-  }
-}
-
-.ngx-datatable.scroll-vertical .datatable-body {
-  overflow-y: scroll !important;
+.open-datarow{
+	border-bottom: none;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
