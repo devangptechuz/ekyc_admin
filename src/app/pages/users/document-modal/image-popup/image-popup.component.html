@@ -1,17 +1,9 @@
-<div class="modal-body p-0 payment-popup uploaddoc-popup">
-    <div class="modal-header yellowclr common-header">
-        <div class="popup-header">
-            <span>Display Document</span>
-            <h4 class="modal-title">{{nameTitleDocument}}</h4>
-        </div>
-        <div class="popup-icon">
-            <img src="assets/img/doc.svg">
-        </div>
-    </div>
+<div class="modal-body p-0 viewdoc-popup">    
     <div *ngIf="flag">
         <ngx-select [items]="applicationType"  optionValueField="value" (select)="doSelect($event)"
                     [(ngModel)]="selected" optionTextField="label"></ngx-select>
     </div>
+    <span class="vrf-txt">verified by Digilocker on Jan 20 2020</span>
 <!--    TODO Zoom buttom set here-->
 <!--    <button class="transparent-button" (click)="zoomToggle(false)">-</button>-->
 <!--    <span>{{currentZoomLevel * 100}}%</span>-->
