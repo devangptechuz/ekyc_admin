@@ -217,15 +217,15 @@
                   </div>
                   <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents?.length">
                      <ng-template ngbSlide *ngFor="let imageAadhaar of userData?.aadhar_details?.aadhar_documents">
+                        <a class="fancyboxiframe" *ngIf="imageAadhaar?.content_type === 'application/pdf'" [href]="imageAadhaar?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type === 'application/pdf'">
                            <iframe [src]="imageAadhaar?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
-                        <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type !== 'application/pdf'">
+                        <div class="picsum-img-wrapper fancy" *ngIf="imageAadhaar?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="aadharImage" [href]="imageAadhaar?.url">
                            <img width="100%" [src]="imageAadhaar?.url" alt="Random first slide">
+                           </a>
                         </div>
-                        <!-- <div class="carousel-caption">
-                              <h3>{{imageItem?.id}}</h3>
-                           </div> -->
                      </ng-template>
                   </ngb-carousel>
                </div>
@@ -246,11 +246,7 @@
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
-               <!-- <div class="d-flex justify-content-between mb-3">
-                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
-               </div> -->
                <div *ngIf="userData?.pan_details?.pan_number" class="d-flex justify-content-between mb-3">
-                  <!-- <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span> -->
                   <span class="digi-text" *ngIf="userData?.pan_details?.isPanFileVerifiedByDigiLocker">
                      Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2">
                   </span>
@@ -294,18 +290,21 @@
                   </div>
                   <ngb-carousel *ngIf="userData?.pan_details?.pan_documents?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.pan_details?.pan_documents">
+                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'" [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="pancard" [href]="imageItem?.url">
                            <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
                         </div>
                      </ng-template>
                   </ngb-carousel>
                </div>
                <label class="doc-type">PAN Card</label>
             </div>
-         </div>        
+         </div>
       </div>
 
       <div class="user-box">
@@ -314,7 +313,7 @@
                <h2>personal & address details</h2>
             </div>
             <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar <span
-                    class="icon-alert ml-3"></span></span></div>            
+                    class="icon-alert ml-3"></span></span></div>
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
@@ -411,11 +410,14 @@
                   </div>
                   <ngb-carousel *ngIf="userData?.personal_details?.address_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.personal_details?.address_url">
-                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
-                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'" [href]="imageItem?.url | safeUrl">Click here </a>
+                        <div class="picsum-img-wrapper fancybox"  *ngIf="imageItem?.content_type === 'application/pdf'">
+                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
-                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                        <div class="picsum-img-wrapper fancy" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="addressProof" [href]="imageItem?.url">
                            <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
                         </div>
                      </ng-template>
                   </ngb-carousel>
@@ -483,11 +485,14 @@
                   <!-- /************* Bank statement : CAROUSEL **************/ -->
                   <ngb-carousel *ngIf="userData?.bank_details?.cancelled_cheque_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.cancelled_cheque_url">
+                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'" [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="cancelledCheck" [href]="imageItem?.url">
                            <img width="100%" [src]="imageItem?.url" alt="Random first slide" >
+                           </a>
                         </div>
                      </ng-template>
                   </ngb-carousel>
@@ -519,11 +524,14 @@
                   <!-- /************* Bank statement : CAROUSEL **************/ -->
                   <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
+                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'" [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="bankStatement" [href]="imageItem?.url">
                            <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
                         </div>
                      </ng-template>
                   </ngb-carousel>
@@ -560,11 +568,14 @@
                   <!-- /************* Signature : CAROUSEL **************/ -->
                   <ngb-carousel *ngIf="userData?.sign_and_identity?.sign_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.sign_url">
+                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'" [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="signature" [href]="imageItem?.url">
                            <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
                         </div>
                      </ng-template>
                   </ngb-carousel>
@@ -591,11 +602,14 @@
                   <!-- /************* Photograph : CAROUSEL **************/ -->
                   <ngb-carousel *ngIf="userData?.sign_and_identity?.photograph_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.photograph_url">
+                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'" [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
                         </div>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="photograph" [href]="imageItem?.url">
                            <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
                         </div>
                      </ng-template>
                   </ngb-carousel>

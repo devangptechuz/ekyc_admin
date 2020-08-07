@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CookiesService } from '@ngx-utils/cookies';
 import { ConfirmationDialogService } from 'app/shared/services/confirmation-dialoge.service';
 import {ImagePopupComponent} from '../document-modal/image-popup/image-popup.component';
+declare var $: any;
 
 @Component({
   selector: 'app-users-detail',
@@ -123,6 +124,39 @@ export class UsersDetailComponent implements OnInit {
     if (userData?.result) {
       this.manageUserData(userData?.result);
     }
+    $(document).ready(function() {
+      $(".fancybox").fancybox({
+        width  : '100%',
+        height : '100%',
+      });
+      $(".fancyboxiframe").fancybox({
+        width  : '100%',
+        height : '100%',
+        type:'iframe'
+      });
+      $("[data-fancybox]").fancybox({
+        thumbs          : false,
+        hash            : false,
+        loop            : true,
+        keyboard        : true,
+        toolbar         : false,
+        animationEffect : false,
+        arrows          : true,
+        clickContent    : false
+      });
+      $("a.grouped_elements").fancybox({
+        maxWidth	: 800,
+        maxHeight	: 600,
+        fitToView	: false,
+        width		: '70%',
+        height		: '70%',
+        autoSize	: false,
+        closeClick	: false,
+        openEffect	: 'none',
+        closeEffect	: 'none'
+      });
+    });
+
   }
 
   manageApplicationStatus(adminApproval: string = '') {
