@@ -36,6 +36,7 @@
     "classlist.js": "1.1.20150312",
     "core-js": "3.6.4",
     "date-fns": "2.9.0",
+    "fancybox": "^3.0.1",
     "gulp": "4.0.2",
     "intl": "1.2.5",
     "jquery": "^3.5.1",
