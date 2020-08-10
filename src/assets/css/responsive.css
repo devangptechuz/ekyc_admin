@@ -8,3 +8,11 @@
 	body .login-section .bg-white{margin: 15px 0 0;padding: 25px;}
 	body .login-section:after{height: 250px;}
 }
+@media (min-width: 1024px){
+		.custom-datatable .card{padding: 25px;}
+}
+@media (min-width: 576px){
+	.container {max-width: 100%;}
+	.content-wrapper,.content-wrapper > .container-fluid {padding: 0;}	
+	.total-detail {margin-top: 16px;}
+}

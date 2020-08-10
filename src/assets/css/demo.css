@@ -459,6 +459,7 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 
 /*=========Dashboard===========*/
 .dashboard-main{margin-bottom: 40px;}
+.custom-datatable.recent{margin-top: 16px;}
 .custom-datatable{margin-top: 32px;}
 .custom-datatable .card{background: #FCFCFC;border: 1px solid #DDDDDD;border-radius: 8px;padding: 40px;}
 .custom-datatable .card .card-header{padding: 0 0 15px;border-bottom: 1px solid #DDDDDD;}
@@ -579,6 +580,7 @@ section.application input[type='checkbox']:checked:after {transform: rotate(-45d
 .total-detail .red .media-right span{color:#DF0E40}
 .total-detail .green .media-right span{color:#19D097}
 .total-detail .yellow .media-right span{color:#FAB401}
+.total-detail [class^="col-"]{margin: 0 0 16px;}
 
 /*=========add user form===========*/
 section.add-user {margin: 16px 0 32px;}
@@ -998,6 +1000,7 @@ body .viewdoc-popup .ngx-select__toggle{font-size: 25px;line-height: 25px;font-w
 .viewdoc-popup .carousel-inner img{max-height: 280px;object-fit: contain;}
 body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
  .viewdoc-popup .ngx-select__choices .dropdown-item span{font-size: 12px;line-height: 18px;}
+.next-arr{background-color: transparent;border: none;}
 /*=========Custom Scroll===========*/
 
 @media(min-width:768px) {
