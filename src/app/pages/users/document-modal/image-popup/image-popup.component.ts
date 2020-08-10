@@ -134,7 +134,7 @@ export class ImagePopupComponent implements OnInit {
 
   doSelect(e){
     this.setNameOfDoc(e);
-    this.setImages();
+    // this.setImages();
   }
 
 

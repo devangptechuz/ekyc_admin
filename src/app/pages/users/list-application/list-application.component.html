@@ -56,7 +56,7 @@
                                 <div class="col-md-8 d-flex align-items-center justify-content-end">
                                     <div class="search">
                                         <input type="search" #searchBytype name="searchbytype" [(ngModel)]="searchValue"
-                                            placeholder="Search by Username or Email or Mobile Number"
+                                            placeholder="Search by PAN Number or Email or Mobile Number"
                                             class="form-control" (keyup)='resetFilter($event)'
                                             (keydown)="onEnterPress($event)">
                                         <button (click)='updateFilter($event)' class="btn-search"><span
@@ -135,12 +135,12 @@
                                         [checkboxable]="true" [sortable]="true" prop="selected">
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column [width]="10" name="username" [sortable]="true"
-                                        prop="userName">
+                                    <ngx-datatable-column [width]="10" name="PAN Number" [sortable]="true"
+                                        prop="panUserName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a title="{{row.userName}}" [routerLink]="['/applications/details',row.id]"
+                                            <a title="{{row.panUserName}}" [routerLink]="['/applications/details',row.id]"
                                                 routerLinkActive="router-link-active"
-                                                class="uname wrap-text user-wrap">{{row.userName}}</a>
+                                                class="uname wrap-text user-wrap">{{row.panUserName}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
@@ -251,7 +251,7 @@
                                     <div class="search">
                                         <input type="search" #searchBytypeAgain name="searchBytypeAgain"
                                             [(ngModel)]="searchValue"
-                                            placeholder="Search by Admin Username or Email or Mobile Number"
+                                            placeholder="Search by Admin PAN Number or Email or Mobile Number"
                                             class="form-control" (keyup)='resetFilter($event)'
                                             (keydown)="onEnterPressAgain($event)">
                                         <button (click)='updateFilterAgain($event)' class="btn-search"><span
@@ -275,12 +275,12 @@
                                         [checkboxable]="true" [sortable]="true" prop="selected">
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column [width]="10" name="username" [sortable]="true"
-                                        prop="userName">
+                                    <ngx-datatable-column [width]="10" name="PAN Number" [sortable]="true"
+                                        prop="panUserName">
                                         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a title="{{row.userName}}" [routerLink]="['/applications/details',row.id]"
+                                            <a title="{{row.panUserName}}" [routerLink]="['/applications/details',row.id]"
                                                 routerLinkActive="router-link-active"
-                                                class="uname wrap-text">{{row.userName}}</a>
+                                                class="uname wrap-text">{{row.panUserName}}</a>
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
