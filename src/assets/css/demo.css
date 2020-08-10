@@ -1001,6 +1001,7 @@ body .viewdoc-popup .ngx-select__toggle{font-size: 25px;line-height: 25px;font-w
 body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
  .viewdoc-popup .ngx-select__choices .dropdown-item span{font-size: 12px;line-height: 18px;}
 .next-arr{background-color: transparent;border: none;}
+
 /*=========Custom Scroll===========*/
 
 @media(min-width:768px) {
