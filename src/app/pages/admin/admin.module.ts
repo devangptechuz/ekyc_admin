@@ -9,13 +9,12 @@ import { SharedModule } from '../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxSelectModule } from 'ngx-select-ex';
-import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { WebcamModule } from 'ngx-webcam';
 import { FileUploadModule } from 'ng2-file-upload';
 
 
 @NgModule({
-  declarations: [ListAdminComponent, AddEditAdminComponent, AdminProfileComponent],
+  declarations: [ListAdminComponent, AddEditAdminComponent],
   imports: [
     CommonModule,
     FormsModule,
