@@ -99,7 +99,7 @@
                            <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false"
                                                  [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true"
                                                  prop="selected">
-                           </ngx-datatable-column>                           
+                           </ngx-datatable-column>
                            <ngx-datatable-column [width]="50" name="username" [sortable]="true" prop="username">
                               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                                  <a class="user-img dummy-icon" *ngIf="!row.userProfile_url" (click)="onEdit(row.id)">
