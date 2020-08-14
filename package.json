@@ -69,6 +69,7 @@
     "ts-ebml": "^2.0.2",
     "tslib": "^1.10.0",
     "web-animations-js": "^2.3.2",
+    "xlsx": "^0.16.6",
     "zone.js": "~0.10.2",
     "zxcvbn": "^4.4.2"
   },

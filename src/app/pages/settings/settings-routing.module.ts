@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AdminProfileComponent} from './admin-profile/admin-profile.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { CreateFormComponent } from './create-form/create-form.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,13 @@ const routes: Routes = [
     data: {
       title: 'admin-profile',
     },
+  },
+  {
+    path: 'dynamic-form',
+    component: CreateFormComponent,
+    data: {
+      title: 'Create Dynamic Form',
+    }
   }
 ];
 

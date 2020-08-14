@@ -1,0 +1,545 @@
+
+<!-- <div class="card-body">
+    
+    <div class="" style="margin-top:1rem;">
+        <h3 class="col-md-4 d-flex align-items-center" >Start building  customize form</h3>
+      </div>
+      <div style="border-bottom: 1px solid black;padding-bottom:3rem;">
+        <div class="col-md-4 offset-md-1" style="margin-top:2rem;">
+        
+            <select class="form-control resize" #selectedForm (change)="createNewForm(selectedForm.value)">
+                <option [ngValue]="">Select Form</option>
+                <option *ngFor="let form of formName"  [value]="form.value">{{form.name}}</option>
+            </select>
+        </div>
+      </div>
+
+
+  
+    <div class="container" *ngIf="showForm">
+  
+      <div class="row" style="margin-top: 1rem;">
+        <div class="col-md-5">
+          <h5 class="">Form Creation</h5>
+        </div>
+        <div class="col-md-6 offset-md-1" *ngIf="fieldsArr.length>0">
+          <h5 class="">Form Preview</h5>
+        </div>
+      </div>
+     
+      <form #f="ngForm">
+      <div class="row">
+    
+      <div class="col-md-5 pr-md-0" id="payment-box">
+        <div class="payment-box">
+          <select class="form-control col-md-8" id="power" [(ngModel)]="selectedField" name="field">
+            <option [ngValue]="undefined" hidden>Select One Field</option>
+             <option *ngFor="let field of dropdownFields" [value]="field">{{field}}</option>
+           </select>
+           <button type="button" class="col-md-3 offset-md-1 btn btn-primary" (click)="addField()">Add field</button>
+    
+           <div style="margin-top:2rem;" class="row">
+            <div class="col-md-12">
+         
+              <div [ngSwitch]="fields?.type">
+                <div *ngSwitchCase="'input'"> 
+                  <div class="form-group">
+                    <label for="Key">Key</label><span class="required">*</span>
+                    <input type="text" class="form-control col-md-12" name="key"  required [(ngModel)]="fields.key">
+                  </div>
+                  <div class="form-group">
+                    <label for="label">Label</label><span class="required">*</span>
+                    <input type="text"  class="form-control col-md-12" name="label" required [(ngModel)]="fields.templateOptions.label">
+                  </div>
+                  <div class="form-group">
+                    <label for="placeholder">Enter Placeholder</label>
+                    <input type="text"  class="form-control col-md-12" name="placeholder"  [(ngModel)]="fields.templateOptions.placeholder">
+                  </div>
+                  <div class="form-group custom-checkbox">
+                     <label for="required">Required</label><span class="required">*</span>
+                     <input class="" [(ngModel)]="fields.templateOptions.required" name="required"  required type="checkbox" id="defaultCheck1">
+                    
+                   </div>
+          
+                </div>
+                <div *ngSwitchCase="'checkbox'"> 
+                  <div class="form-group">
+                    <label for="Key">Key</label><span class="required">*</span>
+                    <input type="text" class="form-control col-md-12" name="key"  required [(ngModel)]="fields.key">
+                  </div>
+                  <div class="form-group">
+                    <label for="label">Label</label><span class="required">*</span>
+                    <input type="text"  class="form-control col-md-12" name="label" required [(ngModel)]="fields.templateOptions.label">
+                  </div>
+       
+                  <div class="form-group custom-control custom-checkbox">
+                     <label for="required">Required</label><span class="required">*</span>
+                     <input class="" [(ngModel)]="fields.templateOptions.required" name="required" required type="checkbox" id="defaultCheck1">
+                    
+                   </div>
+           
+                </div>
+    
+           
+    
+                <div *ngSwitchCase="'select'"> 
+                  <div class="form-group">
+                    <label for="Key">Key</label><span class="required">*</span>
+                    <input type="text" class="form-control col-md-12" name="key" required  [(ngModel)]="fields.key">
+                  </div>
+                  <div class="form-group">
+                    <label for="label">Label</label><span class="required">*</span>
+                    <input type="text"  class="form-control col-md-12" name="label"  required [(ngModel)]="fields.templateOptions.label">
+                  </div>
+       
+                  <div class="form-group custom-checkbox">
+                     <label for="required">Required</label><span class="required">*</span>
+                     <input class="" [(ngModel)]="fields.templateOptions.required" name="required" required  type="checkbox" id="defaultCheck1">
+                    
+                   </div>
+                   <div class="form-group">
+                                       <button type="button" style="float:right;" class="btn btn-primary" (click)="addOptions(fields.templateOptions.options)"><i class="fa fa-plus"></i></button>
+                    <label for="options">Options</label><span class="required">*</span>
+  
+                    <table class="table table-striped table-border">
+                      <thead>
+                        <th>Label</th>
+                        <th>Value</th>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let field of fields.templateOptions.options;let i=index;">
+                          <td><input type="text" class="form-control " name="optionsLabel{{i}}" [(ngModel)]="field.label"></td>
+                          <td><input type="text" class="form-control"  name="optionsValue{{i}}" [(ngModel)]="field.value"></td>
+                          <td ><button type="button" (click)="removeOption(i,fields.templateOptions.options)" [disabled]="i==0" class="btn btn-danger"><i class="fa fa-minus"></i></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                
+                  </div>
+    
+                </div>
+    
+                
+                <div *ngSwitchCase="'radio'"> 
+                  <div class="form-group">
+                    <label for="Key">Key</label><span class="required">*</span>
+                    <input type="text" class="form-control col-md-12" name="key"  required [(ngModel)]="fields.key">
+                  </div>
+                  <div class="form-group">
+                    <label for="label">Label</label><span class="required">*</span>
+                    <input type="text"  class="form-control col-md-12" name="label" required [(ngModel)]="fields.templateOptions.label">
+                  </div>
+       
+                  <div class="form-group custom-checkbox">
+                     <label for="required">Required</label><span class="required">*</span>
+                     <input class="" [(ngModel)]="fields.templateOptions.required" name="required"  required type="checkbox" id="defaultCheck1">
+                    
+                   </div>
+                   <div class="form-group">
+                    <button type="button" style="float:right;" class="btn btn-primary" (click)="addOptions(fields.templateOptions.options)"><i class="fa fa-plus"></i></button>
+  <label for="options">Options</label>
+  
+  <table class="table table-striped table-border">
+   <thead>
+     <th>Label</th>
+     <th>Value</th>
+   </thead>
+   <tbody>
+     <tr *ngFor="let field of fields.templateOptions.options;let i=index;">
+       <td><input type="text" class="form-control " name="optionsLabel{{i}}"  [(ngModel)]="field.label"></td>
+       <td><input type="text" class="form-control" name="optionsValue{{i}}"  [(ngModel)]="field.value"></td>
+       <td ><button type="button" (click)="removeOption(i,fields.templateOptions.options)" [disabled]="i==0" class="btn btn-danger"><i class="fa fa-minus"></i></button></td>
+     </tr>
+   </tbody>
+  </table>
+  
+  </div>
+    
+                </div>
+    
+        
+              <button type="button" class="btn btn-primary col-md-5" *ngIf="fields!=undefined" [disabled]="f.invalid" (click)="addFieldToMain()">Save Field</button>
+              <button type="button" class="btn btn-primary col-md-5 offset-md-1" *ngIf="finalJson.length>0" (click)="saveForm()">Submit Form</button>
+            </div>
+          </div>
+       
+         
+        
+          
+            </div>
+          </div>
+      </div>
+    
+      <div class="col-md-6 offset-md-1 pr-md-0" id="payment-box" *ngIf="fieldsArr.length>0">
+        <div class="payment-box">
+          <form>
+      
+          <div  cdkDropList (cdkDropListDropped)="drop($event)">
+          <div *ngFor="let fields of fieldsArr;let i=index;" cdkDrag>
+            <div class="form-group" *ngIf="fields.type=='input'">
+              <label for="fields.templateOptions.label">{{fields.templateOptions.label}}</label><span *ngIf="fields.templateOptions.required" class="required">*</span><span class="required info-tp img" (click)="removeField(i)" style="float:right;cursor:pointer;"><i class="fa fa-trash"></i></span><span class="info-tp img" (click)="editField(i)" style="float:right;cursor:pointer;margin-right:10px;"><i class="fa fa-pencil-square-o"></i></span>
+              <input type="text" class="form-control col-md-12"  placeholder="{{fields.templateOptions.placeholder}}" >
+              
+            </div>
+            <div class="form-group" *ngIf="fields.type=='select'">
+              <label for="fields.templateOptions.label">{{fields.templateOptions.label}}</label><span *ngIf="fields.templateOptions.required" class="required">*</span><span class="required info-tp img" (click)="removeField(i)" style="float:right;cursor:pointer;"><i class="fa fa-trash"></i></span><span class="info-tp img" (click)="editField(i)" style="float:right;cursor:pointer;margin-right:10px;"><i class="fa fa-pencil-square-o"></i></span>
+              <select class="form-control col-md-12">
+                <option *ngFor="let val of fields.templateOptions.options" [value]="val.value">
+                  {{val.label}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group " *ngIf="fields.type=='checkbox'">
+                <input class="" [checked]="false" name="required"  required type="checkbox" id="defaultCheck1">
+              <label style="margin-left:1rem" for="fields.templateOptions.label">{{fields.templateOptions.label}}</label><span *ngIf="fields.templateOptions.required" class="required">*</span><span class="required info-tp img" (click)="removeField(i)" style="float:right;cursor:pointer;"><i class="fa fa-trash"></i></span><span class="info-tp img" (click)="editField(i)" style="float:right;cursor:pointer;margin-right:10px;"><i class="fa fa-pencil-square-o"></i></span>
+              
+             
+            </div>
+            <div class="form-group" *ngIf="fields.type=='radio'">
+              <label for="fields.templateOptions.label">{{fields.templateOptions.label}}</label><span *ngIf="fields.templateOptions.required" class="required">*</span><span class="required info-tp img" (click)="removeField(i)" style="float:right;cursor:pointer;"><i class="fa fa-trash"></i></span><span class="info-tp img" (click)="editField(i)" style="float:right;cursor:pointer;margin-right:10px;"><i class="fa fa-pencil-square-o"></i></span>
+             
+                <div *ngFor="let val of fields.templateOptions.options">
+                    <input type="radio" class="custom-radio"  [value]="val.value">
+                <label for="val.value" style="padding:3px;">{{val.label}}</label>
+                </div>
+            </div>
+          </div>
+        </div>
+        </form>
+          </div>
+      </div>
+    <div class="row col-md-12" style="margin-top:20px;">
+      <div style="background-color:black;color:white;margin-left:30px;" class="col-md-3"  *ngIf="fields!=undefined">
+        <pre style="color:white">{{fields | json}}</pre>
+      </div>
+        <div class="col-md-3" style="background-color:black;margin-left:30px;" *ngIf="finalJson.length>0" >
+         
+           
+            <div >
+              
+              <pre *ngFor="let fields of finalJson;let i=index " style="color:white;">{{fields | json}} <span *ngIf="!(i===(finalJson.length-1))">,</span></pre>
+            </div>
+       
+         
+        </div>
+        </div>
+      </div>
+    </form>
+      <div class="row" style="margin-top:10px;">
+     
+      
+       
+        </div>
+      
+  
+          
+        </div>
+    </div> -->
+  
+     <section class="add-user add-admin-user">
+        <div class="container">
+           <div class="add-box">
+              <div class="hdr">
+                 <div class="hdr-left">
+                    <h2>Start building  customize form</h2>
+                 </div>
+                 <div class="hdr-right">
+                 </div>
+              </div>
+              <ul id="tabs" class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a id="tab-A" href="#pane-A" class="nav-link active" (click)="createNewForm('Form 1')" data-toggle="tab" role="tab">{{form1}}</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-A" href="#pane-A" class="nav-link" data-toggle="tab" (click)="createNewForm('Form 2')" role="tab">{{form2}}</a>
+                </li>
+                <li class="nav-item" >
+                    <a id="tab-C" href="#pane-A" class="nav-link" data-toggle="tab" (click)="createNewForm('Form 3')" role="tab">{{form3}}</a>
+                </li>
+                </ul>
+
+                
+
+            <div id="content" class="tab-content" role="tablist">
+                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A" style="background-color:#FCFCFC">
+                    <div class="row">
+                      <div class="col-md-4" style="padding-left:0px;">
+                        <label>Name of the Form</label>
+                        <input type="text" class="form-control" [(ngModel)]="formNameModel" (keyup)="changeFormName()" name="formName" palceholder="Name of the Form">
+                    </div>
+                    <div class="col-md-4 offset-md-2" style="padding-left:0px;">
+                      <label>Position of the Form</label>
+                      <select class="form-control" [(ngModel)]="formPosition">
+                        <option value="" disabled selected hidden>Select Form Position</option>
+                        <option *ngFor="let formOptions of formPositionOptions" [value]="formOptions.value">{{formOptions.name}}</option>
+                      </select>
+                     
+                  </div>
+                    </div>  
+                 
+                    <!-- <div class="row" style="margin-top: 1rem;">
+                        <div class="col-md-5">
+                          <label>Form Creation</label>
+                         
+                        </div>
+                        <div class="col-md-6 offset-md-1" *ngIf="fieldsArr.length>0">
+                          <label>Form Preview</label>
+                    
+                        </div>
+                      </div> -->
+                    <form #f="ngForm" style="margin-top:2rem;">
+                        <div class="row">
+                      
+                        <div class="col-md-5 pr-md-0" id="payment-box" style="box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);">
+                          <div class="payment-box" style="margin-top:1rem;">
+                            <div>  <label style="font-size:15px;color:#000000CC">Form Creation</label></div>
+                            <select class="form-control col-md-8" id="power" [(ngModel)]="selectedField" name="field">
+                              <option [ngValue]="undefined" hidden>Select One Field</option>
+                               <option *ngFor="let field of dropdownFields" [value]="field">{{field}}</option>
+                             </select>
+                             <button type="button" class="col-md-1 offset-md-1 btn btn-primary" (click)="addField()"><i class="fa fa-plus"></i></button>
+                      
+                             <div style="margin-top:2rem;" class="row">
+                              <div class="col-md-12">
+                           
+                                <div [ngSwitch]="fields?.type">
+                                  <div *ngSwitchCase="'input'"> 
+                                    <div class="form-group col-md-11">
+                                      <label for="Key">Key</label><span class="required">*</span>
+                                      <input type="text" class="form-control col-md-12" name="key"  required [(ngModel)]="fields.key">
+                                    </div>
+                                    <div class="form-group col-md-11">
+                                      <label for="label">Label</label><span class="required">*</span>
+                                      <input type="text"  class="form-control col-md-12" name="label" required [(ngModel)]="fields.templateOptions.label">
+                                    </div>
+                                    <div class="form-group col-md-11">
+                                      <label for="placeholder">Enter Placeholder</label>
+                                      <input type="text"  class="form-control col-md-12" name="placeholder"  [(ngModel)]="fields.templateOptions.placeholder">
+                                    </div>
+                                    <div class="form-group custom-checkbox col-md-11">
+                                       <label for="required">Required</label>
+                                       <input class="" [(ngModel)]="fields.templateOptions.required" name="required"  type="checkbox" id="defaultCheck1">
+                                      
+                                     </div>
+
+                                     <div class="form-group custom-checkbox col-md-11">
+                                      <label for="required">Disable</label>
+                                      <input class="" [(ngModel)]="isDisabled" name="required"  type="checkbox" id="defaultCheck1">
+                                     
+                                    </div>
+
+                                    <div class="form-group custom-checkbox col-md-11">
+                                      <label for="required">Hide</label>
+                                      <input class="" [(ngModel)]="isHide" name="isHide"  type="checkbox" id="defaultCheck1">
+                                     
+                                    </div>
+                            
+                                  </div>
+                                  <div *ngSwitchCase="'checkbox'"> 
+                                    <div class="form-group col-md-11">
+                                      <label for="Key">Key</label><span class="required">*</span>
+                                      <input type="text" class="form-control col-md-12" name="key"  required [(ngModel)]="fields.key">
+                                    </div>
+                                    <div class="form-group col-md-11 ">
+                                      <label for="label">Label</label><span class="required">*</span>
+                                      <input type="text"  class="form-control col-md-12" name="label" required [(ngModel)]="fields.templateOptions.label">
+                                    </div>
+                         
+                                    <div class="form-group  custom-checkbox col-md-11">
+                                       <label for="required">Required</label><span class="required">*</span>
+                                       <input class="" [(ngModel)]="fields.templateOptions.required" name="required" required type="checkbox" id="defaultCheck1">
+                                      
+                                     </div>
+                                  
+                                     <div class="form-group custom-checkbox col-md-11">
+                                      <label for="required">Disable</label><span class="required">*</span>
+                                      <input class="" [(ngModel)]="isDisabled" name="required"  required type="checkbox" id="defaultCheck1">
+                                     
+                                    </div>
+                                    </div>
+                      
+                             
+                      
+                                  <div *ngSwitchCase="'select'"> 
+                                    <div class="form-group col-md-11">
+                                      <label for="Key">Key</label><span class="required">*</span>
+                                      <input type="text" class="form-control col-md-12" name="key" required  [(ngModel)]="fields.key">
+                                    </div>
+                                    <div class="form-group col-md-11">
+                                      <label for="label">Label</label><span class="required">*</span>
+                                      <input type="text"  class="form-control col-md-12" name="label"  required [(ngModel)]="fields.templateOptions.label">
+                                    </div>
+                         
+                                    <div class="form-group custom-checkbox col-md-11">
+                                       <label for="required">Required</label><span class="required">*</span>
+                                       <input class="" [(ngModel)]="fields.templateOptions.required" name="required" required  type="checkbox" id="defaultCheck1">
+                                      
+                                     </div>
+                                     <div class="form-group custom-checkbox">
+                                      <label for="required">Disable</label><span class="required">*</span>
+                                      <input class="" [(ngModel)]="isDisabled" name="required"  required type="checkbox" id="defaultCheck1">
+                                     
+                                    </div>
+                                     <div class="form-group col-md-11">
+                                                         <button type="button" style="float:right;" class="btn btn-primary" (click)="addOptions(fields.templateOptions.options)"><i class="fa fa-plus"></i></button>
+                                      <label for="options">Options</label><span class="required">*</span>
+                                      
+	
+                                      <table class="table table-striped table-border">
+                                        <thead>
+                                          <th>Label</th>
+                                          <th>Value</th>
+                                        </thead>
+                                        <tbody>
+                                          <tr *ngFor="let field of fields.templateOptions.options;let i=index;">
+                                            <td><input type="text" class="form-control " name="optionsLabel{{i}}" [(ngModel)]="field.label"></td>
+                                            <td><input type="text" class="form-control"  name="optionsValue{{i}}" [(ngModel)]="field.value"></td>
+                                            <td ><button type="button" (click)="removeOption(i,fields.templateOptions.options)" [disabled]="i==0" class="btn btn-danger"><i class="fa fa-minus"></i></button></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <div>
+                                        OR
+                                      </div>
+                                      <div>
+                                        <input hidden  type="file" #uploader (change)="onFileChange($event)" multiple="false" />
+                                        <button (click)="uploader.click()" class="btn btn-primary">
+                                          Upload Excel
+                                      </button>
+                                      </div>
+                                    </div>
+                                 
+                                  </div>
+                      
+                                  
+                                  <div *ngSwitchCase="'radio'"> 
+                                    <div class="form-group col-md-11">
+                                      <label for="Key">Key</label><span class="required">*</span>
+                                      <input type="text" class="form-control col-md-12" name="key"  required [(ngModel)]="fields.key">
+                                    </div>
+                                    <div class="form-group col-md-11">
+                                      <label for="label">Label</label><span class="required">*</span>
+                                      <input type="text"  class="form-control col-md-12" name="label" required [(ngModel)]="fields.templateOptions.label">
+                                    </div>
+                         
+                                    <div class="form-group custom-checkbox col-md-11">
+                                       <label for="required">Required</label><span class="required">*</span>
+                                       <input class="" [(ngModel)]="fields.templateOptions.required" name="required"  required type="checkbox" id="defaultCheck1">
+                                      
+                                     </div>
+                                     <div class="form-group custom-checkbox col-md-11">
+                                      <label for="required">Disable</label><span class="required">*</span>
+                                      <input class="" [(ngModel)]="isDisabled" name="required"  required type="checkbox" id="defaultCheck1">
+                                     
+                                    </div>
+                                     <div class="form-group col-md-11" >
+                                      <button type="button" style="float:right;" class="btn btn-primary" (click)="addOptions(fields.templateOptions.options)"><i class="fa fa-plus"></i></button>
+                    <label for="options">Options</label>
+                    
+                    <table class="table table-striped table-border">
+                     <thead>
+                       <th>Label</th>
+                       <th>Value</th>
+                     </thead>
+                     <tbody>
+                       <tr *ngFor="let field of fields.templateOptions.options;let i=index;">
+                         <td><input type="text" class="form-control " name="optionsLabel{{i}}"  [(ngModel)]="field.label"></td>
+                         <td><input type="text" class="form-control" name="optionsValue{{i}}"  [(ngModel)]="field.value"></td>
+                         <td ><button type="button" (click)="removeOption(i,fields.templateOptions.options)" [disabled]="i==0" class="btn btn-danger"><i class="fa fa-minus"></i></button></td>
+                       </tr>
+                     </tbody>
+                    </table>
+                    
+                    </div>
+                    <div class="form-group custom-checkbox col-md-11">
+                      <label for="required">Disable</label><span class="required">*</span>
+                      <input class="" [(ngModel)]="isDisabled" name="required"  required type="checkbox" id="defaultCheck1">
+                     
+                    </div>
+                                  </div>
+                      
+                          
+                                <button type="button" class="btn btn-primary col-md-5" *ngIf="fields!=undefined" [disabled]="f.invalid" (click)="addFieldToMain()">Save Field</button>
+                                <button type="button" class="btn btn-primary col-md-5 offset-md-1" *ngIf="finalJson.length>0" (click)="saveForm()">Submit Form</button>
+                              </div>
+                            </div>
+                         
+                           
+                          
+                            
+                              </div>
+                            </div>
+                        </div>
+                      
+                        <div class="col-md-5 offset-md-1 pr-md-0" id="payment-box" *ngIf="fieldsArr.length>0" style="box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);">
+                          <div class="payment-box" style="margin-top:1rem;">
+                            <div>  <label style="font-size:15px;color:#000000CC">Form Preview</label></div>
+                            <form>
+                        
+                            <div  cdkDropList (cdkDropListDropped)="drop($event)">
+                            <div *ngFor="let fields of fieldsArr;let i=index;" cdkDrag>
+                            
+                              <div class="form-group no_left_padding col-md-11" *ngIf="fields.type=='input'">
+                                <label for="fields.templateOptions.label">{{fields.templateOptions.label}}</label><span *ngIf="fields.templateOptions.required" class="required">*</span><span class="required info-tp img" (click)="removeField(i)" style="float:right;cursor:pointer;"><i class="fa fa-trash"></i></span><span class="info-tp img" (click)="editField(i)" style="float:right;cursor:pointer;margin-right:10px;"><i class="fa fa-pencil-square-o"></i></span>
+                                <input type="text" class="form-control col-md-12" [disabled]="fields.isDisabled" placeholder="{{fields.templateOptions.placeholder}}" >
+                                
+                              </div>
+                              <div class="form-group no_left_padding col-md-11" *ngIf="fields.type=='select'">
+                                <label for="fields.templateOptions.label">{{fields.templateOptions.label}}</label><span *ngIf="fields.templateOptions.required" class="required">*</span><span class="required info-tp img" (click)="removeField(i)" style="float:right;cursor:pointer;"><i class="fa fa-trash"></i></span><span class="info-tp img" (click)="editField(i)" style="float:right;cursor:pointer;margin-right:10px;"><i class="fa fa-pencil-square-o"></i></span>
+                                <select class="form-control col-md-12">
+                                  <option *ngFor="let val of fields.templateOptions.options" [value]="val.value">
+                                    {{val.label}}
+                                  </option>
+                                </select>
+                              </div>
+                              <div class="form-group no_left_padding col-md-11" *ngIf="fields.type=='checkbox'">
+                                  <input class="" [checked]="false" name="required"  required type="checkbox" id="defaultCheck1">
+                                <label style="margin-left:1rem" for="fields.templateOptions.label">{{fields.templateOptions.label}}</label><span *ngIf="fields.templateOptions.required" class="required">*</span><span class="required info-tp img" (click)="removeField(i)" style="float:right;cursor:pointer;"><i class="fa fa-trash"></i></span><span class="info-tp img" (click)="editField(i)" style="float:right;cursor:pointer;margin-right:10px;"><i class="fa fa-pencil-square-o"></i></span>
+                                
+                               
+                              </div>
+                              <div class="form-group no_left_padding col-md-11" *ngIf="fields.type=='radio'">
+                                <label for="fields.templateOptions.label">{{fields.templateOptions.label}}</label><span *ngIf="fields.templateOptions.required" class="required">*</span><span class="required info-tp img" (click)="removeField(i)" style="float:right;cursor:pointer;"><i class="fa fa-trash"></i></span><span class="info-tp img" (click)="editField(i)" style="float:right;cursor:pointer;margin-right:10px;"><i class="fa fa-pencil-square-o"></i></span>
+                               
+                                  <div *ngFor="let val of fields.templateOptions.options">
+                                      <input type="radio" class="custom-radio"  [value]="val.value">
+                                  <label for="val.value" style="padding:3px;">{{val.label}}</label>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                          </form>
+                            </div>
+                        </div>
+                      <div class="row col-md-12" style="margin-top:20px;">
+                        <div style="background-color:black;color:white;margin-left:30px;" class="col-md-3"  *ngIf="fields!=undefined">
+                          <pre style="color:white">{{fields | json}}</pre>
+                        </div>
+                          <div class="col-md-3" style="background-color:black;margin-left:30px;" *ngIf="finalJson.length>0" >
+                           
+                             
+                              <div >
+                                
+                                <pre *ngFor="let fields of finalJson;let i=index " style="color:white;">{{fields | json}} <span *ngIf="!(i===(finalJson.length-1))">,</span></pre>
+                              </div>
+                         
+                           
+                          </div>
+                          </div>
+                        </div>
+                      </form>
+
+
+                    </div>
+                    <div id="pane-B" class="card tab-pane fade show " role="tabpanel" aria-labelledby="tab-B">
+                        bb
+                        </div>
+                        <div id="pane-C" class="card tab-pane fade show " role="tabpanel" aria-labelledby="tab-C">
+                            cc
+                            </div>
+                    </div>
+        </div>
+           </div>
+   
+     </section>
+  

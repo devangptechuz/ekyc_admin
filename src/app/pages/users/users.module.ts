@@ -23,6 +23,8 @@ import { BankDetailComponent } from './bank-detail/bank-detail.component';
 import { EditPersoanlAddressDetailsComponent } from './edit-persoanl-address-details/edit-persoanl-address-details.component';
 import { InPersonVideoComponent } from './document-modal/in-person-video/in-person-video.component';
 import { ImagePopupComponent } from './document-modal/image-popup/image-popup.component';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 @NgModule({
   declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent,
@@ -34,6 +36,8 @@ import { ImagePopupComponent } from './document-modal/image-popup/image-popup.co
     WebcamModule,
     FormsModule,
     HttpClientModule,
+    FormlyModule.forRoot(),
+    FormlyBootstrapModule,
     NgxDatatableModule,
     NgxSelectModule,
     NgSelectModule,
