@@ -9,7 +9,9 @@ import { UserService } from 'app/shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { CookiesService } from '@ngx-utils/cookies';
 import { ConfirmationDialogService } from 'app/shared/services/confirmation-dialoge.service';
-import {ImagePopupComponent} from '../document-modal/image-popup/image-popup.component';
+import { ImagePopupComponent } from '../document-modal/image-popup/image-popup.component';
+import { FormGroup } from '@angular/forms';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 declare var $: any;
 
 @Component({
@@ -35,7 +37,17 @@ export class UsersDetailComponent implements OnInit {
   defaultSelectedDocument: any;
   adminApproval: any;
   adminApprovalText: string;
-  reviewAll:boolean
+  reviewAll: boolean
+  /*******************  Dynamic Form: START ******************/
+  formName1: string;
+  form = new FormGroup({});
+  model = {};
+  fieldsArr: FormlyFieldConfig[] = [];
+  form1 = new FormGroup({});
+  model1 = {};
+  fieldsArr1: FormlyFieldConfig[] = [];
+  formName: string = "";
+  /*******************  Dynamic Form: END ******************/
 
   @ViewChild('fileuploadAadharpopup') fileuploadAadharpopup: any;
   @ViewChild('fileuploadSignaturepopup') fileuploadSignaturepopup: any;
@@ -124,39 +136,65 @@ export class UsersDetailComponent implements OnInit {
     if (userData?.result) {
       this.manageUserData(userData?.result);
     }
-    $(document).ready(function() {
+    // Dynamic Form: START
+    try {
+      if (localStorage.getItem('form1') != undefined) {
+        let obj = JSON.parse(localStorage.getItem('form1'))
+        // this.fieldsArr=JSON.parse(localStorage.getItem('form1'))
+        this.formName = obj.name;
+        this.fieldsArr = JSON.parse(obj.value)
+        console.log(this.fieldsArr);
+      }
+      if (localStorage.getItem('form2') != undefined) {
+        let obj = JSON.parse(localStorage.getItem('form2'))
+        // this.fieldsArr=JSON.parse(localStorage.getItem('form1'))
+        console.log(obj);
+        this.formName1 = obj.name;
+        this.fieldsArr1 = JSON.parse(obj.value)
+      }
+    }
+    catch (err) {
+    }
+    setTimeout(() => {
+      this.form.disable();
+    }, 1000)
+
+    $(document).ready(function () {
       $(".fancybox").fancybox({
-        width  : '100%',
-        height : '100%',
+        width: '100%',
+        height: '100%',
       });
       $(".fancyboxiframe").fancybox({
-        width  : '100%',
-        height : '100%',
-        type:'iframe'
+        width: '100%',
+        height: '100%',
+        type: 'iframe'
       });
       $("[data-fancybox]").fancybox({
-        thumbs          : false,
-        hash            : false,
-        loop            : true,
-        keyboard        : true,
-        toolbar         : false,
-        animationEffect : false,
-        arrows          : true,
-        clickContent    : false
+        thumbs: false,
+        hash: false,
+        loop: true,
+        keyboard: true,
+        toolbar: false,
+        animationEffect: false,
+        arrows: true,
+        clickContent: false
       });
       $("a.grouped_elements").fancybox({
-        maxWidth	: 800,
-        maxHeight	: 600,
-        fitToView	: false,
-        width		: '70%',
-        height		: '70%',
-        autoSize	: false,
-        closeClick	: false,
-        openEffect	: 'none',
-        closeEffect	: 'none'
+        maxWidth: 800,
+        maxHeight: 600,
+        fitToView: false,
+        width: '70%',
+        height: '70%',
+        autoSize: false,
+        closeClick: false,
+        openEffect: 'none',
+        closeEffect: 'none'
       });
     });
+  }
 
+  editForm1() {
+    this.form.enable();
   }
 
   manageApplicationStatus(adminApproval: string = '') {
@@ -204,7 +242,7 @@ export class UsersDetailComponent implements OnInit {
     modelRef.componentInstance.fromParent = modelData;
   }
 
-  imageAndPdfModel({ userData,objects,label }) {
+  imageAndPdfModel({ userData, objects, label }) {
     const modelRef = this.modalService.open(ImagePopupComponent, { centered: true });
     const modelData = {};
     modelData["title"] = label;
@@ -799,7 +837,7 @@ export class UsersDetailComponent implements OnInit {
   /**
   * Get all document lists
   */
-    getKYCDocumentsList(hideLoader: boolean = false, userId: any = '') {
+  getKYCDocumentsList(hideLoader: boolean = false, userId: any = '') {
     this.userService.getUserWithHideLoader(hideLoader, userId).subscribe((res: any) => {
       if (res.success) {
         // console.log(res.result);
