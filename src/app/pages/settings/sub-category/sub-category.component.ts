@@ -79,12 +79,12 @@ export class SubCategoryComponent implements OnInit {
   }
 
   addNewReason(){
-    this.modalRef = this.modalService.open(AddEditCategoryComponent, { centered: true, size: 'lg', windowClass:'white',backdrop: 'static', keyboard: false,backdropClass:'white' });
+    this.modalRef = this.modalService.open(AddEditCategoryComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
     this.ngOnInit();
   }
 
   onEdit(v){
-    const modelRef = this.modalService.open(AddEditCategoryComponent, { centered: true, size: 'lg', windowClass:'white',backdrop: 'static', keyboard: false,backdropClass:'white' });
+    const modelRef = this.modalService.open(AddEditCategoryComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
     const modelData = {};
     modelData["reason"] = v.reason;
     modelData["reasonId"] = v.reasonId;

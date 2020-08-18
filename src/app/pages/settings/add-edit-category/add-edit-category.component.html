@@ -1,17 +1,17 @@
-<div class="modal-header blueclr common-header">
+<div class="modal-header blueclr common-header mb-4">
     <div class="popup-header">
 <!--        <span>{{'Confirmation'}}</span>-->
-<!--        <h2 class="mb-0">Activate selected entry</h2>-->
+        <h2 class="mb-0">Add Reason</h2>
     </div>
-    <div class="popup-icon">
+    <!-- <div class="popup-icon">
         <img src="../../../../assets/img/blue-true.svg">
-    </div>
+    </div> -->
 </div>
 <div class="modal-boy">
     <div>
         <form [formGroup]="subCategoryForm" (ngSubmit)="onSubmit()" novalidate>
             <div class="row align-items-top">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Reasons</label>
                         <ng-select appearance="outline" [searchable]="false"
