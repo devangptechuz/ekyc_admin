@@ -12,10 +12,13 @@ import {WebcamModule} from 'ngx-webcam';
 import {NgxSelectModule} from 'ngx-select-ex';
 import {SharedModule} from '../../shared/shared.module';
 import { ApplicationSettingComponent } from './application-setting/application-setting.component';
+import { SubCategoryComponent } from './sub-category/sub-category.component';
+import { AddEditCategoryComponent } from './add-edit-category/add-edit-category.component';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 
 @NgModule({
-  declarations: [ApplicationPrefrenceComponent,AdminProfileComponent, ApplicationSettingComponent],
+  declarations: [ApplicationPrefrenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent],
   exports: [
     ApplicationPrefrenceComponent
   ],
@@ -27,6 +30,7 @@ import { ApplicationSettingComponent } from './application-setting/application-s
     FileUploadModule,
     WebcamModule,
     NgxSelectModule,
+    NgSelectModule,
     ReactiveFormsModule.
     withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule,
