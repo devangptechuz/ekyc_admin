@@ -26,6 +26,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { AddEditAdmin } from './pages/admin/shared/add-edit.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserCookiesModule } from '@ngx-utils/cookies/browser';
+import {CategoryResolver} from './pages/settings/shared/category.resolver';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -54,6 +55,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
             multi: true
         },
         AddEditAdmin,
+        CategoryResolver,
         AuthGuard,
         PageGuard
     ],

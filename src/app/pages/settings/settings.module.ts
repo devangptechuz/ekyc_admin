@@ -18,12 +18,14 @@ import { CreateFormComponent } from './create-form/create-form.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PanelWrapperComponent } from './panel-wrapper.component';
-
+import { SubCategoryComponent } from './sub-category/sub-category.component';
+import { AddEditCategoryComponent } from './add-edit-category/add-edit-category.component';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [ApplicationPrefrenceComponent, AdminProfileComponent, ApplicationSettingComponent, CreateFormComponent],
+  declarations: [ApplicationPrefrenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent],
   exports: [
-    ApplicationPrefrenceComponent
+  ApplicationPrefrenceComponent
   ],
   imports: [
     CommonModule,
@@ -33,15 +35,9 @@ import { PanelWrapperComponent } from './panel-wrapper.component';
     FileUploadModule,
     WebcamModule,
     NgxSelectModule,
+    NgSelectModule,
     ReactiveFormsModule.
-      withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    FormlyModule.forRoot({
-      wrappers: [
-        { name: 'panel', component: PanelWrapperComponent },
-      ],
-    }),
-    FormlyBootstrapModule,
-    DragDropModule,
+    withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule,
     SettingsRoutingModule
   ]

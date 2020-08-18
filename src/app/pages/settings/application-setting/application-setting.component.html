@@ -1,1 +1,23 @@
-<p>application-setting works!</p>
+<section class="application admin-list">
+    <div class="container">
+        <div class="custom-datatable mt-0">
+                <ngx-datatable class="bootstrap checkbox-table expandable" [loadingIndicator]="loadingIndicator"
+                               [columnMode]="'force'" [headerHeight]="30" [scrollbarH]="true" [footerHeight]="50"
+                               [rowHeight]="70" [limit]="limitRow" [rows]="rows" [selected]="selected"
+                               (select)='onSelect($event)'>
+                    <ngx-datatable-column [width]="200" name="Reason Category" [sortable]="true" prop="reasonCategory">
+                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                            <a title="{{row.reasonCategory}}"
+                               (click)="onEdit(row.reasonId)">{{row.reasonCategory}}</a>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [width]="50" name="Status" [sortable]="true" prop="status">
+                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                            <span *ngIf="row.status" class="green-color-text">Active</span>
+                            <span *ngIf="!row.status" class="red-color-text">Inactive</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+    </div>
+</section>
