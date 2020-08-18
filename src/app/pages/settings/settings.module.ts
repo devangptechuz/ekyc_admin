@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SettingsRoutingModule } from './settings-routing.module';
 import { ApplicationPrefrenceComponent } from './application-prefrence/application-prefrence.component';
@@ -23,7 +22,7 @@ import { AddEditCategoryComponent } from './add-edit-category/add-edit-category.
 import {NgSelectModule} from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [ApplicationPrefrenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent],
+  declarations: [ApplicationPrefrenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent],
   exports: [
   ApplicationPrefrenceComponent
   ],
@@ -39,7 +38,10 @@ import {NgSelectModule} from '@ng-select/ng-select';
     ReactiveFormsModule.
     withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule,
-    SettingsRoutingModule
+    FormlyModule,
+    FormlyBootstrapModule,
+    SettingsRoutingModule,
+    DragDropModule
   ]
 })
 export class SettingsModule { }
