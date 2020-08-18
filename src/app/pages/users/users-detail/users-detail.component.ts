@@ -942,40 +942,35 @@ export class UsersDetailComponent implements OnInit {
   /**
    * request for review, document,re-upload document: confirm modal pop-up
    */
-  requestConfirm(typeOfrequest: any = '') {
-    const label = 'Application';
+  requestConfirm(typeOfRequest: any = '') {
     let popupParam = {};
-    if (typeOfrequest === 'request_for_document') {
+    if (typeOfRequest === 'request_for_document') {
+      popupParam['name'] = 'Document Request';
       popupParam['type'] = 'request_for_document';
-      popupParam['lable'] = 'Request document';
+      popupParam['label'] = 'Request document';
       popupParam['title'] = 'Select from the list';
       popupParam['button_name'] = 'Request Document';
-    } else if (typeOfrequest === 'data_review') {
+    } else if (typeOfRequest === 'data_review') {
+      popupParam['name'] = 'Data Review';
       popupParam['type'] = 'data_review';
-      popupParam['lable'] = 'Request re-upload';
+      popupParam['label'] = 'Request Data Review';
       popupParam['title'] = 'Select your reason';
       popupParam['button_name'] = 'Request Review';
+    } else if (typeOfRequest === 'reject_reason') {
+      popupParam['name'] = 'Reject Reason';
+      popupParam['type'] = 'reject_reason';
+      popupParam['label'] = 'Reject Reason';
+      popupParam['title'] = 'Select your Reject Reason';
+      popupParam['button_name'] = 'Reject Reason';
+    }else if (typeOfRequest === 'document_re_upload') {
+      popupParam['name'] = 'Document re-upload';
+      popupParam['type'] = 'document_re_upload';
+      popupParam['label'] = 'Document re-upload';
+      popupParam['title'] = 'Select your Reason Document re-upload';
+      popupParam['button_name'] = 'Document re-upload Reason';
     }
     popupParam['userId'] = this.userId;
-
     this.confirmationDialogService.requestToConfirm(popupParam).then((data) => {
-      if (data) {
-        let objParam = {}
-        objParam['userIds'] = [this.userId];
-        if (typeOfrequest === 'request_for_document') {
-          objParam['type'] = 'request_for_document';
-        } else if (typeOfrequest === 'data_review') {
-          objParam['type'] = 'data_review';
-        }
-        this.userService.requestToApplicants(objParam)
-          .subscribe((res) => {
-            if (res.success) {
-              this.global.successToastr(res.message);
-            } else {
-              this.global.errorToastr(res.message);
-            }
-          });
-      }
     }).catch(error => console.log(error));
   }
 

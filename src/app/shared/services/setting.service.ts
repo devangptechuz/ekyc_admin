@@ -20,6 +20,14 @@ export class SettingService {
         return this.http.get<any>(`${this.apiUrl_setting}/reasonCategory`);
     }
 
+    getSubReasonListByReason(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/getSubReasonListByReason`,data);
+    }
+
+    sendReasonInfo(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/sendReasonInfo`,data);
+    }
+
     getSubReasonCategory(id) {
         return this.http.get<any>(`${this.apiUrl_setting}/subReasonCategory/${id}`);
     }
