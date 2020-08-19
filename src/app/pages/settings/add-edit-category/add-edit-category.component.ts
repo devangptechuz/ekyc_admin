@@ -13,6 +13,7 @@ import {GlobalService} from '../../../shared/services/global.service';
 export class AddEditCategoryComponent implements OnInit {
   @Input() title: string;
   @Input() fromParent: string;
+  headerTitle = 'Add Reason';
   subCategoryForm: FormGroup;
   categories = [];
   selected;
@@ -24,9 +25,12 @@ export class AddEditCategoryComponent implements OnInit {
               public global: GlobalService) { }
 
   async ngOnInit(){
+    if(this.fromParent){
+      this.headerTitle = 'Edit Reason';
+    }
     this.subCategoryForm = this.formBuilder.group({
       reason: ['', [Validators.required]],
-      reasonId: ['1', [Validators.required]],
+      reasonId: ['', [Validators.required]],
     });
     setTimeout(()=>{
       this.getReasons();
@@ -40,14 +44,16 @@ export class AddEditCategoryComponent implements OnInit {
       Data => {
             if (Data.success) {
               this.categories = [...Data['result']['reasonCategory']];
+              this.subCategoryForm.controls.reasonId.setValue(this.categories[0].reasonId)
             } else {
                this.global.errorToastr(Data.message);
             }
+            if(this.fromParent){
+              this.subCategoryForm.controls.reason.setValue(this.fromParent['reason'])
+              this.subCategoryForm.controls.reasonId.setValue(this.fromParent['reasonId'])
+              this.headerTitle = 'Edit Reason';
+            }
     });
-    if(this.fromParent){
-      this.subCategoryForm.controls.reason.setValue(this.fromParent['reason'])
-      this.subCategoryForm.controls.reasonId.setValue(this.fromParent['reasonId'])
-    }
   }
 
   public decline() {

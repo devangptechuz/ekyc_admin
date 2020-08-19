@@ -9,13 +9,13 @@
                        [columnMode]="'force'" [headerHeight]="30" [scrollbarH]="true" [footerHeight]="50"
                        [rowHeight]="70" [limit]="limitRow" [rows]="rows" [selected]="selected"
                        (select)='onSelect($event)'>
-            <ngx-datatable-column [width]="200" name="Reason Category" [sortable]="true" prop="reasonCategory">
+            <ngx-datatable-column [width]="30" name="Reason Category" [sortable]="true" prop="reasonCategory">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                     <a title="{{row.reasonCategory}}"
                        (click)="onEdit(row.reasonId)">{{row.reasonCategory}}</a>
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column [width]="50" name="Status" [sortable]="true" prop="status">
+            <ngx-datatable-column [width]="10"  name="Status" [sortable]="true" prop="status">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                     <span *ngIf="row.status" class="green-color-text">Active</span>
                     <span *ngIf="!row.status" class="red-color-text">Inactive</span>

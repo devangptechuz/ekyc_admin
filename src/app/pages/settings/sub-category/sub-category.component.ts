@@ -74,7 +74,7 @@ export class SubCategoryComponent implements OnInit {
   }
 
   setRouterLink(){
-    this.router.navigateByUrl('/settings/admin-profile');
+    this.router.navigateByUrl('/settings');
     this.sharedService.setTabName('pane-C')
   }
 

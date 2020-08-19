@@ -1,11 +1,7 @@
 <div class="modal-header blueclr common-header mb-4">
     <div class="popup-header">
-<!--        <span>{{'Confirmation'}}</span>-->
-        <h2 class="mb-0">Add Reason</h2>
+        <h2 class="mb-0">{{headerTitle}}</h2>
     </div>
-    <!-- <div class="popup-icon">
-        <img src="../../../../assets/img/blue-true.svg">
-    </div> -->
 </div>
 <div class="modal-boy">
     <div>
@@ -18,8 +14,6 @@
                                    formControlName="reasonId">
                             <ng-option [value]="item.reasonId" *ngFor="let item of categories">{{item.reasonCategory}}</ng-option>
                         </ng-select>
-                        <app-control-messages fieldName="Reason" [control]="subCategoryForm.controls['reasonId']">
-                        </app-control-messages>
                     </div>
                     <div class="form-group">
                         <label>Sub-Category Reason</label>
@@ -40,5 +34,5 @@
     <a class="btn modal-btn-continue" (click)="decline()">
         Cancel
     </a>
-    <a class="btn modal-continue" type="submit" (click)="accept()">Submit</a>
+    <a class="btn modal-continue" (click)="accept()">Submit</a>
 </div>

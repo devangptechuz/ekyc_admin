@@ -7,7 +7,7 @@ import {SubCategoryComponent} from './sub-category/sub-category.component';
 
 const routes: Routes = [
   {
-    path: 'admin-profile',
+    path: '',
     component: AdminProfileComponent,
     data: {
       title: 'admin-profile',
