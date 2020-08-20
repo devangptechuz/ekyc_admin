@@ -7,6 +7,7 @@ import { ConfirmationDialogService } from '../../services/confirmation-dialoge.s
 import {SharedService} from '../../services/shared.service';
 import {AdminService} from '../../services/admin.service';
 import {GlobalService} from '../../services/global.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: "app-navbar",
@@ -49,6 +50,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private sharedVarService:SharedService,
     private adminService:AdminService,
     public global: GlobalService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -101,6 +103,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     } else {
       this.toggleHideSidebar.emit(true);
     }
+  }
+
+  gotToProfile(){
+    this.router.navigateByUrl('/settings');
+    this.sharedVarService.setTabName('pane-B')
   }
 
   onLogout(btnElement) {

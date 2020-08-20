@@ -132,31 +132,6 @@
                                  <span *ngIf="!row.status" class="red-color-text">Deactive</span>
                               </ng-template>
                            </ngx-datatable-column>
-                           <ngx-datatable-column [width]="10" name="Actions" [sortable]="false" prop="id">
-                              <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-                                 <div class="dropdown more-dropdown">
-                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                       <span class="icon-more-vertical"></span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                       <a class="dropdown-item" href="javascript:void(0)" (click)="onEdit(value)">
-                                          <span class="ft-edit"></span> Edit</a>
-                                       <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(value,1)">
-                                          <span class="icon-user"></span>Activate User</a>
-                                       <a class="dropdown-item" href="javascript:void(0)" (click)="onDelete(value,0)">
-                                          <span class="icon-notallow"></span>Deactivate User</a>
-                                    </div>
-                                 </div>
-                                 <!-- <span>
-                                    <button (click)="onEdit(value)" class="success mr-2 btn-action">
-                                       <i class="ft-edit-2 font-medium-3"></i>
-                                    </button>
-                                    <button (click)="onDelete(value)" class="danger btn-action">
-                                       <i class="ft-trash font-medium-3"></i>
-                                    </button>
-                                 </span> -->
-                              </ng-template>
-                           </ngx-datatable-column>
                            <ngx-datatable-column [width]="50" [resizeable]="false"
                                   name="" [sortable]="false" [draggable]="false" [canAutoResize]="false">
                               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>

@@ -12,6 +12,7 @@ import { Observable, Subject } from 'rxjs';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { SharedService } from '../../../shared/services/shared.service';
 import { CommonService } from 'app/shared/services/common.service';
+declare var $: any;
 
 @Component({
   selector: 'app-admin-profile',
@@ -32,6 +33,7 @@ export class AdminProfileComponent implements OnInit {
   liveWebcam = false;
   webCamMediaPriview: any;
   webCamMediaList: any = [];
+  tabName:any;
 
   /********************** IMAGE/FILE UPLOAD: START **********************/
   uploader: FileUploader;
@@ -104,6 +106,7 @@ export class AdminProfileComponent implements OnInit {
       id: ['', []],
     });
     this.getProfileAdmin();
+    this.checkTabName();
   }
 
   submitProfile() {
@@ -168,6 +171,17 @@ export class AdminProfileComponent implements OnInit {
     this.onModalOpen();
     this.mediaPreviews = [];
     this.modalRef = this.modalService.open(this.fileuploadAadharpopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
+  }
+
+  checkTabName(){
+    this.sharedService.getTabName().subscribe((result) => {
+      if(result && result !== ''){
+        $(document).ready(function(){
+          $('.nav-tabs a[href="#' + result + '"]').tab('show');
+        });
+      }
+    });
+    this.sharedService.setTabName(null);
   }
 
   onModalOpen() {
