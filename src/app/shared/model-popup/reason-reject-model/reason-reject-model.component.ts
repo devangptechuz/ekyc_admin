@@ -1,7 +1,9 @@
 import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AdminService } from 'app/shared/services/admin.service';
-import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import {GlobalService} from '../../services/global.service';
+import {UserService} from '../../services/user.service';
+import {SettingService} from '../../services/setting.service';
 
 @Component({
   selector: 'app-reason-reject-model',
@@ -13,31 +15,34 @@ export class ReasonRejectModelComponent implements OnInit {
   listOfReasons: any[] = [];
   getReasonArray: FormArray;
   reasonDetailsform: FormGroup;
+  reasonId:any;
   selectedReasonsArray: any[];
   favReasonsError: boolean = true;
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,
     private activeModal: NgbActiveModal,
-    private adminService: AdminService
+    private settingService: SettingService,
+    public global: GlobalService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
     this.reasonDetailsform = this.fb.group({
       reasonsArray: this.fb.array([]),
-      reason_not_listed: ''
+      reason: ''
     });
     setTimeout(() => {
-      this.adminService.getTestAdmins().subscribe((res: any) => {
-        console.log('res', res);
-        if (res?.body?.success) {
-          this.listOfReasons = res?.body?.result.userList;
+      this.settingService.getSubReasonListByReason({ reason:this.objectOfModal.name }).subscribe((res: any) => {
+        if (res.success) {
+          this.listOfReasons = res.result.listSubReason;
+          this.reasonId = this.listOfReasons[0].reasonId
           this.listOfReasons.map(element => {
             this.addReasonControls(element);
           });
         }
       });
-    }, 500);
+    }, 200);
   }
 
   ngAfterViewInit() {
@@ -56,31 +61,17 @@ export class ReasonRejectModelComponent implements OnInit {
     });
   }
 
-  /**
-   * check account type countrol
-   */
-  checkAccountControlsTouched() {
-    let flg = false;
-    this.getReasonArray?.controls?.forEach((control) => {
-      if (control.touched) {
-        flg = true;
-      }
-    });
-    return flg;
-  }
-
   selectReason($event) {
     setTimeout(() => {
       this.selectedReasonsArray = [];
       const getReasonArray: any = this.reasonDetailsform.get('reasonsArray') as FormArray;
-      getReasonArray.controls.forEach((ctrl: FormControl, i) => {
+      getReasonArray.controls.forEach((ctrl: FormControl) => {
         if (ctrl.value.name) {
           this.selectedReasonsArray.push(ctrl.value.id);
         }
       });
-      console.log('reasonsArray', this.selectedReasonsArray);
-      this.favReasonsError = this.selectedReasonsArray?.length > 0 ? false : true;
-    }, 500);
+      this.favReasonsError = this.selectedReasonsArray?.length <= 0;
+    }, 200);
   }
 
   public decline() {
@@ -88,6 +79,19 @@ export class ReasonRejectModelComponent implements OnInit {
   }
 
   public accept() {
+    let obj = {};
+    obj['userId'] = this.objectOfModal.userId;
+    obj['reasonDetail'] = this.reasonDetailsform.value.reason;
+    obj['reasonId'] = this.reasonId;
+    obj['subReasonId'] = [...this.selectedReasonsArray]
+    this.settingService.sendReasonInfo(obj)
+        .subscribe((res) => {
+          if (res.success) {
+            this.global.successToastr(res.message);
+          } else {
+            this.global.errorToastr(res.message);
+          }
+        });
     this.activeModal.close(true);
   }
 
