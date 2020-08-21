@@ -148,9 +148,10 @@ export class UsersDetailComponent implements OnInit {
       if (localStorage.getItem('form2') != undefined) {
         let obj = JSON.parse(localStorage.getItem('form2'))
         // this.fieldsArr=JSON.parse(localStorage.getItem('form1'))
-        console.log(obj);
+        console.log('obj', obj);
         this.formName1 = obj.name;
         this.fieldsArr1 = JSON.parse(obj.value)
+        console.log(this.fieldsArr1);
       }
     }
     catch (err) {
@@ -1000,7 +1001,7 @@ export class UsersDetailComponent implements OnInit {
       popupParam['label'] = 'Reject Reason';
       popupParam['title'] = 'Select your Reject Reason';
       popupParam['button_name'] = 'Reject Reason';
-    }else if (typeOfRequest === 'document_re_upload') {
+    } else if (typeOfRequest === 'document_re_upload') {
       popupParam['name'] = 'Document re-upload';
       popupParam['type'] = 'document_re_upload';
       popupParam['label'] = 'Document re-upload';
