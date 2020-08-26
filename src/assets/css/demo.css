@@ -208,8 +208,9 @@ body .login-section .card{ height: auto; }
 
 /******************************** CUSTOME: CSS: START:17 july 2020 **********************************/
 /*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');*/
-@import url("https://use.typekit.net/xee7cvk.css");
-body{font-family: poppins, sans-serif;color: rgba(0, 0, 0, 0.8);-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+/*@import url("https://use.typekit.net/xee7cvk.css");*/
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');*/
+body{font-family: 'Poppins', sans-serif;color: rgba(0, 0, 0, 0.8);-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{font-family: 'Poppins', sans-serif;}
 header{box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);}
 h1{font-size: 30px}
@@ -753,6 +754,14 @@ ul.docupld-link li a{display: flex;align-items: center;margin: 0 0 10px;letter-s
 ul.docupld-link li a span{margin-right: 15px;}
 ul.docupld-link li:hover a{color: #19D097;}
 ul.docupld-link li.active a{color: #19D097;font-weight: 500;}
+.user-btmbx ul.docupld-link{flex-flow: wrap;overflow-y: auto;max-height: 178px;}  
+.user-btmbx ul.docupld-link li {flex: 0 0 46%;margin-right: 0;}
+.user-btmbx ul.docupld-link li:nth-child(odd){margin-right: 5px;}
+.user-btmbx ul.docupld-link::-webkit-scrollbar {width: 2px;}
+.user-btmbx ul.docupld-link::-webkit-scrollbar-track {border-radius: 10px;}
+.user-btmbx ul.docupld-link::-webkit-scrollbar-thumb {background: #C4C4C4;border-radius: 10px;}
+.user-btmbx ul.docupld-link::-webkit-scrollbar-thumb:hover {background: transparent;}
+
 .user-btmbx .btn-custom {margin: 20px 0 0;padding: 5px 14px;font-size: 14px;text-transform: uppercase;font-weight: 600;}
 .rght .green-status{background: rgba(25, 208, 151, 0.08);padding: 12px 16px;font-size: 12px;line-height: 18px;border-radius: 4px;}
 .rght .green-status .icon-check-circle{margin-left: 10px;}
