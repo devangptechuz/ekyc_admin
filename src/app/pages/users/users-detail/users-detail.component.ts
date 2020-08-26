@@ -143,12 +143,10 @@ export class UsersDetailComponent implements OnInit {
         // this.fieldsArr=JSON.parse(localStorage.getItem('form1'))
         this.formName = obj.name;
         this.fieldsArr = JSON.parse(obj.value)
-        console.log(this.fieldsArr);
       }
       if (localStorage.getItem('form2') != undefined) {
         let obj = JSON.parse(localStorage.getItem('form2'))
         // this.fieldsArr=JSON.parse(localStorage.getItem('form1'))
-        console.log(obj);
         this.formName1 = obj.name;
         this.fieldsArr1 = JSON.parse(obj.value)
       }
@@ -324,7 +322,6 @@ export class UsersDetailComponent implements OnInit {
   }
 
   onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): any {
-    console.log('imgageArray', response);
     let data = JSON.parse(response);
     const imgageArray = { images: [data.result.token] };
   }
@@ -587,7 +584,6 @@ export class UsersDetailComponent implements OnInit {
     uploadParam.append('api_name', 'upload_user_document');
     uploadParam.append('document_name', this.nameOfDocument);
     realImageBlob.map((item: any, index) => {
-      console.log('item', item);
       uploadParam.append('file[]', item, `webcamimage${index}.jpeg`);
     });
     this.fileUploadingProcessStarting();

@@ -72,11 +72,9 @@ export class ApplicationSettingComponent implements OnInit {
   }
 
   toggleExpandRow(row) {
-    console.log('Toggled Expand Row!', row);
     this.table.rowDetail.toggleExpandRow(row);
   }
 
   onDetailToggle(event) {
-    console.log('Detail Toggled', event);
   }
 }

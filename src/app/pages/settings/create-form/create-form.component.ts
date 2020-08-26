@@ -51,18 +51,14 @@ export class CreateFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // this.createNewForm('Form 1');
-    console.log(this.formIndex);
     const key = 'form' + (this.formIndex);
     this.addNewForm(key);
-    //this.formNameModel=this.form1;
   }
   hidePreview() {
     this.showPreview = false;
   }
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.fieldsArr, event.previousIndex, event.currentIndex);
-    console.log(this.fieldsArr)
   }
   dropdownFields: any = ['input', 'dropdown', 'checkbox', 'radio'];
   fieldsArray = [];
@@ -104,7 +100,6 @@ export class CreateFormComponent implements OnInit {
     }
   }
   createNewForm(data) {
-    console.log("change is called", data);
     this.currentForm = data;
     this.selectedForm = data;
     this.showForm = true;
@@ -183,18 +178,10 @@ export class CreateFormComponent implements OnInit {
 
       /* save data */
       this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
-      // this.data.map((data)=>{
-      //   data.map((bitsData)=>{
-      //     console.log(bitsData)
-      //   })
-
-      // })
       this.fields.templateOptions.options = [];
       for (let i = 0; i < this.data.length; i++) {
         for (let j = 0; j < 1; j++) {
           this.fields.templateOptions.options.push({ value: this.data[i][j + 1], label: this.data[i][j] })
-          // console.log(this.data[i][j]);
-          // console.log(this.data[i][j+1]);
         }
       }
 
@@ -202,7 +189,6 @@ export class CreateFormComponent implements OnInit {
     reader.readAsBinaryString(target.files[0]);
   }
   addField() {
-    console.log("add ")
     this.isDisabled = false;
     this.isHide = false
     if (this.selectedField == 'input') {
@@ -273,7 +259,6 @@ export class CreateFormComponent implements OnInit {
       let key = "Form" + (+this.formArray.length + 1);
       this.formArray.push(key);
       this.formIndex = (+this.formArray.length);
-      // console.log(this.form)
       this.form = new FormGroup({});
       this.model = {};
       this.fieldsArr = [];
@@ -306,7 +291,6 @@ export class CreateFormComponent implements OnInit {
           this.fields['isHide'] = true;
         }
       }
-      console.log(this.fields);
       this.finalJson.push(this.fields);
       this.fieldsArray = [];
       this.fieldsArr = this.finalJson;
