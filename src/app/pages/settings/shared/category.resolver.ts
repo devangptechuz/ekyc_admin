@@ -12,6 +12,6 @@ export class CategoryResolver implements Resolve<any> {
   }
 
   resolve(route: ActivatedRouteSnapshot) {
-   // return this.settingService.getSubReasonCategory(route.paramMap.get('id'));
+   return this.settingService.getSubReasonCategory(route.paramMap.get('id'));
   }
 }
