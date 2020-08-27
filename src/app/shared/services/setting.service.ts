@@ -20,6 +20,10 @@ export class SettingService {
         return this.http.get<any>(`${this.apiUrl_setting}/reasonCategory`);
     }
 
+    getRecentAlerts() {
+        return this.http.get<any>(`${this.apiUrl_setting}/getRecentAlert`);
+    }
+
     getSubReasonListByReason(data): Observable<any> {
         return this.http.post<any>(`${this.apiUrl_setting}/getSubReasonListByReason`,data);
     }

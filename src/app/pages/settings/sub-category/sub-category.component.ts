@@ -26,20 +26,6 @@ export class SubCategoryComponent implements OnInit {
   status = [
     {label:'Inactive', value:'0'},
     {label: 'Active', value: '1'}];
-  subReasonCategory = [
-    {
-      "id": "bfe2bd19-eb47-40ba-82ec-ddecbc4d22dd",
-      "reason": "PAN Number does not match",
-      "reasonId": "1",
-      "status": 1
-    },
-    {
-      "id": "28c0b39e-b203-4704-a6af-05e3b6afc9a4",
-      "reason": "Address proof does not match with image",
-      "reasonId": "1",
-      "status": 1
-    }
-  ]
   constructor( private router: Router,
                private settingService: SettingService,
                private spinner: NgxSpinnerService,
@@ -55,8 +41,19 @@ export class SubCategoryComponent implements OnInit {
     if(this.subCategoryData?.success){
       this.rows = [...this.subCategoryData.result['subReasonCategory']]
     }
-    // this.rows = [...this.subReasonCategory]
   }
+
+  getSubReasonCategory(){
+    this.settingService.getSubReasonCategory(this.route.snapshot.params.id)
+        .subscribe((res) => {
+          if (res.success) {
+            this.rows = [...res.result['subReasonCategory']]
+          } else {
+            this.global.errorToastr(res.message);
+          }
+        });
+  }
+
 
   changeStatus(event,row) {
     const val = event.target.value;
@@ -81,8 +78,8 @@ export class SubCategoryComponent implements OnInit {
   addNewReason(){
     this.modalRef = this.modalService.open(AddEditCategoryComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
     this.modalRef.result.then((result) => {
-     if(result){
-         this.ngOnInit();
+      if(result){
+         this.getSubReasonCategory();
      }
     });
   }
@@ -96,8 +93,8 @@ export class SubCategoryComponent implements OnInit {
     modelData["isEdit"] = true;
     modelRef.componentInstance.fromParent = modelData;
     modelRef.result.then((result)=>{
-        if(result){
-            this.ngOnInit();
+      if(result){
+          this.getSubReasonCategory();
         }
     })
   }

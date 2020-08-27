@@ -16,6 +16,8 @@
                                    [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
                                    [rowHeight]="80" [limit]="limitRow" [rows]="rows"
                                    >
+                        <ngx-datatable-column [width]="200" name="Reason Category" [sortable]="true" prop="reasonCategory">
+                        </ngx-datatable-column>
                         <ngx-datatable-column [width]="300" name="Reason" [sortable]="true" prop="reason">
                         </ngx-datatable-column>
 
