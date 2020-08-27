@@ -183,16 +183,13 @@ export class ListAdminComponent implements OnInit {
   }
 
   handlePageChange (event: any): void {
-    console.log(event);
   }
 
   toggleExpandRow(row) {
-    console.log('Toggled Expand Row!', row);
     this.table.rowDetail.toggleExpandRow(row);
   }
 
   onDetailToggle(event) {
-    console.log('Detail Toggled', event);
   }
 
 

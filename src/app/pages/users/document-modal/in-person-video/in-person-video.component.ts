@@ -3,8 +3,8 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef, Output, EventEmitter, 
 import * as RecordRTC from 'recordrtc/RecordRTC.min';
 import * as ebml from 'ts-ebml';
 import { MediaStreamRecorder } from 'recordrtc/RecordRTC.min';
-import { NgbModal, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FileUploader } from 'ng2-file-upload';
 import { CookiesService } from '@ngx-utils/cookies';
 import { UserService } from 'app/shared/services/user.service';
 import { GlobalService } from 'app/shared/services/global.service';
@@ -129,7 +129,6 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
           this.viewPreviewDisplayImage = this.viewMediaPreviewsList[0];
           this.fileUploading = false;
           this.viewSectionOfImage = true;
-          // console.log('this.viewPreviewDisplayImage', this.viewPreviewDisplayImage);
         }
       });
     }
@@ -267,7 +266,6 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
      = start video recording stream
    ------------------------------------------------------ */
   successCallback(stream: MediaStream) {
-    console.log('successCallback :: called');
     setTimeout(() => {
       this.isShowButton = true;
     }, 800);
@@ -340,7 +338,6 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
      = handle error here if any while capturing video
    ------------------------------------------------------ */
   errorCallback(error: any) {
-    console.log('errorCallback :: called');
     this.isRecording = false;
     this.videoFlag = true;
     this.webcamVideo = false;
@@ -524,7 +521,6 @@ export class InPersonVideoComponent implements OnInit, AfterViewInit {
     const ImageURL = imageAsDataUrl;
     const block = ImageURL.split(";");
     const contentType = block[0].split(":")[1];// In this case "image/gif"
-    console.log('contentType', contentType);
     const realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
     const blob = this.b64toBlob(realData, contentType);
     return blob;

@@ -193,9 +193,6 @@ export class ImagePopupComponent implements OnInit {
       this.ref.detectChanges();
     }
     this.uploader.onErrorItem = (item, response, status, headers) => {
-      // console.log('error item', item);
-      // console.log('error status', status);
-      // this.onErrorItem(item, response, status, headers);
     }
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       this.onSuccessItem(item, response, status, headers);
@@ -216,7 +213,6 @@ export class ImagePopupComponent implements OnInit {
   }
 
   onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): any {
-    console.log('imgageArray', response);
     let data = JSON.parse(response);
     const imgageArray = { images: [data.result.token] };
   }

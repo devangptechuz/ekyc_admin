@@ -274,7 +274,6 @@ export class AdminProfileComponent implements OnInit {
   }
 
   onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): any {
-    console.log('imgageArray', response);
     let data = JSON.parse(response);
     const imgageArray = { images: [data.result.token] };
   }
@@ -429,7 +428,6 @@ export class AdminProfileComponent implements OnInit {
     uploadParam.append('api_name', 'update_profile');
     uploadParam.append('userProfile', this.nameOfDocument);
     realImageBlob.map((item: any, index) => {
-      console.log('item', item);
       uploadParam.append('file[]', item, `webcamimage${index}.jpeg`);
     });
     this.fileUploadingProcessStarting();
