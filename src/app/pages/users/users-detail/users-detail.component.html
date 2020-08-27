@@ -431,6 +431,32 @@
             </div>
          </div>
       </div>
+
+      <div class="user-box">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>Segment & Brokerage details</h2>
+            </div>
+            <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar
+                  <span class="icon-alert ml-3"></span></span></div>
+         </div>
+         <div class="row user-btmbx">
+            <div class="col-md-6">
+               <!-- <div class="d-flex justify-content-between mb-3">
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+               </div> -->
+               <div class="row cmn-layout" *ngIf="userData?.segment_brokerage_info?.length">
+                  <div class="col-md-12 d-flex flex-column mb-3" *ngFor="let item of userData?.segment_brokerage_info">
+                     <label>{{item?.category_name}}</label>
+                     {{item?.sub_category_name}} => {{item?.plan_name}}
+                  </div>
+               </div>
+               <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/bank-details',userId]"
+                  routerLinkActive="router-link-active">edit
+                  details</button>
+            </div>
+         </div>
+      </div>
       <!-- User box - bank details-->
       <div class="user-box">
          <div class="user-bxhdr d-flex justify-content-between">

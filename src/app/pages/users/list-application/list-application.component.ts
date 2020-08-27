@@ -86,9 +86,7 @@ export class ListApplicationComponent implements OnInit {
     }
   }
 
-  public onClearAll() {
-
-  }
+  public onClearAll() { }
 
   removeText() {
     this.searchValue = '';
@@ -98,10 +96,17 @@ export class ListApplicationComponent implements OnInit {
   updateFilter(event) {
     const searchByType = this.searchBytype.nativeElement.value;
     const searchByKey = event.target.value;
+
     if (!searchByType && !searchByKey) {
       return this.global.errorToastr('Search box is empty')
     }
-    const val = searchByType.toLowerCase() || searchByKey.toLowerCase();
+    let val = '';
+    if (searchByType) {
+      val = searchByType.toLowerCase();
+    } else if (searchByKey) {
+      val = searchByType.toLowerCase();
+    }
+    // const val = searchByType.toLowerCase() || searchByKey.toLowerCase();
     this.commonFunctionFilter(val);
   }
 
@@ -118,7 +123,7 @@ export class ListApplicationComponent implements OnInit {
     this.rows = this.temp.filter((d) => {
       return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
         d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
-        d.userName.toLowerCase().indexOf(val) !== -1 || !val;
+        d.panUserName.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.table.offset = 0;
   }

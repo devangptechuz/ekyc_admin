@@ -1,369 +1,389 @@
 <section class="application">
     <div class="container">
         <div class="custom-tabs">
-        <!-- Nav tabs -->
-        <ul id="tabs" class="nav nav-tabs" role="tablist">
-            <li class="nav-item" (click)="getApplicationListByType()">
-                <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">all ({{count}})</a>
-            </li>
-            <li class="nav-item">
-                <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">new applications (0)</a>
-            </li>
-            <li class="nav-item" (click)="getApplicationListByType('under_review')">
-                <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">under review
-                    ({{countUnderReview}})</a>
-            </li>
-            <li class="nav-item" (click)="getApplicationListByType('approved')">
-                <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">approved
-                    ({{countApproved}})</a>
-            </li>
-            <li class="nav-item" (click)="getApplicationListByType('rejected')">
-                <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">rejected
-                    ({{countRejected}})</a>
-            </li>
-            <!-- <li class="nav-item">
+            <!-- Nav tabs -->
+            <ul id="tabs" class="nav nav-tabs" role="tablist">
+                <li class="nav-item" (click)="getApplicationListByType()">
+                    <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">all
+                        ({{count}})</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">new applications (0)</a>
+                </li>
+                <li class="nav-item" (click)="getApplicationListByType('under_review')">
+                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">under review
+                        ({{countUnderReview}})</a>
+                </li>
+                <li class="nav-item" (click)="getApplicationListByType('approved')">
+                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">approved
+                        ({{countApproved}})</a>
+                </li>
+                <li class="nav-item" (click)="getApplicationListByType('rejected')">
+                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">rejected
+                        ({{countRejected}})</a>
+                </li>
+                <!-- <li class="nav-item">
                 <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">reported (6)</a>
             </li> -->
-            <li class="nav-item">
-                <a href="https://devsite.getprosper.in/" class="nav-link app-link" target="_blank">Create new
-                    application</a>
-            </li>
-        </ul>
-        <!-- Tab panes -->
-        <div id="content" class="tab-content" role="tablist">
-            <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
-                <div class="card-header" role="tab" id="heading-A">
-                    <h5 class="mb-0">
-                        <!-- Note: `data-parent` removed from here -->
-                        <a data-toggle="collapse" href="#collapse-A" aria-expanded="true" aria-controls="collapse-A">
-                            All ({{count}})
-                        </a>
-                    </h5>
-                </div>
+                <li class="nav-item">
+                    <a href="https://devsite.getprosper.in/" class="nav-link app-link" target="_blank">Create new
+                        application</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div id="content" class="tab-content" role="tablist">
+                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+                    <div class="card-header" role="tab" id="heading-A">
+                        <h5 class="mb-0">
+                            <!-- Note: `data-parent` removed from here -->
+                            <a data-toggle="collapse" href="#collapse-A" aria-expanded="true"
+                                aria-controls="collapse-A">
+                                All ({{count}})
+                            </a>
+                        </h5>
+                    </div>
 
-                <!-- Note: New place of `data-parent` -->
-                <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel"
-                    aria-labelledby="heading-A">
-                    <div class="card-body">
-                        <div class="custom-datatable mt-0">
-                            <div class="header row d-flex justify-content-between">
-                                <div class="col-md-4">
-                                    <h2>all applications ({{count}})</h2>
-                                    <span class="green-text">2% increase since last week<span
-                                            class="icon-red-arrow"></span>
-                                    </span>
-                                </div>
-                                <div class="col-md-8 d-flex align-items-center justify-content-end">
-                                    <div class="search">
-                                        <input type="search" #searchBytype name="searchbytype" [(ngModel)]="searchValue"
-                                            placeholder="Search by PAN Number or Email or Mobile Number"
-                                            class="form-control" (keyup)='resetFilter($event)'
-                                            (keydown)="onEnterPress($event)">
-                                        <button (click)='updateFilter($event)' class="btn-search"><span
-                                                class="icon-search"></span></button>
-                                        <button *ngIf="searchValue" (click)='removeText()'
-                                            class="close-icon">&times;</button>
+                    <!-- Note: New place of `data-parent` -->
+                    <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel"
+                        aria-labelledby="heading-A">
+                        <div class="card-body">
+                            <div class="custom-datatable mt-0">
+                                <div class="header row d-flex justify-content-between">
+                                    <div class="col-md-4">
+                                        <h2>all applications ({{count}})</h2>
+                                        <span class="green-text">2% increase since last week<span
+                                                class="icon-red-arrow"></span>
+                                        </span>
                                     </div>
-                                    <!--                                    <div class="filter">Filter search<span class="icon-filter"></span></div>-->
-                                    <ng-select [items]="item" [multiple]="true" bindLabel="name" groupBy="label"
-                                        [selectableGroupAsModel]="false" [closeOnSelect]="false"
-                                        placeholder="Filter search" dropdownPosition="bottom">
+                                    <div class="col-md-8 d-flex align-items-center justify-content-end">
+                                        <div class="search">
+                                            <input type="search" #searchBytype name="searchbytype"
+                                                [(ngModel)]="searchValue"
+                                                placeholder="Search by PAN Number or Email or Mobile Number"
+                                                class="form-control" (keyup)='resetFilter($event)'
+                                                (keydown)="onEnterPress($event)">
+                                            <button (click)='updateFilter($event)' class="btn-search"><span
+                                                    class="icon-search"></span></button>
+                                            <button *ngIf="searchValue" (click)='removeText()'
+                                                class="close-icon">&times;</button>
+                                        </div>
+                                        <!--                                    <div class="filter">Filter search<span class="icon-filter"></span></div>-->
+                                        <ng-select [items]="item" [multiple]="true" bindLabel="name" groupBy="label"
+                                            [selectableGroupAsModel]="false" [closeOnSelect]="false"
+                                            placeholder="Filter search" dropdownPosition="bottom">
 
-                                        <ng-template ng-header-tmp>
-                                            <div>
-                                                <span>Filter Search</span>
-                                                <button class="btn btn-link float-right"
-                                                    (click)="onClearAll()">Clear</button>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template ng-footer-tmp>
-                                            <label>Date range</label>
-                                            <div class="position-relative mr-1">
-                                                <input type="text" class="form-control" placeholder="From Date"
-                                                    dateFormat="dd/MM/yyyy" formControlName="dob" ngbDatepicker
-                                                    #d="ngbDatepicker">
-                                                <div class="input-group-append calendar">
-                                                    <span class="btn" (click)="d.toggle()" type="button"><span
-                                                            class="icon-calendar"></span></span>
+                                            <ng-template ng-header-tmp>
+                                                <div>
+                                                    <span>Filter Search</span>
+                                                    <button class="btn btn-link float-right"
+                                                        (click)="onClearAll()">Clear</button>
                                                 </div>
-                                            </div>
-                                            <div class="position-relative ml-1">
-                                                <input type="text" class="form-control" placeholder="To Date"
-                                                    dateFormat="dd/MM/yyyy" formControlName="dob" ngbDatepicker
-                                                    #d="ngbDatepicker">
-                                                <div class="input-group-append calendar">
-                                                    <span class="btn" (click)="d.toggle()" type="button"><span
-                                                            class="icon-calendar"></span></span>
+                                            </ng-template>
+                                            <ng-template ng-footer-tmp>
+                                                <label>Date range</label>
+                                                <div class="position-relative mr-1">
+                                                    <input type="text" class="form-control" placeholder="From Date"
+                                                        dateFormat="dd/MM/yyyy" formControlName="dob" ngbDatepicker
+                                                        #d="ngbDatepicker" (click)="d.toggle()">
+                                                    <div class="input-group-append calendar">
+                                                        <span class="btn" (click)="d.toggle()" type="button"><span
+                                                                class="icon-calendar"></span></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="btn-aply"><button class="btn btn-custom">Apply</button></div>
-                                        </ng-template>
+                                                <div class="position-relative ml-1">
+                                                    <input type="text" class="form-control" placeholder="To Date"
+                                                        dateFormat="dd/MM/yyyy" formControlName="to_date" ngbDatepicker
+                                                        #db="ngbDatepicker" (click)="db.toggle()">
+                                                    <div class="input-group-append calendar">
+                                                        <span class="btn" (click)="db.toggle()" type="button"><span
+                                                                class="icon-calendar"></span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="btn-aply"><button class="btn btn-custom">Apply</button>
+                                                </div>
+                                            </ng-template>
 
-                                        <ng-template ng-optgroup-tmp let-item="item" let-item$="item$"
-                                            let-index="index">
-                                            {{item.label}}<input id="item-{{index}}" type="checkbox"
-                                                [ngModel]="item$.selected" />
-                                        </ng-template>
-                                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
-                                            {{item.name}} <input id="item-{{index}}" type="checkbox"
-                                                [ngModel]="item$.selected" />
-                                        </ng-template>
+                                            <ng-template ng-optgroup-tmp let-item="item" let-item$="item$"
+                                                let-index="index">
+                                                {{item.label}}<input id="item-{{index}}" type="checkbox"
+                                                    [ngModel]="item$.selected" />
+                                            </ng-template>
+                                            <ng-template ng-option-tmp let-item="item" let-item$="item$"
+                                                let-index="index">
+                                                {{item.name}} <input id="item-{{index}}" type="checkbox"
+                                                    [ngModel]="item$.selected" />
+                                            </ng-template>
 
-                                        <!--                                        <ng-template>-->
-                                        <!--                                            <div class="input-group datepicker">-->
-                                        <!--                                                <input type="text"  placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"-->
-                                        <!--                                                       ngbDatepicker #d="ngbDatepicker">-->
-                                        <!--                                                <div class="input-group-append calendar">-->
-                                        <!--                                                    date <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"-->
-                                        <!--                                                                                                                                       aria-hidden="true"></i></span>-->
-                                        <!--                                                </div>-->
-                                        <!--                                            </div>-->
-                                        <!--                                        </ng-template>-->
+                                            <!--                                        <ng-template>-->
+                                            <!--                                            <div class="input-group datepicker">-->
+                                            <!--                                                <input type="text"  placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"-->
+                                            <!--                                                       ngbDatepicker #d="ngbDatepicker">-->
+                                            <!--                                                <div class="input-group-append calendar">-->
+                                            <!--                                                    date <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"-->
+                                            <!--                                                                                                                                       aria-hidden="true"></i></span>-->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
+                                            <!--                                        </ng-template>-->
 
-                                    </ng-select>
-                                </div>
-                            </div>
-                            <div class="tble">
-                                <ngx-datatable class="bootstrap checkbox-table" [loadingIndicator]="loadingIndicator"
-                                    [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
-                                    [rowHeight]="80" [limit]="limitRow" [rows]="rows" (page)='setPage($event)'
-                                    [selected]="selected" [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
-                                    (select)='onSelect($event)'>
-
-                                    <ngx-datatable-column [width]=" 10" [sortable]="false" [canAutoResize]="false"
-                                        [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
-                                        [checkboxable]="true" [sortable]="true" prop="selected">
-                                    </ngx-datatable-column>
-
-                                    <ngx-datatable-column [width]="10" name="PAN Number" [sortable]="true"
-                                        prop="panUserName">
-                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a title="{{row.panUserName}}" [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active"
-                                                class="uname wrap-text user-wrap">{{row.panUserName}}</a>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
-                                        prop="id">
-                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a title="{{row.id}}" [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname wrap-text id-wrap">
-                                                {{row.id | uppercase}}
-                                            </a>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="40" name="Email" [sortable]="true" prop="email">
-                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname wrap-text email-wrap"
-                                                style="text-transform: lowercase;">
-                                                {{row.email | lowercase}}
-                                            </a>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="40" name="Mobile Number" [sortable]="true"
-                                        prop="mobileNumber">
-                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname">
-                                                {{row.mobileNumber}}
-                                            </a>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="20" name="application status" [sortable]="false"
-                                        prop="isDocumentUploaded">
-                                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                            <span *ngIf="row.adminApproval === 'Under review'">
-                                                Under Review
-                                            </span>
-                                            <span class="red-color-text" *ngIf="row.adminApproval === 'Reject'">
-                                                Rejected
-                                            </span>
-                                            <span class="green-color-text" *ngIf="row.adminApproval === 'Approved'">
-                                                Approved
-                                            </span>
-                                            <span class="light-color-text"
-                                                *ngIf="!row.adminApproval && row.isEKYCComplete">
-                                                Submitted
-                                            </span>
-                                            <span class="light-color-text"
-                                                *ngIf="!row.adminApproval && !row.isEKYCComplete">
-                                                Incompleted
-                                            </span>
-                                             <button class="next-arr"><i class="fa fa-angle-right"></i></button>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                </ngx-datatable>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
-                <div class="card-header" role="tab" id="heading-B">
-                    <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false"
-                            aria-controls="collapse-B">
-                           new applications (0)
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel"
-                    aria-labelledby="heading-B">
-                    <div class="card-body">
-                        <div class="coming-soon">
-                            <img src="assets/img/soon.svg">
-                            <h2>Coming Soon</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
-                <div class="card-header" role="tab" id="heading-C">
-                    <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" href="#collapse-C" aria-expanded="false"
-                            aria-controls="collapse-C">
-                            under review
-                    ({{countUnderReview}})
-                        </a>
-                    </h5>
-                </div>
-
-                <div class="collapse" role="tabpanel" data-parent="#content" aria-labelledby="heading-C">
-                    <div class="card-body">
-                        <div class="custom-datatable mt-0">
-                            <div class="header row d-flex justify-content-between">
-                                <div class="col-md-4">
-                                    <h2 *ngIf="typeOflist === 'under_review'">
-                                        under review ({{countUnderReview}})
-                                    </h2>
-                                    <h2 *ngIf="typeOflist === 'approved'">
-                                        {{typeOflist}} ({{countApproved}})
-                                    </h2>
-                                    <h2 *ngIf="typeOflist === 'rejected'">
-                                        {{typeOflist}} ({{countRejected}})
-                                    </h2>
-                                    <span class="green-text">2% increase since last week<span
-                                            class="icon-red-arrow"></span>
-                                    </span>
-                                </div>
-                                <div class="col-md-8 d-flex align-items-center justify-content-end">
-                                    <div class="search">
-                                        <input type="search" #searchBytypeAgain name="searchBytypeAgain"
-                                            [(ngModel)]="searchValue"
-                                            placeholder="Search by Admin PAN Number or Email or Mobile Number"
-                                            class="form-control" (keyup)='resetFilter($event)'
-                                            (keydown)="onEnterPressAgain($event)">
-                                        <button (click)='updateFilterAgain($event)' class="btn-search"><span
-                                                class="icon-search"></span></button>
-                                        <button *ngIf="searchValue" (click)='removeText()'
-                                            class="close-icon">&times;</button>
+                                        </ng-select>
                                     </div>
-                                    <div class="filter">Filter search<span class="icon-filter"></span></div>
                                 </div>
-                            </div>
-                            <div class="tble">
-                                <ngx-datatable class="bootstrap checkbox-table" [loadingIndicator]="loadingIndicator"
-                                    [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
-                                    [rowHeight]="80" [limit]="limitRow" [rows]="rows"
-                                    [sorts]="[{prop: 'uname', dir: 'asc'}]" [selected]="selected"
-                                    [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
-                                    (select)='onSelect($event)'>
+                                <div class="tble">
+                                    <ngx-datatable class="bootstrap checkbox-table"
+                                        [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50"
+                                        [scrollbarH]="true" [footerHeight]="50" [rowHeight]="80" [limit]="limitRow"
+                                        [rows]="rows" (page)='setPage($event)' [selected]="selected"
+                                        [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
+                                        (select)='onSelect($event)'>
 
-                                    <ngx-datatable-column [width]=" 10" [sortable]="false" [canAutoResize]="false"
-                                        [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
-                                        [checkboxable]="true" [sortable]="true" prop="selected">
-                                    </ngx-datatable-column>
+                                        <ngx-datatable-column [width]=" 10" [sortable]="false" [canAutoResize]="false"
+                                            [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
+                                            [checkboxable]="true" [sortable]="true" prop="selected">
+                                        </ngx-datatable-column>
 
-                                    <ngx-datatable-column [width]="10" name="PAN Number" [sortable]="true"
-                                        prop="panUserName">
-                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a title="{{row.panUserName}}" [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active"
-                                                class="uname wrap-text">{{row.panUserName}}</a>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
-                                        prop="id">
-                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a title="{{row.id}}" [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname id-wrap wrap-text">
-                                                {{row.id | uppercase}}
-                                            </a>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="40" name="Email" [sortable]="true" prop="email">
-                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="uname email-wrap wrap-text"
-                                                style="text-transform: lowercase;">
-                                                {{row.email | lowercase}}
-                                            </a>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="40" name="Mobile Number" [sortable]="true"
-                                        prop="mobileNumber">
-                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                            <a [routerLink]="['/applications/details',row.id]"
-                                                routerLinkActive="router-link-active" class="wrap-text uname"
-                                                style="text-transform: lowercase;">
-                                                {{row.mobileNumber}}
-                                            </a>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="20" name="application status" [sortable]="false"
-                                        prop="isDocumentUploaded">
-                                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                            <span *ngIf="row.adminApproval === 'Under review'">
-                                                Under Review
-                                            </span>
-                                            <span class="red-color-text" *ngIf="row.adminApproval === 'Reject'">
-                                                Rejected
-                                            </span>
-                                            <span class="green-color-text" *ngIf="row.adminApproval === 'Approved'">
-                                                Approved
-                                            </span>
-                                            <span class="light-color-text"
-                                                *ngIf="!row.adminApproval && row.isEKYCComplete">
-                                                Submitted
-                                            </span>
-                                            <span class="light-color-text"
-                                                *ngIf="!row.adminApproval && !row.isEKYCComplete">
-                                                Incompleted
-                                            </span>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                </ngx-datatable>
+                                        <ngx-datatable-column [width]="10" name="PAN Number" [sortable]="true"
+                                            prop="panUserName">
+                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                let-row="row">
+                                                <a title="{{row.panUserName}}"
+                                                    [routerLink]="['/applications/details',row.id]"
+                                                    routerLinkActive="router-link-active"
+                                                    class="uname wrap-text user-wrap">{{row.panUserName}}</a>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
+                                            prop="id">
+                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                let-row="row">
+                                                <a title="{{row.id}}" [routerLink]="['/applications/details',row.id]"
+                                                    routerLinkActive="router-link-active"
+                                                    class="uname wrap-text id-wrap">
+                                                    {{row.id | uppercase}}
+                                                </a>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column [width]="40" name="Email" [sortable]="true" prop="email">
+                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                let-row="row">
+                                                <a [routerLink]="['/applications/details',row.id]"
+                                                    routerLinkActive="router-link-active"
+                                                    class="uname wrap-text email-wrap"
+                                                    style="text-transform: lowercase;">
+                                                    {{row.email | lowercase}}
+                                                </a>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column [width]="40" name="Mobile Number" [sortable]="true"
+                                            prop="mobileNumber">
+                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                let-row="row">
+                                                <a [routerLink]="['/applications/details',row.id]"
+                                                    routerLinkActive="router-link-active" class="uname">
+                                                    {{row.mobileNumber}}
+                                                </a>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column [width]="20" name="application status" [sortable]="false"
+                                            prop="isDocumentUploaded">
+                                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                                <span *ngIf="row.adminApproval === 'Under review'">
+                                                    Under Review
+                                                </span>
+                                                <span class="red-color-text" *ngIf="row.adminApproval === 'Reject'">
+                                                    Rejected
+                                                </span>
+                                                <span class="green-color-text" *ngIf="row.adminApproval === 'Approved'">
+                                                    Approved
+                                                </span>
+                                                <span class="light-color-text"
+                                                    *ngIf="!row.adminApproval && row.isEKYCComplete">
+                                                    Submitted
+                                                </span>
+                                                <span class="light-color-text"
+                                                    *ngIf="!row.adminApproval && !row.isEKYCComplete">
+                                                    Incompleted
+                                                </span>
+                                                <button class="next-arr"><i class="fa fa-angle-right"></i></button>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                    </ngx-datatable>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="pane-D" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-D">
-                <div class="card-header" role="tab" id="heading-D">
-                    <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" href="#collapse-D" aria-expanded="false"
-                            aria-controls="collapse-D">
-                           approved
-                    ({{countApproved}})
-                        </a>
-                    </h5>
+                <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+                    <div class="card-header" role="tab" id="heading-B">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false"
+                                aria-controls="collapse-B">
+                                new applications (0)
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel"
+                        aria-labelledby="heading-B">
+                        <div class="card-body">
+                            <div class="coming-soon">
+                                <img src="assets/img/soon.svg">
+                                <h2>Coming Soon</h2>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="collapse-D" class="collapse" data-parent="#content" role="tabpanel"
-                    aria-labelledby="heading-D">
-                    <div class="card-body">
-                        <div class="coming-soon">
-                            <img src="assets/img/soon.svg">
-                            <h2>Coming Soon</h2>
+
+                <div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
+                    <div class="card-header" role="tab" id="heading-C">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" href="#collapse-C" aria-expanded="false"
+                                aria-controls="collapse-C">
+                                under review
+                                ({{countUnderReview}})
+                            </a>
+                        </h5>
+                    </div>
+
+                    <div class="collapse" role="tabpanel" data-parent="#content" aria-labelledby="heading-C">
+                        <div class="card-body">
+                            <div class="custom-datatable mt-0">
+                                <div class="header row d-flex justify-content-between">
+                                    <div class="col-md-4">
+                                        <h2 *ngIf="typeOflist === 'under_review'">
+                                            under review ({{countUnderReview}})
+                                        </h2>
+                                        <h2 *ngIf="typeOflist === 'approved'">
+                                            {{typeOflist}} ({{countApproved}})
+                                        </h2>
+                                        <h2 *ngIf="typeOflist === 'rejected'">
+                                            {{typeOflist}} ({{countRejected}})
+                                        </h2>
+                                        <span class="green-text">2% increase since last week<span
+                                                class="icon-red-arrow"></span>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-8 d-flex align-items-center justify-content-end">
+                                        <div class="search">
+                                            <input type="search" #searchBytypeAgain name="searchBytypeAgain"
+                                                [(ngModel)]="searchValue"
+                                                placeholder="Search by Admin PAN Number or Email or Mobile Number"
+                                                class="form-control" (keyup)='resetFilter($event)'
+                                                (keydown)="onEnterPressAgain($event)">
+                                            <button (click)='updateFilterAgain($event)' class="btn-search"><span
+                                                    class="icon-search"></span></button>
+                                            <button *ngIf="searchValue" (click)='removeText()'
+                                                class="close-icon">&times;</button>
+                                        </div>
+                                        <div class="filter">Filter search<span class="icon-filter"></span></div>
+                                    </div>
+                                </div>
+                                <div class="tble">
+                                    <ngx-datatable class="bootstrap checkbox-table"
+                                        [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50"
+                                        [scrollbarH]="true" [footerHeight]="50" [rowHeight]="80" [limit]="limitRow"
+                                        [rows]="rows" [sorts]="[{prop: 'uname', dir: 'asc'}]" [selected]="selected"
+                                        [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"
+                                        (select)='onSelect($event)'>
+
+                                        <ngx-datatable-column [width]=" 10" [sortable]="false" [canAutoResize]="false"
+                                            [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
+                                            [checkboxable]="true" [sortable]="true" prop="selected">
+                                        </ngx-datatable-column>
+
+                                        <ngx-datatable-column [width]="10" name="PAN Number" [sortable]="true"
+                                            prop="panUserName">
+                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                let-row="row">
+                                                <a title="{{row.panUserName}}"
+                                                    [routerLink]="['/applications/details',row.id]"
+                                                    routerLinkActive="router-link-active"
+                                                    class="uname wrap-text">{{row.panUserName}}</a>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"
+                                            prop="id">
+                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                let-row="row">
+                                                <a title="{{row.id}}" [routerLink]="['/applications/details',row.id]"
+                                                    routerLinkActive="router-link-active"
+                                                    class="uname id-wrap wrap-text">
+                                                    {{row.id | uppercase}}
+                                                </a>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column [width]="40" name="Email" [sortable]="true" prop="email">
+                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                let-row="row">
+                                                <a [routerLink]="['/applications/details',row.id]"
+                                                    routerLinkActive="router-link-active"
+                                                    class="uname email-wrap wrap-text"
+                                                    style="text-transform: lowercase;">
+                                                    {{row.email | lowercase}}
+                                                </a>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column [width]="40" name="Mobile Number" [sortable]="true"
+                                            prop="mobileNumber">
+                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                let-row="row">
+                                                <a [routerLink]="['/applications/details',row.id]"
+                                                    routerLinkActive="router-link-active" class="wrap-text uname"
+                                                    style="text-transform: lowercase;">
+                                                    {{row.mobileNumber}}
+                                                </a>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column [width]="20" name="application status" [sortable]="false"
+                                            prop="isDocumentUploaded">
+                                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                                <span *ngIf="row.adminApproval === 'Under review'">
+                                                    Under Review
+                                                </span>
+                                                <span class="red-color-text" *ngIf="row.adminApproval === 'Reject'">
+                                                    Rejected
+                                                </span>
+                                                <span class="green-color-text" *ngIf="row.adminApproval === 'Approved'">
+                                                    Approved
+                                                </span>
+                                                <span class="light-color-text"
+                                                    *ngIf="!row.adminApproval && row.isEKYCComplete">
+                                                    Submitted
+                                                </span>
+                                                <span class="light-color-text"
+                                                    *ngIf="!row.adminApproval && !row.isEKYCComplete">
+                                                    Incompleted
+                                                </span>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                    </ngx-datatable>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pane-D" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-D">
+                    <div class="card-header" role="tab" id="heading-D">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" href="#collapse-D" aria-expanded="false"
+                                aria-controls="collapse-D">
+                                approved
+                                ({{countApproved}})
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapse-D" class="collapse" data-parent="#content" role="tabpanel"
+                        aria-labelledby="heading-D">
+                        <div class="card-body">
+                            <div class="coming-soon">
+                                <img src="assets/img/soon.svg">
+                                <h2>Coming Soon</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </section>
 <div *ngIf="deleteFlag" class="fixed-status">
