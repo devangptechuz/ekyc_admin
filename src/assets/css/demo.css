@@ -1032,6 +1032,7 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
 .nominee-details .card .card-header{display: block;}
 .nominee-details .card .card-header .header-title img{margin-right: 10px;}
 
+.border-bottom-line{border-bottom: 1px solid #000;}
 @media(min-width:768px) {
     .nav-tabs {
         display: flex;
