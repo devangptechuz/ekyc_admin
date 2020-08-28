@@ -61,7 +61,7 @@
             <div [formGroupName]="mainIndex"
               *ngFor="let cate of segmentForm.get('mainCatItems')['controls']; let mainIndex = index;">
               <ng-container *ngIf="cate?.get('sub_cat_items')['controls'].length > 0">
-                <div class="row sub_cat_items border-bottom-line" formArrayName="sub_cat_items"
+                <div class="row sub_cat_items" formArrayName="sub_cat_items"
                   *ngFor="let subcate of cate?.get('sub_cat_items')['controls']; let iIndex = index;">
                   <ng-container [formGroupName]="iIndex">
 
