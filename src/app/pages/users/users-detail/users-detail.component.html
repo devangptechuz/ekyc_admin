@@ -292,7 +292,7 @@
                   </div>
                   <ngb-carousel *ngIf="userData?.pan_details?.pan_documents?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.pan_details?.pan_documents">
-                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'"
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
                            [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -414,7 +414,7 @@
                   </div>
                   <ngb-carousel *ngIf="userData?.personal_details?.address_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.personal_details?.address_url">
-                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'"
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
                            [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper fancybox" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -623,7 +623,7 @@
                      <!-- /************* Nominee identity document : CAROUSEL **************/ -->
                      <ngb-carousel *ngIf="item?.nominee_identity_document?.length">
                         <ng-template ngbSlide *ngFor="let imageItem of item?.nominee_identity_document">
-                           <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
                               [href]="imageItem?.url | safeUrl">Click here </a>
                            <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                               <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -660,7 +660,7 @@
                      <!-- /************* Nominee address proof : CAROUSEL **************/ -->
                      <ngb-carousel *ngIf="item?.nominee_address_document.length">
                         <ng-template ngbSlide *ngFor="let imageItem of item?.nominee_address_document">
-                           <a class="fancyboxiframe text-center" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           <a class="fancyboxiframe clickpdf-popup text-center" *ngIf="imageItem?.content_type === 'application/pdf'"
                               [href]="imageItem?.url | safeUrl">Click here </a>
                            <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                               <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -738,7 +738,7 @@
                   <!-- /************* Bank statement : CAROUSEL **************/ -->
                   <ngb-carousel *ngIf="userData?.bank_details?.cancelled_cheque_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.cancelled_cheque_url">
-                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'"
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
                            [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -779,7 +779,7 @@
                   <!-- /************* Bank statement : CAROUSEL **************/ -->
                   <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
-                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'"
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
                            [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -825,7 +825,7 @@
                   <!-- /************* Signature : CAROUSEL **************/ -->
                   <ngb-carousel *ngIf="userData?.sign_and_identity?.sign_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.sign_url">
-                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'"
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
                            [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -861,7 +861,7 @@
                   <!-- /************* Photograph : CAROUSEL **************/ -->
                   <ngb-carousel *ngIf="userData?.sign_and_identity?.photograph_url?.length">
                      <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.photograph_url">
-                        <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'"
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
                            [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                            <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>

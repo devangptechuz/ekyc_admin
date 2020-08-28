@@ -23,10 +23,10 @@
           </div>
           <div class="row">
             <div formArrayName="items" *ngFor="let item of nomineeForm?.get('items')?.controls; let i = index;">
-              <div class="card" [formGroupName]="i">
-                <div class="card-header" id="heading{{i}}">
+              <div class="card border-0" [formGroupName]="i">
+                <div class="card-header pt-0" id="heading{{i}}">
                   <h5 class="mb-0">
-                    <button type="button" class="btn btn-link" data-toggle="collapse"
+                    <button type="button" class="btn btn-link p-0" data-toggle="collapse"
                       [attr.data-target]="'#collapse' + i" aria-expanded="true" [attr.data-controls]="'collapse' + i">
                       <div class="header-title"><img src="assets/img/check-circle.svg" alt="check">Nominee {{i+1}}
                         <!-- <span *ngIf="countNominee>1" (click)="RemoveItem(i)" class="remove-btn"> Remove
@@ -37,7 +37,7 @@
                 </div>
                 <div id="collapse{{i}}" class="collapse show" [attr.aria-labelledby]="'heading' + i"
                   data-parent="#accordion">
-                  <div class="card-body">
+                  <div class="card-body pb-0">
 
                     <div class="reg-card">
                       <div class="row">
@@ -133,7 +133,7 @@
                         </div>
                       </div>
                       <div class="multiradio-list multiselect-list ">
-                        <label class="radio-tooltip">
+                        <label class="radio-tooltip mb-3">
                           Is nominee address same as applicant’s correspondance address?
                         </label>
                         <div class="type-list row">

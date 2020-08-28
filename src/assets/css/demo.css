@@ -328,8 +328,8 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 .custom-radio input{width: 100%;height: 100%;position: absolute;top: 0;left: 0;z-index: 9;opacity: 0;cursor: pointer;}
 .custom-radio label{position: relative;padding-left: 30px;margin: 0;}
 .custom-radio label:before{content: ""; height: 16px;width: 16px;border-radius: 50%;background: rgba(221, 221, 221, 0.16);border: 1px solid #DDDDDD;position: absolute;left: 0;top: 3px;}
-.custom-radio label:after,.custom-radio input[type=radio]:checked + label:after{content: "";background: #19D097;left: 0;left: 4px;top: 7px;border-radius: 50%;width: 8px;height: 8px;position: absolute;opacity: 0;visibility: visible;-webkit-transition: all 0.2s ease;transition: all 0.2s ease;}
-.custom-radio input[type=radio]:checked + label:before{background: transparent;border-color: #19D097;}
+.custom-radio label:after,.custom-radio input[type=radio]:checked + label:after{content: "";background: #0970DD;left: 0;left: 4px;top: 7px;border-radius: 50%;width: 8px;height: 8px;position: absolute;opacity: 0;visibility: visible;-webkit-transition: all 0.2s ease;transition: all 0.2s ease;}
+.custom-radio input[type=radio]:checked + label:before{background: transparent;border-color: #0970DD;}
 .custom-radio input[type=radio]:checked + label:after{opacity: 1;visibility: visible;}
 .custom-radio [type="radio"]:not(:checked) + label:after {opacity: 0;-webkit-transform: scale(0);transform: scale(0);}
 .custom-radio [type="radio"]:checked + label:after {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}
@@ -1020,7 +1020,7 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
 .trading-box form .form-group{margin-bottom: 6px !important;}
 .trading-box .type-list .col-md-6:nth-child(even){padding-left: 0;}
 .trading-box .gray-body .btn-custom{min-width: 140px;margin-left: 0;padding: 12px;}
-.trading-box .ng-select .ng-clear-wrapper{display: none;}
+.ng-select .ng-clear-wrapper{display: none;}
 .trading-box .line-title{margin-top: 20px}
 .trading-box .multiselect-list .type-list .disabled {pointer-events: none;}
 .trading-box .ng-select .ng-select-container, .ng-select.ng-select-single .ng-select-container{padding: 16px;}
@@ -1032,7 +1032,19 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
 .nominee-details .card .card-header{display: block;}
 .nominee-details .card .card-header .header-title img{margin-right: 10px;}
 
-.border-bottom-line{border-bottom: 1px solid #000;}
+.segmebrokerage-box .border-bottom-line:not(:last-child){border-bottom: 1px solid #ddd;}
+.segmebrokerage-box .border-bottom-line{padding-top: 16px;}
+.segmebrokerage-box .enter-code button{position: absolute;bottom: 14px;right: 16px;background: transparent;border: none;color: #B0BAC5;padding: 0;font-size: 16px;line-height: 24px;}
+.segmebrokerage-box .card-item {margin-bottom: 16px;}
+.segmebrokerage-box .custom-checkbox label:before{background-color: #fff;}
+.segmebrokerage-box .custom-checkbox input[type=checkbox]:checked + label:after{left: 1px;}
+.segmebrokerage-box .tagline{background: #0970DD;font-size: 12px;line-height: 18px;text-transform: capitalize;color: rgba(255, 255, 255, 0.8);display: inline-flex;justify-content: center;align-items: center;padding:8px 14px 8px 16px;border-radius: 20px;margin-right: 8px;}
+.segmebrokerage-box .tagline button{background-color: transparent;border: none;color: #fff;font-size: 20px;}
+.segmebrokerage-box .ttle .form-group label{font-size: 12px;}
+.segmebrokerage-box .border-bottom-line:first-child{padding-top: 0;}
+.segmebrokerage-box .ttle form .form-group{margin-bottom: 16px !important;}
+
+/*
 @media(min-width:768px) {
     .nav-tabs {
         display: flex;
@@ -1049,7 +1061,7 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
     .card .collapse{
         display:block;
     }
-}
+}*/
 
 @media(max-width:767px){
     .tab-content > .tab-pane {

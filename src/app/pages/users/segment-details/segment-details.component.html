@@ -5,7 +5,7 @@
     </a>
   </div>
 </div>
-<section class="add-user add-admin-user">
+<section class="add-user add-admin-user segmebrokerage-box">
   <form [formGroup]="segmentForm" (ngSubmit)="onSubmit()">
     <div class="container">
       <div class="add-box">
@@ -20,12 +20,19 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-6 pr-0">
-            <div class="form-group mb-0">
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <div class="form-group mb-0 enter-code">
               <label for="Plan" class="ble-labl">Code(Optional)</label>
               <input type="text" name="" class="form-control" placeholder="Enter code">
+              <button>Apply</button>
             </div>
+          </div>
+          <div class="col-md-8">
+            <span class="tagline">1234ABCD<button>&times;</button></span>
+            <span class="tagline">1234ABCD<button>&times;</button></span>
+            <span class="tagline">1234ABCD<button>&times;</button></span>
+            <span class="tagline">1234ABCD<button>&times;</button></span>
           </div>
         </div>
 
@@ -36,9 +43,9 @@
               </button>
             </div>
           </div> -->
-        <h3 class="line-title"><span>Brokerage Details</span></h3>
+        <h3 class="line-title mt-4"><span>Brokerage Details</span></h3>
         <ng-container *ngIf="mainSegmentType?.length">
-          <div class="row">
+          <div class="row ttle">
             <div class="col-md-4 pr-2">
               <div class="form-group">
                 <label for="Segment" class="ble-labl">Segment Type</label>
@@ -61,7 +68,7 @@
             <div [formGroupName]="mainIndex" class="border-bottom-line" 
               *ngFor="let cate of segmentForm.get('mainCatItems')['controls']; let mainIndex = index;">
               <ng-container *ngIf="cate?.get('sub_cat_items')['controls'].length > 0">
-                <div class="row sub_cat_items" formArrayName="sub_cat_items"
+                <div class="row sub_cat_items card-item d-flex align-items-center" formArrayName="sub_cat_items"
                   *ngFor="let subcate of cate?.get('sub_cat_items')['controls']; let iIndex = index;">
                   <ng-container [formGroupName]="iIndex">
 
@@ -84,13 +91,13 @@
                     </div>
 
                     <div class="col-md-4">
-                      <p>{{subcate?.get('plan_description')?.value}}</p>
+                      <p class="mb-0">{{subcate?.get('plan_description')?.value}}</p>
                     </div>
                   </ng-container>
                 </div>
               </ng-container>
               <ng-container *ngIf="cate?.get('sub_cat_items')['controls'].length === 0">
-                <div class="row">
+                <div class="row card-item">
                   <div class="custom-checkbox col-md-4 pr-2">
                     <input type="checkbox" id="logo1" formControlName="selected"
                       (click)="selectCategory($event,cate?.get('category_id').value)">
