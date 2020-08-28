@@ -217,7 +217,7 @@
                   </div>
                   <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents?.length">
                      <ng-template ngbSlide *ngFor="let imageAadhaar of userData?.aadhar_details?.aadhar_documents">
-                        <a class="fancyboxiframe" *ngIf="imageAadhaar?.content_type === 'application/pdf'"
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageAadhaar?.content_type === 'application/pdf'"
                            [href]="imageAadhaar?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type === 'application/pdf'">
                            <iframe [src]="imageAadhaar?.url | safeUrl" height="100%" width="100%"></iframe>
