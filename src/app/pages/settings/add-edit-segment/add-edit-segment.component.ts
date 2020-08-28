@@ -13,7 +13,7 @@ import {GlobalService} from '../../../shared/services/global.service';
 export class AddEditSegmentComponent implements OnInit {
   @Input() title: string;
   @Input() fromParent: string;
-  headerTitle = 'Add Segment';
+  headerTitle = 'Add Segment Type';
   segmentForm: FormGroup;
   selected;
 
@@ -29,7 +29,7 @@ export class AddEditSegmentComponent implements OnInit {
     });
     if(this.fromParent){
       this.segmentForm.controls.name.setValue(this.fromParent['name'])
-      this.headerTitle = 'Edit Reason';
+      this.headerTitle = 'Edit Segment Type';
     }
   }
 
