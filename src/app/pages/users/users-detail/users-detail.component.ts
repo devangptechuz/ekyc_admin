@@ -12,13 +12,14 @@ import { ConfirmationDialogService } from 'app/shared/services/confirmation-dial
 import { ImagePopupComponent } from '../document-modal/image-popup/image-popup.component';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { arrayFilterWithStringPipe } from 'app/shared/pipe/status.pipe';
 declare var $: any;
 
 @Component({
   selector: 'app-users-detail',
   templateUrl: './users-detail.component.html',
   styleUrls: ['./users-detail.component.scss'],
-  providers: [NgbCarouselConfig]
+  providers: [NgbCarouselConfig, arrayFilterWithStringPipe]
 })
 export class UsersDetailComponent implements OnInit {
   globalDocumentPopup: boolean;
@@ -34,6 +35,9 @@ export class UsersDetailComponent implements OnInit {
   bankStatementKYCDocuments: any;
   photographKYCDocuments: any;
   dropdownDocumentList: any;
+  nomineeAddressDocuments: any;
+  nomineeIdentityDocuments: any;
+
   defaultSelectedDocument: any;
   adminApproval: any;
   adminApprovalText: string;
@@ -113,6 +117,23 @@ export class UsersDetailComponent implements OnInit {
   isEnableSignaturePad: boolean;
   /********************** Signature PAD: END **********************/
 
+  /**************** STATIC FORM: START *****************/
+  runningAccountAuthorizationArray = [{ id: 1, label: 'Once in a Quarter' }, { id: 2, label: 'Once in a Yearly' }];
+  experienceInTradingArray = [{ id: 1, label: '1 Year' }, { id: 2, label: '2 Year' }, { id: 3, label: '3 Year' }];
+  contractNoteDetailsArray = [{ value: 'ecn', label: 'ECN' }, { value: 'physical', label: 'Physical' }];
+  tradingTypeArray = [{ value: 'Online', label: 'Online' }, { value: 'Offline', label: 'Offline' }, { value: 'Both', label: 'Both' }];
+  mobileTradingArray = [{ value: 'Yes', label: 'Yes' }, { value: 'No', label: 'No' }];
+  openDEMATAccountArray = [{ value: 'Yes', label: 'Yes' }, { value: 'No', label: 'No' }, { value: 'no_demat', label: 'No DEMAT' }];
+  isDEMATExteranlArray = [{ value: 'Yes', label: 'Yes' }, { value: 'No', label: 'No' }];
+  depositoryNameArray = [{ value: 'NSDL', label: 'NSDL' }, { value: 'CDSL', label: 'CDSL' }];
+  SMSRequiredArray = [{ value: 'Yes', label: 'Yes' }, { value: 'No', label: 'No' }];
+  receiveDISBookletArray = [{ value: 'Yes', label: 'Yes' }, { value: 'No', label: 'No' }];
+  BSDAArray = [{ value: 'Yes', label: 'Yes' }, { value: 'No', label: 'No' }];
+  POAArray = [{ value: 'Yes', label: 'Yes' }, { value: 'No', label: 'No' }];
+  accountOpeningSchemeArray = [{ value: 'Free', label: 'Free' }, { value: 'Paid', label: 'Paid' }];
+  statementFrequencyArray = [{ value: 'Weekly', label: 'Weekly' }, { value: 'Monthly', label: 'Monthly' }];
+  /**************** STATIC FORM: END *****************/
+
   constructor(
     config: NgbCarouselConfig,
     private cookie: CookiesService,
@@ -121,7 +142,8 @@ export class UsersDetailComponent implements OnInit {
     public global: GlobalService,
     private userService: UserService,
     private ref: ChangeDetectorRef,
-    private confirmationDialogService: ConfirmationDialogService
+    private confirmationDialogService: ConfirmationDialogService,
+    private arrayFilterWithStringPipe: arrayFilterWithStringPipe
   ) {
     config.interval = 20000;
     config.wrap = false;
@@ -228,9 +250,59 @@ export class UsersDetailComponent implements OnInit {
           this.photographKYCDocuments = item;
         } else if (item?.document_name === 'ipv') {
           this.ipvKYCDocuments = item;
+        } else if (item?.document_name === 'nominee_identity_document_1') {
+          this.nomineeIdentityDocuments = item;
+        } else if (item?.document_name === 'nominee_address_document_1') {
+          this.nomineeAddressDocuments = item;
         }
       });
     }
+
+
+    if (this.userData?.trading_demat_info?.running_account_autorization) {
+      this.userData['trading_demat_info']['running_account_autorization'] = this.arrayFilterWithStringPipe.transform(this.runningAccountAuthorizationArray, this.userData?.trading_demat_info?.running_account_autorization, 'id');
+    }
+    if (this.userData?.trading_demat_info?.contract_note_details) {
+      this.userData['trading_demat_info']['contract_note_details'] = this.arrayFilterWithStringPipe.transform(this.contractNoteDetailsArray, this.userData?.trading_demat_info?.contract_note_details, 'value');
+    }
+    if (this.userData?.trading_demat_info?.experience_in_trading) {
+      this.userData['trading_demat_info']['experience_in_trading'] = this.arrayFilterWithStringPipe.transform(this.contractNoteDetailsArray, this.userData?.trading_demat_info?.experience_in_trading, 'id');
+    }
+    if (this.userData?.trading_demat_info?.trading_type) {
+      this.userData['trading_demat_info']['trading_type'] = this.arrayFilterWithStringPipe.transform(this.tradingTypeArray, this.userData?.trading_demat_info?.trading_type, 'value');
+    }
+    if (this.userData?.trading_demat_info?.mobile_trading) {
+      this.userData['trading_demat_info']['mobile_trading'] = this.arrayFilterWithStringPipe.transform(this.mobileTradingArray, this.userData?.trading_demat_info?.mobile_trading, 'value');
+    }
+    if (this.userData?.trading_demat_info?.open_DEMAT_account) {
+      this.userData['trading_demat_info']['open_DEMAT_account'] = this.arrayFilterWithStringPipe.transform(this.openDEMATAccountArray, this.userData?.trading_demat_info?.open_DEMAT_account, 'value');
+    }
+    if (this.userData?.trading_demat_info?.is_DEMAT_external) {
+      this.userData['trading_demat_info']['is_DEMAT_external'] = this.arrayFilterWithStringPipe.transform(this.isDEMATExteranlArray, this.userData?.trading_demat_info?.is_DEMAT_external, 'value');
+    }
+    if (this.userData?.trading_demat_info?.depository_name) {
+      this.userData['trading_demat_info']['depository_name'] = this.arrayFilterWithStringPipe.transform(this.depositoryNameArray, this.userData?.trading_demat_info?.depository_name, 'value');
+    }
+    if (this.userData?.trading_demat_info?.SMS_required) {
+      this.userData['trading_demat_info']['SMS_required'] = this.arrayFilterWithStringPipe.transform(this.SMSRequiredArray, this.userData?.trading_demat_info?.SMS_required, 'value');
+    }
+    if (this.userData?.trading_demat_info?.receive_DIS_booklet) {
+      this.userData['trading_demat_info']['receive_DIS_booklet'] = this.arrayFilterWithStringPipe.transform(this.receiveDISBookletArray, this.userData?.trading_demat_info?.receive_DIS_booklet, 'value');
+    }
+    if (this.userData?.trading_demat_info?.BSDA) {
+      this.userData['trading_demat_info']['BSDA'] = this.arrayFilterWithStringPipe.transform(this.BSDAArray, this.userData?.trading_demat_info?.BSDA, 'value');
+    }
+    if (this.userData?.trading_demat_info?.POA) {
+      this.userData['trading_demat_info']['POA'] = this.arrayFilterWithStringPipe.transform(this.POAArray, this.userData?.trading_demat_info?.POA, 'value');
+    }
+    if (this.userData?.trading_demat_info?.account_opening_scheme) {
+      this.userData['trading_demat_info']['account_opening_scheme'] = this.arrayFilterWithStringPipe.transform(this.accountOpeningSchemeArray, this.userData?.trading_demat_info?.account_opening_scheme, 'value');
+    }
+    if (this.userData?.trading_demat_info?.statement_frequency) {
+      this.userData['trading_demat_info']['statement_frequency'] = this.arrayFilterWithStringPipe.transform(this.statementFrequencyArray, this.userData?.trading_demat_info?.statement_frequency, 'value');
+    }
+
+    console.log('this.userData', this.userData);
   }
 
   addOnsModel(btnElement) {
@@ -996,7 +1068,7 @@ export class UsersDetailComponent implements OnInit {
       popupParam['label'] = 'Reject Reason';
       popupParam['title'] = 'Select your Reject Reason';
       popupParam['button_name'] = 'Reject Reason';
-    }else if (typeOfRequest === 'document_re_upload') {
+    } else if (typeOfRequest === 'document_re_upload') {
       popupParam['name'] = 'Document re-upload';
       popupParam['type'] = 'document_re_upload';
       popupParam['label'] = 'Document re-upload';

@@ -19,7 +19,7 @@ import { SidebarLinkDirective } from './directives/sidebarlink.directive';
 import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
-import { RoleCheckPipe, SafeUrlPipe, UserTypePipe } from './pipe/status.pipe';
+import { RoleCheckPipe, SafeUrlPipe, UserTypePipe, arrayFilterWithStringPipe } from './pipe/status.pipe';
 import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.component';
 
 import { DeleteModelComponent } from './model-popup/delete-model/delete-model.component';
@@ -46,6 +46,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
                 RoleCheckPipe,
                 UserTypePipe,
                 SafeUrlPipe,
+                arrayFilterWithStringPipe,
                 DeleteModelComponent,
                 ApprovedModelComponent,
                 RejectModelComponent,
@@ -76,6 +77,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
                 RoleCheckPipe,
                 UserTypePipe,
                 SafeUrlPipe,
+                arrayFilterWithStringPipe,
                 LogoutPopupComponent,
                 ApprovedModelComponent,
                 RejectModelComponent,

@@ -435,27 +435,255 @@
       <div class="user-box">
          <div class="user-bxhdr d-flex justify-content-between">
             <div class="lft">
-               <h2>Segment & Brokerage details</h2>
+               <h2>Brokerage & Tranding details</h2>
             </div>
-            <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar
-                  <span class="icon-alert ml-3"></span></span></div>
          </div>
          <div class="row user-btmbx">
             <div class="col-md-6">
                <!-- <div class="d-flex justify-content-between mb-3">
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
                </div> -->
-               <div class="row cmn-layout" *ngIf="userData?.segment_brokerage_info?.length">
-                  <div class="col-md-12 d-flex flex-column mb-3" *ngFor="let item of userData?.segment_brokerage_info">
-                     <label>{{item?.category_name}}</label>
-                     {{item?.sub_category_name}} => {{item?.plan_name}}
+               <ng-container *ngIf="userData?.segment_brokerage_info?.length">
+                  <div class="row cmn-layout" *ngFor="let item of userData?.segment_brokerage_info">
+                     <div class="col-md-4 d-flex flex-column mb-3">
+                        <label>Segment Type</label>
+                        {{item?.sub_category_name || item?.category_name}}
+                     </div>
+                     <div class="col-md-4 d-flex flex-column mb-3">
+                        <label>Brokerage Plan</label>
+                        {{item?.plan_name || '---'}}
+                     </div>
+                     <div class="col-md-4 d-flex flex-column mb-3">
+                        <label>Description</label>
+                        {{item?.plan_desc || '---'}}
+                     </div>
+                  </div>
+                  <button class="btn btn-custom btn-border font-sml"
+                     [routerLink]="['/applications/segment-details',userId]" routerLinkActive="router-link-active">edit
+                     details
+                  </button>
+               </ng-container>
+            </div>
+            <div class="col-md-6" *ngIf="userData?.trading_demat_info">
+               <!-- <div class="d-flex justify-content-between mb-3">
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+               </div> -->
+               <div class="row cmn-layout">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Running a/c Autorization</label>
+                     {{userData?.trading_demat_info?.running_account_autorization}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Experience in Trading</label>
+                     {{userData?.trading_demat_info?.experience_in_trading}}
                   </div>
                </div>
-               <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/bank-details',userId]"
-                  routerLinkActive="router-link-active">edit
-                  details</button>
+               <div class="row cmn-layout ">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Contract Note details</label>
+                     {{userData?.trading_demat_info?.contract_note_details}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Trading Type</label>
+                     {{userData?.trading_demat_info?.trading_type}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Mobile Trading</label>
+                     {{userData?.trading_demat_info?.mobile_trading}}
+                  </div>
+               </div>
+               <div class="row cmn-layout ">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Open DEMAT a/c</label>
+                     {{userData?.trading_demat_info?.open_DEMAT_account}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Is DEMAT External?</label>
+                     {{userData?.trading_demat_info?.is_DEMAT_external}}
+                  </div>
+               </div>
+               <div class="row cmn-layout">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Depository name</label>
+                     {{userData?.trading_demat_info?.depository_name}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> SMS Required</label>
+                     {{userData?.trading_demat_info?.SMS_required}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Require DIS Booklet</label>
+                     {{userData?.trading_demat_info?.receive_DIS_booklet}}
+                  </div>
+               </div>
+               <div class="row cmn-layout">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> BSDA</label>
+                     {{userData?.trading_demat_info?.BSDA}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> POA</label>
+                     {{userData?.trading_demat_info?.POA}}
+                  </div>
+               </div>
+               <div class="row cmn-layout">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> A/c Opening Scheme</label>
+                     {{userData?.trading_demat_info?.account_opening_scheme}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Statement Frequency</label>
+                     {{userData?.trading_demat_info?.statement_frequency}}
+                  </div>
+               </div>
+
+               <button type="button" class="btn btn-custom btn-border font-sml"
+                  [routerLink]="['/applications/trading-details',userId]" routerLinkActive="router-link-active">
+                  edit details</button>
             </div>
          </div>
+      </div>
+      <!-- User box - bank details-->
+      <div class="user-box">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>Nominee details</h2>
+            </div>
+            <div class="rght d-flex align-items-center" *ngIf="!userData?.nominee_info?.length">
+               <span class="red-status">Nominee details does not found
+                  <span class="icon-alert ml-3"></span>
+               </span>
+            </div>
+         </div>
+         <ng-container *ngIf="userData?.nominee_info?.length">
+            <div class="row user-btmbx" *ngFor="let item of userData?.nominee_info">
+               <div class="col-md-6">
+                  <div class="d-flex justify-content-between mb-3">
+                     <span class="cmn-txt">Last Updated On: {{item?.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                  </div>
+                  <div class="row cmn-layout">
+                     <div class="col-md-4 d-flex flex-column mb-3"><label>Title</label>
+                        {{item?.prefix_name}}
+                     </div>
+                     <div class="col-md-4 d-flex flex-column mb-3"><label>Name</label>
+                        {{item?.nominee_name}}
+                     </div>
+                  </div>
+                  <div class="row cmn-layout">
+                     <div class="col-md-4 d-flex flex-column mb-3"><label>Relation</label>
+                        {{item?.nominee_relation}}
+                     </div>
+                     <div class="col-md-4 d-flex flex-column"><label>Identity Type</label>
+                        {{item?.nominee_identity_type}}
+                     </div>
+                     <div class="col-md-4 d-flex flex-column"><label>Identity Number</label>
+                        {{item?.nominee_identity_number}}
+                     </div>
+                  </div>
+                  <div class="row cmn-layout">
+                     <div class="col-md-4 d-flex flex-column mb-3"><label>Date of Birth</label>
+                        {{item?.nominee_dob}}
+                     </div>
+                     <div class="col-md-4 d-flex flex-column"><label>Mobile Number</label>
+                        {{item?.nominee_mobile_number}}
+                     </div>
+                  </div>
+                  <div class="row cmn-layout" *ngIf="!item?.is_same_as_user">
+                     <div class="col-md-4 d-flex flex-column"><label>Address</label>
+                        {{item?.nominee_mobile_number}}
+                     </div>
+                  </div>
+
+                  <button class="btn btn-custom btn-border font-sml"
+                     [routerLink]="['/applications/nominee-details',userId]" routerLinkActive="router-link-active">edit
+                     details</button>
+                  <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+                     reveiw</button>
+               </div>
+               <div class="col-md-6">
+                  <!-- <div class="d-flex justify-content-between mb-2">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+
+                  <!-- <div class="d-flex justify-content-between mb-2 mt-3">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+                  <div class="doc-upbox">
+                     <div class="dropdown more-dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                           <span class="icon-more-vertical"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                           <a class="dropdown-item"
+                              (click)="openDocumentPopupModal(nomineeIdentityDocuments?.document_name, nomineeIdentityDocuments?.document_modal_title, nomineeIdentityDocuments?.document_status, nomineeIdentityDocuments)">Upload
+                              document</a>
+                           <a class="dropdown-item" *ngIf="item?.nominee_identity_document"
+                              (click)="openImageDisplayModal(nomineeIdentityDocuments?.document_name, nomineeIdentityDocuments?.document_modal_title, nomineeIdentityDocuments?.document_status, nomineeIdentityDocuments)">Zoom
+                              In Zoom Out</a>
+                        </div>
+                     </div>
+
+                     <!-- /************* Nominee identity document : CAROUSEL **************/ -->
+                     <ngb-carousel *ngIf="item?.nominee_identity_document?.length">
+                        <ng-template ngbSlide *ngFor="let imageItem of item?.nominee_identity_document">
+                           <a class="fancyboxiframe" *ngIf="imageItem?.content_type === 'application/pdf'"
+                              [href]="imageItem?.url | safeUrl">Click here </a>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                           </div>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                              <a class="grouped_elements" rel="bankStatement" [href]="imageItem?.url">
+                                 <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                              </a>
+                           </div>
+                        </ng-template>
+                     </ngb-carousel>
+                  </div>
+                  <label class="doc-type">Nominee Identity proof</label>
+
+                  <!-- <div class="d-flex justify-content-between mb-2">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+
+                  <!-- <div class="d-flex justify-content-between mb-2 mt-3">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+                  <div class="doc-upbox mt-4">
+                     <div class="dropdown more-dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                           <span class="icon-more-vertical"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                           <a class="dropdown-item"
+                              (click)="openDocumentPopupModal(nomineeAddressDocuments?.document_name, nomineeAddressDocuments?.document_modal_title, nomineeAddressDocuments?.document_status, nomineeAddressDocuments)">Upload
+                              document</a>
+                           <a class="dropdown-item" *ngIf="userData?.bank_details?.bank_statement_url?.length"
+                              (click)="openImageDisplayModal(nomineeAddressDocuments?.document_name, nomineeAddressDocuments?.document_modal_title, nomineeAddressDocuments?.document_status, nomineeAddressDocuments)">Zoom
+                              In Zoom Out</a>
+                        </div>
+
+                     </div>
+
+                     <!-- /************* Nominee address proof : CAROUSEL **************/ -->
+                     <ngb-carousel *ngIf="item?.nominee_address_document.length">
+                        <ng-template ngbSlide *ngFor="let imageItem of item?.nominee_address_document">
+                           <a class="fancyboxiframe text-center" *ngIf="imageItem?.content_type === 'application/pdf'"
+                              [href]="imageItem?.url | safeUrl">Click here </a>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                           </div>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                              <a class="grouped_elements" rel="cancelledCheck" [href]="imageItem?.url">
+                                 <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                              </a>
+                           </div>
+                        </ng-template>
+                     </ngb-carousel>
+                  </div>
+                  <label class="doc-type">Nominee Address proof</label>
+               </div>
+            </div>
+         </ng-container>
       </div>
       <!-- User box - bank details-->
       <div class="user-box">

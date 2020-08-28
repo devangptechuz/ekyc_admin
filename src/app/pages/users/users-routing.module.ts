@@ -8,6 +8,7 @@ import { UserHistoryComponent } from './user-history/user-history.component';
 import { BankDetailComponent } from './bank-detail/bank-detail.component';
 import { EditPersoanlAddressDetailsComponent } from './edit-persoanl-address-details/edit-persoanl-address-details.component';
 import { ApplicationHistory } from './shared/application-history.resolver';
+import { TradingDetailsComponent } from './trading-details/trading-details.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ const routes: Routes = [
     path: 'edit-application',
     component: EditApplicationComponent,
     data: {
-      title: 'edit-application',
+      title: 'Edit Application',
     },
   },
   {
@@ -51,7 +52,14 @@ const routes: Routes = [
     path: 'bank-details/:id',
     component: BankDetailComponent,
     data: {
-      title: 'bank-detail',
+      title: 'Bank Detail',
+    },
+  },
+  {
+    path: 'trading-details/:id',
+    component: TradingDetailsComponent,
+    data: {
+      title: 'Trading Detail',
     },
   },
 ];

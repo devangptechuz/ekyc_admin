@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class UserService {
   baseUrlOfUser = environment.api_url;
   imageUploadUrl = environment.imag_url;
+  apiUrlSetting = environment.api_url_setting;
 
   constructor(
     public http: HttpClient,
@@ -37,7 +38,7 @@ export class UserService {
    * get user activity 
    */
   getUserActivity(id): Observable<any> {
-    return this.http.get<any>(`${this.baseUrlOfUser}/getUserActivities/${id}`);
+    return this.http.get<any>(`${this.apiUrlSetting}/getUserActivitiy/${id}`);
   }
 
   deleteUser(data): Observable<any> {
@@ -142,6 +143,18 @@ export class UserService {
    */
   submitBankDetails(objParam: any) {
     return this.http.post<any>(`${this.baseUrlOfUser}/submitBankDetails`, objParam);
+  }
+
+  /**
+   * get Trading Details
+   * @param userId 
+   */
+  retriveTradingDetails(userId: string) {
+    return this.http.get<any>(`${this.apiUrlSetting}/retriveTradingDetails/${userId}`);
+  }
+
+  saveTrandingDetails(objParam: any) {
+    return this.http.post<any>(`${this.apiUrlSetting}/addTrandingDetails `, objParam);
   }
 
 }

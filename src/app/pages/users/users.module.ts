@@ -25,12 +25,14 @@ import { InPersonVideoComponent } from './document-modal/in-person-video/in-pers
 import { ImagePopupComponent } from './document-modal/image-popup/image-popup.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { TradingDetailsComponent } from './trading-details/trading-details.component';
 
 @NgModule({
   declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent,
     UserHistoryComponent, BankDetailComponent, EditPersoanlAddressDetailsComponent,
     InPersonVideoComponent,
-    ImagePopupComponent],
+    ImagePopupComponent,
+    TradingDetailsComponent],
   imports: [
     CommonModule,
     WebcamModule,
