@@ -15,7 +15,7 @@ export class RecentApplicationComponent implements OnInit {
   rows = [];
   temp = [];
   loadingIndicator = true;
-  limitRow = 3;
+  limitRow = 5;
   selectedItem;
   perPage = [
     { label: '10', value: '10' },
