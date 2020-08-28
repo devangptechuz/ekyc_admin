@@ -47,8 +47,8 @@ export class AddEditSegmentComponent implements OnInit {
       return false;
     }
     if(this.fromParent){
-      this.segmentForm.value.id = this.fromParent['id'];
-      this.settingService.updateSegmentCategory(this.segmentForm.value).subscribe(
+      // this.segmentForm.value.id = this.fromParent['id'];
+      this.settingService.updateSegmentCategory(this.fromParent['id'],this.segmentForm.value).subscribe(
           (result: any) => {
             if (result.success) {
               this.global.successToastr(result.message);

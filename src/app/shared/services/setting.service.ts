@@ -57,12 +57,12 @@ export class SettingService {
         return this.http.post<any>(`${this.apiUrl_setting}/addSegmentCategory`,data);
     }
 
-    updateSegmentCategory(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/updateSegmentCategory`,data);
+    updateSegmentCategory(id,data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/updateSegmentCategory/${id}`,data);
     }
 
-    updateStatusSegmentCategory(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/updateStatusSegmentCategory`,data);
+    updateStatusSegmentCategory(id,data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/updateStatusSegmentCategory/${id}`,data);
     }
 
 

@@ -15,68 +15,69 @@ import {AddEditSegmentComponent} from '../add-edit-segment/add-edit-segment.comp
 })
 export class SegmentListComponent implements OnInit {
   // rows = [];
-  rows = [
-      {
-        "slug": "equity-derivative",
-        "id": "2",
-        "name": "Equity Derivative",
-        "status": 1
-      },
-      {
-        "slug": "test-one",
-        "createdDate": "Fri, 28 Aug 2020 09:07:57 GMT",
-        "id": "8",
-        "name": "Test One",
-        "status": 1
-      },
-      {
-        "slug": "test-one21",
-        "createdDate": "Fri, 28 Aug 2020 09:11:14 GMT",
-        "id": "9",
-        "name": "Test One21",
-        "status": 1
-      },
-      {
-        "slug": "equity-cash",
-        "id": "1",
-        "name": "Equity Cash",
-        "status": 1
-      },
-      {
-        "slug": "test-one1",
-        "createdDate": "Fri, 28 Aug 2020 08:02:07 GMT",
-        "id": "6",
-        "updatedDate": "Fri, 28 Aug 2020 08:28:56 GMT",
-        "name": "Test One1",
-        "status": 0
-      },
-      {
-        "slug": "mutual-funds",
-        "id": "5",
-        "name": "Mutual Funds",
-        "status": 1
-      },
-      {
-        "slug": "currency",
-        "id": "4",
-        "name": "Currency",
-        "status": 1
-      },
-      {
-        "slug": "test-one",
-        "createdDate": "Fri, 28 Aug 2020 09:07:34 GMT",
-        "id": "7",
-        "name": "Test One",
-        "status": 1
-      },
-      {
-        "slug": "commodity",
-        "id": "3",
-        "name": "Commodity",
-        "status": 1
-      }
-  ];
+  // rows = [
+  //     {
+  //       "slug": "equity-derivative",
+  //       "id": "2",
+  //       "name": "Equity Derivative",
+  //       "status": 1
+  //     },
+  //     {
+  //       "slug": "test-one",
+  //       "createdDate": "Fri, 28 Aug 2020 09:07:57 GMT",
+  //       "id": "8",
+  //       "name": "Test One",
+  //       "status": 1
+  //     },
+  //     {
+  //       "slug": "test-one21",
+  //       "createdDate": "Fri, 28 Aug 2020 09:11:14 GMT",
+  //       "id": "9",
+  //       "name": "Test One21",
+  //       "status": 1
+  //     },
+  //     {
+  //       "slug": "equity-cash",
+  //       "id": "1",
+  //       "name": "Equity Cash",
+  //       "status": 1
+  //     },
+  //     {
+  //       "slug": "test-one1",
+  //       "createdDate": "Fri, 28 Aug 2020 08:02:07 GMT",
+  //       "id": "6",
+  //       "updatedDate": "Fri, 28 Aug 2020 08:28:56 GMT",
+  //       "name": "Test One1",
+  //       "status": 0
+  //     },
+  //     {
+  //       "slug": "mutual-funds",
+  //       "id": "5",
+  //       "name": "Mutual Funds",
+  //       "status": 1
+  //     },
+  //     {
+  //       "slug": "currency",
+  //       "id": "4",
+  //       "name": "Currency",
+  //       "status": 1
+  //     },
+  //     {
+  //       "slug": "test-one",
+  //       "createdDate": "Fri, 28 Aug 2020 09:07:34 GMT",
+  //       "id": "7",
+  //       "name": "Test One",
+  //       "status": 1
+  //     },
+  //     {
+  //       "slug": "commodity",
+  //       "id": "3",
+  //       "name": "Commodity",
+  //       "status": 1
+  //     }
+  // ];
   temp = [];
+  rows = [];
   status = [
     {label:'Inactive', value:'0'},
     {label: 'Active', value: '1'}];
@@ -94,7 +95,7 @@ export class SegmentListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   // this.callApiSegment();
+   this.callApiSegment();
   }
 
   callApiSegment(){
@@ -116,6 +117,7 @@ export class SegmentListComponent implements OnInit {
     this.modalRef = this.modalService.open(AddEditSegmentComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
     this.modalRef.result.then((result) => {
       if(result){
+          this.callApiSegment();
       }
     });
   }
@@ -129,6 +131,7 @@ export class SegmentListComponent implements OnInit {
     modelRef.componentInstance.fromParent = modelData;
     modelRef.result.then((result)=>{
       if(result){
+          this.callApiSegment();
       }
     })
   }
@@ -137,8 +140,7 @@ export class SegmentListComponent implements OnInit {
     const val = event.target.value;
     let segmentStatus = {};
     segmentStatus['status'] = val;
-    segmentStatus['id'] = row.id
-    this.settingService.updateStatusSegmentCategory(segmentStatus)
+    this.settingService.updateStatusSegmentCategory(row.id,segmentStatus)
         .subscribe((res) => {
             if (res.success) {
                 this.global.successToastr(res.message);
