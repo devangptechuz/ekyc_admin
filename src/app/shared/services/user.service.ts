@@ -161,4 +161,33 @@ export class UserService {
     return this.http.post<any>(`${this.apiUrlSetting}/addTrandingDetails `, objParam);
   }
 
+  /**
+  * get Nominee Details
+  * @param userId 
+  */
+  getNominee(userId: string) {
+    return this.http.get<any>(`${this.apiUrlSetting}/getNominee/${userId}`);
+  }
+  /**
+   * Save nominee details
+   * @param objParam 
+   */
+  saveNomineeDetails(objParam: any) {
+    return this.http.post<any>(`${this.apiUrlSetting}/saveNominee`, objParam);
+  }
+
+  /**
+  * get Segment & Brokerage Details
+  * @param userId 
+  */
+  getPlans(userId: string) {
+    return this.http.get<any>(`${this.apiUrlSetting}/getPlans/${userId}`);
+  }
+  /**
+   * Save Segment & Brokerage details
+   * @param objParam 
+   */
+  segmentSubmit(objParam: any) {
+    return this.http.post<any>(`${this.apiUrlSetting}/savePlans`, objParam);
+  }
 }

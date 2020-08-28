@@ -34,6 +34,8 @@ export class ValidationService {
       invalidPattern: `${fieldName} is Invalid`,
       invalidNumber: `Only Numbers are allowed`,
       PINcode: 'Invalid PIN code',
+      Invaliddob: 'Invalid Date Of Birth',
+      invalidMobileNumber: 'Invalid mobile number',
       email: `Please enter a valid email.`,
       pattern: `Please enter a valid data.`,
       invalidAbn: `Please enter a valid abn number.`,
@@ -42,6 +44,27 @@ export class ValidationService {
       invalidAccountNumber: 'Invalid account number',
     };
     return config[validatorName];
+  }
+
+  dobValidator(control) {
+    if (control.value.match(/^([0]?[1-9]|[1|2][0-9]|[3][0|1])[/]([0]?[1-9]|[1][0-2])[/]([0-9]{4}|[0-9]{4})$/)) {
+      return null;
+    } else {
+      return { Invaliddob: true };
+    }
+  }
+
+  mobileNumberValidator(control) {
+    // RFC 2822 compliant regex
+    if (control.value) {
+      if (control.value.match(/^(?=.*[0-9])[0-9]{10,10}$/)) {
+        return null;
+      } else {
+        return { invalidMobileNumber: true };
+      }
+    } else {
+      return { invalidMobileNumber: true };
+    }
   }
 
   required(control: FormControl) {

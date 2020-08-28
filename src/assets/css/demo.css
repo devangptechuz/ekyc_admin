@@ -1014,6 +1014,11 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
 .gray-box .gray-body .btn-custom{padding: 10px 15px;font-size: 12px;margin-left: 24px;margin-bottom: 0;}
 /*=========Custom Scroll===========*/
 
+/*=========Nominee-details: START===========*/
+.nominee-details .card {background: none;}
+.nominee-details .card .card-header{display: block;}
+.nominee-details .card .card-header .header-title img{margin-right: 10px;}
+
 @media(min-width:768px) {
     .nav-tabs {
         display: flex;
