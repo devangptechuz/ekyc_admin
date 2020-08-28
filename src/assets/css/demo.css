@@ -1027,6 +1027,11 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
 .user-btmbx a.clickpdf-popup{position: absolute;opacity: 1;z-index: 99;width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;background: rgb(0, 0, 0, 0.41);color: #fff;}
 /*=========Custom Scroll===========*/
 
+/*=========Nominee-details: START===========*/
+.nominee-details .card {background: none;}
+.nominee-details .card .card-header{display: block;}
+.nominee-details .card .card-header .header-title img{margin-right: 10px;}
+
 @media(min-width:768px) {
     .nav-tabs {
         display: flex;

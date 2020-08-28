@@ -26,13 +26,17 @@ import { ImagePopupComponent } from './document-modal/image-popup/image-popup.co
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { TradingDetailsComponent } from './trading-details/trading-details.component';
+import { NomineeDetailsComponent } from './nominee-details/nominee-details.component';
+import { SegmentDetailsComponent } from './segment-details/segment-details.component';
 
 @NgModule({
   declarations: [ListApplicationComponent, UsersDetailComponent, ModelPopupComponent, EditApplicationComponent,
     UserHistoryComponent, BankDetailComponent, EditPersoanlAddressDetailsComponent,
     InPersonVideoComponent,
     ImagePopupComponent,
-    TradingDetailsComponent],
+    TradingDetailsComponent,
+    NomineeDetailsComponent,
+    SegmentDetailsComponent],
   imports: [
     CommonModule,
     WebcamModule,

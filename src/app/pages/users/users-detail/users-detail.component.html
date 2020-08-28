@@ -72,8 +72,8 @@
                   <li><a href="javascript:void(0)"><span class="icon-mail"></span></a></li>
                   <li><a href="javascript:void(0)"><span class="icon-phone"></span></a></li>
                </ul>
-               <span class="will-trad">Willing to trade in </span>
-               <p>Equity and Mutual Funds.</p>
+               <!-- <span class="will-trad">Willing to trade in </span>
+               <p>Equity and Mutual Funds.</p> -->
             </div>
             <div class="col-md-6">
                <div class="d-flex justify-content-between rgt-hdr">
@@ -98,7 +98,7 @@
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>photograph</a></li>
                   <li><a href="javascript:void(0)"><span class="icon-check-circle"></span>in person video</a></li> -->
                </ul>
-               <button class="btn btn-custom disabled" (click)="reviewAllModal()">review all</button>
+               <button class="btn btn-custom" (click)="reviewAllModal()">review all</button>
             </div>
          </div>
       </div>
@@ -556,7 +556,7 @@
             </div>
          </div>
          <ng-container *ngIf="userData?.nominee_info?.length">
-            <div class="row user-btmbx" *ngFor="let item of userData?.nominee_info">
+            <div class="row user-btmbx" *ngFor="let item of userData?.nominee_info; let i = index;">
                <div class="col-md-6">
                   <div class="d-flex justify-content-between mb-3">
                      <span class="cmn-txt">Last Updated On: {{item?.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
@@ -612,10 +612,10 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
                            <a class="dropdown-item"
-                              (click)="openDocumentPopupModal(nomineeIdentityDocuments?.document_name, nomineeIdentityDocuments?.document_modal_title, nomineeIdentityDocuments?.document_status, nomineeIdentityDocuments)">Upload
+                              (click)="openDocumentPopupModal(item?.nominee_identity_documents_status?.document_name, item?.nominee_identity_documents_status?.document_modal_title, item?.nominee_identity_documents_status?.document_status, item?.nominee_identity_documents_status)">Upload
                               document</a>
                            <a class="dropdown-item" *ngIf="item?.nominee_identity_document"
-                              (click)="openImageDisplayModal(nomineeIdentityDocuments?.document_name, nomineeIdentityDocuments?.document_modal_title, nomineeIdentityDocuments?.document_status, nomineeIdentityDocuments)">Zoom
+                              (click)="openImageDisplayModal(item?.nominee_identity_documents_status?.document_name, item?.nominee_identity_documents_status?.document_modal_title, item?.nominee_identity_documents_status?.document_status, item?.nominee_identity_documents_status)">Zoom
                               In Zoom Out</a>
                         </div>
                      </div>
@@ -648,10 +648,10 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
                            <a class="dropdown-item"
-                              (click)="openDocumentPopupModal(nomineeAddressDocuments?.document_name, nomineeAddressDocuments?.document_modal_title, nomineeAddressDocuments?.document_status, nomineeAddressDocuments)">Upload
+                              (click)="openDocumentPopupModal(item?.nominee_address_documents_status?.document_name, item?.nominee_address_documents_status?.document_modal_title, item?.nominee_address_documents_status?.document_status, item?.nominee_address_documents_status)">Upload
                               document</a>
                            <a class="dropdown-item" *ngIf="userData?.bank_details?.bank_statement_url?.length"
-                              (click)="openImageDisplayModal(nomineeAddressDocuments?.document_name, nomineeAddressDocuments?.document_modal_title, nomineeAddressDocuments?.document_status, nomineeAddressDocuments)">Zoom
+                              (click)="openImageDisplayModal(item?.nominee_address_documents_status?.document_name, item?.nominee_address_documents_status?.document_modal_title, item?.nominee_address_documents_status?.document_status, item?.nominee_address_documents_status)">Zoom
                               In Zoom Out</a>
                         </div>
 

@@ -9,6 +9,8 @@ import { BankDetailComponent } from './bank-detail/bank-detail.component';
 import { EditPersoanlAddressDetailsComponent } from './edit-persoanl-address-details/edit-persoanl-address-details.component';
 import { ApplicationHistory } from './shared/application-history.resolver';
 import { TradingDetailsComponent } from './trading-details/trading-details.component';
+import { NomineeDetailsComponent } from './nominee-details/nominee-details.component';
+import { SegmentDetailsComponent } from './segment-details/segment-details.component';
 
 const routes: Routes = [
   {
@@ -62,6 +64,20 @@ const routes: Routes = [
       title: 'Trading Detail',
     },
   },
+  {
+    path: 'nominee-details/:id',
+    component: NomineeDetailsComponent,
+    data: {
+      title: 'Nominee Detail',
+    },
+  },
+  {
+    path: 'segment-details/:id',
+    component: SegmentDetailsComponent,
+    data: {
+      title: 'Segment & Brokerage Detail',
+    },
+  }
 ];
 
 @NgModule({

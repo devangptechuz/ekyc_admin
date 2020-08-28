@@ -302,7 +302,6 @@ export class UsersDetailComponent implements OnInit {
       this.userData['trading_demat_info']['statement_frequency'] = this.arrayFilterWithStringPipe.transform(this.statementFrequencyArray, this.userData?.trading_demat_info?.statement_frequency, 'value');
     }
 
-    console.log('this.userData', this.userData);
   }
 
   addOnsModel(btnElement) {
@@ -407,7 +406,7 @@ export class UsersDetailComponent implements OnInit {
       if (this.maxUploadLimit) {
         this.global.errorToastr(`You can upload max ${this.maxUploadLimit} Files.`);
       } else {
-        this.global.errorToastr(`You have already uploaded 2 Files.`);
+        this.global.errorToastr(`You have already uploaded max Files.`);
       }
       return false;
     } else {
