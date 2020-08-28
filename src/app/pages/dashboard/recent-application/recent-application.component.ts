@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from "ngx-toastr";
 import { Router } from '@angular/router';
+import {GlobalService} from '../../../shared/services/global.service';
+import {UserService} from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-recent-application',
@@ -10,35 +12,7 @@ import { Router } from '@angular/router';
 })
 export class RecentApplicationComponent implements OnInit {
 
-  rows = [{
-    'img': 'assets/img/portrait/avatars/avatar-03.png',
-    'username': 'pragnesh',
-    'accountType': 'Equity, Mutual Fund',
-    'status': 'Submitted',
-    'applicationID': 'GP00421',
-    'lastActivity': 'Apr 22 2020-02:31PM'
-  }, {
-    'img': 'assets/img/portrait/avatars/avatar-04.png',
-    'username': 'ritu',
-    'accountType': 'IPO, Future & Options',
-    'status': 'Incomplete',
-    'applicationID': 'GP00422',
-    'lastActivity': 'Apr 24 2020-02:21PM',
-  }, {
-    'img': 'assets/img/portrait/avatars/avatar-04.png',
-    'username': 'ritu',
-    'accountType': 'IPO',
-    'status': 'Submitted',
-    'applicationID': 'GP00422',
-    'lastActivity': 'Apr 24 2020-02:21PM',
-  }, {
-    'img': 'assets/img/portrait/avatars/avatar-04.png',
-    'username': 'ritu',
-    'accountType': 'IPO',
-    'status': 'Submitted',
-    'applicationID': 'GP00422',
-    'lastActivity': 'Apr 24 2020-02:21PM',
-  }];
+  rows = [];
   temp = [];
   loadingIndicator = true;
   limitRow = 3;
@@ -54,10 +28,22 @@ export class RecentApplicationComponent implements OnInit {
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    public global: GlobalService
   ) { }
 
   ngOnInit(): void {
+    this.userService.getUserApplicationList()
+        .subscribe(
+            Data => {
+              if (Data.success) {
+                this.temp = [...Data['result']['userList']];
+                this.rows = Data['result']['userList'];
+              } else {
+                this.global.errorToastr(Data.message);
+              }
+            });
   }
 
 }

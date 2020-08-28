@@ -1,0 +1,204 @@
+<section class="application">
+    <div class="container">
+        <div class="custom-tabs">
+            <!-- Nav tabs -->
+            <ul id="tabs" class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">all ()</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">Active Alerts (0)</a>
+                </li>
+                <li class="nav-item" >
+                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">under review
+                        ()</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div id="content" class="tab-content" role="tablist">
+                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+                    <div class="card-header" role="tab" id="heading-A">
+                        <h5 class="mb-0">
+                            <!-- Note: `data-parent` removed from here -->
+                            <a data-toggle="collapse" href="#collapse-A" aria-expanded="true" aria-controls="collapse-A">
+                                All ()
+                            </a>
+                        </h5>
+                    </div>
+
+                    <!-- Note: New place of `data-parent` -->
+                    <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel"
+                         aria-labelledby="heading-A">
+                        <div class="card-body">
+                            <div class="custom-datatable mt-0">
+                                <div class="header row d-flex justify-content-between">
+                                    <div class="col-md-4">
+                                        <h2>all applications ()</h2>
+                                        <span class="green-text">2% increase since last week<span
+                                                class="icon-red-arrow"></span>
+                                    </span>
+                                    </div>
+                                    <div class="col-md-8 d-flex align-items-center justify-content-end">
+                                        <div class="search">
+                                            <input type="search" #searchBytype name="searchbytype"
+                                                   placeholder="Search by PAN Number or Email or Mobile Number"
+                                                   class="form-control" >
+                                            <button  class="btn-search"><span
+                                                    class="icon-search"></span></button>
+                                            <button class="close-icon">&times;</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tble">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+                    <div class="card-header" role="tab" id="heading-B">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false"
+                               aria-controls="collapse-B">
+                                new applications (0)
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel"
+                         aria-labelledby="heading-B">
+                        <div class="card-body">
+                            <div class="coming-soon">
+                                <img src="assets/img/soon.svg">
+                                <h2>Coming Soon</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
+                    <div class="card-header" role="tab" id="heading-C">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" href="#collapse-C" aria-expanded="false"
+                               aria-controls="collapse-C">
+                                under review
+                                ()
+                            </a>
+                        </h5>
+                    </div>
+
+                    <div class="collapse" role="tabpanel" data-parent="#content" aria-labelledby="heading-C">
+                        <div class="card-body">
+                            <div class="custom-datatable mt-0">
+                                <div class="header row d-flex justify-content-between">
+<!--                                    <div class="col-md-4">-->
+<!--                                        <h2 *ngIf="typeOflist === 'under_review'">-->
+<!--                                            under review ({{countUnderReview}})-->
+<!--                                        </h2>-->
+<!--                                        <h2 *ngIf="typeOflist === 'approved'">-->
+<!--                                            {{typeOflist}} ({{countApproved}})-->
+<!--                                        </h2>-->
+<!--                                        <h2 *ngIf="typeOflist === 'rejected'">-->
+<!--                                            {{typeOflist}} ({{countRejected}})-->
+<!--                                        </h2>-->
+<!--                                        <span class="green-text">2% increase since last week<span-->
+<!--                                                class="icon-red-arrow"></span>-->
+<!--                                    </span>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-8 d-flex align-items-center justify-content-end">-->
+<!--                                        <div class="search">-->
+<!--                                            <input type="search" #searchBytypeAgain name="searchBytypeAgain"-->
+<!--                                                   [(ngModel)]="searchValue"-->
+<!--                                                   placeholder="Search by Admin PAN Number or Email or Mobile Number"-->
+<!--                                                   class="form-control" (keyup)='resetFilter($event)'-->
+<!--                                                   (keydown)="onEnterPressAgain($event)">-->
+<!--                                            <button (click)='updateFilterAgain($event)' class="btn-search"><span-->
+<!--                                                    class="icon-search"></span></button>-->
+<!--                                            <button *ngIf="searchValue" (click)='removeText()'-->
+<!--                                                    class="close-icon">&times;</button>-->
+<!--                                        </div>-->
+<!--                                        <div class="filter">Filter search<span class="icon-filter"></span></div>-->
+<!--                                    </div>-->
+                                </div>
+                                <div class="tble">
+<!--                                    <ngx-datatable class="bootstrap checkbox-table" [loadingIndicator]="loadingIndicator"-->
+<!--                                                   [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"-->
+<!--                                                   [rowHeight]="80" [limit]="limitRow" [rows]="rows"-->
+<!--                                                   [sorts]="[{prop: 'uname', dir: 'asc'}]" [selected]="selected"-->
+<!--                                                   [selectionType]="'checkbox'" [selectAllRowsOnPage]="false"-->
+<!--                                                   (select)='onSelect($event)'>-->
+
+<!--                                        <ngx-datatable-column [width]=" 10" [sortable]="false" [canAutoResize]="false"-->
+<!--                                                              [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"-->
+<!--                                                              [checkboxable]="true" [sortable]="true" prop="selected">-->
+<!--                                        </ngx-datatable-column>-->
+
+<!--                                        <ngx-datatable-column [width]="10" name="PAN Number" [sortable]="true"-->
+<!--                                                              prop="panUserName">-->
+<!--                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">-->
+<!--                                                <a title="{{row.panUserName}}" [routerLink]="['/applications/details',row.id]"-->
+<!--                                                   routerLinkActive="router-link-active"-->
+<!--                                                   class="uname wrap-text">{{row.panUserName}}</a>-->
+<!--                                            </ng-template>-->
+<!--                                        </ngx-datatable-column>-->
+<!--                                        <ngx-datatable-column [width]="60" name="application Id" [sortable]="true"-->
+<!--                                                              prop="id">-->
+<!--                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">-->
+<!--                                                <a title="{{row.id}}" [routerLink]="['/applications/details',row.id]"-->
+<!--                                                   routerLinkActive="router-link-active" class="uname id-wrap wrap-text">-->
+<!--                                                    {{row.id | uppercase}}-->
+<!--                                                </a>-->
+<!--                                            </ng-template>-->
+<!--                                        </ngx-datatable-column>-->
+<!--                                        <ngx-datatable-column [width]="40" name="Email" [sortable]="true" prop="email">-->
+<!--                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">-->
+<!--                                                <a [routerLink]="['/applications/details',row.id]"-->
+<!--                                                   routerLinkActive="router-link-active" class="uname email-wrap wrap-text"-->
+<!--                                                   style="text-transform: lowercase;">-->
+<!--                                                    {{row.email | lowercase}}-->
+<!--                                                </a>-->
+<!--                                            </ng-template>-->
+<!--                                        </ngx-datatable-column>-->
+<!--                                        <ngx-datatable-column [width]="40" name="Mobile Number" [sortable]="true"-->
+<!--                                                              prop="mobileNumber">-->
+<!--                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">-->
+<!--                                                <a [routerLink]="['/applications/details',row.id]"-->
+<!--                                                   routerLinkActive="router-link-active" class="wrap-text uname"-->
+<!--                                                   style="text-transform: lowercase;">-->
+<!--                                                    {{row.mobileNumber}}-->
+<!--                                                </a>-->
+<!--                                            </ng-template>-->
+<!--                                        </ngx-datatable-column>-->
+<!--                                        <ngx-datatable-column [width]="20" name="application status" [sortable]="false"-->
+<!--                                                              prop="isDocumentUploaded">-->
+<!--                                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>-->
+<!--                                            <span *ngIf="row.adminApproval === 'Under review'">-->
+<!--                                                Under Review-->
+<!--                                            </span>-->
+<!--                                                <span class="red-color-text" *ngIf="row.adminApproval === 'Reject'">-->
+<!--                                                Rejected-->
+<!--                                            </span>-->
+<!--                                                <span class="green-color-text" *ngIf="row.adminApproval === 'Approved'">-->
+<!--                                                Approved-->
+<!--                                            </span>-->
+<!--                                                <span class="light-color-text"-->
+<!--                                                      *ngIf="!row.adminApproval && row.isEKYCComplete">-->
+<!--                                                Submitted-->
+<!--                                            </span>-->
+<!--                                                <span class="light-color-text"-->
+<!--                                                      *ngIf="!row.adminApproval && !row.isEKYCComplete">-->
+<!--                                                Incompleted-->
+<!--                                            </span>-->
+<!--                                            </ng-template>-->
+<!--                                        </ngx-datatable-column>-->
+<!--                                    </ngx-datatable>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

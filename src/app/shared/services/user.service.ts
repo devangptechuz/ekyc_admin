@@ -26,15 +26,19 @@ export class UserService {
       return this.http.get<any>(`${this.baseUrlOfUser}/userList`);
     }
   }
+
+  getUserApplicationList() {
+    return this.http.get<any>(`${this.baseUrlOfUser}/userList?date=true`);
+  }
   /**
-   * get user details with loader 
+   * get user details with loader
    */
   getUser(id): Observable<any> {
     return this.http.get<any>(`${this.baseUrlOfUser}/userDetail/${id}`);
   }
 
   /**
-   * get user activity 
+   * get user activity
    */
   getUserActivity(id): Observable<any> {
     return this.http.get<any>(`${this.baseUrlOfUser}/getUserActivities/${id}`);
@@ -53,7 +57,7 @@ export class UserService {
   }
 
   /**
-   * get user details with hide loader 
+   * get user details with hide loader
    */
   getUserWithHideLoader(hideLoader: boolean = false, userId = null) {
     let options = {}
@@ -66,7 +70,7 @@ export class UserService {
     return this.http.get<any>(`${this.baseUrlOfUser}/userDetail/${userId}`, options);
   }
   /**
-   * get ekyc document list 
+   * get ekyc document list
    */
   getDocumentAvailable(hideLoader: boolean = false, userId = null) {
     let options = {}
@@ -91,7 +95,7 @@ export class UserService {
   }
 
   /**
-   * get document data from document_name 
+   * get document data from document_name
    */
   getDocumentDetails(objParam: any): Observable<Document> {
     return this.http.post<any>(`${this.baseUrlOfUser}/getUserDocuments`, objParam);
@@ -106,7 +110,7 @@ export class UserService {
 
   /**
    * submit persoan & address details
-   * @param objParam 
+   * @param objParam
    */
   submitPersonalDetails(objParam: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrlOfUser}/submitPersonalDetails`, objParam);
@@ -114,7 +118,7 @@ export class UserService {
 
   /**
    * get personal & address details
-   * @param userId 
+   * @param userId
    */
   getPersonalAddressDetails(userId: string) {
     return this.http.get<any>(`${this.baseUrlOfUser}/getPersonalDetailsAndAddress/${userId}`);
@@ -122,7 +126,7 @@ export class UserService {
 
   /**
    * search bank details from ifsc_code
-   * @param objParam 
+   * @param objParam
    */
   searchBankeDetails(objParam: any) {
     return this.http.post<any>(`${this.baseUrlOfUser}/searchIfscCode`, objParam);
@@ -130,7 +134,7 @@ export class UserService {
 
   /**
    * submit bank details
-   * @param objParam 
+   * @param objParam
    */
   getBankDetails(userId: string) {
     return this.http.get<any>(`${this.baseUrlOfUser}/getBankDetails/${userId}`);
@@ -138,7 +142,7 @@ export class UserService {
 
   /**
    * submit bank details
-   * @param objParam 
+   * @param objParam
    */
   submitBankDetails(objParam: any) {
     return this.http.post<any>(`${this.baseUrlOfUser}/submitBankDetails`, objParam);
