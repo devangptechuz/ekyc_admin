@@ -75,6 +75,7 @@ export class AddEditCategoryComponent implements OnInit {
             } else {
               this.global.errorToastr(result.message);
             }
+            this.activeModal.close(true);
         });
     } else {
       this.settingService.addSubReasonCategory(this.subCategoryForm.value).subscribe(
@@ -85,9 +86,9 @@ export class AddEditCategoryComponent implements OnInit {
             } else {
               this.global.errorToastr(result.message);
             }
+            this.activeModal.close(true);
         });
     }
-    this.activeModal.close(true);
   }
 
   onSubmit() {
