@@ -9,9 +9,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../../shared/shared.module';
 import {RecentAlertsComponent} from './recent-alerts/recent-alerts.component';
 import { RecentApplicationComponent } from './recent-application/recent-application.component';
+import { AlertScreenComponent } from './alert-screen/alert-screen.component';
 
 @NgModule({
-  declarations: [DashboardComponent, RecentAlertsComponent, RecentApplicationComponent],
+  declarations: [DashboardComponent, RecentAlertsComponent, RecentApplicationComponent, AlertScreenComponent],
   imports: [
     CommonModule,
     HttpClientModule,
