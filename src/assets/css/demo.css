@@ -996,7 +996,7 @@ ngb-datepicker-navigation button:focus{outline: none;}
 .form-group.rsn-txt input[type="text"]{font-size: 14px;}
 
 .viewdoc-popup .zoom-carousel{margin-top: 25px;} 
-/*.viewdoc-popup{background: rgba(0, 0, 0, 0.7);}*/
+.viewdoc-popup .modal-content{background: rgba(0, 0, 0, 0.7);}
 body .viewdoc-popup .ngx-select__toggle{font-size: 25px;line-height: 25px;font-weight: 500;width: auto;background: transparent;color: #fff !important;border: none !important;padding: 0;}
 .viewdoc-popup .modal-footer{border: none;}
 /*.modal-content{background:rgba(0, 0, 0, 0.7);}*/
