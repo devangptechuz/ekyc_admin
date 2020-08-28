@@ -1,4 +1,4 @@
-<div class="modal-body p-0 viewdoc-popup">    
+<div class="modal-body p-0 viewdoc-popup">
     <div *ngIf="flag">
         <ngx-select [items]="applicationType"  optionValueField="value" (select)="doSelect($event)"
                     [(ngModel)]="selected" optionTextField="label"></ngx-select>

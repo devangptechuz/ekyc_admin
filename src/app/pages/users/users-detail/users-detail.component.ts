@@ -949,7 +949,7 @@ export class UsersDetailComponent implements OnInit {
     this.reviewAll = false;
     this.nameOfDocument = nameOfDocument;
     this.nameOfTitleDocument = nameOfModalTitle;
-    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, windowClass:'viewdoc-popup',size: 'lg', backdrop: 'static', keyboard: false });
     this.modalRef.result.then((result) => {
       this.globalDocumentPopup = false;
       this.aadharDisplayImage = '';
@@ -960,7 +960,7 @@ export class UsersDetailComponent implements OnInit {
 
   reviewAllModal() {
     this.reviewAll = true;
-    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, windowClass:'viewdoc-popup', size: 'lg', backdrop: 'static', keyboard: false });
     this.modalRef.result.then((result) => {
       this.globalDocumentPopup = false;
       this.aadharDisplayImage = '';
