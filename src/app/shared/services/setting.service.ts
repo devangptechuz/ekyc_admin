@@ -49,5 +49,21 @@ export class SettingService {
     }
 
 
+    getSegmentCategory() {
+        return this.http.get<any>(`${this.apiUrl_setting}/getSegmentCategory`);
+    }
+
+    addSegmentCategory(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/addSegmentCategory`,data);
+    }
+
+    updateSegmentCategory(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/updateSegmentCategory`,data);
+    }
+
+    updateStatusSegmentCategory(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/updateStatusSegmentCategory`,data);
+    }
+
 
 }

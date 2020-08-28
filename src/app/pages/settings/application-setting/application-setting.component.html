@@ -5,10 +5,9 @@
         </div>
     </div>
     <div class="custom-datatable mt-0">
-        <ngx-datatable class="bootstrap checkbox-table expandable" [loadingIndicator]="loadingIndicator"
+        <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator"
                        [columnMode]="'force'" [headerHeight]="30" [scrollbarH]="true" [footerHeight]="50"
-                       [rowHeight]="70" [limit]="limitRow" [rows]="rows" [selected]="selected"
-                       (select)='onSelect($event)'>
+                       [rowHeight]="70" [limit]="limitRow" [rows]="rows">
             <ngx-datatable-column [width]="30" name="Reason Category" [sortable]="true" prop="reasonCategory">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
                     <a title="{{row.reasonCategory}}"

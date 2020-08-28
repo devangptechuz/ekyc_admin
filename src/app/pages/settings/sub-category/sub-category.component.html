@@ -12,10 +12,9 @@
             </div>
             <div class="custom-datatable mt-0">
                 <div class="tble">
-                    <ngx-datatable class="bootstrap checkbox-table" [loadingIndicator]="loadingIndicator"
+                    <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator"
                                    [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
-                                   [rowHeight]="80" [limit]="limitRow" [rows]="rows"
-                                   >
+                                   [rowHeight]="80" [limit]="limitRow" [rows]="rows">
                         <ngx-datatable-column [width]="200" name="Reason Category" [sortable]="true" prop="reasonCategory">
                         </ngx-datatable-column>
                         <ngx-datatable-column [width]="300" name="Reason" [sortable]="true" prop="reason">

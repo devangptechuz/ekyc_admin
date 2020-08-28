@@ -39,7 +39,7 @@ export class SubCategoryComponent implements OnInit {
     this.selectFlag = false;
     this.subCategoryData = this.route.snapshot.data["category"];
     if(this.subCategoryData?.success){
-      this.rows = [...this.subCategoryData.result['subReasonCategory']]
+      this.rows = [...this.subCategoryData.result['subReasonCategoryList']]
     }
   }
 
