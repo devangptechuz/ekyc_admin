@@ -1061,6 +1061,22 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
     .card .collapse{
         display:block;
     }
+    
+    .accordion-custom .nav-tabs {
+        display: flex;
+    }
+
+    .accordion-custom .card {
+        border: none;
+    }
+
+    .accordion-custom .card .card-header {
+        display:block;
+    }
+
+    .accordion-custom .card .collapse{
+        display:none;
+    }
 }
 
 @media(max-width:767px){
