@@ -1043,46 +1043,10 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
 .segmebrokerage-box .ttle .form-group label{font-size: 12px;}
 .segmebrokerage-box .border-bottom-line:first-child{padding-top: 0;}
 .segmebrokerage-box .ttle form .form-group{margin-bottom: 16px !important;}
-
-
-@media(min-width:768px) {
-    .nav-tabs {
-        display: flex;
-    }
-
-    .card {
-        border: none;
-    }
-
-    .card .card-header {
-        display:none;
-    }
-
-    .card .collapse{
-        display:block;
-    }
+ .nav-tabs {display: flex;}
+.card {border: none;}
+.card .card-header {display:none;}
+.card .collapse{display:block;}      
+.accordion-custom .card .card-header {display:block;}
+.accordion-custom .card .collapse:not(.show){display:none;}
     
-    .accordion-custom .nav-tabs {
-        display: flex;
-    }
-
-    .accordion-custom .card {
-        border: none;
-    }
-
-    .accordion-custom .card .card-header {
-        display:block;
-    }
-
-    .accordion-custom .card .collapse{
-        display:none;
-    }
-}
-
-@media(max-width:767px){
-    .tab-content > .tab-pane {
-        display: block !important;
-        opacity: 1;
-    }
-}
-
