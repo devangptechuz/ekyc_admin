@@ -43,7 +43,7 @@
                      <a class="dropdown-item" href="javascript:void(0)" (click)="approveConfirm()"><span
                            class="icon-simple-check" style="font-size: 12px;"></span>
                         approve</a>
-                     <a class="dropdown-item" href="javascript:void(0)" (click)="rejectConfirm()"><span
+                     <a class="dropdown-item" href="javascript:void(0)" (click)="requestConfirm('reject_reason')"><span
                            class="icon-notallow"></span>reject
                      </a>
                      <!-- <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report
@@ -217,7 +217,8 @@
                   </div>
                   <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents?.length">
                      <ng-template ngbSlide *ngFor="let imageAadhaar of userData?.aadhar_details?.aadhar_documents">
-                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageAadhaar?.content_type === 'application/pdf'"
+                        <a class="fancyboxiframe clickpdf-popup"
+                           *ngIf="imageAadhaar?.content_type === 'application/pdf'"
                            [href]="imageAadhaar?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type === 'application/pdf'">
                            <iframe [src]="imageAadhaar?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -443,7 +444,7 @@
                <!-- <div class="d-flex justify-content-between mb-3">
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
                </div> -->
-               <ng-container *ngIf="userData?.segment_brokerage_info?.length">
+               <ng-container *ngIf="userData?.segment_brokerage_info?.length; else elseBlock">
                   <div class="row cmn-layout" *ngFor="let item of userData?.segment_brokerage_info">
                      <div class="col-md-4 d-flex flex-column mb-3">
                         <label>Segment Type</label>
@@ -463,6 +464,9 @@
                      details
                   </button>
                </ng-container>
+               <ng-template #elseBlock>
+                  <h3>No Data Found</h3>
+               </ng-template>
             </div>
             <div class="col-md-6" *ngIf="userData?.trading_demat_info">
                <!-- <div class="d-flex justify-content-between mb-3">
@@ -555,7 +559,7 @@
                </span>
             </div>
          </div>
-         <ng-container *ngIf="userData?.nominee_info?.length">
+         <ng-container *ngIf="userData?.nominee_info?.length; else elseBlockNominee">
             <div class="row user-btmbx" *ngFor="let item of userData?.nominee_info; let i = index;">
                <div class="col-md-6">
                   <div class="d-flex justify-content-between mb-3">
@@ -623,7 +627,8 @@
                      <!-- /************* Nominee identity document : CAROUSEL **************/ -->
                      <ngb-carousel *ngIf="item?.nominee_identity_document?.length">
                         <ng-template ngbSlide *ngFor="let imageItem of item?.nominee_identity_document">
-                           <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           <a class="fancyboxiframe clickpdf-popup"
+                              *ngIf="imageItem?.content_type === 'application/pdf'"
                               [href]="imageItem?.url | safeUrl">Click here </a>
                            <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                               <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -660,7 +665,8 @@
                      <!-- /************* Nominee address proof : CAROUSEL **************/ -->
                      <ngb-carousel *ngIf="item?.nominee_address_document.length">
                         <ng-template ngbSlide *ngFor="let imageItem of item?.nominee_address_document">
-                           <a class="fancyboxiframe clickpdf-popup text-center" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           <a class="fancyboxiframe clickpdf-popup text-center"
+                              *ngIf="imageItem?.content_type === 'application/pdf'"
                               [href]="imageItem?.url | safeUrl">Click here </a>
                            <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
                               <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
@@ -677,6 +683,9 @@
                </div>
             </div>
          </ng-container>
+         <ng-template #elseBlockNominee>
+            <h3>No Data Found</h3>
+         </ng-template>
       </div>
       <!-- User box - bank details-->
       <div class="user-box">

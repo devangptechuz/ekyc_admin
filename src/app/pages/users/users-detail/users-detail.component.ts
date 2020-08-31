@@ -949,7 +949,7 @@ export class UsersDetailComponent implements OnInit {
     this.reviewAll = false;
     this.nameOfDocument = nameOfDocument;
     this.nameOfTitleDocument = nameOfModalTitle;
-    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, windowClass:'viewdoc-popup',size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, windowClass: 'viewdoc-popup', size: 'lg', backdrop: 'static', keyboard: false });
     this.modalRef.result.then((result) => {
       this.globalDocumentPopup = false;
       this.aadharDisplayImage = '';
@@ -960,7 +960,7 @@ export class UsersDetailComponent implements OnInit {
 
   reviewAllModal() {
     this.reviewAll = true;
-    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, windowClass:'viewdoc-popup', size: 'lg', backdrop: 'static', keyboard: false });
+    this.modalRef = this.modalService.open(this.imageDisplay, { centered: true, windowClass: 'viewdoc-popup', size: 'lg', backdrop: 'static', keyboard: false });
     this.modalRef.result.then((result) => {
       this.globalDocumentPopup = false;
       this.aadharDisplayImage = '';
@@ -1066,7 +1066,7 @@ export class UsersDetailComponent implements OnInit {
       popupParam['type'] = 'reject_reason';
       popupParam['label'] = 'Reject Reason';
       popupParam['title'] = 'Select your Reject Reason';
-      popupParam['button_name'] = 'Reject Reason';
+      popupParam['button_name'] = 'Reject Application';
     } else if (typeOfRequest === 'document_re_upload') {
       popupParam['name'] = 'Document re-upload';
       popupParam['type'] = 'document_re_upload';
