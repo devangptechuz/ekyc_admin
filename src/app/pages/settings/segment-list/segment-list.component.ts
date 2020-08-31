@@ -136,6 +136,10 @@ export class SegmentListComponent implements OnInit {
     })
   }
 
+  onEditNavigate(v){
+     this.router.navigateByUrl(`/settings/sub-segments/${v}`);
+  }
+
   changeStatus(event,row) {
     const val = event.target.value;
     let segmentStatus = {};

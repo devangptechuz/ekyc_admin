@@ -78,7 +78,7 @@ export class AddEditCategoryComponent implements OnInit {
             this.activeModal.close(true);
         });
     } else {
-      this.settingService.addSubReasonCategory(this.subCategoryForm.value).subscribe(
+      this.settingService.addSegmentSubCategory(this.subCategoryForm.value).subscribe(
           (result: any) => {
             if (result.success) {
               this.global.successToastr(result.message);
