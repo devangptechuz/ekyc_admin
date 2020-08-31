@@ -5,23 +5,23 @@
 </div>
 <div class="modal-boy">
     <div>
-        <form [formGroup]="subCategoryForm" (ngSubmit)="onSubmit()" novalidate>
+        <form [formGroup]="subSegmentForm"  novalidate>
             <div class="row align-items-top">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>Reasons</label>
+                        <label>Segments Type</label>
                         <ng-select appearance="outline" [searchable]="false"
-                                   formControlName="reasonId">
-                            <ng-option [value]="item.reasonId" *ngFor="let item of categories">{{item.reasonCategory}}</ng-option>
+                                   formControlName="category_id">
+                            <ng-option [value]="item.id" *ngFor="let item of segments">{{item.name}}</ng-option>
                         </ng-select>
                     </div>
                     <div class="form-group">
-                        <label>Sub-Category Reason</label>
-                        <textarea type="text" placeholder="Sub-Category Reason"
-                               formControlName="reason" class="form-control">
+                        <label>Sub-Segment Type</label>
+                        <textarea type="text" placeholder="Sub-Segment Type"
+                                  formControlName="name" class="form-control">
                         </textarea>
-                        <app-control-messages fieldName="Sub-Category Reason"
-                                              [control]="subCategoryForm.controls['reason']">
+                        <app-control-messages fieldName="Sub-Segment Type"
+                                              [control]="subSegmentForm.controls['name']">
                         </app-control-messages>
                     </div>
                 </div>

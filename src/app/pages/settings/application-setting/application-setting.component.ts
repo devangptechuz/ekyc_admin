@@ -60,21 +60,4 @@ export class ApplicationSettingComponent implements OnInit {
     window.scrollTo(0, 150);
   }
 
-  onSelect({ selected }) {
-    this.selected.splice(0, this.selected.length);
-    this.selected.push(...selected);
-    if (this.selected.length) {
-      this.adminsSelectCount = this.selected.length;
-      this.deleteFlag = this.selected.length > 0;
-    } else {
-      this.cancelAll();
-    }
-  }
-
-  toggleExpandRow(row) {
-    this.table.rowDetail.toggleExpandRow(row);
-  }
-
-  onDetailToggle(event) {
-  }
 }
