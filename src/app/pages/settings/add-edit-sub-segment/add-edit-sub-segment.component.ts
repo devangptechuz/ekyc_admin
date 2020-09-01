@@ -15,7 +15,7 @@ export class AddEditSubSegmentComponent implements OnInit {
   @Input() title: string;
   @Input() fromParent: string;
   @Input() id: string;
-  headerTitle = 'Add Sub Segment type';
+  headerTitle = 'Add Sub-Segment type';
   subSegmentForm: FormGroup;
   segments = [];
   constructor(private activeModal: NgbActiveModal,
@@ -27,7 +27,7 @@ export class AddEditSubSegmentComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.fromParent){
-      this.headerTitle = 'Edit Sub Segment type';
+      this.headerTitle = 'Edit Sub-Segment type';
     }
     this.subSegmentForm = this.formBuilder.group({
       name: ['', [Validators.required]],
