@@ -19,10 +19,13 @@
                         </ngx-datatable-column>
                         <ngx-datatable-column [width]="70" name="Sub-Segment Type" class="wrap-text" [sortable]="true" prop="name">
                             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                                <a title="{{row.name}}" >{{row.name}}</a>
+                                <a title="{{row.name}}" class="wrap-text wrap-segment">{{row.name}}</a>
                             </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column [width]="70" name="Slug" class="wrap-text" [sortable]="true" prop="slug">
+                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                <a title="{{row.slug}}" class="wrap-text wrap-segment">{{row.slug}}</a>
+                            </ng-template>
                         </ngx-datatable-column>
 
                         <ngx-datatable-column [width]="20" name="Status" [sortable]="false" prop="status" >
