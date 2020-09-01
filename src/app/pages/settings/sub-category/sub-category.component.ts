@@ -76,8 +76,9 @@ export class SubCategoryComponent implements OnInit {
   }
 
   addNewReason() {
-    this.modalRef = this.modalService.open(AddEditCategoryComponent, { centered: true, windowClass: 'catreason-popup', backdrop: 'static', keyboard: false, backdropClass: 'white' });
-    this.modalRef.result.then((result) => {
+    const modalRef = this.modalService.open(AddEditCategoryComponent, { centered: true, windowClass: 'catreason-popup', backdrop: 'static', keyboard: false, backdropClass: 'white' });
+    modalRef.componentInstance.reasonId = this.route.snapshot.params.id;
+    modalRef.result.then((result) => {
       if (result) {
         this.getSubReasonCategory();
       }

@@ -75,7 +75,7 @@ export class SubSegmentListComponent implements OnInit {
     const modelData = {};
     modelData["name"] = v.name;
     modelData["category_id"] = v.categoryId;
-    modelData["id"] = v.id;
+    modelData["subSegmentId"] = v.id;
     modelData["isEdit"] = true;
     modelData["id"] = this.route.snapshot.params.id;
     modelRef.componentInstance.fromParent = modelData;

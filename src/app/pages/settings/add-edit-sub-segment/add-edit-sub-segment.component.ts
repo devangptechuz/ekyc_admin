@@ -70,7 +70,7 @@ export class AddEditSubSegmentComponent implements OnInit {
       return false;
     }
     if(this.fromParent){
-      this.settingService.updateSegmentSubCategory(this.fromParent['id'],this.subSegmentForm.value).subscribe(
+      this.settingService.updateSegmentSubCategory(this.fromParent['subSegmentId'],this.subSegmentForm.value).subscribe(
           (result: any) => {
             if (result.success) {
               this.global.successToastr(result.message);

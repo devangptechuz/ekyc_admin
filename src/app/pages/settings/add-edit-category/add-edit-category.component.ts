@@ -13,6 +13,7 @@ import {GlobalService} from '../../../shared/services/global.service';
 export class AddEditCategoryComponent implements OnInit {
   @Input() title: string;
   @Input() fromParent: string;
+  @Input() reasonId: string;
   headerTitle = 'Add Reason';
   subCategoryForm: FormGroup;
   categories = [];
@@ -44,7 +45,13 @@ export class AddEditCategoryComponent implements OnInit {
       Data => {
             if (Data.success) {
               this.categories = [...Data['result']['reasonCategory']];
-              this.subCategoryForm.controls.reasonId.setValue(this.categories[0].reasonId)
+              if(this.reasonId){
+                this.categories.filter((data,i)=>{
+                  if(data.reasonId == this.reasonId){
+                    this.subCategoryForm.controls.reasonId.setValue(this.categories[i].reasonId)
+                  }
+                })
+              }
             } else {
                this.global.errorToastr(Data.message);
             }
@@ -78,7 +85,7 @@ export class AddEditCategoryComponent implements OnInit {
             this.activeModal.close(true);
         });
     } else {
-      this.settingService.addSegmentSubCategory(this.subCategoryForm.value).subscribe(
+      this.settingService.addSubReasonCategory(this.subCategoryForm.value).subscribe(
           (result: any) => {
             if (result.success) {
               this.global.successToastr(result.message);
