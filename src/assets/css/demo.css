@@ -1050,3 +1050,4 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
 .accordion-custom .card .card-header {display:block;}
 .accordion-custom .card .collapse:not(.show){display:none;}
     
+.no-data-found { margin: 0 auto 20px auto; text-align: center;}

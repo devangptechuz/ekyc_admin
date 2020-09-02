@@ -19,12 +19,12 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PanelWrapperComponent } from './panel-wrapper.component';
 import { SubCategoryComponent } from './sub-category/sub-category.component';
 import { AddEditCategoryComponent } from './add-edit-category/add-edit-category.component';
-import {NgSelectModule} from '@ng-select/ng-select';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [ApplicationPrefrenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent],
+  declarations: [ApplicationPrefrenceComponent, AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent],
   exports: [
-  ApplicationPrefrenceComponent
+    ApplicationPrefrenceComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +36,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
     NgxSelectModule,
     NgSelectModule,
     ReactiveFormsModule.
-    withConfig({ warnOnNgModelWithFormControl: 'never' }),
+      withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule,
     FormlyModule,
     FormlyBootstrapModule,

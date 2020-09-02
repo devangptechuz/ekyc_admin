@@ -445,19 +445,27 @@
                   <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
                </div> -->
                <ng-container *ngIf="userData?.segment_brokerage_info?.length; else elseBlock">
-                  <div class="row cmn-layout" *ngFor="let item of userData?.segment_brokerage_info">
+                  <div class="row cmn-layout">
                      <div class="col-md-4 d-flex flex-column mb-3">
                         <label>Segment Type</label>
-                        {{item?.sub_category_name || item?.category_name}}
                      </div>
                      <div class="col-md-4 d-flex flex-column mb-3">
                         <label>Brokerage Plan</label>
-                        {{item?.plan_name || '---'}}
                      </div>
                      <div class="col-md-4 d-flex flex-column mb-3">
                         <label>Description</label>
-                        {{item?.plan_desc || '---'}}
                      </div>
+                     <ng-container *ngFor="let item of userData?.segment_brokerage_info">
+                        <div class="col-md-4 d-flex flex-column mb-3">
+                           {{item?.sub_category_name || item?.category_name}}
+                        </div>
+                        <div class="col-md-4 d-flex flex-column mb-3">
+                           {{item?.plan_name || '---'}}
+                        </div>
+                        <div class="col-md-4 d-flex flex-column mb-3">
+                           {{item?.plan_desc || '---'}}
+                        </div>
+                     </ng-container>
                   </div>
                   <button class="btn btn-custom btn-border font-sml"
                      [routerLink]="['/applications/segment-details',userId]" routerLinkActive="router-link-active">edit
@@ -465,7 +473,7 @@
                   </button>
                </ng-container>
                <ng-template #elseBlock>
-                  <h3>No Data Found</h3>
+                  <h3 class="no-data-found">No Data Found</h3>
                </ng-template>
             </div>
             <div class="col-md-6" *ngIf="userData?.trading_demat_info">
@@ -684,7 +692,7 @@
             </div>
          </ng-container>
          <ng-template #elseBlockNominee>
-            <h3>No Data Found</h3>
+            <h3 class="no-data-found">No Data Found</h3>
          </ng-template>
       </div>
       <!-- User box - bank details-->

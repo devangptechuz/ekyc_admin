@@ -9,9 +9,9 @@
         <a class="navbar-brand" href="/dashboard"><img src="assets/img/logo.svg" align="logo"></a>
       </div>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-         &times;
+          &times;
         </button>
         <ul class="navbar-nav">
           <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
@@ -48,6 +48,8 @@
             </label>
           </a>
           <a class="dropdown-item" (click)="gotToProfile()"><span class="icon-edit"></span>Profile</a>
+          <a class="dropdown-item" [routerLink]="['/common-configure']" routerLinkActive="router-link-active"><span
+              class="icon-edit"></span>Configure Setting</a>
           <a class="dropdown-item" #btnElement (click)="onLogout(btnElement)"><span
               class="icon-logout"></span>logout</a>
         </div>
