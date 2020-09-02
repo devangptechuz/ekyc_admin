@@ -20,9 +20,13 @@ import { PanelWrapperComponent } from './panel-wrapper.component';
 import { SubCategoryComponent } from './sub-category/sub-category.component';
 import { AddEditCategoryComponent } from './add-edit-category/add-edit-category.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SegmentListComponent } from './segment-list/segment-list.component';
+import { AddEditSegmentComponent } from './add-edit-segment/add-edit-segment.component';
+import { SubSegmentListComponent } from './sub-segment-list/sub-segment-list.component';
+import { AddEditSubSegmentComponent } from './add-edit-sub-segment/add-edit-sub-segment.component';
 
 @NgModule({
-  declarations: [ApplicationPrefrenceComponent, AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent],
+  declarations: [ApplicationPrefrenceComponent, AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent],
   exports: [
     ApplicationPrefrenceComponent
   ],

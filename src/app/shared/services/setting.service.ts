@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class SettingService {
     apiUrl_setting = environment.api_url_setting;
+    apiUrl_segment = environment.api_url_segment;
     constructor(
         public http: HttpClient,
         public router: Router,
@@ -46,5 +47,37 @@ export class SettingService {
 
     updateSubReasonCategory(data): Observable<any> {
         return this.http.post<any>(`${this.apiUrl_setting}/updateSubReasonCategory`, data);
+    }
+
+    getSegmentCategory() {
+        return this.http.get<any>(`${this.apiUrl_setting}/getSegmentCategory`);
+    }
+
+    addSegmentCategory(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/addSegmentCategory`, data);
+    }
+
+    updateSegmentCategory(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/updateSegmentCategory/${id}`, data);
+    }
+
+    updateStatusSegmentCategory(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/updateStatusSegmentCategory/${id}`, data);
+    }
+
+    getSegmentSubCategory(id) {
+        return this.http.get<any>(`${this.apiUrl_segment}/getSegmentSubCategory/${id}`);
+    }
+
+    addSegmentSubCategory(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/addSegmentSubCategory`, data);
+    }
+
+    updateSegmentSubCategory(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/updateSegmentSubCategory/${id}`, data);
+    }
+
+    changeSegmentSubCategoryStatus(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/changeSegmentSubCategoryStatus/${id}`, data);
     }
 }

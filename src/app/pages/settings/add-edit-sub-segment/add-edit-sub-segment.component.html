@@ -1,0 +1,38 @@
+<div class="modal-header blueclr common-header mb-4">
+    <div class="popup-header">
+        <h2 class="mb-0">{{headerTitle}}</h2>
+    </div>
+</div>
+<div class="modal-boy">
+    <div>
+        <form [formGroup]="subSegmentForm"  novalidate>
+            <div class="row align-items-top">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Segments Type</label>
+                        <ng-select appearance="outline" [searchable]="false"
+                                   formControlName="category_id">
+                            <ng-option [value]="item.id" *ngFor="let item of segments">{{item.name}}</ng-option>
+                        </ng-select>
+                    </div>
+                    <div class="form-group">
+                        <label>Sub-Segment Type</label>
+                        <textarea type="text" placeholder="Sub-Segment Type"
+                                  formControlName="name" class="form-control">
+                        </textarea>
+                        <app-control-messages fieldName="Sub-Segment Type"
+                                              [control]="subSegmentForm.controls['name']">
+                        </app-control-messages>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+    <a class="btn modal-btn-continue" (click)="decline()">
+        Cancel
+    </a>
+    <a class="btn modal-continue" (click)="accept()">Submit</a>
+</div>
