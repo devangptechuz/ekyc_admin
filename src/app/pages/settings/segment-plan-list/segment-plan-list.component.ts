@@ -6,14 +6,14 @@ import {SettingService} from '../../../shared/services/setting.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {GlobalService} from '../../../shared/services/global.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AddEditSegmentComponent} from '../add-edit-segment/add-edit-segment.component';
+import {AddEditSegmentPlanComponent} from '../add-edit-segment-plan/add-edit-segment-plan.component';
 
 @Component({
-  selector: 'app-segment-list',
-  templateUrl: './segment-list.component.html',
-  styleUrls: ['./segment-list.component.scss']
+  selector: 'app-segment-plan-list',
+  templateUrl: './segment-plan-list.component.html',
+  styleUrls: ['./segment-plan-list.component.scss']
 })
-export class SegmentListComponent implements OnInit {
+export class SegmentPlanListComponent implements OnInit {
   temp = [];
   rows = [];
   status = [
@@ -33,16 +33,15 @@ export class SegmentListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   this.callApiSegment();
+    this.callApiSegmentPlans();
   }
 
-  callApiSegment(){
-    this.settingService.getSegmentCategory()
-        .subscribe(
+  callApiSegmentPlans(){
+    this.settingService.getSegmentPlansList().subscribe(
             Data => {
               if (Data.success) {
-                this.temp = [...Data['result']['Items']];
-                this.rows = Data['result']['Items'];
+                this.temp = [...Data['result']];
+                this.rows = Data['result'];
                 this.spinner.hide();
               } else {
                 this.spinner.hide();
@@ -51,45 +50,44 @@ export class SegmentListComponent implements OnInit {
             });
   }
 
-  addNewSegment(){
-    this.modalRef = this.modalService.open(AddEditSegmentComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
+  addNewSegmentPlan(){
+    this.modalRef = this.modalService.open(AddEditSegmentPlanComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
     this.modalRef.result.then((result) => {
       if(result){
-          this.callApiSegment();
+        this.callApiSegmentPlans();
       }
     });
   }
 
   onEdit(v){
-    const modelRef = this.modalService.open(AddEditSegmentComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
+    const modelRef = this.modalService.open(AddEditSegmentPlanComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
     const modelData = {};
-    modelData["name"] = v.name;
+    modelData["plan_name"] = v.name;
+    modelData["segmentCode"] = v.segmentCode;
+    modelData["category_id"] = v.categoryId;
+    modelData["sub_category_id"] = v.subCategoryId;
     modelData["id"] = v.id;
     modelData["isEdit"] = true;
     modelRef.componentInstance.fromParent = modelData;
     modelRef.result.then((result)=>{
       if(result){
-          this.callApiSegment();
+        this.callApiSegmentPlans();
       }
     })
   }
 
-  onEditNavigate(v){
-     this.router.navigateByUrl(`/settings/sub-segments/${v}`);
-  }
-
   changeStatus(event,row) {
     const val = event.target.value;
-    let segmentStatus = {};
-    segmentStatus['status'] = val;
-    this.settingService.updateStatusSegmentCategory(row.id,segmentStatus)
+    let categoryStatus = {};
+    categoryStatus['status'] = val;
+    this.settingService.changeSegmentPlansStatus(row.id,categoryStatus)
         .subscribe((res) => {
-            if (res.success) {
-                this.global.successToastr(res.message);
-            } else {
-                this.global.errorToastr(res.message);
-            }
+          if (res.success) {
+            this.global.successToastr(res.message);
+          } else {
+            this.global.errorToastr(res.message);
+          }
         });
-    }
+  }
 
 }

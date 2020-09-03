@@ -80,4 +80,24 @@ export class SettingService {
     changeSegmentSubCategoryStatus(id, data): Observable<any> {
         return this.http.post<any>(`${this.apiUrl_segment}/changeSegmentSubCategoryStatus/${id}`, data);
     }
+
+    getBrokerageMasterList(){
+        return this.http.get<any>(`${this.apiUrl_segment}/getBrokerageMasterList`);
+    }
+
+    addSegmentPlans(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/addSegmentPlans`,data);
+    }
+
+    updateSegmentPlans(id,data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/updateSegmentPlans/${id}`,data);
+    }
+
+    getSegmentPlansList() {
+        return this.http.get<any>(`${this.apiUrl_segment}/getSegmentPlansList`);
+    }
+
+    changeSegmentPlansStatus(id,data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/changeSegmentPlansStatus/${id}`,data);
+    }
 }
