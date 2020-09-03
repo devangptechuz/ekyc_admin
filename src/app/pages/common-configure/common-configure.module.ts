@@ -9,10 +9,11 @@ import { NgxSelectModule } from 'ngx-select-ex';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SharedModule } from 'app/shared/shared.module';
 import { GlobalConfigureComponent } from './global-configure/global-configure.component';
+import { EmailComponent } from './email/email.component';
 
 
 @NgModule({
-  declarations: [GlobalConfigureComponent],
+  declarations: [GlobalConfigureComponent, EmailComponent],
   imports: [
     HttpClientModule,
     CommonModule,

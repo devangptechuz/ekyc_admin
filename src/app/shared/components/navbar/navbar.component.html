@@ -50,6 +50,8 @@
           <a class="dropdown-item" (click)="gotToProfile()"><span class="icon-edit"></span>Profile</a>
           <a class="dropdown-item" [routerLink]="['/common-configure']" routerLinkActive="router-link-active"><span
               class="icon-edit"></span>Configure Setting</a>
+          <a class="dropdown-item" [routerLink]="['/common-configure/email']"
+            routerLinkActive="router-link-active"><span class="icon-edit"></span>Email Configure</a>
           <a class="dropdown-item" #btnElement (click)="onLogout(btnElement)"><span
               class="icon-logout"></span>logout</a>
         </div>

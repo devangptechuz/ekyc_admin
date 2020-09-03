@@ -642,7 +642,9 @@ ul.pic-action li{margin: 2px 0;}
 .btn-pw{width: 209px;height: 56px;}
 .admin-profile .hdr-right .icon-edit{font-size: 17px;}
 .admin-profile .btn-pw{margin-top: 29px;}
-
+.add-user .email-company-logo{width: 200px;height: 120px;background: #eee;display: flex;align-items: center;justify-content: center;}
+.add-user .email-company-logo img{width: 110px;}
+.add-user .email-company-logo .userpic{width: 100%;height: 100%;object-fit: contain; }
 
 /*=========Application===========*/
 section.application {margin: 32px 0;}

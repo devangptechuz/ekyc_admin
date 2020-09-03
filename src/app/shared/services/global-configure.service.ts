@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class GlobalConfigureService {
   configure_api_url = environment.configure_api_url;
+  imag_url = environment.imag_url;
+
   constructor(
     public http: HttpClient,
     public router: Router,
@@ -41,5 +43,18 @@ export class GlobalConfigureService {
   updateConfiguration(objParams: any) {
     return this.http.post<any>(`${this.configure_api_url}/updateConfiguration`, objParams);
   }
+
+  /**
+   * Update email configure
+   * @param objParams 
+   */
+  submitEmailConfig(objParams: any) {
+    return this.http.post<any>(`${this.imag_url}/commonUpload`, objParams);
+  }
+
+  getEmailConfigureData() {
+    return this.http.get<any>(`${this.configure_api_url}/getEmailConfigureData`);
+  }
+
 
 }
