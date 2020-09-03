@@ -24,9 +24,11 @@ import { SegmentListComponent } from './segment-list/segment-list.component';
 import { AddEditSegmentComponent } from './add-edit-segment/add-edit-segment.component';
 import { SubSegmentListComponent } from './sub-segment-list/sub-segment-list.component';
 import { AddEditSubSegmentComponent } from './add-edit-sub-segment/add-edit-sub-segment.component';
+import { SegmentPlanListComponent } from './segment-plan-list/segment-plan-list.component';
+import { AddEditSegmentPlanComponent } from './add-edit-segment-plan/add-edit-segment-plan.component';
 
 @NgModule({
-  declarations: [ApplicationPrefrenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent],
+  declarations: [ApplicationPrefrenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent, SegmentPlanListComponent, AddEditSegmentPlanComponent],
   exports: [
   ApplicationPrefrenceComponent
   ],
