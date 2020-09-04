@@ -23,8 +23,8 @@
           <li class="nav-item" [routerLinkActive]="['active']">
             <a class="nav-link" [routerLink]="['/settings']">settings</a>
           </li>
-          <li class="nav-item dropdown-submenu" [routerLinkActive]="['active']" *ngIf=" userType == 1">
-            <a class="dropdown-item dropdown-toggle" data-toggle="dropdown">Admins</a>
+          <li class="nav-item dropdown-submenu position-relative" [routerLinkActive]="['active']" *ngIf=" userType == 1">
+            <a class="nav-link" data-toggle="dropdown">Admins</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" [routerLink]="['/admins']" routerLinkActive="router-link-active"><span
                     class="icon-edit"></span>Admin List</a></li>
