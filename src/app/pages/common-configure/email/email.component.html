@@ -1,0 +1,102 @@
+<section class="gray-box trading-box">
+
+  <form [formGroup]="emailConfigForm" (ngSubmit)="emailConfigFormSubmit()">
+    <div class="container">
+      <div class="gray-body">
+        <div class="hdr">
+          <div class="hdr-left">
+            <h2 class="mb-0">Email INFO</h2>
+          </div>
+          <div class="hdr-right d-flex">
+            <button class="btn btn-custom" type="submit">Save Changes <span class="icon-simple-check"></span></button>
+          </div>
+        </div>
+        <div class="row add-user admin-detail">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Company Name</label>
+              <input type="text" placeholder="Enter Company Name" formControlName="company_name" class="form-control">
+              <app-control-messages fieldName="Company Name" [control]="emailConfigForm.controls['company_name']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Company Email</label>
+              <input type="text" placeholder="Enter Company Email" formControlName="company_email" class="form-control">
+              <app-control-messages fieldName="Company Email" [control]="emailConfigForm.controls['company_email']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Facebook Url</label>
+              <input type="text" placeholder="Enter Facebook Url" formControlName="facebook_url" class="form-control">
+              <app-control-messages fieldName="Facebook url" [control]="emailConfigForm.controls['facebook_url']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Twitter Url</label>
+              <input type="text" placeholder="Enter Twitter Url" formControlName="twitter_url" class="form-control">
+              <app-control-messages fieldName="Twitter url" [control]="emailConfigForm.controls['twitter_url']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Company Contact Number</label>
+              <input type="text" maxlength="10" placeholder="Enter Company Contact Number"
+                formControlName="company_contact_number" class="form-control">
+              <app-control-messages fieldName="Company Contact Number"
+                [control]="emailConfigForm.controls['company_contact_number']">
+              </app-control-messages>
+            </div>
+
+            <div class="form-group">
+              <label>Company Copy Right Text</label>
+              <input type="text" placeholder="Enter Copy Right Text" formControlName="company_copyright_text"
+                class="form-control">
+              <app-control-messages fieldName="Company Copy Right Text"
+                [control]="emailConfigForm.controls['company_copyright_text']">
+              </app-control-messages>
+            </div>
+
+            <div class="form-group">
+              <label>Company Address</label>
+              <textarea placeholder="Enter Address" formControlName="company_address" class="form-control" cols="30"
+                rows="10">
+              </textarea>
+              <!-- <input type="text" > -->
+              <app-control-messages fieldName="Company Address" [control]="emailConfigForm.controls['company_address']">
+              </app-control-messages>
+            </div>
+
+          </div>
+
+          <div class="col-md-5 d-flex justify-content-end mt-5">
+            <div class="email-company-logo" *ngIf="!companyLogoURL">
+              <img src="assets/img/admin-ic.svg">
+            </div>
+            <div class="email-company-logo" *ngIf="companyLogoURL">
+              <img [src]="companyLogoURL" class="userpic">
+            </div>
+            <ul class="pic-action">
+              <li><a href="javascript:void(0)" (click)="removeImages()"><span class="icon-close"></span>remove image</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">
+                  <span class="icon-upload"></span>upload from computer<input type="file"
+                    (change)="onFileSelect($event)" accept="image/x-png,image/jpeg" class="hide-file">
+                </a>
+
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

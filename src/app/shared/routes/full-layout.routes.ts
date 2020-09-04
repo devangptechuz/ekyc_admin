@@ -19,6 +19,11 @@ export const Full_ROUTES: Routes = [
         canActivateChild: [PageGuard]
     },
     {
+        path: 'common-configure',
+        loadChildren: () => import('../../pages/common-configure/common-configure.module').then(m => m.CommonConfigureModule),
+        canActivateChild: [PageGuard]
+    },
+    {
         path: 'admins',
         loadChildren: () => import('../../pages/admin/admin.module').then(m => m.AdminModule),
         canActivateChild: [PageGuard]

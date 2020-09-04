@@ -58,18 +58,11 @@ export class GlobalService {
     return date;
   }
 
-
-
-
-
-
   /**
    * Scroll up at zero level of window
    */
   onActivate() {
     window.scroll(0, 0);
   }
-
-
 
 }

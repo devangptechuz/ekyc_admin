@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SettingService {
     apiUrl_setting = environment.api_url_setting;
+    apiUrl_segment = environment.api_url_segment;
     constructor(
         public http: HttpClient,
         public router: Router,
@@ -25,11 +26,11 @@ export class SettingService {
     }
 
     getSubReasonListByReason(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/getSubReasonListByReason`,data);
+        return this.http.post<any>(`${this.apiUrl_setting}/getSubReasonListByReason`, data);
     }
 
     sendReasonInfo(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/sendReasonInfo`,data);
+        return this.http.post<any>(`${this.apiUrl_setting}/sendReasonInfo`, data);
     }
 
     getSubReasonCategory(id) {
@@ -37,17 +38,66 @@ export class SettingService {
     }
 
     addSubReasonCategory(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/addSubReasonCategory`,data);
+        return this.http.post<any>(`${this.apiUrl_setting}/addSubReasonCategory`, data);
     }
 
     updateStatusReasonCategory(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/reasonStatus`,data);
+        return this.http.post<any>(`${this.apiUrl_setting}/reasonStatus`, data);
     }
 
     updateSubReasonCategory(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/updateSubReasonCategory`,data);
+        return this.http.post<any>(`${this.apiUrl_setting}/updateSubReasonCategory`, data);
     }
 
+    getSegmentCategory() {
+        return this.http.get<any>(`${this.apiUrl_setting}/getSegmentCategory`);
+    }
 
+    addSegmentCategory(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/addSegmentCategory`, data);
+    }
 
+    updateSegmentCategory(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/updateSegmentCategory/${id}`, data);
+    }
+
+    updateStatusSegmentCategory(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/updateStatusSegmentCategory/${id}`, data);
+    }
+
+    getSegmentSubCategory(id) {
+        return this.http.get<any>(`${this.apiUrl_segment}/getSegmentSubCategory/${id}`);
+    }
+
+    addSegmentSubCategory(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/addSegmentSubCategory`, data);
+    }
+
+    updateSegmentSubCategory(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/updateSegmentSubCategory/${id}`, data);
+    }
+
+    changeSegmentSubCategoryStatus(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/changeSegmentSubCategoryStatus/${id}`, data);
+    }
+
+    getBrokerageMasterList(){
+        return this.http.get<any>(`${this.apiUrl_segment}/getBrokerageMasterList`);
+    }
+
+    addSegmentPlans(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/addSegmentPlans`,data);
+    }
+
+    updateSegmentPlans(id,data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/updateSegmentPlans/${id}`,data);
+    }
+
+    getSegmentPlansList() {
+        return this.http.get<any>(`${this.apiUrl_segment}/getSegmentPlansList`);
+    }
+
+    changeSegmentPlansStatus(id,data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/changeSegmentPlansStatus/${id}`,data);
+    }
 }
