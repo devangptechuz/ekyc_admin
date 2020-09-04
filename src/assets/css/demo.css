@@ -396,13 +396,14 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 /*=========Header===========*/
 header .navbar{display: flex;justify-content: space-between;padding: 18px 0;}
 .navbar .navbar-collapse{justify-content: center;}
-.navbar .navbar-nav li{padding: 0 20px;}
+.navbar .navbar-nav > li{padding: 0 20px;}
 .navbar .navbar-nav .nav-link{padding: 10px 0;position: relative;font-size: 16px;line-height: 24px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
 .navbar .navbar-nav li.active .nav-link,.navbar .navbar-nav li.active:hover .nav-link{font-weight: 600;color: #0970DD;}
 .navbar .nav-link:hover{color: rgba(0, 0, 0, 0.8);}
 header .dropdown-toggle{display: flex;align-items: center;padding: 0 8px 0 0;font-size: 16px;line-height: 24px;text-transform: capitalize;}
 header .dropdown-toggle img{margin-right: 8px;}
-header .dropdown-toggle::after{content: "\f107";font-family: fontawesome;border: none;color:#ddd;position: absolute;right:0;top: 6px;font-weight: 600;font-size: 18px;}
+header .dropdown-toggle::after,.dropdown-submenu .nav-link:before{content: "\f107";font-family: fontawesome;border: none;color:#ddd;position: absolute;right:0;top: 6px;font-weight: 600;font-size: 18px;}
+.dropdown-submenu .nav-link:before{right: -16px;top: 11px;}
 header .profile-img{width: 32px;height: 32px;border-radius: 50%;object-fit: cover;}
 .dummy-icon{width: 32px;height: 32px;border-radius: 50%;background: rgba(9, 112, 221, 0.16);display: flex;align-items: center;justify-content: center;}
 header .dummy-icon img{margin: 0;}
@@ -534,6 +535,7 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 .blue-color-text,ul.docupld-link li a.blue-color-text{color: #0970DD;}
 .wrap-text{max-width: 100px;overflow: hidden;text-overflow: ellipsis;}
 .application .user-wrap{max-width: 140px;}
+.wrap-segplan{max-width:132px}
 .email-wrap{max-width:190px;}
 .id-wrap{max-width: 220px;}
 .wrap-segment{max-width: 220px;}
