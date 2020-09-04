@@ -30,9 +30,27 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
+              <label>Company Contact Number</label>
+              <input type="text" maxlength="10" placeholder="Enter Company Contact Number"
+                formControlName="company_contact_number" class="form-control">
+              <app-control-messages fieldName="Company Contact Number"
+                [control]="emailConfigForm.controls['company_contact_number']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
               <label>Facebook Url</label>
               <input type="text" placeholder="Enter Facebook Url" formControlName="facebook_url" class="form-control">
               <app-control-messages fieldName="Facebook url" [control]="emailConfigForm.controls['facebook_url']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Company Url</label>
+              <input type="text" placeholder="Enter Company Url" formControlName="company_url" class="form-control">
+              <app-control-messages fieldName="Company url" [control]="emailConfigForm.controls['company_url']">
               </app-control-messages>
             </div>
           </div>
@@ -44,16 +62,8 @@
               </app-control-messages>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Company Contact Number</label>
-              <input type="text" maxlength="10" placeholder="Enter Company Contact Number"
-                formControlName="company_contact_number" class="form-control">
-              <app-control-messages fieldName="Company Contact Number"
-                [control]="emailConfigForm.controls['company_contact_number']">
-              </app-control-messages>
-            </div>
 
+          <div class="col-md-6">
             <div class="form-group">
               <label>Company Copy Right Text</label>
               <input type="text" placeholder="Enter Copy Right Text" formControlName="company_copyright_text"

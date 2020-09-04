@@ -40,9 +40,10 @@ export class EmailComponent implements OnInit {
       company_name: new FormControl('', [Validators.required]),
       facebook_url: new FormControl('', [Validators.required]),
       twitter_url: new FormControl('', [Validators.required]),
+      company_url: new FormControl('', [Validators.required]),
       company_email: new FormControl('', [Validators.required]),
       company_contact_number: new FormControl('', [Validators.required, this.validate.mobileNumberValidator]),
-      company_logo: new FormControl('', [Validators.required]),
+      company_logo: new FormControl(''),
       company_address: new FormControl('', [Validators.required]),
       company_copyright_text: new FormControl('', [Validators.required])
     });
@@ -51,10 +52,27 @@ export class EmailComponent implements OnInit {
   /**
    * Get Email Configure Details
    */
-  getEmailConfigureDetails() {
-    this.globalConfigureService.getEmailConfigureData().subscribe((res: any) => {
+  getEmailConfigureDetails(hideLoader: boolean = false) {
+    this.globalConfigureService.getEmailConfigureData(hideLoader).subscribe((res: any) => {
       if (res.success) {
-        this.global.successToastr(res.message);
+        if (res.result) {
+          this.emailConfigForm.patchValue({
+            company_name: res.result.company_name,
+            company_contact_number: res.result.company_contact_number,
+            company_copyright_text: res.result.company_copyright_text,
+            company_email: res.result.company_email,
+            company_log: res.result.company_log,
+            company_logo: res.result.company_logo,
+            company_address: res.result.company_address,
+            facebook_url: res.result.facebook_url,
+            twitter_url: res.result.twitter_url,
+            company_url: res.result.company_url
+          });
+        }
+        if (res.result.company_logo) {
+          this.emailConfigForm.get('company_logo').setValue('');
+          this.companyLogoURL = res.result.company_logo;
+        }
       }
     });
   }
@@ -71,11 +89,6 @@ export class EmailComponent implements OnInit {
     }
   }
 
-  removeuserProfiles() {
-    this.companyLogoURL = null;
-    this.emailConfigForm.controls.company_logo.setValue('');
-  }
-
   removeImages() {
     this.companyLogoURL = null;
     this.emailConfigForm.controls.company_logo.setValue('');
@@ -89,7 +102,11 @@ export class EmailComponent implements OnInit {
 
     this.formData = new FormData();
     this.formData.append('api_name', 'add_company_configuration');
-    this.formData.append('files', this.emailConfigForm.get('company_logo').value);
+    if (this.emailConfigForm.get('company_logo').value) {
+      this.formData.append('files', this.emailConfigForm.get('company_logo').value);
+    } else if (!this.companyLogoURL) {
+      this.formData.append('is_image_deleted', 'true');
+    }
     Object.entries(this.emailConfigForm.value).forEach(
       ([key, value]: any[]) => {
         if (key !== 'company_logo') {
@@ -98,6 +115,7 @@ export class EmailComponent implements OnInit {
       });
     this.globalConfigureService.submitEmailConfig(this.formData).subscribe((res: any) => {
       if (res.success) {
+        this.getEmailConfigureDetails(true);
         this.global.successToastr(res.message);
       }
     });

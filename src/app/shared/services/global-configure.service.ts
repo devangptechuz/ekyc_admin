@@ -52,8 +52,18 @@ export class GlobalConfigureService {
     return this.http.post<any>(`${this.imag_url}/commonUpload`, objParams);
   }
 
-  getEmailConfigureData() {
-    return this.http.get<any>(`${this.configure_api_url}/getEmailConfigureData`);
+  /**
+   * Get Email configuration details
+   */
+  getEmailConfigureData(hideLoader: boolean = false) {
+    let options = {}
+    if (hideLoader) {
+      const params = new HttpParams().set('hideLoader', 'true');
+      options = { params: params };
+      options['reportProgress'] = true;
+      options['observe'] = 'events';
+    }
+    return this.http.get<any>(`${this.configure_api_url}/getCompanyConfiguration`, options);
   }
 
 
