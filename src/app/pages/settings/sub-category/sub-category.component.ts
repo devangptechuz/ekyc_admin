@@ -71,8 +71,8 @@ export class SubCategoryComponent implements OnInit {
   }
 
   setRouterLink() {
-    this.router.navigateByUrl('/settings');
-    this.sharedService.setTabName('pane-C')
+    this.router.navigateByUrl('/settings/application-settings');
+    this.sharedService.setTabName('tab-c')
   }
 
   addNewReason() {

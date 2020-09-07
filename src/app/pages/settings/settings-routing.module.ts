@@ -6,14 +6,56 @@ import { CategoryResolver } from './shared/category.resolver';
 import { SubCategoryComponent } from './sub-category/sub-category.component';
 import { SubSegmentListComponent } from './sub-segment-list/sub-segment-list.component';
 import { SegmentResolver } from './shared/segment.resolver';
+import {NavTabComponent} from './nav-tab/nav-tab.component';
+import {SegmentPlanListComponent} from './segment-plan-list/segment-plan-list.component';
+import {ApplicationPrefrenceComponent} from './application-prefrence/application-prefrence.component';
+import {ApplicationSettingComponent} from './application-setting/application-setting.component';
+import {SegmentListComponent} from './segment-list/segment-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminProfileComponent,
+    component: NavTabComponent,
     data: {
-      title: 'admin-profile',
+      title: 'tab',
     },
+    children:[
+        {
+          path: '',
+          component: ApplicationPrefrenceComponent,
+          data: {
+            title: 'application-prefrence',
+          },
+        },
+        {
+          path: 'account-settings',
+          component: AdminProfileComponent,
+          data: {
+            title: 'account-settings',
+          },
+        },
+        {
+          path: 'application-settings',
+          component: ApplicationSettingComponent,
+          data: {
+            title: 'application-settings',
+          },
+        },
+        {
+          path: 'segments-settings',
+          component: SegmentListComponent,
+          data: {
+            title: 'segments-settings',
+          },
+        },
+        {
+          path: 'segments-plan',
+          component: SegmentPlanListComponent,
+          data: {
+          title: 'Segment Plan List',
+          },
+        }
+    ]
   },
   {
     path: 'dynamic-form',

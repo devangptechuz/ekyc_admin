@@ -1,65 +1,6 @@
 <section class="add-user admin-profile mt-5">
     <form [formGroup]="adminProfileForm" novalidate>
-        <div class="container custom-tabs">
-            <ul id="tabs" class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">Application
-                        preferences</a>
-                </li>
-                <li class="nav-item">
-                    <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">
-                        Account settings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">
-                        Application Settings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a id="tab-D" href="#pane-D" class="nav-link" data-toggle="tab" role="tab">
-                        Segments Settings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a id="tab-E" href="#pane-E" class="nav-link" data-toggle="tab" role="tab">
-                        Segments Plan
-                    </a>
-                </li>
-            </ul>
-
-
-            <div id="content" class="tab-content" role="tablist">
-                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
-                    <div class="card-header" role="tab" id="heading-A">
-                        <h5 class="mb-0">
-                            <!-- Note: `data-parent` removed from here -->
-                            <a data-toggle="collapse" href="#collapse-A" aria-expanded="true"
-                                aria-controls="collapse-A">
-                                Application preferences
-                            </a>
-                        </h5>
-                    </div>
-
-                    <!-- Note: New place of `data-parent` -->
-                    <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel"
-                        aria-labelledby="heading-A">
-                        <app-application-prefrence></app-application-prefrence>
-                    </div>
-                </div>
-
-                <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
-                    <div class="card-header" role="tab" id="heading-B">
-                        <h5 class="mb-0">
-                            <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false"
-                                aria-controls="collapse-B">
-                                Account settings
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapse-B" class="collapse" data-parent="#content" role="tabpanel"
-                        aria-labelledby="heading-B">
-                        <div class="card-body">
+        <div class="card-body">
                             <div class="add-box">
                                 <div class="hdr">
                                     <div class="hdr-left">
@@ -194,66 +135,6 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
-                    <div class="card-header" role="tab" id="heading-C">
-                        <h5 class="mb-0">
-                            <!-- Note: `data-parent` removed from here -->
-                            <a data-toggle="collapse" href="#collapse-C" aria-expanded="false"
-                               aria-controls="collapse-C">
-                                Application Settings
-                            </a>
-                        </h5>
-                    </div>
-
-                    <!-- Note: New place of `data-parent` -->
-                    <div id="collapse-C" class="collapse show" data-parent="#content" role="tabpanel"
-                         aria-labelledby="heading-C">
-                        <app-application-setting></app-application-setting>
-                    </div>
-                </div>
-
-                <div id="pane-D" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-D">
-                    <div class="card-header" role="tab" id="heading-D">
-                        <h5 class="mb-0">
-                            <!-- Note: `data-parent` removed from here -->
-                            <a data-toggle="collapse" href="#collapse-D" aria-expanded="false"
-                               aria-controls="collapse-D">
-                                Segments Settings
-                            </a>
-                        </h5>
-                    </div>
-
-                    <!-- Note: New place of `data-parent` -->
-                    <div id="collapse-D" class="collapse show" data-parent="#content" role="tabpanel"
-                         aria-labelledby="heading-D">
-                        <app-segment-list></app-segment-list>
-                    </div>
-                </div>
-
-                <div id="pane-E" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-E">
-                    <div class="card-header" role="tab" id="heading-E">
-                        <h5 class="mb-0">
-                            <!-- Note: `data-parent` removed from here -->
-                            <a data-toggle="collapse" href="#collapse-E" aria-expanded="false"
-                               aria-controls="collapse-E">
-                                Segments Plan
-                            </a>
-                        </h5>
-                    </div>
-
-                    <!-- Note: New place of `data-parent` -->
-                    <div id="collapse-E" class="collapse show" data-parent="#content" role="tabpanel"
-                         aria-labelledby="heading-E">
-                        <app-segment-plan-list></app-segment-plan-list>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
     </form>
 </section>
 
