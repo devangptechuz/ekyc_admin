@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="col-md-6 d-flex justify-content-end">
                                         <div class="view-pic">
-                                            <img *ngIf="!imageUrl" src="../../../../assets/img/admin-ic.svg">
+                                            <img *ngIf="!imageUrl" src="../../../../../assets/img/admin-ic.svg">
                                             <img *ngIf="imageUrl" [src]=imageUrl class="userpic">
                                         </div>
                                         <ul class="pic-action">
@@ -97,7 +97,7 @@
                                                             class="{{commonService.passwordStrength}}">{{commonService.passwordStrength }}</span>
                                                     </div>
 
-                                                    <div class="info-tp"><img src="../../../../assets/images/info.svg">
+                                                    <div class="info-tp"><img src="../../../../../assets/images/info.svg">
                                                         <div class="info-tp-content">
                                                             <p>It is recommended to create a strong password to protect
                                                                 your account
@@ -149,7 +149,7 @@
                 <h4 class="modal-title">Update profile picture</h4>
             </div>
             <div class="popup-icon">
-                <img src="../../../../assets/img/modal-upload/camera-sml.svg">
+                <img src="../../../../../assets/img/modal-upload/camera-sml.svg">
             </div>
         </div>
 
@@ -160,7 +160,7 @@
                     <div class="upload-doc-box">
                         <img [src]="webCamMediaPriview" />
                         <span (click)="removeWebCamMedia(webCamMediaPriview)"><img
-                                src="../../../../assets/img/modal-upload/edit.svg">Edit
+                                src="../../../../../assets/img/modal-upload/edit.svg">Edit
                             Image/File</span>
                     </div>
                 </div>
@@ -200,16 +200,16 @@
             <div class="col-md-10" *ngIf="!fileUploading">
                 <div class="upload-box" *ngIf="addNewAadhaarImageUpload">
                     <a (click)="enableWebcamPicture()" href="javascript:void(0)" class="d-flex flex-column"><img
-                            src="../../../../assets/img/modal-upload/camera.svg">
-                        <div class="d-flex align-items-center"><img src="../../../../assets/img/modal-upload/camera-sml.svg">Use
+                            src="../../../../../assets/img/modal-upload/camera.svg">
+                        <div class="d-flex align-items-center"><img src="../../../../../assets/img/modal-upload/camera-sml.svg">Use
                             Camera
                         </div>
                     </a>
                     <div class="or-text"><span>OR</span></div>
                     <a href="javascript:void(0)" class="d-flex flex-column align-items-center upload-file"><img
-                            src="../../../../assets/img/modal-upload/file-minus.svg">
+                            src="../../../../../assets/img/modal-upload/file-minus.svg">
                         <input type="file" ng2FileSelect [uploader]="uploader">
-                        <div class="d-flex"><img src="../../../../assets/img/modal-upload/upload.svg">Upload File</div>
+                        <div class="d-flex"><img src="../../../../../assets/img/modal-upload/upload.svg">Upload File</div>
                     </a>
                 </div>
 
@@ -220,7 +220,7 @@
                     <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'" src="assets/images/doc.svg"
                         style="width: 100px;object-fit: contain;">
                     <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img
-                            src="../../../../assets/img/modal-upload/edit.svg">Edit
+                            src="../../../../../assets/img/modal-upload/edit.svg">Edit
                         Image/File</span>
                 </div>
             </div>
@@ -260,13 +260,13 @@
                     *ngIf="viewPreviewDisplayImage?.content_type === 'image/jpeg' || viewPreviewDisplayImage?.content_type === 'image/jpg' || viewPreviewDisplayImage?.content_type === 'image/png'">
                     <img src="{{viewPreviewDisplayImage?.url}}">
                     <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
-                        <img src="../../../../assets/img/modal-upload/edit.svg">Remove Image/File</span>`
+                        <img src="../../../../../assets/img/modal-upload/edit.svg">Remove Image/File</span>`
                 </div>
 
                 <div class="upload-doc-box" *ngIf="viewPreviewDisplayImage?.content_type === 'application/pdf'">
                     <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe>
                     <span *ngIf="!isDocumentVerified" (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
-                        <img src="../../../../assets/img/modal-upload/edit.svg">Remove Image/File</span>
+                        <img src="../../../../../assets/img/modal-upload/edit.svg">Remove Image/File</span>
 
                 </div>
             </div>

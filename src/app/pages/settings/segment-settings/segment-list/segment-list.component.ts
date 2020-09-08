@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {environment} from '../../../../environments/environment';
+import {environment} from '../../../../../environments/environment';
 import {DatatableComponent} from '@swimlane/ngx-datatable';
 import {Router} from '@angular/router';
-import {SettingService} from '../../../shared/services/setting.service';
+import {SettingService} from '../../../../shared/services/setting.service';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {GlobalService} from '../../../shared/services/global.service';
+import {GlobalService} from '../../../../shared/services/global.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddEditSegmentComponent} from '../add-edit-segment/add-edit-segment.component';
 

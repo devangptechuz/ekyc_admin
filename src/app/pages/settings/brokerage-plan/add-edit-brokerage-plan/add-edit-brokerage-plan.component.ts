@@ -1,26 +1,27 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ValidationService} from '../../../shared/services/validator.service';
-import {SettingService} from '../../../shared/services/setting.service';
-import {GlobalService} from '../../../shared/services/global.service';
+import {ValidationService} from '../../../../shared/services/validator.service';
+import {SettingService} from '../../../../shared/services/setting.service';
+import {GlobalService} from '../../../../shared/services/global.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-segment-plan',
-  templateUrl: './add-edit-segment-plan.component.html',
-  styleUrls: ['./add-edit-segment-plan.component.scss']
+  templateUrl: './add-edit-brokerage-plan.component.html',
+  styleUrls: ['./add-edit-brokerage-plan.component.scss']
 })
-export class AddEditSegmentPlanComponent implements OnInit {
+export class AddEditBrokeragePlanComponent implements OnInit {
   @Input() title: string;
   @Input() fromParent: string;
   @Input() id: string;
-  headerTitle = 'Add Segment Plan';
+  headerTitle = 'Add Brokerage Plan';
   segmentPlanForm: FormGroup;
   segmentsType = [];
   subSegmentsType = [];
   segmentCode = [];
   flag = true;
+  segmentCodeLabel;
 
   constructor(private activeModal: NgbActiveModal,
               private formBuilder: FormBuilder,
@@ -31,7 +32,7 @@ export class AddEditSegmentPlanComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.fromParent){
-      this.headerTitle = 'Edit Segment Plan';
+      this.headerTitle = 'Edit Brokerage Plan';
     }
     this.segmentPlanForm = this.formBuilder.group({
       plan_name: ['', [Validators.required]],
@@ -73,6 +74,7 @@ export class AddEditSegmentPlanComponent implements OnInit {
               }
               if(this.fromParent){
                     this.segmentPlanForm.controls.segmentCode.setValue(this.fromParent['segmentCode']);
+                    this.segmentCodeLabel = this.fromParent['segmentCode'];
               }
             });
   }
@@ -88,6 +90,10 @@ export class AddEditSegmentPlanComponent implements OnInit {
             this.global.errorToastr(Data.message);
           }
         });
+  }
+
+  selectBrokerageCode(e){
+    this.segmentCodeLabel = e;
   }
 
   setSegmentDropdown(segmentData){

@@ -7,12 +7,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class SharedService {
   private userNameInfo: BehaviorSubject<any>;
   private imageUrl: BehaviorSubject<any>;
-  private tanName: BehaviorSubject<any>;
+
 
   constructor() {
     this.userNameInfo = new BehaviorSubject<any>('');
     this.imageUrl = new BehaviorSubject<any>('');
-    this.tanName = new BehaviorSubject<any>('');
   }
 
   getUsernameInfo(): Observable<any> {
@@ -36,10 +35,4 @@ export class SharedService {
     return this.imageUrl.asObservable();
   }
 
-  getTabName(): Observable<any> {
-    return this.tanName.asObservable();
-  }
-  setTabName(newValue): any {
-    this.tanName.next(newValue);
-  }
 }

@@ -1,19 +1,19 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {environment} from '../../../../environments/environment';
+import {environment} from '../../../../../environments/environment';
 import {DatatableComponent} from '@swimlane/ngx-datatable';
 import {Router} from '@angular/router';
-import {SettingService} from '../../../shared/services/setting.service';
+import {SettingService} from '../../../../shared/services/setting.service';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {GlobalService} from '../../../shared/services/global.service';
+import {GlobalService} from '../../../../shared/services/global.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AddEditSegmentPlanComponent} from '../add-edit-segment-plan/add-edit-segment-plan.component';
+import {AddEditBrokeragePlanComponent} from '../add-edit-brokerage-plan/add-edit-brokerage-plan.component';
 
 @Component({
   selector: 'app-segment-plan-list',
-  templateUrl: './segment-plan-list.component.html',
-  styleUrls: ['./segment-plan-list.component.scss']
+  templateUrl: './brokerage-plan-list.component.html',
+  styleUrls: ['./brokerage-plan-list.component.scss']
 })
-export class SegmentPlanListComponent implements OnInit {
+export class BrokeragePlanListComponent implements OnInit {
   temp = [];
   rows = [];
   status = [
@@ -51,7 +51,7 @@ export class SegmentPlanListComponent implements OnInit {
   }
 
   addNewSegmentPlan(){
-    this.modalRef = this.modalService.open(AddEditSegmentPlanComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
+    this.modalRef = this.modalService.open(AddEditBrokeragePlanComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
     this.modalRef.result.then((result) => {
       if(result){
         this.callApiSegmentPlans();
@@ -60,7 +60,7 @@ export class SegmentPlanListComponent implements OnInit {
   }
 
   onEdit(v){
-    const modelRef = this.modalService.open(AddEditSegmentPlanComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
+    const modelRef = this.modalService.open(AddEditBrokeragePlanComponent, { centered: true, windowClass:'catreason-popup',backdrop: 'static', keyboard: false,backdropClass:'white' });
     const modelData = {};
     modelData["plan_name"] = v.name;
     modelData["segmentCode"] = v.segmentCode;

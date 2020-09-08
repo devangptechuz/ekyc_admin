@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateFormComponent } from './create-form/create-form.component';
-import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { AdminProfileComponent } from './account-settings/admin-profile/admin-profile.component';
 import { CategoryResolver } from './shared/category.resolver';
-import { SubCategoryComponent } from './sub-category/sub-category.component';
-import { SubSegmentListComponent } from './sub-segment-list/sub-segment-list.component';
+import { SubCategoryComponent } from './application-settings/sub-category/sub-category.component';
+import { SubSegmentListComponent } from './segment-settings/sub-segment-list/sub-segment-list.component';
 import { SegmentResolver } from './shared/segment.resolver';
-import {NavTabComponent} from './nav-tab/nav-tab.component';
-import {SegmentPlanListComponent} from './segment-plan-list/segment-plan-list.component';
-import {ApplicationPrefrenceComponent} from './application-prefrence/application-prefrence.component';
-import {ApplicationSettingComponent} from './application-setting/application-setting.component';
-import {SegmentListComponent} from './segment-list/segment-list.component';
+import {NavTabComponent} from './nav-bar/nav-tab.component';
+import {BrokeragePlanListComponent} from './brokerage-plan/Brokerage-plan-list/brokerage-plan-list.component';
+import {ApplicationPreferenceComponent} from './application-preference/application-preference/application-preference.component';
+import {ApplicationSettingComponent} from './application-settings/application-setting/application-setting.component';
+import {SegmentListComponent} from './segment-settings/segment-list/segment-list.component';
 
 const routes: Routes = [
   {
@@ -22,9 +22,9 @@ const routes: Routes = [
     children:[
         {
           path: '',
-          component: ApplicationPrefrenceComponent,
+          component: ApplicationPreferenceComponent,
           data: {
-            title: 'application-prefrence',
+            title: 'application-preference',
           },
         },
         {
@@ -49,8 +49,8 @@ const routes: Routes = [
           },
         },
         {
-          path: 'segments-plan',
-          component: SegmentPlanListComponent,
+          path: 'brokerage-plans',
+          component: BrokeragePlanListComponent,
           data: {
           title: 'Segment Plan List',
           },

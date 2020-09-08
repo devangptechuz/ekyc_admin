@@ -29,21 +29,20 @@
                         </app-control-messages>
                     </div>
                     <div class="form-group">
-                        <label>Plan Name</label>
-                        <textarea type="text" placeholder="Plan Name"
+                        <label>Brokerage Plan</label>
+                        <input type="text" placeholder="Brokerage Plan"
                                   formControlName="plan_name" class="form-control">
-                        </textarea>
-                        <app-control-messages fieldName="Plan Name"
+                        <app-control-messages fieldName="Brokerage Plan"
                                               [control]="segmentPlanForm.controls['plan_name']">
                         </app-control-messages>
                     </div>
                     <div class="form-group">
-                        <label>Segment Code</label>
-                        <ng-select appearance="outline" placeholder="Select Segment Code" [searchable]="false"
-                                   formControlName="segmentCode" >
+                        <label>Brokerage Description <span *ngIf="segmentCodeLabel">(Brokerage code -{{segmentCodeLabel}})</span></label>
+                        <ng-select appearance="outline" placeholder="Select Brokerage Description" [searchable]="false"
+                                   formControlName="segmentCode" (change)="selectBrokerageCode($event)">
                             <ng-option [value]="item.segmentCode" *ngFor="let item of segmentCode">{{item.segmentCodeDescription}}</ng-option>
                         </ng-select>
-                        <app-control-messages fieldName="Segment Code"
+                        <app-control-messages fieldName="Brokerage Description"
                                               [control]="segmentPlanForm.controls['segmentCode']">
                         </app-control-messages>
                     </div>

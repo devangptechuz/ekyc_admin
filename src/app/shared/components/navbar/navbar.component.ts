@@ -107,7 +107,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   gotToProfile(){
     this.router.navigateByUrl('/settings/account-settings');
-    this.sharedVarService.setTabName('tab-b')
   }
 
   onLogout(btnElement) {
