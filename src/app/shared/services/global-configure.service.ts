@@ -66,5 +66,27 @@ export class GlobalConfigureService {
     return this.http.get<any>(`${this.configure_api_url}/getCompanyConfiguration`, options);
   }
 
+  /**
+   * get email template placeholder
+   */
+  emailConfiguration() {
+    return this.http.get<any>(`${this.configure_api_url}/emailConfiguration`);
+  }
+
+  getAllEmailTemplates() {
+    return this.http.get<any>(`${this.configure_api_url}/listEmailTemplate`);
+  }
+
+  AddEmailTemplate(objParams: any) {
+    return this.http.post<any>(`${this.configure_api_url}/addEmailTemplate`, objParams);
+  }
+
+  updateEmailTemplate(objParams: any) {
+    return this.http.post<any>(`${this.configure_api_url}/updateEmailTemplate`, objParams);
+  }
+
+  getEmailTemplate(id: any) {
+    return this.http.get<any>(`${this.configure_api_url}/getEmailTemplateById/${id}`);
+  }
 
 }

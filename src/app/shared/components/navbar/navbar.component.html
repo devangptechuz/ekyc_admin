@@ -23,15 +23,18 @@
           <li class="nav-item" [routerLinkActive]="['active']">
             <a class="nav-link" [routerLink]="['/settings']">settings</a>
           </li>
-          <li class="nav-item dropdown-submenu position-relative" [routerLinkActive]="['active']" *ngIf=" userType == 1">
+          <li class="nav-item dropdown-submenu position-relative" [routerLinkActive]="['active']"
+            *ngIf=" userType == 1">
             <a class="nav-link" data-toggle="dropdown">Admins</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" [routerLink]="['/admins']" routerLinkActive="router-link-active"><span
                     class="icon-edit"></span>Admin List</a></li>
               <li><a class="dropdown-item" [routerLink]="['/common-configure']"
                   routerLinkActive="router-link-active"><span class="icon-edit"></span>Configure Setting</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/common-configure/email']"
-                  routerLinkActive="router-link-active"><span class="icon-edit"></span>Email Configure</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/common-configure/company']"
+                  routerLinkActive="router-link-active"><span class="icon-edit"></span>Company Configure</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/common-configure/list-email-template']"
+                  routerLinkActive="router-link-active"><span class="icon-edit"></span>List Email Templates</a></li>
             </ul>
           </li>
         </ul>

@@ -45,8 +45,8 @@
                 <input type="text" class="form-control" placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"
                   formControlName="dob" ngbDatepicker #d="ngbDatepicker">
                 <div class="input-group-append calendar">
-                 date <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"
-                      aria-hidden="true"></i></span>
+                  date <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i
+                      class="fa fa-calendar" aria-hidden="true"></i></span>
                 </div>
                 <app-control-messages fieldName="Date of birth" [control]="addressDetailsform.controls['dob']">
                 </app-control-messages>
@@ -155,6 +155,7 @@
             <div class="form-group">
               <label>Country</label>
               <ng-select placeholder="select" [searchable]="false" formControlName="country">
+                <ng-option>select</ng-option>
                 <ng-option [value]="item.label" *ngFor="let item of countryList">{{item.label}}</ng-option>
               </ng-select>
               <app-control-messages fieldName="Country" [control]="addressDetailsform.controls['country']">

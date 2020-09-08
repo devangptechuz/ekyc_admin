@@ -9,11 +9,13 @@ import { NgxSelectModule } from 'ngx-select-ex';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SharedModule } from 'app/shared/shared.module';
 import { GlobalConfigureComponent } from './global-configure/global-configure.component';
-import { EmailComponent } from './email/email.component';
-
+import { CompanyComponent } from './company/company.component';
+import { AddEditEmailTemplateComponent } from './email-template/add-edit-email-template/add-edit-email-template.component';
+import { ListEmailTemplateComponent } from './email-template/list-email-template/list-email-template.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
-  declarations: [GlobalConfigureComponent, EmailComponent],
+  declarations: [GlobalConfigureComponent, CompanyComponent, AddEditEmailTemplateComponent, ListEmailTemplateComponent],
   imports: [
     HttpClientModule,
     CommonModule,
@@ -23,6 +25,7 @@ import { EmailComponent } from './email/email.component';
     NgxDatatableModule,
     NgxSelectModule,
     NgSelectModule,
+    CKEditorModule,
     SharedModule,
     CommonConfigureRoutingModule
   ]

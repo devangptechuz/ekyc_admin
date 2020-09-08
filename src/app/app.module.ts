@@ -26,8 +26,9 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { AddEditAdmin } from './pages/admin/shared/add-edit.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserCookiesModule } from '@ngx-utils/cookies/browser';
-import {CategoryResolver} from './pages/settings/shared/category.resolver';
-import {SegmentResolver} from './pages/settings/shared/segment.resolver';
+import { CategoryResolver } from './pages/settings/shared/category.resolver';
+import { SegmentResolver } from './pages/settings/shared/segment.resolver';
+import { AddEditEmailTemplate } from './pages/common-configure/email-template/shared/add-edit.resolver';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -56,6 +57,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
             multi: true
         },
         AddEditAdmin,
+        AddEditEmailTemplate,
         CategoryResolver,
         SegmentResolver,
         AuthGuard,

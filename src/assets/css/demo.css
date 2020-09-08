@@ -1046,7 +1046,8 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
 .segmebrokerage-box .card-item {margin-bottom: 16px;}
 .segmebrokerage-box .custom-checkbox label:before{background-color: #fff;}
 .segmebrokerage-box .custom-checkbox input[type=checkbox]:checked + label:after{left: 1px;}
-.segmebrokerage-box .tagline{background: #0970DD;font-size: 12px;line-height: 18px;text-transform: capitalize;color: rgba(255, 255, 255, 0.8);display: inline-flex;justify-content: center;align-items: center;padding:8px 14px 8px 16px;border-radius: 20px;margin-right: 8px;}
+.segmebrokerage-box .tagline, .email-template-form .tagline{background: #0970DD;font-size: 12px;line-height: 18px;text-transform: capitalize;color: rgba(255, 255, 255, 0.8);display: inline-flex;justify-content: center;align-items: center;padding:8px 14px 8px 16px;border-radius: 20px;margin-right: 8px;}
+.email-template-form .tagline{cursor: pointer; color: #fff; font-weight: 500;}
 .segmebrokerage-box .tagline button{background-color: transparent;border: none;color: #fff;font-size: 20px;}
 .segmebrokerage-box .ttle .form-group label{font-size: 12px;}
 .segmebrokerage-box .border-bottom-line:first-child{padding-top: 0;}

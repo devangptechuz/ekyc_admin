@@ -1,0 +1,90 @@
+<div class="brdcum">
+  <div class="container">
+    <a href="javascript:void(0)" routerLink="/common-configure/list-email-template"><span
+        class="icon-left-ar mr-2"></span>Back to Email Template List</a>
+  </div>
+</div>
+<section class="add-user add-admin-user">
+  <form [formGroup]="templateForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="container">
+      <div class="add-box">
+        <div class="hdr">
+          <div class="hdr-left">
+            <h2 class="mb-0">{{Title}}</h2>
+          </div>
+          <div class="hdr-right d-flex">
+            <button class="btn btn-custom mr-3 mb-0" routerLink="/common-configure/list-email-template">cancel</button>
+            <button class="btn btn-custom mb-0">Save details<span class="icon-simple-check"></span></button>
+          </div>
+        </div>
+
+        <div class="row email-template-form">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Template Name</label>
+              <input type="text" placeholder="Enter Template Name" formControlName="template_name" class="form-control">
+              <app-control-messages fieldName="Template Name" [control]="templateForm.controls['template_name']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Action</label>
+              <ng-select placeholder="select" [searchable]="false" formControlName="action">
+                <ng-option [value]="item.value" *ngFor="let item of actionList">{{item.label}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Action" [control]="templateForm.controls['action']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Subject</label>
+              <input type="text" placeholder="Enter Subject" formControlName="subject_for_email" class="form-control">
+              <app-control-messages fieldName="Subject" [control]="templateForm.controls['subject_for_email']">
+              </app-control-messages>
+            </div>
+          </div>
+
+          <ng-container *ngIf="emailPlaceHolders">
+            <ng-container *ngIf="emailPlaceHolders?.applicationPlaceHolder?.length">
+              <!-- <div class="col-md-3" (click)="addContentToEditor(item?.Value)" -->
+              <!-- *ngFor="let item of emailPlaceHolders?.applicationPlaceHolder"> -->
+              <!-- <button type="button" class="btn btn-custom">{{item.Name}}</button> -->
+              <div class="ml-3">
+                <span class="tagline mb-3" (click)="addContentToEditor(item?.Value)"
+                  *ngFor="let item of emailPlaceHolders?.applicationPlaceHolder">{{item.Name}}</span>
+              </div>
+              <!-- </div> -->
+            </ng-container>
+            <ng-container *ngIf="emailPlaceHolders?.companyPlaceHolder?.length">
+              <div class="mb-3 ml-3">
+                <span class="tagline mb-3" (click)="addContentToEditor(item?.Value)"
+                  *ngFor="let item of emailPlaceHolders?.companyPlaceHolder">{{item.Name}}</span>
+              </div>
+              <!-- <div class="col-md-3" (click)="addContentToEditor(item?.Value)"
+                *ngFor="let item of emailPlaceHolders?.companyPlaceHolder">
+                <button type="button" class="btn btn-custom">{{item.Name}}</button>
+              </div> -->
+            </ng-container>
+          </ng-container>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Content</label>
+              <ckeditor #editor [config]="ckEditorWithToolbar" [editor]="Editor" formControlName="email_content"
+                (ready)="onReady($event)">
+              </ckeditor>
+              <!-- <ckeditor
+                [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','link','numberedList','bulletedList','blockQuote']}"
+                [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> -->
+              <app-control-messages fieldName="Email Content" [control]="templateForm.controls['email_content']">
+              </app-control-messages>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</section>

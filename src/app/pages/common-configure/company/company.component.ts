@@ -7,11 +7,11 @@ import { GlobalService } from 'app/shared/services/global.service';
 import { GlobalConfigureService } from 'app/shared/services/global-configure.service';
 
 @Component({
-  selector: 'app-email',
-  templateUrl: './email.component.html',
-  styleUrls: ['./email.component.scss']
+  selector: 'app-company',
+  templateUrl: './company.component.html',
+  styleUrls: ['./company.component.scss']
 })
-export class EmailComponent implements OnInit {
+export class CompanyComponent implements OnInit {
   emailConfigForm: FormGroup;
 
   companyLogoURL: any;
