@@ -1,77 +1,74 @@
 <section class="add-user admin-profile mt-5">
     <form [formGroup]="adminProfileForm" novalidate>
         <div class="card-body">
-                            <div class="add-box">
-                                <div class="hdr">
-                                    <div class="hdr-left">
-                                        <h2>Personal Information</h2>
-                                        <span>last updated on :
-                                            {{updateProfileDate | date:'MMM dd yyyy - hh:mm a'}}</span>
-                                    </div>
-                                    <div class="hdr-right">
-                                        <button class="btn btn-custom" (click)="submitProfile()"><span
-                                                class="icon-edit mr-2"></span>Update details</button>
-                                    </div>
-                                </div>
-
-                                <div class="row admin-detail">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Name</label>
-                                            <input type="text" placeholder="Enter full name of the user"
-                                                formControlName="username" class="form-control">
-                                            <app-control-messages fieldName="Full Name"
-                                                [control]="adminProfileForm.controls['username']">
-                                            </app-control-messages>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Mobile Number</label>
-                                            <input type="text" placeholder="Enter mobile number"
-                                                formControlName="mobileNumber" class="form-control">
-                                            <app-control-messages fieldName="Mobile Number"
-                                                [control]="adminProfileForm.controls['mobileNumber']">
-                                            </app-control-messages>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Admin Id</label>
-                                            <input type="text" [attr.disabled]="true"
-                                                placeholder="Enter Admin id" formControlName="id" class="form-control uppercase">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Email Id</label>
-                                            <input type="email" [attr.disabled]="true" placeholder="Enter email id"
-                                                formControlName="email" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 d-flex justify-content-end">
-                                        <div class="view-pic">
-                                            <img *ngIf="!imageUrl" src="../../../../../assets/img/admin-ic.svg">
-                                            <img *ngIf="imageUrl" [src]=imageUrl class="userpic">
-                                        </div>
-                                        <ul class="pic-action">
-                                            <li><a href="javascript:void(0)" (click)="deleteImage()"><span
-                                                        class="icon-close"></span>remove image</a></li>
-                                            <li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span
-                                                        class="icon-camera"></span>take a picture</a></li>
-                                            <li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span
-                                                        class="icon-upload"></span>upload from computer</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="hdr mt-4">
-                                    <div class="hdr-left">
-                                        <h2>Password Setting</h2>
-                                        <span>last updated on :
-                                            {{updatePasswordDate | date:'MMM dd yyyy - hh:mm a'}}</span>
-                                    </div>
-                                    <div class="hdr-right">
-                                    </div>
-                                </div>
-
-                                <form [formGroup]="adminPasswordForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="add-box">
+                <div class="hdr">
+                    <div class="hdr-left">
+                        <h2>Personal Information</h2>
+                        <span>last updated on :
+                            {{updateProfileDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                    </div>
+                    <div class="hdr-right">
+                        <button class="btn btn-custom" (click)="submitProfile()"><span
+                                class="icon-edit mr-2"></span>Update details</button>
+                    </div>
+                </div>
+                <div class="row admin-detail">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" placeholder="Enter full name of the user"
+                                formControlName="username" class="form-control">
+                            <app-control-messages fieldName="Full Name"
+                                [control]="adminProfileForm.controls['username']">
+                            </app-control-messages>
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="text" placeholder="Enter mobile number"
+                                formControlName="mobileNumber" class="form-control">
+                            <app-control-messages fieldName="Mobile Number"
+                                [control]="adminProfileForm.controls['mobileNumber']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Admin Id</label>
+                            <input type="text" [attr.disabled]="true"
+                                placeholder="Enter Admin id" formControlName="id" class="form-control uppercase">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Id</label>
+                            <input type="email" [attr.disabled]="true" placeholder="Enter email id"
+                                formControlName="email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <div class="view-pic">
+                            <img *ngIf="!imageUrl" src="../../../../../assets/img/admin-ic.svg">
+                            <img *ngIf="imageUrl" [src]=imageUrl class="userpic">
+                        </div>
+                        <ul class="pic-action">
+                            <li><a href="javascript:void(0)" (click)="deleteImage()"><span
+                                        class="icon-close"></span>remove image</a></li>
+                            <li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span
+                                        class="icon-camera"></span>take a picture</a></li>
+                            <li><a href="javascript:void(0)" (click)="openDocumentPopupModal()"><span
+                                        class="icon-upload"></span>upload from computer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hdr mt-4">
+                    <div class="hdr-left">
+                        <h2>Password Setting</h2>
+                        <span>last updated on :
+                            {{updatePasswordDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                    </div>
+                    <div class="hdr-right">
+                    </div>
+                </div>
+                <form [formGroup]="adminPasswordForm" (ngSubmit)="onSubmit()" novalidate>
                                     <div class="row align-items-top">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -133,8 +130,8 @@
 
                                     </div>
                                 </form>
-                            </div>
-                        </div>
+            </div>
+        </div>
     </form>
 </section>
 
