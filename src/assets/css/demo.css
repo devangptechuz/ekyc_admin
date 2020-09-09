@@ -535,7 +535,7 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 .blue-color-text,ul.docupld-link li a.blue-color-text{color: #0970DD;}
 .wrap-text{max-width: 100px;overflow: hidden;text-overflow: ellipsis;}
 .application .user-wrap{max-width: 140px;}
-.wrap-segplan{max-width:132px}
+.wrap-segplan{max-width:182px}
 .email-wrap{max-width:190px;}
 .id-wrap{max-width: 220px;}
 .wrap-segment{max-width: 220px;}
@@ -652,9 +652,9 @@ ul.pic-action li{margin: 2px 0;}
 
 /*=========Application===========*/
 section.application {margin: 32px 0;}
-.nav-tabs{margin-left: 40px;border: none;}
+.nav-tabs{margin-left: 10px;border: none;}
 .custom-tabs .app-link.nav-link{color: #0970DD;font-weight: 500;}
-.custom-tabs .nav-link{padding: 15px 20px;font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
+.custom-tabs .nav-link{padding: 15px 17px;font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
 .custom-tabs .nav-link:hover{background: #F5F9FE;border-radius: 8px 8px 0px 0px;color: #0970DD;}
 .custom-tabs .tab-content{padding: 0;background: #FCFCFC;border: 1px solid #DDDDDD;box-sizing: border-box;border-radius: 8px;}
 .custom-tabs .nav-link.active{background: #0970DD;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);border-radius: 8px 8px 0px 0px;color: #fff;border: none;}

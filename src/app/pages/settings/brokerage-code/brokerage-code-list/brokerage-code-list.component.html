@@ -3,13 +3,14 @@
         <div class="hdr-left">
             <h2>Brokerage Codes</h2>
         </div>
-        <div class="hdr-right">
+        <div class="hdr-right d-flex">
             <button class="btn btn-custom"  (click)="addNewBrokerageCode()" >Add New Brokerage Code</button>
+            <div class="position-relative ml-3">
+                <input type="file" (change)="onFileSelect($event)" accept=".csv" class="hide-file">
+                <button class="btn btn-custom" [disabled]="!csvFile" (click)="submitFile()" >Upload File</button>
+            </div>
         </div>
-        <div class="hdr-right">
-            <input type="file" (change)="onFileSelect($event)" accept=".csv">
-            <button class="btn btn-custom" [disabled]="!csvFile" (click)="submitFile()" >Upload File</button>
-        </div>
+       
     </div>
     <div class="custom-datatable mt-0">
         <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator"
