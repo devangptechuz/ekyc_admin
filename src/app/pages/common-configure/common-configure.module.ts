@@ -12,7 +12,8 @@ import { GlobalConfigureComponent } from './global-configure/global-configure.co
 import { CompanyComponent } from './company/company.component';
 import { AddEditEmailTemplateComponent } from './email-template/add-edit-email-template/add-edit-email-template.component';
 import { ListEmailTemplateComponent } from './email-template/list-email-template/list-email-template.component';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
   declarations: [GlobalConfigureComponent, CompanyComponent, AddEditEmailTemplateComponent, ListEmailTemplateComponent],

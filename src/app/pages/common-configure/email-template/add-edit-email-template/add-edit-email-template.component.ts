@@ -3,9 +3,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { GlobalConfigureService } from 'app/shared/services/global-configure.service';
 import { GlobalService } from 'app/shared/services/global.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CKEditor4 } from 'ckeditor4-angular/ckeditor';
 
-import * as Editor from '../../../../ckeditor5-classic/build/ckeditor';
-import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 @Component({
   selector: 'app-add-edit-email-template',
   templateUrl: './add-edit-email-template.component.html',
@@ -17,6 +16,7 @@ export class AddEditEmailTemplateComponent implements OnInit {
   Title = 'Add new Email Template';
   emailPlaceHolders: any;
   editEmailTemplate: any;
+
 
   ckEditorWithToolbar = {
     toolbar: {
@@ -38,19 +38,38 @@ export class AddEditEmailTemplateComponent implements OnInit {
         'undo',
         'redo',
         'FontSize',
-        'Highlight'
+        'Highlight',
+        'Alignment'
       ]
-    },
+    }
   };
-  public Editor = Editor;
   public config = {
     language: 'en'
   };
   public editorValue: string = '';
+  ckEditorWithImageConfig = {
+    'toolbarGroups': [
+      { 'name': 'basicstyles', 'groups': ['basicstyles'] },
+      { 'name': 'links', 'groups': ['links'] },
+      { 'name': 'styles', 'groups': ['heading'] },
+      { 'name': 'paragraph', 'groups': ['list', 'blocks', 'indent'] },
+      { 'name': 'document', 'groups': ['mode', 'undo'] }
+    ],
+    'removeButtons': 'Save,Templates,Find,Replace,Scayt,SelectAll,Subscript,Superscript,CreateDiv,NewPage,Print,Preview,' +
+      'Anchor,Font,FontSize,Styles,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe',
+    'removePlugins': 'elementspath',
+    'removeDialogTabs': 'image:advanced',
+    'extraAllowedContent': '*(*)',
+    'allowedContent': true,
+    // 'fullPage': true,
+    'enterMode': 'CKEDITOR.ENTER_DIV'
+  };
+
+
   actionList = [{ value: 'login', label: 'Login' }, { value: 'register', label: 'Register' },
   { value: 'emailVerify', label: 'Email Verify' }, { value: 'forgotPassword', label: 'Forgot Password' }
     , { value: 'insertSubAdmin', label: 'Insert Sub Admin' }, { value: 'sendReasonInfo', label: 'Send Reason Info' },
-  { value: 'other', label: 'Other' }]
+  { value: 'other', label: 'Other' }];
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -60,6 +79,7 @@ export class AddEditEmailTemplateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.editEmailTemplate = this.route.snapshot.data["getTemplate"];
     this.getAllEmailPlaceholders();
     this.setFormValidation();
@@ -119,19 +139,20 @@ export class AddEditEmailTemplateComponent implements OnInit {
     }
   }
 
-  onReady(editor) {
-    this.editorInstance = editor;
+  onReady(event: CKEditor4.EventInfo) {
+    this.editorInstance = event.editor;
+    console.log(event.editor.getData());
   }
 
   // add content to ckeditor
   addContentToEditor(htmlString) {
-    // console.log('addContentToEditor', htmlString);
-    const htmlDP = this.editorInstance.data.processor;
-    const viewFragment = htmlDP.toView(`[${htmlString}]`);
+    console.log('addContentToEditor', this.editorInstance);
+    // const htmlDP = this.editorInstance.dataProcessor;
+    // const viewFragment = htmlDP.toView(`[${htmlString}]`);
     // console.log('viewFragment', viewFragment);
-    const modelFragment = this.editorInstance.data.toModel(viewFragment);
+    // const modelFragment = this.editorInstance.dataProcessor.toModel(viewFragment);
     // console.log('modelFragment', modelFragment);
-    this.editorInstance.model.insertContent(modelFragment);
+    this.editorInstance.insertText(`[${htmlString}]`);
   }
 
 }

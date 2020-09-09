@@ -71,13 +71,14 @@
 
           <div class="col-md-12">
             <div class="form-group">
-              <label>Content</label>
-              <ckeditor #editor [config]="ckEditorWithToolbar" [editor]="Editor" formControlName="email_content"
-                (ready)="onReady($event)">
+              <label>Email Content</label>
+              <!-- <ckeditor #myckeditor (ready)="onReady($event)" [config]="ckeConfig" formControlName="email_content"
+                debounce='500'>
+              </ckeditor> -->
+
+              <ckeditor [config]="ckEditorWithImageConfig" (ready)="onReady($event)" formControlName="email_content"
+                debounce="500">
               </ckeditor>
-              <!-- <ckeditor
-                [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','link','numberedList','bulletedList','blockQuote']}"
-                [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> -->
               <app-control-messages fieldName="Email Content" [control]="templateForm.controls['email_content']">
               </app-control-messages>
             </div>
