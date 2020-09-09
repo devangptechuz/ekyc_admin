@@ -7,10 +7,11 @@ import { SubCategoryComponent } from './application-settings/sub-category/sub-ca
 import { SubSegmentListComponent } from './segment-settings/sub-segment-list/sub-segment-list.component';
 import { SegmentResolver } from './shared/segment.resolver';
 import {NavTabComponent} from './nav-bar/nav-tab.component';
-import {BrokeragePlanListComponent} from './brokerage-plan/Brokerage-plan-list/brokerage-plan-list.component';
+import {BrokeragePlanListComponent} from './brokerage-plan/brokerage-plan-list/brokerage-plan-list.component';
 import {ApplicationPreferenceComponent} from './application-preference/application-preference/application-preference.component';
 import {ApplicationSettingComponent} from './application-settings/application-setting/application-setting.component';
 import {SegmentListComponent} from './segment-settings/segment-list/segment-list.component';
+import {BrokerageCodeListComponent} from './brokerage-code/brokerage-code-list/brokerage-code-list.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,13 @@ const routes: Routes = [
           component: BrokeragePlanListComponent,
           data: {
           title: 'Segment Plan List',
+          },
+        },
+        {
+          path: 'brokerage-codes',
+          component: BrokerageCodeListComponent,
+          data: {
+          title: 'Brokerage Codes List',
           },
         }
     ]
