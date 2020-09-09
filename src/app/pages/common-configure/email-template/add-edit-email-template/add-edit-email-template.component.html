@@ -31,7 +31,7 @@
             <div class="form-group">
               <label>Action</label>
               <ng-select placeholder="select" [searchable]="false" formControlName="action">
-                <ng-option [value]="item.value" *ngFor="let item of actionList">{{item.label}}</ng-option>
+                <ng-option [value]="item.Value" *ngFor="let item of actionList">{{item.Name}}</ng-option>
               </ng-select>
               <app-control-messages fieldName="Action" [control]="templateForm.controls['action']">
               </app-control-messages>

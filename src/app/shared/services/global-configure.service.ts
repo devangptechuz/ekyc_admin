@@ -89,4 +89,7 @@ export class GlobalConfigureService {
     return this.http.get<any>(`${this.configure_api_url}/getEmailTemplateById/${id}`);
   }
 
+  updateStatusEmailTemplate(objParams: any) {
+    return this.http.post<any>(`${this.configure_api_url}/updateStatusEmailTemplate`, objParams);
+  }
 }
