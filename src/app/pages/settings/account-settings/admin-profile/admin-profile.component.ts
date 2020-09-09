@@ -2,17 +2,16 @@ import { Component, OnInit, Output, ViewChild, EventEmitter, ChangeDetectorRef }
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AdminService } from '../../../shared/services/admin.service';
-import { ValidationService } from '../../../shared/services/validator.service';
+import { AdminService } from '../../../../shared/services/admin.service';
+import { ValidationService } from '../../../../shared/services/validator.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { GlobalService } from '../../../shared/services/global.service';
+import { GlobalService } from '../../../../shared/services/global.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Observable, Subject } from 'rxjs';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
-import { SharedService } from '../../../shared/services/shared.service';
+import { SharedService } from '../../../../shared/services/shared.service';
 import { CommonService } from 'app/shared/services/common.service';
-declare var $: any;
 
 @Component({
   selector: 'app-admin-profile',
@@ -106,7 +105,6 @@ export class AdminProfileComponent implements OnInit {
       id: ['', []],
     });
     this.getProfileAdmin();
-    this.checkTabName();
   }
 
   submitProfile() {
@@ -173,16 +171,7 @@ export class AdminProfileComponent implements OnInit {
     this.modalRef = this.modalService.open(this.fileuploadAadharpopup, { centered: true, size: 'lg', backdrop: 'static', keyboard: false });
   }
 
-  checkTabName(){
-    this.sharedService.getTabName().subscribe((result) => {
-      if(result && result !== ''){
-        $(document).ready(function(){
-          $('.nav-tabs a[href="#' + result + '"]').tab('show');
-        });
-      }
-    });
-    this.sharedService.setTabName(null);
-  }
+
 
   onModalOpen() {
     this.uploader = new FileUploader({

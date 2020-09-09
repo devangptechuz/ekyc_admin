@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {environment} from '../../../../environments/environment';
+import {environment} from '../../../../../environments/environment';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SettingService} from '../../../shared/services/setting.service';
+import {SettingService} from '../../../../shared/services/setting.service';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {GlobalService} from '../../../shared/services/global.service';
-import {SharedService} from '../../../shared/services/shared.service';
+import {GlobalService} from '../../../../shared/services/global.service';
+import {SharedService} from '../../../../shared/services/shared.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AddEditCategoryComponent} from '../add-edit-category/add-edit-category.component';
 import {AddEditSubSegmentComponent} from '../add-edit-sub-segment/add-edit-sub-segment.component';
 
 @Component({
@@ -31,7 +30,6 @@ export class SubSegmentListComponent implements OnInit {
               private spinner: NgxSpinnerService,
               private route: ActivatedRoute,
               public global: GlobalService,
-              private sharedService:SharedService,
               private modalService:NgbModal) { }
 
   ngOnInit(): void {
@@ -54,8 +52,7 @@ export class SubSegmentListComponent implements OnInit {
 
 
   setRouterLink(){
-    this.router.navigateByUrl('/settings');
-    this.sharedService.setTabName('pane-D')
+    this.router.navigateByUrl('/settings/segments-settings');
   }
 
   addNewSubSegment(){

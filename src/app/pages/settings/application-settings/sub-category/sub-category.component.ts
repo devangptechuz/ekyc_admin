@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SettingService } from '../../../shared/services/setting.service';
+import { SettingService } from '../../../../shared/services/setting.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { GlobalService } from '../../../shared/services/global.service';
-import { SharedService } from '../../../shared/services/shared.service';
+import { GlobalService } from '../../../../shared/services/global.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditCategoryComponent } from '../add-edit-category/add-edit-category.component';
 
@@ -31,7 +30,6 @@ export class SubCategoryComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
     public global: GlobalService,
-    private sharedService: SharedService,
     private modalService: NgbModal
   ) { }
 
@@ -71,8 +69,7 @@ export class SubCategoryComponent implements OnInit {
   }
 
   setRouterLink() {
-    this.router.navigateByUrl('/settings');
-    this.sharedService.setTabName('pane-C')
+    this.router.navigateByUrl('/settings/application-settings');
   }
 
   addNewReason() {

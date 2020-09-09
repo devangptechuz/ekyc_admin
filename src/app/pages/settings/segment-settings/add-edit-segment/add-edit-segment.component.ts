@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ValidationService} from '../../../shared/services/validator.service';
-import {SettingService} from '../../../shared/services/setting.service';
-import {GlobalService} from '../../../shared/services/global.service';
+import {ValidationService} from '../../../../shared/services/validator.service';
+import {SettingService} from '../../../../shared/services/setting.service';
+import {GlobalService} from '../../../../shared/services/global.service';
 
 @Component({
   selector: 'app-add-edit-segment',
