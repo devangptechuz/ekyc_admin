@@ -67,7 +67,7 @@
               <label>Email Content</label>
 
               <ckeditor [config]="ckEditorWithImageConfig" (ready)="onReady($event)" formControlName="email_content"
-                debounce="500">
+                debounce="1500">
               </ckeditor>
               <app-control-messages fieldName="Email Content" [control]="templateForm.controls['email_content']">
               </app-control-messages>
