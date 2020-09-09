@@ -24,12 +24,14 @@ import { SegmentListComponent } from './segment-settings/segment-list/segment-li
 import { AddEditSegmentComponent } from './segment-settings/add-edit-segment/add-edit-segment.component';
 import { SubSegmentListComponent } from './segment-settings/sub-segment-list/sub-segment-list.component';
 import { AddEditSubSegmentComponent } from './segment-settings/add-edit-sub-segment/add-edit-sub-segment.component';
-import { BrokeragePlanListComponent } from './brokerage-plan/Brokerage-plan-list/brokerage-plan-list.component';
+import { BrokeragePlanListComponent } from './brokerage-plan/brokerage-plan-list/brokerage-plan-list.component';
 import { AddEditBrokeragePlanComponent } from './brokerage-plan/add-edit-brokerage-plan/add-edit-brokerage-plan.component';
 import { NavTabComponent } from './nav-bar/nav-tab.component';
+import { BrokerageCodeListComponent } from './brokerage-code/brokerage-code-list/brokerage-code-list.component';
+import { AddEditBrokerageCodeComponent } from './brokerage-code/add-edit-brokerage-code/add-edit-brokerage-code.component';
 
 @NgModule({
-  declarations: [ApplicationPreferenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent, BrokeragePlanListComponent, AddEditBrokeragePlanComponent, NavTabComponent],
+  declarations: [ApplicationPreferenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent, BrokeragePlanListComponent, AddEditBrokeragePlanComponent, NavTabComponent, BrokerageCodeListComponent, AddEditBrokerageCodeComponent],
   exports: [
     ApplicationPreferenceComponent
   ],
