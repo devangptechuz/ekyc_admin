@@ -6,9 +6,7 @@ import {SettingService} from '../../../../shared/services/setting.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {GlobalService} from '../../../../shared/services/global.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AddEditBrokeragePlanComponent} from '../../brokerage-plan/add-edit-brokerage-plan/add-edit-brokerage-plan.component';
 import {AddEditBrokerageCodeComponent} from '../add-edit-brokerage-code/add-edit-brokerage-code.component';
-import {AddEditCategoryComponent} from '../../application-settings/add-edit-category/add-edit-category.component';
 
 @Component({
   selector: 'app-brokerage-code-list',
