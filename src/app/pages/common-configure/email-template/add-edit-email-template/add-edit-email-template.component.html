@@ -48,9 +48,6 @@
 
           <ng-container *ngIf="emailPlaceHolders">
             <ng-container *ngIf="emailPlaceHolders?.applicationPlaceHolder?.length">
-              <!-- <div class="col-md-3" (click)="addContentToEditor(item?.Value)" -->
-              <!-- *ngFor="let item of emailPlaceHolders?.applicationPlaceHolder"> -->
-              <!-- <button type="button" class="btn btn-custom">{{item.Name}}</button> -->
               <div class="ml-3">
                 <span class="tagline mb-3" (click)="addContentToEditor(item?.Value)"
                   *ngFor="let item of emailPlaceHolders?.applicationPlaceHolder">{{item.Name}}</span>
@@ -62,19 +59,12 @@
                 <span class="tagline mb-3" (click)="addContentToEditor(item?.Value)"
                   *ngFor="let item of emailPlaceHolders?.companyPlaceHolder">{{item.Name}}</span>
               </div>
-              <!-- <div class="col-md-3" (click)="addContentToEditor(item?.Value)"
-                *ngFor="let item of emailPlaceHolders?.companyPlaceHolder">
-                <button type="button" class="btn btn-custom">{{item.Name}}</button>
-              </div> -->
             </ng-container>
           </ng-container>
 
           <div class="col-md-12">
             <div class="form-group">
               <label>Email Content</label>
-              <!-- <ckeditor #myckeditor (ready)="onReady($event)" [config]="ckeConfig" formControlName="email_content"
-                debounce='500'>
-              </ckeditor> -->
 
               <ckeditor [config]="ckEditorWithImageConfig" (ready)="onReady($event)" formControlName="email_content"
                 debounce="500">
