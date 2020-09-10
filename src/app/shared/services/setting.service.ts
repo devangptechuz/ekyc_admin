@@ -116,6 +116,10 @@ export class SettingService {
     }
 
     csvFileUpload(data): Observable<any> {
-        return this.http.post<any>(`${this.imageUrl}/commonUpload`,data);
+        const params = new HttpParams().set('hideLoader', 'true');
+        let options = { params: params };
+        options['reportProgress'] = true;
+        options['observe'] = 'events';
+        return this.http.post<any>(`${this.imageUrl}/commonUpload`, data, options);
     }
 }
