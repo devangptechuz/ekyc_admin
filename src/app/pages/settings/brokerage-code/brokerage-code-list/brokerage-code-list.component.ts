@@ -238,9 +238,6 @@ export class BrokerageCodeListComponent implements OnInit {
           });
           this.global.errorToastr(`Please upload ${mimeErrorStatement.join(", ")} only.`);
           break;
-        case 'fileSize':
-          this.global.errorToastr('Image size must be less than 5mb.');
-          break;
         default:
           this.global.errorToastr(`Unknown error (filter is ${filter.name})`);
       }
