@@ -1089,8 +1089,8 @@ export class UsersDetailComponent implements OnInit {
     let popupParam = {};
     popupParam['name'] = 'Send Reminder';
     popupParam['type'] = 'send_reminder';
-    popupParam['label'] = 'Send Reminder';
-    popupParam['title'] = 'Select your type of reminder';
+    popupParam['label'] = 'Remind user';
+    popupParam['title'] = 'Select method to remind';
     popupParam['button_name'] = 'Send Reminder';
     popupParam['userId'] = this.userId;
     this.confirmationDialogService.sendReminderModal(popupParam).then((data) => {
