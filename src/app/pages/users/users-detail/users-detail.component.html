@@ -61,7 +61,8 @@
                      <span *ngIf="userData?.basic_info?.isEmailVerified"
                         class="green-status status-box ml-2">verified</span>
                   </a>
-                  <span class="remind-usr"><span class="icon-send"></span>remind user</span>
+                  <span class="remind-usr" (click)="reminderSend()" style="cursor: pointer;"><span
+                        class="icon-send"></span>remind user</span>
                </div>
                <a href="tel:+91 userData?.basic_info?.mobileNumber">+91 {{userData?.basic_info?.mobileNumber}}</a>
                <span *ngIf="!userData?.basic_info?.isMobileVerified" class="yellow-status status-box ml-2">NOT

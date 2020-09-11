@@ -1082,4 +1082,22 @@ export class UsersDetailComponent implements OnInit {
     }).catch(error => console.log(error));
   }
 
+  /**
+   * Send reminder to user
+   */
+  reminderSend(typeOfRequest: any = '') {
+    let popupParam = {};
+    popupParam['name'] = 'Send Reminder';
+    popupParam['type'] = 'send_reminder';
+    popupParam['label'] = 'Send Reminder';
+    popupParam['title'] = 'Select your type of reminder';
+    popupParam['button_name'] = 'Send Reminder';
+    popupParam['userId'] = this.userId;
+    this.confirmationDialogService.sendReminderModal(popupParam).then((data) => {
+      if (data) {
+        console.log('data', data);
+      }
+    }).catch(error => console.log(error));
+  }
+
 }

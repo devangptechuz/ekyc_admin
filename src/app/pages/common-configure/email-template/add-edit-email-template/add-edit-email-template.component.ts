@@ -12,6 +12,7 @@ import { CKEditor4 } from 'ckeditor4-angular/ckeditor';
 })
 export class AddEditEmailTemplateComponent implements OnInit {
   ckEditorWithImageConfig = {
+    'height': 550,
     'toolbarGroups': [
       { 'name': 'basicstyles', 'groups': ['basicstyles'] },
       { 'name': 'links', 'groups': ['links'] },
@@ -96,6 +97,8 @@ export class AddEditEmailTemplateComponent implements OnInit {
         if (res.success) {
           this.global.successToastr(res.message);
           this.router.navigate(['common-configure/list-email-template']);
+        } else {
+          this.global.errorToastr(res.message);
         }
       });
     } else {
@@ -103,6 +106,8 @@ export class AddEditEmailTemplateComponent implements OnInit {
         if (res.success) {
           this.global.successToastr(res.message);
           this.router.navigate(['common-configure/list-email-template']);
+        } else {
+          this.global.errorToastr(res.message);
         }
       });
     }

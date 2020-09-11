@@ -7,6 +7,7 @@ import { RejectModelComponent } from '../model-popup/reject-model/reject-model.c
 import { DeactivateModelComponent } from '../model-popup/deactivate-model/deactivate-model.component';
 import { ActivateModelComponent } from '../model-popup/activate-model/activate-model.component';
 import { ReasonRejectModelComponent } from '../model-popup/reason-reject-model/reason-reject-model.component';
+import { sendReminderModelComponent } from '../model-popup/send-reminder-model/send-reminder-model.component';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +59,12 @@ export class ConfirmationDialogService {
 
   public requestToConfirm(objectOfModal: any = ''): Promise<boolean> {
     const modalRef = this.modalService.open(ReasonRejectModelComponent, { centered: true });
+    modalRef.componentInstance.objectOfModal = objectOfModal;
+    return modalRef.result;
+  }
+
+  public sendReminderModal(objectOfModal: any = ''): Promise<boolean> {
+    const modalRef = this.modalService.open(sendReminderModelComponent, { centered: true });
     modalRef.componentInstance.objectOfModal = objectOfModal;
     return modalRef.result;
   }

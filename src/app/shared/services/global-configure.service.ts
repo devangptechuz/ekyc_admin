@@ -53,6 +53,14 @@ export class GlobalConfigureService {
   }
 
   /**
+   * delete Company Images/Icon
+   * @param objParams 
+   */
+  deleteCompanyImagesIcon(objParams) {
+    return this.http.post<any>(`${this.imag_url}/deleteCompanyConfigurationLogoByName`, objParams);
+  }
+
+  /**
    * Get Email configuration details
    */
   getEmailConfigureData(hideLoader: boolean = false) {

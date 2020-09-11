@@ -33,6 +33,14 @@ export class SettingService {
         return this.http.post<any>(`${this.apiUrl_setting}/sendReasonInfo`, data);
     }
 
+    /**
+     * Send Reminder Vie Type of Method
+     * @param objParam 
+     */
+    sendReminder(objParam: any): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/sendReminder`, objParam);
+    }
+
     getSubReasonCategory(id) {
         return this.http.get<any>(`${this.apiUrl_setting}/subReasonCategory/${id}`);
     }
@@ -81,23 +89,23 @@ export class SettingService {
         return this.http.post<any>(`${this.apiUrl_segment}/changeSegmentSubCategoryStatus/${id}`, data);
     }
 
-    getBrokerageMasterList(){
+    getBrokerageMasterList() {
         return this.http.get<any>(`${this.apiUrl_segment}/getBrokerageMasterList`);
     }
 
     addSegmentPlans(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/addSegmentPlans`,data);
+        return this.http.post<any>(`${this.apiUrl_setting}/addSegmentPlans`, data);
     }
 
-    updateSegmentPlans(id,data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_segment}/updateSegmentPlans/${id}`,data);
+    updateSegmentPlans(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/updateSegmentPlans/${id}`, data);
     }
 
     getSegmentPlansList() {
         return this.http.get<any>(`${this.apiUrl_segment}/getSegmentPlansList`);
     }
 
-    changeSegmentPlansStatus(id,data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_segment}/changeSegmentPlansStatus/${id}`,data);
+    changeSegmentPlansStatus(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/changeSegmentPlansStatus/${id}`, data);
     }
 }
