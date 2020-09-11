@@ -6,7 +6,6 @@
         <div class="hdr-right d-flex">
             <button class="btn btn-custom"  (click)="addNewBrokerageCode()" >Add New Brokerage Code</button>
             <div class="position-relative ml-3">
-                <input type="file" (change)="onFileSelect($event)" accept=".csv" class="hide-file">
                 <button class="btn btn-custom"  (click)="openDocumentPopupModal()" >Upload File</button>
             </div>
         </div>
@@ -72,18 +71,14 @@
     <div class="modal-body p-0 payment-popup uploaddoc-popup">
         <div class="modal-header blueclr common-header">
             <div class="popup-header">
-<!--                <span>Edit Details</span>-->
-                <h4 class="modal-title">Upload File</h4>
+                <h4 class="modal-title">Upload Brokerage Code File</h4>
             </div>
-<!--            <div class="popup-icon">-->
-<!--                <img src="../../../../../assets/img/modal-upload/camera-sml.svg">-->
-<!--            </div>-->
         </div>
 
 
         <!----------------- UPLOAD image/file aadhar: START -------------->
         <div class="row mr-md-0" >
-            <div class="col-md-10" *ngIf="!fileUploading">
+            <div class="col-md-12" *ngIf="!fileUploading">
                 <div class="upload-box" *ngIf="addNewCsvUpload">
                     <a href="javascript:void(0)" class="d-flex flex-column align-items-center justify-content-center w-100 upload-file"><img
                             src="../../../../../assets/img/modal-upload/file-minus.svg">
@@ -102,7 +97,7 @@
 
             </div>
 
-            <div class="col-md-10" *ngIf="fileUploading">
+            <div class="col-md-12" *ngIf="fileUploading">
                 <div class="upload-box upload-progress">
                     <h5>Uploading File...</h5>
                     <div class="progress-ratio d-flex justify-content-between"><span>
@@ -115,19 +110,6 @@
                 </div>
             </div>
 
-            <div class="col-md-2 p-md-0" >
-                <div class="scroll-upload">
-<!--                    <button *ngIf="!isDocumentVerified" class="add-img"-->
-<!--                            (click)="addNewDocumentImage()"><span>+</span>Add New-->
-<!--                        File</button>-->
-                    <button class="view-img" *ngFor="let mediaPreview of mediaPreviews; let i = index">
-                        <div class="img-td-div" (click)="documentShowBigMedia(i,true)">
-                            <img class="pdf-listview" *ngIf="mediaPreview?.contentType === 'text/csv'"
-                                 src="assets/img/doc.svg" alt="img">
-                        </div>
-                    </button>
-                </div>
-            </div>
         </div>
         <!----------------- UPLOAD image/file aadhar: END -------------->
 

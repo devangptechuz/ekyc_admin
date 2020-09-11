@@ -138,32 +138,6 @@ export class BrokerageCodeListComponent implements OnInit {
         });
   }
 
-  onFileSelect(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.csvFile = file;
-      const reader = new FileReader();
-      reader.readAsDataURL(file)
-    }else {
-      this.csvFile = null;
-    }
-  }
-
-  submitFile(){
-    this.formData = new FormData();
-    this.formData.append('filename', this.csvFile);
-    this.formData.append('api_name', 'add_brokerage_csv');
-    this.settingService.csvFileUpload(this.formData).subscribe(
-        (result: any) => {
-          if (result.success) {
-            this.global.successToastr(result.message);
-            this.callApiBrokerageCode();
-          } else {
-            this.global.errorToastr(result.message);
-          }
-        });
-  }
-
   openDocumentPopupModal() {
     this.addNewCsvUpload = true;
     this.onModalOpen();
@@ -221,6 +195,7 @@ export class BrokerageCodeListComponent implements OnInit {
   }
 
   onWhenAddingFileFailed(item: any, filter: any, options: any) {
+    debugger;
     if (filter.name === 'queueLimit') {
       if (this.maxUploadLimit) {
         this.global.errorToastr(`You can upload max ${this.maxUploadLimit} Files.`);
@@ -271,29 +246,6 @@ export class BrokerageCodeListComponent implements OnInit {
     this.modalRef.close();
   }
 
-  submitWebCamUploadModal() {
-    let realImageBlob = [];
-    let uploadParam: any = new FormData();
-    uploadParam.append('api_name', 'update_profile');
-    uploadParam.append('userProfile', this.nameOfDocument);
-    realImageBlob.map((item: any, index) => {
-      uploadParam.append('file[]', item, `webcamimage${index}.jpeg`);
-    });
-    this.fileUploadingProcessStarting();
-    this.settingService.csvFileUpload(uploadParam).subscribe((result: any) => {
-      if (result.type === 1 && result.loaded && result.total) {
-        const percentDone = Math.round(100 * result.loaded / result.total);
-        this.uploadProgress = percentDone;
-      } else if (result.body) {
-        this.fileUploading = false;
-        if (result.body.success) {
-          this.modalRef.close();
-        }
-      }
-    }, error => {
-      this.fileUploading = false;
-    });
-  }
 
   submitDocumentUploadModal() {
     let uploadParam: any = new FormData();
@@ -309,11 +261,17 @@ export class BrokerageCodeListComponent implements OnInit {
       } else if (result.body) {
         this.fileUploading = false;
         if (result.body.success) {
-          this.modalRef.close();
+          this.global.successToastr(result.body.message);
+          this.ngOnInit();
         }
+        if(!result.body.success){
+          this.global.errorToastr(result.body.message);
+        }
+        this.modalRef.close();
       }
     }, error => {
       this.fileUploading = false;
+      this.modalRef.close();
     });
   }
 
