@@ -1,13 +1,21 @@
 <section class="add-user admin-profile mt-5">
     <div class="container custom-tabs">
         <ul id="tabs" class="nav nav-tabs" role="tablist">
-            <li class="nav-item" >
-                <a id="tab-A" routerLink="/settings/reasons/application-settings" class="nav-link tab-a" data-toggle="tab" role="tab" [routerLinkActive]="['active']"
-                   [routerLinkActiveOptions]="{exact:true}">Reason Category</a>
+            <li class="nav-item">
+                <a id="tab-A" routerLink="/settings/reasons/application-settings" class="nav-link tab-a"
+                    data-toggle="tab" role="tab" [routerLinkActive]="['active']"
+                    [routerLinkActiveOptions]="{exact:true}">Reason Category</a>
             </li>
             <li class="nav-item">
-                <a id="tab-B" routerLink="account-settings" class="nav-link tab-b" data-toggle="tab" role="tab" [routerLinkActive]="['active']">
+                <a id="tab-B" routerLink="/settings/reasons/sub-category" class="nav-link tab-b" data-toggle="tab"
+                    role="tab" [routerLinkActive]="['active']">
                     Sub-Reason Category
+                </a>
+            </li>
+            <li class="nav-item">
+                <a id="tab-B" routerLink="/settings/reasons/reason" class="nav-link tab-b" data-toggle="tab" role="tab"
+                    [routerLinkActive]="['active']">
+                    Reasons List
                 </a>
             </li>
 

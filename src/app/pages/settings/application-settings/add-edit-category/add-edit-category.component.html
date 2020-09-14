@@ -10,18 +10,22 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Reasons</label>
-                        <ng-select appearance="outline" [searchable]="false"
-                                   formControlName="reasonId">
-                            <ng-option [value]="item.reasonId" *ngFor="let item of categories">{{item.reasonCategory}}</ng-option>
+                        <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                            formControlName="reasonId">
+                            <ng-option [value]="item.reasonId" *ngFor="let item of categories">{{item.reasonCategory}}
+                            </ng-option>
                         </ng-select>
+                        <app-control-messages fieldName="Category Reason"
+                            [control]="subCategoryForm.controls['reasonId']">
+                        </app-control-messages>
                     </div>
                     <div class="form-group">
                         <label>Sub-Category Reason</label>
-                        <textarea type="text" placeholder="Sub-Category Reason"
-                               formControlName="reason" class="form-control">
-                        </textarea>
+                        <input type="text" placeholder="Sub-Category Reason" formControlName="reason"
+                            class="form-control">
+
                         <app-control-messages fieldName="Sub-Category Reason"
-                                              [control]="subCategoryForm.controls['reason']">
+                            [control]="subCategoryForm.controls['reason']">
                         </app-control-messages>
                     </div>
                 </div>

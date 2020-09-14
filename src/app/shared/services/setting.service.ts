@@ -11,6 +11,7 @@ export class SettingService {
     apiUrl_setting = environment.api_url_setting;
     apiUrl_segment = environment.api_url_segment;
     imageUrl = environment.imag_url;
+    reason_api_url = environment.reason_api_url;
     constructor(
         public http: HttpClient,
         public router: Router,
@@ -44,6 +45,48 @@ export class SettingService {
 
     getSubReasonCategory(id) {
         return this.http.get<any>(`${this.apiUrl_setting}/subReasonCategory/${id}`);
+    }
+
+    getSubReasonCategoryAll() {
+        return this.http.get<any>(`${this.reason_api_url}/getSubReasonCategoryAll`);
+    }
+
+    /**
+     * Get Reason list by sub category id
+     * @param id 
+     */
+    getReasonListBySubCategory(id) {
+        return this.http.get<any>(`${this.apiUrl_segment}/getSubReasonCategoryDetails/${id}`);
+    }
+
+    /**
+     * Get All Reason list
+     */
+    getAllReasonList() {
+        return this.http.get<any>(`${this.apiUrl_segment}/getSubReasonCategoryDetails`);
+    }
+
+    /**
+     * Add reason text 
+     * @param data 
+     */
+    addReason(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/addSubReasonCategoryDetails`, data);
+    }
+
+    /**
+     * Add reason text 
+     * @param data 
+     */
+    updateReason(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/updateSubReasonCategoryDetails/${id}`, data);
+    }
+
+    /**
+     * Update Status of reason details
+     */
+    updateStatuSubReasonCategoryDetails(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/updateStatuSubReasonCategoryDetails/${id}`, data);
     }
 
     addSubReasonCategory(data): Observable<any> {
@@ -111,16 +154,16 @@ export class SettingService {
     }
 
     addBrokerageMaster(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_segment}/addBrokerageMaster`,data);
+        return this.http.post<any>(`${this.apiUrl_segment}/addBrokerageMaster`, data);
     }
 
-    updateBrokerageMaster(id,data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_segment}/updateBrokerageMaster/${id}`,data);
+    updateBrokerageMaster(id, data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/updateBrokerageMaster/${id}`, data);
     }
 
 
     changeBrokerageStatus(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_segment}/changeBrokerageStatus`,data);
+        return this.http.post<any>(`${this.apiUrl_segment}/changeBrokerageStatus`, data);
     }
 
     csvFileUpload(data): Observable<any> {
