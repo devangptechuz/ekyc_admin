@@ -57,7 +57,7 @@ export class GlobalConfigureService {
    * @param objParams 
    */
   deleteCompanyImagesIcon(objParams) {
-    return this.http.post<any>(`${this.imag_url}/deleteCompanyConfigurationLogoByName`, objParams);
+    return this.http.post<any>(`${this.configure_api_url}/deleteCompanyConfigurationLogoByName`, objParams);
   }
 
   /**
