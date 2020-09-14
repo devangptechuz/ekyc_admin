@@ -12,11 +12,12 @@ import {ApplicationPreferenceComponent} from './application-preference/applicati
 import {ApplicationSettingComponent} from './application-settings/application-setting/application-setting.component';
 import {SegmentListComponent} from './segment-settings/segment-list/segment-list.component';
 import {BrokerageCodeListComponent} from './brokerage-code/brokerage-code-list/brokerage-code-list.component';
+import {NavBarReasonCategoryComponent} from './application-settings/nav-bar-reason-category/nav-bar-reason-category.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: NavTabComponent,
+    component: NavTabComponent,  // todo application settings routing here
     data: {
       title: 'tab',
     },
@@ -33,13 +34,6 @@ const routes: Routes = [
           component: AdminProfileComponent,
           data: {
             title: 'account-settings',
-          },
-        },
-        {
-          path: 'application-settings',
-          component: ApplicationSettingComponent,
-          data: {
-            title: 'application-settings',
           },
         },
         {
@@ -64,6 +58,22 @@ const routes: Routes = [
           },
         }
     ]
+  },
+  {
+    path: 'reasons',
+    component: NavBarReasonCategoryComponent,  // todo Reasons Category routing here
+    data: {
+      title: 'tab',
+    },
+    children: [
+      {
+        path: 'application-settings',
+        component: ApplicationSettingComponent,
+        data: {
+          title: 'application-settings',
+        },
+      },
+    ],
   },
   {
     path: 'dynamic-form',

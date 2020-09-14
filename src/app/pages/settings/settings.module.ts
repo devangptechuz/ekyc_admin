@@ -29,9 +29,10 @@ import { AddEditBrokeragePlanComponent } from './brokerage-plan/add-edit-brokera
 import { NavTabComponent } from './nav-bar/nav-tab.component';
 import { BrokerageCodeListComponent } from './brokerage-code/brokerage-code-list/brokerage-code-list.component';
 import { AddEditBrokerageCodeComponent } from './brokerage-code/add-edit-brokerage-code/add-edit-brokerage-code.component';
+import { NavBarReasonCategoryComponent } from './application-settings/nav-bar-reason-category/nav-bar-reason-category.component';
 
 @NgModule({
-  declarations: [ApplicationPreferenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent, BrokeragePlanListComponent, AddEditBrokeragePlanComponent, NavTabComponent, BrokerageCodeListComponent, AddEditBrokerageCodeComponent],
+  declarations: [ApplicationPreferenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent, BrokeragePlanListComponent, AddEditBrokeragePlanComponent, NavTabComponent, BrokerageCodeListComponent, AddEditBrokerageCodeComponent, NavBarReasonCategoryComponent],
   exports: [
     ApplicationPreferenceComponent
   ],
