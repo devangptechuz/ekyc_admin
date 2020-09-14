@@ -1076,9 +1076,12 @@ export class UsersDetailComponent implements OnInit {
     }
     popupParam['userId'] = this.userId;
     this.confirmationDialogService.requestToConfirm(popupParam).then((data) => {
-      if (typeOfRequest === 'reject_reason') {
-        this.manageApplicationStatus('Reject');
-      }
+     if(data){
+       if (typeOfRequest === 'reject_reason') {
+         this.manageApplicationStatus('Reject');
+       }
+     }
+
     }).catch(error => console.log(error));
   }
 

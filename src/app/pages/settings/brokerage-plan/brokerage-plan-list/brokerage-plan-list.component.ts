@@ -42,9 +42,7 @@ export class BrokeragePlanListComponent implements OnInit {
               if (Data.success) {
                 this.temp = [...Data['result']];
                 this.rows = Data['result'];
-                this.spinner.hide();
               } else {
-                this.spinner.hide();
                 this.global.errorToastr(Data.message);
               }
             });

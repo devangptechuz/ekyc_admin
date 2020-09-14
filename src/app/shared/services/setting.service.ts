@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class SettingService {
     apiUrl_setting = environment.api_url_setting;
     apiUrl_segment = environment.api_url_segment;
+    imageUrl = environment.imag_url;
     constructor(
         public http: HttpClient,
         public router: Router,
@@ -107,5 +108,26 @@ export class SettingService {
 
     changeSegmentPlansStatus(id, data): Observable<any> {
         return this.http.post<any>(`${this.apiUrl_segment}/changeSegmentPlansStatus/${id}`, data);
+    }
+
+    addBrokerageMaster(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/addBrokerageMaster`,data);
+    }
+
+    updateBrokerageMaster(id,data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/updateBrokerageMaster/${id}`,data);
+    }
+
+
+    changeBrokerageStatus(data): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_segment}/changeBrokerageStatus`,data);
+    }
+
+    csvFileUpload(data): Observable<any> {
+        const params = new HttpParams().set('hideLoader', 'true');
+        let options = { params: params };
+        options['reportProgress'] = true;
+        options['observe'] = 'events';
+        return this.http.post<any>(`${this.imageUrl}/commonUpload`, data, options);
     }
 }
