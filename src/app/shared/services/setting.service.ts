@@ -48,7 +48,7 @@ export class SettingService {
     }
 
     getSubReasonCategoryAll() {
-        return this.http.get<any>(`${this.reason_api_url}/getSubReasonCategoryAll`);
+        return this.http.get<any>(`http://localhost:3000/test/api/getSubReasonCategoryAll `);
     }
 
     /**
@@ -60,10 +60,37 @@ export class SettingService {
     }
 
     /**
-     * Get All Reason list
+     * Get All Reason list(Last reason text list : status = 1)
      */
     getAllReasonList() {
         return this.http.get<any>(`${this.apiUrl_segment}/getSubReasonCategoryDetails`);
+    }
+
+    /**
+     * Get All Reason list(Last reason text list : status = 0,1)
+     */
+    getAllReasonCategoryList() {
+        return this.http.get<any>(`${this.reason_api_url}/getAllReasonCategory`);
+    }
+    /**
+     * Add reason main text 
+     * @param data 
+     */
+    addReasonCategory(data): Observable<any> {
+        return this.http.post<any>(`${this.reason_api_url}/addReasonCategory`, data);
+    }
+    /**
+     * Add reason text 
+     * @param data 
+     */
+    updateReasonCategory(id, data): Observable<any> {
+        return this.http.post<any>(`${this.reason_api_url}/updateReasonCategory/${id}`, data);
+    }
+    /**
+     * Update Status of reason details
+     */
+    changeReasonCategoryStatus(data): Observable<any> {
+        return this.http.post<any>(`${this.reason_api_url}/chnageReasonCategoryStatus`, data);
     }
 
     /**
@@ -81,7 +108,6 @@ export class SettingService {
     updateReason(id, data): Observable<any> {
         return this.http.post<any>(`${this.apiUrl_segment}/updateSubReasonCategoryDetails/${id}`, data);
     }
-
     /**
      * Update Status of reason details
      */

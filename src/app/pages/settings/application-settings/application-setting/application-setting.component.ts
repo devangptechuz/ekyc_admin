@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { GlobalService } from '../../../../shared/services/global.service';
 import { SettingService } from '../../../../shared/services/setting.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddEditReasonCategoryComponent } from '../add-edit-reason-category/add-edit-reason-category.component';
 
 @Component({
   selector: 'app-application-setting',
@@ -20,18 +22,26 @@ export class ApplicationSettingComponent implements OnInit {
   adminsSelectCount;
   count: any;
   deleteFlag = false;
+  status = [
+    { label: 'Inactive', value: '0' },
+    { label: 'Active', value: '1' }];
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   constructor(
     private router: Router,
     private settingService: SettingService,
     private spinner: NgxSpinnerService,
-    public global: GlobalService
+    public global: GlobalService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
     this.deleteFlag = false;
-    this.settingService.getReasonCategory()
+    this.getAllReasonCategory();
+  }
+
+  getAllReasonCategory() {
+    this.settingService.getAllReasonCategoryList()
       .subscribe(
         Data => {
           if (Data.success) {
@@ -46,7 +56,18 @@ export class ApplicationSettingComponent implements OnInit {
   }
 
   onEdit(v) {
-    this.router.navigateByUrl(`/settings/reasons/sub-category/${v}`);
+    console.log('v', v);
+    const modelRef = this.modalService.open(AddEditReasonCategoryComponent, { centered: true, windowClass: 'catreason-popup', backdrop: 'static', keyboard: false, backdropClass: 'white' });
+    const modelData = {};
+    modelData["reasonCategory"] = v.reasonCategory;
+    modelData["id"] = v.reasonId;
+    modelData["isEdit"] = true;
+    modelRef.componentInstance.fromParent = modelData;
+    modelRef.result.then((result) => {
+      if (result) {
+        this.getAllReasonCategory();
+      }
+    })
   }
 
   cancelAll() {
@@ -58,6 +79,39 @@ export class ApplicationSettingComponent implements OnInit {
 
   setPage(pageInfo) {
     window.scrollTo(0, 150);
+  }
+
+  /**
+   * Add new category
+   */
+  addNewCategory() {
+    const modalRef = this.modalService.open(AddEditReasonCategoryComponent, { centered: true, windowClass: 'catreason-popup', backdrop: 'static', keyboard: false, backdropClass: 'white' });
+    modalRef.result.then((result) => {
+      if (result) {
+        this.getAllReasonCategory();
+      }
+    });
+  }
+
+  /**
+  * Change Status of reason
+  * @param event 
+  * @param row 
+  */
+  changeStatus(event, row) {
+    const val = event.target.value;
+    let Status = {};
+    Status['status'] = val;
+    Status['reasonCategory'] = row.reasonCategory
+    // console.log('row', Status);
+    this.settingService.changeReasonCategoryStatus(Status)
+      .subscribe((res) => {
+        if (res.success) {
+          this.global.successToastr(res.message);
+        } else {
+          this.global.errorToastr(res.message);
+        }
+      });
   }
 
 }

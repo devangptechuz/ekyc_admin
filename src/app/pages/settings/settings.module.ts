@@ -32,9 +32,10 @@ import { AddEditBrokerageCodeComponent } from './brokerage-code/add-edit-brokera
 import { NavBarReasonCategoryComponent } from './application-settings/nav-bar-reason-category/nav-bar-reason-category.component';
 import { ReasonListComponent } from './application-settings/reason-list/reason-list.component';
 import { AddEditReasonComponent } from './application-settings/add-edit-reason/add-edit-reason.component';
+import { AddEditReasonCategoryComponent } from './application-settings/add-edit-reason-category/add-edit-reason-category.component';
 
 @NgModule({
-  declarations: [ApplicationPreferenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent, BrokeragePlanListComponent, AddEditBrokeragePlanComponent, NavTabComponent, BrokerageCodeListComponent, AddEditBrokerageCodeComponent, NavBarReasonCategoryComponent, ReasonListComponent, AddEditReasonComponent],
+  declarations: [ApplicationPreferenceComponent, AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent, BrokeragePlanListComponent, AddEditBrokeragePlanComponent, NavTabComponent, BrokerageCodeListComponent, AddEditBrokerageCodeComponent, NavBarReasonCategoryComponent, ReasonListComponent, AddEditReasonComponent, AddEditReasonCategoryComponent],
   exports: [
     ApplicationPreferenceComponent
   ],

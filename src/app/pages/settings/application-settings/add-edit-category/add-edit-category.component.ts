@@ -14,7 +14,7 @@ export class AddEditCategoryComponent implements OnInit {
   @Input() title: string;
   @Input() fromParent: string;
   @Input() reasonId: string;
-  headerTitle = 'Add Reason';
+  headerTitle = 'Add Sub Category Reason';
   subCategoryForm: FormGroup;
   categories = [];
   selected;
@@ -27,7 +27,7 @@ export class AddEditCategoryComponent implements OnInit {
 
   async ngOnInit() {
     if (this.fromParent) {
-      this.headerTitle = 'Edit Reason';
+      this.headerTitle = 'Edit Sub Category Reason';
     }
     this.subCategoryForm = this.formBuilder.group({
       reason: ['', [Validators.required]],
