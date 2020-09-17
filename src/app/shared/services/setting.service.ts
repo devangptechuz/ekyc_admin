@@ -28,7 +28,7 @@ export class SettingService {
     }
 
     getSubReasonListByReason(data): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/getSubReasonListByReason`, data);
+        return this.http.post<any>(`${this.reason_api_url}/getSubReasonListWithOthersReason`, data);
     }
 
     sendReasonInfo(data): Observable<any> {
@@ -48,7 +48,7 @@ export class SettingService {
     }
 
     getSubReasonCategoryAll() {
-        return this.http.get<any>(`http://localhost:3000/test/api/getSubReasonCategoryAll `);
+        return this.http.get<any>(`${this.reason_api_url}/getSubReasonCategoryAll`);
     }
 
     /**

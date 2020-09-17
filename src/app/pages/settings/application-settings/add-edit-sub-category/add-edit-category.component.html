@@ -9,7 +9,7 @@
             <div class="row align-items-top">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>Reasons</label>
+                        <label>Category Reasons</label>
                         <ng-select appearance="outline" placeholder="select" [searchable]="false"
                             formControlName="reasonId">
                             <ng-option [value]="item.reasonId" *ngFor="let item of categories">{{item.reasonCategory}}
@@ -20,12 +20,10 @@
                         </app-control-messages>
                     </div>
                     <div class="form-group">
-                        <label>Sub-Category Reason</label>
-                        <input type="text" placeholder="Sub-Category Reason" formControlName="reason"
-                            class="form-control">
+                        <label>Reason</label>
+                        <input type="text" placeholder="Reason" formControlName="reason" class="form-control">
 
-                        <app-control-messages fieldName="Sub-Category Reason"
-                            [control]="subCategoryForm.controls['reason']">
+                        <app-control-messages fieldName="Reason" [control]="subCategoryForm.controls['reason']">
                         </app-control-messages>
                     </div>
                 </div>

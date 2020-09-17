@@ -13,7 +13,7 @@
             [rows]="rows">
             <ngx-datatable-column [width]="30" name="Reason Category" [sortable]="true" prop="reasonCategory">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                    <a title="{{row.reasonCategory}}" (click)="onEdit(row.reasonId)">{{row.reasonCategory}}</a>
+                    <a title="{{row.reasonCategory}}" (click)="onEdit(row)">{{row.reasonCategory}}</a>
                 </ng-template>
             </ngx-datatable-column>
 

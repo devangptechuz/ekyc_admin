@@ -238,7 +238,7 @@ export class UsersDetailComponent implements OnInit {
           this.aadhaarKYCDocuments = item;
         } else if (item?.document_name === 'pan_document') {
           this.panDocumentKYCDocuments = item;
-        } else if (item?.document_name === 'address_proof') {
+        } else if (item?.document_name === 'address_proof' || item?.document_name === 'permanent_address') {
           this.addressProofKYCDocuments = item;
         } else if (item?.document_name === 'cancelled_cheque') {
           this.cancelledChequeKYCDocuments = item;
@@ -1067,20 +1067,26 @@ export class UsersDetailComponent implements OnInit {
       popupParam['label'] = 'Reject Reason';
       popupParam['title'] = 'Select your Reject Reason';
       popupParam['button_name'] = 'Reject Application';
-    } else if (typeOfRequest === 'document_re_upload') {
-      popupParam['name'] = 'Document re-upload';
+    } else if (typeOfRequest === 'document_re_upload' || typeOfRequest === 'PAN Details' || typeOfRequest === 'Personal & Address Details' || typeOfRequest === 'Nominee Details' || typeOfRequest === 'Document Request' || typeOfRequest === 'Bank Details') {
+      popupParam['name'] = typeOfRequest;
       popupParam['type'] = 'document_re_upload';
-      popupParam['label'] = 'Document re-upload';
-      popupParam['title'] = 'Select your Reason Document re-upload';
-      popupParam['button_name'] = 'Document re-upload Reason';
+      popupParam['label'] = typeOfRequest;
+      popupParam['title'] = `Select your reason`;
+      popupParam['button_name'] = 'Submit';
+    } else if (typeOfRequest === 'Others') {
+      popupParam['name'] = typeOfRequest;
+      popupParam['type'] = 'data_review';
+      popupParam['label'] = 'Request Data Review';
+      popupParam['title'] = `Select your reason`;
+      popupParam['button_name'] = 'Submit';
     }
     popupParam['userId'] = this.userId;
     this.confirmationDialogService.requestToConfirm(popupParam).then((data) => {
-     if(data){
-       if (typeOfRequest === 'reject_reason') {
-         this.manageApplicationStatus('Reject');
-       }
-     }
+      if (data) {
+        if (typeOfRequest === 'reject_reason') {
+          this.manageApplicationStatus('Reject');
+        }
+      }
 
     }).catch(error => console.log(error));
   }

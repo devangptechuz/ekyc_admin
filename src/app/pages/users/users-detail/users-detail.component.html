@@ -14,7 +14,7 @@
                <div class="dropdown-menu dropdown-menu-right">
                   <a class="dropdown-item" href="javascript:void(0)" (click)="approveConfirm()">
                      <span class="icon-simple-check"></span> approve</a>
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="requestConfirm('request_for_document')">
+                  <a class="dropdown-item" href="javascript:void(0)" (click)="requestConfirm('Document Request')">
                      <span class="icon-minus-file"></span> request documents</a>
                   <a class="dropdown-item disable" href="javascript:void(0)">
                      <span class="icon-alert-octagon"></span>report application</a>
@@ -192,7 +192,7 @@
                      <!-------------- KRA VERIFY DATA: END -------------->
                   </div>
                </div>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('Others')">request
                   review</button>
             </div>
             <div class="col-md-6">
@@ -271,7 +271,7 @@
                         name</label>{{userData?.personal_details?.mother_name}}
                   </div>
                </div>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('PAN Details')">request
                   reveiw</button>
             </div>
             <div class="col-md-6">
@@ -392,7 +392,7 @@
                   [routerLink]="['/applications/edit-personal-address',userId]"
                   routerLinkActive="router-link-active">edit
                   details</button>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('Personal & Address Details')">request
                   reveiw</button>
             </div>
             <div class="col-md-6">
@@ -610,7 +610,7 @@
                   <button class="btn btn-custom btn-border font-sml"
                      [routerLink]="['/applications/nominee-details',userId]" routerLinkActive="router-link-active">edit
                      details</button>
-                  <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+                  <button class="btn btn-custom font-sml" (click)="requestConfirm('Nominee Details')">request
                      reveiw</button>
                </div>
                <div class="col-md-6">
@@ -672,7 +672,7 @@
                      </div>
 
                      <!-- /************* Nominee address proof : CAROUSEL **************/ -->
-                     <ngb-carousel *ngIf="item?.nominee_address_document.length">
+                     <ngb-carousel *ngIf="item?.nominee_address_document?.length">
                         <ng-template ngbSlide *ngFor="let imageItem of item?.nominee_address_document">
                            <a class="fancyboxiframe clickpdf-popup text-center"
                               *ngIf="imageItem?.content_type === 'application/pdf'"
@@ -693,7 +693,10 @@
             </div>
          </ng-container>
          <ng-template #elseBlockNominee>
-            <h3 class="no-data-found">No Data Found</h3>
+            <h3 class="no-data-found mt-5">No Data Found</h3>
+            <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/nominee-details',userId]"
+               routerLinkActive="router-link-active">edit
+               details</button>
          </ng-template>
       </div>
       <!-- User box - bank details-->
@@ -727,7 +730,7 @@
                <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/bank-details',userId]"
                   routerLinkActive="router-link-active">edit
                   details</button>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('Bank Details')">request
                   reveiw</button>
             </div>
             <div class="col-md-6">

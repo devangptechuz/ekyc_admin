@@ -18,7 +18,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PanelWrapperComponent } from './panel-wrapper.component';
 import { SubCategoryComponent } from './application-settings/sub-category/sub-category.component';
-import { AddEditCategoryComponent } from './application-settings/add-edit-category/add-edit-category.component';
+import { AddEditCategoryComponent } from './application-settings/add-edit-sub-category/add-edit-category.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SegmentListComponent } from './segment-settings/segment-list/segment-list.component';
 import { AddEditSegmentComponent } from './segment-settings/add-edit-segment/add-edit-segment.component';

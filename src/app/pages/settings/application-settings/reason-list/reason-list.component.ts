@@ -5,7 +5,7 @@ import { SettingService } from '../../../../shared/services/setting.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { GlobalService } from '../../../../shared/services/global.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddEditCategoryComponent } from '../add-edit-category/add-edit-category.component';
+import { AddEditCategoryComponent } from '../add-edit-sub-category/add-edit-category.component';
 import { AddEditReasonComponent } from '../add-edit-reason/add-edit-reason.component';
 
 

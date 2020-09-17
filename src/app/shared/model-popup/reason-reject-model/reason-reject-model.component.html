@@ -1,13 +1,12 @@
 <div class="modal-header common-header"
-  [ngClass]="{'redclr': objectOfModal?.type==='reject_reason','yellowclr': objectOfModal?.type==='request_for_document' || objectOfModal?.type==='data_review'}">
+  [ngClass]="{'redclr': objectOfModal?.type==='reject_reason','yellowclr': objectOfModal?.type!=='reject_reason'}">
   <div class="popup-header">
     <span>{{objectOfModal?.label}}</span>
     <h2 class="mb-0">{{objectOfModal?.title}}</h2>
   </div>
   <div class="popup-icon">
     <img *ngIf="objectOfModal?.type==='reject_reason'" src="../../../../assets/img/not-allow.svg">
-    <img *ngIf="objectOfModal?.type==='request_for_document' || objectOfModal?.type==='data_review'"
-      src="../../../../assets/img/doc.svg">
+    <img *ngIf="objectOfModal?.type!=='reject_reason'" src="../../../../assets/img/doc.svg">
   </div>
 </div>
 <div class="modal-boy">
@@ -33,11 +32,10 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group rsn-txt">
-                <label class="mt-1"
-                  *ngIf="objectOfModal?.type==='reject_reason' || objectOfModal?.type==='data_review'">Reason
+                <label class="mt-1" *ngIf="objectOfModal?.type==='reject_reason'">Reason
                   Not
                   Listed?</label>
-                <label class="mt-1" *ngIf="objectOfModal?.type==='request_for_document'">Document Not
+                <label class="mt-1" *ngIf="objectOfModal?.type!=='reject_reason'">Document Not
                   Listed?</label>
                 <input type="text" placeholder="Some Custom Text Entered By User..." class="form-control"
                   formControlName="reason">
@@ -55,6 +53,6 @@
     Cancel
   </a>
   <a class="btn"
-    [ngClass]="{'modal-cancel': objectOfModal?.type==='reject_reason','modal-btn-continue': objectOfModal?.type==='request_for_document' || objectOfModal?.type==='data_review'}"
+    [ngClass]="{'modal-cancel': objectOfModal?.type==='reject_reason','modal-btn-continue': objectOfModal?.type!=='reject_reason'}"
     (click)="accept()">{{objectOfModal?.button_name}}</a>
 </div>

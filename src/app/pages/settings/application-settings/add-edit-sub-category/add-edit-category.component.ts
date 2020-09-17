@@ -14,7 +14,7 @@ export class AddEditCategoryComponent implements OnInit {
   @Input() title: string;
   @Input() fromParent: string;
   @Input() reasonId: string;
-  headerTitle = 'Add Sub Category Reason';
+  headerTitle = 'Add Sub Reason';
   subCategoryForm: FormGroup;
   categories = [];
   selected;
@@ -27,7 +27,7 @@ export class AddEditCategoryComponent implements OnInit {
 
   async ngOnInit() {
     if (this.fromParent) {
-      this.headerTitle = 'Edit Sub Category Reason';
+      this.headerTitle = 'Edit Sub Reason';
     }
     this.subCategoryForm = this.formBuilder.group({
       reason: ['', [Validators.required]],
@@ -50,7 +50,7 @@ export class AddEditCategoryComponent implements OnInit {
                 if (data.reasonId == this.reasonId) {
                   this.subCategoryForm.controls.reasonId.setValue(this.categories[i].reasonId)
                 }
-              })
+              });
             }
           } else {
             this.global.errorToastr(Data.message);
@@ -59,6 +59,13 @@ export class AddEditCategoryComponent implements OnInit {
             this.subCategoryForm.controls.reason.setValue(this.fromParent['reason'])
             this.subCategoryForm.controls.reasonId.setValue(this.fromParent['reasonId'])
             this.headerTitle = 'Edit Reason';
+            if (this.fromParent['reasonId']) {
+              this.categories.filter((data, i) => {
+                if (data.reasonId == this.fromParent['reasonId']) {
+                  this.subCategoryForm.controls.reasonId.setValue(this.categories[i].reasonId)
+                }
+              });
+            }
           }
         });
   }
