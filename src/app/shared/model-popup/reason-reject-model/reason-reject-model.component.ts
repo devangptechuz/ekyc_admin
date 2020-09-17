@@ -79,24 +79,27 @@ export class ReasonRejectModelComponent implements OnInit {
   }
 
   public accept() {
-    let obj = [];
     let paramObj;
+    let obj = [];
     // console.log('this.selectedReasonsArray.length', this.selectedReasonsArray);
     if (this.selectedReasonsArray.length) {
       this.selectedReasonsArray.map((item) => {
-        obj.push({ 'userId': this.objectOfModal.userId, 'reasonId': this.reasonId, 'subReasonId': item });
+        obj.push({ 'reasonId': this.reasonId, 'subReasonId': item });
       });
     }
     // console.log('this.selectedReasonsArray.length', obj); return;
     // obj['subReasonId'] = [...this.selectedReasonsArray];
     if (this.reasonDetailsform.value.reason) {
       let obj1 = [];
-      obj1.push({ 'userId': this.objectOfModal.userId, 'reasonDetail': this.reasonDetailsform.value.reason, 'reasonId': '8' });
+      obj1.push({ 'reasonDetail': this.reasonDetailsform.value.reason, 'reasonId': '8' });
       paramObj = [...obj, ...obj1];
     } else {
       paramObj = obj;
     }
-    this.settingService.sendReasonInfo(paramObj)
+    const sendData = {};
+    sendData['userId'] = this.objectOfModal.userId;
+    sendData['paramObj'] = paramObj;
+    this.settingService.sendReasonInfo(sendData)
       .subscribe((res) => {
         if (res.success) {
           this.global.successToastr(res.message);
