@@ -51,6 +51,7 @@ export class UserService {
 
   approveRejectApplication(objParam: any) {
     return this.http.post<any>(`${this.baseUrlOfUser}/approveRejectApplication`, objParam); //todo id=['']
+    // return this.http.post<any>(`http://localhost:4200/test/api/approveRejectApplication`, objParam); //todo id=['']
   }
 
   requestToApplicants(objParam: any) {
@@ -190,4 +191,25 @@ export class UserService {
   segmentSubmit(objParam: any) {
     return this.http.post<any>(`${this.apiUrlSetting}/savePlans`, objParam);
   }
+  /**
+   * Initiate form of Esign
+   */
+  formInitiate(id: string | number) {
+    return this.http.get<any>(`${environment.reason_api_url}/formInitiated/${id}`);
+  }
+
+  /**
+   * Initiate form of Esign
+   */
+  formGenerate(id: string | number) {
+    return this.http.get<any>(`${environment.reason_api_url}/formGenerate/${id}`);
+  }
+
+  /**
+   * Initiate form of Esign
+   */
+  sendEsignEmailToUser(id: string | number) {
+    return this.http.get<any>(`${environment.reason_api_url}/sendEsignEmailToUser/${id}`);
+  }
+
 }

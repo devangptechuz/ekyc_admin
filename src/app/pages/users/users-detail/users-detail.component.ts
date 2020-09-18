@@ -13,6 +13,7 @@ import { ImagePopupComponent } from '../document-modal/image-popup/image-popup.c
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { arrayFilterWithStringPipe } from 'app/shared/pipe/status.pipe';
+import { ItemsList } from '@ng-select/ng-select/lib/items-list';
 declare var $: any;
 
 @Component({
@@ -134,6 +135,14 @@ export class UsersDetailComponent implements OnInit {
   statementFrequencyArray = [{ value: 'Weekly', label: 'Weekly' }, { value: 'Monthly', label: 'Monthly' }];
   /**************** STATIC FORM: END *****************/
 
+  /******************** Form & Esign Details: START  *****************/
+  isEsignCompleted: any;
+  isEsignedByUser: any;
+  isSendToUser: any;
+  isFormCreated: any;
+  isFormInitiated: any;
+  isApproved: any;
+  /******************** Form & Esign Details: END  *****************/
   constructor(
     config: NgbCarouselConfig,
     private cookie: CookiesService,
@@ -254,6 +263,29 @@ export class UsersDetailComponent implements OnInit {
           this.nomineeIdentityDocuments = item;
         } else if (item?.document_name === 'nominee_address_document_1') {
           this.nomineeAddressDocuments = item;
+        }
+      });
+    }
+
+    if (result?.basic_info?.application_esign_status) {
+      result?.basic_info?.application_esign_status.map((item) => {
+        if (item.statusName === 'isApproved') {
+          this.isApproved = item;
+        }
+        if (item.statusName === 'isFormInitiated') {
+          this.isFormInitiated = item;
+        }
+        if (item.statusName === 'isFormCreated') {
+          this.isFormCreated = item;
+        }
+        if (item.statusName === 'isSendToUser') {
+          this.isSendToUser = item;
+        }
+        if (item.statusName === 'isEsignedByUser') {
+          this.isEsignedByUser = item;
+        }
+        if (item.statusName === 'isEsignCompleted') {
+          this.isEsignCompleted = item;
         }
       });
     }
@@ -1109,4 +1141,53 @@ export class UsersDetailComponent implements OnInit {
     }).catch(error => console.log(error));
   }
 
+  /**********************Form & eSign Details: START ****************/
+  initiateForm() {
+    this.userService.formInitiate(this.userId).subscribe((res: any) => {
+      if (res.success) {
+        this.getUserDetails(true);
+        this.global.successToastr(res.message);
+      }
+    })
+  }
+
+  /***
+   * Form Generate
+   */
+  formGenerate() {
+    this.userService.formGenerate(this.userId).subscribe((res: any) => {
+      if (res.success) {
+        this.getUserDetails(true);
+        this.global.successToastr(res.message);
+      }
+    })
+  }
+
+  /**
+   * Send To User : Send PDF to user
+   */
+  sendToUser() {
+    this.userService.sendEsignEmailToUser(this.userId).subscribe((res: any) => {
+      if (res.success) {
+        this.getUserDetails(true);
+        this.global.successToastr(res.message);
+      }
+    })
+  }
+  /**********************Form & eSign Details: END ****************/
+  /**
+   * Get user details
+   */
+  getUserDetails(hideLoader: boolean = false) {
+    this.userService.getUserWithHideLoader(hideLoader, this.userId).subscribe((res: any) => {
+      if (res.success) {
+        // console.log(res.result);
+        this.manageUserData(res.result);
+      }
+      if (hideLoader && res?.body?.success) {
+        // console.log(res.body.result);
+        this.manageUserData(res.body.result);
+      }
+    });
+  }
 }

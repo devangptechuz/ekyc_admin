@@ -25,6 +25,7 @@ export class SettingService {
 
     getRecentAlerts() {
         return this.http.get<any>(`${this.apiUrl_setting}/getRecentAlert`);
+        // return this.http.get<any>(`http://localhost:3000/test/api/getRecentAlert`);
     }
 
     getSubReasonListByReason(data): Observable<any> {
