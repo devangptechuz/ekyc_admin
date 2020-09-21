@@ -392,7 +392,11 @@ p{font-size: 16px;color: rgba(0, 0, 0, 0.8);}
 .icon-plus:before {content: "\e920";}
 .icon-user:before {content: "\e92d";}
 .icon-calendar:before {content: "\e92e";}
-
+.icon-user-check1:before {content: "\e931";}
+.icon-thumbs-up:before {content: "\e92f";}
+.icon-user-check1:before {content: "\e931";}
+.icon-form:before {content: "\e932";}   
+.icon-file-i:before {content: "\e933";}
 /*=========Header===========*/
 header .navbar{display: flex;justify-content: space-between;padding: 18px 0;}
 .navbar .navbar-collapse{justify-content: center;}
@@ -1064,3 +1068,14 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
 .global-config-page .accordion-custom .card-body {background-color:#FCFCFC;}
 
 .no-data-found { margin: 0 auto 20px auto; text-align: center;}
+
+.cmnicon-layout .esignicon {display:flex;align-items: center;margin-bottom: 40px;}
+.cmnicon-layout .esignicon [class*="icon-"]{background: #F2F2F2;font-size: 17px;color: #aaa;border: 1px solid #DDDDDD;width: 48px;border-radius: 16px;height: 48px;display: flex;justify-content: center;align-items: center;margin-right: 16px;}
+.cmnicon-layout .esignicon label{font-weight: 500;margin: 0;font-size: 12px;line-height: 18px;text-align: center;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.32);}
+.esignicon .cmn-txt{font-weight: 500;font-size: 10px;line-height: 15px;text-align: center;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
+.cmnicon-layout .esignicon.green-icon [class*="icon-"]{background: #D8F5EC;border-color: #19D097;color: #19D097;}
+.cmnicon-layout .esignicon.green-icon label{color: #19D097;}
+.cmnicon-layout .col-md-6 .esignicon:last-child{margin-bottom: 24px;}
+.cmnicon-layout .col-md-6{border-bottom: 1px solid #DDDDDD;}
+.btm-sec p{font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.32);}
+.btm-sec p a{color: #0970DD;font-size: 12px;text-decoration: underline;}
