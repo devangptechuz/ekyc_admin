@@ -36,13 +36,30 @@ export class ListEmailTemplateComponent implements OnInit {
     this.router.navigateByUrl('/common-configure/edit-email-template/' + v);
   }
 
+  /**
+   * get All email templates
+   */
   getAllEmailTemplates() {
     this.globalConfigureService.getAllEmailTemplates()
       .subscribe((res) => {
         if (res.success) {
           if (res.result)
-            // this.temp = [...res['result']];
             this.rows = res['result'];
+        } else {
+          this.global.errorToastr(res.message);
+        }
+      });
+  }
+
+  emailTemplateChangeStatus(event, row) {
+    const val = event.target.value;
+    let StatusParam = {};
+    StatusParam['status'] = val;
+    StatusParam['id'] = row.id;
+    this.globalConfigureService.updateStatusEmailTemplate(StatusParam)
+      .subscribe((res) => {
+        if (res.success) {
+          this.global.successToastr(res.message);
         } else {
           this.global.errorToastr(res.message);
         }

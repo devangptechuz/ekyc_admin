@@ -14,7 +14,7 @@
                <div class="dropdown-menu dropdown-menu-right">
                   <a class="dropdown-item" href="javascript:void(0)" (click)="approveConfirm()">
                      <span class="icon-simple-check"></span> approve</a>
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="requestConfirm('request_for_document')">
+                  <a class="dropdown-item" href="javascript:void(0)" (click)="requestConfirm('Document Request')">
                      <span class="icon-minus-file"></span> request documents</a>
                   <a class="dropdown-item disable" href="javascript:void(0)">
                      <span class="icon-alert-octagon"></span>report application</a>
@@ -24,6 +24,134 @@
             </div>
          </div>
       </div>
+
+      <!-- User box - Form & eSign Details -->
+      <div class="user-box" *ngIf="userData?.basic_info?.application_esign_status?.length">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>Form & eSign Details</h2>
+            </div>
+         </div>
+         <div class="row user-btmbx">
+            <div class="col-md-6">
+
+               <div class="row cmn-layout">
+                  <div class="col-md-6 d-flex flex-column mb-3">
+                     <div [ngClass]="{'green-icon': isApproved }" class="mb-3">
+                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
+                        <label>Approved</label>
+                        <span class="cmn-txt d-block"
+                           *ngIf="isApproved">{{isApproved.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                     </div>
+
+                     <div [ngClass]="{'green-icon': isFormInitiated }" class="mb-3">
+                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
+                        <label>Form Initiated</label>
+                        <span class="cmn-txt d-block"
+                           *ngIf="isFormInitiated">{{isFormInitiated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                     </div>
+
+                     <div [ngClass]="{'green-icon': isFormCreated }" class="mb-3">
+                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
+                        <label>Form Generated</label>
+                        <span class="cmn-txt d-block"
+                           *ngIf="isFormCreated">{{isFormCreated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                     </div>
+
+
+                  </div>
+
+                  <div class="col-md-6 d-flex flex-column mb-3">
+                     <div [ngClass]="{'green-icon': isSendToUser }" class="mb-3">
+                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
+                        <label>Send To User</label>
+                        <span class="cmn-txt mb-3 d-block"
+                           *ngIf="isSendToUser">{{isSendToUser.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                     </div>
+
+                     <div [ngClass]="{'green-icon': isEsignedByUser }" class="mb-3">
+                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
+                        <label>eSigned By User</label>
+                        <span class="cmn-txt mb-3 d-block"
+                           *ngIf="isEsignedByUser">{{isEsignedByUser.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                     </div>
+
+                     <div [ngClass]="{'green-icon': isEsignCompleted }" class="mb-3">
+                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
+                        <label>Completed</label>
+                        <span class="cmn-txt mb-3 d-block"
+                           *ngIf="isEsignCompleted">{{isEsignCompleted.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                     </div>
+                  </div>
+
+                  <div *ngIf="adminApproval === 'FormCreated'" style="border-top: 1px solid #777777;" class="pt-2">
+                     <p>Form has been generated and is available for user to eSign. It is recommended to review the form
+                        generated before sending it to the user for eSign.
+                     </p>
+                     <button class="btn btn-custom font-sml mr-2" (click)="initiateForm()">RE-INITIATE FORM
+                        CREATION</button>
+                     <button class="btn btn-custom font-sml" (click)="sendToUser()">SEND TO USER FOR ESIGN</button>
+                  </div>
+
+                  <div *ngIf="adminApproval === 'EmailSendForESign'" style="border-top: 1px solid #777777;"
+                     class="pt-2">
+                     <p>
+                        Form has been generated and sent to the user for eSign. You can resend it to the user or in case
+                        of errors you can choose to
+                        <a href="javascript:void(0);" (click)="initiateForm()">Re-initiate form creation</a>
+                     </p>
+                     <button class="btn btn-custom font-sml" (click)="sendToUser()">RE-SEND TO USER</button>
+                  </div>
+
+                  <div *ngIf="adminApproval === 'ESignByUser'" style="border-top: 1px solid #777777;" class="pt-2">
+                     <p>
+                        Form has been successfully signed by the user. It is recommended to verify the signed form
+                        before confirming the application. In case of errors you can choose to
+                        <a href="javascript:void(0);" (click)="initiateForm()">Re-initiate form creation</a>
+                     </p>
+                     <button class="btn btn-custom font-sml" (click)="sendToUser()">RE-SEND TO USER</button>
+                     <button class="btn btn-custom font-sml" (click)="confirmAndComplete()">CONFIRM & COMPLETE</button>
+                  </div>
+
+               </div>
+            </div>
+            <div class="col-md-6" *ngIf="adminApproval === 'Approved'">
+               <span class="cmn-txt mb-3 d-block">Approved on
+                  {{isApproved.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+               <p class="mb-1">Once you confirm that the application is filled with all important data and documents
+                  from user’s end, you can opt to initiate the form creation for this application. This process may take
+                  few days to complete</p>
+               <button class="btn btn-custom font-sml" (click)="initiateForm()">INITIATE FORM CREATION</button>
+            </div>
+            <div class="col-md-6" *ngIf="adminApproval === 'FormInitiated'">
+               <span class="cmn-txt mb-3 d-block">Form Initiated on
+                  {{isFormInitiated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+               <p class="mb-1">Once an application is approved and form creation is initiated it may take few days to
+                  generate the form. You can send it to user for eSign thereafter.</p>
+               <button class="btn btn-custom font-sml" (click)="initiateForm()">RE-INITIATE FORM CREATION</button>
+            </div>
+            <div class="col-md-6" *ngIf="adminApproval === 'FormCreated' || adminApproval === 'EmailSendForESign'">
+               <span class="cmn-txt mb-3 d-block">Form Generated on
+                  {{isFormCreated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+               <div class="doc-upbox">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                  </div>
+
+                  <a class="fancyboxiframe clickpdf-popup" [href]="userData?.basic_info?.esignUrl | safeUrl">Click here
+                  </a>
+                  <div class="picsum-img-wrapper">
+                     <iframe [src]="userData?.basic_info?.esignUrl | safeUrl" height="100%" width="100%"></iframe>
+                  </div>
+
+               </div>
+               <label class="doc-type">PDF FORM</label>
+            </div>
+         </div>
+      </div>
+
       <!-- User box -->
       <div class="user-box">
          <div class="user-bxhdr d-flex justify-content-between">
@@ -61,7 +189,8 @@
                      <span *ngIf="userData?.basic_info?.isEmailVerified"
                         class="green-status status-box ml-2">verified</span>
                   </a>
-                  <span class="remind-usr"><span class="icon-send"></span>remind user</span>
+                  <span class="remind-usr" (click)="reminderSend()" style="cursor: pointer;"><span
+                        class="icon-send"></span>remind user</span>
                </div>
                <a href="tel:+91 userData?.basic_info?.mobileNumber">+91 {{userData?.basic_info?.mobileNumber}}</a>
                <span *ngIf="!userData?.basic_info?.isMobileVerified" class="yellow-status status-box ml-2">NOT
@@ -191,7 +320,7 @@
                      <!-------------- KRA VERIFY DATA: END -------------->
                   </div>
                </div>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('Others')">request
                   review</button>
             </div>
             <div class="col-md-6">
@@ -270,7 +399,7 @@
                         name</label>{{userData?.personal_details?.mother_name}}
                   </div>
                </div>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('PAN Details')">request
                   reveiw</button>
             </div>
             <div class="col-md-6">
@@ -391,7 +520,7 @@
                   [routerLink]="['/applications/edit-personal-address',userId]"
                   routerLinkActive="router-link-active">edit
                   details</button>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('Personal & Address Details')">request
                   reveiw</button>
             </div>
             <div class="col-md-6">
@@ -609,7 +738,7 @@
                   <button class="btn btn-custom btn-border font-sml"
                      [routerLink]="['/applications/nominee-details',userId]" routerLinkActive="router-link-active">edit
                      details</button>
-                  <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+                  <button class="btn btn-custom font-sml" (click)="requestConfirm('Nominee Details')">request
                      reveiw</button>
                </div>
                <div class="col-md-6">
@@ -671,7 +800,7 @@
                      </div>
 
                      <!-- /************* Nominee address proof : CAROUSEL **************/ -->
-                     <ngb-carousel *ngIf="item?.nominee_address_document.length">
+                     <ngb-carousel *ngIf="item?.nominee_address_document?.length">
                         <ng-template ngbSlide *ngFor="let imageItem of item?.nominee_address_document">
                            <a class="fancyboxiframe clickpdf-popup text-center"
                               *ngIf="imageItem?.content_type === 'application/pdf'"
@@ -692,7 +821,10 @@
             </div>
          </ng-container>
          <ng-template #elseBlockNominee>
-            <h3 class="no-data-found">No Data Found</h3>
+            <h3 class="no-data-found mt-5">No Data Found</h3>
+            <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/nominee-details',userId]"
+               routerLinkActive="router-link-active">edit
+               details</button>
          </ng-template>
       </div>
       <!-- User box - bank details-->
@@ -726,7 +858,7 @@
                <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/bank-details',userId]"
                   routerLinkActive="router-link-active">edit
                   details</button>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('data_review')">request
+               <button class="btn btn-custom font-sml" (click)="requestConfirm('Bank Details')">request
                   reveiw</button>
             </div>
             <div class="col-md-6">

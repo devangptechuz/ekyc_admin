@@ -13,6 +13,7 @@ import { ImagePopupComponent } from '../document-modal/image-popup/image-popup.c
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { arrayFilterWithStringPipe } from 'app/shared/pipe/status.pipe';
+import { ItemsList } from '@ng-select/ng-select/lib/items-list';
 declare var $: any;
 
 @Component({
@@ -134,6 +135,14 @@ export class UsersDetailComponent implements OnInit {
   statementFrequencyArray = [{ value: 'Weekly', label: 'Weekly' }, { value: 'Monthly', label: 'Monthly' }];
   /**************** STATIC FORM: END *****************/
 
+  /******************** Form & Esign Details: START  *****************/
+  isEsignCompleted: any;
+  isEsignedByUser: any;
+  isSendToUser: any;
+  isFormCreated: any;
+  isFormInitiated: any;
+  isApproved: any;
+  /******************** Form & Esign Details: END  *****************/
   constructor(
     config: NgbCarouselConfig,
     private cookie: CookiesService,
@@ -238,7 +247,7 @@ export class UsersDetailComponent implements OnInit {
           this.aadhaarKYCDocuments = item;
         } else if (item?.document_name === 'pan_document') {
           this.panDocumentKYCDocuments = item;
-        } else if (item?.document_name === 'address_proof') {
+        } else if (item?.document_name === 'address_proof' || item?.document_name === 'permanent_address') {
           this.addressProofKYCDocuments = item;
         } else if (item?.document_name === 'cancelled_cheque') {
           this.cancelledChequeKYCDocuments = item;
@@ -254,6 +263,29 @@ export class UsersDetailComponent implements OnInit {
           this.nomineeIdentityDocuments = item;
         } else if (item?.document_name === 'nominee_address_document_1') {
           this.nomineeAddressDocuments = item;
+        }
+      });
+    }
+
+    if (result?.basic_info?.application_esign_status) {
+      result?.basic_info?.application_esign_status.map((item) => {
+        if (item.statusName === 'isApproved') {
+          this.isApproved = item;
+        }
+        if (item.statusName === 'isFormInitiated') {
+          this.isFormInitiated = item;
+        }
+        if (item.statusName === 'isFormCreated') {
+          this.isFormCreated = item;
+        }
+        if (item.statusName === 'isSendToUser') {
+          this.isSendToUser = item;
+        }
+        if (item.statusName === 'isEsignedByUser') {
+          this.isEsignedByUser = item;
+        }
+        if (item.statusName === 'isEsignCompleted') {
+          this.isEsignCompleted = item;
         }
       });
     }
@@ -1067,22 +1099,95 @@ export class UsersDetailComponent implements OnInit {
       popupParam['label'] = 'Reject Reason';
       popupParam['title'] = 'Select your Reject Reason';
       popupParam['button_name'] = 'Reject Application';
-    } else if (typeOfRequest === 'document_re_upload') {
-      popupParam['name'] = 'Document re-upload';
+    } else if (typeOfRequest === 'document_re_upload' || typeOfRequest === 'PAN Details' || typeOfRequest === 'Personal & Address Details' || typeOfRequest === 'Nominee Details' || typeOfRequest === 'Document Request' || typeOfRequest === 'Bank Details') {
+      popupParam['name'] = typeOfRequest;
       popupParam['type'] = 'document_re_upload';
-      popupParam['label'] = 'Document re-upload';
-      popupParam['title'] = 'Select your Reason Document re-upload';
-      popupParam['button_name'] = 'Document re-upload Reason';
+      popupParam['label'] = typeOfRequest;
+      popupParam['title'] = `Select your reason`;
+      popupParam['button_name'] = 'Submit';
+    } else if (typeOfRequest === 'Others') {
+      popupParam['name'] = typeOfRequest;
+      popupParam['type'] = 'data_review';
+      popupParam['label'] = 'Request Data Review';
+      popupParam['title'] = `Select your reason`;
+      popupParam['button_name'] = 'Submit';
     }
     popupParam['userId'] = this.userId;
     this.confirmationDialogService.requestToConfirm(popupParam).then((data) => {
-     if(data){
-       if (typeOfRequest === 'reject_reason') {
-         this.manageApplicationStatus('Reject');
-       }
-     }
+      if (data) {
+        if (typeOfRequest === 'reject_reason') {
+          this.manageApplicationStatus('Reject');
+        }
+      }
 
     }).catch(error => console.log(error));
   }
 
+  /**
+   * Send reminder to user
+   */
+  reminderSend(typeOfRequest: any = '') {
+    let popupParam = {};
+    popupParam['name'] = 'Send Reminder';
+    popupParam['type'] = 'send_reminder';
+    popupParam['label'] = 'Remind user';
+    popupParam['title'] = 'Select method to remind';
+    popupParam['button_name'] = 'Send Reminder';
+    popupParam['userId'] = this.userId;
+    this.confirmationDialogService.sendReminderModal(popupParam).then((data) => {
+      if (data) {
+        console.log('data', data);
+      }
+    }).catch(error => console.log(error));
+  }
+
+  /**********************Form & eSign Details: START ****************/
+  initiateForm() {
+    this.userService.formInitiate(this.userId).subscribe((res: any) => {
+      if (res.success) {
+        this.getUserDetails(true);
+        this.global.successToastr(res.message);
+      }
+    })
+  }
+
+  /***
+   * Form Generate
+   */
+  formGenerate() {
+    this.userService.formGenerate(this.userId).subscribe((res: any) => {
+      if (res.success) {
+        this.getUserDetails(true);
+        this.global.successToastr(res.message);
+      }
+    })
+  }
+
+  /**
+   * Send To User : Send PDF to user
+   */
+  sendToUser() {
+    this.userService.sendEsignEmailToUser(this.userId).subscribe((res: any) => {
+      if (res.success) {
+        this.getUserDetails(true);
+        this.global.successToastr(res.message);
+      }
+    })
+  }
+  /**********************Form & eSign Details: END ****************/
+  /**
+   * Get user details
+   */
+  getUserDetails(hideLoader: boolean = false) {
+    this.userService.getUserWithHideLoader(hideLoader, this.userId).subscribe((res: any) => {
+      if (res.success) {
+        // console.log(res.result);
+        this.manageUserData(res.result);
+      }
+      if (hideLoader && res?.body?.success) {
+        // console.log(res.body.result);
+        this.manageUserData(res.body.result);
+      }
+    });
+  }
 }

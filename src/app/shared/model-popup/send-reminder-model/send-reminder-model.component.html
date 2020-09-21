@@ -1,0 +1,40 @@
+<div class="modal-header common-header" [ngClass]="{'yellowclr': objectOfModal?.type==='send_reminder'}">
+  <div class="popup-header">
+    <span>{{objectOfModal?.label}}</span>
+    <h2 class="mb-0">{{objectOfModal?.title}}</h2>
+  </div>
+  <div class="popup-icon">
+    <img *ngIf="objectOfModal?.type==='send_reminder'" src="../../../../assets/img/reminder.svg">
+  </div>
+</div>
+<div class="modal-boy">
+  <form [formGroup]="reminderForm">
+    <!-- <ul class="list-of-reasons" *ngIf="listOfReasons?.length">
+      <li *ngFor="let reasonItem of listOfReasons" formArrayName="accountArray">
+        {{reasonItem?.username}} <input type="checkbox" name="">
+      </li>
+    </ul> -->
+    <div *ngIf="listOfReminderList?.length" class="reason-modal-popup">
+      <div class="multiradio-list multiselect-list">
+        <div class="type-list">
+          <div class="custom-radio custom-checkbox green-check"
+            *ngFor="let reminderType of listOfReminderList;let i = index;">
+            <div>
+              <input type="radio" id="logo{{i}}" value="{{reminderType?.value}}" formControlName="typeOfReminder">
+              <label>
+                {{ reminderType?.label }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+  <a class="btn modal-btn-continue" (click)="decline()">
+    Cancel
+  </a>
+  <a class="btn modal-btn-continue" (click)="accept()">{{objectOfModal?.button_name}}</a>
+</div>

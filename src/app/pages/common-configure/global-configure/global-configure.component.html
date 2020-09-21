@@ -1,221 +1,347 @@
-<section class="gray-box trading-box">
-
-  <form [formGroup]="kraForm" (ngSubmit)="onKraFormSubmit()" *ngIf="kraInfoArray?.length">
-    <div class="container">
-      <div class="gray-body">
-        <div class="hdr">
-          <div class="hdr-left">
-            <h2 class="mb-0">KRA INFO</h2>
-          </div>
-          <div class="hdr-right d-flex">
-            <button class="btn btn-custom" type="submit">Save Changes <span class="icon-simple-check"></span></button>
-          </div>
+<section class="gray-box global-config-page">
+  <div class="container accordion-custom mt-3">
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingKRA" data-target="#collapseKRA" data-toggle="collapse" aria-expanded="true"
+          aria-controls="collapseKRA">
+          <h5 class="mb-0">
+            <button class="btn btn-link">
+              KRA INFO
+            </button>
+          </h5>
         </div>
-        <div class="row admin-detail">
-          <div class="col-md-4" *ngFor="let item of kraInfoArray">
-            <div class="form-group">
-              <label>{{item?.label}}</label>
-              <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
-                class="form-control">
-              <app-control-messages fieldName="{{item?.label}}" [control]="kraForm.controls[item?.name]">
-              </app-control-messages>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-
-  <form [formGroup]="tokenInfoForm" (ngSubmit)="onTokenSubmit()" *ngIf="tokenInfoArray?.length">
-    <div class="container">
-      <div class="gray-body">
-        <div class="hdr">
-          <div class="hdr-left">
-            <h2 class="mb-0">Token INFO</h2>
-          </div>
-          <div class="hdr-right d-flex">
-            <button class="btn btn-custom" type="submit">Save Changes <span class="icon-simple-check"></span></button>
-          </div>
-        </div>
-        <div class="row admin-detail">
-          <div class="col-md-4" *ngFor="let item of tokenInfoArray">
-            <div class="form-group">
-              <label>{{item?.label}}</label>
-              <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
-                class="form-control">
-              <app-control-messages fieldName="{{item?.label}}" [control]="tokenInfoForm.controls[item?.name]">
-              </app-control-messages>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-
-  <form [formGroup]="sendGridInfoForm" (ngSubmit)="onSendGridSubmit()" *ngIf="sendGridInfoArray?.length">
-    <div class="container">
-      <div class="gray-body">
-        <div class="hdr">
-          <div class="hdr-left">
-            <h2 class="mb-0">Sendgrid INFO</h2>
-          </div>
-          <div class="hdr-right d-flex">
-            <button class="btn btn-custom" type="submit">Save Changes <span class="icon-simple-check"></span></button>
-          </div>
-        </div>
-        <div class="row admin-detail">
-          <div class="col-md-4" *ngFor="let item of sendGridInfoArray">
-            <div class="form-group">
-              <label>{{item?.label}}</label>
-              <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
-                class="form-control">
-              <app-control-messages fieldName="{{item?.label}}" [control]="sendGridInfoForm.controls[item?.name]">
-              </app-control-messages>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-
-  <form [formGroup]="smsInfoForm" (ngSubmit)="onSmsInfoFormSubmit()" *ngIf="smsInfoArray?.length">
-    <div class="container">
-      <div class="gray-body">
-        <div class="hdr">
-          <div class="hdr-left">
-            <h2 class="mb-0">SMS INFO</h2>
-          </div>
-          <div class="hdr-right d-flex">
-            <button class="btn btn-custom" type="submit">Save Changes <span class="icon-simple-check"></span></button>
-          </div>
-        </div>
-        <div class="row admin-detail">
-          <ng-container *ngFor="let item of smsInfoArray">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>{{item?.label}}</label>
-                <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
-                  class="form-control">
-                <app-control-messages fieldName="{{item?.label}}" [control]="smsInfoForm.controls[item?.name]">
-                </app-control-messages>
+        <div id="collapseKRA" class="collapse show" aria-labelledby="headingKRA" data-parent="#accordion">
+          <div class="card-body">
+            <form [formGroup]="kraForm" (ngSubmit)="onKraFormSubmit()" *ngIf="kraInfoArray?.length">
+              <div class="container">
+                <div class="gray-body">
+                  <div class="hdr">
+                    <div class="hdr-left">
+                      <h2 class="mb-0">KRA INFO</h2>
+                    </div>
+                    <div class="hdr-right d-flex">
+                      <button class="btn btn-custom" type="submit">Save Changes <span
+                          class="icon-simple-check"></span></button>
+                    </div>
+                  </div>
+                  <div class="row admin-detail">
+                    <div class="col-md-4" *ngFor="let item of kraInfoArray">
+                      <div class="form-group">
+                        <label>{{item?.label}}</label>
+                        <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
+                          class="form-control">
+                        <app-control-messages fieldName="{{item?.label}}" [control]="kraForm.controls[item?.name]">
+                        </app-control-messages>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </ng-container>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-
-  <form [formGroup]="digiLockerInfoForm" (ngSubmit)="onDigiLockerInfoFormSubmit()" *ngIf="digiLockerInfoArray?.length">
-    <div class="container">
-      <div class="gray-body">
-        <div class="hdr">
-          <div class="hdr-left">
-            <h2 class="mb-0">DigiLocker INFO</h2>
-          </div>
-          <div class="hdr-right d-flex">
-            <button class="btn btn-custom" type="submit">Save Changes <span class="icon-simple-check"></span></button>
-          </div>
+      <div class="card">
+        <div class="card-header" id="headingTokenINFO" data-toggle="collapse" data-target="#collapseTokenINFO"
+          aria-expanded="false" aria-controls="collapseTokenINFO">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed">
+              Token INFO
+            </button>
+          </h5>
         </div>
-        <div class="row admin-detail">
-          <ng-container *ngFor="let item of digiLockerInfoArray">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>{{item?.label}}</label>
-                <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
-                  class="form-control">
-                <app-control-messages fieldName="{{item?.label}}" [control]="digiLockerInfoForm.controls[item?.name]">
-                </app-control-messages>
+        <div id="collapseTokenINFO" class="collapse" aria-labelledby="headingTokenINFO" data-parent="#accordion">
+          <div class="card-body">
+            <form [formGroup]="tokenInfoForm" (ngSubmit)="onTokenSubmit()" *ngIf="tokenInfoArray?.length">
+              <div class="container">
+                <div class="gray-body">
+                  <div class="hdr">
+                    <div class="hdr-left">
+                      <h2 class="mb-0">Token INFO</h2>
+                    </div>
+                    <div class="hdr-right d-flex">
+                      <button class="btn btn-custom" type="submit">Save Changes <span
+                          class="icon-simple-check"></span></button>
+                    </div>
+                  </div>
+                  <div class="row admin-detail">
+                    <div class="col-md-4" *ngFor="let item of tokenInfoArray">
+                      <div class="form-group">
+                        <label>{{item?.label}}</label>
+                        <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
+                          class="form-control">
+                        <app-control-messages fieldName="{{item?.label}}"
+                          [control]="tokenInfoForm.controls[item?.name]">
+                        </app-control-messages>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </ng-container>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-
-  <form [formGroup]="panInfoForm" (ngSubmit)="panInfoFormSubmit()" *ngIf="panInfoArray?.length">
-    <div class="container">
-      <div class="gray-body">
-        <div class="hdr">
-          <div class="hdr-left">
-            <h2 class="mb-0">PAN INFO</h2>
-          </div>
-          <div class="hdr-right d-flex">
-            <button class="btn btn-custom" type="submit">Save Changes <span class="icon-simple-check"></span></button>
-          </div>
+      <div class="card">
+        <div class="card-header" id="headingSendgridINFO" data-toggle="collapse" data-target="#collapseSendgridINFO"
+          aria-expanded="false" aria-controls="collapseSendgridINFO">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed">
+              Sendgrid INFO
+            </button>
+          </h5>
         </div>
-        <div class="row admin-detail">
-          <ng-container *ngFor="let item of panInfoArray">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>{{item?.label}}</label>
-                <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
-                  class="form-control">
-                <app-control-messages fieldName="{{item?.label}}" [control]="panInfoForm.controls[item?.name]">
-                </app-control-messages>
+        <div id="collapseSendgridINFO" class="collapse" aria-labelledby="headingSendgridINFO" data-parent="#accordion">
+          <div class="card-body">
+            <form [formGroup]="sendGridInfoForm" (ngSubmit)="onSendGridSubmit()" *ngIf="sendGridInfoArray?.length">
+              <div class="container">
+                <div class="gray-body">
+                  <div class="hdr">
+                    <div class="hdr-left">
+                      <h2 class="mb-0">Sendgrid INFO</h2>
+                    </div>
+                    <div class="hdr-right d-flex">
+                      <button class="btn btn-custom" type="submit">Save Changes <span
+                          class="icon-simple-check"></span></button>
+                    </div>
+                  </div>
+                  <div class="row admin-detail">
+                    <div class="col-md-4" *ngFor="let item of sendGridInfoArray">
+                      <div class="form-group">
+                        <label>{{item?.label}}</label>
+                        <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
+                          class="form-control">
+                        <app-control-messages fieldName="{{item?.label}}"
+                          [control]="sendGridInfoForm.controls[item?.name]">
+                        </app-control-messages>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </ng-container>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-
-  <form [formGroup]="commonInfoForm" (ngSubmit)="commonInfoFormSubmit()" *ngIf="commonInfoArray?.length">
-    <div class="container">
-      <div class="gray-body">
-        <div class="hdr">
-          <div class="hdr-left">
-            <h2 class="mb-0">Common INFO</h2>
-          </div>
-          <div class="hdr-right d-flex">
-            <button class="btn btn-custom" type="submit">Save Changes <span class="icon-simple-check"></span></button>
-          </div>
+      <div class="card">
+        <div class="card-header" id="headingSmsInfo" data-toggle="collapse" data-target="#collapseSmsInfo"
+          aria-expanded="false" aria-controls="collapseSmsInfo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed">
+              SMS INFO
+            </button>
+          </h5>
         </div>
-        <div class="row admin-detail">
-          <ng-container *ngFor="let item of commonInfoArray">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>{{item?.label}}</label>
-                <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
-                  class="form-control">
-                <app-control-messages fieldName="{{item?.label}}" [control]="commonInfoForm.controls[item?.name]">
-                </app-control-messages>
+        <div id="collapseSmsInfo" class="collapse" aria-labelledby="headingSmsInfo" data-parent="#accordion">
+          <div class="card-body">
+            <form [formGroup]="smsInfoForm" (ngSubmit)="onSmsInfoFormSubmit()" *ngIf="smsInfoArray?.length">
+              <div class="container">
+                <div class="gray-body">
+                  <div class="hdr">
+                    <div class="hdr-left">
+                      <h2 class="mb-0">SMS INFO</h2>
+                    </div>
+                    <div class="hdr-right d-flex">
+                      <button class="btn btn-custom" type="submit">Save Changes <span
+                          class="icon-simple-check"></span></button>
+                    </div>
+                  </div>
+                  <div class="row admin-detail">
+                    <ng-container *ngFor="let item of smsInfoArray">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>{{item?.label}}</label>
+                          <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
+                            class="form-control">
+                          <app-control-messages fieldName="{{item?.label}}"
+                            [control]="smsInfoForm.controls[item?.name]">
+                          </app-control-messages>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
               </div>
-            </div>
-          </ng-container>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-
-  <form [formGroup]="razorPayInfoForm" (ngSubmit)="razorPayInfoFormSubmit()" *ngIf="razorPayInfoArray?.length">
-    <div class="container">
-      <div class="gray-body">
-        <div class="hdr">
-          <div class="hdr-left">
-            <h2 class="mb-0">RazorPay INFO</h2>
-          </div>
-          <div class="hdr-right d-flex">
-            <button class="btn btn-custom" type="submit">Save Changes <span class="icon-simple-check"></span></button>
-          </div>
+      <div class="card">
+        <div class="card-header" id="headingDigiLockerINFO" data-toggle="collapse" data-target="#collapseDigiLockerINFO"
+          aria-expanded="false" aria-controls="collapseDigiLockerINFO">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed">
+              DigiLocker INFO
+            </button>
+          </h5>
         </div>
-        <div class="row admin-detail">
-          <ng-container *ngFor="let item of razorPayInfoArray">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>{{item?.label}}</label>
-                <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
-                  class="form-control">
-                <app-control-messages fieldName="{{item?.label}}" [control]="razorPayInfoForm.controls[item?.name]">
-                </app-control-messages>
+        <div id="collapseDigiLockerINFO" class="collapse" aria-labelledby="headingDigiLockerINFO"
+          data-parent="#accordion">
+          <div class="card-body">
+            <form [formGroup]="digiLockerInfoForm" (ngSubmit)="onDigiLockerInfoFormSubmit()"
+              *ngIf="digiLockerInfoArray?.length">
+              <div class="container">
+                <div class="gray-body">
+                  <div class="hdr">
+                    <div class="hdr-left">
+                      <h2 class="mb-0">DigiLocker INFO</h2>
+                    </div>
+                    <div class="hdr-right d-flex">
+                      <button class="btn btn-custom" type="submit">Save Changes <span
+                          class="icon-simple-check"></span></button>
+                    </div>
+                  </div>
+                  <div class="row admin-detail">
+                    <ng-container *ngFor="let item of digiLockerInfoArray">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>{{item?.label}}</label>
+                          <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
+                            class="form-control">
+                          <app-control-messages fieldName="{{item?.label}}"
+                            [control]="digiLockerInfoForm.controls[item?.name]">
+                          </app-control-messages>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
               </div>
-            </div>
-          </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingPANINFO" data-toggle="collapse" data-target="#collapsePANINFO"
+          aria-expanded="false" aria-controls="collapsePANINFO">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed">
+              PAN INFO
+            </button>
+          </h5>
+        </div>
+        <div id="collapsePANINFO" class="collapse" aria-labelledby="headingPANINFO" data-parent="#accordion">
+          <div class="card-body">
+            <form [formGroup]="panInfoForm" (ngSubmit)="panInfoFormSubmit()" *ngIf="panInfoArray?.length">
+              <div class="container">
+                <div class="gray-body">
+                  <div class="hdr">
+                    <div class="hdr-left">
+                      <h2 class="mb-0">PAN INFO</h2>
+                    </div>
+                    <div class="hdr-right d-flex">
+                      <button class="btn btn-custom" type="submit">Save Changes <span
+                          class="icon-simple-check"></span></button>
+                    </div>
+                  </div>
+                  <div class="row admin-detail">
+                    <ng-container *ngFor="let item of panInfoArray">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>{{item?.label}}</label>
+                          <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
+                            class="form-control">
+                          <app-control-messages fieldName="{{item?.label}}"
+                            [control]="panInfoForm.controls[item?.name]">
+                          </app-control-messages>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingCommonINFO" data-toggle="collapse" data-target="#collapseCommonINFO"
+          aria-expanded="false" aria-controls="collapseCommonINFO">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed">
+              Common INFO
+            </button>
+          </h5>
+        </div>
+        <div id="collapseCommonINFO" class="collapse" aria-labelledby="headingCommonINFO" data-parent="#accordion">
+          <div class="card-body">
+            <form [formGroup]="commonInfoForm" (ngSubmit)="commonInfoFormSubmit()" *ngIf="commonInfoArray?.length">
+              <div class="container">
+                <div class="gray-body">
+                  <div class="hdr">
+                    <div class="hdr-left">
+                      <h2 class="mb-0">Common INFO</h2>
+                    </div>
+                    <div class="hdr-right d-flex">
+                      <button class="btn btn-custom" type="submit">Save Changes <span
+                          class="icon-simple-check"></span></button>
+                    </div>
+                  </div>
+                  <div class="row admin-detail">
+                    <ng-container *ngFor="let item of commonInfoArray">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>{{item?.label}}</label>
+                          <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
+                            class="form-control">
+                          <app-control-messages fieldName="{{item?.label}}"
+                            [control]="commonInfoForm.controls[item?.name]">
+                          </app-control-messages>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingRazorPayINFO" data-toggle="collapse" data-target="#collapseRazorPayINFO"
+          aria-expanded="false" aria-controls="collapseRazorPayINFO">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed">
+              RazorPay INFO
+            </button>
+          </h5>
+        </div>
+        <div id="collapseRazorPayINFO" class="collapse" aria-labelledby="headingRazorPayINFO" data-parent="#accordion">
+          <div class="card-body">
+            <form [formGroup]="razorPayInfoForm" (ngSubmit)="razorPayInfoFormSubmit()"
+              *ngIf="razorPayInfoArray?.length">
+              <div class="container">
+                <div class="gray-body">
+                  <div class="hdr">
+                    <div class="hdr-left">
+                      <h2 class="mb-0">RazorPay INFO</h2>
+                    </div>
+                    <div class="hdr-right d-flex">
+                      <button class="btn btn-custom" type="submit">Save Changes <span
+                          class="icon-simple-check"></span></button>
+                    </div>
+                  </div>
+                  <div class="row admin-detail">
+                    <ng-container *ngFor="let item of razorPayInfoArray">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>{{item?.label}}</label>
+                          <input type="text" placeholder="Enter {{item?.label}}" formControlName="{{item?.name}}"
+                            class="form-control">
+                          <app-control-messages fieldName="{{item?.label}}"
+                            [control]="razorPayInfoForm.controls[item?.name]">
+                          </app-control-messages>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </form>
+  </div>
 
 </section>

@@ -29,6 +29,7 @@ import { BrowserCookiesModule } from '@ngx-utils/cookies/browser';
 import { CategoryResolver } from './pages/settings/shared/category.resolver';
 import { SegmentResolver } from './pages/settings/shared/segment.resolver';
 import { AddEditEmailTemplate } from './pages/common-configure/email-template/shared/add-edit.resolver';
+import { ReasonResolver } from './pages/settings/shared/reason.resolver';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -59,6 +60,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         AddEditAdmin,
         AddEditEmailTemplate,
         CategoryResolver,
+        ReasonResolver,
         SegmentResolver,
         AuthGuard,
         PageGuard

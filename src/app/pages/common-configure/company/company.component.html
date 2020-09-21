@@ -1,7 +1,7 @@
 <section class="gray-box trading-box">
 
   <form [formGroup]="emailConfigForm" (ngSubmit)="emailConfigFormSubmit()">
-    <div class="container">
+    <div class="container add-user">
       <div class="gray-body">
         <div class="hdr">
           <div class="hdr-left">
@@ -11,7 +11,7 @@
             <button class="btn btn-custom" type="submit">Save Changes <span class="icon-simple-check"></span></button>
           </div>
         </div>
-        <div class="row add-user admin-detail">
+        <div class="row admin-detail">
           <div class="col-md-6">
             <div class="form-group">
               <label>Company Name</label>
@@ -37,33 +37,6 @@
                 [control]="emailConfigForm.controls['company_contact_number']">
               </app-control-messages>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Facebook Url</label>
-              <input type="text" placeholder="Enter Facebook Url" formControlName="facebook_url" class="form-control">
-              <app-control-messages fieldName="Facebook url" [control]="emailConfigForm.controls['facebook_url']">
-              </app-control-messages>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Company Url</label>
-              <input type="text" placeholder="Enter Company Url" formControlName="company_url" class="form-control">
-              <app-control-messages fieldName="Company url" [control]="emailConfigForm.controls['company_url']">
-              </app-control-messages>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Twitter Url</label>
-              <input type="text" placeholder="Enter Twitter Url" formControlName="twitter_url" class="form-control">
-              <app-control-messages fieldName="Twitter url" [control]="emailConfigForm.controls['twitter_url']">
-              </app-control-messages>
-            </div>
-          </div>
-
-          <div class="col-md-6">
             <div class="form-group">
               <label>Company Copy Right Text</label>
               <input type="text" placeholder="Enter Copy Right Text" formControlName="company_copyright_text"
@@ -72,6 +45,8 @@
                 [control]="emailConfigForm.controls['company_copyright_text']">
               </app-control-messages>
             </div>
+          </div>
+          <div class="col-md-6">
 
             <div class="form-group">
               <label>Company Address</label>
@@ -82,10 +57,18 @@
               <app-control-messages fieldName="Company Address" [control]="emailConfigForm.controls['company_address']">
               </app-control-messages>
             </div>
-
           </div>
-
-          <div class="col-md-5 d-flex justify-content-end mt-5">
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Company Url</label>
+              <input type="text" placeholder="Enter Company Url" formControlName="company_url" class="form-control">
+              <app-control-messages fieldName="Company url" [control]="emailConfigForm.controls['company_url']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex justify-content-end mt-3">
             <div class="email-company-logo" *ngIf="!companyLogoURL">
               <img src="assets/img/admin-ic.svg">
             </div>
@@ -93,19 +76,201 @@
               <img [src]="companyLogoURL" class="userpic">
             </div>
             <ul class="pic-action">
-              <li><a href="javascript:void(0)" (click)="removeImages()"><span class="icon-close"></span>remove image</a>
+              <li><a href="javascript:void(0)" (click)="removeImages('company_logo')"><span
+                    class="icon-close"></span>remove image</a>
               </li>
               <li>
                 <a href="javascript:void(0)">
                   <span class="icon-upload"></span>upload from computer<input type="file"
-                    (change)="onFileSelect($event)" accept="image/x-png,image/jpeg" class="hide-file">
+                    (change)="onFileSelect($event, 'company_logo')" accept="image/x-png,image/jpeg" class="hide-file">
                 </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Twitter Url</label>
+              <input type="text" placeholder="Enter Twitter Url" formControlName="twitter_url" class="form-control">
+              <app-control-messages fieldName="Twitter url" [control]="emailConfigForm.controls['twitter_url']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex justify-content-end mt-3">
 
+            <div class="email-company-logo" *ngIf="!twitterURL">
+              <img src="assets/img/admin-ic.svg">
+            </div>
+            <div class="email-company-logo" *ngIf="twitterURL">
+              <img [src]="twitterURL" class="userpic">
+            </div>
+            <ul class="pic-action">
+              <li><a href="javascript:void(0)" (click)="removeImages('twitter_logo')"><span
+                    class="icon-close"></span>remove image</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">
+                  <span class="icon-upload"></span>upload from computer<input type="file"
+                    (change)="onFileSelect($event, 'twitter_logo')" accept="image/x-png,image/jpeg" class="hide-file">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Facebook Url</label>
+              <input type="text" placeholder="Enter Facebook Url" formControlName="facebook_url" class="form-control">
+              <app-control-messages fieldName="Facebook url" [control]="emailConfigForm.controls['facebook_url']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex justify-content-end mt-3">
+
+            <div class="email-company-logo" *ngIf="!facebookURL">
+              <img src="assets/img/admin-ic.svg">
+            </div>
+            <div class="email-company-logo" *ngIf="facebookURL">
+              <img [src]="facebookURL" class="userpic">
+            </div>
+            <ul class="pic-action">
+              <li><a href="javascript:void(0)" (click)="removeImages('facebook_logo')"><span
+                    class="icon-close"></span>remove image</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">
+                  <span class="icon-upload"></span>upload from computer<input type="file"
+                    (change)="onFileSelect($event, 'facebook_logo')" accept="image/x-png,image/jpeg" class="hide-file">
+                </a>
               </li>
             </ul>
           </div>
 
         </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Url 1</label>
+              <input type="text" placeholder="Enter URL" formControlName="url1" class="form-control">
+              <app-control-messages fieldName="URL" [control]="emailConfigForm.controls['url1']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex justify-content-end mt-3">
+
+            <div class="email-company-logo" *ngIf="!LogoURL1">
+              <img src="assets/img/admin-ic.svg">
+            </div>
+            <div class="email-company-logo" *ngIf="LogoURL1">
+              <img [src]="LogoURL1" class="userpic">
+            </div>
+            <ul class="pic-action">
+              <li><a href="javascript:void(0)" (click)="removeImages('url1_logo')"><span
+                    class="icon-close"></span>remove image</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">
+                  <span class="icon-upload"></span>upload from computer<input type="file"
+                    (change)="onFileSelect($event, 'url1_logo')" accept="image/x-png,image/jpeg" class="hide-file">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Url 2</label>
+              <input type="text" placeholder="Enter URL" formControlName="url2" class="form-control">
+              <app-control-messages fieldName="URL" [control]="emailConfigForm.controls['url2']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex justify-content-end mt-3">
+            <div class="email-company-logo" *ngIf="!LogoURL2">
+              <img src="assets/img/admin-ic.svg">
+            </div>
+            <div class="email-company-logo" *ngIf="LogoURL2">
+              <img [src]="LogoURL2" class="userpic">
+            </div>
+            <ul class="pic-action">
+              <li><a href="javascript:void(0)" (click)="removeImages('url2_logo')"><span
+                    class="icon-close"></span>remove image</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">
+                  <span class="icon-upload"></span>upload from computer<input type="file"
+                    (change)="onFileSelect($event, 'url2_logo')" accept="image/x-png,image/jpeg" class="hide-file">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Url 3</label>
+              <input type="text" placeholder="Enter URL" formControlName="url3" class="form-control">
+              <app-control-messages fieldName="URL" [control]="emailConfigForm.controls['url3']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex justify-content-end mt-3">
+            <div class="email-company-logo" *ngIf="!LogoURL3">
+              <img src="assets/img/admin-ic.svg">
+            </div>
+            <div class="email-company-logo" *ngIf="LogoURL3">
+              <img [src]="LogoURL3" class="userpic">
+            </div>
+            <ul class="pic-action">
+              <li><a href="javascript:void(0)" (click)="removeImages('url3_logo')"><span
+                    class="icon-close"></span>remove image</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">
+                  <span class="icon-upload"></span>upload from computer<input type="file"
+                    (change)="onFileSelect($event, 'url3_logo')" accept="image/x-png,image/jpeg" class="hide-file">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Url 4</label>
+              <input type="text" placeholder="Enter URL" formControlName="url4" class="form-control">
+              <app-control-messages fieldName="URL" [control]="emailConfigForm.controls['url4']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex justify-content-end mt-3">
+            <div class="email-company-logo" *ngIf="!LogoURL4">
+              <img src="assets/img/admin-ic.svg">
+            </div>
+            <div class="email-company-logo" *ngIf="LogoURL4">
+              <img [src]="LogoURL4" class="userpic">
+            </div>
+            <ul class="pic-action">
+              <li><a href="javascript:void(0)" (click)="removeImages('url4_logo')"><span
+                    class="icon-close"></span>remove image</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">
+                  <span class="icon-upload"></span>upload from computer<input type="file"
+                    (change)="onFileSelect($event, 'url4_logo')" accept="image/x-png,image/jpeg" class="hide-file">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </div>
   </form>

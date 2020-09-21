@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import { SettingService } from '../../../shared/services/setting.service';
 
 @Injectable()
-export class CategoryResolver implements Resolve<any> {
+export class ReasonResolver implements Resolve<any> {
   constructor(
     private settingService: SettingService
   ) {
@@ -12,10 +12,6 @@ export class CategoryResolver implements Resolve<any> {
   }
 
   resolve(route: ActivatedRouteSnapshot) {
-    if (route.paramMap.get('id')) {
-      return this.settingService.getSubReasonCategory(route.paramMap.get('id'));
-    } else {
-      return this.settingService.getSubReasonCategoryAll();
-    }
+    return this.settingService.getAllReasonList();
   }
 }

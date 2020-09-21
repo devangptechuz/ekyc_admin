@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-import {GlobalService} from '../../services/global.service';
-import {UserService} from '../../services/user.service';
-import {SettingService} from '../../services/setting.service';
+import { GlobalService } from '../../services/global.service';
+import { UserService } from '../../services/user.service';
+import { SettingService } from '../../services/setting.service';
 
 @Component({
   selector: 'app-reason-reject-model',
@@ -15,7 +15,7 @@ export class ReasonRejectModelComponent implements OnInit {
   listOfReasons: any[] = [];
   getReasonArray: FormArray;
   reasonDetailsform: FormGroup;
-  reasonId:any;
+  reasonId: any;
   selectedReasonsArray: any[];
   favReasonsError: boolean = true;
   constructor(
@@ -33,7 +33,7 @@ export class ReasonRejectModelComponent implements OnInit {
       reason: ''
     });
     setTimeout(() => {
-      this.settingService.getSubReasonListByReason({ reason:this.objectOfModal.name }).subscribe((res: any) => {
+      this.settingService.getSubReasonListByReason({ reason: this.objectOfModal.name }).subscribe((res: any) => {
         if (res.success) {
           this.listOfReasons = res.result.listSubReason;
           this.reasonId = this.listOfReasons[0].reasonId
@@ -79,19 +79,34 @@ export class ReasonRejectModelComponent implements OnInit {
   }
 
   public accept() {
-    let obj = {};
-    obj['userId'] = this.objectOfModal.userId;
-    obj['reasonDetail'] = this.reasonDetailsform.value.reason;
-    obj['reasonId'] = this.reasonId;
-    obj['subReasonId'] = [...this.selectedReasonsArray]
-    this.settingService.sendReasonInfo(obj)
-        .subscribe((res) => {
-          if (res.success) {
-            this.global.successToastr(res.message);
-          } else {
-            this.global.errorToastr(res.message);
-          }
-        });
+    let paramObj;
+    let obj = [];
+    // console.log('this.selectedReasonsArray.length', this.selectedReasonsArray);
+    if (this.selectedReasonsArray.length) {
+      this.selectedReasonsArray.map((item) => {
+        obj.push({ 'reasonId': this.reasonId, 'subReasonId': item });
+      });
+    }
+    // console.log('this.selectedReasonsArray.length', obj); return;
+    // obj['subReasonId'] = [...this.selectedReasonsArray];
+    if (this.reasonDetailsform.value.reason) {
+      let obj1 = [];
+      obj1.push({ 'reasonDetail': this.reasonDetailsform.value.reason, 'reasonId': '8' });
+      paramObj = [...obj, ...obj1];
+    } else {
+      paramObj = obj;
+    }
+    const sendData = {};
+    sendData['userId'] = this.objectOfModal.userId;
+    sendData['paramObj'] = paramObj;
+    this.settingService.sendReasonInfo(sendData)
+      .subscribe((res) => {
+        if (res.success) {
+          this.global.successToastr(res.message);
+        } else {
+          this.global.errorToastr(res.message);
+        }
+      });
     this.activeModal.close(true);
   }
 

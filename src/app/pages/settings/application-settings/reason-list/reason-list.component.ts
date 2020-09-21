@@ -6,21 +6,22 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { GlobalService } from '../../../../shared/services/global.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditCategoryComponent } from '../add-edit-sub-category/add-edit-category.component';
+import { AddEditReasonComponent } from '../add-edit-reason/add-edit-reason.component';
 
 
 @Component({
-  selector: 'app-sub-category',
-  templateUrl: './sub-category.component.html',
-  styleUrls: ['./sub-category.component.scss']
+  selector: 'app-reason-list',
+  templateUrl: './reason-list.component.html',
+  styleUrls: ['./reason-list.component.scss']
 })
-export class SubCategoryComponent implements OnInit {
+export class ReasonListComponent implements OnInit {
   rows = [];
   selected = [];
   loadingIndicator = true;
   limitRow: Number = environment.adminlimitRow;
   count: any;
   selectFlag = false;
-  subCategoryData;
+  reasonData;
   modalRef: any;
   status = [
     { label: 'Inactive', value: '0' },
@@ -35,17 +36,17 @@ export class SubCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.selectFlag = false;
-    this.subCategoryData = this.route.snapshot.data["category"];
-    if (this.subCategoryData?.success) {
-      this.rows = [...this.subCategoryData.result['subReasonCategoryList']]
+    this.reasonData = this.route.snapshot.data["reasons"];
+    if (this.reasonData?.success) {
+      this.rows = [...this.reasonData.result['reasonSubCategoryDetailList']]
     }
   }
 
-  getSubReasonCategory() {
-    this.settingService.getSubReasonCategory(this.route.snapshot.params.id)
+  getReasonListBySubCategory() {
+    this.settingService.getReasonListBySubCategory(this.route.snapshot.params.id)
       .subscribe((res) => {
         if (res.success) {
-          this.rows = [...res.result['subReasonCategoryList']]
+          this.rows = [...res.result['reasonSubCategoryDetailList']]
         } else {
           this.global.errorToastr(res.message);
         }
@@ -53,12 +54,17 @@ export class SubCategoryComponent implements OnInit {
   }
 
 
+  /**
+   * Change Status of reason
+   * @param event 
+   * @param row 
+   */
   changeStatus(event, row) {
     const val = event.target.value;
-    let categoryStatus = {};
-    categoryStatus['status'] = val;
-    categoryStatus['id'] = row.id
-    this.settingService.updateStatusReasonCategory(categoryStatus)
+    let Status = {};
+    Status['status'] = val;
+    Status['id'] = row.id
+    this.settingService.updateStatuSubReasonCategoryDetails(row.id, Status)
       .subscribe((res) => {
         if (res.success) {
           this.global.successToastr(res.message);
@@ -73,33 +79,34 @@ export class SubCategoryComponent implements OnInit {
   // }
 
   addNewReason() {
-    const modalRef = this.modalService.open(AddEditCategoryComponent, { centered: true, windowClass: 'catreason-popup', backdrop: 'static', keyboard: false, backdropClass: 'white' });
-    modalRef.componentInstance.reasonId = this.route.snapshot.params.id;
+    console.log('this.route.snapshot.params.id', this.route.snapshot.params.id);
+    const modalRef = this.modalService.open(AddEditReasonComponent, { centered: true, windowClass: 'catreason-popup', backdrop: 'static', keyboard: false, backdropClass: 'white' });
     modalRef.result.then((result) => {
       if (result) {
         if (this.route.snapshot.params.id) {
-          this.getSubReasonCategory();
+          this.getReasonListBySubCategory();
         } else {
-          this.getAllSubReasonCategory();
+          this.getAllReasonList();
         }
       }
     });
   }
 
   onEdit(v) {
-    const modelRef = this.modalService.open(AddEditCategoryComponent, { centered: true, windowClass: 'catreason-popup', backdrop: 'static', keyboard: false, backdropClass: 'white' });
+    const modelRef = this.modalService.open(AddEditReasonComponent, { centered: true, windowClass: 'catreason-popup', backdrop: 'static', keyboard: false, backdropClass: 'white' });
     const modelData = {};
-    modelData["reason"] = v.reason;
+    modelData["reasonDescription"] = v.reasonDescription;
     modelData["reasonId"] = v.reasonId;
+    modelData["subReasonId"] = v.subReasonId;
     modelData["id"] = v.id;
     modelData["isEdit"] = true;
     modelRef.componentInstance.fromParent = modelData;
     modelRef.result.then((result) => {
       if (result) {
         if (this.route.snapshot.params.id) {
-          this.getSubReasonCategory();
+          this.getReasonListBySubCategory();
         } else {
-          this.getAllSubReasonCategory();
+          this.getAllReasonList();
         }
       }
     })
@@ -108,11 +115,11 @@ export class SubCategoryComponent implements OnInit {
   /**
    * Get All Sub category of reason
    */
-  getAllSubReasonCategory() {
-    this.settingService.getSubReasonCategoryAll()
+  getAllReasonList() {
+    this.settingService.getAllReasonList()
       .subscribe((res) => {
         if (res.success) {
-          this.rows = [...res.result['subReasonCategoryList']]
+          this.rows = [...res.result['reasonSubCategoryDetailList']]
         } else {
           this.global.errorToastr(res.message);
         }

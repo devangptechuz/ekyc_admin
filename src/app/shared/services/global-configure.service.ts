@@ -53,6 +53,14 @@ export class GlobalConfigureService {
   }
 
   /**
+   * delete Company Images/Icon
+   * @param objParams 
+   */
+  deleteCompanyImagesIcon(objParams) {
+    return this.http.post<any>(`${this.configure_api_url}/deleteCompanyConfigurationLogoByName`, objParams);
+  }
+
+  /**
    * Get Email configuration details
    */
   getEmailConfigureData(hideLoader: boolean = false) {
@@ -89,4 +97,7 @@ export class GlobalConfigureService {
     return this.http.get<any>(`${this.configure_api_url}/getEmailTemplateById/${id}`);
   }
 
+  updateStatusEmailTemplate(objParams: any) {
+    return this.http.post<any>(`${this.configure_api_url}/updateStatusEmailTemplate`, objParams);
+  }
 }

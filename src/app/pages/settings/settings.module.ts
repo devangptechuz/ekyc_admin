@@ -18,7 +18,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PanelWrapperComponent } from './panel-wrapper.component';
 import { SubCategoryComponent } from './application-settings/sub-category/sub-category.component';
-import { AddEditCategoryComponent } from './application-settings/add-edit-category/add-edit-category.component';
+import { AddEditCategoryComponent } from './application-settings/add-edit-sub-category/add-edit-category.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SegmentListComponent } from './segment-settings/segment-list/segment-list.component';
 import { AddEditSegmentComponent } from './segment-settings/add-edit-segment/add-edit-segment.component';
@@ -29,9 +29,13 @@ import { AddEditBrokeragePlanComponent } from './brokerage-plan/add-edit-brokera
 import { NavTabComponent } from './nav-bar/nav-tab.component';
 import { BrokerageCodeListComponent } from './brokerage-code/brokerage-code-list/brokerage-code-list.component';
 import { AddEditBrokerageCodeComponent } from './brokerage-code/add-edit-brokerage-code/add-edit-brokerage-code.component';
+import { NavBarReasonCategoryComponent } from './application-settings/nav-bar-reason-category/nav-bar-reason-category.component';
+import { ReasonListComponent } from './application-settings/reason-list/reason-list.component';
+import { AddEditReasonComponent } from './application-settings/add-edit-reason/add-edit-reason.component';
+import { AddEditReasonCategoryComponent } from './application-settings/add-edit-reason-category/add-edit-reason-category.component';
 
 @NgModule({
-  declarations: [ApplicationPreferenceComponent,AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent, BrokeragePlanListComponent, AddEditBrokeragePlanComponent, NavTabComponent, BrokerageCodeListComponent, AddEditBrokerageCodeComponent],
+  declarations: [ApplicationPreferenceComponent, AdminProfileComponent, ApplicationSettingComponent, SubCategoryComponent, AddEditCategoryComponent, CreateFormComponent, PanelWrapperComponent, SegmentListComponent, AddEditSegmentComponent, SubSegmentListComponent, AddEditSubSegmentComponent, BrokeragePlanListComponent, AddEditBrokeragePlanComponent, NavTabComponent, BrokerageCodeListComponent, AddEditBrokerageCodeComponent, NavBarReasonCategoryComponent, ReasonListComponent, AddEditReasonComponent, AddEditReasonCategoryComponent],
   exports: [
     ApplicationPreferenceComponent
   ],

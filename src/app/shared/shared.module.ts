@@ -30,6 +30,7 @@ import { ActivateModelComponent } from './model-popup/activate-model/activate-mo
 import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
 import { ReasonRejectModelComponent } from './model-popup/reason-reject-model/reason-reject-model.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { sendReminderModelComponent } from './model-popup/send-reminder-model/send-reminder-model.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
                 ApprovedModelComponent,
                 RejectModelComponent,
                 ScrollTopComponent,
-                ReasonRejectModelComponent
+                ReasonRejectModelComponent,
+                sendReminderModelComponent
         ],
         imports: [
                 RouterModule,
@@ -84,7 +86,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
                 DeactivateModelComponent,
                 ActivateModelComponent,
                 ScrollTopComponent,
-                ReasonRejectModelComponent
+                ReasonRejectModelComponent,
+                sendReminderModelComponent
         ]
 })
 export class SharedModule { }

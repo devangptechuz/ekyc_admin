@@ -11,43 +11,8 @@ import { CKEditor4 } from 'ckeditor4-angular/ckeditor';
   styleUrls: ['./add-edit-email-template.component.scss']
 })
 export class AddEditEmailTemplateComponent implements OnInit {
-  editorInstance: any;
-  templateForm: FormGroup;
-  Title = 'Add new Email Template';
-  emailPlaceHolders: any;
-  editEmailTemplate: any;
-
-
-  ckEditorWithToolbar = {
-    toolbar: {
-      items: [
-        'heading',
-        '|',
-        'bold',
-        'italic',
-        'link',
-        'bulletedList',
-        'numberedList',
-        '|',
-        'indent',
-        'outdent',
-        '|',
-        'imageUpload',
-        'blockQuote',
-        'insertTable',
-        'undo',
-        'redo',
-        'FontSize',
-        'Highlight',
-        'Alignment'
-      ]
-    }
-  };
-  public config = {
-    language: 'en'
-  };
-  public editorValue: string = '';
   ckEditorWithImageConfig = {
+    'height': 550,
     'toolbarGroups': [
       { 'name': 'basicstyles', 'groups': ['basicstyles'] },
       { 'name': 'links', 'groups': ['links'] },
@@ -64,12 +29,15 @@ export class AddEditEmailTemplateComponent implements OnInit {
     // 'fullPage': true,
     'enterMode': 'CKEDITOR.ENTER_DIV'
   };
+  editorInstance: any;
+  templateForm: FormGroup;
+  Title = 'Add new Email Template';
+  emailPlaceHolders: any;
+  editEmailTemplate: any;
+  public editorValue: string = '';
 
 
-  actionList = [{ value: 'login', label: 'Login' }, { value: 'register', label: 'Register' },
-  { value: 'emailVerify', label: 'Email Verify' }, { value: 'forgotPassword', label: 'Forgot Password' }
-    , { value: 'insertSubAdmin', label: 'Insert Sub Admin' }, { value: 'sendReasonInfo', label: 'Send Reason Info' },
-  { value: 'other', label: 'Other' }];
+  actionList = [];
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -79,7 +47,6 @@ export class AddEditEmailTemplateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.editEmailTemplate = this.route.snapshot.data["getTemplate"];
     this.getAllEmailPlaceholders();
     this.setFormValidation();
@@ -93,6 +60,9 @@ export class AddEditEmailTemplateComponent implements OnInit {
     this.globalConfigureService.emailConfiguration().subscribe((res: any) => {
       if (res.success) {
         this.emailPlaceHolders = res.result;
+        if (res?.result?.emailAction) {
+          this.actionList = res.result.emailAction
+        }
       }
     })
   }
@@ -127,6 +97,8 @@ export class AddEditEmailTemplateComponent implements OnInit {
         if (res.success) {
           this.global.successToastr(res.message);
           this.router.navigate(['common-configure/list-email-template']);
+        } else {
+          this.global.errorToastr(res.message);
         }
       });
     } else {
@@ -134,6 +106,8 @@ export class AddEditEmailTemplateComponent implements OnInit {
         if (res.success) {
           this.global.successToastr(res.message);
           this.router.navigate(['common-configure/list-email-template']);
+        } else {
+          this.global.errorToastr(res.message);
         }
       });
     }
