@@ -236,7 +236,7 @@ export class UsersDetailComponent implements OnInit {
       this.eSignState = this.adminApproval;
       this.adminApproval = 'Approved';
     }
-    console.log('test', this.eSignState);
+    // console.log('test', this.eSignState);
   }
   manageUserData(result: any = '') {
     this.userData = result;
@@ -1032,6 +1032,7 @@ export class UsersDetailComponent implements OnInit {
               this.manageApplicationStatus('Approved');
               if (res.message) {
                 this.global.successToastr(res.message);
+                this.getUserDetails(true);
               } else {
                 this.global.successToastr('Approved Successfully');
               }
@@ -1067,6 +1068,7 @@ export class UsersDetailComponent implements OnInit {
               this.manageApplicationStatus('Reject');
               if (res.message) {
                 this.global.successToastr(res.message);
+                this.getUserDetails(true);
               } else {
                 this.global.successToastr('Reject Successfully');
               }
@@ -1119,6 +1121,7 @@ export class UsersDetailComponent implements OnInit {
       if (data) {
         if (typeOfRequest === 'reject_reason') {
           this.manageApplicationStatus('Reject');
+          this.getUserDetails(true);
         }
       }
 

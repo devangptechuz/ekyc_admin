@@ -38,27 +38,27 @@ const routes: Routes = [
           title: 'account-settings',
         },
       },
-      {
-        path: 'segments-settings',
-        component: SegmentListComponent,
-        data: {
-          title: 'segments-settings',
-        },
-      },
-      {
-        path: 'brokerage-plans',
-        component: BrokeragePlanListComponent,
-        data: {
-          title: 'Segment Plan List',
-        },
-      },
-      {
-        path: 'brokerage-codes',
-        component: BrokerageCodeListComponent,
-        data: {
-          title: 'Brokerage Codes List',
-        },
-      }
+      // {
+      //   path: 'segments-settings',
+      //   component: SegmentListComponent,
+      //   data: {
+      //     title: 'segments-settings',
+      //   },
+      // },
+      // {
+      //   path: 'brokerage-plans',
+      //   component: BrokeragePlanListComponent,
+      //   data: {
+      //     title: 'Segment Plan List',
+      //   },
+      // },
+      // {
+      //   path: 'brokerage-codes',
+      //   component: BrokerageCodeListComponent,
+      //   data: {
+      //     title: 'Brokerage Codes List',
+      //   },
+      // }
     ]
   },
   {

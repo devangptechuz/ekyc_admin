@@ -156,6 +156,10 @@ export class SettingService {
         return this.http.get<any>(`${this.apiUrl_segment}/getSegmentSubCategory/${id}`);
     }
 
+    getAllSegmentSubCategory() {
+        return this.http.get<any>(`${this.reason_api_url}/getAllSubSegmentCategory`);
+    }
+
     addSegmentSubCategory(data): Observable<any> {
         return this.http.post<any>(`${this.apiUrl_setting}/addSegmentSubCategory`, data);
     }

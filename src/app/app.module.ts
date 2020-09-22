@@ -27,10 +27,11 @@ import { AddEditAdmin } from './pages/admin/shared/add-edit.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserCookiesModule } from '@ngx-utils/cookies/browser';
 import { CategoryResolver } from './pages/settings/shared/category.resolver';
-import { SegmentResolver } from './pages/settings/shared/segment.resolver';
+// import { SegmentResolver } from './pages/settings/shared/segment.resolver';
 import { AddEditEmailTemplate } from './pages/common-configure/email-template/shared/add-edit.resolver';
 import { ReasonResolver } from './pages/settings/shared/reason.resolver';
 import { EditEmailModelComponent } from './shared/model-popup/edit-email-model/edit-email-model.component';
+import { SegmentResolver } from './pages/segment/shared/segment.resolver';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,

@@ -1,0 +1,60 @@
+<div class="modal-header blueclr common-header mb-4">
+    <div class="popup-header">
+        <h2 class="mb-0">{{headerTitle}}</h2>
+    </div>
+</div>
+<div class="modal-boy">
+    <div>
+        <form [formGroup]="segmentPlanForm"  novalidate>
+            <div class="row align-items-top">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Segments Type</label>
+                        <ng-select appearance="outline" [searchable]="false"
+                                   formControlName="category_id" placeholder="Select Segment Type" (change)="selectSegmentType($event)">
+                            <ng-option [value]="item.id" *ngFor="let item of segmentsType">{{item.name}}</ng-option>
+                        </ng-select>
+                        <app-control-messages fieldName="Segment Type"
+                                              [control]="segmentPlanForm.controls['category_id']">
+                        </app-control-messages>
+                    </div>
+                    <div class="form-group">
+                        <label>Sub-Segments Type</label>
+                        <ng-select appearance="outline" [searchable]="false"
+                                   formControlName="sub_category_id" placeholder="Select Sub-Segment Type">
+                            <ng-option [value]="item.id" *ngFor="let item of subSegmentsType">{{item.name}}</ng-option>
+                        </ng-select>
+                        <app-control-messages fieldName="Sub-Segments Type"
+                                              [control]="segmentPlanForm.controls['sub_category_id']">
+                        </app-control-messages>
+                    </div>
+                    <div class="form-group">
+                        <label>Brokerage Plan</label>
+                        <input type="text" placeholder="Brokerage Plan"
+                                  formControlName="plan_name" class="form-control">
+                        <app-control-messages fieldName="Brokerage Plan"
+                                              [control]="segmentPlanForm.controls['plan_name']">
+                        </app-control-messages>
+                    </div>
+                    <div class="form-group">
+                        <label>Brokerage Description <span *ngIf="segmentCodeLabel">(Brokerage code -{{segmentCodeLabel}})</span></label>
+                        <ng-select appearance="outline" placeholder="Select Brokerage Description" [searchable]="false"
+                                   formControlName="segmentCode" (change)="selectBrokerageCode($event)">
+                            <ng-option [value]="item.segmentCode" *ngFor="let item of segmentCode">{{item.segmentCodeDescription}}</ng-option>
+                        </ng-select>
+                        <app-control-messages fieldName="Brokerage Description"
+                                              [control]="segmentPlanForm.controls['segmentCode']">
+                        </app-control-messages>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+    <button class="btn modal-btn-continue" (click)="decline()">
+        Cancel
+    </button>
+    <button class="btn modal-continue" (click)="accept()">Submit</button>
+</div>
