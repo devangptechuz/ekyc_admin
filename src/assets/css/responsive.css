@@ -44,7 +44,7 @@
     /*nav*/
     .navbar .navbar-collapse {padding: 60px 24px 0;visibility: hidden;opacity: 0;transition: all 0.3s ease-in-out;justify-content: center;position: absolute;left: -276px; width: 276px; height: 100% !important;top: 0;z-index: 99;background: #fff;box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.24);}
 	.navbar .navbar-collapse.show{opacity: 1;visibility: visible;left: 0;}
-	.navbar .navbar-nav{display: flex;}   
+	.navbar .navbar-nav{display: flex;margin-right: 0;}   
 	header .navbar{position: static;} 
 	header .navbar-collapse .navbar-toggler {position: absolute;right: 10px;top: 10px;font-size: 42px;}
 	.navbar .navbar-brand{padding: 0;margin-top: -8px;}
@@ -63,6 +63,11 @@
     .admin-profile .hdr {padding-bottom: 5px;margin-bottom: 14px;}
     p{font-size: 14px;}
     .multiselect-list .custom-checkbox label, .multiselect-list .custom-radio label{padding: 10px;font-size: 14px;}
+    .navbar .navbar-nav .dropdown-menu{position: relative;animation: none;padding: 0;box-shadow: none;border-top: 1px solid #eee;border-radius: 0;margin-top: 0;transition: 0.3s ease-in;-webkit-transition: 0.3s ease-in;-moz-transition: 0.3s ease-in;}
+    .dropdown-submenu .nav-link:before {right: 0;}
+    header .navbar-nav .dropdown-item{padding-left: 0;}
+    .navbar .navbar-nav .nav-link,header .dropdown-toggle{font-size: 14px;}
+    header .navbar .dropdown-menu-right {right: -15px !important;}
 }
 @media (max-width: 767px){
 	.custom-datatable .card-header h4{font-size: 16px;}
@@ -100,7 +105,7 @@
 	
 	/* dashboard*/
 	.total-detail [class^="col-"]{flex: 0 0 100%;max-width: 100%}
-	.total-detail .media-body span{font-size: 16px;}
+	.total-detail .media-body span{font-size: 14px;}
 	.ngx-datatable.bootstrap .datatable-footer{overflow: visible;}
 	body .ngx-datatable .datatable-footer .datatable-footer-inner{margin: 0;align-items: flex-start;flex-wrap: wrap;height: 100% !important;}
 	.ngx-datatable.bootstrap .datatable-footer .datatable-pager {flex: 1 1 100%;text-align: left;}

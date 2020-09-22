@@ -35,52 +35,69 @@
          <div class="row user-btmbx">
             <div class="col-md-6">
 
-               <div class="row cmn-layout">
+               <div class="row cmn-layout cmnicon-layout">
                   <div class="col-md-6 d-flex flex-column mb-3">
-                     <div [ngClass]="{'green-icon': isApproved }" class="mb-3">
-                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
-                        <label>Approved</label>
-                        <span class="cmn-txt d-block"
+                     <div [ngClass]="{'green-icon': isApproved }" class="esignicon">
+                        <span class="icon-check-circle"></span>
+                        <div>
+                           <label>Approved</label>
+                           <span class="cmn-txt d-block"
                            *ngIf="isApproved">{{isApproved.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>                        
                      </div>
 
-                     <div [ngClass]="{'green-icon': isFormInitiated }" class="mb-3">
-                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
-                        <label>Form Initiated</label>
-                        <span class="cmn-txt d-block"
-                           *ngIf="isFormInitiated">{{isFormInitiated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                     <div [ngClass]="{'green-icon': isFormInitiated }" class="esignicon">
+                       <span class="icon-file-i"></span>
+                       <div>
+                           <label>Form Initiated</label>
+                           <span class="cmn-txt d-block"
+                              *ngIf="isFormInitiated">{{isFormInitiated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                       </div>
+                        
                      </div>
 
-                     <div [ngClass]="{'green-icon': isFormCreated }" class="mb-3">
-                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
-                        <label>Form Generated</label>
-                        <span class="cmn-txt d-block"
+                     <div [ngClass]="{'green-icon': isFormCreated }" class="esignicon">
+                        <span class="icon-form"></span>
+                        <div>
+                           <label>Form Generated</label>
+                           <span class="cmn-txt d-block"
                            *ngIf="isFormCreated">{{isFormCreated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>
+                        
                      </div>
 
 
                   </div>
 
                   <div class="col-md-6 d-flex flex-column mb-3">
-                     <div [ngClass]="{'green-icon': isSendToUser }" class="mb-3">
-                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
-                        <label>Send To User</label>
-                        <span class="cmn-txt mb-3 d-block"
-                           *ngIf="isSendToUser">{{isSendToUser.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                     <div [ngClass]="{'green-icon': isSendToUser }" class="esignicon">
+                        <span class="icon-user-check"></span>
+                        <div>
+                           <label>Send To User</label>
+                           <span class="cmn-txt mb-3 d-block"
+                              *ngIf="isSendToUser">{{isSendToUser.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>
+                       
                      </div>
 
-                     <div [ngClass]="{'green-icon': isEsignedByUser }" class="mb-3">
-                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
-                        <label>eSigned By User</label>
-                        <span class="cmn-txt mb-3 d-block"
-                           *ngIf="isEsignedByUser">{{isEsignedByUser.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                     <div [ngClass]="{'green-icon': isEsignedByUser }" class="esignicon">
+                      <span class="icon-user-check1"></span>
+                        <div>
+                           <label>eSigned By User</label>                      
+                           <span class="cmn-txt mb-3 d-block"
+                              *ngIf="isEsignedByUser">{{isEsignedByUser.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>
+                       
                      </div>
 
-                     <div [ngClass]="{'green-icon': isEsignCompleted }" class="mb-3">
-                        <span><img src="../../../../assets/img/group-user.svg" alt=""></span>
-                        <label>Completed</label>
-                        <span class="cmn-txt mb-3 d-block"
-                           *ngIf="isEsignCompleted">{{isEsignCompleted.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                     <div [ngClass]="{'green-icon': isEsignCompleted }" class="esignicon">
+                        <span class="icon-thumbs-up"></span>
+                        <div>
+                           <label>Completed</label>
+                           <span class="cmn-txt mb-3 d-block"
+                              *ngIf="isEsignCompleted">{{isEsignCompleted.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>
+                        
                      </div>
                   </div>
 
@@ -113,6 +130,11 @@
                      <button class="btn btn-custom font-sml" (click)="confirmAndComplete()">CONFIRM & COMPLETE</button>
                   </div>
 
+               </div>
+               <div class="btm-sec">
+                  <p class="mb-0">Form has been successfully signed by the user. It is recommended to verify the signed form before confirming the application. In case of errors you can choose to <a href="javascript:void(0)">Re-initiate form creation</a></p>
+                  <button class="btn btn-custom btn-border font-sml">RE-SEND TO USER</button>
+                  <button class="btn btn-custom font-sml">CONFIRM & COMPLETE</button>
                </div>
             </div>
             <div class="col-md-6" *ngIf="adminApproval === 'Approved'">
