@@ -26,7 +26,7 @@
       </div>
 
       <!-- User box - Form & eSign Details -->
-      <div class="user-box" *ngIf="userData?.basic_info?.application_esign_status?.length">
+      <div class="user-box esign-box" *ngIf="userData?.basic_info?.application_esign_status?.length">
          <div class="user-bxhdr d-flex justify-content-between">
             <div class="lft">
                <h2>Form & eSign Details</h2>
@@ -35,8 +35,8 @@
          <div class="row user-btmbx">
             <div class="col-md-6">
 
-               <div class="row cmn-layout cmnicon-layout">
-                  <div class="col-md-6 d-flex flex-column mb-3">
+                <div class="row cmn-layout cmnicon-layout">
+                  <div class="col-md-6 d-flex flex-column">
                      <div [ngClass]="{'green-icon': isApproved }" class="esignicon">
                         <span class="icon-check-circle"></span>
                         <div>
@@ -69,7 +69,7 @@
 
                   </div>
 
-                  <div class="col-md-6 d-flex flex-column mb-3">
+                  <div class="col-md-6 d-flex flex-column">
                      <div [ngClass]="{'green-icon': isSendToUser }" class="esignicon">
                         <span class="icon-user-check"></span>
                         <div>
@@ -104,7 +104,7 @@
 
                </div>
                <div *ngIf="eSignState === 'FormCreated'" class="pt-2 btm-sec">
-                  <p>Form has been generated and is available for user to eSign. It is recommended to review the form
+                  <p class="mb-0">Form has been generated and is available for user to eSign. It is recommended to review the form
                      generated before sending it to the user for eSign.
                   </p>
                   <button class="btn btn-custom font-sml mr-2" (click)="initiateForm()">RE-INITIATE FORM
@@ -113,7 +113,7 @@
                </div>
 
                <div *ngIf="eSignState === 'EmailSendForESign'" class="pt-2 btm-sec">
-                  <p>
+                  <p class="mb-0">
                      Form has been generated and sent to the user for eSign. You can resend it to the user or in case
                      of errors you can choose to
                      <a href="javascript:void(0);" (click)="initiateForm()">Re-initiate form creation</a>
@@ -122,13 +122,13 @@
                </div>
 
                <div *ngIf="eSignState === 'ESignByUser'" class="pt-2 btm-sec">
-                  <p>
+                  <p class="mb-0">
                      Form has been successfully signed by the user. It is recommended to verify the signed form
                      before confirming the application. In case of errors you can choose to
                      <a href="javascript:void(0);" (click)="initiateForm()">Re-initiate form creation</a>
                   </p>
                   <button class="btn btn-custom font-sml" (click)="sendToUser()">RE-SEND TO USER</button>
-                  <button class="btn btn-custom font-sml" (click)="confirmAndComplete()">CONFIRM & COMPLETE</button>
+                  <button class="btn btn-custom font-sml ml-2" (click)="confirmAndComplete()">CONFIRM & COMPLETE</button>
                </div>
             </div>
 
@@ -140,7 +140,7 @@
                   few days to complete</p>
                <button class="btn btn-custom font-sml" (click)="initiateForm()">INITIATE FORM CREATION</button>
             </div>
-            <div class="col-md-6" *ngIf="eSignState === 'FormInitiated'">
+            <div class="col-md-6 text-center d-flex justify-content-center flex-column align-items-center esigntext" *ngIf="eSignState === 'FormInitiated'">
                <span class="cmn-txt mb-3 d-block">Form Initiated on
                   {{isFormInitiated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
                <p class="mb-1">Once an application is approved and form creation is initiated it may take few days to
