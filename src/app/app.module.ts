@@ -30,6 +30,7 @@ import { CategoryResolver } from './pages/settings/shared/category.resolver';
 import { SegmentResolver } from './pages/settings/shared/segment.resolver';
 import { AddEditEmailTemplate } from './pages/common-configure/email-template/shared/add-edit.resolver';
 import { ReasonResolver } from './pages/settings/shared/reason.resolver';
+import { EditEmailModelComponent } from './shared/model-popup/edit-email-model/edit-email-model.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -59,6 +60,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         },
         AddEditAdmin,
         AddEditEmailTemplate,
+        EditEmailModelComponent,
         CategoryResolver,
         ReasonResolver,
         SegmentResolver,

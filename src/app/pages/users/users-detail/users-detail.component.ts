@@ -1174,7 +1174,9 @@ export class UsersDetailComponent implements OnInit {
       }
     })
   }
+
   /**********************Form & eSign Details: END ****************/
+
   /**
    * Get user details
    */
@@ -1189,5 +1191,28 @@ export class UsersDetailComponent implements OnInit {
         this.manageUserData(res.body.result);
       }
     });
+  }
+
+  /**
+   * Edit Email of user
+   */
+  editEmailOfApplication(email: any = '') {
+    if (!this.userData?.basic_info?.isEmailVerified) {
+      let popupParam = {};
+      popupParam['name'] = 'Email Update';
+      popupParam['type'] = 'email_update';
+      popupParam['label'] = 'Edit Email';
+      popupParam['title'] = 'Update Email Address';
+      popupParam['button_name'] = 'Update Email';
+      popupParam['email'] = this.userData?.basic_info?.email;
+      popupParam['userId'] = this.userId;
+      this.confirmationDialogService.editEmail(popupParam).then((data) => {
+        if (data) {
+          console.log('data', data);
+        }
+      }).catch(error => console.log(error));
+    } else {
+      this.global.errorToastr('Your email address is already verified.')
+    }
   }
 }

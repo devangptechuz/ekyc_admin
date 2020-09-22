@@ -183,7 +183,7 @@
          <div class="row user-btmbx">
             <div class="col-md-6">
                <div class="d-flex justify-content-between">
-                  <a href="mailto:userData?.basic_info?.email">{{userData?.basic_info?.email}}
+                  <a href="javascript:void(0)" (click)="editEmailOfApplication()">{{userData?.basic_info?.email}}
                      <span *ngIf="!userData?.basic_info?.isEmailVerified" class="yellow-status status-box ml-2">not
                         verified</span>
                      <span *ngIf="userData?.basic_info?.isEmailVerified"

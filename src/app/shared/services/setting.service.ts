@@ -44,6 +44,14 @@ export class SettingService {
         return this.http.post<any>(`${this.apiUrl_setting}/sendReminder`, objParam);
     }
 
+    /**
+     * Edit Update
+     * @param objParam 
+     */
+    updateEmail(objParam: any): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl_setting}/updateEmail`, objParam);
+    }
+
     getSubReasonCategory(id) {
         return this.http.get<any>(`${this.apiUrl_setting}/subReasonCategory/${id}`);
     }
