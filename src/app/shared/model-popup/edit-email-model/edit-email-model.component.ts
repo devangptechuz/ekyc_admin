@@ -24,7 +24,6 @@ export class EditEmailModelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('this.objectOfModal', this.objectOfModal['email']);
     this.emailForm = this.fb.group({
       email: [this.objectOfModal['email'], [Validators.required]],
     });

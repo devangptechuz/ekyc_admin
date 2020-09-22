@@ -225,16 +225,18 @@ export class UsersDetailComponent implements OnInit {
   editForm1() {
     this.form.enable();
   }
-
+  eSignState: string;
   manageApplicationStatus(adminApproval: string = '') {
     this.adminApproval = adminApproval;
     this.adminApprovalText = adminApproval;
-    // console.log('test', this.adminApprovalText);
     if (this.adminApproval === 'Reject') {
       this.adminApprovalText = 'rejected';
-    } else if (this.adminApproval === 'Approved') {
+    } else if (this.adminApproval === 'Approved' || this.adminApproval === 'EmailSendForESign' || this.adminApproval === 'FormInitiated') {
       this.adminApprovalText = 'approved';
+      this.eSignState = this.adminApproval;
+      this.adminApproval = 'Approved';
     }
+    console.log('test', this.eSignState);
   }
   manageUserData(result: any = '') {
     this.userData = result;
