@@ -15,8 +15,4 @@ export class NavTabComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  navigateToSegments() {
-    this.router.navigateByUrl('segments');
-
-  }
 }
