@@ -44,9 +44,9 @@ export class EditEmailModelComponent implements OnInit {
     }
     let obj = {};
     obj['email'] = this.emailForm.value.email;
-    obj['userId'] = this.objectOfModal['userId'];
-    console.log('obj', obj);
-    this.settingService.updateEmail(obj)
+    // obj['userId'] = this.objectOfModal['userId'];
+    // console.log('obj', obj);
+    this.settingService.updateEmail(obj, this.objectOfModal['userId'])
       .subscribe((res) => {
         if (res.success) {
           this.global.successToastr(res.message);

@@ -12,13 +12,16 @@
                   <span class="icon-more-vertical"></span>
                </button>
                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="approveConfirm()">
+                  <a [ngClass]="{'disable': isApproved}" class="dropdown-item" href="javascript:void(0)"
+                     (click)="approveConfirm()">
                      <span class="icon-simple-check"></span> approve</a>
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="requestConfirm('Document Request')">
+                  <a [ngClass]="{'disable': isApproved}" class="dropdown-item" href="javascript:void(0)"
+                     (click)="requestConfirm('Document Request')">
                      <span class="icon-minus-file"></span> request documents</a>
                   <a class="dropdown-item disable" href="javascript:void(0)">
                      <span class="icon-alert-octagon"></span>report application</a>
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="requestConfirm('reject_reason')">
+                  <a [ngClass]="{'disable': isApproved}" class="dropdown-item" href="javascript:void(0)"
+                     (click)="requestConfirm('reject_reason')">
                      <span class="icon-notallow"></span>reject</a>
                </div>
             </div>
@@ -180,11 +183,11 @@
                      {{adminApprovalText || 'Respond'}} <i class="fa fa-angle-down"></i>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
-                     <a class="dropdown-item" href="javascript:void(0)" (click)="approveConfirm()"><span
-                           class="icon-simple-check" style="font-size: 12px;"></span>
+                     <a [ngClass]="{'disable': isApproved}" class="dropdown-item" href="javascript:void(0)"
+                        (click)="approveConfirm()"><span class="icon-simple-check" style="font-size: 12px;"></span>
                         approve</a>
-                     <a class="dropdown-item" href="javascript:void(0)" (click)="requestConfirm('reject_reason')"><span
-                           class="icon-notallow"></span>reject
+                     <a [ngClass]="{'disable': isApproved}" class="dropdown-item" href="javascript:void(0)"
+                        (click)="requestConfirm('reject_reason')"><span class="icon-notallow"></span>reject
                      </a>
                      <!-- <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report
                         application</a> -->
@@ -219,7 +222,8 @@
             <div class="col-md-6">
                <div class="d-flex justify-content-between rgt-hdr">
                   <h4 class="mb-0">Documents Uploaded</h4>
-                  <a href="javascript:void(0)" (click)="openPopupModal()"><span class="icon-upload"></span> Upload
+                  <a *ngIf="!isApproved" href="javascript:void(0)" (click)="openPopupModal()"><span
+                        class="icon-upload"></span> Upload
                      document</a>
                </div>
                <ul class="docupld-link">
@@ -332,7 +336,8 @@
                      <!-------------- KRA VERIFY DATA: END -------------->
                   </div>
                </div>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('Others')">request
+               <button [ngClass]="{'disabled': isApproved}" class="btn btn-custom font-sml"
+                  (click)="requestConfirm('data_review')">request
                   review</button>
             </div>
             <div class="col-md-6">
@@ -348,7 +353,7 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item"
+                        <a [ngClass]="{'disable': isApproved}" class="dropdown-item"
                            (click)="openDocumentPopupModal(aadhaarKYCDocuments?.document_name, aadhaarKYCDocuments?.document_modal_title, aadhaarKYCDocuments?.document_status, aadhaarKYCDocuments)">Upload
                            document</a>
                         <a class="dropdown-item" *ngIf="userData?.aadhar_details?.aadhar_documents?.length"
@@ -411,7 +416,8 @@
                         name</label>{{userData?.personal_details?.mother_name}}
                   </div>
                </div>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('PAN Details')">request
+               <button [ngClass]="{'disabled': isApproved}" class="btn btn-custom font-sml"
+                  (click)="requestConfirm('PAN Details')">request
                   reveiw</button>
             </div>
             <div class="col-md-6">
@@ -424,7 +430,7 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item"
+                        <a [ngClass]="{'disable': isApproved}" class="dropdown-item"
                            (click)="openDocumentPopupModal(panDocumentKYCDocuments?.document_name, panDocumentKYCDocuments?.document_modal_title, panDocumentKYCDocuments?.document_status, panDocumentKYCDocuments)">Upload
                            document</a>
                         <a class="dropdown-item" *ngIf="userData?.pan_details?.pan_documents?.length"
@@ -528,11 +534,12 @@
                      </p>
                   </div>
                </div>
-               <button class="btn btn-custom btn-border font-sml"
+               <button [disabled]="isApproved" class="btn btn-custom btn-border font-sml"
                   [routerLink]="['/applications/edit-personal-address',userId]"
                   routerLinkActive="router-link-active">edit
                   details</button>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('Personal & Address Details')">request
+               <button [ngClass]="{'disabled': isApproved}" class="btn btn-custom font-sml"
+                  (click)="requestConfirm('Personal & Address Details')">request
                   reveiw</button>
             </div>
             <div class="col-md-6">
@@ -545,17 +552,17 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item"
+                        <a [ngClass]="{'disable': isApproved}" class="dropdown-item"
                            (click)="openDocumentPopupModal(addressProofKYCDocuments?.document_name, addressProofKYCDocuments?.document_modal_title, addressProofKYCDocuments?.document_status, addressProofKYCDocuments)">Upload
                            document</a>
-                        <a class="dropdown-item" *ngIf="userData?.personal_details?.address_url?.length"
+                        <a class="dropdown-item" *ngIf="userData?.personal_details?.permanent_address_url?.length"
                            (click)="openImageDisplayModal(addressProofKYCDocuments?.document_name, addressProofKYCDocuments?.document_modal_title, addressProofKYCDocuments?.document_status, addressProofKYCDocuments)">Zoom
                            In Zoom Out</a>
                      </div>
 
                   </div>
-                  <ngb-carousel *ngIf="userData?.personal_details?.address_url?.length">
-                     <ng-template ngbSlide *ngFor="let imageItem of userData?.personal_details?.address_url">
+                  <ngb-carousel *ngIf="userData?.personal_details?.permanent_address_url?.length">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.personal_details?.permanent_address_url">
                         <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
                            [href]="imageItem?.url | safeUrl">Click here </a>
                         <div class="picsum-img-wrapper fancybox" *ngIf="imageItem?.content_type === 'application/pdf'">
@@ -569,7 +576,43 @@
                      </ng-template>
                   </ngb-carousel>
                </div>
-               <label class="doc-type">Address Proof</label>
+               <label class="doc-type">Permanent Address Proof</label>
+
+               <div class="doc-upbox mt-4">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right">
+                        <a [ngClass]="{'disable': isApproved}" class="dropdown-item"
+                           (click)="openDocumentPopupModal(correspondenceAddressProofKYCDocuments?.document_name, correspondenceAddressProofKYCDocuments?.document_modal_title, correspondenceAddressProofKYCDocuments?.document_status, correspondenceAddressProofKYCDocuments)">Upload
+                           document</a>
+                        <a class="dropdown-item" *ngIf="userData?.personal_details?.correspondence_address_url?.length"
+                           (click)="openImageDisplayModal(correspondenceAddressProofKYCDocuments?.document_name, correspondenceAddressProofKYCDocuments?.document_modal_title, correspondenceAddressProofKYCDocuments?.document_status, correspondenceAddressProofKYCDocuments)">Zoom
+                           In Zoom Out</a>
+                     </div>
+
+                  </div>
+
+                  <!-- /************* Correspondence Address : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.personal_details?.correspondence_address_url?.length">
+                     <ng-template ngbSlide
+                        *ngFor="let imageItem of userData?.personal_details?.correspondence_address_url">
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           [href]="imageItem?.url | safeUrl">Click here </a>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="bankStatement" [href]="imageItem?.url">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
+               </div>
+               <label class="doc-type">Correspondence Address</label>
+
             </div>
          </div>
       </div>
@@ -608,7 +651,7 @@
                         </div>
                      </ng-container>
                   </div>
-                  <button class="btn btn-custom btn-border font-sml"
+                  <button [disabled]="isApproved" class="btn btn-custom btn-border font-sml"
                      [routerLink]="['/applications/segment-details',userId]" routerLinkActive="router-link-active">edit
                      details
                   </button>
@@ -690,7 +733,7 @@
                   </div>
                </div>
 
-               <button type="button" class="btn btn-custom btn-border font-sml"
+               <button [disabled]="isApproved" type="button" class="btn btn-custom btn-border font-sml"
                   [routerLink]="['/applications/trading-details',userId]" routerLinkActive="router-link-active">
                   edit details</button>
             </div>
@@ -747,10 +790,11 @@
                      </div>
                   </div>
 
-                  <button class="btn btn-custom btn-border font-sml"
+                  <button [disabled]="isApproved" class="btn btn-custom btn-border font-sml"
                      [routerLink]="['/applications/nominee-details',userId]" routerLinkActive="router-link-active">edit
                      details</button>
-                  <button class="btn btn-custom font-sml" (click)="requestConfirm('Nominee Details')">request
+                  <button [ngClass]="{'disable': isApproved}" class="btn btn-custom font-sml"
+                     (click)="requestConfirm('Nominee Details')">request
                      reveiw</button>
                </div>
                <div class="col-md-6">
@@ -764,7 +808,7 @@
                            <span class="icon-more-vertical"></span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                           <a class="dropdown-item"
+                           <a [ngClass]="{'disable': isApproved}" class="dropdown-item"
                               (click)="openDocumentPopupModal(item?.nominee_identity_documents_status?.document_name, item?.nominee_identity_documents_status?.document_modal_title, item?.nominee_identity_documents_status?.document_status, item?.nominee_identity_documents_status)">Upload
                               document</a>
                            <a class="dropdown-item" *ngIf="item?.nominee_identity_document"
@@ -801,7 +845,7 @@
                            <span class="icon-more-vertical"></span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                           <a class="dropdown-item"
+                           <a [ngClass]="{'disable': isApproved}" class="dropdown-item"
                               (click)="openDocumentPopupModal(item?.nominee_address_documents_status?.document_name, item?.nominee_address_documents_status?.document_modal_title, item?.nominee_address_documents_status?.document_status, item?.nominee_address_documents_status)">Upload
                               document</a>
                            <a class="dropdown-item" *ngIf="userData?.bank_details?.bank_statement_url?.length"
@@ -834,8 +878,8 @@
          </ng-container>
          <ng-template #elseBlockNominee>
             <h3 class="no-data-found mt-5">No Data Found</h3>
-            <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/nominee-details',userId]"
-               routerLinkActive="router-link-active">edit
+            <button [disabled]="isApproved" class="btn btn-custom btn-border font-sml"
+               [routerLink]="['/applications/nominee-details',userId]" routerLinkActive="router-link-active">edit
                details</button>
          </ng-template>
       </div>
@@ -867,10 +911,11 @@
                      {{userData?.bank_details?.branch_address?.address}}
                   </div>
                </div>
-               <button class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/bank-details',userId]"
-                  routerLinkActive="router-link-active">edit
+               <button [disabled]="isApproved" class="btn btn-custom btn-border font-sml"
+                  [routerLink]="['/applications/bank-details',userId]" routerLinkActive="router-link-active">edit
                   details</button>
-               <button class="btn btn-custom font-sml" (click)="requestConfirm('Bank Details')">request
+               <button [disabled]="isApproved" class="btn btn-custom font-sml"
+                  (click)="requestConfirm('Bank Details')">request
                   reveiw</button>
             </div>
             <div class="col-md-6">
@@ -887,7 +932,7 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item"
+                        <a [ngClass]="{'disable': isApproved}" class="dropdown-item"
                            (click)="openDocumentPopupModal(cancelledChequeKYCDocuments?.document_name, cancelledChequeKYCDocuments?.document_modal_title, cancelledChequeKYCDocuments?.document_status, cancelledChequeKYCDocuments)">Upload
                            document</a>
                         <a class="dropdown-item" *ngIf="userData?.bank_details?.cancelled_cheque_url?.length"
@@ -927,7 +972,7 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item"
+                        <a [ngClass]="{'disable': isApproved}" class="dropdown-item"
                            (click)="openDocumentPopupModal(bankStatementKYCDocuments?.document_name, bankStatementKYCDocuments?.document_modal_title, bankStatementKYCDocuments?.document_status, bankStatementKYCDocuments)">Upload
                            document</a>
                         <a class="dropdown-item" *ngIf="userData?.bank_details?.bank_statement_url?.length"
@@ -975,7 +1020,7 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0)"
+                        <a [ngClass]="{'disable': isApproved}" class="dropdown-item" href="javascript:void(0)"
                            (click)="openSinaturePopupModal(signatureKYCDocuments?.document_name, signatureKYCDocuments?.document_modal_title, signatureKYCDocuments?.document_status, signatureKYCDocuments)">Upload
                            document</a>
                         <a class="dropdown-item" *ngIf="userData?.sign_and_identity?.sign_url?.length"
@@ -1011,7 +1056,7 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item"
+                        <a [ngClass]="{'disable': isApproved}" class="dropdown-item"
                            (click)="openDocumentPopupModal(photographKYCDocuments?.document_name, photographKYCDocuments?.document_modal_title, photographKYCDocuments?.document_status, photographKYCDocuments)">Upload
                            document</a>
                         <a class="dropdown-item" *ngIf="userData?.sign_and_identity?.photograph_url?.length"
@@ -1047,7 +1092,7 @@
                         <span class="icon-more-vertical"></span>
                      </button>
                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0)"
+                        <a [ngClass]="{'disable': isApproved}" class="dropdown-item" href="javascript:void(0)"
                            (click)="openIPVPopupModal(ipvKYCDocuments?.document_name, ipvKYCDocuments?.document_modal_title, ipvKYCDocuments?.document_status, ipvKYCDocuments)">
                            Upload document</a>
                      </div>

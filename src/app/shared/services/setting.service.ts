@@ -48,8 +48,8 @@ export class SettingService {
      * Edit Update
      * @param objParam 
      */
-    updateEmail(objParam: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/updateEmail`, objParam);
+    updateEmail(objParam: any, id: any): Observable<any> {
+        return this.http.post<any>(`${this.reason_api_url}/changeUserEmail/${id}`, objParam);
     }
 
     getSubReasonCategory(id) {

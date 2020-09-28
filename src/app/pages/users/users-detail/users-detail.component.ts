@@ -33,6 +33,7 @@ export class UsersDetailComponent implements OnInit {
   signatureKYCDocuments: any;
   panDocumentKYCDocuments: any;
   addressProofKYCDocuments: any;
+  correspondenceAddressProofKYCDocuments: any;
   bankStatementKYCDocuments: any;
   photographKYCDocuments: any;
   dropdownDocumentList: any;
@@ -231,7 +232,7 @@ export class UsersDetailComponent implements OnInit {
     this.adminApprovalText = adminApproval;
     if (this.adminApproval === 'Reject') {
       this.adminApprovalText = 'rejected';
-    } else if (this.adminApproval === 'Approved' || this.adminApproval === 'EmailSendForESign' || this.adminApproval === 'FormInitiated') {
+    } else if (this.adminApproval === 'Approved' || this.adminApproval === 'FormCreated' || this.adminApproval === 'EmailSendForESign' || this.adminApproval === 'FormInitiated') {
       this.adminApprovalText = 'approved';
       this.eSignState = this.adminApproval;
       this.adminApproval = 'Approved';
@@ -251,6 +252,8 @@ export class UsersDetailComponent implements OnInit {
           this.panDocumentKYCDocuments = item;
         } else if (item?.document_name === 'address_proof' || item?.document_name === 'permanent_address') {
           this.addressProofKYCDocuments = item;
+        } else if (item?.document_name === 'correspondence_address') {
+          this.correspondenceAddressProofKYCDocuments = item;
         } else if (item?.document_name === 'cancelled_cheque') {
           this.cancelledChequeKYCDocuments = item;
         } else if (item?.document_name === 'signature') {
@@ -270,6 +273,12 @@ export class UsersDetailComponent implements OnInit {
     }
 
     if (result?.basic_info?.application_esign_status) {
+      this.isApproved = '';
+      this.isFormInitiated = '';
+      this.isFormCreated = '';
+      this.isSendToUser = '';
+      this.isEsignedByUser = '';
+      this.isEsignCompleted = '';
       result?.basic_info?.application_esign_status.map((item) => {
         if (item.statusName === 'isApproved') {
           this.isApproved = item;
@@ -1213,7 +1222,7 @@ export class UsersDetailComponent implements OnInit {
       popupParam['userId'] = this.userId;
       this.confirmationDialogService.editEmail(popupParam).then((data) => {
         if (data) {
-          console.log('data', data);
+          this.getUserDetails(true);
         }
       }).catch(error => console.log(error));
     } else {
