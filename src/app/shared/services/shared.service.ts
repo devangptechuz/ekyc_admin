@@ -34,5 +34,4 @@ export class SharedService {
   getDeleteImageUrl(): Observable<any> {
     return this.imageUrl.asObservable();
   }
-
 }

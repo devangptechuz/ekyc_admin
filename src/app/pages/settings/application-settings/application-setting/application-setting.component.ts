@@ -59,8 +59,8 @@ export class ApplicationSettingComponent implements OnInit {
     console.log('v', v);
     const modelRef = this.modalService.open(AddEditReasonCategoryComponent, { centered: true, windowClass: 'catreason-popup', backdrop: 'static', keyboard: false, backdropClass: 'white' });
     const modelData = {};
-    modelData["reasonCategory"] = v.reasonCategory;
-    modelData["id"] = v.reasonId;
+    modelData["categoryName"] = v.categoryName;
+    modelData["id"] = v.reasonCategory;
     modelData["isEdit"] = true;
     modelRef.componentInstance.fromParent = modelData;
     modelRef.result.then((result) => {

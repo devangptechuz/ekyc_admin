@@ -14,17 +14,71 @@
         {{reasonItem?.username}} <input type="checkbox" name="">
       </li>
     </ul> -->
-    <div *ngIf="listOfReminderList?.length" class="reason-modal-popup">
-      <div class="multiradio-list multiselect-list">
-        <div class="type-list">
-          <div class="custom-radio custom-checkbox green-check"
-            *ngFor="let reminderType of listOfReminderList;let i = index;">
-            <div>
-              <input type="radio" id="logo{{i}}" value="{{reminderType?.value}}" formControlName="typeOfReminder">
-              <label>
-                {{ reminderType?.label }}
-              </label>
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="listOfReminderList?.length" class="reason-modal-popup">
+          <div class="multiradio-list multiselect-list">
+            <div class="type-list row">
+              <div class="custom-checkbox green-check col-md-6" [ngClass]="{'pl-0': first, 'pr-0': last}"
+                *ngFor="let reminderType of listOfReminderList;let i = index; let first = first;let last=last;">
+                <input type="checkbox" id="logo{{i}}" value="{{reminderType?.value}}"
+                  formControlName="{{reminderType?.name}}">
+                <label>
+                  {{ reminderType?.label }}
+                </label>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="listOfTypeReminder?.length" class="reason-modal-popup">
+          <div class="multiradio-list multiselect-list">
+            <div class="type-list">
+              <div class="custom-radio green-check">
+                <div>
+                  <input type="radio" id="logo1" value="verifyEmailReminder" formControlName="typeByReminder">
+                  <label>
+                    Verify Email Reminder
+                  </label>
+                </div>
+              </div>
+              <div class="custom-radio green-check">
+                <div>
+                  <input type="radio" id="logo2" value="completeAppReminder" formControlName="typeByReminder">
+                  <label>
+                    Complete Application Reminder
+                  </label>
+                </div>
+              </div>
+              <div class="custom-radio green-check">
+                <div>
+                  <input type="radio" id="logo3" value="correctAppReminder" formControlName="typeByReminder">
+                  <label>
+                    Correct Application Reminder
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="segmebrokerage-box row align-items-center"
+      *ngIf="reminderForm?.get('typeByReminder').value === 'correctAppReminder'">
+      <!-- <div class="col-md-12 tagline mt-2" *ngFor="let item of reasonList">
+        <span>{{item?.text}} <button type="button" (click)="removeFromReasonList(item.subreasonId)">×</button></span>
+      </div> -->
+      <div class="col-md-12">
+        <div class="segmebrokerage-box row align-items-center ml-0 mb-2" *ngIf="reasonList">
+          <div class="rght d-flex align-items-center mt-2 ml-2" *ngFor="let item of reasonList; let last = last;">
+            <span class="red-status">{{item?.text}} </span>
           </div>
         </div>
       </div>

@@ -32,6 +32,7 @@ import { ReasonRejectModelComponent } from './model-popup/reason-reject-model/re
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { sendReminderModelComponent } from './model-popup/send-reminder-model/send-reminder-model.component';
 import { EditEmailModelComponent } from './model-popup/edit-email-model/edit-email-model.component';
+import { QuerydetailModelComponent } from './model-popup/querydetail-model/querydetail-model.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { EditEmailModelComponent } from './model-popup/edit-email-model/edit-ema
                 ScrollTopComponent,
                 ReasonRejectModelComponent,
                 sendReminderModelComponent,
-                EditEmailModelComponent
+                EditEmailModelComponent,
+                QuerydetailModelComponent
         ],
         imports: [
                 RouterModule,
@@ -90,7 +92,8 @@ import { EditEmailModelComponent } from './model-popup/edit-email-model/edit-ema
                 ScrollTopComponent,
                 ReasonRejectModelComponent,
                 sendReminderModelComponent,
-                EditEmailModelComponent
+                EditEmailModelComponent,
+                QuerydetailModelComponent
         ]
 })
 export class SharedModule { }

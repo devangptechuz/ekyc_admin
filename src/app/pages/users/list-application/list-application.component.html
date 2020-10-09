@@ -4,35 +4,45 @@
             <!-- Nav tabs -->
             <ul id="tabs" class="nav nav-tabs" role="tablist">
                 <li class="nav-item" (click)="getApplicationListByType()">
-                    <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">all
-                        ({{count}})</a>
+                    <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">
+                        All({{count}})</a>
                 </li>
                 <li class="nav-item">
-                    <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">new applications (0)</a>
+                    <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">New</a>
                 </li>
                 <li class="nav-item" (click)="getApplicationListByType('under_review')">
-                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">under review
-                        ({{countUnderReview}})</a>
+                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">
+                        under review({{countUnderReview}})</a>
                 </li>
                 <li class="nav-item" (click)="getApplicationListByType('approved')">
-                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">approved
-                        ({{countApproved}})</a>
+                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">
+                        approved({{countApproved}})</a>
                 </li>
                 <li class="nav-item" (click)="getApplicationListByType('rejected')">
-                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">rejected
-                        ({{countRejected}})</a>
-                </li>
-                <li class="nav-item" (click)="getApplicationListByType('forminitiated')">
                     <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">
-                        Form Awaited
+                        rejected({{countRejected}})</a>
+                </li>
+                <li class="nav-item" (click)="getApplicationListByType('FormInitiated')">
+                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">
+                        Form Awaited({{countFormInitiated}})
+                    </a>
+                </li>
+                <li class="nav-item" (click)="getApplicationListByType('EmailSendForESign')">
+                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">
+                        eSign Awaited({{countEsignAwaited}})
+                    </a>
+                </li>
+                <li class="nav-item" (click)="getApplicationListByType('Completed')">
+                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">
+                        Completed({{countCompleted}})
                     </a>
                 </li>
                 <!-- <li class="nav-item">
                 <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">reported (6)</a>
             </li> -->
                 <li class="nav-item">
-                    <a href="https://devsite.getprosper.in/" class="nav-link app-link" target="_blank">Create new
-                        application</a>
+                    <a href="https://devsite.getprosper.in/" class="nav-link app-link" target="_blank">Create New
+                        App</a>
                 </li>
             </ul>
             <!-- Tab panes -->
@@ -118,18 +128,6 @@
                                                 {{item.name}} <input id="item-{{index}}" type="checkbox"
                                                     [ngModel]="item$.selected" />
                                             </ng-template>
-
-                                            <!--                                        <ng-template>-->
-                                            <!--                                            <div class="input-group datepicker">-->
-                                            <!--                                                <input type="text"  placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"-->
-                                            <!--                                                       ngbDatepicker #d="ngbDatepicker">-->
-                                            <!--                                                <div class="input-group-append calendar">-->
-                                            <!--                                                    date <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"-->
-                                            <!--                                                                                                                                       aria-hidden="true"></i></span>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>-->
-                                            <!--                                        </ng-template>-->
-
                                         </ng-select>
                                     </div>
                                 </div>
@@ -200,6 +198,23 @@
                                                 <span class="green-color-text" *ngIf="row.adminApproval === 'Approved'">
                                                     Approved
                                                 </span>
+                                                <span *ngIf="row.adminApproval === 'FormInitiated'">
+                                                    Form Initiated
+                                                </span>
+                                                <span *ngIf="row.adminApproval === 'FormCreated'">
+                                                    Form Created
+                                                </span>
+                                                <span *ngIf="row.adminApproval === 'EmailSendForESign'">
+                                                    Email Sent For eSign
+                                                </span>
+                                                <span class="green-color-text"
+                                                    *ngIf="row.adminApproval === 'EsignCompleted'">
+                                                    Esign Completed
+                                                </span>
+                                                <span class="green-color-text"
+                                                    *ngIf="row.adminApproval === 'Completed'">
+                                                    Completed
+                                                </span>
                                                 <span class="light-color-text"
                                                     *ngIf="!row.adminApproval && row.isEKYCComplete">
                                                     Submitted
@@ -263,9 +278,15 @@
                                         <h2 *ngIf="typeOflist === 'rejected'">
                                             {{typeOflist}} ({{countRejected}})
                                         </h2>
-                                        <span class="green-text">2% increase since last week<span
+                                        <h2 *ngIf="typeOflist === 'FormInitiated'">
+                                            Form Awaited ({{countFormInitiated}})
+                                        </h2>
+                                        <h2 *ngIf="typeOflist === 'EmailSendForESign'">
+                                            eSign Awaited ({{countEsignAwaited}})
+                                        </h2>
+                                        <!-- <span class="green-text">2% increase since last week<span
                                                 class="icon-red-arrow"></span>
-                                        </span>
+                                        </span> -->
                                     </div>
                                     <div class="col-md-8 d-flex align-items-center justify-content-end">
                                         <div class="search">
@@ -350,6 +371,23 @@
                                                 <span class="green-color-text" *ngIf="row.adminApproval === 'Approved'">
                                                     Approved
                                                 </span>
+                                                <span *ngIf="row.adminApproval === 'FormInitiated'">
+                                                    Form Initiated
+                                                </span>
+                                                <span *ngIf="row.adminApproval === 'FormCreated'">
+                                                    Form Created
+                                                </span>
+                                                <span *ngIf="row.adminApproval === 'EmailSendForESign'">
+                                                    Email Sent For eSign
+                                                </span>
+                                                <span class="green-color-text"
+                                                    *ngIf="row.adminApproval === 'EsignCompleted'">
+                                                    Esign Completed
+                                                </span>
+                                                <span class="green-color-text"
+                                                    *ngIf="row.adminApproval === 'Completed'">
+                                                    Completed
+                                                </span>
                                                 <span class="light-color-text"
                                                     *ngIf="!row.adminApproval && row.isEKYCComplete">
                                                     Submitted
@@ -367,7 +405,7 @@
                     </div>
                 </div>
 
-                <div id="pane-D" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-D">
+                <!-- <div id="pane-D" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-D">
                     <div class="card-header" role="tab" id="heading-D">
                         <h5 class="mb-0">
                             <a class="collapsed" data-toggle="collapse" href="#collapse-D" aria-expanded="false"
@@ -386,7 +424,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

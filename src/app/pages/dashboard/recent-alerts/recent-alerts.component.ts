@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from "ngx-toastr";
 import { Router } from '@angular/router';
-import {SettingService} from '../../../shared/services/setting.service';
-import {GlobalService} from '../../../shared/services/global.service';
+import { SettingService } from '../../../shared/services/setting.service';
+import { GlobalService } from '../../../shared/services/global.service';
 
 @Component({
   selector: 'app-recent-alerts',
@@ -35,15 +35,15 @@ export class RecentAlertsComponent implements OnInit {
 
   ngOnInit() {
     this.settingService.getRecentAlerts()
-        .subscribe(
-            Data => {
-              if (Data.success) {
-                this.temp = [...Data['result']['reasonDataAlert']];
-                this.rows = Data['result']['reasonDataAlert'];
-              } else {
-                this.global.errorToastr(Data.message);
-              }
-            });
+      .subscribe(
+        Data => {
+          if (Data.success) {
+            this.temp = [...Data['result']['reasonDataAlert']];
+            this.rows = Data['result']['reasonDataAlert'];
+          } else {
+            this.global.errorToastr(Data.message);
+          }
+        });
   }
 
 }

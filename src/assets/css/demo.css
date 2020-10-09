@@ -1081,3 +1081,5 @@ body .viewdoc-popup .ngx-select__choices{max-height: 350px;left: 50px;}
 .btm-sec p a{color: #0970DD;font-size: 12px;text-decoration: underline;}
 .esign-box .user-btmbx .cmn-txt{text-align: center;}
 .esigntext p{font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.32);}
+
+.cursor-pointer{ cursor: pointer;}

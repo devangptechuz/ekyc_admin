@@ -12,7 +12,8 @@
                         <label>Category Reasons</label>
                         <ng-select appearance="outline" placeholder="select" [searchable]="false"
                             formControlName="reasonId">
-                            <ng-option [value]="item.reasonId" *ngFor="let item of categories">{{item.reasonCategory}}
+                            <ng-option [value]="item.reasonCategory" *ngFor="let item of categories">
+                                {{item.categoryName}}
                             </ng-option>
                         </ng-select>
                         <app-control-messages fieldName="Category Reason"

@@ -14,6 +14,8 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { arrayFilterWithStringPipe } from 'app/shared/pipe/status.pipe';
 import { ItemsList } from '@ng-select/ng-select/lib/items-list';
+import { SharedService } from 'app/shared/services/shared.service';
+import { SettingService } from 'app/shared/services/setting.service';
 declare var $: any;
 
 @Component({
@@ -43,7 +45,18 @@ export class UsersDetailComponent implements OnInit {
   defaultSelectedDocument: any;
   adminApproval: any;
   adminApprovalText: string;
-  reviewAll: boolean
+  reviewAll: boolean;
+
+  requestReasonList: any = [];
+  panRequestReasons: any;
+  bankRequestReasons: any;
+  personaAddressRequestReasons: any;
+  nomineeRequestReasons: any;
+  documentRequestReasons: any;
+  reviewRequestReasons: any;
+  otherReasons: any;
+  eSignState: string;
+
   /*******************  Dynamic Form: START ******************/
   formName1: string;
   form = new FormGroup({});
@@ -138,7 +151,7 @@ export class UsersDetailComponent implements OnInit {
 
   /******************** Form & Esign Details: START  *****************/
   isEsignCompleted: any;
-  isEsignedByUser: any;
+  isFormEsigned: any;
   isSendToUser: any;
   isFormCreated: any;
   isFormInitiated: any;
@@ -153,7 +166,8 @@ export class UsersDetailComponent implements OnInit {
     private userService: UserService,
     private ref: ChangeDetectorRef,
     private confirmationDialogService: ConfirmationDialogService,
-    private arrayFilterWithStringPipe: arrayFilterWithStringPipe
+    private arrayFilterWithStringPipe: arrayFilterWithStringPipe,
+    private settingService: SettingService
   ) {
     config.interval = 20000;
     config.wrap = false;
@@ -221,24 +235,26 @@ export class UsersDetailComponent implements OnInit {
         closeEffect: 'none'
       });
     });
+
   }
 
   editForm1() {
     this.form.enable();
   }
-  eSignState: string;
+
   manageApplicationStatus(adminApproval: string = '') {
     this.adminApproval = adminApproval;
     this.adminApprovalText = adminApproval;
     if (this.adminApproval === 'Reject') {
       this.adminApprovalText = 'rejected';
-    } else if (this.adminApproval === 'Approved' || this.adminApproval === 'FormCreated' || this.adminApproval === 'EmailSendForESign' || this.adminApproval === 'FormInitiated') {
+    } else if (this.adminApproval === 'Approved' || this.adminApproval === 'FormCreated' || this.adminApproval === 'EmailSendForESign' || this.adminApproval === 'FormInitiated' || this.adminApproval === 'EsignCompleted' || this.adminApproval === 'Completed') {
       this.adminApprovalText = 'approved';
       this.eSignState = this.adminApproval;
       this.adminApproval = 'Approved';
     }
     // console.log('test', this.eSignState);
   }
+
   manageUserData(result: any = '') {
     this.userData = result;
     this.userKYCDocuments = result?.basic_info?.document_uploaded;
@@ -277,7 +293,7 @@ export class UsersDetailComponent implements OnInit {
       this.isFormInitiated = '';
       this.isFormCreated = '';
       this.isSendToUser = '';
-      this.isEsignedByUser = '';
+      this.isFormEsigned = '';
       this.isEsignCompleted = '';
       result?.basic_info?.application_esign_status.map((item) => {
         if (item.statusName === 'isApproved') {
@@ -292,8 +308,8 @@ export class UsersDetailComponent implements OnInit {
         if (item.statusName === 'isSendToUser') {
           this.isSendToUser = item;
         }
-        if (item.statusName === 'isEsignedByUser') {
-          this.isEsignedByUser = item;
+        if (item.statusName === 'isFormEsigned') {
+          this.isFormEsigned = item;
         }
         if (item.statusName === 'isEsignCompleted') {
           this.isEsignCompleted = item;
@@ -345,7 +361,40 @@ export class UsersDetailComponent implements OnInit {
       this.userData['trading_demat_info']['statement_frequency'] = this.arrayFilterWithStringPipe.transform(this.statementFrequencyArray, this.userData?.trading_demat_info?.statement_frequency, 'value');
     }
 
+
+    if (this.userData['basic_info']['reasons']) {
+      this.userData['basic_info']['reasons'].map((item: any) => {
+        const objItem = Object.keys(item)[0];
+        if (objItem === 'PAN Details') {
+          this.panRequestReasons = Object.values(item)[0];
+        }
+        if (objItem === 'Bank Details') {
+          this.bankRequestReasons = Object.values(item)[0];
+        }
+        if (objItem === 'Personal & Address Details') {
+          this.personaAddressRequestReasons = Object.values(item)[0];
+        }
+        if (objItem === 'Nominee Details') {
+          this.nomineeRequestReasons = Object.values(item)[0];
+        }
+        if (objItem === 'Document Request') {
+          this.documentRequestReasons = Object.values(item)[0];
+        }
+        if (objItem === 'Request Review') {
+          this.reviewRequestReasons = Object.values(item)[0];
+        }
+        if (objItem === 'Others') {
+          this.otherReasons = Object.values(item)[0];
+        }
+      });
+    }
+
+    if (this.userData['basic_info']['subreasonDetails']) {
+      this.requestReasonList = this.userData['basic_info']['subreasonDetails'];
+    }
+
   }
+
 
   addOnsModel(btnElement) {
     const modelRef = this.modelRef(btnElement);
@@ -969,7 +1018,7 @@ export class UsersDetailComponent implements OnInit {
     this.nameOfDocument = nameOfDocument;
     this.nameOfTitleDocument = nameOfModalTitle;
     this.mediaPreviews = [];
-    this.ipvDocumentStatus = documentStatus
+    this.ipvDocumentStatus = documentStatus;
     // if (documentStatus !== "not_uploaded") {
     //   const objParam = { 'document_name': nameOfDocument };
     //   this.dashboardService.getDocumentDetails(objParam).subscribe((res: any) => {
@@ -1131,6 +1180,8 @@ export class UsersDetailComponent implements OnInit {
         if (typeOfRequest === 'reject_reason') {
           this.manageApplicationStatus('Reject');
           this.getUserDetails(true);
+        } else {
+          this.getUserDetails(true);
         }
       }
 
@@ -1148,6 +1199,7 @@ export class UsersDetailComponent implements OnInit {
     popupParam['title'] = 'Select method to remind';
     popupParam['button_name'] = 'Send Reminder';
     popupParam['userId'] = this.userId;
+    popupParam['reasonArray'] = this.requestReasonList;
     this.confirmationDialogService.sendReminderModal(popupParam).then((data) => {
       if (data) {
         console.log('data', data);
@@ -1229,4 +1281,31 @@ export class UsersDetailComponent implements OnInit {
       this.global.errorToastr('Your email address is already verified.')
     }
   }
+
+  /**
+   * Remove Common Reason List FROM DB
+   */
+  removeOtherReasonList(text: string) {
+    const obj = { reasonDetail: text, user_id: this.userId };
+    this.settingService.removeReasonOFUser(obj).subscribe((res: any) => {
+      if (res.success) {
+        this.getUserDetails(true);
+        this.global.successToastr(res.message);
+      }
+    });
+  }
+
+  /**
+   * Remove Categories Reason List FROM DB
+   */
+  removeFromReasonList(id: string) {
+    const obj = { subReasonId: id, user_id: this.userId };
+    this.settingService.removeReasonOFUser(obj).subscribe((res: any) => {
+      if (res.success) {
+        this.getUserDetails(true);
+        this.global.successToastr(res.message);
+      }
+    });
+  }
+
 }

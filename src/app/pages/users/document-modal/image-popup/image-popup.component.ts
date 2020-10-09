@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild, ChangeDetectorRef, Output, EventEmitter, Input, AfterViewInit, ElementRef} from '@angular/core';
-import {NgbModal, NgbModalRef, NgbActiveModal, NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, Output, EventEmitter, Input, AfterViewInit, ElementRef } from '@angular/core';
+import { NgbModal, NgbModalRef, NgbActiveModal, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
 import { CookiesService } from '@ngx-utils/cookies';
 import { UserService } from 'app/shared/services/user.service';
@@ -24,7 +24,7 @@ export class ImagePopupComponent implements OnInit {
   @ViewChild('scene', { static: false }) scene: ElementRef;
   docUrl: string;
   docNameUrl: string;
-  flag:boolean;
+  flag: boolean;
   userId: any;
   userData: any;
   adminApproval: any;
@@ -54,44 +54,46 @@ export class ImagePopupComponent implements OnInit {
   panZoomController;
   zoomLevels: number[];
   currentZoomLevel: number;
-  applicationType = [{
-    id: '1',
-    label: 'Aadhar Card',
-    value:'aadhar_document'
-  }, {
-    id: '2',
-    label: 'Pan Card',
-    value:'pan_document'
-  }, {
-    id: '3',
-    label: 'Address Proof',
-    value:'address_proof'
-  }, {
-    id: '4',
-    label: 'Signature',
-    value:'signature'
-  }, {
-    id: '5',
-    label: 'Bank Statement',
-    value:'bank_statement'
-  }, {
-    id: '6',
-    label: 'Cancelled Cheque',
-    value:'cancelled_cheque'
-  },{
-    id: '7',
-    label: 'Photograph',
-    value:'photograph'
-  }]
+  applicationType = [
+    //   {
+    //   id: '1',
+    //   label: 'Aadhar Card',
+    //   value:'aadhar_document'
+    // },
+    {
+      id: '2',
+      label: 'Pan Card',
+      value: 'pan_document'
+    }, {
+      id: '3',
+      label: 'Address Proof',
+      value: 'address_proof'
+    }, {
+      id: '4',
+      label: 'Signature',
+      value: 'signature'
+    }, {
+      id: '5',
+      label: 'Bank Statement',
+      value: 'bank_statement'
+    }, {
+      id: '6',
+      label: 'Cancelled Cheque',
+      value: 'cancelled_cheque'
+    }, {
+      id: '7',
+      label: 'Photograph',
+      value: 'photograph'
+    }]
 
 
   constructor(
-      public global: GlobalService,
-      private route: ActivatedRoute,
-      private ref: ChangeDetectorRef,
-      private cookie: CookiesService,
-      config: NgbCarouselConfig,
-      private userService: UserService,
+    public global: GlobalService,
+    private route: ActivatedRoute,
+    private ref: ChangeDetectorRef,
+    private cookie: CookiesService,
+    config: NgbCarouselConfig,
+    private userService: UserService,
   ) {
     config.interval = 20000;
     config.wrap = false;
@@ -101,38 +103,38 @@ export class ImagePopupComponent implements OnInit {
 
 
   ngOnInit() {
-    setTimeout(()=>{
-      if(this.reviewAll){
+    setTimeout(() => {
+      if (this.reviewAll) {
         this.flag = true;
-        this.selected = 'aadhar_document';
-        this.setNameOfDoc('aadhar_document');
-      }else {
-        this.flag = false ;
+        this.selected = 'pan_document';
+        this.setNameOfDoc('pan_document');
+      } else {
+        this.flag = false;
         this.setNameOfDoc(this.nameOfDocument);
       }
       this.globalDocumentPopup = true;
       this.userId = this.route.snapshot.params.id;
       this.setImages();
-    },500)
+    }, 500)
 
   }
 
- async setImages(){
-   this.onModalOpen();
-   this.addNewDocumentImage();
-   this.mediaPreviews = [];
-   if (this.aadhaarKYCDocuments['documentStatus'] !== "not_uploaded") {
+  async setImages() {
+    this.onModalOpen();
+    this.addNewDocumentImage();
+    this.mediaPreviews = [];
+    if (this.aadhaarKYCDocuments['documentStatus'] !== "not_uploaded") {
       this.userService.getUser(this.userId).subscribe((res: any) => {
         if (res.success) {
           this.userData = res.result
           this.fileUploading = false;
         }
       });
-   }
+    }
   }
 
 
-  doSelect(e){
+  doSelect(e) {
     this.setNameOfDoc(e);
     // this.setImages();
   }
@@ -244,7 +246,7 @@ export class ImagePopupComponent implements OnInit {
     }
   }
 
-  close(){
+  close() {
     this.globalDocumentPopup = false;
     this.modalRef.close();
   }
@@ -255,7 +257,7 @@ export class ImagePopupComponent implements OnInit {
     // this.panZoomController = panzoom(this.scene.nativeElement);
   }
 
-  setNameOfDoc(name){
+  setNameOfDoc(name) {
     if (name === 'aadhar_document') {
       this.docNameUrl = 'aadhar_details';
       this.docUrl = 'aadhar_documents';
@@ -281,9 +283,9 @@ export class ImagePopupComponent implements OnInit {
   }
 
   zoom() {
-   const isSmooth = false;
-   const scale = this.currentZoomLevel;
-   if (scale) {
+    const isSmooth = false;
+    const scale = this.currentZoomLevel;
+    if (scale) {
       const transform = this.panZoomController.getTransform();
       const deltaX = transform.x;
       const deltaY = transform.y;
@@ -294,25 +296,25 @@ export class ImagePopupComponent implements OnInit {
       } else {
         this.panZoomController.zoomTo(offsetX, offsetY, scale);
       }
+    }
   }
-}
 
   zoomToggle(zoomIn: boolean) {
     const idx = this.zoomLevels.indexOf(this.currentZoomLevel);
     if (zoomIn) {
-        if (typeof this.zoomLevels[idx + 1] !== 'undefined') {
-            this.currentZoomLevel = this.zoomLevels[idx + 1];
-        }
+      if (typeof this.zoomLevels[idx + 1] !== 'undefined') {
+        this.currentZoomLevel = this.zoomLevels[idx + 1];
+      }
     } else {
-        if (typeof this.zoomLevels[idx - 1] !== 'undefined') {
-            this.currentZoomLevel = this.zoomLevels[idx - 1];
-        }
+      if (typeof this.zoomLevels[idx - 1] !== 'undefined') {
+        this.currentZoomLevel = this.zoomLevels[idx - 1];
+      }
     }
     if (this.currentZoomLevel === 1) {
-        this.panZoomController.moveTo(0, 0);
-        this.panZoomController.zoomAbs(0, 0, 1);
+      this.panZoomController.moveTo(0, 0);
+      this.panZoomController.zoomAbs(0, 0, 1);
     } else {
-        this.zoom();
+      this.zoom();
     }
- }
+  }
 }

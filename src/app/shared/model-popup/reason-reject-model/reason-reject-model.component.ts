@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { GlobalService } from '../../services/global.service';
 import { UserService } from '../../services/user.service';
 import { SettingService } from '../../services/setting.service';
+import { SharedService } from 'app/shared/services/shared.service';
 
 @Component({
   selector: 'app-reason-reject-model',
@@ -25,9 +26,11 @@ export class ReasonRejectModelComponent implements OnInit {
     private settingService: SettingService,
     public global: GlobalService,
     private userService: UserService,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit() {
+    console.log('this.objectOfModal.name', this.objectOfModal);
     this.reasonDetailsform = this.fb.group({
       reasonsArray: this.fb.array([]),
       reason: ''
@@ -58,6 +61,7 @@ export class ReasonRejectModelComponent implements OnInit {
     return this.fb.group({
       name: false,
       id: value.id,
+      reason: value.reason,
     });
   }
 
@@ -67,7 +71,8 @@ export class ReasonRejectModelComponent implements OnInit {
       const getReasonArray: any = this.reasonDetailsform.get('reasonsArray') as FormArray;
       getReasonArray.controls.forEach((ctrl: FormControl) => {
         if (ctrl.value.name) {
-          this.selectedReasonsArray.push(ctrl.value.id);
+          // this.selectedReasonsArray.push(ctrl.value.id);
+          this.selectedReasonsArray.push({ id: ctrl.value.id, reason: ctrl.value.reason });
         }
       });
       this.favReasonsError = this.selectedReasonsArray?.length <= 0;
@@ -81,33 +86,66 @@ export class ReasonRejectModelComponent implements OnInit {
   public accept() {
     let paramObj;
     let obj = [];
-    // console.log('this.selectedReasonsArray.length', this.selectedReasonsArray);
-    if (this.selectedReasonsArray.length) {
+    if (this.selectedReasonsArray?.length) {
       this.selectedReasonsArray.map((item) => {
-        obj.push({ 'reasonId': this.reasonId, 'subReasonId': item });
+        item['reasonId'] = this.reasonId;
+        obj.push(item);
       });
     }
-    // console.log('this.selectedReasonsArray.length', obj); return;
-    // obj['subReasonId'] = [...this.selectedReasonsArray];
+
     if (this.reasonDetailsform.value.reason) {
       let obj1 = [];
-      obj1.push({ 'reasonDetail': this.reasonDetailsform.value.reason, 'reasonId': '8' });
-      paramObj = [...obj, ...obj1];
+      obj1.push({ 'reasonDetail': this.reasonDetailsform.value.reason, 'reasonId': '8', 'reason': this.reasonDetailsform.value.reason });
+      if (obj.length) {
+        paramObj = [...obj, ...obj1];
+      } else {
+        paramObj = obj1;
+      }
     } else {
       paramObj = obj;
     }
-    const sendData = {};
-    sendData['userId'] = this.objectOfModal.userId;
-    sendData['paramObj'] = paramObj;
-    this.settingService.sendReasonInfo(sendData)
-      .subscribe((res) => {
-        if (res.success) {
-          this.global.successToastr(res.message);
+    // console.log('paramObj--', paramObj);
+    const reasonArray = paramObj;
+    const reasonParam = [];
+    if (reasonArray.length) {
+      reasonArray.map((item) => {
+        if (!item['id']) {
+          reasonParam.push({ 'reasonDetail': item['reasonDetail'], 'reasonId': item['reasonId'] });
         } else {
-          this.global.errorToastr(res.message);
+          reasonParam.push({ 'subReasonId': item['id'], 'reasonId': item['reasonId'] });
         }
       });
-    this.activeModal.close(true);
+    }
+    const sendData = {};
+    sendData['userId'] = this.objectOfModal.userId;
+    sendData['paramObj'] = reasonParam;
+    if (this.objectOfModal.name !== 'Reject Reason') {
+      this.settingService.saveRequestReview(sendData)
+        .subscribe((res) => {
+          if (res.success) {
+            this.global.successToastr(res.message);
+            this.activeModal.close(true);
+          } else {
+            this.global.errorToastr(res.message);
+            this.activeModal.close(true);
+          }
+        }, (error) => {
+          this.activeModal.close(true);
+        });
+    } else {
+      this.settingService.sendReasonInfo(sendData)
+        .subscribe((res) => {
+          if (res.success) {
+            this.global.successToastr(res.message);
+            this.activeModal.close(true);
+          } else {
+            this.global.errorToastr(res.message);
+            this.activeModal.close(true);
+          }
+        }, (error) => {
+          this.activeModal.close(true);
+        });
+    }
   }
 
   public dismiss() {

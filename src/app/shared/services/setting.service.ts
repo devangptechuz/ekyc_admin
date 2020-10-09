@@ -25,7 +25,22 @@ export class SettingService {
 
     getRecentAlerts() {
         return this.http.get<any>(`${this.apiUrl_setting}/getRecentAlert`);
-        // return this.http.get<any>(`http://localhost:3000/test/api/getRecentAlert`);
+    }
+
+    getQueryList(hideLoader: boolean = false) {
+        let options = {};
+        if (hideLoader) {
+            const params = new HttpParams().set('hideLoader', 'true');
+            let options = { params: params };
+            options['reportProgress'] = true;
+            options['observe'] = 'events';
+        }
+        return this.http.get<any>(`${this.reason_api_url}/getAllQueryList`, options);
+    }
+
+    readQueryByAdmin(id: any) {
+        // return this.http.get<any>(`http://localhost:3000/test/api/readQueryByAdmin/${id}`);
+        return this.http.get<any>(`${this.reason_api_url}/readQueryByAdmin/${id}`);
     }
 
     getSubReasonListByReason(data): Observable<any> {
@@ -33,7 +48,18 @@ export class SettingService {
     }
 
     sendReasonInfo(data): Observable<any> {
+        // return this.http.post<any>(`http://localhost:3000/test/api/sendReasonInfo`, data);
         return this.http.post<any>(`${this.apiUrl_setting}/sendReasonInfo`, data);
+    }
+
+    saveRequestReview(data): Observable<any> {
+        return this.http.post<any>(`${this.reason_api_url}/saveRequestReview`, data);
+    }
+
+
+    removeReasonOFUser(data: any) {
+        // return this.http.post<any>(`http://localhost:3000/test/api/deleteRequestReason`, data);
+        return this.http.post<any>(`${this.reason_api_url}/deleteRequestReason`, data);
     }
 
     /**
@@ -87,14 +113,17 @@ export class SettingService {
      */
     addReasonCategory(data): Observable<any> {
         return this.http.post<any>(`${this.reason_api_url}/addReasonCategory`, data);
+        // return this.http.post<any>(`http://localhost:3000/test/api/addReasonCategory`, data);
     }
     /**
      * Add reason text 
      * @param data 
      */
     updateReasonCategory(id, data): Observable<any> {
+        // return this.http.post<any>(`http://localhost:3000/test/api/updateReasonCategory/${id}`, data);
         return this.http.post<any>(`${this.reason_api_url}/updateReasonCategory/${id}`, data);
     }
+
     /**
      * Update Status of reason details
      */
@@ -125,6 +154,7 @@ export class SettingService {
     }
 
     addSubReasonCategory(data): Observable<any> {
+        // return this.http.post<any>(`http://localhost:3000/test/api/addSubReasonCategory`, data);
         return this.http.post<any>(`${this.apiUrl_setting}/addSubReasonCategory`, data);
     }
 
@@ -212,4 +242,10 @@ export class SettingService {
         options['observe'] = 'events';
         return this.http.post<any>(`${this.imageUrl}/commonUpload`, data, options);
     }
+
+    getDashboardCount() {
+        // return this.http.get<any>(`http://localhost:3000/test/api/getDashboardCount`);
+        return this.http.get<any>(`${this.reason_api_url}/getDashboardCount`);
+    }
+
 }

@@ -35,6 +35,9 @@ export class ListApplicationComponent implements OnInit {
   countUnderReview: number;
   countApproved: number;
   countRejected: number;
+  countFormInitiated: number;
+  countEsignAwaited: number;
+  countCompleted: number;
 
   deleteFlag = false;
   usersSelectCount;
@@ -144,6 +147,9 @@ export class ListApplicationComponent implements OnInit {
         this.countUnderReview = Data['result']['under_review_count'];
         this.countApproved = Data['result']['approved_count'];
         this.countRejected = Data['result']['rejected_count'];
+        this.countFormInitiated = Data['result']['form_awaited_count'];
+        this.countEsignAwaited = Data['result']['esign_awaited_count'];
+        this.countCompleted = Data['result']['esign_completed'];
       } else {
         this.global.errorToastr(Data.message);
       }

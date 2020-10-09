@@ -30,7 +30,7 @@ export class AddEditReasonCategoryComponent implements OnInit {
     });
     if (this.fromParent) {
       this.headerTitle = 'Edit Category Reason';
-      this.categoryForm.controls.reasonCategory.setValue(this.fromParent['reasonCategory'])
+      this.categoryForm.controls.reasonCategory.setValue(this.fromParent['categoryName'])
     }
   }
 

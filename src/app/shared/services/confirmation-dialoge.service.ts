@@ -9,6 +9,7 @@ import { ActivateModelComponent } from '../model-popup/activate-model/activate-m
 import { ReasonRejectModelComponent } from '../model-popup/reason-reject-model/reason-reject-model.component';
 import { sendReminderModelComponent } from '../model-popup/send-reminder-model/send-reminder-model.component';
 import { EditEmailModelComponent } from '../model-popup/edit-email-model/edit-email-model.component';
+import { QuerydetailModelComponent } from '../model-popup/querydetail-model/querydetail-model.component';
 
 @Injectable({
   providedIn: 'root'
@@ -83,4 +84,9 @@ export class ConfirmationDialogService {
     return modalRef.result;
   }
 
+  public getDetails(details: any): Promise<boolean> {
+    const modalRef = this.modalService.open(QuerydetailModelComponent, { centered: true });
+    modalRef.componentInstance.details = details;
+    return modalRef.result;
+  }
 }

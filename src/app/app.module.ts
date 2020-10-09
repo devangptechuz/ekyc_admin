@@ -32,6 +32,7 @@ import { AddEditEmailTemplate } from './pages/common-configure/email-template/sh
 import { ReasonResolver } from './pages/settings/shared/reason.resolver';
 import { EditEmailModelComponent } from './shared/model-popup/edit-email-model/edit-email-model.component';
 import { SegmentResolver } from './pages/segment/shared/segment.resolver';
+import { DashboardResolver } from './pages/dashboard/shared/dashboard.resolver';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -65,6 +66,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         CategoryResolver,
         ReasonResolver,
         SegmentResolver,
+        DashboardResolver,
         AuthGuard,
         PageGuard
     ],
