@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ValidationService} from '../../../../shared/services/validator.service';
-import {SettingService} from '../../../../shared/services/setting.service';
-import {GlobalService} from '../../../../shared/services/global.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ValidationService } from '../../../../shared/services/validator.service';
+import { SettingService } from '../../../../shared/services/setting.service';
+import { GlobalService } from '../../../../shared/services/global.service';
 
 @Component({
   selector: 'app-add-edit-segment',
@@ -18,17 +18,19 @@ export class AddEditSegmentComponent implements OnInit {
   selected;
 
   constructor(private activeModal: NgbActiveModal,
-              private formBuilder: FormBuilder,
-              private validationService: ValidationService,
-              private settingService:SettingService,
-              public global: GlobalService) { }
+    private formBuilder: FormBuilder,
+    private validationService: ValidationService,
+    private settingService: SettingService,
+    public global: GlobalService) { }
 
   ngOnInit(): void {
     this.segmentForm = this.formBuilder.group({
       name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
     });
-    if(this.fromParent){
-      this.segmentForm.controls.name.setValue(this.fromParent['name'])
+    if (this.fromParent) {
+      this.segmentForm.controls.name.setValue(this.fromParent['name']);
+      this.segmentForm.controls.description.setValue(this.fromParent['description']);
       this.headerTitle = 'Edit Segment Type';
     }
   }
@@ -46,29 +48,29 @@ export class AddEditSegmentComponent implements OnInit {
       this.validationService.validateAllFormFields(this.segmentForm);
       return false;
     }
-    if(this.fromParent){
+    if (this.fromParent) {
       // this.segmentForm.value.id = this.fromParent['id'];
-      this.settingService.updateSegmentCategory(this.fromParent['id'],this.segmentForm.value).subscribe(
-          (result: any) => {
-            if (result.success) {
-              this.global.successToastr(result.message);
-              this.segmentForm.reset();
-            } else {
-              this.global.errorToastr(result.message);
-            }
-            this.activeModal.close(true);
-          });
+      this.settingService.updateSegmentCategory(this.fromParent['id'], this.segmentForm.value).subscribe(
+        (result: any) => {
+          if (result.success) {
+            this.global.successToastr(result.message);
+            this.segmentForm.reset();
+          } else {
+            this.global.errorToastr(result.message);
+          }
+          this.activeModal.close(true);
+        });
     } else {
       this.settingService.addSegmentCategory(this.segmentForm.value).subscribe(
-          (result: any) => {
-            if (result.success) {
-              this.global.successToastr(result.message);
-              this.segmentForm.reset();
-            } else {
-              this.global.errorToastr(result.message);
-            }
-            this.activeModal.close(true);
-          });
+        (result: any) => {
+          if (result.success) {
+            this.global.successToastr(result.message);
+            this.segmentForm.reset();
+          } else {
+            this.global.errorToastr(result.message);
+          }
+          this.activeModal.close(true);
+        });
     }
   }
 

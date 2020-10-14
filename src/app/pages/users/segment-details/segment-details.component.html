@@ -46,13 +46,13 @@
         <h3 class="line-title mt-4"><span>Brokerage Details</span></h3>
         <ng-container *ngIf="mainSegmentType?.length">
           <div class="row ttle">
-            <div class="col-md-4 pr-2">
+            <div class="col-md-12 pr-2">
               <div class="form-group">
                 <label for="Segment" class="ble-labl">Segment Type</label>
               </div>
             </div>
 
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <div class="form-group">
                 <label for="Plan" class="ble-labl">Brokerage Plan</label>
               </div>
@@ -61,11 +61,11 @@
               <div class="form-group">
                 <label for="Rate" class="ble-labl">Brokerage Rate</label>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <div formArrayName="mainCatItems" class="segment-fun">
-            <div [formGroupName]="mainIndex" class="border-bottom-line" 
+            <div [formGroupName]="mainIndex" class="border-bottom-line"
               *ngFor="let cate of segmentForm.get('mainCatItems')['controls']; let mainIndex = index;">
               <ng-container *ngIf="cate?.get('sub_cat_items')['controls'].length > 0">
                 <div class="row sub_cat_items card-item d-flex align-items-center" formArrayName="sub_cat_items"
@@ -98,10 +98,11 @@
               </ng-container>
               <ng-container *ngIf="cate?.get('sub_cat_items')['controls'].length === 0">
                 <div class="row card-item">
-                  <div class="custom-checkbox col-md-4 pr-2">
+                  <div class="custom-checkbox col-md-12 pr-2" [ngClass]="{'disabled': cate.get('is_disable').value}">
                     <input type="checkbox" id="logo1" formControlName="selected"
                       (click)="selectCategory($event,cate?.get('category_id').value)">
-                    <label>{{cate.get('category_name').value}}</label>
+                    <label>{{cate.get('category_name').value}}
+                      <span>({{cate.get('category_description').value}})</span></label>
                   </div>
                 </div>
               </ng-container>

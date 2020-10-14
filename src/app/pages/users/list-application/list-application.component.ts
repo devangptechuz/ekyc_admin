@@ -126,7 +126,8 @@ export class ListApplicationComponent implements OnInit {
     this.rows = this.temp.filter((d) => {
       return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
         d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
-        d.panUserName.toLowerCase().indexOf(val) !== -1 || !val;
+        d.panUserName.toLowerCase().indexOf(val) !== -1 || !val ||
+        d.id.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.table.offset = 0;
   }

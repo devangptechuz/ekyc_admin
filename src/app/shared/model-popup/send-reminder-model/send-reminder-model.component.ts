@@ -27,14 +27,19 @@ export class sendReminderModelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.settingService.getRequestReasonsList(this.objectOfModal['userId']).subscribe((res: any) => {
+      if (res.success) {
+        this.reasonList = res.result;
+      }
+    });
     this.reminderForm = this.fb.group({
-      emailReminder: '',
-      smsReminder: '',
+      emailReminder: false,
+      smsReminder: false,
       typeByReminder: ['', [Validators.required]]
     });
     this.listOfReminderList = [
-      { name: 'emailReminder', value: 'email_alert', label: 'Email' },
-      { name: 'smsReminder', value: 'mobile_alert', label: 'SMS' }
+      { name: 'emailReminder', value: true, label: 'Email' },
+      { name: 'smsReminder', value: true, label: 'SMS' }
     ];
 
     this.listOfTypeReminder = [
@@ -43,8 +48,8 @@ export class sendReminderModelComponent implements OnInit {
       { name: 'correctAppReminder', value: 'correctAppReminder', label: 'Correct Application Reminder' }
     ];
 
-    this.reasonList = this.objectOfModal['reasonArray'];
-    console.log('this.reasonList', this.reasonList);
+    // this.reasonList = this.objectOfModal['reasonArray'];
+    // console.log('this.reasonList', this.reasonList);
   }
 
   ngAfterViewInit() {
@@ -73,7 +78,7 @@ export class sendReminderModelComponent implements OnInit {
     if (this.reasonList.length) {
       obj['reasonList'] = this.reasonList;
     }
-    this.settingService.sendReminder(obj)
+    this.settingService.sendReminder(this.objectOfModal['userId'], obj)
       .subscribe((res) => {
         if (res.success) {
           this.global.successToastr(res.message);

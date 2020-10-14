@@ -58,9 +58,15 @@ export class SegmentDetailsComponent implements OnInit {
     if (value.selected) {
       selectedVar = value.selected;
     }
+    let disableVar = false;
+    if (value.is_disable) {
+      disableVar = value.is_disable;
+    }
     return this.fb.group({
       selected: selectedVar,
+      is_disable: disableVar,
       category_id: value.category_id,
+      category_description: value.category_description,
       category_name: value.category_name,
       sub_cat_items: this.fb.array([])
     });
@@ -112,6 +118,10 @@ export class SegmentDetailsComponent implements OnInit {
         this.mainSegmentType = res.result;
         this.mainSegmentType.map((resItems, i) => {
           this.mainCatItems = this.segmentForm.get('mainCatItems') as FormArray;
+          if (resItems['category_name'] === 'Equity') {
+            resItems['selected'] = true;
+            resItems['is_disable'] = true;
+          }
           this.mainCatItems.push(this.createSegment(resItems));
           let control = (<FormArray>this.segmentForm.controls['mainCatItems']).at(i).get('sub_cat_items') as FormArray;
           if (resItems.sub_categories.length) {

@@ -64,6 +64,7 @@ export class SegmentListComponent implements OnInit {
     const modelRef = this.modalService.open(AddEditSegmentComponent, { centered: true, windowClass: 'catreason-popup', backdrop: 'static', keyboard: false, backdropClass: 'white' });
     const modelData = {};
     modelData["name"] = v.name;
+    modelData["description"] = v.description;
     modelData["id"] = v.id;
     modelData["isEdit"] = true;
     modelRef.componentInstance.fromParent = modelData;

@@ -63,14 +63,6 @@ export class SettingService {
     }
 
     /**
-     * Send Reminder Vie Type of Method
-     * @param objParam 
-     */
-    sendReminder(objParam: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl_setting}/sendReminder`, objParam);
-    }
-
-    /**
      * Edit Update
      * @param objParam 
      */
@@ -246,6 +238,18 @@ export class SettingService {
     getDashboardCount() {
         // return this.http.get<any>(`http://localhost:3000/test/api/getDashboardCount`);
         return this.http.get<any>(`${this.reason_api_url}/getDashboardCount`);
+    }
+
+    getRequestReasonsList(id: string | number) {
+        return this.http.get<any>(`${this.reason_api_url}/getReasonlist/${id}`);
+    }
+
+    /**
+     * Send Reminder Vie Type of Method
+     * @param objParam 
+     */
+    sendReminder(id: any, objParam: any): Observable<any> {
+        return this.http.post<any>(`${this.reason_api_url}/sendReminder/${id}`, objParam);
     }
 
 }
