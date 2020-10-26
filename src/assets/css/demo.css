@@ -839,6 +839,77 @@ input:checked + .switch .slider:before {-webkit-transform: translateX(9px);-ms-t
 .slider.round {border-radius: 34px;max-width: initial;margin: 0;}
 .slider.round:before {border-radius: 50%;}
 
+.select-label {background: rgba(9, 112, 221, 0.16);border-radius: 8px;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.56);padding: 12px;}
+
+body .nominee-switch .switch{z-index: 999;width: 24px;height: 8px;margin: 0 10px;}
+body .nominee-switch .slider:before{width: 16px;height: 16px;background: #7A838F;left: 0;bottom: -3px;}
+body .nominee-switch input:checked + .slider:before {background: #0970DD;transform: translateX(10px) !important;}
+body .nominee-switch input:checked + .slider {background-color: rgba(0, 0, 0, 0.16) !important;}
+.nominee-switch .slider{background:rgba(0, 0, 0, 0.16);border-radius: 8px;}
+.nominee-switch{margin-right: 10px;display: inline-flex;align-items: center;text-transform: uppercase;font-size: 12px;line-height: 18px;}
+.nominee-switch.pointer-events-none{ pointer-events: none;}
+.nominee-yes{color: #0970DD;}
+.nominee-switch .gray{color: rgba(0, 0, 0, 0.56);}
+.inline-switch .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .inline-switch .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .inline-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .inline-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .inline-switch input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  .inline-switch input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  .inline-switch input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .inline-switch .slider.round {
+    border-radius: 34px;
+  }
+  
+  .inline-switch .slider.round:before {
+    border-radius: 50%;
+  }
+
 /* common popup*/
 .common-header{margin-bottom: 40px;}
 .modal-content{border-radius: 16px;padding: 40px;}

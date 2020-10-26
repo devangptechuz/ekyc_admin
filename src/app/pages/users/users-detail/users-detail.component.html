@@ -506,23 +506,54 @@
                   <div class="col-md-6 d-flex flex-column mb-3">
                      <label>Gender</label>{{userData?.personal_details?.gender}}
                   </div>
+                  <!-- <div class="col-md-12 d-flex flex-column mb-3">
+                     <label>What is your trading experience?</label>
+                     <ng-container *ngIf="userData?.personal_details?.tradingExp ;else noDefault">
+                        Yes
+                     </ng-container>
+                     <ng-container #noDefault>
+                        No
+                     </ng-container>
+                  </div> -->
+                  <div class="col-md-12 d-flex flex-column mb-3">
+                     <label>Are you politically exposed person?</label>
+                     <ng-container *ngIf="userData?.personal_details?.politicallyExp ;else noDefault">
+                        Yes
+                     </ng-container>
+                     <ng-container #noDefault>
+                        No
+                     </ng-container>
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3">
+                     <label>Are you resident of india?</label>
+                     <ng-container *ngIf="userData?.personal_details?.isResidencyOfIndia">
+                        Yes
+                     </ng-container>
+                     <ng-container *ngIf="!userData?.personal_details?.isResidencyOfIndia">
+                        No
+                     </ng-container>
+                  </div>
+
                   <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>
                      <p style="word-break: break-word;">
                         <!-------------- KRA VERIFY DATA: START -------------->
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line1">
-                           {{userData?.personal_details?.permanent_address?.address_line1}},
+                           {{userData?.personal_details?.permanent_address?.address_line1}}
                         </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line2">
-                           {{userData?.personal_details?.permanent_address?.address_line2}},
+                           ,{{userData?.personal_details?.permanent_address?.address_line2}},
                         </ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line3">
+                        <!-- <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line3">
                            {{userData?.personal_details?.permanent_address?.address_line3}},
-                        </ng-container>
+                        </ng-container> -->
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.pin_code">
-                           {{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}}
+                           ,{{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}}
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.stateName">
+                           ,{{stateOfUser?.name}}
                         </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.country">
-                           {{userData?.personal_details?.permanent_address?.country}}
+                           ,{{userData?.personal_details?.permanent_address?.country}}
                         </ng-container>
                         <!-------------- KRA VERIFY DATA: END -------------->
                      </p>
@@ -531,16 +562,19 @@
                      <p *ngIf="userData?.personal_details?.is_corres_same_permanent" style="word-break: break-word;">
                         <!-------------- KRA VERIFY DATA: START -------------->
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line1">
-                           {{userData?.personal_details?.permanent_address?.address_line1}},</ng-container>
+                           {{userData?.personal_details?.permanent_address?.address_line1}}</ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line2">
-                           {{userData?.personal_details?.permanent_address?.address_line2}},</ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line3">
-                           {{userData?.personal_details?.permanent_address?.address_line3}},</ng-container>
+                           ,{{userData?.personal_details?.permanent_address?.address_line2}}</ng-container>
+                        <!-- <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line3">
+                           {{userData?.personal_details?.permanent_address?.address_line3}},</ng-container> -->
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.pin_code">
-                           {{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}}
+                           ,{{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}}
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.stateName">
+                           ,{{stateOfUser?.name}}
                         </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.permanent_address?.country">
-                           {{userData?.personal_details?.permanent_address?.country}}</ng-container>
+                           ,{{userData?.personal_details?.permanent_address?.country}}</ng-container>
                         <!-------------- KRA VERIFY DATA: END -------------->
                      </p>
                      <p *ngIf="!userData?.personal_details?.is_corres_same_permanent" style="word-break: break-word;">
@@ -548,13 +582,16 @@
                            {{userData?.personal_details?.corrospondence_address?.address_line1}},</ng-container>
                         <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line2">
                            {{userData?.personal_details?.corrospondence_address?.address_line2}},</ng-container>
-                        <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line3">
-                           {{userData?.personal_details?.corrospondence_address?.address_line3}},</ng-container>
+                        <!-- <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line3">
+                           {{userData?.personal_details?.corrospondence_address?.address_line3}},</ng-container> -->
                         <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.pin_code">
                            {{userData?.personal_details?.corrospondence_address?.pin_code | mask:'000 000'}}
                         </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.stateName">
+                           ,{{corresStateOfUser?.name}}
+                        </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.country">
-                           {{userData?.personal_details?.corrospondence_address?.country}}
+                           ,{{userData?.personal_details?.corrospondence_address?.country}}
                         </ng-container>
                      </p>
                   </div>

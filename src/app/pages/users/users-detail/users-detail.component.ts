@@ -57,6 +57,10 @@ export class UsersDetailComponent implements OnInit {
   otherReasons: any;
   eSignState: string;
 
+  stateList = [];
+  stateOfUser: any;
+  corresStateOfUser: any;
+
   /*******************  Dynamic Form: START ******************/
   formName1: string;
   form = new FormGroup({});
@@ -288,6 +292,28 @@ export class UsersDetailComponent implements OnInit {
       });
     }
 
+    if (result?.personal_details?.permanent_address?.stateName) {
+      this.stateList = result?.personal_details?.stateList;
+      if (this.stateList.length) {
+        this.stateList.map((item) => {
+          if (item.code === result?.personal_details?.permanent_address?.stateName) {
+            this.stateOfUser = item;
+          }
+        });
+      }
+    }
+
+    if (result?.personal_details?.corrospondence_address?.stateName) {
+      this.stateList = result?.personal_details?.stateList;
+      if (this.stateList.length) {
+        this.stateList.map((item) => {
+          if (item.code === result?.personal_details?.corrospondence_address?.stateName) {
+            this.corresStateOfUser = item;
+          }
+        });
+      }
+    }
+
     if (result?.basic_info?.application_esign_status) {
       this.isApproved = '';
       this.isFormInitiated = '';
@@ -361,7 +387,6 @@ export class UsersDetailComponent implements OnInit {
       this.userData['trading_demat_info']['statement_frequency'] = this.arrayFilterWithStringPipe.transform(this.statementFrequencyArray, this.userData?.trading_demat_info?.statement_frequency, 'value');
     }
 
-
     if (this.userData['basic_info']['reasons']) {
       this.userData['basic_info']['reasons'].map((item: any) => {
         const objItem = Object.keys(item)[0];
@@ -392,6 +417,8 @@ export class UsersDetailComponent implements OnInit {
     if (this.userData['basic_info']['subreasonDetails']) {
       this.requestReasonList = this.userData['basic_info']['subreasonDetails'];
     }
+
+
 
   }
 

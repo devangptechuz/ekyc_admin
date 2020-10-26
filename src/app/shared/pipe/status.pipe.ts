@@ -69,4 +69,16 @@ export class arrayFilterWithStringPipe implements PipeTransform {
     }
 }
 
+@Pipe({ name: 'yesNoPipe' })
+export class yesNoPipe implements PipeTransform {
+    transform(value) {
+        if (value === true) {
+            return 'Yes'
+        }
+        if (value === false) {
+            return 'No'
+        }
+    }
+}
+
 

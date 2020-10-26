@@ -19,7 +19,7 @@ import { SidebarLinkDirective } from './directives/sidebarlink.directive';
 import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
-import { RoleCheckPipe, SafeUrlPipe, UserTypePipe, arrayFilterWithStringPipe } from './pipe/status.pipe';
+import { RoleCheckPipe, SafeUrlPipe, UserTypePipe, arrayFilterWithStringPipe, yesNoPipe } from './pipe/status.pipe';
 import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.component';
 
 import { DeleteModelComponent } from './model-popup/delete-model/delete-model.component';
@@ -49,6 +49,7 @@ import { QuerydetailModelComponent } from './model-popup/querydetail-model/query
                 RoleCheckPipe,
                 UserTypePipe,
                 SafeUrlPipe,
+                yesNoPipe,
                 arrayFilterWithStringPipe,
                 DeleteModelComponent,
                 ApprovedModelComponent,
@@ -83,6 +84,7 @@ import { QuerydetailModelComponent } from './model-popup/querydetail-model/query
                 RoleCheckPipe,
                 UserTypePipe,
                 SafeUrlPipe,
+                yesNoPipe,
                 arrayFilterWithStringPipe,
                 LogoutPopupComponent,
                 ApprovedModelComponent,
