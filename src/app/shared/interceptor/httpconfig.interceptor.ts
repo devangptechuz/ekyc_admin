@@ -16,9 +16,9 @@ import { map, catchError } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonService } from '../services/common.service';
 import { ToastrService } from 'ngx-toastr';
-import {GlobalService} from '../services/global.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {CookiesService} from '@ngx-utils/cookies';
+import { GlobalService } from '../services/global.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CookiesService } from '@ngx-utils/cookies';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
@@ -26,7 +26,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     private spinner: NgxSpinnerService,
     private common: CommonService,
     private toaster: ToastrService,
-    private cookies:CookiesService,
+    private cookies: CookiesService,
     public global: GlobalService,
     private route: ActivatedRoute,
     private router: Router,
@@ -69,6 +69,9 @@ export class HttpConfigInterceptor implements HttpInterceptor {
           case 401:
             if (err.error.message) {
               this.global.errorToastr(err.error.message);
+              if (err.error.message === "Unauthorized") {
+                this.handleAuthenticationError(err);
+              }
             } else {
               this.global.errorToastr(err.error.error);
               this.handleAuthenticationError(err);
@@ -137,12 +140,12 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
   createOnline$() {
     return merge<boolean>(
-        fromEvent(window, 'offline').pipe(map(() => false)),
-        fromEvent(window, 'online').pipe(map(() => true)),
-        new Observable((sub: Observer<boolean>) => {
-          sub.next(navigator.onLine);
-          sub.complete();
-        }));
+      fromEvent(window, 'offline').pipe(map(() => false)),
+      fromEvent(window, 'online').pipe(map(() => true)),
+      new Observable((sub: Observer<boolean>) => {
+        sub.next(navigator.onLine);
+        sub.complete();
+      }));
   }
 
   handleAuthenticationError(error: any) {

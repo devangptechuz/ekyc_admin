@@ -138,6 +138,8 @@ export class SettingService {
     updateReason(id, data): Observable<any> {
         return this.http.post<any>(`${this.apiUrl_segment}/updateSubReasonCategoryDetails/${id}`, data);
     }
+
+
     /**
      * Update Status of reason details
      */
@@ -250,6 +252,26 @@ export class SettingService {
      */
     sendReminder(id: any, objParam: any): Observable<any> {
         return this.http.post<any>(`${this.reason_api_url}/sendReminder/${id}`, objParam);
+    }
+
+    getAllPromotionalCodeList() {
+        return this.http.get<any>(`${environment.coupon_url}/coupon`);
+    }
+
+    addPromotionalCode(data): Observable<any> {
+        return this.http.post<any>(`${environment.coupon_url}/coupon`, data);
+    }
+
+    /**
+     * Add reason text 
+     * @param data 
+     */
+    updatePromotionalCode(id, data): Observable<any> {
+        return this.http.post<any>(`${environment.coupon_url}/coupon/${id}`, data);
+    }
+
+    updateStatuPromotionalCode(id, data): Observable<any> {
+        return this.http.post<any>(`${environment.coupon_url}/changeCouponStatus/${id}`, data);
     }
 
 }

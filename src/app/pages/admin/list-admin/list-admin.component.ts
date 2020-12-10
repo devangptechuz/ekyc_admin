@@ -34,6 +34,7 @@ export class ListAdminComponent implements OnInit {
   ];
   footerMessage = {
   };
+  permissionLists = [];
 
 
 
@@ -58,12 +59,46 @@ export class ListAdminComponent implements OnInit {
             this.temp = [...Data['result']['userList']];
             this.rows = Data['result']['userList'];
             this.count = Data['result']['Count'];
+            this.getPermissionsList();
             this.spinner.hide();
           } else {
             this.spinner.hide();
             this.global.errorToastr(Data.message);
           }
         });
+  }
+
+  getPermissionsList() {
+    this.adminService.getPermissionList().subscribe((res: any) => {
+      if (res.success) {
+        this.permissionLists = res.result;
+        const tows = this.rows;
+        this.rows.map((item) => {
+          let permissionsArray = [];
+          res.result.map((pItem) => {
+            pItem.selected = false;
+            if (item?.userPermissions) {
+              const userA = item.userPermissions.split(',');
+              const isPermissionAvailable = userA.includes(pItem.id);
+              delete pItem.selected;
+              if (isPermissionAvailable) {
+                pItem.selected = true;
+              } else {
+                pItem.selected = false;
+              }
+            }
+            let ss = { 'selected': pItem.selected, 'permissionName': pItem.permissionName };
+            permissionsArray.push(ss);
+            // console.log('isPermissionAvailable****************', permissionsArray);
+          });
+          // console.log('permissionsArray*******', permissionsArray);
+          item['permissions'] = permissionsArray;
+          // console.log('pItem---------------', permissionsArray);
+
+        });
+
+      }
+    });
   }
 
   onEdit(v) {
@@ -178,11 +213,11 @@ export class ListAdminComponent implements OnInit {
     this.table.offset = 0;
   }
 
-  setPage(pageInfo){
+  setPage(pageInfo) {
     window.scrollTo(0, 150);
   }
 
-  handlePageChange (event: any): void {
+  handlePageChange(event: any): void {
   }
 
   toggleExpandRow(row) {

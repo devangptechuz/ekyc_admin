@@ -15,6 +15,8 @@ import { BrokerageCodeListComponent } from './brokerage-code/brokerage-code-list
 import { NavBarReasonCategoryComponent } from './application-settings/nav-bar-reason-category/nav-bar-reason-category.component';
 import { ReasonListComponent } from './application-settings/reason-list/reason-list.component';
 import { ReasonResolver } from './shared/reason.resolver';
+import { ListPromocodeComponent } from './promotional/list-promocode/list-promocode.component';
+import { CouponResolver } from './shared/coupon.resolver';
 
 const routes: Routes = [
   {
@@ -123,7 +125,15 @@ const routes: Routes = [
       title: 'segments',
     },
     resolve: { segments: SegmentResolver }
-  }
+  },
+  {
+    path: 'promotional-code',
+    component: ListPromocodeComponent,
+    data: {
+      title: 'List Promotional Code',
+    },
+    resolve: { couponList: CouponResolver }
+  },
 ];
 
 @NgModule({

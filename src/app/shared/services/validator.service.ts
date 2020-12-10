@@ -42,6 +42,7 @@ export class ValidationService {
       invalidMobile: `Please enter a valid phone number.`,
       invalidPassword: 'Password must be at least 8 characters long, and contain a number.',
       invalidAccountNumber: 'Invalid account number',
+      invalidCode: 'Invalid Code Format'
     };
     return config[validatorName];
   }
@@ -71,6 +72,18 @@ export class ValidationService {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
     return isValid ? null : { 'required': true };
+  }
+
+  RMCode(control) {
+    if (
+      control.value.match(
+        /^[a-zA-Z0-9]{8,16}$/
+      )
+    ) {
+      return null;
+    } else {
+      return { invalidCode: true };
+    }
   }
 
   static creditCardValidator(control) {

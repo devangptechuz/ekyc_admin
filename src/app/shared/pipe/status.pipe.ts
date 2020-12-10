@@ -38,6 +38,9 @@ export class UserTypePipe implements PipeTransform {
         if (value == '2') {
             return 'Admin'
         }
+        if (value == '3') {
+            return 'RM'
+        }
     }
 }
 

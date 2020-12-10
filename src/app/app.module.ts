@@ -33,6 +33,7 @@ import { ReasonResolver } from './pages/settings/shared/reason.resolver';
 import { EditEmailModelComponent } from './shared/model-popup/edit-email-model/edit-email-model.component';
 import { SegmentResolver } from './pages/segment/shared/segment.resolver';
 import { DashboardResolver } from './pages/dashboard/shared/dashboard.resolver';
+import { CouponResolver } from './pages/settings/shared/coupon.resolver';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -67,6 +68,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ReasonResolver,
         SegmentResolver,
         DashboardResolver,
+        CouponResolver,
         AuthGuard,
         PageGuard
     ],

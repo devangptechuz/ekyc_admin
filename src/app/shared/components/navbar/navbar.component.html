@@ -20,17 +20,19 @@
           <li class="nav-item" [routerLinkActive]="['active']">
             <a class="nav-link" [routerLink]="['/applications']">applications</a>
           </li>
-          <li class="nav-item dropdown-submenu position-relative" [routerLinkActive]="['active']">
+          <li class="nav-item dropdown-submenu position-relative" [routerLinkActive]="['active']" *ngIf="userType == 1">
             <a class="nav-link" data-toggle="dropdown">settings</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" [routerLink]="['/settings']" routerLinkActive="router-link-active"><span
                     class="icon-edit"></span>Application Settings</a></li>
               <li><a class="dropdown-item" [routerLink]="['/settings/reasons/application-settings']"
                   routerLinkActive="router-link-active"><span class="icon-edit"></span>Reasons Settings</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/settings/promotional-code']"
+                  routerLinkActive="router-link-active"><span class="icon-edit"></span>Promotional Code Settings</a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item dropdown-submenu position-relative" [routerLinkActive]="['active']"
-            *ngIf=" userType == 1">
+          <li class="nav-item dropdown-submenu position-relative" [routerLinkActive]="['active']" *ngIf="userType == 1">
             <a class="nav-link" data-toggle="dropdown">Admins</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" [routerLink]="['/admins']" routerLinkActive="router-link-active"><span

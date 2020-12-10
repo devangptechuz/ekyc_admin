@@ -77,4 +77,9 @@ export class AdminService {
         return this.http.delete<any>(`${this.apiUrl}/deleteUserProfile`); //todo id=['']
     }
 
+    getPermissionList(): Observable<any> {
+        return this.http.get<any>(`${environment.reason_api_url}/getPermissionList`);
+    }
+
+
 }
