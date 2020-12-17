@@ -980,7 +980,10 @@
                </div> -->
                <div class="row cmn-layout">
                   <div class="col-md-12 d-flex flex-column mb-3"><label>name registered at bank</label>
-                     {{userData?.bank_details?.full_name}}
+                     {{userData?.bank_details?.bank_account_holder_name}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Bank Account Type</label>
+                     {{userData?.bank_details?.bank_account_type}}
                   </div>
                   <div class="col-md-12 d-flex flex-column mb-3"><label>IFSC Code</label>
                      {{userData?.bank_details?.ifsc_code}}
