@@ -266,7 +266,7 @@ export class ImagePopupComponent implements OnInit {
       this.docUrl = 'pan_documents';
     } else if (name === 'address_proof') {
       this.docNameUrl = 'personal_details';
-      this.docUrl = 'address_url';
+      this.docUrl = 'permanent_address_url';
     } else if (name === 'cancelled_cheque') {
       this.docNameUrl = 'bank_details';
       this.docUrl = 'cancelled_cheque_url';
