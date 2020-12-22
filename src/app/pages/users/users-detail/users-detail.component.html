@@ -590,7 +590,7 @@
                            {{userData?.personal_details?.corrospondence_address?.pin_code | mask:'000 000'}},
                         </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.stateName">
-                           {{corresStateOfUser?.name}},
+                           {{userData?.personal_details?.corrospondence_address?.stateName}},
                         </ng-container>
                         <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.country">
                            {{userData?.personal_details?.corrospondence_address?.country}}
@@ -953,7 +953,8 @@
          </ng-container>
          <ng-template #elseBlockNominee>
             <h3 class="no-data-found mt-5">No Data Found</h3>
-            <button [disabled]="isApproved || adminApproval==='Reject'" class="btn btn-custom btn-border font-sml"
+            <!-- disabled="true" [disabled]="isApproved || adminApproval==='Reject'" -->
+            <button [disabled]="true" class="btn btn-custom btn-border font-sml"
                [routerLink]="['/applications/nominee-details',userId]" routerLinkActive="router-link-active">edit
                details</button>
          </ng-template>

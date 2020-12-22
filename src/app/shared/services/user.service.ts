@@ -49,6 +49,10 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrlOfUser}/deleteUser`, data); //todo id=['']
   }
 
+  deleteUserTemp(data): Observable<any> {
+    return this.http.post<any>(`${environment.coupon_url}/resetUserData`, data); //todo id=['']
+  }
+
   approveRejectApplication(objParam: any) {
     return this.http.post<any>(`${this.baseUrlOfUser}/approveRejectApplication`, objParam); //todo id=['']
     // return this.http.post<any>(`http://localhost:4200/test/api/approveRejectApplication`, objParam); //todo id=['']
@@ -195,7 +199,7 @@ export class UserService {
    * Initiate form of Esign
    */
   formInitiate(id: string | number) {
-    return this.http.get<any>(`${environment.reason_api_url}/formInitiated/${id}`);
+    return this.http.get<any>(`${environment.reason_api_url}/formInitiation/${id}`);
   }
 
   /**

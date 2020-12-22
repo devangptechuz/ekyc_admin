@@ -325,4 +325,30 @@ export class ListApplicationComponent implements OnInit {
   setPage(pageInfo) {
     window.scrollTo(0, 150);
   }
+
+
+  /**
+   * Delete User Using PAN NUMBER
+   * @param panUserName 
+   */
+  deleteUser(panUserName: any, id: any) {
+    this.confirmationDialogService.confirm(panUserName).then((data) => {
+      if (data) {
+        const objParam = { 'panUserName': panUserName };
+        this.spinner.show();
+        this.userService.deleteUserTemp(objParam)
+          .subscribe((res) => {
+            if (res.success) {
+              this.spinner.hide();
+              this.global.successToastr('Deleted Successfully')
+              this.ngOnInit();
+            } else {
+              this.spinner.hide();
+              this.global.errorToastr(res.message);
+            }
+          });
+      }
+    }).catch(error => console.log(error));
+
+  }
 }

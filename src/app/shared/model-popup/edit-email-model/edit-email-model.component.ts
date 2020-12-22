@@ -50,11 +50,13 @@ export class EditEmailModelComponent implements OnInit {
       .subscribe((res) => {
         if (res.success) {
           this.global.successToastr(res.message);
+          this.activeModal.close(true);
         } else {
           this.global.errorToastr(res.message);
+          this.activeModal.close(true);
         }
       });
-    this.activeModal.close(true);
+    // this.activeModal.close(true);
   }
 
   public dismiss() {

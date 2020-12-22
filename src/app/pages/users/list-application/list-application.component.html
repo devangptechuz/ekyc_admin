@@ -226,6 +226,16 @@
                                                 <button class="next-arr"><i class="fa fa-angle-right"></i></button>
                                             </ng-template>
                                         </ngx-datatable-column>
+                                        <ngx-datatable-column [width]="20" name="Delete User" [sortable]="true"
+                                            prop="panUserName">
+                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                let-row="row">
+                                                <a (click)="deleteUser(row.panUserName, row.id)" class="delete"
+                                                    style="text-align: right;">
+                                                    <img src="assets/img/trash.svg" style="margin-left: 40px;">
+                                                </a>
+                                            </ng-template>
+                                        </ngx-datatable-column>
                                     </ngx-datatable>
                                 </div>
                             </div>
