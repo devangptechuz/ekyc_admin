@@ -136,7 +136,7 @@ export class ReasonRejectModelComponent implements OnInit {
       this.settingService.sendReasonInfo(sendData)
         .subscribe((res) => {
           if (res.success) {
-            this.global.successToastr(res.message);
+            // this.global.successToastr(res.message);
             this.activeModal.close(true);
           } else {
             this.global.errorToastr(res.message);

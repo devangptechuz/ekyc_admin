@@ -21,24 +21,32 @@ applicationFilter = [
     },
     {
         label: 'Application Status',
-        name: 'Reported'
+        name: 'Form Created'
     },
     {
-        label: 'Account Type',
-        name: 'Equity'
+        label: 'Application Status',
+        name: 'Email Send For Esign'
     },
     {
-        label: 'Account Type',
-        name: 'Mutual Fund'
+        label: 'Application Status',
+        name: 'Esign Completed'
     },
-    {
-        label: 'Account Type',
-        name: 'F & o'
-    },
-    {
-        label: 'Account Type',
-        name: 'IPOs'
-    },
+    // {
+    //     label: 'Account Type',
+    //     name: 'Equity'
+    // },
+    // {
+    //     label: 'Account Type',
+    //     name: 'Mutual Fund'
+    // },
+    // {
+    //     label: 'Account Type',
+    //     name: 'F & o'
+    // },
+    // {
+    //     label: 'Account Type',
+    //     name: 'IPOs'
+    // },
     // {
     //     label:'Day Range',
     //     name:'Last 2 Days'

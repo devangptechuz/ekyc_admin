@@ -524,6 +524,7 @@ body form .form-control::placeholder {color: rgba(0, 0, 0, 0.32);}
 .custom-datatable .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-template-wrap{display: flex;flex-direction: row-reverse;justify-content: flex-end;}
 .custom-datatable .ngx-datatable.checkbox-table .datatable-header .datatable-header-cell:first-child .datatable-header-cell-template-wrap{display: inherit;}
 .custom-datatable .uname{color: rgba(0, 0, 0, 0.8);text-transform: capitalize;}
+.custom-datatable .header h2.title{font-size: 24px;margin-bottom: 0;}
 
 .ngx-datatable .datatable-body .datatable-row-detail{margin-top: -8px;margin-bottom: 8px;height: auto !important;padding: 24px 48px;border: 1px solid #DDDDDD;border-bottom-right-radius: 8px;border-bottom-left-radius: 8px;}
 .datatable-row-detail .rgt-hdr{border: none;padding: 0 0 20px;}
@@ -659,7 +660,7 @@ ul.pic-action li{margin: 2px 0;}
 section.application {margin: 32px 0;}
 .nav-tabs{margin-left: 10px;border: none;}
 .custom-tabs .app-link.nav-link{color: #0970DD;font-weight: 500;}
-.custom-tabs .nav-link{padding: 15px 17px;font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
+.custom-tabs .nav-link{padding: 15px 10px;font-size: 14px;line-height: 21px;letter-spacing: 1px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
 .custom-tabs .nav-link:hover{background: #F5F9FE;border-radius: 8px 8px 0px 0px;color: #0970DD;}
 .custom-tabs .tab-content{padding: 0;background: #FCFCFC;border: 1px solid #DDDDDD;box-sizing: border-box;border-radius: 8px;}
 .custom-tabs .nav-link.active{background: #0970DD;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);border-radius: 8px 8px 0px 0px;color: #fff;border: none;}
@@ -670,14 +671,15 @@ section.application .card-body{padding: 0;}
 section.application h2{font-weight: 200;line-height: 36px;letter-spacing: 1px;text-transform: capitalize;}
 section.application .header{padding: 40px;margin: 0;border-bottom: 1px solid #DDDDDD;}
 section.application .header input{font-size: 12px;line-height: 18px;min-width: 146px;}
-section.application .search input{min-width: 438px;}
+/* section.application .search input{min-width: 380px;} */
+section.application .header .date-range input{min-width: 115px;}
 section.application .search .close-icon{position: absolute;background: transparent;right: 52px;top: 13px;border: none;font-size: 18px;}
 section.application .filter,section.application .search {position: relative;}
 section.application .btn-search{color: rgba(0, 0, 0, 0.56);border-left: 1px solid #DDDDDD;background: transparent;border: none;cursor: pointer;display: inline-block;}
 section.application .btn-search .icon-search{font-size: 18px;}
 section.application .filter {background: #fff;padding: 15px;margin-left: 24px;border: 1px solid #DDDDDD;border-radius: 8px;width: 146px;height: 50px;font-size: 12px;line-height: 18px;text-transform: capitalize;color: rgba(0, 0, 0, 0.56);}
 section.application span.icon-filter,section.application .btn-search{position: absolute;right: 15px;top: 16px;cursor: pointer;}
-section.application .btn-search{top: 16px;padding: 0;border-left: 1px solid #DDDDDD;right: 0;width: 50px;}
+section.application .btn-search{top: 16px;padding: 0;border-left: 1px solid #DDDDDD;right: 15px;width: 40px;}
 section.application .btn-search:focus{outline: none;}
 section.application .search input:focus + .btn-search{color:#0970DD}
 section.application .search input:hover{box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);-webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);-moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);}
@@ -694,7 +696,7 @@ section.application .ng-select.ng-select-multiple .ng-select-container .ng-value
 section.application .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder{top: 15px;padding: 0;font-size: 12px;line-height: 18px;color: rgba(0, 0, 0, 0.56);}
 section.application .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-input{padding: 0;}
 section.application .ng-select .ng-select-container{max-height: 50px;border-color: #DDDDDD;}
-section.application .ng-select{margin-left: 24px;}
+section.application .ng-select{margin-left: 0px;}
 section.application .ng-select .ng-arrow-wrapper:before{content: "\e901";font-size: 17px;font-family: icomoon;color: rgba(0, 0, 0, 0.56);}
 section.application .ng-select .ng-arrow-wrapper .ng-arrow{display: none;}
 section.application .ng-select .ng-arrow-wrapper{width: auto;padding-right:0;}
@@ -707,9 +709,9 @@ section.application .ng-dropdown-panel-items .ng-optgroup.ng-option-disabled:bef
 /*section.application .ng-dropdown-panel .ng-dropdown-panel-items #a3a958d64f37:before{border-top: none;}*/
 section.application .header .ng-dropdown-panel input{border-radius: 4px;min-width: auto;position: relative;}
 section.application .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child {padding-left: 10px;display: flex;justify-content: space-between;align-items: center;}
-section.application .ng-dropdown-footer{margin: 8px 0 0;display: flex; flex-wrap: wrap;padding: 16px 0 0;border-color: #ddd}
+section.application .ng-dropdown-footer{margin: 8px 0 0;display: flex; flex-wrap: wrap;padding: 0 0 0;border-color: #ddd}
 .ng-dropdown-footer .calendar{position: absolute;top: 0;right: 10px;}
-.ng-dropdown-footer .btn-aply{flex: 0 0 100%;padding: 8px 0 0;border-top: 1px solid #DDDDDD;margin: 24px 0 0;}
+.ng-dropdown-footer .btn-aply{flex: 0 0 100%;padding: 8px 0 0;margin: 10px 0 0;}
 section.application .ng-dropdown-footer .btn-custom{margin: 0;width: 100%;font-size: 14px;line-height: 21px;padding: 8px;}
 section.application .calendar span{padding: 0;border: none;margin: 9px 0 0;background: transparent;color: rgba(0, 0, 0, 0.56);}
 section.application .ng-dropdown-footer input{padding: 8px;}
@@ -718,11 +720,12 @@ section.application .position-relative{flex: 1;}
 section.application input[type='checkbox']:before,section.application input[type='checkbox']:after{height: 16px !important;width: 16px;box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);position: absolute;background: #fff;}
 section.application input[type='checkbox']:checked:after{left: 4px;height: .3rem !important;top: 4px;}
 /*.ng-select .ng-value{display: none;}*/
-
+section.application .date-range .calendar span{margin: -35px 0 0 75px;}
 
 .ng-dropdown-panel .scroll-host::-webkit-scrollbar-track {background: transparent;}
 .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb {background: #C4C4C4;}
 .ng-dropdown-panel .scroll-host::-webkit-scrollbar {width: 4px;}
+
 
 /*user-view*/
 section.user-view {margin: 32px 0;}

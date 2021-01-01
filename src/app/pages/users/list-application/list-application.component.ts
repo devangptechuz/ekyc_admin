@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { applicationFilter } from '../shared/constant';
 import { environment } from '../../../../environments/environment';
 import { isArray } from 'util';
+declare var $: any;
 
 @Component({
   selector: 'app-list-application',
@@ -20,6 +21,7 @@ export class ListApplicationComponent implements OnInit {
   @ViewChild('searchBytype') searchBytype: ElementRef;
   @ViewChild('searchBytypeAgain') searchBytypeAgain: ElementRef;
 
+  create_application_url = environment.create_application_url;
   rows = [];
   temp = [];
   tempOther = [];
@@ -48,7 +50,14 @@ export class ListApplicationComponent implements OnInit {
   footerMessage = {};
   typeOflist: string;
 
+  filterSelected: any;
+  from_date: any;
+  to_date: any;
+
+  events = [];
+
   @ViewChild(DatatableComponent) table: DatatableComponent;
+
   constructor(
     private toastr: ToastrService,
     private router: Router,
@@ -57,6 +66,7 @@ export class ListApplicationComponent implements OnInit {
     private global: GlobalService,
     private userService: UserService
   ) { }
+
 
   ngOnInit(): void {
     this.getApplicationListByType();
@@ -89,11 +99,18 @@ export class ListApplicationComponent implements OnInit {
     }
   }
 
-  public onClearAll() { }
+  public onClearAll() {
+    this.filterSelected = '';
+  }
 
   removeText() {
     this.searchValue = '';
-    this.ngOnInit();
+    if (this.filterSelected || this.from_date || this.to_date) {
+      this.searchBytype.nativeElement.value = '';
+      this.submitFilter();
+    } else {
+      this.ngOnInit();
+    }
   }
 
   updateFilter(event) {
@@ -109,6 +126,9 @@ export class ListApplicationComponent implements OnInit {
     } else if (searchByKey) {
       val = searchByType.toLowerCase();
     }
+    this.searchBytypeAgain.nativeElement.value = val;
+    this.searchBytype.nativeElement.value = val;
+    this.searchValue = val;
     // const val = searchByType.toLowerCase() || searchByKey.toLowerCase();
     this.commonFunctionFilter(val);
   }
@@ -122,28 +142,151 @@ export class ListApplicationComponent implements OnInit {
     this.commonFunctionFilter(val);
   }
 
-  commonFunctionFilter(val) {
-    this.rows = this.temp.filter((d) => {
-      return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
-        d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
-        d.panUserName.toLowerCase().indexOf(val) !== -1 || !val ||
-        d.id.toLowerCase().indexOf(val) !== -1 || !val;
-    });
-    this.table.offset = 0;
+  commonFunctionFilter(val: any) {
+    this.submitFilter(val);
+    // this.rows = this.temp.filter((d) => {
+    //   return d.email.toLowerCase().indexOf(val) !== -1 || !val ||
+    //     d.mobileNumber.toLowerCase().indexOf(val) !== -1 || !val ||
+    //     d.panUserName.toLowerCase().indexOf(val) !== -1 || !val ||
+    //     d.id.toLowerCase().indexOf(val) !== -1 || !val;
+    // });
+    // this.table.offset = 0;
+  }
+
+  clearDateFilter() {
+    this.from_date = '';
+    this.to_date = '';
   }
 
 
+  applyDateRange() {
+    if (this.from_date && this.to_date) {
+      const fromDate = new Date(this.from_date['year'], this.from_date['month'], this.from_date['day']); //Today Date    
+      const toDate = new Date(this.to_date['year'], this.to_date['month'], this.to_date['day']);
+      if (fromDate > toDate) {
+        this.toastr.error('Please select correct date range');
+        return false;
+      } else if ((this.from_date && !this.to_date) || (!this.from_date && this.to_date)) {
+        this.toastr.error('Please select correct date range');
+        return false;
+      } else {
+        this.submitFilter();
+      }
+    } else if (!this.from_date || !this.to_date) {
+      this.toastr.error('Please select correct date range');
+      return false;
+    }
+  }
+
   /**
-   * Get application list by type(all,rejected,approved,under_review)
-   * @param typeOflist
+   * Get filter selected from tabs default
+   * @param typeOfTab 
    */
-  getApplicationListByType(typeOflist: any = '') {
-    this.cancelAll();
-    this.typeOflist = typeOflist;
-    this.userService.getUserList(this.typeOflist).subscribe((Data: any) => {
+  getFilterMatchTab(typeOfTab: string = null) {
+    if (typeOfTab === "under_review") {
+      return "Under Review";
+    } else if (typeOfTab === "approved") {
+      return "Approved";
+    } else if (typeOfTab === "rejected") {
+      return "Rejected";
+    } else if (typeOfTab === "FormInitiated") {
+      return "Form Created";
+    } else if (typeOfTab === "EmailSendForESign") {
+      return "Email Send For Esign";
+    } else if (typeOfTab === "Completed") {
+      return "Esign Completed";
+    }
+  }
+
+  /**
+   * Submit filter and search by name
+   */
+  submitFilter(val: any = null) {
+    let objParam = {};
+    let sendParam = {};
+    // let arrayAppStatus = [];
+    // if (this.typeOflist) {
+    //   if (this.filterSelected) {
+    //     const splitAppStatus = this.filterSelected;
+    //     splitAppStatus.map((item) => {
+    //       arrayAppStatus.push(item['name']);
+    //     });
+    //   }
+    // }
+
+    sendParam['app_status'] = '';
+    sendParam['from_date'] = '';
+    sendParam['to_date'] = '';
+    if (this.from_date && this.to_date) {
+      const fromDate = new Date(this.from_date['year'], this.from_date['month'], this.from_date['day']); //Today Date    
+      const toDate = new Date(this.to_date['year'], this.to_date['month'], this.to_date['day']);
+      if (fromDate > toDate) {
+        this.toastr.error('Please select correct date range');
+        return false;
+      } else if ((this.from_date && !this.to_date) || (!this.from_date && this.to_date)) {
+        this.toastr.error('Please select correct date range');
+        return false;
+      } else {
+        sendParam['from_date'] = `${this.from_date['day']}-${this.from_date['month']}-${this.from_date['year']}`;
+        sendParam['to_date'] = `${this.to_date['day']}-${this.to_date['month']}-${this.to_date['year']}`;
+      }
+    }
+
+    if (this.filterSelected && this.from_date && this.to_date) {
+      objParam['application_type'] = this.filterSelected;
+      objParam['from_date'] = this.from_date;
+      objParam['to_date'] = this.to_date;
+      let pushStatusItem = [];
+      this.filterSelected.map((item) => {
+        pushStatusItem.push((item['name']).replace(/\s+/g, ''));
+      });
+      sendParam['app_status'] = pushStatusItem.join(',');
+    } else if (this.filterSelected && !this.from_date && !this.to_date) {
+      objParam['application_type'] = this.filterSelected;
+      objParam['from_date'] = this.from_date;
+      objParam['to_date'] = this.to_date;
+      let pushStatusItem = [];
+      this.filterSelected.map((item) => {
+        pushStatusItem.push((item['name']).replace(/\s+/g, ''));
+      });
+      sendParam['app_status'] = pushStatusItem.join(',');
+
+    } else if (!this.filterSelected && this.from_date && this.to_date) {
+      objParam['from_date'] = this.from_date;
+      objParam['to_date'] = this.to_date;
+    }
+    sendParam['Search'] = '';
+    this.searchBytype.nativeElement.value;
+    if (this.searchBytype.nativeElement.value) {
+      const val = this.searchBytype.nativeElement.value;
+      this.searchValue = val;
+      sendParam['Search'] = val.toLowerCase();
+    }
+    let getString = '';
+    if (this.typeOflist) {
+      this.filterSelected = '';
+      const fiterMatchText = this.getFilterMatchTab(this.typeOflist);
+      sendParam['app_status'] = fiterMatchText.replace(/\s+/g, '');
+    }
+    if (sendParam['app_status'] && sendParam['Search']) {
+      getString += `app_status=${sendParam['app_status']}&Search=${sendParam['Search']}`;
+    } else if (!sendParam['app_status'] && sendParam['Search']) {
+      getString += `Search=${sendParam['Search']}`;
+    } else if (sendParam['app_status'] && !sendParam['Search']) {
+      getString += `app_status=${sendParam['app_status']}`;
+    }
+    if (sendParam['from_date'] && (sendParam['app_status'] || sendParam['Search'])) {
+      getString += `&from_date=${sendParam['from_date']}`;
+      getString += `&to_date=${sendParam['to_date']}`;
+    } else if (sendParam['from_date'] && (!sendParam['app_status'] && !sendParam['Search'])) {
+      getString += `from_date=${sendParam['from_date']}`;
+      getString += `&to_date=${sendParam['to_date']}`;
+    }
+    this.userService.getSearchableApplicationList(getString).subscribe((Data: any) => {
       if (Data.success) {
         this.temp = [...Data['result']['userList']];
         this.rows = [...Data['result']['userList']];
+        this.rows.sort((a, b) => a.id > b.id ? -1 : (a.id < b.id ? 1 : 0))
         this.count = Data['result']['all_count'];
         this.countUnderReview = Data['result']['under_review_count'];
         this.countApproved = Data['result']['approved_count'];
@@ -157,12 +300,64 @@ export class ListApplicationComponent implements OnInit {
     });
   }
 
+  /**
+   * Get application list by type(all,rejected,approved,under_review)
+   * @param typeOflist
+   */
+  getApplicationListByType(typeOflist: any = '') {
+    this.typeOflist = typeOflist;
+    console.log('is-same-tab', this.searchValue, 'valjuemodel', this.from_date, this.to_date);
+    if (this.typeOflist) {
+      this.filterSelected = '';
+      const fiterMatchText = this.getFilterMatchTab(this.typeOflist);
+      // console.log('fiterMatchText', fiterMatchText);
+      let allFilters = this.item;
+      const getCurrentTabFilter = allFilters.filter((ele) => ele.name === fiterMatchText);
+      if (this.searchValue) {
+        this.searchBytype.nativeElement.value = this.searchValue;
+        this.searchBytypeAgain.nativeElement.value = this.searchValue;
+      }
+      this.filterSelected = getCurrentTabFilter;
+    }
+    if (this.typeOflist && this.searchValue || (this.from_date && this.to_date)) {
+      this.submitFilter();
+      return;
+    } else {
+      this.cancelAll();
+      this.clearAllFilters();
+      this.userService.getUserList(this.typeOflist).subscribe((Data: any) => {
+        if (Data.success) {
+          this.temp = [...Data['result']['userList']];
+          this.rows = [...Data['result']['userList']];
+          this.rows.sort((a, b) => a.id > b.id ? -1 : (a.id < b.id ? 1 : 0))
+          this.count = Data['result']['all_count'];
+          this.countUnderReview = Data['result']['under_review_count'];
+          this.countApproved = Data['result']['approved_count'];
+          this.countRejected = Data['result']['rejected_count'];
+          this.countFormInitiated = Data['result']['form_awaited_count'];
+          this.countEsignAwaited = Data['result']['esign_awaited_count'];
+          this.countCompleted = Data['result']['esign_completed'];
+        } else {
+          this.global.errorToastr(Data.message);
+        }
+      });
+    }
+  }
+
   cancelAll() {
     // this.onSelect({ selected: [] });
     this.deleteFlag = false;
     this.selected = [];
     this.usersSelectCount = 0;
+  }
+
+  clearAllFilters() {
     this.searchValue = '';
+    // this.searchBytype.nativeElement.value = this.searchValue;
+    // thiss.searchBytypeAgain.nativeElement.value = this.searchValue;
+    this.filterSelected = '';
+    this.from_date = '';
+    this.to_date = '';
   }
   /**
    * on select deselect event
@@ -351,4 +546,8 @@ export class ListApplicationComponent implements OnInit {
     }).catch(error => console.log(error));
 
   }
+
+
+
+
 }

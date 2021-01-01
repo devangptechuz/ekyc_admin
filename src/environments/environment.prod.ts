@@ -7,6 +7,7 @@ export const environment = {
   reason_api_url: "https://69guilpm0a.execute-api.ap-south-1.amazonaws.com/production/api",
   imag_url: "https://hsdue9sk57.execute-api.ap-south-1.amazonaws.com/production/api",
   coupon_url: "https://n6zqedqwf5.execute-api.ap-south-1.amazonaws.com/production/api",
+  create_application_url: "https://www.arihantcapital.com/login",
   userlimitRow: 10,
   adminlimitRow: 10,
 };

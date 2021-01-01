@@ -200,7 +200,7 @@
       <div class="user-box">
          <div class="user-bxhdr d-flex justify-content-between">
             <div class="lft">
-               <h2>{{userData?.basic_info?.user_name}}</h2>
+               <h2>{{userData?.basic_info?.user_name}} </h2>
                <p class="mb-0 mt-2">application number : {{userData?.basic_info?.application_number | uppercase}}</p>
             </div>
 
@@ -269,134 +269,6 @@
             </div>
          </div>
       </div>
-      <!-- User box - Account Opening Charges-->
-      <!-- <div class="user-box">
-         <div class="user-bxhdr d-flex justify-content-between">
-            <div class="lft">
-               <h2>Account Opening Charges</h2>
-            </div>
-            <div class="rght d-flex align-items-center"><span class="green-status">Payment received <span
-                     class="icon-check-circle"></span></span></div>
-         </div>
-         <div class="row user-btmbx">
-            <div class="col-md-6">
-               <span class="cmn-txt mb-3 d-block">Paid on Jan 20 2020 - 02:56 PM</span>
-               <div class="row cmn-layout">
-                  <div class="col-md-6 d-flex flex-column mb-3"><label>Transaction Amount</label>₹ 300 /-</div>
-                  <div class="col-md-6 d-flex flex-column mb-3"><label>Transaction ID</label>AD1278647999S33</div>
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>Payment Mode</label>ICICI Debit Card - Rajat
-                     Boss - 15xx xxxx xxxx xx24</div>
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>Current Status</label>Received by GetProsper
-                  </div>
-                  <div class="col-md-12 d-flex flex-column"><label>Discount Code used</label>- - None - -</div>
-               </div>
-            </div>
-            <div class="col-md-6">
-               <span class="cmn-txt mb-3 d-block">Received on Jan 20 2020 - 05:36 PM</span>
-               <p class="mb-1">The transaction receipt was generated on 20 Jan 2020 - 06:36 & was successfully sent to
-                  the user via email on 20 Jan 2020 - 07:36</p>
-               <button class="btn btn-custom font-sml">View receipt</button>
-            </div>
-         </div>
-      </div> -->
-      <!-- User box - Aadhaar Details-->
-      <!-- <div class="user-box">
-         <div class="user-bxhdr d-flex justify-content-between">
-            <div class="lft">
-               <h2>Aadhaar Details</h2>
-               <p><strong>{{userData?.aadhar_details?.aadhar_number | mask:'AAAA AAAA AAAA'}}</strong>
-                  <span *ngIf="userData?.aadhar_details?.isKRAVerified"
-                     class="green-status status-box ml-2">VERIFIED</span>
-                  <span *ngIf="userData?.aadhar_details?.isAadharVerifiedByDigiLocker"
-                     class="green-status status-box ml-2">VERIFIED</span>
-                  <span
-                     *ngIf="!userData?.aadhar_details?.isAadharVerifiedByDigiLocker && !userData?.aadhar_details?.isKRAVerified"
-                     class="yellow-status status-box ml-2">NOT
-                     VERIFIED</span>
-               </p>
-            </div>
-         </div>
-         <div class="row user-btmbx">
-            <div class="col-md-6">
-               <div class="d-flex justify-content-between mb-3">
-                  <span class="digi-text" *ngIf="userData?.aadhar_details?.isAadharVerifiedByDigiLocker">
-                     Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2">
-                  </span>
-               </div>
-               <div class="row cmn-layout">
-                  <div class="col-md-12 d-flex flex-column mb-3"><label>Full
-                        Name</label>{{userData?.aadhar_details?.full_name}}
-                  </div>
-                  <div class="col-md-6 d-flex flex-column mb-3">
-                     <label>DOB</label>{{userData?.pan_details?.date_of_birth}}
-                  </div>
-                  <div class="col-md-6 d-flex flex-column mb-3">
-                     <label>Gender</label>{{userData?.aadhar_details?.gender}}
-                  </div>
-                  <div class="col-md-6 d-flex flex-column"><label>Permanent
-                        Address</label>
-                     <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line1">
-                        {{userData?.personal_details?.permanent_address?.address_line1}},
-                     </ng-container>
-                     <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line2">
-                        {{userData?.personal_details?.permanent_address?.address_line2}},
-                     </ng-container>
-                     <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line3">
-                        {{userData?.personal_details?.permanent_address?.address_line3}},
-                     </ng-container>
-                     <ng-container *ngIf="userData?.personal_details?.permanent_address?.pin_code">
-                        {{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}}
-                     </ng-container>
-                     <ng-container *ngIf="userData?.personal_details?.permanent_address?.country">
-                        {{userData?.personal_details?.permanent_address?.country}}
-                     </ng-container>
-                  </div>
-               </div>
-               <button [ngClass]="{'disabled': isApproved,'disable':adminApproval==='Reject'}" class="btn btn-custom font-sml"
-                  (click)="requestConfirm('data_review')">request
-                  review</button>
-            </div>
-            <div class="col-md-6">
-               <div class="d-flex justify-content-between mb-2">
-                  <span class="cmn-txt"
-                     *ngIf="userData?.aadhar_details?.uploaded_date">{{userData?.aadhar_details?.uploaded_date}}</span>
-                  <span class="digi-text" *ngIf="userData?.aadhar_details?.isPanFileVerifiedByDigiLocker">Submitted
-                     using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2"></span>
-               </div>
-               <div class="doc-upbox">
-                  <div class="dropdown more-dropdown">
-                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                        <span class="icon-more-vertical"></span>
-                     </button>
-                     <div class="dropdown-menu dropdown-menu-right">
-                        <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
-                           (click)="openDocumentPopupModal(aadhaarKYCDocuments?.document_name, aadhaarKYCDocuments?.document_modal_title, aadhaarKYCDocuments?.document_status, aadhaarKYCDocuments)">Upload
-                           document</a>
-                        <a class="dropdown-item" *ngIf="userData?.aadhar_details?.aadhar_documents?.length"
-                           (click)="openImageDisplayModal(aadhaarKYCDocuments?.document_name, aadhaarKYCDocuments?.document_modal_title, aadhaarKYCDocuments?.document_status, aadhaarKYCDocuments)">Zoom
-                           In Zoom Out</a>
-                     </div>
-                  </div>
-                  <ngb-carousel *ngIf="userData?.aadhar_details?.aadhar_documents?.length">
-                     <ng-template ngbSlide *ngFor="let imageAadhaar of userData?.aadhar_details?.aadhar_documents">
-                        <a class="fancyboxiframe clickpdf-popup"
-                           *ngIf="imageAadhaar?.content_type === 'application/pdf'"
-                           [href]="imageAadhaar?.url | safeUrl">Click here </a>
-                        <div class="picsum-img-wrapper" *ngIf="imageAadhaar?.content_type === 'application/pdf'">
-                           <iframe [src]="imageAadhaar?.url | safeUrl" height="100%" width="100%"></iframe>
-                        </div>
-                        <div class="picsum-img-wrapper fancy" *ngIf="imageAadhaar?.content_type !== 'application/pdf'">
-                           <a class="grouped_elements" rel="aadharImage" [href]="imageAadhaar?.url">
-                              <img width="100%" [src]="imageAadhaar?.url" alt="Random first slide">
-                           </a>
-                        </div>
-                     </ng-template>
-                  </ngb-carousel>
-               </div>
-               <label class="doc-type">aadhaar card</label>
-            </div>
-         </div>
-      </div> -->
 
       <div class="user-box">
 
@@ -404,7 +276,11 @@
             <div class="lft">
                <h2>permanent account number (PAN)</h2>
                <p *ngIf="userData?.pan_details?.pan_number"><strong>{{userData?.pan_details?.pan_number}}</strong>
-                  <span *ngIf="userData?.pan_details?.pan_number" class="green-status status-box ml-2">VERIFIED</span>
+                  <span *ngIf="userData?.pan_details?.isPanVerified && userData?.pan_details?.isPanVerifiedByKRA"
+                     class="green-status status-box ml-2">VERIFIED BY KRA</span>
+                  <span
+                     *ngIf="userData?.pan_details?.isPanVerified && userData?.pan_details?.isPanFileVerifiedByDigiLocker"
+                     class="green-status status-box ml-2">VERIFIED BY Digilocker</span>
                </p>
             </div>
          </div>
@@ -420,7 +296,15 @@
                </div>
                <div class="row cmn-layout">
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Full
-                        Name</label>{{userData?.pan_details?.full_name}}
+                        Name As Per NSDL</label>{{userData?.pan_details?.full_name}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3" *ngIf="userData?.basic_info?.full_name_as_per_kra">
+                     <label>Full
+                        Name by KRA</label>{{userData?.basic_info?.full_name_as_per_kra}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3"
+                     *ngIf="userData?.basic_info?.full_name_as_per_digilocker"><label>Full
+                        Name by Digilocker </label>{{userData?.basic_info?.full_name_as_per_digilocker}}
                   </div>
                   <div class="col-md-12 d-flex flex-column mb-3">
                      <label>DOB</label>{{userData?.pan_details?.date_of_birth}}
@@ -500,12 +384,31 @@
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Full
                         Name</label>{{userData?.personal_details?.full_name}}
                   </div>
-                  <div class="col-md-6 d-flex flex-column mb-3">
+                  <div class="col-md-4 d-flex flex-column mb-3">
                      <label>DOB</label>{{userData?.personal_details?.date_of_birth}}
                   </div>
-                  <div class="col-md-6 d-flex flex-column mb-3">
+                  <div class="col-md-4 d-flex flex-column mb-3">
                      <label>Gender</label>{{userData?.personal_details?.gender}}
                   </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label>Nationality</label>{{userData?.basic_info?.nationality}}
+                  </div>
+
+                  <div class="col-md-6 d-flex flex-column mb-3" *ngIf="userData?.basic_info?.identity_proof">
+                     <label>Identity Proof BY KRA</label>{{userData?.basic_info?.identity_proof}}
+                  </div>
+                  <div class="col-md-6 d-flex flex-column mb-3" *ngIf="userData?.basic_info?.residental_status">
+                     <label>Residental Status BY KRA</label>{{userData?.basic_info?.residental_status}}
+                  </div>
+                  <div class="col-md-6 d-flex flex-column mb-3" *ngIf="userData?.basic_info?.app_type">
+                     <label>Application Type BY KRA</label>{{userData?.basic_info?.app_type}}
+                  </div>
+                  <div class="col-md-6 d-flex flex-column mb-3" *ngIf="userData?.basic_info?.pep_proof">
+                     <label>Politically connection BY KRA</label>{{userData?.basic_info?.pep_proof}}
+                  </div>
+
+
+
                   <!-- <div class="col-md-12 d-flex flex-column mb-3">
                      <label>What is your trading experience?</label>
                      <ng-container *ngIf="userData?.personal_details?.tradingExp ;else noDefault">
@@ -983,10 +886,18 @@
                </div> -->
                <div class="row cmn-layout">
                   <div class="col-md-12 d-flex flex-column mb-3"><label>name registered at bank</label>
-                     {{userData?.bank_details?.bank_account_holder_name}}
+                     <p class="mb-0">{{userData?.bank_details?.bank_account_holder_name}}
+                        <a href="javascript:void(0)"> <span *ngIf="userData?.bank_details?.bank_name_mismatch"
+                              class="green-status status-box ml-2 ng-star-inserted">MATCH</span>
+                           <span *ngIf="!userData?.bank_details?.bank_name_mismatch"
+                              class="yellow-status status-box ml-2 ng-star-inserted">MISMATCH</span>
+                        </a>
+                     </p>
                   </div>
+
                   <div class="col-md-12 d-flex flex-column mb-3"><label>Bank Account Type</label>
-                     {{userData?.bank_details?.bank_account_type}}
+                     ---
+                     <!-- {{userData?.bank_details?.bank_account_type}} -->
                   </div>
                   <div class="col-md-12 d-flex flex-column mb-3"><label>IFSC Code</label>
                      {{userData?.bank_details?.ifsc_code}}

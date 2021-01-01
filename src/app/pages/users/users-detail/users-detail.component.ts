@@ -6,7 +6,7 @@ import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Subject, Observable } from 'rxjs';
 import { GlobalService } from 'app/shared/services/global.service';
 import { UserService } from 'app/shared/services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookiesService } from '@ngx-utils/cookies';
 import { ConfirmationDialogService } from 'app/shared/services/confirmation-dialoge.service';
 import { ImagePopupComponent } from '../document-modal/image-popup/image-popup.component';
@@ -165,6 +165,7 @@ export class UsersDetailComponent implements OnInit {
     config: NgbCarouselConfig,
     private cookie: CookiesService,
     private route: ActivatedRoute,
+    private router: Router,
     private modalService: NgbModal,
     public global: GlobalService,
     private userService: UserService,
@@ -1101,6 +1102,22 @@ export class UsersDetailComponent implements OnInit {
   }
 
   /**
+   * Delete User Using PAN NUMBER
+   * @param panUserName 
+   */
+  deleteUser(panUserName: any) {
+    const objParam = { 'panUserName': panUserName };
+    this.userService.deleteUserTemp(objParam)
+      .subscribe((res) => {
+        if (res.success) {
+          this.router.navigate(['applications']);
+        } else {
+          this.global.errorToastr(res.message);
+        }
+      });
+  }
+
+  /**
    * approve confirm modal pop-up
    */
   approveConfirm() {
@@ -1150,10 +1167,11 @@ export class UsersDetailComponent implements OnInit {
         this.userService.approveRejectApplication(objParam)
           .subscribe((res) => {
             if (res.success) {
-              this.manageApplicationStatus('Reject');
+              // this.manageApplicationStatus('Reject');
+              this.deleteUser(this.userData.pan_details.pan_number);
               if (res.message) {
                 this.global.successToastr(res.message);
-                this.getUserDetails(true);
+                // this.getUserDetails(true);
               } else {
                 this.global.successToastr('Reject Successfully');
               }
@@ -1205,8 +1223,10 @@ export class UsersDetailComponent implements OnInit {
     this.confirmationDialogService.requestToConfirm(popupParam).then((data) => {
       if (data) {
         if (typeOfRequest === 'reject_reason') {
-          this.manageApplicationStatus('Reject');
-          this.getUserDetails(true);
+          // this.manageApplicationStatus('Reject');
+          // this.getUserDetails(true);
+          this.deleteUser(this.userData.pan_details.pan_number);
+          this.global.successToastr('Reject Successfully');
         } else {
           this.getUserDetails(true);
         }

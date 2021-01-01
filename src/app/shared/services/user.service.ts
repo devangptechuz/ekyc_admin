@@ -28,6 +28,11 @@ export class UserService {
     }
   }
 
+  getSearchableApplicationList(byKey: any = '') {
+
+    return this.http.get<any>(`${this.baseUrlOfUser}/userList?${byKey}`);
+  }
+
   getUserApplicationList() {
     return this.http.get<any>(`${this.baseUrlOfUser}/userList?date=true`);
   }
