@@ -1,0 +1,157 @@
+<section class="application admin-list">
+   <div class="container">
+      <!-- Nav tabs -->
+      <!-- Tab panes -->
+      <div id="content" class="tab-content" role="tablist">
+         <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+            <div class="card-header" role="tab" id="heading-A">
+            </div>
+
+            <!-- Note: New place of `data-parent` -->
+            <div id="collapse-A" class="collapse show" data-parent="#content" role="tabpanel"
+               aria-labelledby="heading-A">
+               <div class="card-body">
+                  <div class="custom-datatable mt-0">
+                     <div class="header row d-flex justify-content-between">
+                        <div class="col-md-4 d-flex align-items-center ">
+                           <h2 class="mb-0">Total Admin users ({{count}})</h2>
+                        </div>
+                        <div class="col-md-8 d-flex align-items-center justify-content-end">
+                           <div class="search">
+                              <input type="search" [(ngModel)]="searchValue" name="" #searchBytype
+                                 (keyup)='resetFilter($event)' (keydown)="onEnterPress($event)"
+                                 placeholder="Search by Admin Username or Email or Mobile Number" class="form-control">
+                              <button class="btn-search" (click)='updateFilter($event)'><span
+                                    class="icon-search"></span></button>
+                              <button *ngIf="searchValue" (click)='removeText()' class="close-icon">&times;</button>
+                           </div>
+                           <div><button class="btn btn-custom mb-0" routerLink="/admins/add-admin">Add New
+                                 Admin <span class="icon-plus"></span></button></div>
+                        </div>
+                     </div>
+                     <div class="tble">
+                        <ngx-datatable class="bootstrap checkbox-table expandable" [loadingIndicator]="loadingIndicator"
+                           [columnMode]="'force'" [headerHeight]="30" [scrollbarH]="true" [footerHeight]="50"
+                           [rowHeight]="70" [limit]="limitRow" [rows]="rows" [selected]="selected"
+                           [selectionType]="'checkbox'" [selectAllRowsOnPage]="false" (page)='setPage($event)'
+                           (select)='onSelect($event)'>
+                           <ngx-datatable-row-detail [rowHeight]="250" #myDetailRow (toggle)="onDetailToggle($event)">
+                              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                                 <div class="row">
+                                    <div class="col-md-8 left" *ngIf="row.userType !== '3'">
+                                       <div class="d-flex justify-content-between rgt-hdr">
+                                          <h4 class="mb-0">User Permission</h4>
+                                       </div>
+                                       <ul class="docupld-link" style="overflow-x:scroll ;">
+                                          <li [ngClass]="{'active' : item?.selected}"
+                                             *ngFor="let item of row?.permissions">
+                                             <a href="javascript:void(0)" style="pointer-events: none;">
+                                                <span class="icon-check-circle"></span>{{item?.permissionName}}
+                                             </a>
+                                          </li>
+
+                                       </ul>
+                                    </div>
+                                    <div class="col-md-8 left" *ngIf="row.userType === '3'">
+                                       <div class="d-flex justify-content-between rgt-hdr">
+                                          <h4 class="mb-0">RM CODE</h4>
+                                       </div>
+                                       <ul class="docupld-link" style="overflow-x:scroll ;">
+                                          <li class="active">
+                                             <a href="javascript:void(0)" style="pointer-events: none;">
+                                                {{row?.rmCode}}
+                                             </a>
+                                          </li>
+
+                                       </ul>
+                                    </div>
+                                    <div class="col-md-4 right">
+                                       <div class="d-flex justify-content-between rgt-hdr">
+                                          <h4 class="mb-0">Account Setting</h4>
+                                       </div>
+                                       <ul class="docupld-link">
+                                          <li class="">
+                                             <a class="dropdown-item blue-color-text ng-star-inserted"
+                                                href="javascript:void(0)" (click)="onEdit(row.id)">
+                                                <span class="ft-edit"></span> Edit Details & permissions</a>
+                                          </li>
+                                          <li class="">
+                                             <a class="dropdown-item red-color-text ng-star-inserted"
+                                                href="javascript:void(0)" (click)="onDelete(row.id,1)">
+                                                <span class="icon-user"></span>Activate User</a>
+                                          </li>
+                                          <li class="">
+                                             <a class="dropdown-item red-color-text" href="javascript:void(0)"
+                                                (click)="onDelete(row.id,0)">
+                                                <span class="icon-notallow"></span>Deactivate User</a>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </ng-template>
+                           </ngx-datatable-row-detail>
+                           <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false"
+                              [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true"
+                              prop="selected">
+                           </ngx-datatable-column>
+                           <ngx-datatable-column [width]="50" name="username" [sortable]="true" prop="username">
+                              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                 <a class="user-img dummy-icon" *ngIf="!row.userProfile_url" (click)="onEdit(row.id)">
+                                    <img src="assets/img/user-ic.svg">
+                                 </a>
+                                 <a class="user-img" *ngIf="row.userProfile_url" (click)="onEdit(row.id)">
+                                    <img src="{{row.userProfile_url}}">
+                                 </a>
+                                 <a title="{{row.username}}" class="wrap-text"
+                                    (click)="onEdit(row.id)">{{row.username}}</a>
+                              </ng-template>
+                           </ngx-datatable-column>
+                           <ngx-datatable-column [width]="100" name="Email" [sortable]="true" prop="email">
+                              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                 <span class="uname email-wrap wrap-text"
+                                    style="text-transform: lowercase;">{{row.email}}</span>
+                              </ng-template>
+                           </ngx-datatable-column>
+                           <ngx-datatable-column [width]="80" name="Mobile Number" [sortable]="true"
+                              prop="mobileNumber">
+                           </ngx-datatable-column>
+                           <ngx-datatable-column [width]="50" name="Account type" [sortable]="true" prop="status">
+                              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                 <span
+                                    [ngClass]="{'super-admin-class': row.userType==='1'}">{{row.userType | userType}}</span>
+                              </ng-template>
+                           </ngx-datatable-column>
+                           <ngx-datatable-column [width]="50" name="Admin Status" [sortable]="true" prop="status">
+                              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                 <span *ngIf="row.status" class="green-color-text">Active</span>
+                                 <span *ngIf="!row.status" class="red-color-text">Deactive</span>
+                              </ng-template>
+                           </ngx-datatable-column>
+                           <ngx-datatable-column [width]="50" [resizeable]="false" name="" [sortable]="false"
+                              [draggable]="false" [canAutoResize]="false">
+                              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                 <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded"
+                                    [class.datatable-icon-down]="expanded" [class.open-datarow]="expanded"
+                                    title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
+                                 </a>
+                              </ng-template>
+                           </ngx-datatable-column>
+                        </ngx-datatable>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+<div *ngIf="deleteFlag" class="fixed-status">
+   <label class="mb-0">Applications selected : <strong>{{adminsSelectCount}}</strong></label>
+   <ul>
+      <li (click)="deleteAdmins(0)" class="cancel"><img src="assets/img/not-allow.svg"><span>Deactivate selected</span>
+      </li>
+      <li (click)="deleteAdmins(1)"><img src="assets/img/true.svg"><span>Activate selected</span></li>
+      <li (click)="cancelAll()" class="cancel"><img src="assets/img/not-allow.svg"><span>Cancel all</span></li>
+   </ul>
+</div>

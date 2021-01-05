@@ -1,0 +1,247 @@
+<div class="brdcum">
+  <div class="container">
+    <a href="javascript:void(0)" [routerLink]="['/applications/details',userId]" routerLinkActive="router-link-active">
+      <span class="icon-left-ar mr-2"></span>Back to Application Details
+    </a>
+  </div>
+</div>
+<section class="gray-box trading-box">
+  <form [formGroup]="trandingForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="gray-body">
+        <div class="hdr">
+          <div class="hdr-left">
+            <h2 class="mb-0">Trading & DEMAT Details</h2>
+          </div>
+          <div class="hdr-right d-flex">
+            <button class="btn btn-custom mr-2" type="button"
+              [routerLink]="['/applications/details',userId]">cancel</button>
+            <button class="btn btn-custom" type="submit">Save Details <span class="icon-simple-check"></span></button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="Plan">Running Account Autorization</label>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                formControlName="running_account_autorization">
+                <ng-option [value]="item.id" *ngFor="let item of runningAccountAuthorizationArray">{{item.label}}
+                </ng-option>
+              </ng-select>
+              <app-control-messages [control]="trandingForm.controls['running_account_autorization']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="Plan">Experience in Trading</label>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                formControlName="experience_in_trading">
+                <ng-option [value]="item.id" *ngFor="let item of experienceInTradingArray">{{item.label}}
+                </ng-option>
+              </ng-select>
+              <app-control-messages [control]="trandingForm.controls['experience_in_trading']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="multiradio-list multiselect-list form-group">
+              <label class="radio-tooltip">Contract Note Details
+              </label>
+              <div class="type-list row mb-2">
+                <div class="custom-radio custom-checkbox col-md-6 pr-2" *ngFor="let item of contractNoteDetailsArray">
+                  <input type="radio" id="logo1" formControlName="contract_note_details" [value]="item.value">
+                  <label>{{item.label}}</label>
+                </div>
+                <app-control-messages [control]="trandingForm.controls['contract_note_details']">
+                </app-control-messages>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="multiradio-list multiselect-list form-group">
+              <label class="radio-tooltip">Trading Type
+              </label>
+              <div class="type-list row mb-2">
+                <div class="custom-radio custom-checkbox col-md-6" *ngFor="let item of tradingTypeArray">
+                  <input type="radio" id="logo1" formControlName="trading_type" [value]="item.value">
+                  <label>{{item.label}}</label>
+                </div>
+                <app-control-messages [control]="trandingForm.controls['trading_type']">
+                </app-control-messages>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="multiradio-list multiselect-list form-group">
+              <label class="radio-tooltip">Mobile Trading
+              </label>
+              <div class="type-list row mb-2">
+                <div class="custom-radio custom-checkbox col-md-6" *ngFor="let item of mobileTradingArray">
+                  <input type="radio" id="logo1" formControlName="mobile_trading" [value]="item.value">
+                  <label>{{item.label}}</label>
+                </div>
+                <app-control-messages [control]="trandingForm.controls['mobile_trading']">
+                </app-control-messages>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="line-title"><span>DEMAT Details</span></h3>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="multiradio-list multiselect-list form-group">
+              <label class="radio-tooltip">
+                {{'Do you want to open DEMAT account?'}}
+              </label>
+              <div class="type-list row mb-2">
+                <div class="custom-radio custom-checkbox col-md-6" *ngFor="let item of openDEMATAccountArray">
+                  <input type="radio" id="logo1" formControlName="open_DEMAT_account" [value]="item.value">
+                  <label>{{item.label}}</label>
+                </div>
+                <app-control-messages [control]="trandingForm.controls['open_DEMAT_account']">
+                </app-control-messages>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="multiradio-list multiselect-list form-group">
+              <label class="radio-tooltip">
+                {{'Is DEMAT External?'}}
+              </label>
+              <div class="type-list row mb-2">
+                <div class="custom-radio custom-checkbox col-md-6" *ngFor="let item of isDEMATExteranlArray">
+                  <input type="radio" id="logo1" formControlName="is_DEMAT_external" [value]="item.value">
+                  <label>{{item.label}}</label>
+                </div>
+                <app-control-messages [control]="trandingForm.controls['is_DEMAT_external']">
+                </app-control-messages>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="Plan">{{'Depository Name'}}</label>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                formControlName="depository_name">
+                <ng-option [value]="item.value" *ngFor="let item of depositoryNameArray">{{item.label}}
+                </ng-option>
+              </ng-select>
+              <!-- <select class="form-control" formControlName="depository_name">
+                    <option value="">Select</option>
+                    <option [value]="item.value" *ngFor="let item of depositoryNameArray">
+                      {{item.label}}
+                    </option>
+                  </select> -->
+              <app-control-messages [control]="trandingForm.controls['depository_name']">
+              </app-control-messages>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="multiradio-list multiselect-list form-group">
+              <label class="radio-tooltip">
+                {{'SMS Required'}}
+              </label>
+              <div class="type-list row mb-2">
+                <div class="custom-radio custom-checkbox col-md-6" *ngFor="let item of SMSRequiredArray">
+                  <input type="radio" id="logo1" formControlName="SMS_required" [value]="item.value">
+                  <label>{{item.label}}</label>
+                </div>
+                <app-control-messages [control]="trandingForm.controls['SMS_required']">
+                </app-control-messages>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="multiradio-list multiselect-list form-group">
+              <label class="radio-tooltip">
+                {{'Want to receive DIS Booklet'}}
+              </label>
+              <div class="type-list row mb-2">
+                <div class="custom-radio custom-checkbox col-md-6" *ngFor="let item of receiveDISBookletArray">
+                  <input type="radio" id="logo1" formControlName="receive_DIS_booklet" [value]="item.value">
+                  <label>{{item.label}}</label>
+                </div>
+                <app-control-messages [control]="trandingForm.controls['receive_DIS_booklet']">
+                </app-control-messages>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="multiradio-list multiselect-list form-group">
+              <label class="radio-tooltip">
+                {{'BSDA'}}
+              </label>
+              <div class="type-list row mb-2">
+                <div class="custom-radio custom-checkbox col-md-6" *ngFor="let item of BSDAArray">
+                  <input type="radio" id="logo1" formControlName="BSDA" [value]="item.value">
+                  <label>{{item.label}}</label>
+                </div>
+                <app-control-messages [control]="trandingForm.controls['BSDA']">
+                </app-control-messages>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="multiradio-list multiselect-list form-group">
+              <label class="radio-tooltip">
+                {{'POA'}}
+              </label>
+              <div class="type-list row mb-2">
+                <div class="custom-radio custom-checkbox col-md-6" *ngFor="let item of POAArray">
+                  <input type="radio" id="logo1" formControlName="POA" [value]="item.value">
+                  <label>{{item.label}}</label>
+                </div>
+                <app-control-messages [control]="trandingForm.controls['POA']">
+                </app-control-messages>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="Plan">{{'Account Opening Scheme'}}</label>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                formControlName="account_opening_scheme">
+                <ng-option [value]="item.value" *ngFor="let item of accountOpeningSchemeArray">{{item.label}}
+                </ng-option>
+              </ng-select>
+
+              <app-control-messages [control]="trandingForm.controls['account_opening_scheme']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="Plan">{{'Statement Frequency'}}</label>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                formControlName="statement_frequency">
+                <ng-option [value]="item.value" *ngFor="let item of statementFrequencyArray">{{item.label}}
+                </ng-option>
+              </ng-select>
+              <app-control-messages [control]="trandingForm.controls['statement_frequency']">
+              </app-control-messages>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="form-group">
+              <button type="submit" class="btn" [ngClass]="{'disable': !trandingForm.valid}">
+                {{'continue'}}
+                <img src="assets/images/arrow-right.svg" alt=""></button>
+            </div> -->
+      </div>
+    </div>
+  </form>
+</section>

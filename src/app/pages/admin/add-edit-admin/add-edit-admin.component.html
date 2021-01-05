@@ -1,0 +1,155 @@
+<div class="brdcum">
+    <div class="container">
+        <a href="javascript:void(0)" routerLink="/admins"><span class="icon-left-ar mr-2"></span>Back to Admins</a>
+    </div>
+</div>
+<section class="add-user add-admin-user">
+    <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="container">
+            <div class="add-box">
+                <div class="hdr">
+                    <div class="hdr-left">
+                        <h2 class="mb-0">{{adminTitle}}</h2>
+                    </div>
+                    <div class="hdr-right d-flex">
+                        <button class="btn btn-custom mr-3 mb-0" routerLink="/admins">cancel</button>
+                        <button class="btn btn-custom mb-0">Save details<span class="icon-simple-check"></span></button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Enter full name of the user" formControlName="username"
+                                class="form-control">
+                            <app-control-messages fieldName="Full Name" [control]="adminForm.controls['username']">
+                            </app-control-messages>
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber"
+                                class="form-control" maxlength="10">
+                            <app-control-messages fieldName="Mobile Number"
+                                [control]="adminForm.controls['mobileNumber']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>User Type</label>
+                            <ngx-select [items]="userType" formControlName="userType" optionValueField="type"
+                                optionTextField="label" (select)="hidePermission($event)"></ngx-select>
+                            <app-control-messages fieldName="User Type" [control]="adminForm.controls['userType']">
+                            </app-control-messages>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Id</label>
+                            <input type="email" [attr.disabled]="editAdmin" placeholder="Enter email id"
+                                formControlName="email" class="form-control">
+                            <app-control-messages fieldName="Email" [control]="adminForm.controls['email']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-end">
+                        <div class="view-pic" *ngIf="!userProfileURL">
+                            <img src="assets/img/admin-ic.svg">
+                        </div>
+                        <div class="view-pic" *ngIf="userProfileURL">
+                            <img [src]="userProfileURL" class="userpic">
+                        </div>
+                        <ul class="pic-action">
+                            <li><a href="javascript:void(0)" (click)="removeImages()"><span
+                                        class="icon-close"></span>remove image</a></li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span class="icon-upload"></span>upload from computer<input type="file"
+                                        (change)="onFileSelect($event)" accept="image/x-png,image/jpeg"
+                                        class="hide-file">
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4" *ngIf="!editAdmin">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" [(ngModel)]="password" (keyup)="commonService.strength($event)"
+                                placeholder="Enter Password" formControlName="password" class="form-control">
+
+                            <div class="password-strength-line" *ngIf="commonService.passwordStrength">
+                                <div class="upload-box upload-progress">
+                                    <div class="progress">
+                                        <div class="progress-bar"
+                                            [ngClass]="{'red': commonService.passwordStrength==='weak','orange': commonService.passwordStrength==='medium','green': commonService.passwordStrength==='strong'}"
+                                            role="progressbar"
+                                            [style.width]="commonService.progressBarCountOfPassword(commonService.passwordStrength) + '%'">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between" *ngIf="commonService.passwordStrength">
+                                <div class="pw pw-strength">Password Strength <span
+                                        class="{{commonService.passwordStrength}}">{{commonService.passwordStrength }}</span>
+                                </div>
+
+                                <div class="info-tp"><img src="assets/images/info.svg">
+                                    <div class="info-tp-content">
+                                        <p>It is recommended to create a strong password to protect your account from
+                                            any false login. Any
+                                            strong password should satisfy the following points:</p>
+                                        <ol class="passwordErrors">
+                                            <li [ngClass]="{'trueli': passwordItem.valid_password_type}"
+                                                *ngFor="let passwordItem of commonService.passwordMaintain">
+                                                {{passwordItem.message }}</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <app-control-messages fieldName="Password" [control]="adminForm.controls['password']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group" *ngIf="!editAdmin">
+                            <label>Confirm Password</label>
+                            <input type="password" placeholder="Enter Confirm Password"
+                                formControlName="confirm_password" class="form-control">
+                            <app-control-messages fieldName="Confirm Password"
+                                [control]="adminForm.controls['confirm_password']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                </div>
+                <label class="line-title" [hidden]="adminForm.controls['userType']?.value == '3'"><span>User
+                        Permissions</span></label>
+                <div class="row multiselect-list" formArrayName="userPermission"
+                    [hidden]="adminForm?.controls['userType']?.value == '3'">
+                    <ng-container *ngIf="adminForm.get('userPermission')['controls'].length">
+                        <div [formGroupName]="mainIndex" class="col-md-4 type-list"
+                            *ngFor="let item of adminForm.get('userPermission')['controls']; let mainIndex = index;">
+                            <div class="custom-checkbox">
+                                <input type="checkbox" formControlName="selected"
+                                    (change)="selectPermission($event,item.get('permission_id').value)">
+                                <label><span>{{item.get('permission_name').value}}</span></label>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" [hidden]="adminForm.controls['userType']?.value != '3'">
+                        <div class="form-group">
+                            <label>RM Code</label>
+                            <input type="text" placeholder="Enter RM Code" formControlName="rm_code"
+                                class="form-control">
+                            <app-control-messages fieldName="RM Code" [control]="adminForm.controls['rm_code']">
+                            </app-control-messages>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

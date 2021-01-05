@@ -1,0 +1,28 @@
+<div class="modal-header redclr common-header">
+  <div class="popup-header">
+    <span>Confirmation</span>
+    <h2 class="mb-0">Reject Application</h2>
+  </div>
+  <div class="popup-icon">
+    <img src="../../../../assets/img/not-allow.svg">
+  </div>
+</div>
+<div class="modal-boy">
+  <p class="wr-msg mb-2" *ngIf="selectedEntries">
+    {{selectedEntries}} Entries Selected.
+  </p>
+  <p class="wr-msg mb-2">
+    The entries once reject will have to re-submit it. We recommend you to cross verify the selected
+    entries for any important information.
+  </p>
+  <p class="wr-msg mb-200" *ngIf="selectedEntries">Are you sure you want to reject these {{ label }}?</p>
+  <p class="wr-msg mb-200" *ngIf="!selectedEntries">Are you sure you want to reject {{ label }}?</p>
+  <br>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+  <a class="btn modal-btn-continue" (click)="decline()">
+    Cancel
+  </a>
+  <a class="btn modal-cancel" (click)="accept()">Reject {{label}}</a>
+</div>

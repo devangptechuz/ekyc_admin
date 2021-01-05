@@ -1,0 +1,76 @@
+<section id="paging" class="profile-sec">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card table-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="text-bold-500"> Recent Alerts</h4>
+<!--                    <span class="red-text">2% increase since last week-->
+<!--                        <span class="icon-red-arrow"></span>-->
+<!--                    </span>-->
+<!--                    <a href="javascipt:void(0)" routerLink="/dashboard/alerts">view all alerts <i class="fa fa-angle-right"></i></a>-->
+                    <a href="javascipt:void(0)" >view all alerts <i class="fa fa-angle-right"></i></a>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
+                            [headerHeight]="50" [scrollbarH]="false" [footerHeight]="50" [rowHeight]="70"
+                            [limit]="limitRow" [rows]="rows" [sorts]="[{prop: 'panUserName', dir: 'asc'}]">
+                            <ngx-datatable-column name="Username" [sortable]="true" prop="panUserName">
+                                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                                    <a class="user-img dummy-icon" *ngIf="!row.img">
+                                        <img src="assets/img/user-ic.svg">
+                                    </a>
+                                    <a class="user-img" *ngIf="row.img">
+                                        <img src="{{row.img}}">
+                                    </a>
+                                    <a title="{{row.ApplicationID}}" class="wrap-text">{{row.panUserName}}</a>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Alert Message" [width]="300" [sortable]="true" prop="reason"
+                                class="alert">
+                                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                    <span class="red-color-text">
+                                        {{row.reason}}
+                                    </span>
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Application Id" [sortable]="true" prop="ApplicationId">
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Date of Alert" [sortable]="true" prop="createdDate">
+                                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                    <span >
+                                        {{row.createdDate | date:'MMM dd yyyy'}}
+                                    </span>
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column  name="application status"   [sortable]="false"
+                                                   prop="isDocumentUploaded">
+                                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                            <span *ngIf="row.adminApproval === 'Under review'">
+                                                Under Review
+                                            </span>
+                                    <span class="red-color-text" *ngIf="row.adminApproval === 'Reject'">
+                                                Rejected
+                                            </span>
+                                    <span class="green-color-text" *ngIf="row.adminApproval === 'Approved'">
+                                                Approved
+                                            </span>
+                                    <span class="light-color-text"
+                                          *ngIf="!row.adminApproval && row.isEKYCComplete">
+                                                Submitted
+                                            </span>
+                                    <span class="light-color-text"
+                                          *ngIf="!row.adminApproval && !row.isEKYCComplete">
+                                                Incompleted
+                                            </span>
+                                    <button class="next-arr"><i class="fa fa-angle-right"></i></button>
+                                </ng-template>
+                            </ngx-datatable-column>
+                        </ngx-datatable>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -23,6 +23,18 @@ import { NgxSpinnerModule } from "ngx-spinner";
 
 // Modules
 import { NotfoundComponent } from './notfound/notfound.component';
+import { AddEditAdmin } from './pages/admin/shared/add-edit.resolver';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserCookiesModule } from '@ngx-utils/cookies/browser';
+import { CategoryResolver } from './pages/settings/shared/category.resolver';
+// import { SegmentResolver } from './pages/settings/shared/segment.resolver';
+import { AddEditEmailTemplate } from './pages/common-configure/email-template/shared/add-edit.resolver';
+import { ReasonResolver } from './pages/settings/shared/reason.resolver';
+import { EditEmailModelComponent } from './shared/model-popup/edit-email-model/edit-email-model.component';
+import { SegmentResolver } from './pages/segment/shared/segment.resolver';
+import { DashboardResolver } from './pages/dashboard/shared/dashboard.resolver';
+import { CouponResolver } from './pages/settings/shared/coupon.resolver';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
     wheelPropagation: false
@@ -32,23 +44,16 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent, NotfoundComponent],
     imports: [
         BrowserAnimationsModule,
+        BrowserModule.withServerTransition({ appId: 'your-app-id' }),
+        BrowserCookiesModule.forRoot(),
         AppRoutingModule,
         SharedModule,
         HttpClientModule,
         NgbModule,
         PerfectScrollbarModule,
-
-
         // Libraries
-        ToastrModule.forRoot({
-            maxOpened: 1,
-            autoDismiss: true,
-            preventDuplicates: true,
-            progressBar: true,
-            timeOut: 2000,
-        }),
+        ToastrModule.forRoot({ timeOut: 4000, positionClass: 'toast-top-right', preventDuplicates: true }),
         NgxSpinnerModule,
-
     ],
     providers: [
         {
@@ -56,6 +61,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
             useClass: HttpConfigInterceptor,
             multi: true
         },
+        AddEditAdmin,
+        AddEditEmailTemplate,
+        EditEmailModelComponent,
+        CategoryResolver,
+        ReasonResolver,
+        SegmentResolver,
+        DashboardResolver,
+        CouponResolver,
         AuthGuard,
         PageGuard
     ],

@@ -1,0 +1,36 @@
+<div class="modal-header blueclr common-header mb-4">
+    <div class="popup-header">
+        <h2 class="mb-0">{{headerTitle}}</h2>
+    </div>
+</div>
+<div class="modal-boy">
+    <div>
+        <form [formGroup]="segmentForm" novalidate>
+            <div class="row align-items-top">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Type</label>
+                        <input type="text" placeholder="Type" formControlName="name" class="form-control">
+                        <app-control-messages fieldName="Type" [control]="segmentForm.controls['name']">
+                        </app-control-messages>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" placeholder="Description" formControlName="description" class="form-control">
+                        <app-control-messages fieldName="Description" [control]="segmentForm.controls['description']">
+                        </app-control-messages>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+    <a class="btn modal-btn-continue" (click)="decline()">
+        Cancel
+    </a>
+    <a class="btn modal-continue" (click)="accept()">Submit</a>
+</div>

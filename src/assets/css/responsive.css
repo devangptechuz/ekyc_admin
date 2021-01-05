@@ -1,0 +1,134 @@
+@media (min-width: 1300px){
+	.container {max-width: 1200px;}
+}
+@media (max-width: 1441px){
+	.login-section .card-body {padding: 20px 0 0;}
+	body .login-section .card{min-width: 490px;}
+	.login-section .login-img img {width: 170px;}
+	body .login-section .bg-white{margin: 15px 0 0;padding: 25px;}
+	body .login-section:after{height: 250px;}
+
+	
+}
+@media (max-width: 1199px){
+	section.application .header {padding: 15px 5px;}
+	.nav-tabs {margin-left: 0;}
+	.custom-tabs .nav-link {padding: 15px;}	
+	section.application .search input {min-width: 360px;}
+	section.application .ng-dropdown-panel{left: auto;}
+}
+@media (max-width: 1024px){
+	.custom-datatable .card{padding: 25px;}	
+}
+@media (max-width: 991px){
+	.container {max-width: 100%;}
+	.content-wrapper,.content-wrapper > .container-fluid {padding: 0;}
+	.custom-datatable .card{padding: 20px;}
+	.custom-datatable .card-header a{font-size: 14px;}
+	.custom-datatable .card-header a i{margin-left: 0;}
+
+	/* footer*/
+	footer .user-detail{flex-flow: column;padding: 0;}
+	footer .ff-top{flex-flow: column;}
+	footer .ff-logo{text-align: center;margin-bottom: 40px;}
+	footer ul.user-detail li {margin-right: 0;align-items: center;flex-flow: column;margin: 0 0 24px;}
+    footer ul.user-detail li .ico{margin: 0 0 14px;width: 24px;height: 24px;}
+    footer ul.user-detail li:last-child {margin: 0px;}
+    footer .ff-btm .col-md-3 {align-items: center;justify-content: center;display: flex;flex-flow: column;margin: 0;}
+    footer .dt{text-align: center;}
+    footer .ff-btm.row.justify-content-between.w-100{margin: 0;align-items: flex-start;}
+    footer ul.user-detail li .ico img{width: 12px;}
+    footer .ff-btm .col-md-3:last-child{margin: 0;} 
+    footer .copyright{margin-top: 40px;}
+
+    /*nav*/
+    .navbar .navbar-collapse {padding: 60px 24px 0;visibility: hidden;opacity: 0;transition: all 0.3s ease-in-out;justify-content: center;position: absolute;left: -276px; width: 276px; height: 100% !important;top: 0;z-index: 99;background: #fff;box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.24);}
+	.navbar .navbar-collapse.show{opacity: 1;visibility: visible;left: 0;}
+	.navbar .navbar-nav{display: flex;margin-right: 0;}   
+	header .navbar{position: static;} 
+	header .navbar-collapse .navbar-toggler {position: absolute;right: 10px;top: 10px;font-size: 42px;}
+	.navbar .navbar-brand{padding: 0;margin-top: -8px;}
+	.navbar .navbar-nav .nav-link:hover:after{content: none;}
+
+	.custom-tabs .nav-link{font-size: 12px;padding: 10px 7px;}
+	section.application .header {padding: 15px 0;}
+	section.application h2{font-size: 20px;margin: 0;}
+	section.application .ng-select {margin-left: 10px;}
+	section.application .tble {padding: 0 20px 10px;}
+	section.application .header > .col-md-4{display: flex;align-items: center;justify-content: space-between;flex: 0 0 100%;max-width: 100%;}
+    section.application .tble {padding: 0 15px;}
+    section.application .col-md-8{flex: 0 0 100%;max-width: 100%;margin: 10px 0 0;}
+    section.application .ng-select{width: 100%;}
+    .admin-profile .custom-tabs .card-body{padding: 15px;}
+    .admin-profile .hdr {padding-bottom: 5px;margin-bottom: 14px;}
+    p{font-size: 14px;}
+    .multiselect-list .custom-checkbox label, .multiselect-list .custom-radio label{padding: 10px;font-size: 14px;}
+    .navbar .navbar-nav .dropdown-menu{position: relative;animation: none;padding: 0;box-shadow: none;border-top: 1px solid #eee;border-radius: 0;margin-top: 0;transition: 0.3s ease-in;-webkit-transition: 0.3s ease-in;-moz-transition: 0.3s ease-in;}
+    .dropdown-submenu .nav-link:before {right: 0;}
+    header .navbar-nav .dropdown-item{padding-left: 0;}
+    .navbar .navbar-nav .nav-link,header .dropdown-toggle{font-size: 14px;}
+    header .navbar .dropdown-menu-right {right: -15px !important;}
+}
+@media (max-width: 767px){
+	.custom-datatable .card-header h4{font-size: 16px;}
+	.nav-tabs{display: none;}
+	.custom-tabs .card{margin: 0 0 6px;}
+	.custom-tabs .tab-content{border: none;}
+	.custom-tabs .card .card-header{padding: 0;}
+	.custom-tabs .card .card-header a{width: 100%;padding: 15px 10px;display: block;font-size: 14px;background: #0970DD;color: #fff;border-top-right-radius: 8px;border-top-left-radius: 8px;}
+	.custom-tabs .card .card-header a.collapsed{border-radius: 8px;background: #eee;color: rgba(0, 0, 0, 0.56);}
+    h2 {font-size: 18px;}
+	section.application .search{width: 100%;}
+	section.application .search input {min-width: 110px;max-width: 100%;padding: 15px 10px}
+	section.application .col-md-8{flex-wrap: wrap;}
+	section.application .ng-select {margin: 10px 0 0;}
+	section.application h2 {font-size: 16px;}
+
+	 .tab-content > .tab-pane {display: block !important;opacity: 1;}
+	 .card .card-header{display: block;}
+	 .collapse:not(.show){display: none;}
+
+	
+}
+@media (max-width: 576px){	
+	.total-detail {margin-top: 16px;}
+	body .login-section .card {min-width: 100%;}
+	body .login-section h2.card-title{font-size: 18px;margin: 0 0 15px;}
+	.login-section .login-btn{flex-wrap: wrap;font-size: 13px;}
+	.login-section .btn-custom {padding: 10px 20px;}
+	body .login-section .bg-white{padding: 15px;}
+	body #login .col-12{padding: 0;}
+	.login-section .btn-custom{font-size: 14px;}
+	.login-section .icon-log-in{font-size: 15px;}
+	.login-section .card-body {padding: 10vh 0 0;}
+	.form-control, input[type="text"], input[type="email"], input[type="phone"], input[type="number"], input[type="password"]{font-size: 14px;}
+	
+	/* dashboard*/
+	.total-detail [class^="col-"]{flex: 0 0 100%;max-width: 100%}
+	.total-detail .media-body span{font-size: 14px;}
+	.ngx-datatable.bootstrap .datatable-footer{overflow: visible;}
+	body .ngx-datatable .datatable-footer .datatable-footer-inner{margin: 0;align-items: flex-start;flex-wrap: wrap;height: 100% !important;}
+	.ngx-datatable.bootstrap .datatable-footer .datatable-pager {flex: 1 1 100%;text-align: left;}
+	.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li {margin: 0;}
+		
+	.custom-datatable .card .card-header{flex-wrap: wrap;}
+	body .ngx-datatable.bootstrap .datatable-footer .page-count{font-size: 14px;flex: 1 1 100%;padding: 0;}
+	section.application .header > .col-md-4{flex-wrap: wrap;}
+
+	section.application .ng-dropdown-panel{width: 100%;}
+	section.application .search .form-control::-webkit-input-placeholder {opacity: 0}
+	section.application .search .form-control:-ms-input-placeholder {opacity: 0}
+	section.application .search .form-control::placeholder {opacity: 0}
+
+	.admin-profile .hdr{flex-wrap: wrap;}
+	section.admin-profile .hdr-right button{margin: 10px 0;padding: 9px;font-size: 11px;line-height: 17px}
+	.admin-profile .admin-detail label{margin: 0 0 4px;}
+	.add-user .view-pic {width: 86px;height: 86px;}
+	ul.pic-action{max-width: calc(100% - 90px);}
+	.admin-profile .btn-pw {margin: 0;}
+	.btn-pw{font-size: 14px;width: auto;height: auto;padding: 10px;}
+}
+
+@media (max-width: 360px){
+	.navbar .navbar-brand img{width: 110px;}
+}

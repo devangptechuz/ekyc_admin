@@ -1,0 +1,125 @@
+<div class="card-body">
+    <div class="hdr mb-0">
+        <div class="hdr-left">
+            <h2>Brokerage Codes</h2>
+        </div>
+        <div class="hdr-right d-flex">
+            <button class="btn btn-custom"  (click)="addNewBrokerageCode()" >Add New Brokerage Code</button>
+            <div class="position-relative ml-3">
+                <button class="btn btn-custom"  (click)="openDocumentPopupModal()" >Upload File</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="custom-datatable mt-0">
+        <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator"
+                       [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50"
+                       [rowHeight]="80" [limit]="limitRow" [rows]="rows">
+
+            <ngx-datatable-column [width]="80" name="Brokerage Code" class="wrap-text" [sortable]="true" prop="segmentCode">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                    <a title="{{row.segmentCode}}" class="wrap-text wrap-segplan">{{row.segmentCode}}</a>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [width]="110" name="Brokerage Description" class="wrap-text" [sortable]="true" prop="segmentCodeDescription">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                    <a title="{{row.segmentCodeDescription}}" class="wrap-text wrap-segplan">{{row.segmentCodeDescription}}</a>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [width]="110" name="Brokerage Code Name" class="wrap-text" [sortable]="true" prop="segmentCodeName">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                    <a title="{{row.segmentCodeName}}" class="wrap-text wrap-segplan">{{row.segmentCodeName}}</a>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [width]="110" name="Brokerage Code Type" class="wrap-text" [sortable]="true" prop="segmentCodeType">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                    <a title="{{row.segmentCodeType}}" class="wrap-text wrap-segplan">{{row.segmentCodeType}}</a>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [width]="80" name="Status" [sortable]="false" prop="status" >
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <select  style="width:130px;"  [(ngModel)]="row.status" class="browser-default custom-select form-control" (change)="changeStatus($event,row)" >
+                        <option *ngFor="let data of status" [value]="data.value">{{data.label}}</option>
+                    </select>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="30" name="Actions" [sortable]="false" prop="id">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <div class="dropdown more-dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="icon-more-vertical"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="javascript:void(0)" (click)="onEdit(row)">
+                                <span class="ft-edit"></span> Edit</a>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+
+        </ngx-datatable>
+    </div>
+</div>
+
+
+<ng-template #fileUploadCsvPopup let-c="close" let-d="dismiss">
+
+    <div class="modal-body p-0 payment-popup uploaddoc-popup">
+        <div class="modal-header blueclr common-header">
+            <div class="popup-header">
+                <h4 class="modal-title">Upload Brokerage Code File</h4>
+            </div>
+        </div>
+
+
+        <!----------------- UPLOAD image/file aadhar: START -------------->
+        <div class="row mr-md-0" >
+            <div class="col-md-12" *ngIf="!fileUploading">
+                <div class="upload-box" *ngIf="addNewCsvUpload">
+                    <a href="javascript:void(0)" class="d-flex flex-column align-items-center justify-content-center w-100 upload-file"><img
+                            src="../../../../../assets/img/modal-upload/file-minus.svg">
+                        <input type="file" ng2FileSelect [uploader]="uploader" accept=".csv">
+                        <div class="d-flex"><img src="../../../../../assets/img/modal-upload/upload.svg">Upload File</div>
+                    </a>
+                </div>
+                <div class="upload-doc-box d-flex justify-content-center align-items-center"
+                     *ngIf="!addNewCsvUpload">
+                    <img *ngIf="aadharDisplayImage?.contentType === 'text/csv'" src="assets/img/doc.svg"
+                         style="width: 100px;object-fit: contain;">
+                    <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img
+                            src="../../../../../assets/img/modal-upload/edit.svg">Edit
+                        File</span>
+                </div>
+
+            </div>
+
+            <div class="col-md-12" *ngIf="fileUploading">
+                <div class="upload-box upload-progress">
+                    <h5>Uploading File...</h5>
+                    <div class="progress-ratio d-flex justify-content-between"><span>
+                            Uploading...</span><span>{{uploadProgress}} %</span></div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploadProgress + '%' }">
+                        </div>
+                    </div>
+                    <p>Please wait, This may take some time</p>
+                </div>
+            </div>
+
+        </div>
+        <!----------------- UPLOAD image/file aadhar: END -------------->
+
+        <div class="modal-footer d-flex justify-content-between">
+            <a class="btn modal-btn-cancel" (click)="cancelPopup()" href="javascript:void(0)">{{'Cancel'}}</a>
+            <a [ngClass]="{'disabled': !uploader?.getNotUploadedItems().length}"
+               class="btn modal-btn-continue" (click)="submitDocumentUploadModal()" href="javascript:void(0)">
+                {{'Save & Continue' }}
+            </a>
+        </div>
+    </div>
+</ng-template>
+

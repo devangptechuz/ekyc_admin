@@ -1,0 +1,59 @@
+<div class="modal-header blueclr common-header mb-4">
+  <div class="popup-header">
+    <h2 class="mb-0">{{headerTitle}}</h2>
+  </div>
+</div>
+<div class="modal-boy">
+  <div>
+    <form [formGroup]="addEditPromotionalForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="row align-items-top">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Code/Coupon Name</label>
+            <input type="text" placeholder="Code name" formControlName="name" class="form-control">
+            <app-control-messages fieldName="Code/Coupon Name" [control]="addEditPromotionalForm.controls['name']">
+            </app-control-messages>
+          </div>
+
+          <div class="form-group">
+            <label>Code</label>
+            <input type="text" placeholder="Code" formControlName="code" class="form-control">
+            <app-control-messages fieldName="code" [control]="addEditPromotionalForm.controls['code']">
+            </app-control-messages>
+          </div>
+
+          <div class="form-group">
+            <label>Expiry Date</label>
+            <div class="input-group datepicker">
+              <input type="text" class="form-control" placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"
+                formControlName="expiry_date" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append calendar">
+                <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"
+                    aria-hidden="true"></i></span>
+              </div>
+              <app-control-messages fieldName="Expiry Date" [control]="addEditPromotionalForm.controls['expiry_date']">
+              </app-control-messages>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Status</label>
+            <ng-select appearance="outline" [searchable]="false" formControlName="status" placeholder="Select status">
+              <ng-option [value]="item.id" *ngFor="let item of statusArray">{{item.label}}</ng-option>
+            </ng-select>
+            <app-control-messages fieldName="Status" [control]="addEditPromotionalForm.controls['status']">
+            </app-control-messages>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+  <a class="btn modal-btn-continue" (click)="decline()">
+    Cancel
+  </a>
+  <a class="btn modal-continue" (click)="accept()">Submit</a>
+</div>

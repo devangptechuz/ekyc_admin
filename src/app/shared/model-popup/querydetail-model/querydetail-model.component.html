@@ -1,0 +1,36 @@
+<div class="modal-header blueclr common-header">
+  <div class="popup-header">
+    <span>Need Help</span>
+    <h2 class="mb-0">{{details.title}}</h2>
+  </div>
+  <div class="popup-icon">
+    <img src="../../../../assets/img/blue-true.svg">
+  </div>
+</div>
+<div class="modal-boy">
+
+
+  <div class="reg-card">
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="email">Subject</label>
+        <p class="wr-msg mb-1" *ngIf="details.subject">
+          {{details.subject}}
+        </p>
+      </div>
+
+      <div class="form-group col-md-12">
+        <label for="email">Message</label>
+        <p class="wr-msg mb-1" *ngIf="details.message">
+          {{details.message}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer text-center justify-content-between">
+  <a class="btn modal-btn-continue" (click)="accept()">
+    Close
+  </a>
+</div>

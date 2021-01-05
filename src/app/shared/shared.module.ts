@@ -9,6 +9,7 @@ import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { FooterComponent } from "../shared/components/footer/footer.component";
 import { NavbarComponent } from "../shared/components/navbar/navbar.component";
 import { SidebarComponent } from "../shared/components/sidebar/sidebar.component";
+import { CustomizerComponent } from './customizer/customizer.component';
 import { ControlMessagesComponent } from './components/control-messages/control-messages.component';
 
 //DIRECTIVES
@@ -18,38 +19,83 @@ import { SidebarLinkDirective } from './directives/sidebarlink.directive';
 import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
-import {RoleCheckPipe} from "./pipe/status.pipe";
+import { RoleCheckPipe, SafeUrlPipe, UserTypePipe, arrayFilterWithStringPipe, yesNoPipe } from './pipe/status.pipe';
+import { LogoutPopupComponent } from './model-popup/logout-popup/logout-popup.component';
+
+import { DeleteModelComponent } from './model-popup/delete-model/delete-model.component';
+import { ApprovedModelComponent } from './model-popup/approved-model/approved-model.component';
+import { RejectModelComponent } from './model-popup/reject-model/reject-model.component';
+import { DeactivateModelComponent } from './model-popup/deactivate-model/deactivate-model.component';
+import { ActivateModelComponent } from './model-popup/activate-model/activate-model.component';
+import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
+import { ReasonRejectModelComponent } from './model-popup/reason-reject-model/reason-reject-model.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { sendReminderModelComponent } from './model-popup/send-reminder-model/send-reminder-model.component';
+import { EditEmailModelComponent } from './model-popup/edit-email-model/edit-email-model.component';
+import { QuerydetailModelComponent } from './model-popup/querydetail-model/querydetail-model.component';
+
 
 @NgModule({
-    exports: [
-        CommonModule,
-        FooterComponent,
-        NavbarComponent,
-        SidebarComponent,
-        ControlMessagesComponent,
-        ToggleFullscreenDirective,
-        SidebarDirective,
-        NgbModule,
-        RoleCheckPipe
-    ],
-    imports: [
-        RouterModule,
-        CommonModule,
-        NgbModule,
-        PerfectScrollbarModule
-    ],
-    declarations: [
-        FooterComponent,
-        NavbarComponent,
-        SidebarComponent,
-        ControlMessagesComponent,
-        ToggleFullscreenDirective,
-        SidebarDirective,
-        SidebarLinkDirective,
-        SidebarListDirective,
-        SidebarAnchorToggleDirective,
-        SidebarToggleDirective,
-        RoleCheckPipe
-    ]
+        exports: [
+                CommonModule,
+                FooterComponent,
+                NavbarComponent,
+                SidebarComponent,
+                ControlMessagesComponent,
+                CustomizerComponent,
+                ToggleFullscreenDirective,
+                SidebarDirective,
+                NgbModule,
+                RoleCheckPipe,
+                UserTypePipe,
+                SafeUrlPipe,
+                yesNoPipe,
+                arrayFilterWithStringPipe,
+                DeleteModelComponent,
+                ApprovedModelComponent,
+                RejectModelComponent,
+                ScrollTopComponent,
+                ReasonRejectModelComponent,
+                sendReminderModelComponent,
+                EditEmailModelComponent,
+                QuerydetailModelComponent
+        ],
+        imports: [
+                RouterModule,
+                CommonModule,
+                ReactiveFormsModule,
+                FormsModule,
+                NgbModule,
+                PerfectScrollbarModule
+        ],
+        declarations: [
+                FooterComponent,
+                DeleteModelComponent,
+                NavbarComponent,
+                SidebarComponent,
+                ControlMessagesComponent,
+                CustomizerComponent,
+                ToggleFullscreenDirective,
+                SidebarDirective,
+                SidebarLinkDirective,
+                SidebarListDirective,
+                SidebarAnchorToggleDirective,
+                SidebarToggleDirective,
+                RoleCheckPipe,
+                UserTypePipe,
+                SafeUrlPipe,
+                yesNoPipe,
+                arrayFilterWithStringPipe,
+                LogoutPopupComponent,
+                ApprovedModelComponent,
+                RejectModelComponent,
+                DeactivateModelComponent,
+                ActivateModelComponent,
+                ScrollTopComponent,
+                ReasonRejectModelComponent,
+                sendReminderModelComponent,
+                EditEmailModelComponent,
+                QuerydetailModelComponent
+        ]
 })
 export class SharedModule { }

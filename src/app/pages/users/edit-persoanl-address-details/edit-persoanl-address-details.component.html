@@ -1,0 +1,299 @@
+<div class="brdcum">
+  <div class="container">
+    <a href="javascript:void(0)" [routerLink]="['/applications/details',userId]" routerLinkActive="router-link-active">
+      <span class="icon-left-ar mr-2"></span>Back to Application Details
+    </a>
+  </div>
+</div>
+<section class="add-user add-admin-user">
+  <form [formGroup]="addressDetailsform" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="add-box">
+        <div class="hdr">
+          <div class="hdr-left">
+            <h2>Personal & Address Details</h2>
+          </div>
+          <div class="hdr-right d-flex">
+            <button class="btn btn-custom mr-2" type="button"
+              [routerLink]="['/applications/details',userId]">cancel</button>
+            <button class="btn btn-custom" type="submit">Save Details <span class="icon-simple-check"></span></button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" placeholder="Enter full name of the user" class="form-control" formControlName="name">
+              <app-control-messages fieldName="Full Name" [control]="addressDetailsform.controls['name']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label>Gender</label>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false" formControlName="gender">
+                <ng-option [value]="item.value" *ngFor="let item of gender">{{item.label}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Gender" [control]="addressDetailsform.controls['gender']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <div class="input-group datepicker">
+                <input type="text" class="form-control" placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"
+                  formControlName="dob" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append calendar">
+                  <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"
+                      aria-hidden="true"></i></span>
+                </div>
+                <app-control-messages fieldName="Date of birth" [control]="addressDetailsform.controls['dob']">
+                </app-control-messages>
+              </div>
+            </div>
+            <!-- <div class="form-group">
+              <label>Date of Birth</label>
+              <input type="text" placeholder="DD/MM/YYYY" class="form-control" formControlName="dob">
+            </div> -->
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Marital Status</label>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                formControlName="marital_status">
+                <ng-option [value]="item.id" *ngFor="let item of maritalStatus">{{item.label}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Marital Status"
+                [control]="addressDetailsform.controls['marital_status']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Occupation Type</label>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                formControlName="occupation_type">
+                <ng-option [value]="item.id" *ngFor="let item of OccupationTypeArray">{{item.name}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Occupation Type"
+                [control]="addressDetailsform.controls['occupation_type']">
+              </app-control-messages>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Income Range</label>
+              <ng-select appearance="outline" placeholder="select" [searchable]="false" formControlName="income_range">
+                <ng-option [value]="item.id" *ngFor="let item of IncomeRangeArray">{{item.name}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Income Range" [control]="addressDetailsform.controls['income_range']">
+              </app-control-messages>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="email" class="req-control">What is your trading experience?</label>
+            <ng-select placeholder="select" [searchable]="false" formControlName="tradingExp">
+              <ng-option>select</ng-option>
+              <ng-option [value]="item.id" *ngFor="let item of tradingExp">{{item.lable}}</ng-option>
+            </ng-select>
+            <app-control-messages fieldName="Trading Exp." [control]="addressDetailsform.controls['tradingExp']">
+            </app-control-messages>
+          </div>
+
+          <!-- <div class="col-md-4">
+          </div> -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Father’s / Spouse’s Name</label>
+              <input type="text" placeholder="Enter father’s / spouse’s name" class="form-control"
+                formControlName="father_spouse_name">
+              <app-control-messages fieldName="Father’s / spouse’s name"
+                [control]="addressDetailsform.controls['father_spouse_name']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Mother’s Name</label>
+              <input type="text" placeholder="Enter mother’s name" class="form-control" formControlName="mother_name">
+              <app-control-messages fieldName="Mother’s name" [control]="addressDetailsform.controls['mother_name']">
+              </app-control-messages>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="ml-0 select-label mt-2 mb-3 d-flex justify-content-between inline-switch">
+              Are you politically exposed person?
+              <span class="nominee-switch">
+                <span class="gray">No</span><label class="switch">
+                  <input type="checkbox" formControlName="politicallyExp">
+                  <span class="slider round"></span>
+                </label>
+                Yes
+              </span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="ml-0 select-label mt-2 mb-3 d-flex justify-content-between inline-switch">
+              Are you resident of india?
+              <span class="nominee-switch">
+                <span class="gray">No</span><label class="switch">
+                  <input type="checkbox" formControlName="isResidencyOfIndia">
+                  <span class="slider round"></span>
+                </label>
+                Yes
+              </span>
+            </div>
+          </div>
+
+        </div>
+        <h3 class="line-title"><span>Permanent Address</span></h3>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Address Line 1</label>
+              <input type="text" placeholder="Enter address line 1" class="form-control"
+                formControlName="address_line1">
+              <app-control-messages fieldName="Address line 1" [control]="addressDetailsform.controls['address_line1']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Address Line 2 (Optional)</label>
+              <input type="text" placeholder="Enter address line 2" class="form-control"
+                formControlName="address_line2">
+              <app-control-messages fieldName="Address line 2" [control]="addressDetailsform.controls['address_line2']">
+              </app-control-messages>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="email" class="req-control">City</label>
+              <input class="form-control" placeholder="Add your city" type="text" formControlName="city">
+              <app-control-messages fieldName="City" [control]="addressDetailsform.controls['city']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="email" class="req-control">State</label>
+              <ng-select placeholder="select" [searchable]="false" formControlName="state">
+                <ng-option>select</ng-option>
+                <ng-option [value]="item.code" *ngFor="let item of stateList">{{item.name}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="State" [control]="addressDetailsform.controls['state']">
+              </app-control-messages>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>PIN Code</label>
+              <input type="text" placeholder="Enter PIN code" class="form-control" formControlName="pin_code">
+              <app-control-messages fieldName="PIN code" [control]="addressDetailsform.controls['pin_code']">
+              </app-control-messages>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Country</label>
+              <ng-select placeholder="select" [searchable]="false" formControlName="country">
+                <ng-option>select</ng-option>
+                <ng-option [value]="item.label" *ngFor="let item of countryList">{{item.label}}</ng-option>
+              </ng-select>
+              <app-control-messages fieldName="Country" [control]="addressDetailsform.controls['country']">
+              </app-control-messages>
+            </div>
+          </div>
+        </div>
+        <h3 class="line-title mt-4"><span>Correspondence Address</span></h3>
+        <div class="checkbox collapse-address" data-toggle="collapse">
+          <input type="checkbox" id="checkbox1" formControlName="same_as" (change)="checkForSameAsPermenent($event)">
+          <label for="checkbox1"><span>Same as the permanent address</span>
+          </label>
+        </div>
+        <div id="demo" class="collapse" [ngClass]="{'show': addAddress}" [hidden]='!addAddress'>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Address Line 1</label>
+                <input type="text" placeholder="Enter address line 1" class="form-control"
+                  formControlName="corres_address_line1">
+                <app-control-messages fieldName="Address line 1"
+                  [control]="addressDetailsform.controls['corres_address_line1']">
+                </app-control-messages>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Address Line 2 (Optional)</label>
+                <input type="text" placeholder="Enter address line 2" class="form-control"
+                  formControlName="corres_address_line2">
+                <app-control-messages fieldName="Address line 2"
+                  [control]="addressDetailsform.controls['corres_address_line2']">
+                </app-control-messages>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="email" class="req-control">City</label>
+                <input class="form-control" placeholder="Enter City" type="text" formControlName="corres_city">
+                <app-control-messages fieldName="City" [control]="addressDetailsform.controls['corres_city']">
+                </app-control-messages>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="email" class="req-control">State</label>
+                <ng-select placeholder="select" [searchable]="false" formControlName="corres_state">
+                  <ng-option>select</ng-option>
+                  <ng-option [value]="item.code" *ngFor="let item of stateList">{{item.name}}</ng-option>
+                </ng-select>
+                <!-- <select class="form-control" formControlName="corres_state">
+                  <option value="">State</option>
+                  <option [value]="item.code" *ngFor="let item of stateList">{{item.name}}</option>
+                </select> -->
+                <app-control-messages fieldName="State" [control]="addressDetailsform.controls['corres_state']">
+                </app-control-messages>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>PIN Code</label>
+                <input type="text" placeholder="Enter PIN code" class="form-control" formControlName="corres_pin_code">
+                <app-control-messages fieldName="PIN code" [control]="addressDetailsform.controls['corres_pin_code']">
+                </app-control-messages>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Country</label>
+                <!-- <select formControlName="corres_country">
+                  <option value="">select</option>
+                  <option [value]="item.label" *ngFor="let item of countryList">{{item.label}}</option>
+                </select> -->
+                <ng-select placeholder="select" [searchable]="false" formControlName="corres_country">
+                  <ng-option [value]="item.label" *ngFor="let item of countryList">{{item.label}}</ng-option>
+                </ng-select>
+                <app-control-messages fieldName="Country" [control]="addressDetailsform.controls['corres_country']">
+                </app-control-messages>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="footer-btn">
+          <button class="btn" type="button" [routerLink]="['/applications/details',userId]">cancel</button>
+          <button class="btn" type="submit">Submit</button>
+        </div> -->
+      </div>
+    </div>
+  </form>
+</section>

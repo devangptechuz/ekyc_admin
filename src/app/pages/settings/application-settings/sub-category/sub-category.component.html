@@ -1,0 +1,45 @@
+<div class="card-body">
+    <div class="hdr mb-0">
+        <div class="hdr-left">
+            <h2 class="mb-0">Reason List</h2>
+        </div>
+        <div class="hdr-right d-flex">
+            <button class="btn btn-custom" (click)="addNewReason()">Add New Reason</button>
+        </div>
+    </div>
+    <div class="custom-datatable mt-0">
+        <div class="tble">
+            <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
+                [headerHeight]="50" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="80" [limit]="limitRow"
+                [rows]="rows">
+                <ngx-datatable-column [width]="200" name="Reason Category" [sortable]="true" prop="reasonCategory">
+                </ngx-datatable-column>
+                <ngx-datatable-column [width]="300" name="Reason" [sortable]="true" prop="reason">
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Status" [sortable]="false" prop="status">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <select style="width:130px;" [(ngModel)]="row.status"
+                            class="browser-default custom-select form-control" (change)="changeStatus($event,row)">
+                            <option *ngFor="let data of status" [value]="data.value">{{data.label}}</option>
+                        </select>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [width]="10" name="Actions" [sortable]="false" prop="id">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        <div class="dropdown more-dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span class="icon-more-vertical"></span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="javascript:void(0)" (click)="onEdit(row)">
+                                    <span class="ft-edit"></span> Edit</a>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+        </div>
+    </div>
+</div>

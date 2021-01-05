@@ -1,1 +1,84 @@
-<p>dashboard works!</p>
+<div class="dashboard-main">
+    <div class="container">
+        <div class="row total-detail">
+            <div class="col-xl-3 col-lg-4 col-6">
+                <a href="javascript:void(0)" class="card blue">
+                    <div class="card-body first">
+                        <div class="card-block pt-2 pb-0">
+                            <div class="media">
+                                <div class="media-body white text-left">
+                                    <h3 class="title">{{newAppCount}}</h3>
+                                    <span>New <br>Application</span>
+                                </div>
+                                <div class="media-right white text-right">
+                                    <span class="icon-minus-file"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-6">
+                <a href="javascript:void(0)" class="card green">
+                    <div class="card-body second">
+                        <div class="card-block pt-2 pb-0">
+                            <div class="media">
+                                <div class="media-body white text-left">
+                                    <h3 class="title">{{userOnboardingCount}}</h3>
+                                    <span>Total <br>Users Onboard</span>
+                                </div>
+                                <div class="media-right white text-right">
+                                    <span class="icon-user-check"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-6">
+                <a href="javascript:void(0)" class="card yellow">
+                    <div class="card-body">
+                        <div class="card-block pt-2 pb-0">
+                            <div class="media">
+                                <div class="media-body white text-left">
+                                    <h3 class="title">{{inCompleteApplicationCount}}</h3>
+                                    <span>Application With <br>Incomplete KYC Detail</span>
+                                </div>
+                                <div class="media-right white text-right">
+                                    <span class="icon-minus-circle"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-6">
+                <a href="javascript:void(0)" class="card red">
+                    <div class="card-body">
+                        <div class="card-block pt-2 pb-0">
+                            <div class="media">
+                                <div class="media-body white text-left">
+                                    <h3 class="title">{{applicationWithAlertMessages}}</h3>
+                                    <span>Application <br>With Alert Messages</span>
+                                </div>
+                                <div class="media-right white text-right">
+                                    <span class="icon-notallow"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- <div class="custom-datatable recent">
+            <app-recent-alerts></app-recent-alerts>
+        </div> -->
+        <div class="custom-datatable recent">
+            <app-query-alerts></app-query-alerts>
+        </div>
+        <div class="custom-datatable">
+            <app-recent-application></app-recent-application>
+        </div>
+    </div>
+</div>

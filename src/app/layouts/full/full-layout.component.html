@@ -1,17 +1,22 @@
-<div #wrapper class="wrapper" [ngClass]="{'nav-collapsed': iscollapsed, 'menu-collapsed': iscollapsed, 'sidebar-sm': isSidebar_sm, 'sidebar-lg': isSidebar_lg}" [dir]="options.direction">
-<!--  <div #appSidebar appSidebar class="app-sidebar" (toggleHideSidebar)="toggleHideSidebar($event)" [ngClass]="{'hide-sidebar': hideSidebar}" data-active-color="white" [attr.data-background-color]="bgColor" [attr.data-image]="bgImage">-->
-<!--      <app-sidebar></app-sidebar>-->
-<!--      <div class="sidebar-background" #sidebarBgImage></div>-->
-<!--  </div>-->
-  <app-navbar (toggleHideSidebar)="toggleHideSidebar($event)"></app-navbar>
+<div #wrapper class="wrapper"
+  [ngClass]="{'nav-collapsed': iscollapsed, 'menu-collapsed': iscollapsed, 'sidebar-sm': isSidebar_sm, 'sidebar-lg': isSidebar_lg}"
+  [dir]="options.direction">
+  <!--  <div #appSidebar appSidebar class="app-sidebar" (toggleHideSidebar)="toggleHideSidebar($event)" [ngClass]="{'hide-sidebar': hideSidebar}" data-active-color="white" [attr.data-background-color]="bgColor" [attr.data-image]="bgImage">-->
+  <!--      <app-sidebar></app-sidebar>-->
+  <!--      <div class="sidebar-background" #sidebarBgImage></div>-->
+  <!--  </div>-->
+  <app-navbar></app-navbar>
   <div class="main-panel">
-      <div class="main-content">
-          <div class="content-wrapper">
-              <div class="container-fluid">
-                  <router-outlet></router-outlet>
-              </div>
-          </div>
+    <!--      <div class="main-content">-->
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <router-outlet (activate)="onActivate($event)"></router-outlet>
       </div>
-      <app-footer></app-footer>
+    </div>
+    <!--      </div>-->
+    <app-footer></app-footer>
   </div>
+  <app-customizer (directionEvent)="getOptions($event)"></app-customizer>
+  <app-scroll-top></app-scroll-top>
 </div>
+

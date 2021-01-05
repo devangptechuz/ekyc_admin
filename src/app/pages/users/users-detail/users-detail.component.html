@@ -1,0 +1,1485 @@
+<section class="user-view">
+   <div class="container">
+      <div class="user-header d-flex justify-content-between">
+         <a href="javascript:void(0)" [routerLink]="['/applications']" routerLinkActive="router-link-active"><i
+               class="fa fa-angle-left mr-2"></i>Back</a>
+         <div class="d-flex align-items-center">
+            <a href="javascript:void(0)" [routerLink]="['/applications/application-history',userId]"
+               routerLinkActive="router-link-active" class="mr-3 d-flex align-items-center"><span
+                  class="icon-clock mr-2"></span>Application History</a>
+            <div class="dropdown more-dropdown">
+               <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                  <span class="icon-more-vertical"></span>
+               </button>
+               <div class="dropdown-menu dropdown-menu-right">
+                  <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                     href="javascript:void(0)" (click)="approveConfirm()">
+                     <span class="icon-simple-check"></span> approve</a>
+                  <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                     href="javascript:void(0)" (click)="requestConfirm('Document Request')">
+                     <span class="icon-minus-file"></span> request documents</a>
+                  <a class="dropdown-item disable" href="javascript:void(0)">
+                     <span class="icon-alert-octagon"></span>report application</a>
+                  <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                     href="javascript:void(0)" (click)="requestConfirm('reject_reason')">
+                     <span class="icon-notallow"></span>reject</a>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="user-box" *ngIf="otherReasons">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h3>Common Reasons</h3>
+            </div>
+         </div>
+         <div class="row user-btmbx">
+            <div class="col-md-12">
+               <div class="segmebrokerage-box row align-items-center ml-0" *ngIf="otherReasons">
+                  <div class="rght d-flex align-items-center mr-2" *ngFor="let item of otherReasons">
+                     <span class="red-status">{{item?.text}}
+                        <span class="icon-close ml-3 cursor-pointer" (click)="removeOtherReasonList(item.text)"></span>
+                     </span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- User box - Form & eSign Details -->
+      <div class="user-box esign-box" *ngIf="userData?.basic_info?.application_esign_status?.length">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>Form & eSign Details</h2>
+            </div>
+         </div>
+         <div class="row user-btmbx">
+            <div class="col-md-6">
+
+               <div class="row cmn-layout cmnicon-layout"
+                  [ngClass]="{'line-bottom': eSignState !== 'FormInitiated' && eSignState !== 'Approved' && eSignState !== 'Completed'}">
+                  <div class="col-md-6 d-flex flex-column">
+                     <div [ngClass]="{'green-icon': isApproved }" class="esignicon">
+                        <span class="icon-check-circle"></span>
+                        <div>
+                           <label>Approved</label>
+                           <span class="cmn-txt d-block"
+                              *ngIf="isApproved">{{isApproved.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>
+                     </div>
+
+                     <div [ngClass]="{'green-icon': isFormInitiated }" class="esignicon">
+                        <span class="icon-file-i"></span>
+                        <div>
+                           <label>Form Initiated</label>
+                           <span class="cmn-txt d-block"
+                              *ngIf="isFormInitiated">{{isFormInitiated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>
+                     </div>
+
+                     <div [ngClass]="{'green-icon': isFormCreated }" class="esignicon">
+                        <span class="icon-form"></span>
+                        <div>
+                           <label>Form Generated</label>
+                           <span class="cmn-txt d-block"
+                              *ngIf="isFormCreated">{{isFormCreated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="col-md-6 d-flex flex-column">
+                     <div [ngClass]="{'green-icon': isSendToUser }" class="esignicon">
+                        <span class="icon-user-check"></span>
+                        <div>
+                           <label>Send To User</label>
+                           <span class="cmn-txt d-block"
+                              *ngIf="isSendToUser">{{isSendToUser.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>
+                     </div>
+
+                     <div [ngClass]="{'green-icon': isFormEsigned }" class="esignicon">
+                        <span class="icon-user-check1"></span>
+                        <div>
+                           <label>eSigned By User</label>
+                           <span class="cmn-txt d-block"
+                              *ngIf="isFormEsigned">{{isFormEsigned.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>
+                     </div>
+
+                     <div [ngClass]="{'green-icon': isEsignCompleted }" class="esignicon">
+                        <span class="icon-thumbs-up"></span>
+                        <div>
+                           <label>Completed</label>
+                           <span class="cmn-txt d-block"
+                              *ngIf="isEsignCompleted">{{isEsignCompleted.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div *ngIf="eSignState === 'FormCreated'" class="pt-2 btm-sec">
+                  <p class="mb-0">Form has been generated and is available for user to eSign. It is recommended to
+                     review the form
+                     generated before sending it to the user for eSign.
+                  </p>
+                  <button class="btn btn-custom font-sml mr-2" (click)="initiateForm()">RE-INITIATE FORM
+                     CREATION</button>
+                  <button class="btn btn-custom font-sml" (click)="sendToUser()">SEND TO USER FOR ESIGN</button>
+               </div>
+
+               <div *ngIf="eSignState === 'EmailSendForESign'" class="pt-2 btm-sec">
+                  <p class="mb-0">
+                     Form has been generated and sent to the user for eSign. You can resend it to the user or in case
+                     of errors you can choose to
+                     <a href="javascript:void(0);" (click)="initiateForm()">Re-initiate form creation</a>
+                  </p>
+                  <button class="btn btn-custom font-sml" (click)="sendToUser()">RE-SEND TO USER</button>
+               </div>
+
+               <div *ngIf="eSignState === 'EsignCompleted'" class="pt-2 btm-sec">
+                  <p class="mb-0">
+                     Form has been successfully signed by the user. It is recommended to verify the signed form
+                     before confirming the application. In case of errors you can choose to
+                     <a href="javascript:void(0);" (click)="initiateForm()">Re-initiate form creation</a>
+                  </p>
+                  <button class="btn btn-custom font-sml" (click)="sendToUser()">RE-SEND TO USER</button>
+                  <button class="btn btn-custom font-sml ml-2" (click)="confirmAndComplete()">CONFIRM &
+                     COMPLETE</button>
+               </div>
+
+            </div>
+
+            <div class="col-md-6  text-center d-flex justify-content-center flex-column align-items-center esigntext"
+               *ngIf="eSignState === 'Approved'">
+               <span class="cmn-txt mb-3 d-block">Approved on
+                  {{isApproved.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+               <p class="mb-1">Once you confirm that the application is filled with all important data and documents
+                  from user’s end, you can opt to initiate the form creation for this application. This process may take
+                  few days to complete</p>
+               <button class="btn btn-custom font-sml" (click)="initiateForm()">INITIATE FORM CREATION</button>
+            </div>
+            <div class="col-md-6  text-center d-flex justify-content-center flex-column align-items-center esigntext"
+               *ngIf="eSignState === 'FormInitiated'">
+               <span class="cmn-txt mb-3 d-block">Form Initiated on
+                  {{isFormInitiated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+               <p class="mb-1">Once an application is approved and form creation is initiated it may take few days to
+                  generate the form. You can send it to user for eSign thereafter.</p>
+               <button class="btn btn-custom font-sml" (click)="initiateForm()">RE-INITIATE FORM CREATION</button>
+            </div>
+            <div class="col-md-6"
+               *ngIf="eSignState === 'FormCreated' || eSignState === 'EmailSendForESign' || eSignState === 'EsignCompleted' || eSignState === 'Completed'">
+               <span *ngIf="eSignState === 'FormCreated' || eSignState === 'EmailSendForESign'"
+                  class="cmn-txt mb-3 d-block">Form Generated on
+                  {{isFormCreated.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+               <span *ngIf="eSignState === 'EsignCompleted' || eSignState === 'Completed'"
+                  class="cmn-txt mb-3 d-block">eSigned by user
+                  {{isFormEsigned.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+               <div class="doc-upbox">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                  </div>
+                  <a class="fancyboxiframe clickpdf-popup" [href]="userData?.basic_info?.esignUrl | safeUrl">Click here
+                  </a>
+                  <div class="picsum-img-wrapper">
+                     <iframe [src]="userData?.basic_info?.esignUrl | safeUrl" height="100%" width="100%"></iframe>
+                  </div>
+
+               </div>
+               <label *ngIf="eSignState === 'FormCreated' || eSignState === 'EmailSendForESign'" class="doc-type">PDF
+                  FORM</label>
+               <label *ngIf="eSignState === 'EsignCompleted' || eSignState === 'Completed'" class="doc-type">Esigned PDF
+                  FORM</label>
+            </div>
+
+         </div>
+      </div>
+
+      <!-- User box -->
+      <div class="user-box">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>{{userData?.basic_info?.user_name}} </h2>
+               <p class="mb-0 mt-2">application number : {{userData?.basic_info?.application_number | uppercase}}</p>
+            </div>
+
+            <div class="rght d-flex align-items-center">
+               <p class="mb-0">application submitted</p>
+               <!-- <button class="btn btn-custom m-0">Respond <i class="fa fa-angle-down"></i></button> -->
+               <div class="dropdown">
+                  <button type="button" class="btn dropdown-toggle btn-custom m-0" [ngClass]="{'btn-reject': adminApproval === 'Reject',
+                  'btn-aprvd': adminApproval === 'Approved'}" data-toggle="dropdown">
+                     {{adminApprovalText || 'Respond'}} <i class="fa fa-angle-down"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                     <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                        href="javascript:void(0)" (click)="approveConfirm()"><span class="icon-simple-check"
+                           style="font-size: 12px;"></span>
+                        approve</a>
+                     <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                        href="javascript:void(0)" (click)="requestConfirm('reject_reason')"><span
+                           class="icon-notallow"></span>reject
+                     </a>
+                     <!-- <a class="dropdown-item" href="javascript:void(0)"><span class="icon-alert-octagon"></span>report
+                        application</a> -->
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row user-btmbx">
+            <div class="col-md-6">
+               <div class="d-flex justify-content-between">
+                  <a href="javascript:void(0)" (click)="editEmailOfApplication()">{{userData?.basic_info?.email}}
+                     <span *ngIf="!userData?.basic_info?.isEmailVerified" class="yellow-status status-box ml-2">not
+                        verified</span>
+                     <span *ngIf="userData?.basic_info?.isEmailVerified"
+                        class="green-status status-box ml-2">verified</span>
+                  </a>
+                  <span class="remind-usr" (click)="reminderSend()" style="cursor: pointer;"><span
+                        class="icon-send"></span>remind user</span>
+               </div>
+               <a href="tel:+91 userData?.basic_info?.mobileNumber">+91 {{userData?.basic_info?.mobileNumber}}</a>
+               <span *ngIf="!userData?.basic_info?.isMobileVerified" class="yellow-status status-box ml-2">NOT
+                  VERIFIED</span>
+               <span *ngIf="userData?.basic_info?.isMobileVerified" class="green-status status-box ml-2">VERIFIED</span>
+               <ul class="icon">
+                  <li><a href="javascript:void(0)"><span class="icon-chat"></span></a></li>
+                  <li><a href="javascript:void(0)"><span class="icon-mail"></span></a></li>
+                  <li><a href="javascript:void(0)"><span class="icon-phone"></span></a></li>
+               </ul>
+            </div>
+            <div class="col-md-6">
+               <div class="d-flex justify-content-between rgt-hdr">
+                  <h4 class="mb-0">Documents Uploaded</h4>
+                  <a *ngIf="!isApproved" href="javascript:void(0)" (click)="openPopupModal()"><span
+                        class="icon-upload"></span> Upload
+                     document</a>
+               </div>
+               <ul class="docupld-link">
+                  <li class="" [ngClass]="{'active': item?.document_status!=='not_uploaded'}"
+                     *ngFor="let item of userData?.basic_info?.document_uploaded">
+                     <a href="javascript:void(0)" style="pointer-events: none;">
+                        <span class="icon-check-circle"></span>{{item?.document_button_lable}}
+                     </a>
+                  </li>
+
+               </ul>
+               <button class="btn btn-custom" (click)="reviewAllModal()">review all</button>
+            </div>
+         </div>
+      </div>
+
+      <div class="user-box">
+
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>permanent account number (PAN)</h2>
+               <p *ngIf="userData?.pan_details?.pan_number"><strong>{{userData?.pan_details?.pan_number}}</strong>
+                  <span *ngIf="userData?.pan_details?.isPanVerified && userData?.pan_details?.isPanVerifiedByKRA"
+                     class="green-status status-box ml-2">VERIFIED BY KRA</span>
+                  <span
+                     *ngIf="userData?.pan_details?.isPanVerified && userData?.pan_details?.isPanFileVerifiedByDigiLocker"
+                     class="green-status status-box ml-2">VERIFIED BY Digilocker</span>
+               </p>
+            </div>
+         </div>
+         <div class="row user-btmbx">
+            <div class="col-md-6">
+               <div *ngIf="userData?.pan_details?.pan_number" class="d-flex justify-content-between mb-3">
+                  <span class="digi-text" *ngIf="userData?.pan_details?.isPanFileVerifiedByDigiLocker">
+                     Submitted using DigiLocker <img src="assets/img/digilocker.svg" alt="icon" class="ml-2">
+                  </span>
+                  <span class="digi-text" *ngIf="userData?.aadhar_details?.isPanVerifiedByKRA">
+                     Submitted using KRA <img src="assets/img/digilocker.svg" alt="icon" class="ml-2">
+                  </span>
+               </div>
+               <div class="row cmn-layout">
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Full
+                        Name As Per NSDL</label>{{userData?.pan_details?.full_name}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3" *ngIf="userData?.basic_info?.full_name_as_per_kra">
+                     <label>Full
+                        Name by KRA</label>{{userData?.basic_info?.full_name_as_per_kra}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3"
+                     *ngIf="userData?.basic_info?.full_name_as_per_digilocker"><label>Full
+                        Name by Digilocker </label>{{userData?.basic_info?.full_name_as_per_digilocker}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3">
+                     <label>DOB</label>{{userData?.pan_details?.date_of_birth}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>father’s/spouse's
+                        name</label>{{userData?.personal_details?.father_name}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Mother’s
+                        name</label>{{userData?.personal_details?.mother_name}}
+                  </div>
+               </div>
+
+               <button [disabled]="isApproved || adminApproval==='Reject'" class="btn btn-custom font-sml"
+                  (click)="requestConfirm('PAN Details')">request
+                  reveiw</button>
+            </div>
+            <div class="col-md-6">
+               <!-- <div class="d-flex justify-content-between mb-2">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+               <div class="doc-upbox">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right">
+                        <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                           (click)="openDocumentPopupModal(panDocumentKYCDocuments?.document_name, panDocumentKYCDocuments?.document_modal_title, panDocumentKYCDocuments?.document_status, panDocumentKYCDocuments)">Upload
+                           document</a>
+                        <a class="dropdown-item" *ngIf="userData?.pan_details?.pan_documents?.length"
+                           (click)="openImageDisplayModal(panDocumentKYCDocuments?.document_name, panDocumentKYCDocuments?.document_modal_title, panDocumentKYCDocuments?.document_status, panDocumentKYCDocuments)">Zoom
+                           In Zoom Out</a>
+                     </div>
+                  </div>
+                  <ngb-carousel *ngIf="userData?.pan_details?.pan_documents?.length">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.pan_details?.pan_documents">
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           [href]="imageItem?.url | safeUrl">Click here </a>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="pancard" [href]="imageItem?.url">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
+               </div>
+               <label class="doc-type">PAN Card</label>
+            </div>
+         </div>
+
+         <div class="segmebrokerage-box row align-items-center" *ngIf="panRequestReasons">
+            <div class="rght d-flex align-items-center mr-2" *ngFor="let item of panRequestReasons">
+               <span class="red-status">{{item?.text}}
+                  <span class="icon-close ml-3 cursor-pointer" (click)="removeFromReasonList(item.subreasonId)"></span>
+               </span>
+            </div>
+         </div>
+      </div>
+
+      <div class="user-box">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>personal & address details</h2>
+            </div>
+            <!-- <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar <span
+                     class="icon-alert ml-3"></span></span></div> -->
+         </div>
+         <div class="row user-btmbx">
+            <div class="col-md-6">
+               <!-- <div class="d-flex justify-content-between mb-3">
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+               </div> -->
+               <div class="row cmn-layout">
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Full
+                        Name</label>{{userData?.personal_details?.full_name}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label>DOB</label>{{userData?.personal_details?.date_of_birth}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label>Gender</label>{{userData?.personal_details?.gender}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label>Nationality</label>{{userData?.basic_info?.nationality}}
+                  </div>
+
+                  <div class="col-md-6 d-flex flex-column mb-3" *ngIf="userData?.basic_info?.identity_proof">
+                     <label>Identity Proof BY KRA</label>{{userData?.basic_info?.identity_proof}}
+                  </div>
+                  <div class="col-md-6 d-flex flex-column mb-3" *ngIf="userData?.basic_info?.residental_status">
+                     <label>Residental Status BY KRA</label>{{userData?.basic_info?.residental_status}}
+                  </div>
+                  <div class="col-md-6 d-flex flex-column mb-3" *ngIf="userData?.basic_info?.app_type">
+                     <label>Application Type BY KRA</label>{{userData?.basic_info?.app_type}}
+                  </div>
+                  <div class="col-md-6 d-flex flex-column mb-3" *ngIf="userData?.basic_info?.pep_proof">
+                     <label>Politically connection BY KRA</label>{{userData?.basic_info?.pep_proof}}
+                  </div>
+
+
+
+                  <!-- <div class="col-md-12 d-flex flex-column mb-3">
+                     <label>What is your trading experience?</label>
+                     <ng-container *ngIf="userData?.personal_details?.tradingExp ;else noDefault">
+                        Yes
+                     </ng-container>
+                     <ng-container #noDefault>
+                        No
+                     </ng-container>
+                  </div> -->
+                  <div class="col-md-12 d-flex flex-column mb-3">
+                     <label>Are you politically exposed person?</label>
+                     <ng-container *ngIf="userData?.personal_details?.politicallyExp ;else noDefault">
+                        Yes
+                     </ng-container>
+                     <ng-container #noDefault>
+                        No
+                     </ng-container>
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3">
+                     <label>Are you resident of india?</label>
+                     <ng-container *ngIf="userData?.personal_details?.isResidencyOfIndia">
+                        Yes
+                     </ng-container>
+                     <ng-container *ngIf="!userData?.personal_details?.isResidencyOfIndia">
+                        No
+                     </ng-container>
+                  </div>
+
+                  <div class="col-md-6 d-flex flex-column"><label>Permanent Address</label>
+                     <p style="word-break: break-word;">
+                        <!-------------- KRA VERIFY DATA: START -------------->
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line1">
+                           {{userData?.personal_details?.permanent_address?.address_line1}}
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line2">
+                           ,{{userData?.personal_details?.permanent_address?.address_line2}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.city">
+                           {{userData?.personal_details?.permanent_address?.city}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.pin_code">
+                           {{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.stateName">
+                           {{userData?.personal_details?.permanent_address?.stateName}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.country">
+                           {{userData?.personal_details?.permanent_address?.country}}
+                        </ng-container>
+                        <!-------------- KRA VERIFY DATA: END -------------->
+                     </p>
+                  </div>
+                  <div class="col-md-6 d-flex flex-column"><label>Corrospondance Address</label>
+                     <p *ngIf="userData?.personal_details?.is_corres_same_permanent" style="word-break: break-word;">
+                        <!-------------- KRA VERIFY DATA: START -------------->
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line1">
+                           {{userData?.personal_details?.permanent_address?.address_line1}}</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.address_line2">
+                           ,{{userData?.personal_details?.permanent_address?.address_line2}}</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.city">
+                           {{userData?.personal_details?.permanent_address?.city}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.pin_code">
+                           {{userData?.personal_details?.permanent_address?.pin_code | mask:'000 000'}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.stateName">
+                           {{userData?.personal_details?.permanent_address?.stateName}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.permanent_address?.country">
+                           {{userData?.personal_details?.permanent_address?.country}}</ng-container>
+                        <!-------------- KRA VERIFY DATA: END -------------->
+                     </p>
+                     <p *ngIf="!userData?.personal_details?.is_corres_same_permanent" style="word-break: break-word;">
+                        <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line1">
+                           {{userData?.personal_details?.corrospondence_address?.address_line1}},</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.address_line2">
+                           {{userData?.personal_details?.corrospondence_address?.address_line2}},</ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.city">
+                           {{userData?.personal_details?.corrospondence_address?.city}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.pin_code">
+                           {{userData?.personal_details?.corrospondence_address?.pin_code | mask:'000 000'}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.stateName">
+                           {{userData?.personal_details?.corrospondence_address?.stateName}},
+                        </ng-container>
+                        <ng-container *ngIf="userData?.personal_details?.corrospondence_address?.country">
+                           {{userData?.personal_details?.corrospondence_address?.country}}
+                        </ng-container>
+                     </p>
+                  </div>
+               </div>
+               <button [disabled]="isApproved || adminApproval==='Reject'" class="btn btn-custom btn-border font-sml"
+                  [routerLink]="['/applications/edit-personal-address',userId]"
+                  routerLinkActive="router-link-active">edit
+                  details</button>
+               <button [disabled]="isApproved || adminApproval==='Reject'" class="btn btn-custom font-sml"
+                  (click)="requestConfirm('Personal & Address Details')">request
+                  reveiw</button>
+            </div>
+            <div class="col-md-6">
+               <!-- <div class="d-flex justify-content-between mb-2">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+               <div class="doc-upbox">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right">
+                        <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                           (click)="openDocumentPopupModal(addressProofKYCDocuments?.document_name, addressProofKYCDocuments?.document_modal_title, addressProofKYCDocuments?.document_status, addressProofKYCDocuments)">Upload
+                           document</a>
+                        <a class="dropdown-item" *ngIf="userData?.personal_details?.permanent_address_url?.length"
+                           (click)="openImageDisplayModal(addressProofKYCDocuments?.document_name, addressProofKYCDocuments?.document_modal_title, addressProofKYCDocuments?.document_status, addressProofKYCDocuments)">Zoom
+                           In Zoom Out</a>
+                     </div>
+
+                  </div>
+                  <ngb-carousel *ngIf="userData?.personal_details?.permanent_address_url?.length">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.personal_details?.permanent_address_url">
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           [href]="imageItem?.url | safeUrl">Click here </a>
+                        <div class="picsum-img-wrapper fancybox" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper fancy" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="addressProof" [href]="imageItem?.url">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
+               </div>
+               <label class="doc-type">Permanent Address Proof</label>
+
+               <div class="doc-upbox mt-4" *ngIf="!userData?.personal_details?.is_corres_same_permanent">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right">
+                        <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                           (click)="openDocumentPopupModal(correspondenceAddressProofKYCDocuments?.document_name, correspondenceAddressProofKYCDocuments?.document_modal_title, correspondenceAddressProofKYCDocuments?.document_status, correspondenceAddressProofKYCDocuments)">Upload
+                           document</a>
+                        <a class="dropdown-item" *ngIf="userData?.personal_details?.correspondence_address_url?.length"
+                           (click)="openImageDisplayModal(correspondenceAddressProofKYCDocuments?.document_name, correspondenceAddressProofKYCDocuments?.document_modal_title, correspondenceAddressProofKYCDocuments?.document_status, correspondenceAddressProofKYCDocuments)">Zoom
+                           In Zoom Out</a>
+                     </div>
+
+                  </div>
+
+                  <!-- /************* Correspondence Address : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.personal_details?.correspondence_address_url?.length">
+                     <ng-template ngbSlide
+                        *ngFor="let imageItem of userData?.personal_details?.correspondence_address_url">
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           [href]="imageItem?.url | safeUrl">Click here </a>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="bankStatement" [href]="imageItem?.url">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
+               </div>
+               <label class="doc-type" *ngIf="!userData?.personal_details?.is_corres_same_permanent">Correspondence
+                  Address</label>
+
+            </div>
+         </div>
+
+         <div class="segmebrokerage-box row align-items-center" *ngIf="personaAddressRequestReasons">
+            <div class="rght d-flex align-items-center" *ngFor="let item of personaAddressRequestReasons">
+               <span class="red-status">{{item?.text}}
+                  <span class="icon-close ml-3" (click)="removeFromReasonList(item.subreasonId)"></span>
+               </span>
+            </div>
+         </div>
+
+      </div>
+
+      <div class="user-box">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>Brokerage & Tranding details</h2>
+            </div>
+         </div>
+         <div class="row user-btmbx">
+            <div class="col-md-6">
+               <!-- <div class="d-flex justify-content-between mb-3">
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+               </div> -->
+               <ng-container *ngIf="userData?.segment_brokerage_info?.length; else elseBlock">
+                  <div class="row cmn-layout">
+                     <div class="col-md-4 d-flex flex-column mb-3">
+                        <label>Segment Type</label>
+                     </div>
+                     <div class="col-md-4 d-flex flex-column mb-3">
+                        <label>Brokerage Plan</label>
+                     </div>
+                     <div class="col-md-4 d-flex flex-column mb-3">
+                        <label>Description</label>
+                     </div>
+                     <ng-container *ngFor="let item of userData?.segment_brokerage_info">
+                        <div class="col-md-4 d-flex flex-column mb-3">
+                           {{item?.sub_category_name || item?.category_name}}
+                        </div>
+                        <div class="col-md-4 d-flex flex-column mb-3">
+                           {{item?.plan_name || '---'}}
+                        </div>
+                        <div class="col-md-4 d-flex flex-column mb-3">
+                           {{item?.plan_desc || '---'}}
+                        </div>
+                     </ng-container>
+                  </div>
+                  <button [disabled]="isApproved || adminApproval==='Reject'" class="btn btn-custom btn-border font-sml"
+                     [routerLink]="['/applications/segment-details',userId]" routerLinkActive="router-link-active">edit
+                     details
+                  </button>
+               </ng-container>
+               <ng-template #elseBlock>
+                  <h3 class="no-data-found">No Data Found</h3>
+               </ng-template>
+            </div>
+            <div class="col-md-6" *ngIf="userData?.trading_demat_info">
+               <!-- <div class="d-flex justify-content-between mb-3">
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+               </div> -->
+               <div class="row cmn-layout">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Running a/c Autorization</label>
+                     {{userData?.trading_demat_info?.running_account_autorization}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Experience in Trading</label>
+                     {{userData?.trading_demat_info?.experience_in_trading}}
+                  </div>
+               </div>
+               <div class="row cmn-layout ">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Contract Note details</label>
+                     {{userData?.trading_demat_info?.contract_note_details}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Trading Type</label>
+                     {{userData?.trading_demat_info?.trading_type}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Mobile Trading</label>
+                     {{userData?.trading_demat_info?.mobile_trading}}
+                  </div>
+               </div>
+               <div class="row cmn-layout ">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Open DEMAT a/c</label>
+                     {{userData?.trading_demat_info?.open_DEMAT_account}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Is DEMAT External?</label>
+                     {{userData?.trading_demat_info?.is_DEMAT_external}}
+                  </div>
+               </div>
+               <div class="row cmn-layout">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Depository name</label>
+                     {{userData?.trading_demat_info?.depository_name}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> SMS Required</label>
+                     {{userData?.trading_demat_info?.SMS_required}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Require DIS Booklet</label>
+                     {{userData?.trading_demat_info?.receive_DIS_booklet}}
+                  </div>
+               </div>
+               <div class="row cmn-layout">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> BSDA</label>
+                     {{userData?.trading_demat_info?.BSDA}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> POA</label>
+                     {{userData?.trading_demat_info?.POA}}
+                  </div>
+               </div>
+               <div class="row cmn-layout">
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> A/c Opening Scheme</label>
+                     {{userData?.trading_demat_info?.account_opening_scheme}}
+                  </div>
+                  <div class="col-md-4 d-flex flex-column mb-3">
+                     <label> Statement Frequency</label>
+                     {{userData?.trading_demat_info?.statement_frequency}}
+                  </div>
+               </div>
+
+               <button [disabled]="isApproved || adminApproval==='Reject'" type="button"
+                  class="btn btn-custom btn-border font-sml" [routerLink]="['/applications/trading-details',userId]"
+                  routerLinkActive="router-link-active">
+                  edit details</button>
+            </div>
+         </div>
+      </div>
+      <!-- User box - bank details-->
+      <div class="user-box">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>Nominee details</h2>
+            </div>
+            <!-- <div class="rght d-flex align-items-center" *ngIf="!userData?.nominee_info?.length">
+               <span class="red-status">Nominee details does not found
+                  <span class="icon-alert ml-3"></span>
+               </span>
+            </div> -->
+         </div>
+         <ng-container *ngIf="userData?.nominee_info?.length; else elseBlockNominee">
+            <div class="row user-btmbx" *ngFor="let item of userData?.nominee_info; let i = index;">
+               <div class="col-md-6">
+                  <div class="d-flex justify-content-between mb-3">
+                     <span class="cmn-txt">Last Updated On: {{item?.createdDate | date:'MMM dd yyyy - hh:mm a'}}</span>
+                  </div>
+                  <div class="row cmn-layout">
+                     <div class="col-md-4 d-flex flex-column mb-3"><label>Title</label>
+                        {{item?.prefix_name}}
+                     </div>
+                     <div class="col-md-4 d-flex flex-column mb-3"><label>Name</label>
+                        {{item?.nominee_name}}
+                     </div>
+                  </div>
+                  <div class="row cmn-layout">
+                     <div class="col-md-4 d-flex flex-column mb-3"><label>Relation</label>
+                        {{item?.nominee_relation}}
+                     </div>
+                     <div class="col-md-4 d-flex flex-column"><label>Identity Type</label>
+                        {{item?.nominee_identity_type}}
+                     </div>
+                     <div class="col-md-4 d-flex flex-column"><label>Identity Number</label>
+                        {{item?.nominee_identity_number}}
+                     </div>
+                  </div>
+                  <div class="row cmn-layout">
+                     <div class="col-md-4 d-flex flex-column mb-3"><label>Date of Birth</label>
+                        {{item?.nominee_dob}}
+                     </div>
+                     <div class="col-md-4 d-flex flex-column"><label>Mobile Number</label>
+                        {{item?.nominee_mobile_number}}
+                     </div>
+                  </div>
+                  <div class="row cmn-layout" *ngIf="!item?.is_same_as_user">
+                     <div class="col-md-4 d-flex flex-column"><label>Address</label>
+                        {{item?.nominee_mobile_number}}
+                     </div>
+                  </div>
+
+                  <button [disabled]="isApproved || adminApproval==='Reject'" class="btn btn-custom btn-border font-sml"
+                     [routerLink]="['/applications/nominee-details',userId]" routerLinkActive="router-link-active">edit
+                     details</button>
+                  <button [disabled]="isApproved || adminApproval==='Reject'" class="btn btn-custom font-sml"
+                     (click)="requestConfirm('Nominee Details')">request
+                     reveiw</button>
+               </div>
+               <div class="col-md-6">
+                  <!-- <div class="d-flex justify-content-between mb-2">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+
+                  <div class="doc-upbox">
+                     <div class="dropdown more-dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                           <span class="icon-more-vertical"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                           <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                              (click)="openDocumentPopupModal(item?.nominee_identity_documents_status?.document_name, item?.nominee_identity_documents_status?.document_modal_title, item?.nominee_identity_documents_status?.document_status, item?.nominee_identity_documents_status)">Upload
+                              document</a>
+                           <a class="dropdown-item" *ngIf="item?.nominee_identity_document"
+                              (click)="openImageDisplayModal(item?.nominee_identity_documents_status?.document_name, item?.nominee_identity_documents_status?.document_modal_title, item?.nominee_identity_documents_status?.document_status, item?.nominee_identity_documents_status)">Zoom
+                              In Zoom Out</a>
+                        </div>
+                     </div>
+
+                     <!-- /************* Nominee identity document : CAROUSEL **************/ -->
+                     <ngb-carousel *ngIf="item?.nominee_identity_document?.length">
+                        <ng-template ngbSlide *ngFor="let imageItem of item?.nominee_identity_document">
+                           <a class="fancyboxiframe clickpdf-popup"
+                              *ngIf="imageItem?.content_type === 'application/pdf'"
+                              [href]="imageItem?.url | safeUrl">Click here </a>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                           </div>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                              <a class="grouped_elements" rel="bankStatement" [href]="imageItem?.url">
+                                 <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                              </a>
+                           </div>
+                        </ng-template>
+                     </ngb-carousel>
+                  </div>
+                  <label class="doc-type">Nominee Identity proof</label>
+
+                  <!-- <div class="d-flex justify-content-between mb-2">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+                  <div class="doc-upbox mt-4">
+                     <div class="dropdown more-dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                           <span class="icon-more-vertical"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                           <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                              (click)="openDocumentPopupModal(item?.nominee_address_documents_status?.document_name, item?.nominee_address_documents_status?.document_modal_title, item?.nominee_address_documents_status?.document_status, item?.nominee_address_documents_status)">Upload
+                              document</a>
+                           <a class="dropdown-item" *ngIf="userData?.bank_details?.bank_statement_url?.length"
+                              (click)="openImageDisplayModal(item?.nominee_address_documents_status?.document_name, item?.nominee_address_documents_status?.document_modal_title, item?.nominee_address_documents_status?.document_status, item?.nominee_address_documents_status)">Zoom
+                              In Zoom Out</a>
+                        </div>
+
+                     </div>
+
+                     <!-- /************* Nominee address proof : CAROUSEL **************/ -->
+                     <ngb-carousel *ngIf="item?.nominee_address_document?.length">
+                        <ng-template ngbSlide *ngFor="let imageItem of item?.nominee_address_document">
+                           <a class="fancyboxiframe clickpdf-popup text-center"
+                              *ngIf="imageItem?.content_type === 'application/pdf'"
+                              [href]="imageItem?.url | safeUrl">Click here </a>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                              <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                           </div>
+                           <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                              <a class="grouped_elements" rel="cancelledCheck" [href]="imageItem?.url">
+                                 <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                              </a>
+                           </div>
+                        </ng-template>
+                     </ngb-carousel>
+                  </div>
+                  <label class="doc-type">Nominee Address proof</label>
+               </div>
+            </div>
+         </ng-container>
+         <ng-template #elseBlockNominee>
+            <h3 class="no-data-found mt-5">No Data Found</h3>
+            <!-- disabled="true" [disabled]="isApproved || adminApproval==='Reject'" -->
+            <button [disabled]="true" class="btn btn-custom btn-border font-sml"
+               [routerLink]="['/applications/nominee-details',userId]" routerLinkActive="router-link-active">edit
+               details</button>
+         </ng-template>
+
+         <div class="segmebrokerage-box row align-items-center" *ngIf="nomineeRequestReasons">
+            <div class="rght d-flex align-items-center" *ngFor="let item of nomineeRequestReasons">
+               <span class="red-status">{{item?.text}}
+                  <span class="icon-close ml-3" (click)="removeFromReasonList(item.subreasonId)"></span>
+               </span>
+            </div>
+         </div>
+      </div>
+      <!-- User box - bank details-->
+      <div class="user-box">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>Bank details</h2>
+            </div>
+            <!-- <div class="rght d-flex align-items-center"><span class="red-status">name does not match with aadhaar
+                  <span class="icon-alert ml-3"></span></span></div> -->
+         </div>
+         <div class="row user-btmbx">
+            <div class="col-md-6">
+               <!-- <div class="d-flex justify-content-between mb-3">
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+               </div> -->
+               <div class="row cmn-layout">
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>name registered at bank</label>
+                     <p class="mb-0">{{userData?.bank_details?.bank_account_holder_name}}
+                        <a href="javascript:void(0)"> <span *ngIf="userData?.bank_details?.bank_name_mismatch"
+                              class="green-status status-box ml-2 ng-star-inserted">MATCH</span>
+                           <span *ngIf="!userData?.bank_details?.bank_name_mismatch"
+                              class="yellow-status status-box ml-2 ng-star-inserted">MISMATCH</span>
+                        </a>
+                     </p>
+                  </div>
+
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>Bank Account Type</label>
+                     ---
+                     <!-- {{userData?.bank_details?.bank_account_type}} -->
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>IFSC Code</label>
+                     {{userData?.bank_details?.ifsc_code}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column mb-3"><label>bank name</label>
+                     {{userData?.bank_details?.bank_name}}
+                  </div>
+                  <div class="col-md-12 d-flex flex-column"><label>branch address</label>
+                     {{userData?.bank_details?.branch_address?.address}}
+                  </div>
+               </div>
+               <button [disabled]="isApproved || adminApproval==='Reject'" class="btn btn-custom btn-border font-sml"
+                  [routerLink]="['/applications/bank-details',userId]" routerLinkActive="router-link-active">edit
+                  details</button>
+               <button [disabled]="isApproved || adminApproval==='Reject'" class="btn btn-custom font-sml"
+                  (click)="requestConfirm('Bank Details')">request
+                  reveiw</button>
+            </div>
+            <div class="col-md-6">
+               <!-- <div class="d-flex justify-content-between mb-2">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+
+               <!-- <div class="d-flex justify-content-between mb-2 mt-3">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+               <div class="doc-upbox">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right">
+                        <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                           (click)="openDocumentPopupModal(cancelledChequeKYCDocuments?.document_name, cancelledChequeKYCDocuments?.document_modal_title, cancelledChequeKYCDocuments?.document_status, cancelledChequeKYCDocuments)">Upload
+                           document</a>
+                        <a class="dropdown-item" *ngIf="userData?.bank_details?.cancelled_cheque_url?.length"
+                           (click)="openImageDisplayModal(cancelledChequeKYCDocuments?.document_name, cancelledChequeKYCDocuments?.document_modal_title, cancelledChequeKYCDocuments?.document_status, cancelledChequeKYCDocuments)">Zoom
+                           In Zoom Out</a>
+                     </div>
+                  </div>
+
+                  <!-- /************* Bank statement : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.bank_details?.cancelled_cheque_url?.length">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.cancelled_cheque_url">
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           [href]="imageItem?.url | safeUrl">Click here </a>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="cancelledCheck" [href]="imageItem?.url">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
+               </div>
+               <label class="doc-type">Cancelled Check</label>
+
+               <!-- <div class="d-flex justify-content-between mb-2">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+
+               <!-- <div class="d-flex justify-content-between mb-2 mt-3">
+                  <span class="cmn-txt">uploaded on Jan 20 2020 - 05:36 PM</span>
+               </div> -->
+               <div class="doc-upbox mt-4">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right">
+                        <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                           (click)="openDocumentPopupModal(bankStatementKYCDocuments?.document_name, bankStatementKYCDocuments?.document_modal_title, bankStatementKYCDocuments?.document_status, bankStatementKYCDocuments)">Upload
+                           document</a>
+                        <a class="dropdown-item" *ngIf="userData?.bank_details?.bank_statement_url?.length"
+                           (click)="openImageDisplayModal(bankStatementKYCDocuments?.document_name, bankStatementKYCDocuments?.document_modal_title, bankStatementKYCDocuments?.document_status, bankStatementKYCDocuments)">Zoom
+                           In Zoom Out</a>
+                     </div>
+
+                  </div>
+
+                  <!-- /************* Bank statement : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.bank_details?.bank_statement_url?.length">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.bank_details?.bank_statement_url">
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           [href]="imageItem?.url | safeUrl">Click here </a>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="bankStatement" [href]="imageItem?.url">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
+               </div>
+               <label class="doc-type">bank statement</label>
+            </div>
+            <div class="segmebrokerage-box row align-items-center" *ngIf="bankRequestReasons">
+               <div class="rght d-flex align-items-center" *ngFor="let item of bankRequestReasons">
+                  <span class="red-status">{{item?.text}}
+                     <span class="icon-close ml-3" (click)="removeFromReasonList(item.subreasonId)"></span>
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- User box - signature & identity-->
+      <div class="user-box">
+         <div class="user-bxhdr d-flex justify-content-between">
+            <div class="lft">
+               <h2>signature & identity</h2>
+            </div>
+         </div>
+         <div class="row user-btmbx">
+            <div class="col-md-6 border-0">
+               <!-- <div class="d-flex justify-content-between mb-3">
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+               </div> -->
+               <div class="doc-upbox" [ngClass]="{'signature-box': userData?.sign_and_identity?.sign_url}">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right">
+                        <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                           href="javascript:void(0)"
+                           (click)="openSinaturePopupModal(signatureKYCDocuments?.document_name, signatureKYCDocuments?.document_modal_title, signatureKYCDocuments?.document_status, signatureKYCDocuments)">Upload
+                           document</a>
+                        <a class="dropdown-item" *ngIf="userData?.sign_and_identity?.sign_url?.length"
+                           (click)="openImageDisplayModal(signatureKYCDocuments?.document_name, signatureKYCDocuments?.document_modal_title, signatureKYCDocuments?.document_status, signatureKYCDocuments)">Zoom
+                           In Zoom Out</a>
+                     </div>
+                  </div>
+                  <!-- /************* Signature : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.sign_and_identity?.sign_url?.length">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.sign_url">
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           [href]="imageItem?.url | safeUrl">Click here </a>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="signature" [href]="imageItem?.url">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
+               </div>
+               <label class="doc-type">signature</label>
+            </div>
+            <div class="col-md-6">
+               <!-- <div class="d-flex justify-content-between mb-3">
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+               </div> -->
+               <div class="doc-upbox">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right">
+                        <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                           (click)="openDocumentPopupModal(photographKYCDocuments?.document_name, photographKYCDocuments?.document_modal_title, photographKYCDocuments?.document_status, photographKYCDocuments)">Upload
+                           document</a>
+                        <a class="dropdown-item" *ngIf="userData?.sign_and_identity?.photograph_url?.length"
+                           (click)="openImageDisplayModal(photographKYCDocuments?.document_name, photographKYCDocuments?.document_modal_title, photographKYCDocuments?.document_status, photographKYCDocuments)">Zoom
+                           In Zoom Out</a>
+                     </div>
+                  </div>
+                  <!-- /************* Photograph : CAROUSEL **************/ -->
+                  <ngb-carousel *ngIf="userData?.sign_and_identity?.photograph_url?.length">
+                     <ng-template ngbSlide *ngFor="let imageItem of userData?.sign_and_identity?.photograph_url">
+                        <a class="fancyboxiframe clickpdf-popup" *ngIf="imageItem?.content_type === 'application/pdf'"
+                           [href]="imageItem?.url | safeUrl">Click here </a>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type === 'application/pdf'">
+                           <iframe [src]="imageItem?.url | safeUrl" height="100%" width="100%"></iframe>
+                        </div>
+                        <div class="picsum-img-wrapper" *ngIf="imageItem?.content_type !== 'application/pdf'">
+                           <a class="grouped_elements" rel="photograph" [href]="imageItem?.url">
+                              <img width="100%" [src]="imageItem?.url" alt="Random first slide">
+                           </a>
+                        </div>
+                     </ng-template>
+                  </ngb-carousel>
+               </div>
+               <label class="doc-type">Photograph</label>
+            </div>
+            <div class="col-md-6 last mx-auto mt-5">
+               <!-- <div class="d-flex justify-content-between mb-3">
+                  <span class="cmn-txt">Paid on Jan 20 2020 - 02:56 PM</span>
+               </div> -->
+               <div class="doc-upbox">
+                  <div class="dropdown more-dropdown">
+                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="icon-more-vertical"></span>
+                     </button>
+                     <div class="dropdown-menu dropdown-menu-right">
+                        <a [ngClass]="{'disable': isApproved || adminApproval==='Reject'}" class="dropdown-item"
+                           href="javascript:void(0)"
+                           (click)="openIPVPopupModal(ipvKYCDocuments?.document_name, ipvKYCDocuments?.document_modal_title, ipvKYCDocuments?.document_status, ipvKYCDocuments)">
+                           Upload document</a>
+                     </div>
+                  </div>
+                  <!-- /************* IN PERSON VIDEO : CAROUSEL **************/ -->
+                  <div *ngIf="userData?.sign_and_identity?.in_person_url?.length">
+                     <div *ngFor="let imageItem of userData?.sign_and_identity?.in_person_url">
+                        <!-- <div class="picsum-img-wrapper"> -->
+                        <video controls width="100%" height="100%">
+                           <source [src]="imageItem?.url | safeUrl" type="video/webm">
+                           Sorry, your browser doesn't support embedded videos.
+                        </video>
+                        <!-- </div> -->
+                     </div>
+                  </div>
+               </div>
+               <label class="doc-type">In Person Video</label>
+            </div>
+         </div>
+      </div>
+
+
+      <!-- User box - dynamic form -->
+      <div class="user-box" *ngIf="fieldsArr.length>0">
+         <div>
+            <div class="user-bxhdr d-flex justify-content-between">
+               <div class="lft">
+                  <h2>{{formName}}</h2>
+               </div>
+               <button class="btn btn-custom btn-border font-sml" routerLinkActive="router-link-active"
+                  (click)="editForm1()">edit details</button>
+            </div>
+
+            <form [formGroup]="form" style="margin-top:1rem;">
+               <formly-form [form]="form" [model]="model" [fields]="fieldsArr">
+               </formly-form>
+            </form>
+         </div>
+      </div>
+
+      <!-- User box -- dynamic form 2 -->
+
+      <div class="user-box" *ngIf="fieldsArr1.length>0">
+         <div>
+            <div class="user-bxhdr d-flex justify-content-between">
+               <div class="lft">
+                  <h2>Form 2</h2>
+               </div>
+            </div>
+            <form [formGroup]="form" style="margin-top:1rem;" [disabled]="true">
+               <formly-form [form]="form1" [model]="model1" [fields]="fieldsArr1" [disabled]="true">
+               </formly-form>
+            </form>
+         </div>
+      </div>
+   </div>
+</section>
+
+<ng-template #fileuploadAadharpopup let-c="close" let-d="dismiss">
+
+   <div class="modal-body p-0 payment-popup uploaddoc-popup">
+      <div class="modal-header yellowclr common-header">
+         <div class="popup-header">
+            <span>Upload Document</span>
+            <h4 class="modal-title">{{nameOfTitleDocument}}</h4>
+         </div>
+         <div class="popup-icon">
+            <img src="assets/img/doc.svg">
+         </div>
+      </div>
+
+      <div class="col-md-4" [hidden]="!globalDocumentPopup">
+         <div class="form-group document-dropdown">
+            <label>Document Selection </label>
+            <ng-select placeholder="select" [searchable]="false" [items]="dropdownDocumentList"
+               bindLabel="document_button_lable" bindValue="document_name" [clearable]="false"
+               [(ngModel)]="defaultSelectedDocument" (change)="documentSelection($event)">
+               <!-- <ng-option [value]="item.document_name" *ngFor="let item of dropdownDocumentList">
+                  {{item.document_button_lable}}</ng-option> -->
+            </ng-select>
+         </div>
+      </div>
+
+      <!--------------------- Webcome code: START --------------------->
+      <div *ngIf="clickedWebcamPicture && !fileUploading && !viewSectionOfImage">
+         <div class="snapshot row mr-md-0">
+            <div class="col-md-10" *ngIf="!liveWebcam">
+               <div class="upload-doc-box">
+                  <img [src]="webCamMediaPriview" />
+                  <span (click)="removeWebCamMedia(webCamMediaPriview)"><img src="assets/img/modal-upload/edit.svg">Edit
+                     Image/File</span>
+               </div>
+            </div>
+            <div class="col-md-10" *ngIf="liveWebcam">
+               <div class="upload-doc-box d-flex justify-content-center align-items-center">
+                  <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+                     [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+                     [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+                     (initError)="handleInitError($event)" class="webcam">
+                  </webcam>
+               </div>
+            </div>
+
+            <div class="col-md-2 p-md-0">
+               <div class="scroll-upload">
+                  <button *ngIf="liveWebcam" class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+                  <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
+                     Image/File</button>
+                  <button class="view-img" *ngFor="let mediaPreview of webCamMediaList; let i = index">
+                     <div class="img-td-div" (click)="webCamShowMediaBig(i)">
+                        <img src="{{ mediaPreview }}" alt="img">
+                     </div>
+                  </button>
+               </div>
+            </div>
+         </div>
+
+         <h4 *ngIf="errors.length > 0">Messages:</h4>
+         <ul *ngFor="let error of errors">
+            <li>{{error | json}}</li>
+         </ul>
+      </div>
+      <!--------------------- Webcome code: End --------------------->
+
+      <!----------------- UPLOAD image/file aadhar: START -------------->
+      <div class="row mr-md-0" *ngIf="!viewSectionOfImage">
+         <div class="col-md-10" *ngIf="!fileUploading">
+            <div class="upload-box" *ngIf="addNewAadhaarImageUpload">
+               <a (click)="enableWebcamPicture()" href="javascript:void(0)" class="d-flex flex-column"><img
+                     src="assets/img/modal-upload/camera.svg">
+                  <div class="d-flex align-items-center"><img src="assets/img/modal-upload/camera-sml.svg">Use Camera
+                  </div>
+               </a>
+               <div class="or-text"><span>OR</span></div>
+               <a href="javascript:void(0)" class="d-flex flex-column align-items-center upload-file"><img
+                     src="assets/img/modal-upload/file-minus.svg">
+                  <input type="file" ng2FileSelect [uploader]="uploader" multiple>
+                  <div class="d-flex"><img src="assets/img/modal-upload/upload.svg">Upload File</div>
+               </a>
+            </div>
+
+            <div class="upload-doc-box d-flex justify-content-center align-items-center"
+               *ngIf="!addNewAadhaarImageUpload && !clickedWebcamPicture">
+               <img *ngIf="aadharDisplayImage?.contentType !== 'application/pdf'" src="{{aadharDisplayImage?.file}}">
+               <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'"
+                  src="assets/img/modal-upload/pdf_icon.png" style="width: 100px; object-fit: contain;">
+               <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img
+                     src="assets/img/modal-upload/edit.svg">Edit
+                  Image/File</span>
+            </div>
+         </div>
+
+         <div class="col-md-10" *ngIf="fileUploading">
+            <div class="upload-box upload-progress">
+               <h5>Uploading File...</h5>
+               <div class="progress-ratio d-flex justify-content-between"><span>
+                     Uploading...</span><span>{{uploadProgress}} %</span></div>
+               <div class="progress">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploadProgress + '%' }"></div>
+               </div>
+               <p>Please wait, This may take some time</p>
+            </div>
+         </div>
+
+         <div class="col-md-2 p-md-0" *ngIf="!clickedWebcamPicture">
+            <div class="scroll-upload">
+               <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New Image/File</button>
+               <button class="view-img" *ngFor="let mediaPreview of mediaPreviews; let i = index">
+                  <div class="img-td-div" (click)="documentShowBigMedia(i,true)">
+                     <img *ngIf="mediaPreview?.contentType !== 'application/pdf'" src="{{ mediaPreview?.file }}"
+                        alt="img">
+                     <img *ngIf="mediaPreview?.contentType === 'application/pdf'"
+                        src="assets/img/modal-upload/pdf_icon.png" alt="img" class="pdf-listview">
+                  </div>
+               </button>
+            </div>
+         </div>
+      </div>
+      <!----------------- UPLOAD image/file aadhar: END -------------->
+
+      <!----------------- VIEW image/file : START -------------->
+      <div class="row mr-md-0" *ngIf="viewSectionOfImage">
+         <div class="col-md-10" *ngIf="!fileUploading">
+            <div class="upload-doc-box"
+               *ngIf="viewPreviewDisplayImage?.content_type === 'image/jpeg' || viewPreviewDisplayImage?.content_type === 'image/jpg' || viewPreviewDisplayImage?.content_type === 'image/png'">
+               <img src="{{viewPreviewDisplayImage?.url}}">
+               <span (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+                  <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
+            </div>
+
+            <div class="upload-doc-box" *ngIf="viewPreviewDisplayImage?.content_type === 'application/pdf'">
+               <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe>
+               <span (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+                  <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
+
+            </div>
+         </div>
+
+         <div class="col-md-2 p-md-0">
+            <div class="scroll-upload">
+               <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
+                  Image/File</button>
+               <button class="view-img" *ngFor="let mediaPreview of viewMediaPreviewsList; let i = index">
+                  <div class="img-td-div" (click)="previewImageBig(i)">
+                     <img *ngIf="mediaPreview?.content_type !== 'application/pdf'" src="{{ mediaPreview?.url }}"
+                        alt="img">
+                     <img *ngIf="mediaPreview?.content_type === 'application/pdf'"
+                        src="assets/img/modal-upload/pdf_icon.png" alt="img">
+                  </div>
+               </button>
+            </div>
+         </div>
+      </div>
+      <!----------------- VIEW image/file : END -------------->
+
+      <div class="modal-footer d-flex justify-content-between">
+         <a class="btn modal-btn-cancel" (click)="c('cancel')" href="javascript:void(0)">{{'Cancel'}}</a>
+         <a *ngIf="!clickedWebcamPicture" [ngClass]="{'disabled': !uploader?.getNotUploadedItems().length}"
+            class="btn modal-btn-continue" (click)="submitDocumentUploadModal()" href="javascript:void(0)">
+            {{'Save & Continue'}}
+         </a>
+         <a *ngIf="clickedWebcamPicture" [ngClass]="{'disabled': !webCamMediaList?.length}"
+            class="btn modal-btn-continue" (click)="submitWebCamUploadModal()" href="javascript:void(0)">
+            {{'Save & Continue'}}
+         </a>
+      </div>
+   </div>
+</ng-template>
+
+<ng-template #fileuploadSignaturepopup let-c="close" let-d="dismiss">
+
+   <div class="modal-body p-0 payment-popup uploaddoc-popup">
+      <div class="modal-header yellowclr common-header">
+         <div class="popup-header">
+            <span>Upload Document</span>
+            <h4 class="modal-title">{{nameOfTitleDocument}}</h4>
+         </div>
+         <div class="popup-icon">
+            <img src="assets/img/doc.svg">
+         </div>
+      </div>
+      <!--------------------- SIGNATURE code: START --------------------->
+      <div *ngIf="isEnableSignaturePad && !viewSectionOfImage">
+
+         <div class="snapshot row mr-md-0">
+            <div class="col-md-10">
+               <ng-signature-pad backgroundColor="#F7F7F7" format="base64" (done)="showImage($event)"
+                  clearButtonClass="btn btn-custom" doneButtonClass="btn btn-custom">
+               </ng-signature-pad>
+               <!-- <img [src]="signatureImage" *ngIf="signatureImage" /> -->
+            </div>
+
+            <div class="col-md-2 p-md-0">
+               <div class="scroll-upload">
+                  <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
+                     Image/File</button>
+                  <button class="view-img" *ngFor="let mediaPreview of webCamMediaList; let i = index">
+                     <div class="img-td-div" (click)="webCamShowMediaBig(i)">
+                        <img src="{{ mediaPreview }}" alt="img">
+                     </div>
+                  </button>
+               </div>
+            </div>
+         </div>
+
+         <h4 *ngIf="errors.length > 0">Messages:</h4>
+         <ul *ngFor="let error of errors">
+            <li>{{error | json}}</li>
+         </ul>
+      </div>
+      <!--------------------- SIGNATURE code: End --------------------->
+
+      <!----------------- UPLOAD image/file aadhar: START -------------->
+      <div class="row mr-md-0" *ngIf="!viewSectionOfImage && !isEnableSignaturePad">
+         <div class="col-md-10" *ngIf="!fileUploading">
+            <div class="upload-box" *ngIf="addNewAadhaarImageUpload">
+               <a (click)="enableSignaturePad()" href="javascript:void(0)" class="d-flex flex-column"><img
+                     src="assets/img/modal-upload/signature.svg">
+                  <div class="d-flex align-items-center">
+                     <img src="assets/img/modal-upload/signature-blue.svg">Use Signature Pad
+                  </div>
+               </a>
+               <div class="or-text"><span>OR</span></div>
+               <a href="javascript:void(0)" class="d-flex flex-column align-items-center upload-file"><img
+                     src="assets/img/modal-upload/file-minus.svg">
+                  <input type="file" ng2FileSelect [uploader]="uploader" multiple>
+                  <div class="d-flex"><img src="assets/img/modal-upload/upload.svg">Upload File</div>
+               </a>
+            </div>
+
+            <div class="upload-doc-box d-flex justify-content-center align-items-center"
+               *ngIf="!addNewAadhaarImageUpload && !clickedWebcamPicture">
+               <img *ngIf="aadharDisplayImage?.contentType !== 'application/pdf'" src="{{aadharDisplayImage?.file}}">
+               <img *ngIf="aadharDisplayImage?.contentType === 'application/pdf'"
+                  src="assets/img/modal-upload/pdf_icon.png">
+               <span (click)="removeAadhaarMedia(aadharDisplayImage?.file)"><img
+                     src="assets/img/modal-upload/edit.svg">Edit
+                  Image/File</span>
+            </div>
+         </div>
+
+         <div class="col-md-10" *ngIf="fileUploading">
+            <div class="upload-box upload-progress">
+               <h5>Uploading File...</h5>
+               <div class="progress-ratio d-flex justify-content-between"><span>
+                     Uploading...</span><span>{{uploadProgress}} %</span></div>
+               <div class="progress">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploadProgress + '%' }"></div>
+               </div>
+               <p>Please wait, This may take some time</p>
+            </div>
+         </div>
+
+         <div class="col-md-2 p-md-0" *ngIf="!isEnableSignaturePad">
+            <div class="scroll-upload">
+               <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New Image/File</button>
+               <button class="view-img" *ngFor="let mediaPreview of mediaPreviews; let i = index">
+                  <div class="img-td-div" (click)="documentShowBigMedia(i,true)">
+                     <img *ngIf="mediaPreview?.contentType !== 'application/pdf'" src="{{ mediaPreview?.file }}"
+                        alt="img">
+                     <img class="pdf-listview" *ngIf="mediaPreview?.contentType === 'application/pdf'"
+                        src="assets/img/modal-upload/pdf_icon.png" alt="img">
+                  </div>
+               </button>
+            </div>
+         </div>
+      </div>
+      <!----------------- UPLOAD image/file aadhar: END -------------->
+
+      <!----------------- VIEW image/file : START -------------->
+      <div class="row mr-md-0" *ngIf="viewSectionOfImage">
+         <div class="col-md-10" *ngIf="!fileUploading">
+            <div class="upload-doc-box"
+               *ngIf="viewPreviewDisplayImage?.content_type === 'image/jpeg' || viewPreviewDisplayImage?.content_type === 'image/jpg' || viewPreviewDisplayImage?.content_type === 'image/png'">
+               <img src="{{viewPreviewDisplayImage?.url}}">
+               <span (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+                  <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
+            </div>
+            <div class="upload-doc-box" *ngIf="viewPreviewDisplayImage?.content_type === 'application/pdf'">
+               <iframe [src]="viewPreviewDisplayImage?.url | safeUrl" height="100%" width="100%"></iframe>
+               <span (click)="removeViewSectionMedia(viewPreviewDisplayImage?.id)">
+                  <img src="assets/img/modal-upload/edit.svg">Remove Image/File</span>
+            </div>
+         </div>
+
+         <div class="col-md-2 p-md-0">
+            <div class="scroll-upload">
+               <button class="add-img" (click)="addNewDocumentImage()"><span>+</span>Add New
+                  Image/File</button>
+               <button class="view-img" *ngFor="let mediaPreview of viewMediaPreviewsList; let i = index">
+                  <div class="img-td-div" (click)="previewImageBig(i)">
+                     <img src="{{ mediaPreview?.url }}" alt="img">
+                  </div>
+               </button>
+            </div>
+         </div>
+      </div>
+      <!----------------- VIEW image/file : END -------------->
+
+      <div class="modal-footer d-flex justify-content-between">
+         <a class="btn modal-btn-cancel" (click)="c('cancel')" href="javascript:void(0)">Cancel</a>
+         <a *ngIf="!isEnableSignaturePad" [ngClass]="{'disabled': !uploader?.getNotUploadedItems().length}"
+            class="btn modal-btn-continue" (click)="submitDocumentUploadModal()" href="javascript:void(0)">
+            Save & Continue
+         </a>
+         <a *ngIf="isEnableSignaturePad" [ngClass]="{'disabled': !signatureImage?.length}"
+            class="btn modal-btn-continue" (click)="submitSignaturePadImageModal()" href="javascript:void(0)">
+            Save & Continue
+         </a>
+      </div>
+   </div>
+</ng-template>
+
+<ng-template #ipvPopup let-c="close" let-d="dismiss">
+   <app-in-person-video [ipvDocStatus]="ipvDocumentStatus" [nameDocument]="nameOfDocument"
+      [nameTitleDocument]="nameOfTitleDocument" (closeEvent)="cancelModal('ipv')"></app-in-person-video>
+</ng-template>
+
+<ng-template #imageDisplay let-c="close" let-d="dismiss">
+   <app-image-popup [ipvDocStatus]="ipvDocumentStatus" [aadhaarKYCDocuments]="aadhaarKYCDocuments"
+      [nameOfDocument]="nameOfDocument" [reviewAll]="reviewAll" (closeEvent)="cancelModal('imgDisplay')">
+   </app-image-popup>
+</ng-template>

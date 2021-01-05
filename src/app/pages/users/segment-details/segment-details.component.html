@@ -1,0 +1,121 @@
+<div class="brdcum">
+  <div class="container">
+    <a href="javascript:void(0)" [routerLink]="['/applications/details',userId]" routerLinkActive="router-link-active">
+      <span class="icon-left-ar mr-2"></span>Back to Application Details
+    </a>
+  </div>
+</div>
+<section class="add-user add-admin-user segmebrokerage-box">
+  <form [formGroup]="segmentForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="add-box">
+        <div class="hdr">
+          <div class="hdr-left">
+            <h2>Segment & Brokerage Details</h2>
+          </div>
+          <div class="hdr-right d-flex">
+            <button class="btn btn-custom mr-2" type="button"
+              [routerLink]="['/applications/details',userId]">cancel</button>
+            <button class="btn btn-custom" type="submit">Save Details <span class="icon-simple-check"></span></button>
+          </div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <div class="form-group mb-0 enter-code">
+              <label for="Plan" class="ble-labl">Code(Optional)</label>
+              <input type="text" name="" class="form-control" placeholder="Enter code">
+              <button>Apply</button>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <span class="tagline">1234ABCD<button>&times;</button></span>
+            <span class="tagline">1234ABCD<button>&times;</button></span>
+            <span class="tagline">1234ABCD<button>&times;</button></span>
+            <span class="tagline">1234ABCD<button>&times;</button></span>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-6">
+            <div class="reg-card welcome-btn">
+              <button type="button" class="btn">apply
+                <img src="assets/images/arrow-right.svg" alt="">
+              </button>
+            </div>
+          </div> -->
+        <h3 class="line-title mt-4"><span>Brokerage Details</span></h3>
+        <ng-container *ngIf="mainSegmentType?.length">
+          <div class="row ttle">
+            <div class="col-md-12 pr-2">
+              <div class="form-group">
+                <label for="Segment" class="ble-labl">Segment Type</label>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-4">
+              <div class="form-group">
+                <label for="Plan" class="ble-labl">Brokerage Plan</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="Rate" class="ble-labl">Brokerage Rate</label>
+              </div>
+            </div> -->
+          </div>
+
+          <div formArrayName="mainCatItems" class="segment-fun">
+            <div [formGroupName]="mainIndex" class="border-bottom-line"
+              *ngFor="let cate of segmentForm.get('mainCatItems')['controls']; let mainIndex = index;">
+              <ng-container *ngIf="cate?.get('sub_cat_items')['controls'].length > 0">
+                <div class="row sub_cat_items card-item d-flex align-items-center" formArrayName="sub_cat_items"
+                  *ngFor="let subcate of cate?.get('sub_cat_items')['controls']; let iIndex = index;">
+                  <ng-container [formGroupName]="iIndex">
+
+                    <div class="custom-checkbox col-md-4 pr-2">
+                      <input type="checkbox" id="logo1" formControlName="subcate_selected"
+                        (click)="selectSubCategory($event,cate?.get('category_id').value)">
+                      <label>{{subcate.get('sub_category_name').value}}</label>
+                    </div>
+
+                    <div class="col-md-4">
+                      <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                        (change)="selectPlan($event,cate?.get('category_id').value,subcate?.get('sub_category_id').value)"
+                        formControlName="plan_id">
+                        <ng-option value="">Select</ng-option>
+                        <ng-option [value]="planItem?.get('plan_id').value"
+                          *ngFor="let planItem of subcate['controls'].plans['controls']; let jIndex = index;">
+                          {{planItem?.get('plan_name').value}}
+                        </ng-option>
+                      </ng-select>
+                    </div>
+
+                    <div class="col-md-4">
+                      <p class="mb-0">{{subcate?.get('plan_description')?.value}}</p>
+                    </div>
+                  </ng-container>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="cate?.get('sub_cat_items')['controls'].length === 0">
+                <div class="row card-item">
+                  <div class="custom-checkbox col-md-12 pr-2" [ngClass]="{'disabled': cate.get('is_disable').value}">
+                    <input type="checkbox" id="logo1" formControlName="selected"
+                      (click)="selectCategory($event,cate?.get('category_id').value)">
+                    <label>{{cate.get('category_name').value}}
+                      <span>({{cate.get('category_description').value}})</span></label>
+                  </div>
+                </div>
+              </ng-container>
+              <!-- </div> -->
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <!-- <div class="reg-card welcome-btn ng-star-inserted">
+      <button type="submit" class="btn">continue
+        <img src="assets/images/arrow-right.svg" alt="">
+      </button>
+    </div> -->
+  </form>
+</section>

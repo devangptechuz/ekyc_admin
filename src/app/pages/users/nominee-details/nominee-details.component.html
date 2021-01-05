@@ -1,0 +1,229 @@
+<div class="brdcum">
+  <div class="container">
+    <a href="javascript:void(0)" [routerLink]="['/applications/details',userId]" routerLinkActive="router-link-active">
+      <span class="icon-left-ar mr-2"></span>Back to Application Details
+    </a>
+  </div>
+</div>
+<section class="add-user add-admin-user accordion-custom">
+  <div id="accordion">
+    <!-- <button (click)="addItem()" class="add-btn">+ Add More Nominee</button> -->
+    <form [formGroup]="nomineeForm" (ngSubmit)="onSubmit()">
+      <div class="container nominee-details">
+        <div class="add-box">
+          <div class="hdr">
+            <div class="hdr-left">
+              <h2>Nominee Details</h2>
+            </div>
+            <div class="hdr-right d-flex">
+              <button class="btn btn-custom mr-2" type="button"
+                [routerLink]="['/applications/details',userId]">cancel</button>
+              <button class="btn btn-custom" type="submit">Save Details <span class="icon-simple-check"></span></button>
+            </div>
+          </div>
+          <div class="row">
+            <div formArrayName="items" *ngFor="let item of nomineeForm?.get('items')?.controls; let i = index;">
+              <div class="card border-0" [formGroupName]="i">
+                <div class="card-header pt-0" id="heading{{i}}">
+                  <h5 class="mb-0">
+                    <button type="button" class="btn btn-link p-0" data-toggle="collapse"
+                      [attr.data-target]="'#collapse' + i" aria-expanded="true" [attr.data-controls]="'collapse' + i">
+                      <div class="header-title"><img src="assets/img/check-circle.svg" alt="check">Nominee {{i+1}}
+                        <!-- <span *ngIf="countNominee>1" (click)="RemoveItem(i)" class="remove-btn"> Remove
+                            Nominee</span> -->
+                      </div>
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapse{{i}}" class="collapse show" [attr.aria-labelledby]="'heading' + i"
+                  data-parent="#accordion">
+                  <div class="card-body pb-0">
+
+                    <div class="reg-card">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="mrs" class="ble-labl">Title</label>
+                            <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                              formControlName="prefix_name">
+                              <ng-option value="">Title</ng-option>
+                              <ng-option value="Mrs.">Mrs.</ng-option>
+                              <ng-option value="Mr.">Mr.</ng-option>
+                              <ng-option value="Miss.">Miss.</ng-option>
+                            </ng-select>
+                            <app-control-messages fieldName="Prefix"
+                              [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.prefix_name">
+                            </app-control-messages>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="nominee_name" class="ble-labl">Nominee Name</label>
+                            <input type="text" placeholder="Enter full name of nominee" formControlName="nominee_name"
+                              class="form-control">
+                            <app-control-messages fieldName="Nominee Name"
+                              [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.nominee_name">
+                            </app-control-messages>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="mrs" class="ble-labl">Relation</label>
+                            <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                              formControlName="nominee_relation">
+                              <ng-option value="">Select relation with nominee</ng-option>
+                              <ng-option value="Mother">Mother</ng-option>
+                              <ng-option value="Father">Father</ng-option>
+                              <ng-option value="Spouse">Spouse</ng-option>
+                            </ng-select>
+                            <app-control-messages fieldName="Relation"
+                              [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.nominee_relation">
+                            </app-control-messages>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="identity_type" class="ble-labl">Identity Type</label>
+                            <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                              formControlName="nominee_identity_type">
+                              <ng-option value="">Identity Type</ng-option>
+                              <ng-option value="Pan card">PAN Card</ng-option>
+                              <ng-option value="Aadhar card">Aadhaar Card</ng-option>
+                            </ng-select>
+                            <app-control-messages fieldName="Identity Type"
+                              [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.nominee_identity_type">
+                            </app-control-messages>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="identity_number" class="ble-labl">Identity Number</label>
+                            <input type="text" placeholder="Identity Number" formControlName="nominee_identity_number"
+                              class="form-control">
+                            <app-control-messages fieldName="Identity Number"
+                              [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.nominee_identity_number">
+                            </app-control-messages>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="nominee_dob" class="ble-labl">Date Of Birth</label>
+                            <div class="position-relative datepicker">
+                              <input type="text" class="form-control" placeholder="DD/MM/YYYY" dateFormat="dd/MM/yyyy"
+                                formControlName="nominee_dob" ngbDatepicker #d="ngbDatepicker">
+                              <div class="input-group-append calendar">
+                                <span class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i
+                                    class="fa fa-calendar" aria-hidden="true"></i></span>
+                              </div>
+                            </div>
+                            <app-control-messages fieldName="Date Of Birth"
+                              [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.nominee_dob">
+                            </app-control-messages>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="mobile_number" class="ble-labl">Mobile Number</label>
+                            <input type="text" placeholder="Enter nominee mobile number" maxlength="10"
+                              formControlName="nominee_mobile_number" class="form-control">
+                            <app-control-messages fieldName="Mobile Number"
+                              [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.nominee_mobile_number">
+                            </app-control-messages>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="multiradio-list multiselect-list ">
+                        <label class="radio-tooltip mb-3">
+                          Is nominee address same as applicant’s correspondance address?
+                        </label>
+                        <div class="type-list row">
+                          <div class="custom-radio custom-checkbox col-md-2 pr-2">
+                            <input type="radio" id="logo1" value="yes" formControlName="is_same_as_user"
+                              (change)="checkForSameAsPermenent($event, i)">
+                            <label>Yes</label>
+                          </div>
+                          <div class="custom-radio custom-checkbox col-md-2 pl-2">
+                            <input type="radio" id="logo2" value="no" formControlName="is_same_as_user"
+                              (change)="checkForSameAsPermenent($event, i)">
+                            <label>No</label>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- {{nomineeForm?.controls?.items?.controls[i].controls.is_same_as_user?.value}} -->
+                      <div id="address" class="collapse"
+                        [ngClass]="{'show': nomineeForm?.controls?.items?.controls[i].controls.is_same_as_user?.value === 'no'}"
+                        [hidden]="nomineeForm?.controls?.items?.controls[i].controls.is_same_as_user?.value !== 'no'">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="email">Address Line 1</label>
+                              <input class="form-control" placeholder="Enter address line 1" type="text"
+                                formControlName="address_line1">
+                              <app-control-messages fieldName="Address Line 1"
+                                [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.address_line1">
+                              </app-control-messages>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="email">Address Line 2</label>
+                              <input class="form-control" placeholder="Enter address line 2" type="text"
+                                formControlName="address_line2">
+                              <app-control-messages fieldName="Address Line 2"
+                                [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.address_line2">
+                              </app-control-messages>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="email">Address Line 3</label>
+                              <input class="form-control" placeholder="Enter address line 3" type="text"
+                                formControlName="address_line3">
+                              <app-control-messages fieldName="Address Line 3"
+                                [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.address_line3">
+                              </app-control-messages>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="email">PIN code</label>
+                              <input class="form-control" placeholder="Enter PIN code" type="text" maxlength="6"
+                                formControlName="pin_code">
+                              <app-control-messages fieldName="PIN code"
+                                [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.pin_code">
+                              </app-control-messages>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="email">Country</label>
+                              <ng-select appearance="outline" placeholder="select" [searchable]="false"
+                                formControlName="country">
+                                <ng-option value="">Identity Type</ng-option>
+                                <ng-option value="INDIA">India</ng-option>
+                                <ng-option value="USA">USA</ng-option>
+                              </ng-select>
+                              <app-control-messages fieldName="Country"
+                                [control]="nomineeForm?.controls?.items?.controls[i]?.controls?.country">
+                              </app-control-messages>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="reg-card welcome-btn mt-2">
+        <button type="submit" [ngClass]="{'disable': !nomineeForm.valid}" class="btn">continue
+          <img src="assets/images/arrow-right.svg" alt="">
+        </button>
+      </div> -->
+    </form>
+  </div>
+</section>

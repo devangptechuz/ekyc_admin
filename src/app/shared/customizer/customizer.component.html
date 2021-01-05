@@ -1,0 +1,53 @@
+<!--Theme customizer Starts-->
+<div #customizer class="customizer border-left-blue-grey border-left-lighten-4 d-none d-sm-none d-md-block"
+  [ngClass]="{open: isOpen}">
+  <!-- <a class="customizer-close" (click)="closeCustomizer()">
+    <i class="ft-x font-medium-3"></i>
+  </a>
+  <a class="customizer-toggle bg-danger" id="customizer-toggle-icon" (click)="toggleCustomizer()">
+    <i class="ft-settings font-medium-4 fa fa-spin white align-middle"></i>
+  </a> -->
+  <div [perfectScrollbar] class="customizer-content p-3 ps-container ps-theme-dark text-left"
+    data-ps-id="df6a5ce4-a175-9172-4402-dabd98fc9c0a">
+    <h4 class="text-uppercase mb-0 text-bold-400">Theme Customizer</h4>
+    <p>Customize &amp; Preview in Real Time</p>
+    <hr>
+    <!-- Layout Options-->
+    <h6 class="text-center text-bold-500 mb-3 text-uppercase">Layout Options</h6>
+    <!-- <ul class="list-unstyled mb-0">
+       <li class="d-inline-block mr-2">
+          <div class="radio"><input type="radio" name="basic-radio-1" id="radio1" checked=""><label  for="radio1">Active</label></div>
+       </li>
+       <li class="d-inline-block mr-2">
+          <div class="radio"><input type="radio" name="basic-radio-1" id="radio2"><label for="radio2">Inactive</label></div>
+       </li>
+       <li _ngcontent-rvd-c256="" class="d-inline-block mr-2">
+          <div class="radio"><input type="radio" id="radio3" disabled="" checked=""><label for="radio3">Active - Disabled</label></div>
+       </li>
+       <li _ngcontent-rvd-c256="" class="d-inline-block">
+          <div class="radio"><input type="radio" id="radio4" disabled=""><label for="radio3">Inactive - Disabled</label></div>
+       </li>
+    </ul> -->
+
+    <div class="layout-switch">
+      <div class="custom-control custom-radio d-inline-block custom-control-inline light-layout">
+        <input class="custom-control-input" id="ll-switch" type="radio" name="layout-switch"
+          [checked]="config.layout.variant === 'Light'" (click)="onLightLayout()" />
+        <label class="custom-control-label" for="ll-switch">Light</label>
+      </div>
+      <div class="custom-control custom-radio d-inline-block custom-control-inline dark-layout">
+        <input class="custom-control-input" id="dl-switch" type="radio" name="layout-switch"
+          [checked]="config.layout.variant === 'Dark'" (click)="onDarkLayout()" />
+        <label class="custom-control-label" for="dl-switch">Dark</label>
+      </div>
+      <!-- <div class="custom-control custom-radio d-inline-block custom-control-inline transparent-layout">
+        <input class="custom-control-input" id="tl-switch" type="radio" name="layout-switch"
+          [checked]="config.layout.variant === 'Transparent'" (click)="onTransparentLayout()" />
+        <label class="custom-control-label" for="tl-switch">Transparent</label>
+      </div> -->
+    </div>
+    <hr />
+
+  </div>
+</div>
+<!--Theme customizer Ends-->

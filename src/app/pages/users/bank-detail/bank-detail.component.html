@@ -1,0 +1,80 @@
+<div class="brdcum">
+   <div class="container">
+      <a href="javascript:void(0)" [routerLink]="['/applications/details',userId]"
+         routerLinkActive="router-link-active">
+         <span class="icon-left-ar mr-2"></span>Back to Application Details
+      </a>
+   </div>
+</div>
+<section class="add-user add-admin-user">
+   <form [formGroup]="bankDetailsform" (ngSubmit)="onSubmit()">
+      <div class="container">
+         <div class="add-box">
+            <div class="hdr">
+               <div class="hdr-left">
+                  <h2>Bank Details</h2>
+               </div>
+               <div class="hdr-right d-flex">
+                  <button class="btn btn-custom mr-2" type="button"
+                     [routerLink]="['/applications/details',userId]">cancel</button>
+                  <button class="btn btn-custom" type="submit">Save Details <span
+                        class="icon-simple-check"></span></button>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label>IFSC Code</label>
+                     <input class="form-control"
+                        (blur)="($event.target.value = $event.target.value.toUpperCase()) && searchBankDetails($event.target.value)"
+                        placeholder="Enter IFSC Code" type="text" formControlName="IFSCCode">
+                     <app-control-messages fieldName="IFSC Code" [control]="bankDetailsform.controls['IFSCCode']">
+                     </app-control-messages>
+                  </div>
+               </div>
+               <div class="col-md-8">
+                  <div class="form-group">
+                     <label>Bank Details</label>
+                     <div class="branch-detail d-flex" *ngIf="bankAddress">
+                        <div>
+                           <h4 *ngIf="bankAddress?.bankName">{{bankAddress?.bankName}}</h4>
+                           <p *ngIf="bankAddress?.address">{{bankAddress?.address}}</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- <div class="col-md-4">
+                  <div class="form-group">
+                     <label>Branch</label>
+                     <ngx-select></ngx-select>
+                  </div>
+               </div> -->
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label>Account Number</label>
+                     <input class="form-control" placeholder="Enter account number" type="text"
+                        formControlName="accountNumber">
+                     <app-control-messages fieldName="Account number"
+                        [control]="bankDetailsform.controls['accountNumber']">
+                     </app-control-messages>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label>Confirm Account Number</label>
+                     <input class="form-control" placeholder="Enter account number" type="text"
+                        formControlName="confirmAccountNumber">
+                     <app-control-messages fieldName="Confirm Account number"
+                        [control]="bankDetailsform.controls['confirmAccountNumber']">
+                     </app-control-messages>
+                  </div>
+               </div>
+            </div>
+            <!-- <div class="footer-btn">
+               <button class="btn" type="button" [routerLink]="['/applications/details',userId]">cancel</button>
+               <button class="btn" type="submit">Submit</button>
+            </div> -->
+         </div>
+      </div>
+   </form>
+</section>

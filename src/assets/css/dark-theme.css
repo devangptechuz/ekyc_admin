@@ -1,0 +1,80 @@
+body.layout-dark {background-color: #123050;color: rgba(255, 255, 255, 0.8);}
+.layout-dark .total-detail .media-body span{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .total-detail .card{border: 1px solid #082544;background: #093260;}
+.layout-dark header{background: #043873;}
+.layout-dark .navbar{background: #043873;box-shadow: none;}
+body.layout-dark .card{background: #093260;border: 1px solid #082544;}
+.layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-body-row>div{background: #073566;}
+.layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-row-wrapper{border-color:#082544;}
+.layout-dark .custom-datatable .ngx-datatable.bootstrap .datatable-body .datatable-body-row .datatable-body-cell{color: rgba(255, 255, 255, 0.8);}
+.layout-dark .user-box{background: #093260;border: 1px solid #082544;}
+body.layout-dark p, body.layout-dark .content-sub-header, body.layout-dark .table td, body.layout-dark .list-group-item-action, body.layout-dark .nav-tabs .nav-link.active, body.layout-dark .content-sub-header,
+.layout-dark .user-btmbx a,
+.layout-dark .total-detail .title,
+.layout-dark header .dropdown-toggle {color: rgba(255, 255, 255, 0.8);}
+.layout-dark .more-dropdown .dropdown-toggle{background: #043873;}
+.layout-dark .icon-more-vertical{color: #fff;}
+.layout-dark .cmn-txt{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .doc-upbox{background: #082544;}
+.layout-dark .user-btmbx > .col-md-6:first-child{border-color:#082544;}
+.layout-dark .custom-tabs .nav-tabs .nav-link{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .custom-tabs .tab-content{background: #093260 ;border: 1px solid #082544;}
+.layout-dark .custom-tabs .nav-tabs .nav-link:hover{background: rgba(255, 255, 255, 0.08);}
+.layout-dark .form-control::placeholder{color: rgba(255, 255, 255, 0.32);}
+.layout-dark .form-control::-webkit-input-placeholder {color: rgba(255, 255, 255, 0.32);}
+.layout-dark .form-control:-ms-input-placeholder {color:rgba(255, 255, 255, 0.32);}
+.layout-dark .form-control:focus::placeholder{color: rgba(255, 255, 255, 0.8);}
+.layout-dark .form-control:focus::-webkit-input-placeholder {color: rgba(255, 255, 255, 0.8);}
+.layout-dark .form-control:focus:-ms-input-placeholder {color:rgba(255, 255, 255, 0.8);}
+.layout-dark section.application .btn-search{color:rgba(255, 255, 255, 0.56);}
+.layout-dark .datatable-checkbox input[type='checkbox']:after{background: transparent;}
+.layout-dark input:checked + .switch .slider {background-color: rgba(0, 0, 0, 0.32);}
+.layout-dark .slider{background-color: rgba(0, 0, 0, 0.32)}
+.layout-dark .slider:before{background-color: #0970DD;}
+body.layout-dark .dropdown-menu .dropdown-item:hover {background-color: rgba(9, 112, 221, 0.16);}
+.layout-dark .custom-datatable .ngx-datatable .datatable-body .datatable-body-row .datatable-row-center{border-color: #082544;}
+.layout-dark .total-detail .media-right{background: rgba(9, 112, 221, 0.16);}
+.layout-dark .total-detail .green .media-right{background: rgba(25, 208, 151, 0.16);}
+.layout-dark .total-detail .yellow .media-right{background: rgba(250, 180, 1, 0.16);}
+.layout-dark .total-detail .red .media-right{background: rgba(223, 14, 64, 0.16);}
+.layout-dark .ngx-datatable .datatable-footer .page-count{color: rgba(255, 255, 255, 0.32)}
+.layout-dark .ngx-datatable.bootstrap .datatable-footer .datatable-pager a{color: rgba(255, 255, 255, 0.8)}
+.layout-dark .ngx-select__toggle::after{color: rgba(255, 255, 255, 0.56);}
+
+.layout-dark .light-color-text{color: rgba(255, 255, 255, 0.32);}
+.layout-dark section.application .filter{background: rgba(255, 255, 255, 0.08);border: 1px solid #082544;color: rgba(255, 255, 255, 0.56);}
+.layout-dark section.application span.icon-filter{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .modal-usrbox{background: rgba(0, 0, 0, 0.16);}
+.layout-dark .modal-usrbox span,.layout-dark .admin-profile .hdr-left span{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .add-user .view-pic{background: rgba(238, 238, 238, 0.16);}
+.layout-dark .login-section .card{background: transparent;border: transparent;}
+.layout-dark .login-section .bg-white{border: 1px solid #082544;}
+.layout-dark .login-section h2.card-title{color: #FFFFFF;}
+.layout-dark section.application .ng-select .ng-select-container{background: rgba(255, 255, 255, 0.08);border-color:#082544;}
+.layout-dark section.application .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder{color: rgba(255, 255, 255, 0.56);}
+.layout-dark section.application .ng-select .ng-arrow-wrapper{color: rgba(255, 255, 255, 0.56);}
+.layout-dark section.application .ng-dropdown-panel{background: #043873;}
+.layout-dark section.application .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child{background: transparent;color: rgba(255, 255, 255, 0.8);}
+.layout-dark section.application .ng-dropdown-panel-items .ng-optgroup.ng-option-disabled:before{background: #082544;}
+.layout-dark section.application .ng-dropdown-footer{border-color:#082544;}
+.layout-dark section.application .ng-dropdown-panel .ng-dropdown-header{border-color: #082544;color: rgba(255, 255, 255, 0.8);}
+.layout-dark section.application input[type='checkbox']:before, .layout-dark section.application input[type='checkbox']:after{background: rgba(255, 255, 255, 0.08)}
+.layout-dark section.application input[type='checkbox']:checked:before{background: #0970DD;}
+.layout-dark section.application .calendar span{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .history-inr{background: #093260;border-color:#082544;}
+.layout-dark .history ul li span{color: rgba(255, 255, 255, 0.56);}
+.layout-dark .history ul li:before{background: #082544;}
+.layout-dark .history ul li.white:after{background:#082544}
+.layout-dark .history ul li.white {background: #043873;border-color: #082544}
+.layout-dark .history ul li.green{background: rgba(25, 208, 151, 0.16);}
+.layout-dark .history ul li.blue{background: rgba(0, 0, 0, 0.16);border-color: #0970DD;}
+.layout-dark .history ul li.red{background: rgba(223, 14, 64, 0.16);}
+.layout-dark .pw-strength{color: rgba(255, 255, 255, 0.8)}
+
+.layout-dark .multiselect-list .custom-checkbox label,
+.layout-dark .multiselect-list .custom-radio label{border-color: #082544;background: rgba(0, 0, 0, 0.08);color: rgba(255, 255, 255, 0.8);}
+.layout-dark .custom-checkbox label:before{background:rgba(221, 221, 221, 0.16);border-color: rgba(255, 255, 255, 0.8);}
+.layout-dark .multiselect-list .type-list .disabled label{color: rgba(255, 255, 255, 0.24);}
+.layout-dark .slct-theme strong{color: rgba(255, 255, 255, 0.8);}
+.layout-dark .slct-theme{color: rgba(255, 255, 255, 0.24);}
+.layout-dark .admin-profile .custom-radio p{color: rgba(255, 255, 255, 0.32);}

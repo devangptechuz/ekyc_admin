@@ -1,4 +1,21 @@
 export const environment = {
   production: false,
-  api_url: "https://devservertest.xyz/api/v1",
+  // api_url: "https://gwjo4vmyy3.execute-api.ap-south-1.amazonaws.com/test/api",
+  // api_url_setting: "https://nuv9au65ml.execute-api.ap-south-1.amazonaws.com/test/api",
+  // configure_api_url: "https://kf1gq6o650.execute-api.ap-south-1.amazonaws.com/test/api",
+  // api_url_segment: " https://kf1gq6o650.execute-api.ap-south-1.amazonaws.com/test/api",
+  // reason_api_url: "https://t6857mnow4.execute-api.ap-south-1.amazonaws.com/test/api",
+  // imag_url: "https://v0eoiezs5l.execute-api.ap-south-1.amazonaws.com/test/api",
+  // coupon_url: "https://v0pouhidia.execute-api.ap-south-1.amazonaws.com/test/api",
+  api_url: "https://046b6u0eml.execute-api.ap-south-1.amazonaws.com/production/api",
+  api_url_setting: "https://dv0qwvbzja.execute-api.ap-south-1.amazonaws.com/production/api",
+  configure_api_url: "https://86rplctbz1.execute-api.ap-south-1.amazonaws.com/production/api",
+  api_url_segment: "https://86rplctbz1.execute-api.ap-south-1.amazonaws.com/production/api",
+  reason_api_url: "https://69guilpm0a.execute-api.ap-south-1.amazonaws.com/production/api",
+  imag_url: "https://hsdue9sk57.execute-api.ap-south-1.amazonaws.com/production/api",
+  coupon_url: "https://n6zqedqwf5.execute-api.ap-south-1.amazonaws.com/production/api",
+  create_application_url: "https://www.arihantcapital.com/login",
+  userlimitRow: 10,
+  adminlimitRow: 10,
+  // imag_url: "http://localhost:3000/test/api"
 };

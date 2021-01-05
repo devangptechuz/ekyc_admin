@@ -5,6 +5,8 @@ import { CommonService } from 'app/shared/services/common.service';
 import { ValidationService } from "app/shared/services/validator.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute, Router} from "@angular/router";
+import {GlobalService} from '../../shared/services/global.service';
+import {CookiesService} from '@ngx-utils/cookies';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +25,13 @@ export class LoginComponent {
     private commonService: CommonService,
     private formBuilder: FormBuilder,
     private validationService: ValidationService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    public global: GlobalService,
+    private cookies: CookiesService
   ) { }
 
   ngOnInit() {
-    this.commonService.logout()
+    this.cookies.remove('admin_token');
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     this.setLoginForm();
   }
@@ -44,18 +48,16 @@ export class LoginComponent {
       this.validationService.validateAllFormFields(this.loginForm);
       return false;
     }
-    this.commonService.login(this.loginForm.value).subscribe(
-      (result: any) => {
-          if (result['status'] === true && result['data']) {
-              localStorage.setItem('token', result['data'].token);
-              localStorage.setItem('User', JSON.stringify(result['data'].Items[0]));
+    this.commonService.login(this.loginForm.value).subscribe((res: any) => {
+      if(res.success){
+          this.cookies.put('admin_token', res.result.token);
+          this.router.navigateByUrl(this.returnUrl);
+          this.spinner.hide();
+          this.loginForm.reset();
+          this.global.successToastr(res.message);
+        } else {
+           this.global.errorToastr(res.message);
           }
-        this.router.navigateByUrl(this.returnUrl);
-        this.spinner.hide();
-        this.loginForm.reset();
-      },
-      error => {
-        this.toastr.error(error.error);
       }
     );
   }

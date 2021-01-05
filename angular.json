@@ -28,12 +28,21 @@
               "node_modules/@swimlane/ngx-datatable/themes/dark.scss",
               "node_modules/@swimlane/ngx-datatable/themes/bootstrap.scss",
               "node_modules/@swimlane/ngx-datatable/assets/icons.css",
-              "src/assets/css/demo.css",
+              "node_modules/fancybox/dist/css/jquery.fancybox.css",
               "src/assets/sass/app.scss",
-              "src/styles.css"
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/demo.css",
+              "src/styles.css",
+              "src/assets/css/dark-theme.css",
+              "src/assets/css/responsive.css"
             ],
             "scripts": [
-              "src/assets/vendor/pace/pace.min.js"
+              "src/assets/vendor/pace/pace.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/jquery.panzoom/dist/jquery.panzoom.min.js",
+              "node_modules/fancybox/dist/js/jquery.fancybox.js"
             ]
           },
           "configurations": {

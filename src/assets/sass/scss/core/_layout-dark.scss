@@ -10,7 +10,7 @@ body {
     }
 
     .bg-white {
-      background-color: $dl-bg-color !important;
+      background-color: $bg-color-dark !important;
       color: $component-active-bg !important;
     }
 
@@ -42,7 +42,7 @@ body {
     .h6,
     .content-header,
     .table th {
-      color: $dl-headings-color;
+      color: $white-normal-color;
     }
 
     vg-player {
@@ -55,7 +55,10 @@ body {
       .navbar-nav .nav-item,
       .nav-link,
       i {
-        color: $dl-headings-color !important;
+        color: rgba(255, 255, 255, 0.56);
+      }
+      .nav-link:hover{
+        color:$white-normal-color;
       }
     }
 
@@ -73,13 +76,13 @@ body {
     }
 
     .badge-light {
-      color: $dl-bg-color !important;
+      color: $bg-color-dark !important;
     }
 
     // Cards
     .card,
     .card-footer {
-      background: $dl-bg-color;
+      background: $bg-color-dark;
     }
 
     // Charts & SVG
@@ -125,10 +128,7 @@ body {
       }
     }
 
-    .ngx-datatable .datatable-header .datatable-header-cell .sort-btn {
-      color: $dl-text-color !important;
-    }
-
+   
     // Smart Table 
 
     .ng2-smart-filter {
@@ -141,18 +141,13 @@ body {
       border-color: $dl-border-color;
     }
 
-    // Forms
-    label {
-      color: $dl-text-color;
+    // Forms    
+    .form-control, input[type="text"], input[type="email"], input[type="phone"], input[type="number"], input[type="password"],.form-control:focus{
+      border-color:$dl-border-color !important;
+      background-color:$white-bg-color;
+      color:$white-normal-color;
     }
-
-    .search {
-      border-radius: 1.5rem;
-      background: $dl-bg-color;
-      color: $dl-text-color;
-      border: 2px solid $dl-border-color;
-    }
-
+    
     .custom-select {
       margin-bottom: 0.3125rem;
       margin-left: 0.3125rem;
@@ -193,7 +188,7 @@ body {
       font-family: "Montserrat", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
-    .form-control,
+    
     .type-zone,
     .ng2-tag-input__text-input {
       background: $dl-bg-color !important;
@@ -325,6 +320,8 @@ body {
 
     .dropdown-menu {
       background-color: $bg-color-dark;
+      border: 1px solid $dl-border-color;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
 
       .dropdown-item {
         color: $dl-text-color;
@@ -351,25 +348,25 @@ body {
     // Modal
     .modal {
 
-      .modal-header {
-        background: $dl-bg-color;
-        border-bottom: 1px solid $dl-border-color;
-
+      .modal-header {       
         .close {
           color: $dl-text-color;
         }
       }
 
-      .modal-body {
-        background: $dl-bg-color;
+      .modal-body {       
 
         p {
-          color: $dl-text-color;
+          color: rgba(255, 255, 255, 0.56);
+        }
+        .modal-usrbox {
+          .name{
+          color: $white-normal-color;
+          }
         }
       }
 
-      .modal-footer {
-        background: $dl-bg-color;
+      .modal-footer {        
         border-top: 1px solid $dl-border-color;
 
       }
@@ -391,19 +388,19 @@ body {
     .nav-tabs,
     .nav-link {
       border-bottom-color: $dl-border-color;
-      color: $dl-text-color;
+      color: $white-bg-color;
 
       .active {
-        color: $dl-text-color !important;
+        color: $dl-headings-color !important;
         border-color: $dl-border-color;
       }
     }
 
-    .tab-content {
-
+    .tab-content {      
       .tabpane,
       .active {
         background: $dl-bg-color !important;
+        border-color: $dl-border-color;
       }
     }
 
@@ -447,7 +444,11 @@ body {
     // Progress
 
     .progress {
-      background: $bg-color-dark;
+      background: rgba(0, 0, 0, 0.16);
+    }
+    .info-tp-content{
+       background-color: $dl-bg-color;
+       border:none;
     }
 
     // Tooltip And PopOver
@@ -708,11 +709,9 @@ body {
     #regestration,
     #lock-screen,
     #coming-soon,
-    #maintenance {
-      background-image: url('../../assets/img/gallery/dark-bg.jpg') !important;
+    #maintenance {     
 
-      .fg-image,
-      .login-img,
+      .fg-image,     
       .register-img,
       .lock-screen-img {
         background: #494b62 !important;
@@ -728,5 +727,90 @@ body {
         }
       }
     }
+      section.application{
+      .btn-search{
+        border-color:$dl-border-color;
+      }
+    }
+    section.application {
+      .header{
+        border-color:$dl-border-color;
+      }
+    }
+    .custom-datatable{
+      .card {
+         .card-header{
+          border-color:$dl-border-color;
+        }
+      }
+    }
+    .fixed-status{
+      border-color:#0970DD;
+      background:#043873;
+        label{
+          color:$white-normal-color;
+        }
+    }
+    .brdcum{
+      a{color: rgba(255, 255, 255, 0.56);}
+    }
+    section.add-user{
+      .add-box{
+        background:$bg-color-dark;
+        border-color:$dl-border-color;
+      }
+    }
+    .custom-datatable {
+      .uname{
+          color: $white-normal-color;
+      }
+    }
+    .modal-content{
+      background-color:#043873
+
+    }
+    .hdr{
+      border-color:$dl-border-color;
+    }
+    .uploaddoc-popup {
+      .upload-box{   
+       background:$bg-color-dark;
+        border-color:$dl-border-color;
+      }
+    }
+    .or-text {
+      &:before{
+        background-color:$white-bg-color;
+      }
+      span{
+        background:$bg-color-dark;
+        color:$white-normal-color;
+      }
+
+    }
+    .uploaddoc-popup {
+      .progress-ratio{
+        color: rgba(255, 255, 255, 0.32);
+      }
+      .upload-progress {
+        h5{
+          color:$white-normal-color;
+        }
+        p{
+          color: rgba(255, 255, 255, 0.56);
+        }
+      }
+    }
+    .info-tp-content {
+      ol {
+        li{
+           color:rgba(255, 255, 255, 0.56);
+            &.trueli {
+                color: #19D097;
+            }
+        }
+      }
+    }   
   }
+  
 }
